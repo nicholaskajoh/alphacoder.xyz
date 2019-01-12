@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aws on Alpha Coder</title>
+    <link>http://alphacoder.xyz/tag/aws/</link>
+    <description>Recent content in Aws on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <copyright>© [ This Year ] Nicholas Kajoh</copyright>
+    <lastBuildDate>Sun, 02 Dec 2018 13:13:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://alphacoder.xyz/tag/aws/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Git push to an AWS EC2 remote using a PEM file</title>
+      <link>http://alphacoder.xyz/how-to-git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+      <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/how-to-git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+      <description>AWS provides you with a .pem file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…
+1. Copy private key in PEM to .ssh folder 1  $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2   2. Generate and save public key 1  $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.</description>
+    </item>
+    
+  </channel>
+</rss>

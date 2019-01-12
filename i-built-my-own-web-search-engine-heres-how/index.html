@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>I built my own web search engine — here’s how | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}</style>
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>I built my own web search engine — here’s how</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2018-07-26">Jul 26, 2018</time>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!</p>
+
+<h2 id="about-my-search-engine-devsearch">About my search engine, devsearch</h2>
+
+<p>It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.</p>
+
+<p>The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place. It would take tons of servers to crawl a meaningful portion of the web in good time. I didn’t have the time or the servers. I decided to focus on tech/software development content (hence the name <em>devsearch</em>) and to deal only with textual data.</p>
+
+<p>The next step was to decide on the features to implement. The core functionalities of a search engine are crawling, indexing and searching. But there are a ton of other features that make the search engines we use today so good. Features like autocomplete, auto-correct, <a href="https://en.wikipedia.org/wiki/Stemming">stemming</a>, semantic analysis, contextual search (search history, location, season etc), featured snippets, spam detection, knowledge graph etc.</p>
+
+<p>The features I chose to build were:</p>
+
+<ul>
+<li>Crawling</li>
+<li>Indexing</li>
+<li>Searching (sorting results using TFIDF and PageRank)</li>
+<li>Autocomplete</li>
+</ul>
+
+<h2 id="stack">Stack</h2>
+
+<p>Python was my language of choice. I also used some HTML, CSS and JavaScript. My stack:</p>
+
+<ul>
+<li>Flask (micro framework for Python)</li>
+<li>Scrapy (crawling framework for Python)</li>
+<li>LXML (for processing XML and HTML in Python)</li>
+<li>MongoEngine (object document mapper for MongoDB)</li>
+<li>Bootstrap 4 (CSS library for UI components)</li>
+</ul>
+
+<h2 id="crawling-web-pages-with-scrapy">Crawling web pages with Scrapy</h2>
+
+<p><a href="https://scrapy.org/">Scrapy</a> is a free and open source web crawling framework. With Scrapy, you can create <a href="https://en.wikipedia.org/wiki/Web_crawler">a <em>spider</em></a>, give it a bunch of urls to crawl and tell it what to do with the pages it fetches. You can even tell the spider to crawl the links it finds on the pages it crawls, allowing it to discover new pages.</p>
+
+<p>I took a very lazy approach to parsing the scrapped pages. I used LXML to extract only the text from the HTML response. Say there’s a HTML page like so:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;How Google Search Works&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Crawling and indexing&lt;/h1&gt;
+        &lt;p&gt;As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index.&lt;/p&gt;
+
+        &lt;h1&gt;Search algorithms&lt;/h1&gt;
+        &lt;p&gt;Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second.&lt;/p&gt;
+
+        &lt;h1&gt;Useful responses&lt;/h1&gt;
+        &lt;p&gt;With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>The output would be:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.</pre></td></tr></table>
+</div>
+</div>
+<p><em>NB: You lose a lot of important data by doing this but it simplifies things a lot</em> 😊</p>
+
+<p>I also extract all the links in each page (necessary for PageRank).</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Page (How Google Search Works):
+    url: https://example.com/google-search
+    content: How Google Search Works
+        links:
+            - Link (Google Search)
+            - Link (Search Engines Wiki)</pre></td></tr></table>
+</div>
+</div>
+<p>There’s a list of allowed domains in the configs (<code>SPIDER_ALLOWED_DOMAINS</code>) which helps to fence the spider. It only crawls pages from the websites in that list.</p>
+
+<p>The spider crawls periodically via a cronjob which runs the custom flask command <code>flask crawl</code>. A <code>--recrawl</code> option can be added to the command to tell the spider whether to crawl new pages or crawl pages it has crawled before in order to update them.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ flask crawl --recrawl True</pre></td></tr></table>
+</div>
+</div>
+<p>A list of urls to crawl (called Crawl List) is maintained in the DB. There needs to be at least one url in the list for the spider to start crawling. As it crawls, it updates the list with new urls and marks the ones it has crawled.</p>
+
+<h2 id="indexing">Indexing</h2>
+
+<p>Indexes help us find things quicker e.g the Table of Contents or Glossary in a book. If we wanted to index a website’s SQL DB, we could create an index table similar to this:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">id title   description    keywords       page
+------------------------------------------------
+1  G.O.A.T Greatest of... messi, ronaldo /p/goat</pre></td></tr></table>
+</div>
+</div>
+<p>This is a <a href="https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index"><em>forward index</em></a>. It’s very similar to a Table of Contents (which usually has chapter titles, descriptions and page numbers). Instead of writing expensive and complex queries, you can simply lookup the index table and return matching records. However, as the records in the index increase, lookup becomes slower and slower.</p>
+
+<p>There is another type of index which makes searching much faster. It’s the <a href="https://en.wikipedia.org/wiki/Inverted_index"><em>inverted index</em></a>. This is the opposite of the forward index. Instead of having a list of pages and the keywords they contain, we have a list of keywords and the pages they are contained in. This is quite similar to a glossary.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">id word     pages
+--------------------------------------------------------
+1  greatest /p/goat /u/messi /u/ronaldo /t/football
+2  of       /p/goat
+3  all      /p/goat /home
+4  time     /p/goat /fixtures</pre></td></tr></table>
+</div>
+</div>
+<p>The trade-off with the inverted index is <em>higher disk comsumption for faster lookup speed</em>. I used an inverted index for <em>devsearch</em>.</p>
+
+<h2 id="tfidf-and-pagerank">TFIDF and PageRank</h2>
+
+<p>Modern search engines consider many factors when ranking search results. Common factors include TFIDF, PageRank, words position, freshness, page loading speed, CTR and mobile-friendliness.</p>
+
+<p>Google says they consider <a href="https://backlinko.com/google-ranking-factors">over 200 factors</a>. Each factor has a weight that signifies its importance in the ranking process. Google keeps all this information secret to prevent people (AKA black hat SEOs) from gaming the system. They also <a href="https://moz.com/google-algorithm-change">change things pretty frequently</a> in order to improve search results.</p>
+
+<p>I chose TFIDF and PageRank for my search engine. TFIDF stands for <em>term frequency–inverse document frequency</em>. It is a numerical statistic that is intended to reflect how important a word is to a document in a collection. The idea is that if a word appears frequently in a document, then the document is probably about that word. In this article for instance, the words ‘search’ and ‘engine’ appear frequently. So we can assume it at least has something to do with search engines, and that if someone were to search for ‘search engine’ this article would be more relevant to them than another article that mentions it once or twice. There are words that usually appear frequently in documents though e.g <a href="https://en.wikipedia.org/wiki/Stop_words">stop words</a> like ‘a’, ‘and’, ‘the’ etc. We can offset these words and give more weight to words that occur less frequently in the whole collection but more frequently in a given document. The formula for TFIDF can be found in <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">this article on Wikipedia</a>.</p>
+
+<p>Developed by Larry Page and Sergey Brin, <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> is the most notable algorithm used in Google Search. PageRank works by counting the number [and quality] of links to a page to determine a rough estimate of how important the website is. The underlying assumption is that more important websites are likely to receive more links from other websites. I used <a href="https://en.wikipedia.org/wiki/PageRank#Simplified_algorithm">the simplified version of the algorithm</a> for <em>devsearch</em>. All pages start with an initial PageRank of 1 / N (where N = total number of pages in DB) and then “<a href="https://www.woorank.com/en/edu/seo-guides/link-juice">link juice</a>” begins to flow until all pages are ranked.</p>
+
+<p>I combined the TFIDF and PageRank values to produce a score which is used to rank results.</p>
+
+<h2 id="searching-and-autocomplete">Searching and autocomplete</h2>
+
+<p>When a user types in a query into <em>devsearch</em>, the query is divided into a list of words. The index collection (MongoDB) is filtered for records that have any of those words. Each index record has a score which is precomputed using the formula:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">score = (tfidf / max(tfidf) * 0.7) + (pagerank / max(pagerank) * 0.3)</pre></td></tr></table>
+</div>
+</div>
+<p>TFIDF represents 70% of the score and PageRank represents the remaining 30.</p>
+
+<p>An aggregate score is computed for each distinct page. So if the search query is <em>‘rick and morty’</em>, a page that contains all the words would have an aggregate score of: <code>total_score = score('rick') + score('and') + score('morty')</code>.</p>
+
+<p>The records are sorted in descending order of <code>total_score</code> and then paginated.</p>
+
+<p>Autocomplete for the search box is very very basic. I didn’t want to get AJAX involved, so I just queried the DB for a list of the top 200 searches on the search view and passed them to a JavaScript function which uses sub-string matching to determine whether a query should be shown or not when a user is typing their query. 😉</p>
+
+<h2 id="deploying-the-search-engine">Deploying the search engine</h2>
+
+<p>I used Docker (and Docker Compose) to containerize <em>devsearch</em> and run it on a DigitalOcean Debian machine. The MongoDB server is also containerized. The production Docker Compose file uses Nginx as a reverse proxy for the Gunicorn server running the Flask app. Nginx also serves the static files.</p>
+
+<hr />
+
+<p>The search results from <em>devsearch</em> are abysmal (good thing I wasn’t hoping to build the next Google Search). However, I learnt a ton about search engines and search algorithms, and have already started exploring the areas most interesting to me. Most important, I understand a little better how search engines work! 🙌</p>
+
+<p>You can find the source code for <em>devsearch</em> on my GitHub: <a href="https://github.com/nicholaskajoh/devsearch"><strong>nicholaskajoh/devsearch</strong></a>.</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Also, consider supporting <a href="https://www.patreon.com/user?u=16416296" target="_blank">Alpha Coder on Patreon</a>.
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="https://www.patreon.com/user?u=16416296">Patreon</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>

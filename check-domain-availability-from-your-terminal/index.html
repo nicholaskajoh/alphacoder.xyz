@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Check domain availability from your terminal | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}</style>
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Check domain availability from your terminal</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2018-12-10">Dec 10, 2018</time>
+    &#x5d;
+</div>
+</header>
+<article>
+    <p>I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been <em>legitly</em> purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.</p>
+
+<p>You can boycott registrars by doing a WHOIS lookup on the desired domain instead. If a match is found, info about the domain is displayed but if no match is found, you know the site is available. There are a couple of websites that provide this functionality, most notably <a href="https://www.whois.com/">https://www.whois.com</a>. Alternatively, you can use the WHOIS CLI tool.</p>
+
+<p>To install, run…</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ sudo apt install whois</pre></td></tr></table>
+</div>
+</div>
+<p><em>If you’re a Windows user, you can download the WHOIS CLI here:</em> <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/whois"><em>https://docs.microsoft.com/en-us/sysinternals/downloads/whois</em></a><em>.</em></p>
+
+<p>To check for availability of a site, run <code>whois sitename.tld</code>. E.g:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ whois example.com</pre></td></tr></table>
+</div>
+</div>
+<p>If it&rsquo;s been registered, you’ll get a result like so…</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*_KfHQUBzwAQUiq0NaGFAeQ.png" alt="" /></p>
+
+<p>If not, you’ll get something like this…</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*b2-XSsJ-M2Z_5lbPiv0qCw.png" alt="" /></p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Also, consider supporting <a href="https://www.patreon.com/user?u=16416296" target="_blank">Alpha Coder on Patreon</a>.
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="https://www.patreon.com/user?u=16416296">Patreon</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>

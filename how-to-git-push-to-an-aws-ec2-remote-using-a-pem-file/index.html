@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>How to Git push to an AWS EC2 remote using a PEM file | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}</style>
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>How to Git push to an AWS EC2 remote using a PEM file</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2018-12-02">Dec 2, 2018</time>
+    &#x5d;
+    Tag &#x5b;
+    <a href="http://alphacoder.xyz/tag/git/">Git</a>
+    <a href="http://alphacoder.xyz/tag/aws/">AWS</a>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>AWS provides you with a <em>.pem</em> file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…</p>
+
+<h3 id="1-copy-private-key-in-pem-to-ssh-folder">1. Copy private key in PEM to .ssh folder</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2</pre></td></tr></table>
+</div>
+</div>
+<h3 id="2-generate-and-save-public-key">2. Generate and save public key</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &gt; ~/.ssh/id_rsa_ec2.pub</pre></td></tr></table>
+</div>
+</div>
+<h3 id="3-add-private-key-to-ssh-agent">3. Add private key to ssh-agent</h3>
+
+<p>Start ssh-agent</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ eval &#34;$(ssh-agent -s)&#34;</pre></td></tr></table>
+</div>
+</div>
+<p>Then add your key to the agent</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh-add ~/.ssh/id_rsa_ec2</pre></td></tr></table>
+</div>
+</div>
+<p><em>At this point, you should be able to access your instance without the PEM file. Instead of:</em></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh -i my-aws-ec2-instance.pem ec2-user@ec2-ip.compute-x.amazonaws.com</pre></td></tr></table>
+</div>
+</div>
+<p><em>Use:</em></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh ec2-user@ec2-ip.compute-x.amazonaws.com</pre></td></tr></table>
+</div>
+</div>
+<h3 id="4-add-remote-and-push">4. Add remote and push</h3>
+
+<p>Change directory to your local Git repository and add the remote URL of your server</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ git remote add ec2server ec2-user@ec2-ip.compute-1.amazonaws.com:/home/ec2-user/repo.git</pre></td></tr></table>
+</div>
+</div>
+<p>Now push…</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ git push ec2server</pre></td></tr></table>
+</div>
+</div>
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Also, consider supporting <a href="https://www.patreon.com/user?u=16416296" target="_blank">Alpha Coder on Patreon</a>.
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="https://www.patreon.com/user?u=16416296">Patreon</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>

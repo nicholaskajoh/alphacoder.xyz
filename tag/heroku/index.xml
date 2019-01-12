@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heroku on Alpha Coder</title>
+    <link>http://alphacoder.xyz/tag/heroku/</link>
+    <description>Recent content in Heroku on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <copyright>© [ This Year ] Nicholas Kajoh</copyright>
+    <lastBuildDate>Tue, 30 Jan 2018 11:52:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://alphacoder.xyz/tag/heroku/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deploy your React-Django app on Heroku</title>
+      <link>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</link>
+      <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</guid>
+      <description>This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
+TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
+We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
+    </item>
+    
+  </channel>
+</rss>

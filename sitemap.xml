@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://alphacoder.xyz/from-medium-to-ghost/</loc>
+    <lastmod>2018-12-25T13:26:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/4-reasons-why-you-should-probably-not-drop-out-of-university/</loc>
+    <lastmod>2018-12-18T15:58:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/a-tip-for-working-on-side-projects/</loc>
+    <lastmod>2018-12-16T05:23:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</loc>
+    <lastmod>2018-12-10T20:46:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/how-to-git-push-to-an-aws-ec2-remote-using-a-pem-file/</loc>
+    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/2-git-workflows-you-should-know/</loc>
+    <lastmod>2018-11-22T07:21:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/understanding-modern-front-end-development/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/how-to-land-an-internship-at-a-great-nigerian-startup/</loc>
+    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/dockerizing-django-in-development-and-production/</loc>
+    <lastmod>2018-08-15T12:54:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/my-top-5-talks-at-concatenateconf-2018/</loc>
+    <lastmod>2018-08-12T13:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/on-making-lagos-a-little-saner/</loc>
+    <lastmod>2018-08-03T13:52:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/i-built-my-own-web-search-engine-heres-how/</loc>
+    <lastmod>2018-07-26T14:16:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</loc>
+    <lastmod>2018-06-28T17:41:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/how-to-scale-an-app-horizontally-using-a-load-balancer/</loc>
+    <lastmod>2018-06-13T19:59:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</loc>
+    <lastmod>2018-02-18T08:50:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</loc>
+    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/heres-a-dead-simple-react-django-setup-for-your-next-project/</loc>
+    <lastmod>2018-01-11T14:39:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/2017-in-bullet-points/</loc>
+    <lastmod>2018-01-02T19:46:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/write-your-own-responsive-grid-system-with-few-lines-of-css-code/</loc>
+    <lastmod>2017-11-19T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/lazy-load-your-content-with-django-and-jquery/</loc>
+    <lastmod>2017-02-26T05:43:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/aws/</loc>
+    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/babel/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/blog/</loc>
+    <lastmod>2018-12-25T13:26:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/courses/</loc>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/css/</loc>
+    <lastmod>2017-11-19T20:07:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/django/</loc>
+    <lastmod>2018-08-15T12:54:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/docker/</loc>
+    <lastmod>2018-08-15T12:54:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/git/</loc>
+    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/grunt/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/heroku/</loc>
+    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/</loc>
+    <lastmod>2018-12-25T13:26:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/internships/</loc>
+    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/jquery/</loc>
+    <lastmod>2017-02-26T05:43:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/lagos/</loc>
+    <lastmod>2018-08-03T13:52:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/nigeria/</loc>
+    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/npm/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/react/</loc>
+    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/sass/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/startups/</loc>
+    <lastmod>2018-12-16T05:23:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/</loc>
+    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/traefik/</loc>
+    <lastmod>2018-06-28T17:41:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/webpack/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

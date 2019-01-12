@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Alpha Coder</title>
+    <link>http://alphacoder.xyz/tag/docker/</link>
+    <description>Recent content in Docker on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <copyright>© [ This Year ] Nicholas Kajoh</copyright>
+    <lastBuildDate>Wed, 15 Aug 2018 12:54:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://alphacoder.xyz/tag/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dockerizing Django in development and production</title>
+      <link>http://alphacoder.xyz/dockerizing-django-in-development-and-production/</link>
+      <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/dockerizing-django-in-development-and-production/</guid>
+      <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
+TL;DR: Sample project You can check out the code on GitHub.
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.</description>
+    </item>
+    
+    <item>
+      <title>How to run multiple apps on one server using Docker and Traefik</title>
+      <link>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</link>
+      <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</guid>
+      <description>Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.
+Use case Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end).</description>
+    </item>
+    
+  </channel>
+</rss>

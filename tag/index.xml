@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tag on Alpha Coder</title>
+    <link>http://alphacoder.xyz/tag/</link>
+    <description>Recent content in Tag on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <copyright>© [ This Year ] Nicholas Kajoh</copyright>
+    <lastBuildDate>Sun, 02 Dec 2018 13:13:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://alphacoder.xyz/tag/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Aws</title>
+      <link>http://alphacoder.xyz/tag/aws/</link>
+      <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Babel</title>
+      <link>http://alphacoder.xyz/tag/babel/</link>
+      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/babel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Css</title>
+      <link>http://alphacoder.xyz/tag/css/</link>
+      <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Django</title>
+      <link>http://alphacoder.xyz/tag/django/</link>
+      <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/django/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://alphacoder.xyz/tag/docker/</link>
+      <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>http://alphacoder.xyz/tag/git/</link>
+      <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grunt</title>
+      <link>http://alphacoder.xyz/tag/grunt/</link>
+      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/grunt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heroku</title>
+      <link>http://alphacoder.xyz/tag/heroku/</link>
+      <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/heroku/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internships</title>
+      <link>http://alphacoder.xyz/tag/internships/</link>
+      <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/internships/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jquery</title>
+      <link>http://alphacoder.xyz/tag/jquery/</link>
+      <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/jquery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lagos</title>
+      <link>http://alphacoder.xyz/tag/lagos/</link>
+      <pubDate>Fri, 03 Aug 2018 13:52:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/lagos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nigeria</title>
+      <link>http://alphacoder.xyz/tag/nigeria/</link>
+      <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/nigeria/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Npm</title>
+      <link>http://alphacoder.xyz/tag/npm/</link>
+      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>http://alphacoder.xyz/tag/react/</link>
+      <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sass</title>
+      <link>http://alphacoder.xyz/tag/sass/</link>
+      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/sass/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Startups</title>
+      <link>http://alphacoder.xyz/tag/startups/</link>
+      <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/startups/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Traefik</title>
+      <link>http://alphacoder.xyz/tag/traefik/</link>
+      <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/traefik/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Webpack</title>
+      <link>http://alphacoder.xyz/tag/webpack/</link>
+      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/webpack/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
