@@ -24,20 +24,20 @@ Why the move? I started taking blogging more seriously sometime in early 2017. S
     
     <item>
       <title>4 reasons why you should probably NOT drop out of university</title>
-      <link>http://alphacoder.xyz/4-reasons-why-you-should-probably-not-drop-out-of-university/</link>
+      <link>http://alphacoder.xyz/why-you-should-probably-not-drop-out/</link>
       <pubDate>Tue, 18 Dec 2018 15:58:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/4-reasons-why-you-should-probably-not-drop-out-of-university/</guid>
+      <guid>http://alphacoder.xyz/why-you-should-probably-not-drop-out/</guid>
       <description>The formula for success is simple — drop out of school at a ripe age of 17 or so, go build the next Microsoft or Facebook, and become a billionaire in your twenties, right? In this article, I’ll share with you 4 reasons why this or similar aspirations are unrealistic and why you should probably just complete university and move on from there.
 This is an opinion piece so take it with a pinch of salt.</description>
     </item>
     
     <item>
       <title>A tip for working on side projects</title>
-      <link>http://alphacoder.xyz/a-tip-for-working-on-side-projects/</link>
+      <link>http://alphacoder.xyz/side-project-tip/</link>
       <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/a-tip-for-working-on-side-projects/</guid>
+      <guid>http://alphacoder.xyz/side-project-tip/</guid>
       <description>Working on sides projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one.</description>
     </item>
     
@@ -52,20 +52,20 @@ This is an opinion piece so take it with a pinch of salt.</description>
     
     <item>
       <title>How to Git push to an AWS EC2 remote using a PEM file</title>
-      <link>http://alphacoder.xyz/how-to-git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+      <link>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
       <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/how-to-git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+      <guid>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
       <description>AWS provides you with a .pem file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…
 1. Copy private key in PEM to .ssh folder 1  $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2   2. Generate and save public key 1  $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.</description>
     </item>
     
     <item>
       <title>2 Git workflows you should know</title>
-      <link>http://alphacoder.xyz/2-git-workflows-you-should-know/</link>
+      <link>http://alphacoder.xyz/git-workflows/</link>
       <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/2-git-workflows-you-should-know/</guid>
+      <guid>http://alphacoder.xyz/git-workflows/</guid>
       <description>Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.
 In this post, we’ll be discussing two popular Git workflows you should know — Gitflow and the Forking workflow.</description>
     </item>
@@ -81,10 +81,10 @@ In this post, we’ll be discussing two popular Git workflows you should know 
     
     <item>
       <title>How to land an internship at a great Nigerian startup</title>
-      <link>http://alphacoder.xyz/how-to-land-an-internship-at-a-great-nigerian-startup/</link>
+      <link>http://alphacoder.xyz/land-an-internship-at-a-great-nigerian-startup/</link>
       <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/how-to-land-an-internship-at-a-great-nigerian-startup/</guid>
+      <guid>http://alphacoder.xyz/land-an-internship-at-a-great-nigerian-startup/</guid>
       <description>Getting an internship at a great company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
 Here are some tips on how to land an internship at a great Nigerian startup…
 Do your homework I remember being caught off guard when asked about the company I was applying to by my interviewer.</description>
@@ -92,10 +92,10 @@ Do your homework I remember being caught off guard when asked about the company 
     
     <item>
       <title>Dockerizing Django in development and production</title>
-      <link>http://alphacoder.xyz/dockerizing-django-in-development-and-production/</link>
+      <link>http://alphacoder.xyz/dockerizing-django/</link>
       <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/dockerizing-django-in-development-and-production/</guid>
+      <guid>http://alphacoder.xyz/dockerizing-django/</guid>
       <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
 Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.</description>
@@ -124,10 +124,10 @@ Coming from a small quiet town, it took me some time to come to terms with the f
     
     <item>
       <title>I built my own web search engine — here’s how</title>
-      <link>http://alphacoder.xyz/i-built-my-own-web-search-engine-heres-how/</link>
+      <link>http://alphacoder.xyz/my-web-search-engine/</link>
       <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/i-built-my-own-web-search-engine-heres-how/</guid>
+      <guid>http://alphacoder.xyz/my-web-search-engine/</guid>
       <description>I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
 About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
 The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place.</description>
@@ -135,20 +135,20 @@ The first step was to narrow my search engine to focus on content in a particula
     
     <item>
       <title>How to run multiple apps on one server using Docker and Traefik</title>
-      <link>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</link>
+      <link>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
       <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</guid>
+      <guid>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
       <description>Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.
 Use case Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end).</description>
     </item>
     
     <item>
       <title>How to scale an app horizontally using a load balancer</title>
-      <link>http://alphacoder.xyz/how-to-scale-an-app-horizontally-using-a-load-balancer/</link>
+      <link>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
       <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/how-to-scale-an-app-horizontally-using-a-load-balancer/</guid>
+      <guid>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
       <description>As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.
 One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.</description>
     </item>
@@ -165,10 +165,10 @@ Luckily, there are cloud platforms that take away the stress of all that, allowi
     
     <item>
       <title>Deploy your React-Django app on Heroku</title>
-      <link>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</link>
+      <link>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
       <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</guid>
+      <guid>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
       <description>This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
 TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
 We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
@@ -176,10 +176,10 @@ We’re going to be deploying the app we setup in the previous post on Heroku. H
     
     <item>
       <title>Here’s a dead simple React-Django setup for your next project</title>
-      <link>http://alphacoder.xyz/heres-a-dead-simple-react-django-setup-for-your-next-project/</link>
+      <link>http://alphacoder.xyz/dead-simple-react-django-setup/</link>
       <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/heres-a-dead-simple-react-django-setup-for-your-next-project/</guid>
+      <guid>http://alphacoder.xyz/dead-simple-react-django-setup/</guid>
       <description>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
 *TL;DR:* *https://github.com/nicholaskajoh/React-Django**.*
 Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.</description>
@@ -198,20 +198,20 @@ Here are some highlights that might tickle your fancy:
     
     <item>
       <title>Write your own responsive grid system with few lines of CSS code</title>
-      <link>http://alphacoder.xyz/write-your-own-responsive-grid-system-with-few-lines-of-css-code/</link>
+      <link>http://alphacoder.xyz/responsive-grid-system/</link>
       <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/write-your-own-responsive-grid-system-with-few-lines-of-css-code/</guid>
+      <guid>http://alphacoder.xyz/responsive-grid-system/</guid>
       <description>How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However there are times when you need something light!
 Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?</description>
     </item>
     
     <item>
       <title>Lazy load your content with Django and jQuery</title>
-      <link>http://alphacoder.xyz/lazy-load-your-content-with-django-and-jquery/</link>
+      <link>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
       <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/lazy-load-your-content-with-django-and-jquery/</guid>
+      <guid>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
       <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
 Templates Create 2 templates, index.html and posts.html.
 index.html

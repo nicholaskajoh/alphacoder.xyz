@@ -14,10 +14,10 @@
     
     <item>
       <title>How to run multiple apps on one server using Docker and Traefik</title>
-      <link>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</link>
+      <link>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
       <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/how-to-run-multiple-apps-on-one-server-using-docker-and-traefik/</guid>
+      <guid>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
       <description>Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.
 Use case Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end).</description>
     </item>

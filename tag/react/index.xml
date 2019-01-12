@@ -14,10 +14,10 @@
     
     <item>
       <title>Deploy your React-Django app on Heroku</title>
-      <link>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</link>
+      <link>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
       <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/deploy-your-react-django-app-on-heroku/</guid>
+      <guid>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
       <description>This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
 TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
 We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
@@ -25,10 +25,10 @@ We’re going to be deploying the app we setup in the previous post on Heroku. H
     
     <item>
       <title>Here’s a dead simple React-Django setup for your next project</title>
-      <link>http://alphacoder.xyz/heres-a-dead-simple-react-django-setup-for-your-next-project/</link>
+      <link>http://alphacoder.xyz/dead-simple-react-django-setup/</link>
       <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/heres-a-dead-simple-react-django-setup-for-your-next-project/</guid>
+      <guid>http://alphacoder.xyz/dead-simple-react-django-setup/</guid>
       <description>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
 *TL;DR:* *https://github.com/nicholaskajoh/React-Django**.*
 Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.</description>
