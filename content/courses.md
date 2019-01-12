@@ -1,5 +1,6 @@
 ---
 title: "Courses"
+showComments: false
 ---
 
 I'm currently working on two awesome video courses to be released soon™: **Node.js Testing** and **Build and Deploy Microservices**. [Subscribe to my newsletter](http://bit.ly/nksnewsletter) to get notified when they're released.

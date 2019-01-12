@@ -10,6 +10,8 @@ paginatePath = "page"
 # Google analytics
 googleAnalytics = "UA-82728104-5"
 
+disqusShortname = "alphacoderxyz"
+
 # Copyright
 copyright = "© [ This Year ] Nicholas Kajoh"
 
