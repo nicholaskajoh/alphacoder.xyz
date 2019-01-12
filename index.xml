@@ -228,5 +228,14 @@ index.html
 Node.js Testing takes you through the fundamentals of software testing. You&amp;rsquo;ll learn why testing is important and how to write a solid test suite with Node.js. We&amp;rsquo;ll go through several concepts including static, unit, integration and end-to-end testing, test coverage, and mocking.</description>
     </item>
     
+    <item>
+      <title>Deploying apps on Kubernetes</title>
+      <link>http://alphacoder.xyz/deploying-apps-on-kubernetes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/deploying-apps-on-kubernetes/</guid>
+      <description>Kubernetes is a…</description>
+    </item>
+    
   </channel>
 </rss>

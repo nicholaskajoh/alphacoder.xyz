@@ -131,6 +131,10 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/deploying-apps-on-kubernetes/</loc>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/tag/django/</loc>
     <lastmod>2018-08-15T12:54:00+00:00</lastmod>
     <priority>0</priority>
