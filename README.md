@@ -8,3 +8,6 @@ A programming blog by Nicholas Kajoh built with Hugo. Visit [alphacoder.xyz](htt
 
 ## Publish on GitHub Pages
 - Run `chmod +x ./publish.sh && ./publish.sh`.
+
+## Update theme to latest
+- Run `git submodule update --recursive --remote`.
