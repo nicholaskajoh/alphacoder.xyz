@@ -4,7 +4,7 @@ title = "Alpha Coder"
 theme = "simple-hugo-theme"
 
 # Pagination
-paginate = 10
+paginate = 25
 paginatePath = "page"
 
 # Google analytics
