@@ -12,7 +12,7 @@ title = "Here’s a dead simple React-Django setup for your next project"
 
 There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
 
-****TL;DR:**** [****https://github.com/nicholaskajoh/React-Django****](https://github.com/nicholaskajoh/React-Django)****.****
+**TL;DR: [https://github.com/nicholaskajoh/React-Django](https://github.com/nicholaskajoh/React-Django).**
 
 Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.js and everything would work fine.
 
