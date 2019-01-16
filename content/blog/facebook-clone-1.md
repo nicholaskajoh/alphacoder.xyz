@@ -10,8 +10,8 @@ In this post through a couple others that would follow, we're going to be buildi
 
 # All parts
 - Build a Facebook clone from scratch with PHP — Part 1 (this article)
-- [Build a Facebook clone from scratch with PHP — Part 3](/facebook-clone-2)
-- [Build a Facebook clone from scratch with PHP — Part 2](/facebook-clone-3)
+- [Build a Facebook clone from scratch with PHP — Part 2](/facebook-clone-2)
+- [Build a Facebook clone from scratch with PHP — Part 3](/facebook-clone-3)
 - [Build a Facebook clone from scratch with PHP — Part 4](/facebook-clone-4)
 - [Build a Facebook clone from scratch with PHP — Part 5](/facebook-clone-5)
 - [Build a Facebook clone from scratch with PHP — Part 6](/facebook-clone-6)
@@ -90,4 +90,4 @@ That's all for part 1. Cool!!!
 
 *The final code for this part is contained in my FaceClone repo here: https://github.com/nicholaskajoh/faceclone. Visit the link and click on the part-1 folder to see progress made so far.*
 
-**[Continue to part 2...](/facebook-clone-2)**.
+**[Continue to part 2...](/facebook-clone-2)**
