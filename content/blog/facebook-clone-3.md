@@ -182,7 +182,7 @@ Now when we click the delete link for a post, it's gone for good! 😊
 
 That's it for part 3!
 
-__The final code for this part is contained in my FaceClone repo. Visit the link and click on the part-3 folder to see progress made so far.__
+__The final code for this part is contained in my FaceClone repo here: https://github.com/nicholaskajoh/faceclone. Visit the link and click on the part-3 folder to see progress made so far.__
 
 Next: [Build a Facebook clone from scratch with PHP — Part 4](/facebook-clone-4).
 
