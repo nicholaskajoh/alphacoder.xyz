@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Thu, 17 Jan 2019 09:07:23 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 20 Sep 2017 09:07:20 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/tag/facebook-clone-series/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Facebook Clone 6</title>
-      <link>http://alphacoder.xyz/facebook-clone-6/</link>
-      <pubDate>Thu, 17 Jan 2019 09:07:23 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-6/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 5</title>
