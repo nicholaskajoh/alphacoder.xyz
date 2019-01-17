@@ -15,8 +15,7 @@ The number one thing people hate about Lagos is most probably being in traffic. 
 Coming from a small quiet town, it took me some time to come to terms with the fact that you have to leave 2 hours (or more) early to get to where you want on time, and that there’s no such thing as “I’ll see you in the next 10 minutes”. My route to work is pretty short and straight forward yet it takes me 1.5 hours on average to get to the office. I live at Ogudu and work at Yaba. You can get there through 3rd Mainland Bridge but I use Ikorodu Road. I cab to Ojota, then BRT to Fadeyi where I bus to Sabo and Keke (tricycle) to the office. Phewww!
 
 ![](https://cdn-images-1.medium.com/max/800/1*J50y-r1ZVLKtAJ8c5E_XUg.png)
-
-Road to work
+*Road to work*
 
 Lagos has an estimated [21 million inhabitants](http://worldpopulationreview.com/world-cities/lagos-population/) — more than twice as populated as my favorite cities, NYC and London which have populations of [8.5](http://worldpopulationreview.com/us-cities/new-york-city-population/) and [8.1](http://worldpopulationreview.com/world-cities/london-population/) respectively. Lagos’ population is more on par with cities like Mumbai (~22m) and Mexico City (~21m).
 
@@ -25,8 +24,7 @@ _NB: These population numbers are estimates. Most cities haven’t had censuses 
 **Mind you, Lagos (City) is not the same as Lagos (State). Many a Lagosian does not know the difference.**
 
 ![](https://cdn-images-1.medium.com/max/800/1*IDIaFWPAq5SvGPAu4idM4A.png)
-
-Lagos, the City
+*Lagos, the City*
 
 Looking at the numbers, it’s little wonder that I have to fight (physically and spiritually) to enter Danfo at Jibowu. Everyday, a few million workers (at least) commute to work and back in the city.
 

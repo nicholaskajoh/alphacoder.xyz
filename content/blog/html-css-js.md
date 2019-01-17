@@ -71,10 +71,10 @@ Form inputs are very handy when we want to get information from users. But we ca
 In summary, html is all about elements/tags and their attributes. Really simple stuff.
 There are a ton of html tags and attributes. Now you know the basics, go learn all the other html elements. Here's a list of all html elements and their attributes.
 
-**NB:** I recommend [VS Code](https://code.visualstudio.com/download) if you don't yet have a proper text editor/IDE. VS Code includes support for syntax highlighting and intelligent code completion which makes it easier and faster to wrtite code.
+**NB:** I recommend [VS Code](https://code.visualstudio.com/download) if you don't yet have a proper text editor/IDE. VS Code includes support for syntax highlighting and intelligent code completion which makes it easier and faster to write code.
 
 # CSS
-CSS stands for Cascading Style Sheets. You probably didn't know that (lol). It is a language that "describes the style of an HTML document". It specifies how html elements should be displayed.
+CSS stands for Cascading Style Sheets. You probably didn't know that (lol). It is a language that "describes the style of a HTML document". It specifies how html elements should be displayed.
 
 ## How it works
 There a ton of CSS properties to style an html element/a set of html elements. To apply a given style, you type the property name and value like so:

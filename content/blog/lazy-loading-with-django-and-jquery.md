@@ -114,7 +114,7 @@ _models.py_
         content = models.TextField()
     
 
-_T_he `index` function in _views.py_ renders the _index.html_ page. It retrieves and sends a list of post objects (the first page) to the template. The `lazy_load_posts` function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the `Paginator` class and generates a html string using the _posts.html_ template.
+The `index` function in _views.py_ renders the _index.html_ page. It retrieves and sends a list of post objects (the first page) to the template. The `lazy_load_posts` function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the `Paginator` class and generates a html string using the _posts.html_ template.
 
 The paginator object provides a _has\_next_ method which checks if there’s another page to load. If there is, the page `data-` attribute of the anchor tag in _index.html_ is incremented by 1 so that when “Load More Posts” is clicked again, it loads the next page.
 
