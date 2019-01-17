@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Sat, 17 Jun 2017 05:53:39 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 17 Jul 2017 08:35:09 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/tag/facebook-clone-series/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 3</title>
+      <link>http://alphacoder.xyz/facebook-clone-3/</link>
+      <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/facebook-clone-3/</guid>
+      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 (this article) Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Posts are the heart and soul of Facebook.</description>
+    </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 2</title>
