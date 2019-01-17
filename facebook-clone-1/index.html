@@ -69,19 +69,21 @@ if (!doNotTrack) {
 
 <h1 id="we-re-making-facebook-wow">We&rsquo;re making Facebook? Wow!</h1>
 
-<p>Facebook is the largest social network platform in the world. I fell in love with the Facebook infrastructure since secondary school. I mean, it&rsquo;s crazy! An application that serves ~2 billion people? Insane! Facebook over the years has become more and more complex, adding new and exciting features as the days go by.</p>
+<p>Facebook is the largest social network platform in the world. I mean, it&rsquo;s crazy! An application that serves ~2 billion people? Insane! Facebook over the years has become more and more complex, adding new and exciting features as the days go by.</p>
 
 <p>I&rsquo;d like to, at this rather early juncture, outline what we&rsquo;ll be building.</p>
 
-<p>Facebook is big. There are photos, groups, messaging, pages, videos, live videos, stories, VR and more. That&rsquo;s a lot. What we&rsquo;ll be building here is good ol&rsquo; Facebook of 2004 - probably less. We want to focus on the initial core features of Facebook - posts, profiles, timelines, friend relationships and login/registration. Awesome!</p>
+<p>Facebook is big. There are photos, groups, messaging, pages, videos, live videos, stories, VR and more. That&rsquo;s a lot. What we&rsquo;ll be building here is good ol&rsquo; Facebook of 2004 — probably less. We want to focus on the initial core features of Facebook — posts, profiles, timelines, friend relationships and login/registration. Awesome!</p>
 
 <p><img src="/images/fbc1/faceclone-screenshot.png" alt="" /></p>
 
 <h1 id="is-it-for-me">Is it for me?</h1>
 
-<p>If you have at least a basic understanding of programming concepts and front end web development (i.e HTML, CSS, Javascript) this series is for you. If you have little/zero knowledge of front end web development, you can check out this post I wrote: <a href="/html-css-js">HTML, CSS and Javascript as fast as possible</a>. If it doesn&rsquo;t help, you&rsquo;ll need to pick up some more elaborate course/tutorial to get up to speed. It&rsquo;s vital you have some general knowledge of computer programming though to get the best from this course.
-What you&rsquo;ll be needing
-All you&rsquo;ll be needing is a PC and 3 apps you can download for free online:</p>
+<p>If you have at least a basic understanding of programming concepts and front end web development (i.e HTML, CSS, Javascript) this series is for you. If you have little/zero knowledge of front end web development, you can check out this post I wrote: <a href="/html-css-js">HTML, CSS and Javascript as fast as possible</a>. If it doesn&rsquo;t help, you&rsquo;ll need to pick up some more elaborate course/tutorial to get up to speed. It&rsquo;s vital you have some general knowledge of computer programming though to get the best from the series.</p>
+
+<h1 id="what-you-ll-be-needing">What you&rsquo;ll be needing</h1>
+
+<p>All you&rsquo;ll be needing is a PC/Mac and 3 apps you can download for free online:</p>
 
 <ol>
 <li>VS Code (text editor)</li>
@@ -91,7 +93,7 @@ All you&rsquo;ll be needing is a PC and 3 apps you can download for free online:
 
 <p>VS Code is a flexible light-weight text editor. We&rsquo;ll be using it to write our code.</p>
 
-<p>XAMPP (pronounced &ldquo;zamp&rdquo;) is a suite of tools that&rsquo;ll help us develop FaceClone (yeah, that&rsquo;s the name of the Facebook clone we&rsquo;ll be building). XAMPP is an acronym that stands for Cross-Platform (X), Apache (A), MariaDB (M), PHP (P) and Perl (P). We&rsquo;ll be using the PHP interpreter, the PHP development server and MySQL from XAMPP. You can read more about XAMPP here.</p>
+<p>XAMPP (pronounced &ldquo;zamp&rdquo;) is a suite of tools that&rsquo;ll help us develop <em>FaceClone</em> (yeah, that&rsquo;s the name of the Facebook clone we&rsquo;ll be building). XAMPP is an acronym that stands for Cross-Platform (X), Apache (A), MariaDB (M), PHP (P) and Perl (P). We&rsquo;ll be using the PHP interpreter, the PHP development server and MySQL from XAMPP. You can read more about XAMPP here.</p>
 
 <p>Filezilla is an FTP client. FTP stands for File Transfer Protocol. We&rsquo;ll be deploying our Facebook clone app. Filezilla is going to enable us upload our code to an online server.</p>
 
@@ -99,17 +101,17 @@ All you&rsquo;ll be needing is a PC and 3 apps you can download for free online:
 
 <h1 id="the-html-template">The HTML template</h1>
 
-<p>I built a HTML template for our project. I figured it&rsquo;ll be better to focus on PHP and MySQL than HTML, CSS and Javascript. Besides, using a ready-made template would enable us work faster which is what we want, right?
+<p>I built a HTML template for the project. I figured it&rsquo;ll be better to focus on PHP and MySQL than HTML, CSS and Javascript. Besides, using a ready-made template would enable us work faster which is what we want, right?
 Here&rsquo;s the repo for the template: <a href="https://github.com/nicholaskajoh/faceclone-html-template">https://github.com/nicholaskajoh/faceclone-html-template</a>. Click on the green &ldquo;clone or download&rdquo; button, then &ldquo;download ZIP&rdquo; to get the template. Unzip it to any location of your choice.</p>
 
-<p>Let&rsquo;s quickly observe the structure of our template folder:</p>
+<p>Let&rsquo;s quickly observe the structure of the template folder:</p>
 
 <p><img src="/images/fbc1/template-folder-structure.jpg" alt="" />
-<em>Folder structure for our template (ignore the .git folder)</em></p>
+<em>Folder structure for the template (ignore the .git folder)</em></p>
 
 <p>The folder structure should be similar to the screenshot above. The .gitignore and README.md files are repo files and are not needed here so we can delete them.</p>
 
-<p>The css folder contain css files for styling our web app. There are several &ldquo;bootstrap&rdquo; files and a style.css file. Bootstrap is a HTML, CSS and Javascript framework that helps us built beautiful and responsive UIs quickly. I used Bootstrap for the template. In the style.css file, I specified a couple of styles to customize Bootstrap.</p>
+<p>The css folder contain css files for styling our web app. There are several &ldquo;bootstrap&rdquo; files and a style.css file. <a href="https://getbootstrap.com">Bootstrap</a> is a HTML, CSS and Javascript framework that helps us built beautiful and responsive UIs quickly. I used Bootstrap for the template. In the style.css file, I specified a couple of styles to customize Bootstrap.</p>
 
 <p>The fonts folder contains the gyphicons fonts which Bootstrap uses for its icons.</p>
 
@@ -137,7 +139,7 @@ Here&rsquo;s the repo for the template: <a href="https://github.com/nicholaskajo
 <p><img src="/images/fbc1/php-version.jpg" alt="" />
 <em>A terminal window</em></p>
 
-<p>If you get a weird message like &ldquo;invalid command&rdquo; or something, your XAMPP is probably not properly installed. Post a comment on this post if you have any issues installing any of the apps we&rsquo;ll be using.</p>
+<p>If you get a weird message like &ldquo;invalid command&rdquo; or something, your XAMPP is probably not properly installed. Post a comment on this article if you have any issues installing any of the apps we&rsquo;ll be using.</p>
 
 <p>Now type in <code>php -S localhost:8080</code> and hit enter. This command starts up the PHP development server on port 8080. Visit <a href="http://localhost:8080">http://localhost:8080</a> on your browser. Our FaceClone template is opened up!
 Unlike when we clicked index.html or the other html files to open them up in our browser, the page that is displayed was &ldquo;served&rdquo; by a server. This means we can run PHP code in them. Great!</p>
@@ -149,9 +151,9 @@ Unlike when we clicked index.html or the other html files to open them up in our
 
 <p>That&rsquo;s all for part 1. Cool!!!</p>
 
-<p><em>The final code for this part is contained in my FaceClone repo here: <a href="https://github.com/nicholaskajoh/faceclone">https://github.com/nicholaskajoh/faceclone</a>. Visit the link and click on the part-1 folder to see progress made so far.</em></p>
+<p><strong>The final code for this part is contained in my FaceClone repo here: <a href="https://github.com/nicholaskajoh/faceclone">https://github.com/nicholaskajoh/faceclone</a>. Visit the link and click on the part-1 folder to see progress made so far.</strong></p>
 
-<p><strong><a href="/facebook-clone-2">Continue to part 2&hellip;</a></strong></p>
+<p>Next: <a href="/facebook-clone-2">Build a Facebook clone from scratch with PHP — Part 2</a>.</p>
 
 </article>
 

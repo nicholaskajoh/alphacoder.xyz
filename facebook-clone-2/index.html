@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Build a Facebook clone from scratch with PHP — Part 2 | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Build a Facebook clone from scratch with PHP — Part 2</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2017-06-17">Jun 17, 2017</time>
+    &#x5d;
+    Tag &#x5b;
+    <a href="http://alphacoder.xyz/tag/facebook-clone-series/">Facebook Clone Series</a>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<h1 id="all-parts">All parts</h1>
+
+<ul>
+<li><a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a></li>
+<li>Build a Facebook clone from scratch with PHP — Part 2 (this article)</li>
+<li><a href="/facebook-clone-3">Build a Facebook clone from scratch with PHP — Part 3</a></li>
+<li><a href="/facebook-clone-4">Build a Facebook clone from scratch with PHP — Part 4</a></li>
+<li><a href="/facebook-clone-5">Build a Facebook clone from scratch with PHP — Part 5</a></li>
+<li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
+<li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
+</ul>
+
+<h1 id="a-little-about-php-and-mysql">A little about PHP and MySQL</h1>
+
+<p>So in part 1, we didn&rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template. We also didn&rsquo;t get to talk about MySQL, the database we&rsquo;ll be using. Let&rsquo;s quickly get to know a little about PHP and MySQL.</p>
+
+<h1 id="php">PHP</h1>
+
+<blockquote>
+<p>PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. - <a href="http://php.net/manual/en/intro-whatis.php">http://php.net/manual/en/intro-whatis.php</a></p>
+</blockquote>
+
+<p>PHP is the most popular server-side programming language for the web and runs millions of websites. To write PHP, all we need to do is create a file with a <em>.php</em> file extension and add the php tags <code>&lt;?php</code> and <code>?&gt;</code>. <code>&lt;?php</code> is the opening tag and <code>?&gt;</code> the closing tag. We can write a Hello World PHP program like so:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php echo &#34;Hello World&#34;; ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, <code>&lt;?php</code> and <code>?&gt;</code> which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+    echo &#34;Hello World&#34;;
+?&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>We may choose to omit the closing tag <code>?&gt;</code> in this case to have:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+    echo &#34;Hello World&#34;;</pre></td></tr></table>
+</div>
+</div>
+<p><code>echo</code> prints out Hello World as HTML text when the php file is served. We&rsquo;ll be learning PHP as we go about building FaceClone. Don&rsquo;t worry, PHP is pretty easy! 👍</p>
+
+<h1 id="mysql">MySQL</h1>
+
+<p>MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We&rsquo;ll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we&rsquo;ll create tables like <em>users</em> (to store information about our users) and <em>posts</em> (to store our users&rsquo; posts). Tables have columns. For a users table, we could have columns like <em>name</em>, <em>password</em>, <em>email</em> etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">SELECT * FROM posts</pre></td></tr></table>
+</div>
+</div>
+<p><code>SELECT</code> lets us read data from the database. <code>*</code> gets all the columns in the table posts. We could use <code>SELECT name, email FROM posts</code> if we don&rsquo;t want all the columns from the posts table. We&rsquo;ll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you&rsquo;ll want to write. Sweet!!!</p>
+
+<h1 id="back-to-business">Back to business&hellip;</h1>
+
+<p>When we changed our template files from .html to .php, we broke our navigation links. Let&rsquo;s go ahead and fix that. We just need to change the href attributes of those links to .php. Or not. We have 3 templates and need to make each change 3 times. That&rsquo;s not much of a problem since there are only 3 templates. What if there were 10, 15, 20? It doesn&rsquo;t make sense to make the same change x times. The navigation bar is a component we use in all of our templates. Why don&rsquo;t we make it reusable?</p>
+
+<h1 id="partials">Partials</h1>
+
+<p>We can achieve reusability by creating partials. Partials are files that contain different components of our app. So we can have a header partial and a footer partial. If we need a header in home.php, all we need to do is simply &ldquo;include&rdquo; it. Let&rsquo;s go ahead and do that. Create a header.php and footer.php file in the same folder as your other templates. It may be more efficient to create a folder for partials but we&rsquo;ll just have the templates and partials together for now. In your header.php, add the following code (the snippet below can be gotten from home.php or profile.php):</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;FaceClone&lt;/title&gt;
+&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;css/bootstrap.min.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;css/style.css&#34;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!-- nav --&gt;
+&lt;nav class=&#34;navbar navbar-default&#34;&gt;
+    &lt;div class=&#34;container-fluid&#34;&gt;
+    &lt;div class=&#34;navbar-header&#34;&gt;
+        &lt;a class=&#34;navbar-brand&#34; href=&#34;index.html&#34;&gt;FaceClone&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;ul class=&#34;nav navbar-nav navbar-right&#34;&gt;
+        &lt;li&gt;&lt;a href=&#34;home.html&#34;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;profile.html&#34;&gt;Profile&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#&#34;&gt;Logout&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+&lt;!-- ./nav --&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>Then in footer.php add:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;!-- footer --&gt;
+&lt;footer class=&#34;container text-center&#34;&gt;
+    &lt;ul class=&#34;nav nav-pills pull-right&#34;&gt;
+    &lt;li&gt;FaceClone - Made by [your name here]&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/footer&gt;
+&lt;!-- ./footer --&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;js/bootstrap.min.js&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;js/script.js&#34;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so <code>href=&quot;home.html&quot;</code> becomes <code>href=&quot;home.php&quot;</code> for example.
+We&rsquo;ve just created 2 partials. We need to include them in all our template files. To do so, clear the header and footer code (which we&rsquo;ve already moved to header.php and footer.php respectively) in our template files and add <code>&lt;?php include &quot;header.php&quot;; ?&gt;</code> and <code>&lt;?php include &quot;header.php&quot;; ?&gt;</code> like so:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php include &#34;header.php&#34; ?&gt;
+&lt;! - main --&gt;
+&lt;main class=&#34;container&#34;&gt;
+&lt;!-- page content here --&gt;
+&lt;/main&gt;
+&lt;!-- ./main --&gt;
+&lt;?php include &#34;footer.php&#34; ?&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>Run PHP&rsquo;s development server to to confirm everything works fine.</p>
+
+<p><strong>NB:</strong> Open up a terminal and change directory to the project&rsquo;s folder then run <code>php -S localhost:8080</code> to start the server (refer to part 1 if you don&rsquo;t remember how to run the app).</p>
+
+<p><img src="/images/fbc2/faceclone-home.php.png" alt="" /></p>
+
+<h1 id="let-s-write-a-db-schema">Let&rsquo;s write a DB schema</h1>
+
+<p>We need to &ldquo;architect&rdquo; a schema for our database. There&rsquo;s quite some data that needs to be stored. When a user makes a post, we need to store it so they (and other users) can view it [later]. We even need to store information about users like their usernames and passwords. There needs to be some structure. We must know before hand what data we want to store and how we want to store it. A schema is simply a representation of a database structure. Smooth and easy!</p>
+
+<p>Here&rsquo;s the schema I made for FaceClone:</p>
+
+<p><img src="/images/fbc2/faceclone-schema.png" alt="" /></p>
+
+<p>This schema is very basic. I should have specified the data types for each column. But don&rsquo;t worry, we&rsquo;ll choose data types when we transform this schema into a real database. The column names suggest the data that would be stored under them. The id columns allow us uniquely identify records in the database. If we want to get a post from the database, we need a unique feature that identifies it - the id. For the users table, we could use the username column to identify users because each user&rsquo;s username must be unique but we&rsquo;ll be using ids nonetheless.</p>
+
+<p>The user_id and friend_id columns are foreign key columns. user_id represents a user in the users table. Every post, for example must belong to a user. Instead of adding fields like username, password, location etc to the posts table to represent the user who made a given post, we can simply add a reference (user_id) which represents a user&rsquo;s id in users table. This is some form of normalization and in helps us avoid redundancy/duplicate data.</p>
+
+<h1 id="create-the-database">Create the Database</h1>
+
+<p>With a schema in sight, we should get started creating the database for FaceClone. Power up XAMMP to begin. When XAMPP is executed, a view like the one below greets you:</p>
+
+<p><img src="/images/fbc2/xampp-control-panel.jpg" alt="" />
+<em>XAMPP</em></p>
+
+<p>Start Apache and MySQL. We&rsquo;re going to use a web app called PHP My Admin to create our database. We&rsquo;ll serve PHP My Admin with Apache (a web server). We also need MySQL server running too.
+Once Apache and MySQL start running, go to your browser and visit <a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a>. You should be greeted by a page that looks like:</p>
+
+<p><img src="/images/fbc2/phpmyadmin.png" alt="" />
+<em>PHP My Admin</em></p>
+
+<p>Click on the databases tab to create a new database. Let&rsquo;s call our database faceclone. Once our database is created, we are taken to a screen where we can create tables. Type in the name of the table and the number of columns and click &ldquo;Go&rdquo;. Our posts table for instance would have 4 columns: id, content, user_id and created_at. Go ahead and create all the database tables like so:</p>
+
+<p><img src="/images/fbc2/create-posts.png" alt="" />
+<em>Create posts table</em></p>
+
+<p><strong>NB:</strong> For <em>id</em> columns, remember to make the index PRIMARY and tick the AI (auto increment) checkbox.</p>
+
+<p><img src="/images/fbc2/create-users.png" alt="" />
+<em>Create users table</em></p>
+
+<p><img src="/images/fbc2/create-friends.png" alt="" />
+<em>Create friends table</em></p>
+
+<p><img src="/images/fbc2/create-friend-requests.png" alt="" />
+<em>Create friend_requests table</em></p>
+
+<p>Done with that? Cool. Our database is up and ready!</p>
+
+<p>That wraps it up for part 2!!!</p>
+
+<p><strong>The final code for this part is contained in my FaceClone repo here: <a href="https://github.com/nicholaskajoh/faceclone">https://github.com/nicholaskajoh/faceclone</a>. Visit the link and click on the part-2 folder to see progress made so far.</strong></p>
+
+<p>Next: <a href="/facebook-clone-3">Build a Facebook clone from scratch with PHP — Part 3</a>.</p>
+
+<p>Previous: <a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a>.</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Also, consider supporting <a href="https://www.patreon.com/user?u=16416296" target="_blank">Alpha Coder on Patreon</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="https://www.patreon.com/user?u=16416296">Patreon</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>
