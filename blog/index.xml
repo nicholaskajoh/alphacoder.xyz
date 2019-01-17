@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Tue, 25 Dec 2018 13:26:45 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Jan 2019 09:07:23 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Facebook Clone 6</title>
+      <link>http://alphacoder.xyz/facebook-clone-6/</link>
+      <pubDate>Thu, 17 Jan 2019 09:07:23 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/facebook-clone-6/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>From Medium to Ghost</title>
@@ -204,6 +213,18 @@ Here are some highlights that might tickle your fancy:
       <guid>http://alphacoder.xyz/responsive-grid-system/</guid>
       <description>How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However there are times when you need something light!
 Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 5</title>
+      <link>http://alphacoder.xyz/facebook-clone-5/</link>
+      <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/facebook-clone-5/</guid>
+      <description>Every Facebook user has a profile. Let&amp;rsquo;s create profile pages for FaceClone users!
+FaceClone profile page
+But before I forget&amp;hellip; Recall that we used id of zero for the user_id fields in our posts table. That was because we didn&amp;rsquo;t have any users. Now that we do, let&amp;rsquo;s change things a bit. The query in create-post.php becomes&amp;hellip;
+1 2 3 4 5  ... $sql = &amp;#34;INSERT INTO posts (content, user_id) VALUES (?</description>
     </item>
     
     <item>
