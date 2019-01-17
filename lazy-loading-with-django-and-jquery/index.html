@@ -241,7 +241,7 @@ class Post(models.Model):
     content = models.TextField()</pre></td></tr></table>
 </div>
 </div>
-<p>_T_he <code>index</code> function in <em>views.py</em> renders the <em>index.html</em> page. It retrieves and sends a list of post objects (the first page) to the template. The <code>lazy_load_posts</code> function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the <code>Paginator</code> class and generates a html string using the <em>posts.html</em> template.</p>
+<p>The <code>index</code> function in <em>views.py</em> renders the <em>index.html</em> page. It retrieves and sends a list of post objects (the first page) to the template. The <code>lazy_load_posts</code> function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the <code>Paginator</code> class and generates a html string using the <em>posts.html</em> template.</p>
 
 <p>The paginator object provides a <em>has_next</em> method which checks if there’s another page to load. If there is, the page <code>data-</code> attribute of the anchor tag in <em>index.html</em> is incremented by 1 so that when “Load More Posts” is clicked again, it loads the next page.</p>
 
