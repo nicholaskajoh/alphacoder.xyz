@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Tue, 25 Dec 2018 13:26:45 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 31 Jan 2019 09:30:21 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello Hugo!</title>
+      <link>http://alphacoder.xyz/hello-hugo/</link>
+      <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/hello-hugo/</guid>
+      <description>If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.</description>
+    </item>
     
     <item>
       <title>From Medium to Ghost</title>

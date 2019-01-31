@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hello Hugo! | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Hello Hugo!</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2019-01-31">Jan 31, 2019</time>
+    &#x5d;
+</div>
+</header>
+<article>
+    <p>If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration <a href="/from-medium-to-ghost">from a Medium.com publication to a self-hosted Ghost installation on Vultr</a>. Shortly after, I decided to ditch <a href="http://ghost.org">Ghost</a> (a Node.js CMS) for <a href="http://gohugo.io">Hugo</a> (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again.</p>
+
+<p>Ghost is a great CMS. It&rsquo;s simple, it&rsquo;s clean and a joy to use. The story editor is very similar to Medium&rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.</p>
+
+<ul>
+<li><p><strong>Theme customization and update:</strong> I needed a quick way to make changes to my blog&rsquo;s theme and a way to update it periodically without clearing out all my customizations. I couldn&rsquo;t find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog&rsquo;s server to push changes, but I never got to do it. I manually edited the theme&rsquo;s files on the server with nano as a temporary fix for quick customizations which is less than ideal.</p></li>
+
+<li><p><strong>Backup:</strong> I wanted automatic backups for my posts. I couldn&rsquo;t find a clean way to do periodic backups automatically. Ghost&rsquo;s data export doesn&rsquo;t include images, so if I wanted to backup all my data, I&rsquo;d have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn&rsquo;t find a ready-made solution for that.</p></li>
+
+<li><p><strong>Offline writing and editing:</strong> Inspiration to write can come at any time whether you&rsquo;re connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.</p></li>
+
+<li><p><strong>Cost:</strong> While the cost of self-hosting my Ghost blog was affordable, I figured I&rsquo;d need to pay more once I started getting more traffic. But beyond that, I don&rsquo;t see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.</p></li>
+</ul>
+
+<p>Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&rsquo;s repository so it&rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.</p>
+
+<p>The <a href="https://themes.gohugo.io/simple-hugo-theme/">new theme on the blog</a> is inspired by <a href="http://bettermotherfuckingwebsite.com">http://bettermotherfuckingwebsite.com</a>. I wanted something clean, accessible and performant — something that doesn&rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.</p>
+
+<p>I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&rsquo;t do 301 redirects. Apparently it&rsquo;s against the law. I&rsquo;m however hopeful that the blog will pick up soon.</p>
+
+<p>The blog&rsquo;s source is available on GitHub: <a href="https://github.com/nicholaskajoh/alphacoder.xyz">https://github.com/nicholaskajoh/alphacoder.xyz</a>.</p>
+
+<p>Okay. That&rsquo;s it for now. Hopefully I don&rsquo;t jump ship again.</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Also, consider supporting <a href="https://www.patreon.com/user?u=16416296" target="_blank">Alpha Coder on Patreon</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="https://www.patreon.com/user?u=16416296">Patreon</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>
