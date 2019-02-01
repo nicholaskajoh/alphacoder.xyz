@@ -51,8 +51,8 @@ pygmentsStyle = "vs"
         name = "GitHub"
         weight = 2
     [[menu.footer]]
-        url = "https://www.patreon.com/user?u=16416296"
-        name = "Patreon"
+        url = "http://buymeacoff.ee/nicholaskajoh"
+        name = "Buy me a coffee"
         weight = 3
     [[menu.footer]]
         url = "/post/index.xml"
