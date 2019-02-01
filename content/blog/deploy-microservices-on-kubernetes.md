@@ -1,7 +1,7 @@
 +++
 author = "Nicholas Kajoh"
-draft = true
-date = 2019-01-22T20:08:59+01:00
+draft = false
+date = 2019-02-01T16:44:09.460Z
 slug = "deploy-microservices-on-kubernetes"
 title = "Deploy microservices on Kubernetes"
 tag = ["Kubernetes", "Microservices", "Docker", "GKE", "GCP"]
@@ -149,7 +149,7 @@ We choose a different redeployment strategy (`type: Recreate`) in the viewer ser
 Notice `envFrom` under `containers` in both deployments? We'll be loading our environment variables from a k8s Secret which we'll create soon.
 
 # Services
-The k8s services (not to be confused with microservices) in detector and viewer, `detector-service.yaml` and `viewer-service.yaml`, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer services uses the LoadBalancer service which exposes it externally to the outside world.
+The k8s services (not to be confused with microservices) in detector and viewer, `detector-service.yaml` and `viewer-service.yaml`, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer service uses the LoadBalancer service which exposes it externally to the outside world.
 
 Detector k8s service.
 
@@ -181,7 +181,7 @@ Viewer k8s service.
       selector:
         app: viewer-svc
 
-__NB:__ we use the labels (`app: detector-svc` and `app: viewer-svc`) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80 (`targetPort: 80`).
+__NB:__ we use the labels (`app: detector-svc` and `app: viewer-svc`) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.
 
 # Cloudinary and Redis
 As mentioned earlier, Yoloo depends on Cloudinary and Redis. Cloudinary is a cloud-based image/video hosting service and Redis is an in-memory key-value database.
@@ -212,7 +212,7 @@ Viewer service .env
     DETECTOR_SVC_URL=http://detector-service
     REDIS_URL=redis://:password@127.0.0.1:6379
 
-Notice the url in `DETECTOR_SVC_URL`? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use `http://detector-service` and not have to worry about what IP a service uses.
+Notice the url in `DETECTOR_SVC_URL`? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use `http://detector-service` and not have to worry about what IP a service actually uses.
 
 # kubectl
 kubectl is a CLI tool for running commands against Kubernetes clusters. To get Kubernetes to run our microservices, we need to apply our deployments and services on the cluster. Outlined below are the steps involved.
@@ -231,7 +231,7 @@ or
 
     gcloud config set compute/region {COMPUTE_REGION}
 
-Generate a kubeconfig entry to run `kubectl` commands against a your GCP cluster.
+Generate a `kubeconfig` entry to run `kubectl` commands against a your GCP cluster.
 
     gcloud container clusters get-credentials {CLUSTER_NAME}    
 
@@ -251,12 +251,12 @@ You can use the following commands to update the secrets.
 
 Visit your GKE cluster dashboard on GCP and check the _Configuration_ section. You should see the detector and viewer service secrets.
 
-__NB:__ If you want to view the secrets on your k8s cluster when debugging, you can install the `jq` utility (https://stedolan.github.io/jq/) and run the following where `my-secrets` is the name of your k8s secret.
-
-    kubectl get secret my-secrets -o json | jq '.data | map_values(@base64d)'
-
 ![](/images/ms-k8s/gke-config.jpg)
 _GKE cluster Config showing detector and viewer service secrets_
+
+__NB:__ If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the `jq` utility (https://stedolan.github.io/jq/) and run the following where `my-secrets` is the name of your k8s secret.
+
+    kubectl get secret my-secrets -o json | jq '.data | map_values(@base64d)'
 
 Create the deployments.
 
