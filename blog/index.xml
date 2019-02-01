@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Thu, 31 Jan 2019 09:30:21 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 16:44:09 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploy microservices on Kubernetes</title>
+      <link>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
+      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.
+Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;.</description>
+    </item>
     
     <item>
       <title>Hello Hugo!</title>

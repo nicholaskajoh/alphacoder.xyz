@@ -51,7 +51,7 @@
     <item>
       <title>Docker</title>
       <link>http://alphacoder.xyz/tag/docker/</link>
-      <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/tag/docker/</guid>
       <description></description>
@@ -67,11 +67,29 @@
     </item>
     
     <item>
+      <title>Gcp</title>
+      <link>http://alphacoder.xyz/tag/gcp/</link>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/gcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Git</title>
       <link>http://alphacoder.xyz/tag/git/</link>
       <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/tag/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gke</title>
+      <link>http://alphacoder.xyz/tag/gke/</link>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/gke/</guid>
       <description></description>
     </item>
     
@@ -130,11 +148,29 @@
     </item>
     
     <item>
+      <title>Kubernetes</title>
+      <link>http://alphacoder.xyz/tag/kubernetes/</link>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lagos</title>
       <link>http://alphacoder.xyz/tag/lagos/</link>
       <pubDate>Fri, 03 Aug 2018 13:52:00 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/tag/lagos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microservices</title>
+      <link>http://alphacoder.xyz/tag/microservices/</link>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/microservices/</guid>
       <description></description>
     </item>
     
