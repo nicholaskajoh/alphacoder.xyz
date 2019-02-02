@@ -18,11 +18,6 @@
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/why-you-should-probably-not-drop-out/</loc>
-    <lastmod>2018-12-18T15:58:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://alphacoder.xyz/side-project-tip/</loc>
     <lastmod>2018-12-16T05:23:00+00:00</lastmod>
   </url>
@@ -63,11 +58,6 @@
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/on-making-lagos-a-little-saner/</loc>
-    <lastmod>2018-08-03T13:52:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://alphacoder.xyz/my-web-search-engine/</loc>
     <lastmod>2018-07-26T14:16:00+00:00</lastmod>
   </url>
@@ -95,11 +85,6 @@
   <url>
     <loc>http://alphacoder.xyz/dead-simple-react-django-setup/</loc>
     <lastmod>2018-01-11T14:39:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/2017-in-bullet-points/</loc>
-    <lastmod>2018-01-02T19:46:00+00:00</lastmod>
   </url>
   
   <url>
@@ -265,12 +250,6 @@
   <url>
     <loc>http://alphacoder.xyz/tag/kubernetes/</loc>
     <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/lagos/</loc>
-    <lastmod>2018-08-03T13:52:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

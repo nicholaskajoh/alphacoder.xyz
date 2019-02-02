@@ -42,16 +42,6 @@ Why the move? I started taking blogging more seriously sometime in early 2017. S
     </item>
     
     <item>
-      <title>4 reasons why you should probably NOT drop out of university</title>
-      <link>http://alphacoder.xyz/why-you-should-probably-not-drop-out/</link>
-      <pubDate>Tue, 18 Dec 2018 15:58:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/why-you-should-probably-not-drop-out/</guid>
-      <description>The formula for success is simple — drop out of school at a ripe age of 17 or so, go build the next Microsoft or Facebook, and become a billionaire in your twenties, right? In this article, I’ll share with you 4 reasons why this or similar aspirations are unrealistic and why you should probably just complete university and move on from there.
-This is an opinion piece so take it with a pinch of salt.</description>
-    </item>
-    
-    <item>
       <title>A tip for working on side projects</title>
       <link>http://alphacoder.xyz/side-project-tip/</link>
       <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
@@ -132,16 +122,6 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.</desc
     </item>
     
     <item>
-      <title>On making Lagos a little saner</title>
-      <link>http://alphacoder.xyz/on-making-lagos-a-little-saner/</link>
-      <pubDate>Fri, 03 Aug 2018 13:52:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/on-making-lagos-a-little-saner/</guid>
-      <description>The number one thing people hate about Lagos is most probably being in traffic. I’ll put insecurity (A.K.A SARS) as number 2 and poor waste management as 3 but feel free to correct me on that.
-Coming from a small quiet town, it took me some time to come to terms with the fact that you have to leave 2 hours (or more) early to get to where you want on time, and that there’s no such thing as “I’ll see you in the next 10 minutes”.</description>
-    </item>
-    
-    <item>
       <title>I built my own web search engine — here’s how</title>
       <link>http://alphacoder.xyz/my-web-search-engine/</link>
       <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
@@ -202,17 +182,6 @@ We’re going to be deploying the app we setup in the previous post on Heroku. H
       <description>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
 TL;DR: https://github.com/nicholaskajoh/React-Django.
 Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.</description>
-    </item>
-    
-    <item>
-      <title>2017 in bullet points</title>
-      <link>http://alphacoder.xyz/2017-in-bullet-points/</link>
-      <pubDate>Tue, 02 Jan 2018 19:46:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/2017-in-bullet-points/</guid>
-      <description>Twenty seventeen was a wonderful one for me — probably the best and most defining year in terms of my career and life pursuits. It was my year of quantum exposure! 🔥
-Here are some highlights that might tickle your fancy:
- I attended 4+ tech events up from 2 in 2016 and 0 in 2015. I joined the GitHub Campus Expert open training program. I started writing technical articles.</description>
     </item>
     
     <item>
