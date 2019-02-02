@@ -111,17 +111,6 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.</desc
     </item>
     
     <item>
-      <title>My top 5 talks at #ConcatenateConf 2018</title>
-      <link>http://alphacoder.xyz/my-top-5-talks-at-concatenateconf-2018/</link>
-      <pubDate>Sun, 12 Aug 2018 13:30:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/my-top-5-talks-at-concatenateconf-2018/</guid>
-      <description>The experience at ConcatenateConf 🇳🇬 was SURREAL! WOW!!! By far the best tech conf I’ve attended yet!🔥🔥🔥
-23(+1) rock stars🚀 from all over the world 🌍 spoke on different topics ranging from APIs to design to performance to accessibility and everything in between. I must say that ALL the talks were AWESOME! However, a couple really stood out for me. Here are my top 5… *drum roll*
-#5 Data Visualization for Web Developers Shirley’s works are UNREAL!</description>
-    </item>
-    
-    <item>
       <title>I built my own web search engine — here’s how</title>
       <link>http://alphacoder.xyz/my-web-search-engine/</link>
       <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
