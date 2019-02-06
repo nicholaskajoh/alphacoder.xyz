@@ -2,7 +2,7 @@
 title: I code, therefore I am
 ---
 
-Hi there! I'm Nicholas Kajoh, a Software Engineer passionate about solving complex problems with elegant solutions. I have a keen interest in Web Development and Artificial Intelligence. I particularly love writing web services, poking around servers, tinkering with Machine Learning models and figuring out how things work.
+Hi there! I'm Nicholas Kajoh, a Software Engineer passionate about solving complex problems with elegant solutions. I have a keen interest in Web Development and Machine Learning. I particularly love writing web services, poking around servers, tinkering with Deep Learning models and figuring out how things work.
 
 I'm also a technical writer and teacher. I'm the author of [Alpha Coder](/blog), a programming blog where I publish high-quality technical articles mostly on things I'm learning and excited about. I organize local tech workshops periodically to teach everything software development from version control with Git to containerization using Docker. I'll be releasing [two awesome video courses](/courses) soon and organizing a series of free webinars thereafter. Keep your eyes peeled!
 
