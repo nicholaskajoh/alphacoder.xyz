@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Fri, 01 Feb 2019 16:44:09 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 Feb 2019 19:40:38 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dealing with code debt</title>
+      <link>http://alphacoder.xyz/dealing-with-code-debt/</link>
+      <pubDate>Wed, 06 Feb 2019 19:40:38 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/dealing-with-code-debt/</guid>
+      <description>Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s human developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.</description>
+    </item>
     
     <item>
       <title>Deploy microservices on Kubernetes</title>

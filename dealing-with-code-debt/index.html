@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dealing with code debt | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Dealing with code debt</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2019-02-06">Feb 6, 2019</time>
+    &#x5d;
+</div>
+</header>
+<article>
+    <p>Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&rsquo;s <del>human</del> developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.</p>
+
+<p>Code debt is not necessarily a bad thing though. As bestselling <em>Rich Dad, Poor Dad</em> author Robert Kiyosaki says, &ldquo;good debt makes you rich and bad debt makes you poor&rdquo;. It must however be kept at a minimum at all times. This can be achieved by avoiding debt as much as is within one&rsquo;s power and spending a good chunck of dev time paying off the debts already owed. A wise man once said &ldquo;a good developer always pays their code debts&rdquo;.</p>
+
+<p>When could we incur code debt i.e &ldquo;good&rdquo; debt? Writing elegant and future-proof code is not always possible as one may have limited time and/or experience in a given domain. For instance, it is not uncommon to find a lot of code debt in fast-paced environments like at startups trying to ship an MVP or find product-market fit. However, if the debts are not paid soon afterwards, a lot of damage can happen in future.</p>
+
+<p>Outlined below are some steps to take in dealing with code debt.</p>
+
+<ul>
+<li><p><strong>Design first:</strong> Before writing the first line of code, make sure you have at least a conceptual idea about how the addition would fit in to what already exists to make it extensible or at least prevent it from being less flexible. Try to add as little as possible when making changes (less code generally means less debt). But also try to make things as generic as possible so that they can easily adapt to evolving requirements. To do this, an understanding of the system as a whole is vital. Make sure your team knows where the product is coming from, where it is in the present and where it&rsquo;s going to.</p></li>
+
+<li><p><strong>Enforce a coding style:</strong> A coding style makes your codebase more readable and consistent. It can prevent developers from writing spagetti code or introducing their own ideology of what &ldquo;good&rdquo; code should look like. The result is higher dev velocity, less arguments, and ultimately, less debt. Use a linter to enforce a coding style. You may choose to use a standard developed by others, customize it or develop your own. Add linting to your deployment pipeline so that only acceptable code gets checked in or goes to production.</p></li>
+
+<li><p><strong>Perform code review, always:</strong> Code reviews should be a core part of the software development process. Critiquing code helps catch bugs but more so, it provides a medium to question technical decisions that can lead to code debt. Devs are forced to think of the best way instead of the easy way because their work would be critiqued by their peers and my be rejected if not up to par.</p></li>
+
+<li><p><strong>Refactor regularly:</strong> The more code that is added on top of code that needs to be refactored, the more difficult it is to refactor the code. Eventually, after adding more and more code (most of which would likely be &ldquo;bad&rdquo; code), it becomes impossible or nearly impossible to refactor or maintain and a rewrite becomes inevitable (which is costly in time and money). After every release or sprint or dev cycle, make it a duty to refactor the codebase to make it more readable, extensible, scalable etc.</p></li>
+
+<li><p><strong>Make documentation a requirement:</strong> Documentation not only provides a reference for you and your team, it helps you establish a collective understanding of the system you&rsquo;re building (that is, how it is actually expected to work). It also provides an avenue to evaluate the current implementation against what the system is supposed to be, and it sparks up questions about assumptions and decisions made.</p></li>
+
+<li><p><strong>Automate testing:</strong> The most important thing for me in automated testing is regression. That is, re-running a suite of tests that set the requirements (both functional and non-functional) of the system to ensure nothing broke while a change was made. If done well, it ensures that no (or few) stones are left unturned. It also makes debugging easier and boosts developers&rsquo; confidence in the system which is super important.</p></li>
+</ul>
+
+<p>Any reasonably complex codebase has some debt. Even simple ones do. The goal is to reduce this debt as much as possible and keep it that way as more code is added. This must be done proactively or else debt would compound to the point where continued development isn&rsquo;t feasible any longer. At this point, a rewrite may be the only logical solution. This can hurt a business and its development team badly.</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="http://buymeacoff.ee/nicholaskajoh">Buy me a coffee</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>
