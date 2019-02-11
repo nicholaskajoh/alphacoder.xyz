@@ -151,6 +151,16 @@ One way to scale is by optimizing your code. That may involve removing unnecessa
     </item>
     
     <item>
+      <title>K Means</title>
+      <link>http://alphacoder.xyz/k-means/</link>
+      <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/k-means/</guid>
+      <description>We’ve been talking classification for a while now — from K Nearest Neighbors to Naive Bayes to Support Vector Machines. In this post, we’ll be looking at clustering using an algorithm called K Means. Let’s dive in&amp;hellip;
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article)  K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
+    </item>
+    
+    <item>
       <title>Image upload with Django and Cloudinary</title>
       <link>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
       <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
@@ -183,12 +193,54 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
     </item>
     
     <item>
+      <title>Naive Bayes</title>
+      <link>http://alphacoder.xyz/naive-bayes/</link>
+      <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/naive-bayes/</guid>
+      <description>Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
+Bayes formula
+Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:</description>
+    </item>
+    
+    <item>
+      <title>Support Vector Machine</title>
+      <link>http://alphacoder.xyz/support-vector-machine/</link>
+      <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/support-vector-machine/</guid>
+      <description>The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
+    </item>
+    
+    <item>
       <title>Build a Facebook clone from scratch with PHP — Part 7</title>
       <link>http://alphacoder.xyz/facebook-clone-7/</link>
       <pubDate>Sat, 09 Dec 2017 09:07:25 +0100</pubDate>
       
       <guid>http://alphacoder.xyz/facebook-clone-7/</guid>
       <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 (this article)  It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!</description>
+    </item>
+    
+    <item>
+      <title>K Nearest Neighbors</title>
+      <link>http://alphacoder.xyz/k-nearest-neighbors/</link>
+      <pubDate>Sat, 09 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/k-nearest-neighbors/</guid>
+      <description>K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a classifier as the experts would call it.
+Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though.</description>
+    </item>
+    
+    <item>
+      <title>Linear Regression</title>
+      <link>http://alphacoder.xyz/linear-regression/</link>
+      <pubDate>Mon, 04 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/linear-regression/</guid>
+      <description>What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
+ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself.</description>
     </item>
     
     <item>

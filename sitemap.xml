@@ -73,6 +73,11 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/k-means/</loc>
+    <lastmod>2018-05-01T08:44:05+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</loc>
     <lastmod>2018-02-18T08:50:00+00:00</lastmod>
   </url>
@@ -88,8 +93,28 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/naive-bayes/</loc>
+    <lastmod>2017-12-26T08:44:05+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/support-vector-machine/</loc>
+    <lastmod>2017-12-26T08:44:05+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/facebook-clone-7/</loc>
     <lastmod>2017-12-09T09:07:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/k-nearest-neighbors/</loc>
+    <lastmod>2017-12-09T08:44:05+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/linear-regression/</loc>
+    <lastmod>2017-12-04T08:44:05+01:00</lastmod>
   </url>
   
   <url>
@@ -256,6 +281,12 @@
   <url>
     <loc>http://alphacoder.xyz/tag/microservices/</loc>
     <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/ml-chops-series/</loc>
+    <lastmod>2018-05-01T08:44:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   

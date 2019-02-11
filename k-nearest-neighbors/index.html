@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>K Nearest Neighbors | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>K Nearest Neighbors</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2017-12-09">Dec 9, 2017</time>
+    &#x5d;
+    Tag &#x5b;
+    <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a <strong>classifier</strong> as the experts would call it.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*eg_VDV5KPHZ-aIzbI11fwg.jpeg" alt="" /></p>
+
+<p>Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though. What if computers could do that for us?</p>
+
+<p>Teaching computers to classify things has been very tedious until Machine Learning. While hard-coded rules may work for a given problem set, everything falls like a pack of cards when a few parameters are added/changed/removed. Worse, a solution becomes useless when a new problem arises. That’s bad for business. 😠</p>
+
+<h1 id="the-ml-chops-series">The ML Chops series</h1>
+
+<ul>
+<li><a href="/linear-regression">Linear Regression</a></li>
+<li>K Nearest Neighbors (this article)</li>
+<li><a href="/naive-bayes">Naive Bayes</a></li>
+<li><a href="/support-vector-machine">Support Vector Machine</a></li>
+<li><a href="/k-means">K Means</a></li>
+</ul>
+
+<h1 id="supervised-learning">Supervised learning</h1>
+
+<p>KNN is a supervised learning algorithm. Supervised learning algorithms infer from labelled training data. Say we want to determine whether a person is male or female, the following samples may be useful:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">height (ft)    weight (kg)    sex  
+6.3            50.2           Male  
+5.9            79.7           Female  
+5.1            61.4           Female  
+5.6            47.1           Male  
+5.1            59.8           Female</pre></td></tr></table>
+</div>
+</div>
+<p>Each row of training data (sample) represents a person. The <em>sex</em> column shows the labels while the <em>height</em> and <em>weight</em> columns show the features for each person. Good features translate to better classifiers. Height and weight are probably not the best features to train a classifier that determines the sex of a human being, but they are far better than Hair style or Eye color, for instance. Voice is a very good feature (I think).</p>
+
+<p>Also, more training data means a better classifier because there are more examples to “learn” from.</p>
+
+<h1 id="meet-knn">Meet KNN</h1>
+
+<p>K Nearest Neighbors is probably the easiest classification algorithm to understand. Take a look at the following graph:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*hhHhEwuLhRMXQ6gSXEOqdg.png" alt="" />
+<em>Graph of height vs weight (data is theoretical)</em></p>
+
+<p>What would you classify <em>Blue Diamond 1</em> as? At a glance, it’s easy to predict/infer that <em>Blue Diamond 1</em> is most likely/is a <em>Female</em>. It seems logical to say that <em>Blue Diamond 1</em> is in the cluster of Females so it’s female. Fair enough.</p>
+
+<p>What of <em>Blue Diamond 2</em>? Not so fast! While it seems likely <em>Female</em>, one could argue it’s <em>Male</em>. Hmm… Eye-balling won’t cut it.</p>
+
+<p><em>KNN provides us a pretty solid way to predict which class Blue Diamond 2 belongs to.</em></p>
+
+<p>K Nearest Neighbors outputs a class membership of a feature set by a majority vote of its closest neighbors. In other words, we can find the persons closest to <em>Blue Diamond 2</em> then cast a vote. If majority are <em>Male</em>, then we say <em>Blue Diamond 2</em> is <em>Male</em>, else we say it’s <em>Female</em>.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*KVn_DG3XvlEiizLesA0rHQ.png" alt="" />
+<em>KNN visualization</em></p>
+
+<p>Looking at the circled area, we can easily see from the graph (above) that there are 5 persons closest to <em>Blue Diamond 2</em>. 3 <em>Red Squares</em> and 2 <em>Green Circles</em>. KNN says <em>Blue Diamond 2</em> is Male since males are the majority of the closest neighbors.</p>
+
+<p>The <em>k</em> in KNN represents the number of neighbors being considered. In the case of classifying <em>Blue Diamond 2</em>, it’s 5. <em>k</em> directly affects our prediction so we must use a “good” value. Take into account your data, specifically the number of classes and the sample size of the training set when choosing k.</p>
+
+<p>In the person classification example we’ve been looking at, we have 2 classes (Male and Female), so k = 2 (or a multiple of 2) is a bad idea right off the bat.</p>
+
+<p>k = 1? Nah. You can’t have an election with just one candidate, can you?</p>
+
+<p>k = 3? Yep. Works for me! Since there are only 3 slots, we’ll never have a tie between Male and Female. Also, 3 is a reasonable number of samples to consider for the person classification problem we’re dealing with (the way I see it).</p>
+
+<p>A “small” value of <em>k</em> means that noise will have a higher influence on the result. A “large” value of <em>k</em> defeats the basic philosophy behind the KNN algorithm. There’s no rule for choosing k. It’s best to try out different values and see what works best.</p>
+
+<h1 id="code">Code</h1>
+
+<p>Let’s use the data from that table 👆 above…</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
+from collections import Counter
+
+data = {&#34;male&#34;: [[6.3, 50.2], [5.6, 47.1]],  
+        &#34;female&#34;: [[5.9, 79.7], [5.1, 61.4], [5.1, 59.8]]}</pre></td></tr></table>
+</div>
+</div>
+<p><strong>NB:</strong> You need <a href="https://pypi.python.org/pypi/numpy">Numpy</a> installed on your computer.</p>
+
+<p>Next, let’s write a predict function. This function takes in the input feature set (Python list) we want to classify e.g <code>[6.0, 52.1]</code> -&gt; <code>[height, weight]</code>, as well as the value of k, and returns a class (<code>Male</code> or <code>Female</code>).</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def predict(input_feature_set, k):  
+  distances = []
+
+  for group in data:  
+    for training_feature_set in data[group]:  
+      euclidean_distance = np.linalg.norm(np.array(input_feature_set) - np.array(training_feature_set))  
+      distances.append([euclidean_distance, group])
+
+  nearest = sorted(distances)[:k]  
+  votes = [d[1] for d in nearest]   
+  prediction = Counter(votes).most_common(1)[0][0]
+
+  return prediction</pre></td></tr></table>
+</div>
+</div>
+<p>Now that’s some chunk of code!</p>
+
+<p>First things first! We loop through each training sample, calculating the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> between it and the input set.</p>
+
+<p>The euclidean distance between two points on a cartesian plane is given by:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*j8gq_zqgxLfkbDMCFVDJvg.png" alt="" /></p>
+
+<p>Sound familiar?</p>
+
+<p>In the code, we used numpy’s euclidean distance function <code>np.linalg.norm()</code> for simplicity and efficiency.</p>
+
+<p>Next, we append the distance along with the class/group of the set (<code>[euclidean distance, group]</code> -&gt; <code>[12.092364, “male”]</code>) to <code>distances</code> list.</p>
+
+<p>Afterwards, we sort <code>distances</code> in ascending order of magnitude and select the first <em>k</em> elements using <code>sorted(distances)[:k]</code>.</p>
+
+<p>Then we dispose the distances with the new <code>votes</code> variable using <code>[d[1] for d in nearest]</code>. We don’t need the numbers anymore, only the nearest classes/groups e.g <code>[“male”, “female”, “male”]</code>.</p>
+
+<p>Finally, we count the occurrences of each class in <code>votes</code> and return the class with the highest occurrence.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">prediction = Counter(votes).most_common(1)[0][0]
+
+return prediction</pre></td></tr></table>
+</div>
+</div>
+<h1 id="predict">Predict</h1>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">print(predict([6.0, 52.1], 3))</pre></td></tr></table>
+</div>
+</div>
+<h1 id="accuracy">Accuracy</h1>
+
+<p>To find out how accurate a KNN classifier is, we can divide a given data set into training and testing data, then run the test data through the predict function, noting if the classifier got the class right or wrong. This can be used to calculate accuracy, like so:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">accuracy = correct_predictions / test_sample_size * 100</pre></td></tr></table>
+</div>
+</div>
+<h1 id="confidence">Confidence</h1>
+
+<p>Confidence is, well how &ldquo;confident&rdquo; a KNN classifier is about a prediction. If we have k to be 3 and the nearest neighbors for a person classifier are female, male and female, we can say we’re <code>2/3 * 100</code> percent confident that the person is female. Likewise, if the nearest neighbors are all male, we can say we’re 100% confident that the person is a male.</p>
+
+<h1 id="perf">Perf</h1>
+
+<p>While KNN produces good classifiers, it takes a lot of time to predict outputs for large data sets. This is because euclidean distance must be calculated for all training samples in order to find the “nearest” samples in the data.</p>
+
+<h1 id="data-sets">Data sets</h1>
+
+<p>I suggest you try out KNN with a couple popular data sets to get a feel of how powerful the algorithm is. There are many free KNN data sets online like <a href="https://www.kaggle.com/styven/iris-dataset">the Iris data set</a> and the <a href="https://www.kaggle.com/uciml/breast-cancer-wisconsin-data">Breast Cancer Wisconsin (diagnostic) data set</a>. You should totally check them out!</p>
+
+<p>Don’t forget to check out the ML Chops repo for the complete KNN code: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors">https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors</a>.</p>
+
+<p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="http://buymeacoff.ee/nicholaskajoh">Buy me a coffee</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>
