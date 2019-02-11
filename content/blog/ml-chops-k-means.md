@@ -14,7 +14,7 @@ We’ve been talking **classification** for a while now — from _K Nearest 
 - [Linear Regression](/linear-regression)
 - [K Nearest Neighbors](/k-nearest-neighbors)
 - [Naive Bayes](/naive-bayes)
-- [Support Vector Machine](/linear-regression)
+- [Support Vector Machine](/support-vector-machine)
 - K Means (this article)
 
 K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, _K_ based on feature similarity. The algorithm works iteratively to assign each data point to one of _K_ groups. Each group is identified by a centroid (the center point of the group) and data points are grouped with the centroid they’re closest to. The centroids are determined during training through optimization.

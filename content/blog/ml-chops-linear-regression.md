@@ -19,7 +19,7 @@ There’s a repo on my GitHub where all the code can be found. The url is: [http
 - Linear Regression (this article)
 - [K Nearest Neighbors](/k-nearest-neighbors)
 - [Naive Bayes](/naive-bayes)
-- [Support Vector Machine](/linear-regression)
+- [Support Vector Machine](/support-vector-machine)
 - [K Means](/k-means)
 
 # Machine Learning

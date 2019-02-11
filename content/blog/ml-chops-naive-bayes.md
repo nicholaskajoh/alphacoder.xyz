@@ -19,7 +19,7 @@ Here’s a great explanation to read if you’ve not come across/don’t underst
 - [Linear Regression](/linear-regression)
 - [K Nearest Neighbors](/k-nearest-neighbors)
 - Naive Bayes (this article)
-- [Support Vector Machine](/linear-regression)
+- [Support Vector Machine](/support-vector-machine)
 - [K Means](/k-means)
 
 Let’s consider the data we used in the last post on KNNs:

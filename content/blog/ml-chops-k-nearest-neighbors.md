@@ -18,7 +18,7 @@ Teaching computers to classify things has been very tedious until Machine Learni
 - [Linear Regression](/linear-regression)
 - K Nearest Neighbors (this article)
 - [Naive Bayes](/naive-bayes)
-- [Support Vector Machine](/linear-regression)
+- [Support Vector Machine](/support-vector-machine)
 - [K Means](/k-means)
 
 # Supervised learning
