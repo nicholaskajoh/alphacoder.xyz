@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javascript on Alpha Coder</title>
-    <link>http://alphacoder.xyz/tag/javascript/</link>
-    <description>Recent content in Javascript on Alpha Coder</description>
+    <title>Node.js on Alpha Coder</title>
+    <link>http://alphacoder.xyz/tag/node.js/</link>
+    <description>Recent content in Node.js on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
     <lastBuildDate>Mon, 04 Mar 2019 13:54:48 +0100</lastBuildDate>
     
-	<atom:link href="http://alphacoder.xyz/tag/javascript/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://alphacoder.xyz/tag/node.js/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <guid>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
       <description>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
 1 2  setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;);   If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
-    </item>
-    
-    <item>
-      <title>HTML, CSS and Javascript as fast as possible</title>
-      <link>http://alphacoder.xyz/html-css-js/</link>
-      <pubDate>Wed, 07 Jun 2017 21:48:21 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/html-css-js/</guid>
-      <description>This post is a prequel to a series of posts on building a Facebook clone with PHP from scratch authored by yours truly. It&amp;rsquo;s intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.
-HTML, CSS and Javascript are front-end languages i.e they run on the client (your user&amp;rsquo;s device/browser). HTML is a templating language. CSS helps you style HTML and Javascript is &amp;ldquo;an object-oriented computer programming language commonly used to create interactive effects within web browsers.</description>
     </item>
     
   </channel>

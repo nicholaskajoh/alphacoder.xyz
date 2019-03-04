@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Mon, 04 Mar 2019 06:39:01 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Mar 2019 13:54:48 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
+      <link>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>
+      <pubDate>Mon, 04 Mar 2019 13:54:48 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
+      <description>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
+1 2  setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;);   If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
+    </item>
     
     <item>
       <title>Adminer — a simple GUI client for any DB</title>
