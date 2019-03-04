@@ -7,6 +7,7 @@ A programming blog by Nicholas Kajoh built with Hugo. Visit [alphacoder.xyz](htt
 - Run Hugo server `hugo server -D`.
 
 ## Publish on GitHub Pages
+- Run `git worktree add -B gh-pages public origin/gh-pages` once.
 - Run `chmod +x ./publish.sh && ./publish.sh`.
 
 ## Update theme to latest
