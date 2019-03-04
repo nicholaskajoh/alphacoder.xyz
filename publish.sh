@@ -2,6 +2,7 @@
 
 echo "1. Clearing public folder"
 rm -rf public/*
+echo "alphacoder.xyz" > public/CNAME
 
 echo "\n2. Generating site"
 hugo
