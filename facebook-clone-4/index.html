@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Build a Facebook clone from scratch with PHP — Part 4 | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Build a Facebook clone from scratch with PHP — Part 4</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2017-09-14">Sep 14, 2017</time>
+    &#x5d;
+    Tag &#x5b;
+    <a href="http://alphacoder.xyz/tag/facebook-clone-series/">Facebook Clone Series</a>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<h1 id="all-parts">All parts</h1>
+
+<ul>
+<li><a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a></li>
+<li><a href="/facebook-clone-2">Build a Facebook clone from scratch with PHP — Part 2</a></li>
+<li><a href="/facebook-clone-3">Build a Facebook clone from scratch with PHP — Part 3</a></li>
+<li>Build a Facebook clone from scratch with PHP — Part 4 (this article)</li>
+<li><a href="/facebook-clone-5">Build a Facebook clone from scratch with PHP — Part 5</a></li>
+<li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
+<li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
+</ul>
+
+<p>Users are at the center of any application. It&rsquo;s all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can&rsquo;t be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we&rsquo;re going to make all this possible, and some.</p>
+
+<h1 id="registration">Registration</h1>
+
+<p>We already have a registration form in our index.php template.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
+&lt;form method=&#34;post&#34; action=&#34;php/register.php&#34;&gt;
+    &lt;div class=&#34;form-group&#34;&gt;
+        &lt;input class=&#34;form-control&#34; type=&#34;text&#34; name=&#34;username&#34; placeholder=&#34;Username&#34; required&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;form-group&#34;&gt;
+        &lt;input class=&#34;form-control&#34; type=&#34;text&#34; name=&#34;location&#34; placeholder=&#34;Location&#34;&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;form-group&#34;&gt;
+        &lt;input class=&#34;form-control&#34; type=&#34;password&#34; name=&#34;password&#34; placeholder=&#34;Password&#34; required&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;form-group&#34;&gt;
+        &lt;input class=&#34;btn btn-success&#34; type=&#34;submit&#34; name=&#34;register&#34; value=&#34;Register&#34;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+...</pre></td></tr></table>
+</div>
+</div>
+<p>When a user fills the registration form and submits, all we need to do is feed our database with the information.</p>
+
+<p>Create a file called register.php in the php folder. This is where we would process registration submissions.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+    require_once &#34;../functions.php&#34;;
+    db_connect();
+    $sql = &#34;INSERT INTO users (username, password, location) VALUES (?, ?, ?)&#34;;
+    $statement = $conn-&gt;prepare($sql);
+    $statement-&gt;bind_param(&#39;sss&#39;, $_POST[&#39;username&#39;], password_hash($_POST[&#39;password&#39;], PASSWORD_DEFAULT), $_POST[&#39;location&#39;]);
+    if ($statement-&gt;execute()) {
+        redirect_to(&#34;/index.php?registered=true&#34;);
+    } else {
+        echo &#34;Error: &#34; . $conn-&gt;error;
+    }</pre></td></tr></table>
+</div>
+</div>
+<p>Like always, the code is easy to understand. After we call <code>db_connect()</code> to help us establish a connection to the database, we build an SQL query, an insert query that, well, inserts (or creates) data in our DB.</p>
+
+<p>If you&rsquo;ve noticed, we&rsquo;ve been using &ldquo;prepared statements&rdquo; to perform some SQL queries. There are couple other ways to perform operations [using PHP] on our DB (e.g the way we used to pull up post records in part 3). Prepared statements are however preferred/safer for operations that change/manipulate data because, BAD PEOPLE (the black hats) can attempt to mess us up using SQL Injection. There&rsquo;s no time to talk about SQL Injection here but hey, Google is your friend. Anyways, let&rsquo;s move on.</p>
+
+<p>Another security concern is with passwords. It is bad practice to store &ldquo;raw&rdquo; passwords because if someone gets access to your DB, they can screw you and your users over. It&rsquo;s safer to &ldquo;hash&rdquo; passwords. Hashing algorithms perform one-way transformations, turning one string to another string called a hash. There are a good number of hashing algorithms you can use for passwords e.g md5, sha1, bcrypt etc. Lucky for us, we don&rsquo;t have to worry about these algorithms. PHP provides a hashing function we can use:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">password_hash(&#39;secret123&#39;, PASSWORD_DEFAULT);</pre></td></tr></table>
+</div>
+</div>
+<p>Password hashes are usually a long string of &ldquo;random&rdquo; characters like this:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$2y$10$aClhvyCsqbPgx.SE7L43z.oZhBPNhqg3lOMJWPMC1KUT9UIeiR.Vi</pre></td></tr></table>
+</div>
+</div>
+<p>Once the insert is done, we redirect the user to same index.php with some GET data.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">example.com/index.php?registered=true</pre></td></tr></table>
+</div>
+</div>
+<p>This data tells us the user has been registered, so we can alert the user as well and urge them to login. Somewhere atop index.php, we can have:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
+&lt;?php if(isset($_GET[&#39;registered&#39;])): ?&gt;
+&lt;div class=&#34;alert alert-success&#34;&gt;
+    &lt;p&gt;Account created successfully! Use your username and password to login.&lt;/p&gt;
+&lt;/div&gt;
+&lt;?php endif; ?&gt;
+...</pre></td></tr></table>
+</div>
+</div>
+<h1 id="login">Login</h1>
+
+<p>Login is also straightforward. What we want to achieve is to create a way to identify users as they go from page to page in our application. We want to be able to know if the person [currently] using our app is &ldquo;logged in&rdquo;, but more importantly, who they are if they are logged in.</p>
+
+<p>There are two things involved:</p>
+
+<ol>
+<li><p><strong>Authentication</strong> - which asks &ldquo;Who are you?&rdquo; and &ldquo;Are you really who you say you are?&rdquo;. The former is asked through a login form where the user provides their username and password, while the latter is asked when the application checks to see if the credentials submitted match any existing records.</p></li>
+
+<li><p><strong>Authorization</strong> - If a user is who they say they are, then we can give them access to resources (e.g pages) unavailable to people not registered to our app. We have to do some kind of check to see if a request coming to our server is from a &ldquo;legit&rdquo; user and then authorize/allow access to the page they requested.</p></li>
+</ol>
+
+<p>We use <em>sessions</em> to authorize requests. Like the name implies, a session grants access to an application&rsquo;s resources for a period. For instance, after being authenticated by security at, say, a library (probably with a student or National ID), you can do whatever you like (read books, watch educational material, browse the internet etc) until you leave/the library is closed for the day. When you visit next time, you must be authenticated again. But while you&rsquo;re in the library, nobody asks you to identify yourself before picking up a book or watching some educational video. It is believed that you have been &ldquo;authenticated&rdquo;, so to speak.</p>
+
+<p>PHP provides us a superglobal called <code>$_SESSION</code> - an array which contains session variables. The variables we store in <code>$_SESSION</code> persist until the browser is closed. I don&rsquo;t want to go into exactly how sessions work. Again, Google is your friend, so google.</p>
+
+<p>Here&rsquo;s a snippet of the login form:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
+&lt;form method=&#34;post&#34; action=&#34;php/login.php&#34;&gt;
+&lt;div class=&#34;form-group&#34;&gt;
+    &lt;input class=&#34;form-control&#34; type=&#34;text&#34; name=&#34;username&#34; placeholder=&#34;Username&#34; required&gt;
+&lt;/div&gt;
+&lt;div class=&#34;form-group&#34;&gt;
+    &lt;input class=&#34;form-control&#34; type=&#34;password&#34; name=&#34;password&#34; placeholder=&#34;Password&#34; required&gt;
+&lt;/div&gt;
+&lt;div class=&#34;form-group&#34;&gt;
+    &lt;input class=&#34;btn btn-primary&#34; type=&#34;submit&#34; name=&#34;login&#34; value=&#34;Login&#34;&gt;
+&lt;/div&gt;
+&lt;/form&gt;
+...</pre></td></tr></table>
+</div>
+</div>
+<p>Create a file login.php in the php folder and add the following bit of code:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+    require_once &#34;../functions.php&#34;;
+    db_connect();
+    $sql = &#34;SELECT id, username, password FROM users WHERE username = ?&#34;;
+    $statement = $conn-&gt;prepare($sql);
+    $statement-&gt;bind_param(&#39;s&#39;, $_POST[&#39;username&#39;]);
+    $statement-&gt;execute();
+    $statement-&gt;store_result();
+    $statement-&gt;bind_result($id, $username, $password);
+    $statement-&gt;fetch();
+    if ($statement-&gt;execute()) {
+        if(password_verify($_POST[&#39;password&#39;], $password)) {
+        $_SESSION[&#39;user_id&#39;] = $id;
+        $_SESSION[&#39;user_username&#39;] = $username;
+        redirect_to(&#34;/home.php&#34;);
+        } else {
+        redirect_to(&#34;/index.php?login_error=true&#34;);
+        }
+    } else {
+        echo &#34;Error: &#34; . $conn-&gt;error;
+    }</pre></td></tr></table>
+</div>
+</div>
+<p>As with the the code for registration, login.php is easy to digest. We establish a connection with our dear DB, then write a query to fetch a user with the supplied username. Next, we get the hashed password of the fetched user record and compare it to the password provided by the user to see if they match. PHP provides another slick function to do this called, as you could guess, <code>password_verify()</code>. Once our user has been verified to have provided the correct details, we create 2 sessions. One to store the user&rsquo;s id and the other the user&rsquo;s username. Then we redirect them to home.php.</p>
+
+<p>With the sessions in place, we can check any request coming to our server to know if it&rsquo;s from an authenticated user or not, and who the user is if they&rsquo;re authenticated. This is vital for our app cos we don&rsquo;t want unregistered persons to access pages like home.php as well as to take actions like creating a post or making a friend request. Also, we want to be able to know [the user] who takes a given action. These sessions help us achieve just that.</p>
+
+<p>But how?</p>
+
+<p>For starters, let&rsquo;s a write function that allows only authenticated users to access the home page. The unauthenticated are redirected to index.php.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">function is_auth() {
+    return isset($_SESSION[&#39;user_id&#39;]);
+}
+
+function check_auth() {
+    if(!is_auth()) {
+        redirect_to(&#34;/index.php?logged_in=false&#34;);
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<p>There are two functions defined above. The first <code>is_auth()</code> is a helper function for <code>check_auth()</code>. It checks if a user has been authenticated using the <code>user_id</code> session. <code>check_auth()</code> is the main function here. It uses <code>is_auth()</code> to check if a request is not authenticated and then redirects to index.php.</p>
+
+<p>Now you can place <code>check_auth()</code> atop all the pages you want restricted.</p>
+
+<p><strong>NB:</strong> You need to place the function <code>session_start()</code> at the beginning of every page where sessions would be used, for them to work. functions.php is a nice place to put this function cos it&rsquo;s required at the start of all our pages.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+    session_start();
+    function db_connect() {
+        ...
+    }
+    ...</pre></td></tr></table>
+</div>
+</div>
+<h1 id="logout">Logout</h1>
+
+<p>Logout is freakishly easy. All we have to do is destroy the session, and PHP provides us a function to do just that.</p>
+
+<p>Create a new file in the php folder called logout.php with the following code:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+    require_once &#34;../functions.php&#34;;
+    // destroy all sessions
+    session_destroy();
+    redirect_to(&#34;/index.php&#34;);</pre></td></tr></table>
+</div>
+</div>
+<p>That&rsquo;s all! Hopefully, there&rsquo;s nothing to explain here. Right?</p>
+
+<p>Great!</p>
+
+<p>Just create a logout link like so: <code>&lt;a href=&quot;php/logout.php&quot;&gt;Logout&lt;/a&gt;</code> and you&rsquo;re good.</p>
+
+<p>At this point, we can call it a day. Phew!!!</p>
+
+<p>Well done!</p>
+
+<p><strong>The final code for this part is contained in my FaceClone repo here: <a href="https://github.com/nicholaskajoh/faceclone">https://github.com/nicholaskajoh/faceclone</a>. Visit the link and click on the part-4 folder to see progress made so far.</strong></p>
+
+<p>Next: <a href="/facebook-clone-5">Build a Facebook clone from scratch with PHP — Part 5</a>.</p>
+
+<p>Previous: <a href="/facebook-clone-3">Build a Facebook clone from scratch with PHP — Part 3</a>.</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="http://buymeacoff.ee/nicholaskajoh">Buy me a coffee</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Deploy microservices on Kubernetes | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Deploy microservices on Kubernetes</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2019-02-01">Feb 1, 2019</time>
+    &#x5d;
+    Tag &#x5b;
+    <a href="http://alphacoder.xyz/tag/kubernetes/">Kubernetes</a>
+    <a href="http://alphacoder.xyz/tag/microservices/">Microservices</a>
+    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
+    <a href="http://alphacoder.xyz/tag/gke/">GKE</a>
+    <a href="http://alphacoder.xyz/tag/gcp/">GCP</a>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>Kubernetes (AKA k8s) has gained <a href="https://kubernetes.io/case-studies/">widespread adoption</a> in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. <a href="http://pinterest.com">Pinterest</a> uses <a href="https://www.cncf.io/case-study-pinterest/">a suite of over 1000 microservices</a> to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.</p>
+
+<p>Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;. In simple terms, Kubernetes helps to automate the deployment and management of containerized applications. This means we can package an app (code, dependencies and config) <a href="https://www.docker.com/resources/what-container">in a container</a> and hand it over to Kubernetes to deploy and scale without worrying about our infrastructure. Under the hood, Kubernetes decides where to run what, monitors the systems and fixes things if something goes wrong.</p>
+
+<h1 id="microservice-architecture">Microservice architecture</h1>
+
+<p>I particularly like <a href="https://martinfowler.com/microservices/">James Lewis&rsquo; and Martin Fowler&rsquo;s definition of microservices</a> as it points out why Kubernetes is such a good solution for the architecture. &ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by <strong>fully automated deployment machinery</strong>. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&rdquo;. Kubernetes is in fact a &ldquo;fully automated deployment machine&rdquo; that provides a powerful abstraction layer atop server infrastructure.</p>
+
+<h1 id="common-kubernetes-terms">Common Kubernetes terms</h1>
+
+<p>Below are some common terms associated with Kubernetes.</p>
+
+<ul>
+<li><strong>Node:</strong> A node is a single machine in a Kubernetes cluster. It can be a virtual or physical machine.</li>
+<li><strong>Cluster:</strong> A cluster consists of at least one master machine and multiple worker machines called nodes.</li>
+<li><strong>Pod:</strong> A pod is the basic unit of computing in Kubernetes. Containers are not run directly. Instead, they are wrapped in a pod.</li>
+<li><strong>Deployment:</strong> A deployment is used to manage a pod or set of pods. Pods are typically not created or managed directly. Deployments can automatically spin up any number of pods. If a pod dies, a deployment can automatically recreate it as well.</li>
+<li><strong>Service:</strong> Pods are mortal. Consumers should however not be burdened with figuring out what pods are available and how to access them. Services keep track of all available pods of a certain type and provide a way to access them.</li>
+</ul>
+
+<h1 id="yoloo">Yoloo</h1>
+
+<p>In this tutorial, we&rsquo;ll be deploying a simple microservices app called Yoloo on <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine (GKE)</a>, a managed Kubernetes service on Google Cloud Platform. Yoloo uses a pre-trained YOLO (<a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">You Only Look Once</a>) model to detect common objects such as bottles and humans in an image. It comprises two microservices, <em>detector</em> and <em>viewer</em>. The detector service is a Python/Flask app which takes an image and passes it through the YOLO model to identify the objects in it. The viewer service is a PHP app that acts as a front-end by providing a User Interface for uploading and viewing the images. The app is built to use two external, managed services: Cloudinary for image hosting and Redis for data storage. The source code is available <a href="https://github.com/nicholaskajoh/microservices">on my GitHub</a>.</p>
+
+<p><a href="https://github.com/nicholaskajoh/microservices/archive/master.zip">Download</a> or clone the project with Git: <code>git clone https://github.com/nicholaskajoh/microservices.git</code>.</p>
+
+<p>Detector service Dockerfile.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">FROM python:3.6-stretch
+EXPOSE 8080
+
+RUN mkdir /www
+WORKDIR /www
+COPY requirements.txt /www/
+RUN pip install -r requirements.txt
+
+ENV PYTHONUNBUFFERED 1
+
+COPY . /www/
+CMD gunicorn --bind 0.0.0.0:8080 wsgi</pre></td></tr></table>
+</div>
+</div>
+<p>Viewer service Dockerfile.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">FROM php:7.2-apache
+EXPOSE 80
+
+COPY . /var/www/html/</pre></td></tr></table>
+</div>
+</div>
+<p>Download the YOLO weights in the detector directory.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">cd detector/ &amp;&amp; wget https://pjreddie.com/media/files/yolov3.weights</pre></td></tr></table>
+</div>
+</div>
+<p>Change directory to <code>viewer/</code> and install the PHP dependencies. You need to have <a href="https://www.apachefriends.org/index.html">PHP</a> and <a href="https://getcomposer.org">Composer</a> installed.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">composer install</pre></td></tr></table>
+</div>
+</div>
+<h1 id="google-cloud-platform-gcp">Google Cloud Platform (GCP)</h1>
+
+<p>Visit <a href="https://console.cloud.google.com/home/dashboard">https://console.cloud.google.com/home/dashboard</a> and create a new project. You need to have a Google account.</p>
+
+<p><strong>NB:</strong> Google offers <a href="https://cloud.google.com/free/">a tier with $300 free credit</a> (for 1 year) to use any GCP product you want.</p>
+
+<p><img src="/images/ms-k8s/new-project-gcp.jpg" alt="" />
+<em>Create a new project on Google Cloud Platform</em></p>
+
+<p><strong>NB:</strong> Make sure you <a href="https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_new_project">enable billing</a> for your project.</p>
+
+<p>Go to the <a href="https://console.cloud.google.com/kubernetes">Kubernetes section</a> of GCP and create a new <em>standard</em> cluster. GKE uses VM instances on Google Compute Engine as nodes in the cluster.</p>
+
+<p><img src="/images/ms-k8s/new-cluster-gke.jpg" alt="" />
+<em>Create a new k8s cluster</em></p>
+
+<h1 id="google-container-registry-gcr">Google Container Registry (GCR)</h1>
+
+<p>Kubernetes uses container images to launch pods. Images need to be stored in a registry where they can be pulled from. GCP provides a registry, the <a href="https://cloud.google.com/container-registry/">Google Container Registry</a>, which can be used to store Docker images. Let&rsquo;s build the images for the detector and viewer services and push them to GCR.</p>
+
+<ul>
+<li>Install <a href="https://cloud.google.com/sdk/install">Google Cloud SDK</a> for your OS.</li>
+<li>Login: <code>gcloud auth login</code>.</li>
+<li>Configure docker to use the <code>gcloud</code> CLI as a credential helper: <code>gcloud auth configure-docker</code>. You only need to do this once.</li>
+<li>Build the docker images for the microservices: <code>docker build -t detector-svc detector/</code> and <code>docker build -t viewer-svc viewer/</code>.</li>
+<li>Tag the images with their registry names: <code>docker tag detector-svc gcr.io/{PROJECT_ID}/detector-svc</code> and <code>docker tag viewer-svc gcr.io/{PROJECT_ID}/viewer-svc</code>. <code>PROJECT_ID</code> is your GCP console project ID.</li>
+<li>Push the docker images to GCR: <code>docker push gcr.io/{PROJECT_ID}/detector-svc</code> and <code>docker push gcr.io/{PROJECT_ID}/viewer-svc</code>.</li>
+</ul>
+
+<h1 id="deployments">Deployments</h1>
+
+<p>The detector and viewer services contain deployment files, <code>detector-deployment.yaml</code> and <code>viewer-deployment.yaml</code> respectively, which tell k8s what workloads we want to run.</p>
+
+<p>Detector service deployment.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: detector-svc-deployment
+spec:
+  replicas: 3
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: detector-svc
+    spec:
+      containers:
+        - image: gcr.io/{PROJECT_ID}/detector-svc
+          imagePullPolicy: Always
+          name: detector-svc
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: detector-svc-secrets</pre></td></tr></table>
+</div>
+</div>
+<p>In this deployment, we want to run 3 copies (<code>replicas: 3</code>) of the detector service (<code>- image: gcr.io/{PROJECT_ID}/detector-svc</code>) for availability and scalability. We label the pods (<code>app: detector-svc</code>) so that they can easily be referenced as a group. We alse choose rolling updates (<code>type: RollingUpdate</code>) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.</p>
+
+<p>Viewer service deployment.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: viewer-svc-deployment
+spec:
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: viewer-svc
+    spec:
+      containers:
+        - image: gcr.io/{PROJECT_ID}/viewer-svc
+          imagePullPolicy: Always
+          name: viewer-svc
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: viewer-svc-secrets</pre></td></tr></table>
+</div>
+</div>
+<p>We choose a different redeployment strategy (<code>type: Recreate</code>) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&rsquo;re going with 2 replicas here.</p>
+
+<p>Notice <code>envFrom</code> under <code>containers</code> in both deployments? We&rsquo;ll be loading our environment variables from a k8s Secret which we&rsquo;ll create soon.</p>
+
+<h1 id="services">Services</h1>
+
+<p>The k8s services (not to be confused with microservices) in detector and viewer, <code>detector-service.yaml</code> and <code>viewer-service.yaml</code>, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer service uses the LoadBalancer service which exposes it externally to the outside world.</p>
+
+<p>Detector k8s service.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">apiVersion: v1
+kind: Service
+metadata:
+  name: detector-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: detector-svc</pre></td></tr></table>
+</div>
+</div>
+<p>Viewer k8s service.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">apiVersion: v1
+kind: Service
+metadata:
+  name: viewer-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: viewer-svc</pre></td></tr></table>
+</div>
+</div>
+<p><strong>NB:</strong> we use the labels (<code>app: detector-svc</code> and <code>app: viewer-svc</code>) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.</p>
+
+<h1 id="cloudinary-and-redis">Cloudinary and Redis</h1>
+
+<p>As mentioned earlier, Yoloo depends on Cloudinary and Redis. Cloudinary is a cloud-based image/video hosting service and Redis is an in-memory key-value database.</p>
+
+<p>Create an account <a href="https://cloudinary.com">on Cloudinary</a> and <a href="https://redislabs.com">on Redis Labs</a> (a free managed Redis hosting service).</p>
+
+<p><img src="/images/ms-k8s/cloudinary-console.jpg" alt="" />
+<em>Cloudinary console</em></p>
+
+<p><img src="/images/ms-k8s/redislabs-config.jpg" alt="" />
+<em>Redis Labs configuration</em></p>
+
+<p>Create <em>.env</em> files from the example env files in both services (<em>.env.example</em>) and populate them with your Cloudinary and Redis credentials.</p>
+
+<p>Detector service .env</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">FLASK_APP=detector.py
+FLASK_ENV=production
+CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly</pre></td></tr></table>
+</div>
+</div>
+<p>Viewer service .env</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+DETECTOR_SVC_URL=http://detector-service
+REDIS_URL=redis://:password@127.0.0.1:6379</pre></td></tr></table>
+</div>
+</div>
+<p>Notice the url in <code>DETECTOR_SVC_URL</code>? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use <code>http://detector-service</code> and not have to worry about what IP a service actually uses.</p>
+
+<h1 id="kubectl">kubectl</h1>
+
+<p>kubectl is a CLI tool for running commands against Kubernetes clusters. To get Kubernetes to run our microservices, we need to apply our deployments and services on the cluster. Outlined below are the steps involved.</p>
+
+<p>Install <code>kubectl</code> CLI <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">for your OS</a>.</p>
+
+<p>Set your Yoloo GCP project as default on the <code>gcloud</code> CLI.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gcloud config set project {PROJECT_ID}</pre></td></tr></table>
+</div>
+</div>
+<p>Set the default compute zone or region of your cluster. You can find this in the cluster details page on your GCP dashboard.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gcloud config set compute/zone {COMPUTE_ZONE}</pre></td></tr></table>
+</div>
+</div>
+<p>or</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gcloud config set compute/region {COMPUTE_REGION}</pre></td></tr></table>
+</div>
+</div>
+<p>Generate a <code>kubeconfig</code> entry to run <code>kubectl</code> commands against a your GCP cluster.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gcloud container clusters get-credentials {CLUSTER_NAME}    </pre></td></tr></table>
+</div>
+</div>
+<p><strong>NB:</strong> if you use minikube, you can use the following command to switch back to your local cluster.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl config use-context minikube</pre></td></tr></table>
+</div>
+</div>
+<p>Create k8s Secrets from the .env files in both services.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env
+kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env</pre></td></tr></table>
+</div>
+</div>
+<p>You can use the following commands to update the secrets.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env --dry-run -o yaml | kubectl apply -f -
+kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env --dry-run -o yaml | kubectl apply -f -</pre></td></tr></table>
+</div>
+</div>
+<p>Visit your GKE cluster dashboard on GCP and check the <em>Configuration</em> section. You should see the detector and viewer service secrets.</p>
+
+<p><img src="/images/ms-k8s/gke-config.jpg" alt="" />
+<em>GKE cluster Config showing detector and viewer service secrets</em></p>
+
+<p><strong>NB:</strong> If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the <code>jq</code> utility (<a href="https://stedolan.github.io/jq/">https://stedolan.github.io/jq/</a>) and run the following where <code>my-secrets</code> is the name of your k8s secret.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl get secret my-secrets -o json | jq &#39;.data | map_values(@base64d)&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>Create the deployments.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl apply -f detector/detector-deployment.yaml
+kubectl apply -f viewer/viewer-deployment.yaml</pre></td></tr></table>
+</div>
+</div>
+<p>Check the <em>Workloads</em> section of the dashboard. You should see the detector and viewer service deployments.</p>
+
+<p><img src="/images/ms-k8s/gke-workloads.jpg" alt="" />
+<em>GKE cluster Workloads showing the microservice deployments</em></p>
+
+<p>Create the services.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">kubectl apply -f detector/detector-service.yaml
+kubectl apply -f viewer/viewer-service.yaml</pre></td></tr></table>
+</div>
+</div>
+<p>The detector and viewer k8s services can be found in the <em>Services</em> section of the dashboard.</p>
+
+<p><img src="/images/ms-k8s/gke-services.jpg" alt="" />
+<em>GKE cluster Services showing the k8s services for Yoloo</em></p>
+
+<p>To visit the application, go to the viewer service page on the dashboard and locate the <em>External endpoints</em> IP address.</p>
+
+<p><img src="/images/ms-k8s/viewer-svc-external-ip.jpg" alt="" />
+<em>Viewer service external IP address</em></p>
+
+<hr />
+
+<p><img src="/images/ms-k8s/yoloo-app-ui.jpg" alt="" />
+<em>UI of the Yoloo app</em></p>
+
+<p><img src="/images/ms-k8s/yoloo-sample-output.jpg" alt="" />
+<em>Sample output image from Yoloo</em></p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="http://buymeacoff.ee/nicholaskajoh">Buy me a coffee</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>

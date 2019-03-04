@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Support Vector Machine | Alpha Coder</title>
+
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}</style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82728104-5', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+
+<body>
+<div class="header">
+    <h1>
+        <a href="/">Alpha Coder</a>
+        <div class="header-menu">
+            <a href="/blog/">Blog</a>
+            <a href="/courses/">Courses</a>
+            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+        </div>
+    </h1>
+</div>
+<div id="content">
+
+<header>
+    <h1>Support Vector Machine</h1>
+    
+
+<div class="post-meta">
+    Date &#x5b;
+    <time datetime="2017-12-26">Dec 26, 2017</time>
+    &#x5d;
+    Tag &#x5b;
+    <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
+    &#x5d;
+</div>
+</header>
+<article>
+    
+
+<p>The Support Vector Machine (SVM) is a <a href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> model used for classification and regression. In this tutorial, we’ll be using it for classification.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*36seqRE8giOL5saMNGKCig.jpeg" alt="" /></p>
+
+<h1 id="the-ml-chops-series">The ML Chops series</h1>
+
+<ul>
+<li><a href="/linear-regression">Linear Regression</a></li>
+<li><a href="/k-nearest-neighbors">K Nearest Neighbors</a></li>
+<li><a href="/naive-bayes">Naive Bayes</a></li>
+<li>Support Vector Machine (this article)</li>
+<li><a href="/k-means">K Means</a></li>
+</ul>
+
+<p>Created by <a href="https://en.wikipedia.org/wiki/Vladimir_Vapnik">Vladimir Vapnik</a> in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data. This boundary is known as a <a href="https://en.wikipedia.org/wiki/Hyperplane">hyperplane</a> — the best separating hyperplane.</p>
+
+<p>Let’s take the points on the graph below for example:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*2tviRinseZn7KMMCIPieVw.png" alt="" /></p>
+
+<p>What line best divides the red pluses and green minuses? Eye-balling the data points, I came up with this.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*YtZfClUNObb85VrKWKvz6g.png" alt="" /></p>
+
+<p>Any data point that falls on the right side of the boundary is classified as a <em>red plus</em> and any point that falls on the left side is classified as a <em>green minus</em>.</p>
+
+<p><strong>How do we arrive at the best separating hyperplane, mathematically?</strong></p>
+
+<p>Well, the equation of a hyperplane is given by <strong>wx + b = y</strong> where <em>w</em> is the normal vector to the hyperplane, <em>b</em> is a bias/shift and <em>x</em> is a vector the hyperplane passes through. <em>y</em> determines the position of the hyperplane.</p>
+
+<p>Take a look at the diagram below for better understanding:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*3xsACXxhR4rZeXLTSAnfVQ.png" alt="" /></p>
+
+<p>It turns out that y = 0 at the best separating hyperplane. Thus the equation of the best separating hyperplane is <strong>wx + b = 0</strong>.</p>
+
+<p>With this hyperplane, it shouldn’t be difficult to determine if an input vector (a feature set we desire to classify) is on one or the other side of it. To make a prediction, we’d return the sign of <strong>wx + b</strong>. A positive sign (+) represents one class and negative sign (-) represents the other.</p>
+
+<p>There’s just one problem. We need to find <em>w</em> and <em>b</em> when <em>y</em> = 0. Now there’s a new question to answer. <strong>How do we find w and b?</strong></p>
+
+<p>We’ll come to that in a bit.</p>
+
+<h1 id="what-are-support-vectors">What are Support Vectors?</h1>
+
+<p>In SVM, each sample in a data set is a vector. The area covered by the data points is a vector space.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*NWryt8J6zqRWpQ5QOmEWWg.png" alt="" /></p>
+
+<p>A support vector is a vector in this vector space which determines the hyperplane that best separates the data. They are the closest points to the best separating hyperplane.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*J1D7tjrKTwBZEc8D__474g.png" alt="" /></p>
+
+<p>If any of the support vectors change, the best separating hyperplane changes as well. You could say they “support” the best separating hyperplane.</p>
+
+<p>We can draw 2 hyperplanes both parallel to the best separating hyperplane that pass through the support vectors. The best separating hyperplane divides these hyperplanes into two equal parts/areas.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*EuCGXKeyCRJ_BAlm2t73tg.png" alt="" /></p>
+
+<p>It turns out that these two hyperplanes are given by <strong>wx + b = -1</strong> and <strong>wx + b = 1</strong> as show in the graph above.</p>
+
+<h1 id="w-and-b">w and b</h1>
+
+<p>The geometric distance between the hyperplanes enclosing the best separating hyperplane is <strong>2 / ||w||</strong> where <strong>||w||</strong> is the magnitude of <em>w</em>.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*Dm3swkj4iJHNofRzt6zzcQ.png" alt="" /></p>
+
+<p>This distance is maximum at the values of <em>w</em> and <em>b</em> which produce the best separating hyperplane. As such, our goal is to get a value of <em>w</em> and <em>b</em> that maximize <strong>2 / ||w||</strong>. Maximizing <strong>2 / ||w||</strong> equates to minimizing <strong>||w||</strong>, so we could as well do just that.</p>
+
+<p>For mathematical convenience, let’s minimize <strong><sup>1</sup>&frasl;<sub>2</sub> * ||w||²</strong> instead of <strong>||w||</strong>. Note that this doesn’t change anything. Minimizing <strong>||w||</strong> is minimizing <strong><sup>1</sup>&frasl;<sub>2</sub> * ||w||²</strong>.</p>
+
+<p>There’s a constraint to this minimization given by <strong>y(wx + b) &gt;= 1</strong>. This ensures that we don’t maximize the distance beyond the 2 hyperplanes that separate the 2 categories of data.</p>
+
+<p>This is a classic quadratic optimization problem!</p>
+
+<p>We are tasked with minimizing <strong><sup>1</sup>&frasl;<sub>2</sub> * ||w||²</strong> subject to <strong>y(wx + b) &gt;= 1</strong>.</p>
+
+<p>There are several methods for optimization at our disposal including <a href="https://en.wikipedia.org/wiki/Convex_optimization">Convex Optimization</a> and the popular <a href="https://en.wikipedia.org/wiki/Sequential_minimal_optimization">Sequential Minimal Optimization (SMO)</a> invented by John Platt in 1998 at Microsoft.</p>
+
+<p>We’ll be using Convex Optimization to solve this problem.</p>
+
+<h1 id="convex-optimization">Convex Optimization</h1>
+
+<p>I chose to use the <a href="http://cvxopt.org/">CVXOPT python library</a> for Convex Optimization because I didn’t want to delve into too much math. Feel free to explore Convex Optimization (the math and the code). Here’s a little explanation of convex optimization for the problem we’re solving — to get optimum values of <em>w</em> and <em>b</em>.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*W3MMVrG7QUc3USJyrp5kaw.png" alt="" /></p>
+
+<p>Suppose the optimum value for <em>w</em> and <em>b</em> is at X. We could move from A to C in a bid to get to X. B is the point where <strong><sup>1</sup>&frasl;<sub>2</sub> * ||w||²</strong> is minimum but it does not satisfy the constraint <strong>y(wx + b) &gt;= 1</strong> (in this example) so it’s not the optimum point.</p>
+
+<h1 id="code">Code</h1>
+
+<p>Data:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
+import cvxopt  
+import cvxopt.solvers
+
+features = np.array([[5, 4], [5, -1], [3, 3], [7, 9], [6, 7], [7, 11]])  
+labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])</pre></td></tr></table>
+</div>
+</div>
+<p>Train/fit using CVXOPT:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def fit(X, y):  
+  n_samples, n_features = X.shape
+
+  # Gram matrix
+  K = np.zeros((n_samples, n_samples))  
+  for i in range(n_samples):  
+    for j in range(n_samples):  
+      K[i,j] = np.dot(X[i], X[j])
+
+  P = cvxopt.matrix(np.outer(y,y) * K)  
+  q = cvxopt.matrix(np.ones(n_samples) * -1)  
+  A = cvxopt.matrix(y, (1, n_samples))  
+  b = cvxopt.matrix(0.0)  
+  G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))  
+  h = cvxopt.matrix(np.zeros(n_samples))
+
+  # solve QP problem
+  solution = cvxopt.solvers.qp(P, q, G, h, A, b)
+
+  # Lagrange multipliers
+  a = np.ravel(solution[&#39;x&#39;])
+
+  # Support vectors have non zero lagrange multipliers
+  sv = a &gt; 1e-5  
+  ind = np.arange(len(a))[sv]  
+  a = a[sv]  
+  sv_ = X[sv]  
+  sv_y = y[sv]
+
+  # Intercept
+  b = 0  
+  for n in range(len(a)):  
+    b += sv_y[n]  
+    b -= np.sum(a * sv_y * K[ind[n], sv])  
+  b /= len(a)
+
+  # Weight vector
+  w = np.zeros(n_features)  
+  for n in range(len(a)):  
+    w += a[n] * sv_y[n] * sv_[n]
+
+  return w, b</pre></td></tr></table>
+</div>
+</div>
+<p>Predict:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">w, b = fit(features, labels)
+
+def predict(x):  
+  classification = np.sign(np.dot(x, w) + b)  
+  return classification
+
+# test  
+x = [3, 4]  
+print(predict(x))</pre></td></tr></table>
+</div>
+</div>
+<h1 id="the-kernel-trick">The Kernel trick</h1>
+
+<p>The data we’ve been dealing with is linearly separable i.e we can draw a straight line (speaking in 2D) that separates the data into 2 categories. What if we have a data set like this?</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*SGJF-6P3gQH5cHlarb7m6w.png" alt="" /></p>
+
+<p>There’s no hyperplane that can separate this data.</p>
+
+<p>The kernel trick introduces a new dimension to the vector space. Adding a dimension to the data in the diagram above yields a 3D vector space. Can we separate the data now? Probably.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*aBJJ38sQ1yIZBGFNBzjZmA.png" alt="" /></p>
+
+<p>If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!</p>
+
+<p>Don’t forget to check out the ML Chops repo for all the code: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine">https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine</a>.</p>
+
+<p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
+
+</article>
+
+<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+
+  <br><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+    </div>
+<div class="footer">
+    
+    
+    <div class="footer-links">
+        <a href="http://twitter.com/nicholaskajoh">Twitter</a>
+        <a href="https://github.com/nicholaskajoh">GitHub</a>
+        <a href="http://buymeacoff.ee/nicholaskajoh">Buy me a coffee</a>
+        <a href="/post/index.xml">RSS</a>
+    </div>
+    
+
+    
+    
+    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    
+</div>
+</body>
+
+</html>
