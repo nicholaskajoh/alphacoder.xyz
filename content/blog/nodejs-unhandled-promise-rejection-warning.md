@@ -46,7 +46,7 @@ Better still we can now use Async/Await (ECMAScript 2017/ES8) —  synctactic 
 
 ![](/images/prm-rjctn/await-js.gif)
 
-There's a little problem though. It's very easy to forget not to handle errors, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we're shown the `UnhandledPromiseRejectionWarning` by Node.js.
+There's a little problem though. It's very easy to forget to handle Promise rejections, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we're shown the `UnhandledPromiseRejectionWarning` by Node.js.
 
     const slowAndSteady = new Promise(function(resolve, reject) {
         reject();
@@ -121,7 +121,7 @@ It's not that simple though. Things become more interesting when you have a chai
 
 ![](/images/prm-rjctn/double-promise.gif)
 
-We still get the warning even though `promise2` is wrapped in a try/catch. Wrapping your whole a whole function with try/catch won't cover all Promises!
+We still get the warning even though `promise2` is wrapped in a try/catch. Wrapping a whole function with try/catch won't cover all Promises!
 
 It's obvious that proper exception handling is needed in `promise2`.
 
@@ -141,7 +141,7 @@ It's obvious that proper exception handling is needed in `promise2`.
         }
     })();
 
-But you might not be able to anticipate where exception handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.
+But you might not be able to anticipate where exception/error handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.
 
     process.on('unhandledRejection', function(err) {
         console.log(err);
