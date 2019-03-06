@@ -128,7 +128,7 @@ slowAndSteady
 </div>
 <p><img src="/images/prm-rjctn/await-js.gif" alt="" /></p>
 
-<p>There&rsquo;s a little problem though. It&rsquo;s very easy to forget not to handle errors, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we&rsquo;re shown the <code>UnhandledPromiseRejectionWarning</code> by Node.js.</p>
+<p>There&rsquo;s a little problem though. It&rsquo;s very easy to forget to handle Promise rejections, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we&rsquo;re shown the <code>UnhandledPromiseRejectionWarning</code> by Node.js.</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -273,7 +273,7 @@ const promise2 = new Promise(function(resolve, reject) {
 </div>
 <p><img src="/images/prm-rjctn/double-promise.gif" alt="" /></p>
 
-<p>We still get the warning even though <code>promise2</code> is wrapped in a try/catch. Wrapping your whole a whole function with try/catch won&rsquo;t cover all Promises!</p>
+<p>We still get the warning even though <code>promise2</code> is wrapped in a try/catch. Wrapping a whole function with try/catch won&rsquo;t cover all Promises!</p>
 
 <p>It&rsquo;s obvious that proper exception handling is needed in <code>promise2</code>.</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -312,7 +312,7 @@ const promise2 = new Promise(function(resolve, reject) {
 })();</pre></td></tr></table>
 </div>
 </div>
-<p>But you might not be able to anticipate where exception handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.</p>
+<p>But you might not be able to anticipate where exception/error handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
