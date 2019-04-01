@@ -10,17 +10,14 @@ One common challenge in microservice communication is network failure. [Whatever
 
 Another challenge, the one we'll be exploring in this article, is communication contracts. Is service A expecting what service B is sending? And will service A return what service B expects? Any misconception between two services trying to communicate can lead to hard to debug errors of which I'm all too familiar with, sadly.
 
-A common technique for data exchange is sending JSON payloads over HTTP. That is, [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). You're probably conversant with REST. It's a great medium if "strict" contracts are established. The problem with REST as a strategy for interservice communication, in my opinion, is that contracts can't be enforced at program level. In other words, there's no collective agreement of what must be sent and/or received.
+A common technique for data exchange is sending JSON payloads over HTTP. That is, [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). You're probably conversant with REST. It's a great medium if "strict" contracts are established. The problem with REST as a strategy for interservice communication, in my opinion, is that contracts can't be enforced at program level. In other words, there's no collective agreement of what must be sent and/or received between two applications.
 
-This is where RPC comes in. RPC stands for __Remote Procedure Call__. It is a protocol programs use to make function calls to other programs running on other machines over a network.
+This is where RPC comes in. RPC stands for __Remote Procedure Call__. It is a protocol programs use to make function calls to other programs running on other machines over a network. Aside enforcing data exchange "contracts" between programs (or services), a benefit of RPC over REST is that [it provides the opportunity for making interservice communication faster](https://stackoverflow.com/a/44937371/6293466) through features such as message compression and first-class load balancing.
 
-Aside enforcing data exchange "contracts" between programs (or services), a benefit of RPC over REST is that [it provides the opportunity for making interservice communication faster](https://stackoverflow.com/a/44937371/6293466) through features such as message compression and first-class load balancing.
+In this tutorial, we'll be using gRPC for interservice communication. gRPC is an open source RPC framework initially developed by Google, built on top of [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2) and Protocol Buffers for low latency and highly scalable distributed systems. We'll build our gRPC server and client with Node.js, but gRPC supports several other languages. Plus, you can use two (or more) different languages if you want or need to.
 
-In this tutorial, we'll be using gRPC for interservice communication. gRPC is an open source RPC framework initially developed by Google, built on top of [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2) and Protocol Buffers for low latency and highly scalable distributed systems. We'll build our gRPC server and client with Node.js, but gRPC supports several other languages. Plus you can use two different languages if you want or need to.
-
-# Ride-hailing services
-We'll be writing two microservices that communicate with each other: _fare estimator service_ and _geo-fences service_. These are the kinds of services you might find in a microservices-based ride-hailing app like [Uber](https://www.uber.com/) or [Lyft](https://www.lyft.com).
-The fare estimator service is a small REST API that
+# Example project
+We'll be writing two Node.js microservices that communicate with each other:
 
 # Project setup
 
@@ -28,4 +25,10 @@ The fare estimator service is a small REST API that
 # Protocol buffers
 Protocol Buffers or protobufs (for short) are a method of serializing structured data used to build programs that communicate over a network.
 
+# Server
+
+# Client
+
 # gRPC + REST
+
+# Secure gRPC
