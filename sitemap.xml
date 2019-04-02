@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</loc>
+    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</loc>
     <lastmod>2019-03-04T13:54:48+01:00</lastmod>
   </url>
@@ -191,7 +196,7 @@
   
   <url>
     <loc>http://alphacoder.xyz/blog/</loc>
-    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
+    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -267,7 +272,7 @@
   
   <url>
     <loc>http://alphacoder.xyz/</loc>
-    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
+    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
   </url>
   
   <url>

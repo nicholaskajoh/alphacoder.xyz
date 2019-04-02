@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© [ This Year ] Nicholas Kajoh</copyright>
-    <lastBuildDate>Mon, 04 Mar 2019 13:54:48 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 04:08:11 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to configure wildcard subdomains</title>
+      <link>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
+      <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
+      <description>Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as team-name.awesomeapp.com or org-name.beta.awesomeapp.com. These subdomains are variable, meaning that they are not predefined and can contain any valid domain name characters.
+To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application.</description>
+    </item>
     
     <item>
       <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
