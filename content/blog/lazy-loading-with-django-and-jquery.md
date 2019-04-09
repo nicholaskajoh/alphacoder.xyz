@@ -151,6 +151,6 @@ _script.js_
     }(jQuery));
     
 
-The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the `lazy_load_posts` function. If the request is successful, we append returned data to the posts _div_ (_id="posts"_).
+The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the `lazy_load_posts` view. If a request is successful, the returned data is appended to the posts `div` (`id="posts"`).
 
 All the code snippets in this tutorial can be found on [this Github Gist](https://gist.github.com/nicholaskajoh/ae85bb836f2a6254244c847b962095d4).
