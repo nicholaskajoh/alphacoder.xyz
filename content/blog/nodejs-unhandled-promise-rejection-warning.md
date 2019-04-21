@@ -3,7 +3,7 @@ title: "Fixing UnhandledPromiseRejectionWarning in Node.js"
 slug: "nodejs-unhandled-promise-rejection-warning"
 date: 2019-03-04T13:54:48+01:00
 draft: false
-tag: ["Node.js", "JavaScript"]
+tags: ["Node.js", "JavaScript"]
 ---
 
 JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks —  functions which are executed when an operation has been completed.

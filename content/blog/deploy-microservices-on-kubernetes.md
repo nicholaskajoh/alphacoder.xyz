@@ -4,7 +4,7 @@ draft = false
 date = 2019-02-01T16:44:09.460Z
 slug = "deploy-microservices-on-kubernetes"
 title = "Deploy microservices on Kubernetes"
-tag = ["Kubernetes", "Microservices", "Docker", "GKE", "GCP"]
+tags = ["Kubernetes", "Microservices", "Docker", "GKE", "GCP"]
 +++
 
 
@@ -31,33 +31,41 @@ In this tutorial, we'll be deploying a simple microservices app called Yoloo on 
 
 Detector service Dockerfile.
 
-    FROM python:3.6-stretch
-    EXPOSE 8080
+```dockerfile
+FROM python:3.6-stretch
+EXPOSE 8080
 
-    RUN mkdir /www
-    WORKDIR /www
-    COPY requirements.txt /www/
-    RUN pip install -r requirements.txt
+RUN mkdir /www
+WORKDIR /www
+COPY requirements.txt /www/
+RUN pip install -r requirements.txt
 
-    ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
-    COPY . /www/
-    CMD gunicorn --bind 0.0.0.0:8080 wsgi
+COPY . /www/
+CMD gunicorn --bind 0.0.0.0:8080 wsgi
+```
 
 Viewer service Dockerfile.
 
-    FROM php:7.2-apache
-    EXPOSE 80
+```dockerfile
+FROM php:7.2-apache
+EXPOSE 80
 
-    COPY . /var/www/html/
+COPY . /var/www/html/
+```
 
 Download the YOLO weights in the detector directory.
-    
-    cd detector/ && wget https://pjreddie.com/media/files/yolov3.weights
+
+```bash  
+cd detector/ && wget https://pjreddie.com/media/files/yolov3.weights
+```
 
 Change directory to `viewer/` and install the PHP dependencies. You need to have [PHP](https://www.apachefriends.org/index.html) and [Composer](https://getcomposer.org) installed.
 
-    composer install
+```bash
+composer install
+```
 
 # Google Cloud Platform (GCP)
 Visit https://console.cloud.google.com/home/dashboard and create a new project. You need to have a Google account.
@@ -89,60 +97,64 @@ The detector and viewer services contain deployment files, `detector-deployment.
 
 Detector service deployment.
 
-    apiVersion: extensions/v1beta1
-    kind: Deployment
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: detector-svc-deployment
+spec:
+  replicas: 3
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
     metadata:
-      name: detector-svc-deployment
+      labels:
+        app: detector-svc
     spec:
-      replicas: 3
-      minReadySeconds: 15
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxUnavailable: 1
-          maxSurge: 1
-      template:
-        metadata:
-          labels:
-            app: detector-svc
-        spec:
-          containers:
-            - image: gcr.io/{PROJECT_ID}/detector-svc
-              imagePullPolicy: Always
-              name: detector-svc
-              ports:
-                - containerPort: 8080
-              envFrom:
-                - secretRef:
-                    name: detector-svc-secrets
+      containers:
+        - image: gcr.io/{PROJECT_ID}/detector-svc
+          imagePullPolicy: Always
+          name: detector-svc
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: detector-svc-secrets
+```
 
 In this deployment, we want to run 3 copies (`replicas: 3`) of the detector service (`- image: gcr.io/{PROJECT_ID}/detector-svc`) for availability and scalability. We label the pods (`app: detector-svc`) so that they can easily be referenced as a group. We alse choose rolling updates (`type: RollingUpdate`) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.
 
 Viewer service deployment.
 
-    apiVersion: extensions/v1beta1
-    kind: Deployment
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: viewer-svc-deployment
+spec:
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: Recreate
+  template:
     metadata:
-      name: viewer-svc-deployment
+      labels:
+        app: viewer-svc
     spec:
-      replicas: 2
-      minReadySeconds: 15
-      strategy:
-        type: Recreate
-      template:
-        metadata:
-          labels:
-            app: viewer-svc
-        spec:
-          containers:
-            - image: gcr.io/{PROJECT_ID}/viewer-svc
-              imagePullPolicy: Always
-              name: viewer-svc
-              ports:
-                - containerPort: 80
-              envFrom:
-                - secretRef:
-                    name: viewer-svc-secrets
+      containers:
+        - image: gcr.io/{PROJECT_ID}/viewer-svc
+          imagePullPolicy: Always
+          name: viewer-svc
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: viewer-svc-secrets
+```
 
 We choose a different redeployment strategy (`type: Recreate`) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we're going with 2 replicas here.
 
@@ -153,33 +165,37 @@ The k8s services (not to be confused with microservices) in detector and viewer,
 
 Detector k8s service.
 
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: detector-service
-    spec:
-      type: ClusterIP
-      ports:
-      - port: 80
-        protocol: TCP
-        targetPort: 8080
-      selector:
-        app: detector-svc
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: detector-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: detector-svc
+```
 
 Viewer k8s service.
 
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: viewer-service
-    spec:
-      type: LoadBalancer
-      ports:
-      - port: 80
-        protocol: TCP
-        targetPort: 80
-      selector:
-        app: viewer-svc
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: viewer-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: viewer-svc
+```
 
 __NB:__ we use the labels (`app: detector-svc` and `app: viewer-svc`) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.
 
@@ -198,19 +214,23 @@ Create _.env_ files from the example env files in both services (_.env.example_)
 
 Detector service .env
 
-    FLASK_APP=detector.py
-    FLASK_ENV=production
-    CLOUDINARY_CLOUD_NAME=somethingawesome
-    CLOUDINARY_API_KEY=0123456789876543210
-    CLOUDINARY_API_SECRET=formyappseyesonly
+```
+FLASK_APP=detector.py
+FLASK_ENV=production
+CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+```
 
 Viewer service .env
 
-    CLOUDINARY_CLOUD_NAME=somethingawesome
-    CLOUDINARY_API_KEY=0123456789876543210
-    CLOUDINARY_API_SECRET=formyappseyesonly
-    DETECTOR_SVC_URL=http://detector-service
-    REDIS_URL=redis://:password@127.0.0.1:6379
+```
+CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+DETECTOR_SVC_URL=http://detector-service
+REDIS_URL=redis://:password@127.0.0.1:6379
+```
 
 Notice the url in `DETECTOR_SVC_URL`? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use `http://detector-service` and not have to worry about what IP a service actually uses.
 
@@ -221,33 +241,47 @@ Install `kubectl` CLI [for your OS](https://kubernetes.io/docs/tasks/tools/insta
 
 Set your Yoloo GCP project as default on the `gcloud` CLI.
 
-    gcloud config set project {PROJECT_ID}
+```bash
+gcloud config set project {PROJECT_ID}
+```
 
 Set the default compute zone or region of your cluster. You can find this in the cluster details page on your GCP dashboard.
 
-    gcloud config set compute/zone {COMPUTE_ZONE}
+```bash
+gcloud config set compute/zone {COMPUTE_ZONE}
+```
 
 or
 
-    gcloud config set compute/region {COMPUTE_REGION}
+```bash
+gcloud config set compute/region {COMPUTE_REGION}
+```
 
 Generate a `kubeconfig` entry to run `kubectl` commands against a your GCP cluster.
 
-    gcloud container clusters get-credentials {CLUSTER_NAME}    
+```bash
+gcloud container clusters get-credentials {CLUSTER_NAME}    
+```
 
 __NB:__ if you use minikube, you can use the following command to switch back to your local cluster.
 
-    kubectl config use-context minikube
+```bash
+kubectl config use-context minikube
+```
 
 Create k8s Secrets from the .env files in both services.
 
-    kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env
-    kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env
+```bash
+kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env
+kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env
+```
 
 You can use the following commands to update the secrets.
 
-    kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env --dry-run -o yaml | kubectl apply -f -
-    kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env --dry-run -o yaml | kubectl apply -f -
+```bash
+kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env --dry-run -o yaml | kubectl apply -f -
+kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env --dry-run -o yaml | kubectl apply -f -
+```
 
 Visit your GKE cluster dashboard on GCP and check the _Configuration_ section. You should see the detector and viewer service secrets.
 
@@ -256,12 +290,16 @@ _GKE cluster Config showing detector and viewer service secrets_
 
 __NB:__ If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the `jq` utility (https://stedolan.github.io/jq/) and run the following where `my-secrets` is the name of your k8s secret.
 
-    kubectl get secret my-secrets -o json | jq '.data | map_values(@base64d)'
+```bash
+kubectl get secret my-secrets -o json | jq '.data | map_values(@base64d)'
+```
 
 Create the deployments.
 
-    kubectl apply -f detector/detector-deployment.yaml
-    kubectl apply -f viewer/viewer-deployment.yaml
+```bash
+kubectl apply -f detector/detector-deployment.yaml
+kubectl apply -f viewer/viewer-deployment.yaml
+```
 
 Check the _Workloads_ section of the dashboard. You should see the detector and viewer service deployments.
 
@@ -270,8 +308,10 @@ _GKE cluster Workloads showing the microservice deployments_
 
 Create the services.
 
-    kubectl apply -f detector/detector-service.yaml
-    kubectl apply -f viewer/viewer-service.yaml
+```bash
+kubectl apply -f detector/detector-service.yaml
+kubectl apply -f viewer/viewer-service.yaml
+```
 
 The detector and viewer k8s services can be found in the _Services_ section of the dashboard.
 

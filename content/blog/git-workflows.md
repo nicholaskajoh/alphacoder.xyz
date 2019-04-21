@@ -4,7 +4,7 @@ date = 2018-11-22T07:21:00.000Z
 draft = false
 image = "/content/images/2018/12/brina-blum-156977-unsplash-sm.jpg"
 slug = "git-workflows"
-tag = ["Git"]
+tags = ["Git"]
 title = "2 Git workflows you should know"
 
 +++

@@ -2,7 +2,7 @@
 title: "Naive Bayes"
 slug: "naive-bayes"
 date: 2017-12-26T08:44:05+01:00
-tag: ["ML Chops Series"]
+tags: ["ML Chops Series"]
 draft: false
 ---
 

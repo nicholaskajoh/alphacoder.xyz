@@ -3,7 +3,7 @@ title: "Build a Facebook clone from scratch with PHP — Part 2"
 slug: "facebook-clone-2"
 date: 2017-06-17T05:53:39+01:00
 draft: false
-tag: ["Facebook Clone Series"]
+tags: ["Facebook Clone Series"]
 ---
 
 # All parts
@@ -23,33 +23,41 @@ So in part 1, we didn't get to talk about PHP as we should have because we were 
 
 PHP is the most popular server-side programming language for the web and runs millions of websites. To write PHP, all we need to do is create a file with a _.php_ file extension and add the php tags `<?php` and `?>`. `<?php` is the opening tag and `?>` the closing tag. We can write a Hello World PHP program like so:
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <?php echo "Hello World"; ?>
-    </body>
-    </html>
+```php
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <?php echo "Hello World"; ?>
+</body>
+</html>
+```
 
 In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, `<?php` and `?>` which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:
 
-    <?php
-        echo "Hello World";
-    ?>
+```php
+<?php
+    echo "Hello World";
+?>
+```
 
 We may choose to omit the closing tag `?>` in this case to have:
 
-    <?php
-        echo "Hello World";
+```php
+<?php
+    echo "Hello World";
+```
 
 `echo` prints out Hello World as HTML text when the php file is served. We'll be learning PHP as we go about building FaceClone. Don't worry, PHP is pretty easy! 👍
 
 # MySQL
 MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We'll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we'll create tables like _users_ (to store information about our users) and _posts_ (to store our users' posts). Tables have columns. For a users table, we could have columns like _name_, _password_, _email_ etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:
 
-    SELECT * FROM posts
+```sql
+SELECT * FROM posts
+```
 
 `SELECT` lets us read data from the database. `*` gets all the columns in the table posts. We could use `SELECT name, email FROM posts` if we don't want all the columns from the posts table. We'll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you'll want to write. Sweet!!!
 
@@ -59,53 +67,59 @@ When we changed our template files from .html to .php, we broke our navigation
 # Partials
 We can achieve reusability by creating partials. Partials are files that contain different components of our app. So we can have a header partial and a footer partial. If we need a header in home.php, all we need to do is simply "include" it. Let's go ahead and do that. Create a header.php and footer.php file in the same folder as your other templates. It may be more efficient to create a folder for partials but we'll just have the templates and partials together for now. In your header.php, add the following code (the snippet below can be gotten from home.php or profile.php):
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>FaceClone</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-    <!-- nav -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">FaceClone</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-        </div>
-    </nav>
-    <!-- ./nav -->
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>FaceClone</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<!-- nav -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">FaceClone</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="#">Logout</a></li>
+    </ul>
+    </div>
+</nav>
+<!-- ./nav -->
+```
 
 Then in footer.php add:
 
-    <!-- footer -->
-    <footer class="container text-center">
-        <ul class="nav nav-pills pull-right">
-        <li>FaceClone - Made by [your name here]</li>
-        </ul>
-    </footer>
-    <!-- ./footer -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    </body>
-    </html>
+```html
+<!-- footer -->
+<footer class="container text-center">
+    <ul class="nav nav-pills pull-right">
+    <li>FaceClone - Made by [your name here]</li>
+    </ul>
+</footer>
+<!-- ./footer -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
+```
 
 Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so `href="home.html"` becomes `href="home.php"` for example.
 We've just created 2 partials. We need to include them in all our template files. To do so, clear the header and footer code (which we've already moved to header.php and footer.php respectively) in our template files and add `<?php include "header.php"; ?>` and `<?php include "header.php"; ?>` like so:
 
-    <?php include "header.php" ?>
-    <! - main -->
-    <main class="container">
-    <!-- page content here -->
-    </main>
-    <!-- ./main -->
-    <?php include "footer.php" ?>
+```php
+<?php include "header.php" ?>
+<! - main -->
+<main class="container">
+<!-- page content here -->
+</main>
+<!-- ./main -->
+<?php include "footer.php" ?>
+```
 
 Run PHP's development server to to confirm everything works fine.
 

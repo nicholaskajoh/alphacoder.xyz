@@ -4,7 +4,7 @@ date = 2018-01-30T11:52:00.000Z
 draft = false
 image = "/content/images/2018/12/sergey-zolkin-192937-unsplash-sm.jpg"
 slug = "deploy-react-django-app-on-heroku"
-tag = ["React","Django","Heroku"]
+tags = ["React","Django","Heroku"]
 title = "Deploy your React-Django app on Heroku"
 
 +++

@@ -4,7 +4,7 @@ date = 2018-02-18T08:50:00.000Z
 draft = false
 image = "/content/images/2018/12/sarandy-westfall-742137-unsplash-sm.jpg"
 slug = "image-upload-with-django-and-cloudinary"
-tag = ["Django"]
+tags = ["Django"]
 title = "Image upload with Django and Cloudinary"
 
 +++

@@ -1,6 +1,7 @@
----
-title: I code, therefore I am
----
++++
+title = "I code, therefore I am"
+images = ["/images/me.jpg"]
++++
 
 ![](/images/me.jpg)
 

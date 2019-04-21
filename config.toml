@@ -13,17 +13,17 @@ googleAnalytics = "UA-82728104-5"
 disqusShortname = "alphacoderxyz"
 
 # Copyright
-copyright = "© [ This Year ] Nicholas Kajoh"
+copyright = "© Nicholas Kajoh"
 
 # Highlighting
 pygmentsCodefences = true
 pygmentsCodeFencesGuessSyntax = true
 pygmentsoptions = "linenos=table"
-pygmentsStyle = "vs"
+pygmentsStyle = "perldoc"
 
 # Taxonomies
 [taxonomies]
-    tag = "tag"
+    tag = "tags"
 
 # Menu
 [menu]
@@ -59,7 +59,11 @@ pygmentsStyle = "vs"
         name = "RSS"
         weight = 4
 
+# SEO
+enableRobotsTXT = true
+canonifyURLs = true
 
 # Links format
 [permalinks]
     blog = "/:slug/"
+    tags = "/tag/:slug/"

@@ -4,7 +4,7 @@ date = 2018-11-09T13:06:00.000Z
 draft = false
 image = "/content/images/2018/12/pankaj-patel-536207-unsplash-sm.jpg"
 slug = "understanding-modern-front-end-development"
-tag = ["NPM","Babel","Webpack","Grunt","SASS"]
+tags = ["NPM","Babel","Webpack","Grunt","SASS"]
 title = "Understanding modern front-end development"
 
 +++

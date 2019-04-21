@@ -4,7 +4,7 @@ date = 2018-09-30T07:45:00.000Z
 draft = false
 image = "/content/images/2018/12/nesa-by-makers-1130758-unsplash-sm.jpg"
 slug = "land-an-internship-at-a-great-nigerian-startup"
-tag = ["Internships","Nigeria","Startups"]
+tags = ["Internships","Nigeria","Startups"]
 title = "How to land an internship at a great Nigerian startup"
 
 +++

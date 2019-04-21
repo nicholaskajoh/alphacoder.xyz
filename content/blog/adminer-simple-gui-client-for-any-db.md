@@ -2,7 +2,7 @@
 title: "Adminer — a simple GUI client for any DB"
 date: 2019-03-04T06:39:01.304Z
 draft: false
-tag: ["Databases"]
+tags: ["Databases"]
 ---
 
 In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called [Adminer](https://www.adminer.org). Adminer is a is a full-featured database management tool built with PHP.

@@ -4,7 +4,7 @@ date = 2018-08-15T12:54:00.000Z
 draft = false
 image = "/content/images/2018/12/chuttersnap-255215-unsplash-sm.jpg"
 slug = "dockerizing-django"
-tag = ["Docker","Django"]
+tags = ["Docker","Django"]
 title = "Dockerizing Django in development and production"
 
 +++

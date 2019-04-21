@@ -4,7 +4,7 @@ date = 2018-01-11T14:39:00.000Z
 draft = false
 image = "/content/images/2018/12/rawpixel-296613-unsplash-sm.jpg"
 slug = "dead-simple-react-django-setup"
-tag = ["React","Django"]
+tags = ["React","Django"]
 title = "Here’s a dead simple React-Django setup for your next project"
 
 +++
@@ -63,39 +63,45 @@ Run `npm run build`. This creates a folder named _build_ in the project root con
 
 Add the _build_ folder to template directories in _settings.py_ so that Django can load _/build/index.html_ as a template.
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    
-    TEMPLATES = [
-        {
-            # ...
-            'DIRS': [
-                os.path.join(BASE_DIR, 'build')
-            ],
-            # ...
-        }
-    ]
+```python
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+TEMPLATES = [
+    {
+        # ...
+        'DIRS': [
+            os.path.join(BASE_DIR, 'build')
+        ],
+        # ...
+    }
+]
+```
     
 
 Also add _/build/static_ to static files directory so that `collectstatic` can copy the css and js files.
 
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'build/static'),
-    ]
+```python
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static'),
+]
+```
     
 
 #### Step 3: urls.py
 
 Add pattern to return _/build/index.html_ in _urls.py_ as follows:
 
-    from django.contrib import admin
-    from django.urls import path, re_path
-    from django.views.generic import TemplateView
-    
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-        # path('api/', include('mynewapp.urls')),
-        re_path('.*', TemplateView.as_view(template_name='index.html')),
-    ]
+```python
+from django.contrib import admin
+from django.urls import path, re_path
+from django.views.generic import TemplateView
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # path('api/', include('mynewapp.urls')),
+    re_path('.*', TemplateView.as_view(template_name='index.html')),
+]
+```
     
 
 Run Django’s dev server (`python manage.py runserver`) to test the app.

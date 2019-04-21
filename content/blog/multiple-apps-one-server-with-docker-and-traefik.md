@@ -4,7 +4,7 @@ date = 2018-06-28T17:41:00.000Z
 draft = false
 image = "/content/images/2018/12/pexels-photo-210182.jpeg"
 slug = "multiple-apps-one-server-with-docker-and-traefik"
-tag = ["Docker","Traefik"]
+tags = ["Docker","Traefik"]
 title = "How to run multiple apps on one server using Docker and Traefik"
 
 +++

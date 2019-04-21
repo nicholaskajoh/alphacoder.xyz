@@ -4,7 +4,7 @@ date = 2018-12-16T05:23:00.000Z
 draft = false
 image = "/content/images/2018/12/stanley-dai-242205-unsplash-sm.jpg"
 slug = "side-project-tip"
-tag = ["Startups"]
+tags = ["Startups"]
 title = "A tip for working on side projects"
 
 +++
