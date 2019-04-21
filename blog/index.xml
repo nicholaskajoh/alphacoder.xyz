@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on Alpha Coder</title>
+    <title>Posts on Alpha Coder</title>
     <link>http://alphacoder.xyz/blog/</link>
-    <description>Recent content in Blogs on Alpha Coder</description>
+    <description>Recent content in Posts on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <copyright>© [ This Year ] Nicholas Kajoh</copyright>
+    <copyright>© Nicholas Kajoh</copyright>
     <lastBuildDate>Tue, 02 Apr 2019 04:08:11 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
@@ -368,7 +368,7 @@ Data validation is a very essential part of any API/web app. Client-side validat
       <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
 Templates Create 2 templates, index.html and posts.html.
 index.html
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django // To be used for making AJAX requests in script.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.</description>
     </item>
     
   </channel>

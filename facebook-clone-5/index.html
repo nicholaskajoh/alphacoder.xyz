@@ -6,7 +6,7 @@
 
     <title>Build a Facebook clone from scratch with PHP — Part 5 | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,31 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Build a Facebook clone from scratch with PHP — Part 5" />
+<meta property="og:description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/facebook-clone-5/" />
+<meta property="article:published_time" content="2017-09-20T09:07:20&#43;01:00"/>
+<meta property="article:modified_time" content="2017-09-20T09:07:20&#43;01:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Build a Facebook clone from scratch with PHP — Part 5"/>
+<meta name="twitter:description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile."/>
+
+    
+<meta itemprop="name" content="Build a Facebook clone from scratch with PHP — Part 5">
+<meta itemprop="description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile.">
+
+
+<meta itemprop="datePublished" content="2017-09-20T09:07:20&#43;01:00" />
+<meta itemprop="dateModified" content="2017-09-20T09:07:20&#43;01:00" />
+<meta itemprop="wordCount" content="711">
+
+
+
+<meta itemprop="keywords" content="Facebook Clone Series," />
+
 </head>
 
 
@@ -43,12 +68,9 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2017-09-20">Sep 20, 2017</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/facebook-clone-series/">Facebook Clone Series</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -75,16 +97,16 @@ if (!doNotTrack) {
 
 <p>Recall that we used id of <em>zero</em> for the user_id fields in our posts table. That was because we didn&rsquo;t have any users. Now that we do, let&rsquo;s change things a bit.
 The query in create-post.php becomes&hellip;</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
 $sql = &#34;INSERT INTO posts (content, user_id) VALUES (?, ?)&#34;;
 ...
 $statement-&gt;bind_param(&#39;si&#39;, $_POST[&#39;content&#39;], $_SESSION[&#39;user_id&#39;]);
@@ -102,9 +124,9 @@ $statement-&gt;bind_param(&#39;si&#39;, $_POST[&#39;content&#39;], $_SESSION[&#3
 <p>Since the username is sent through a GET request, we can retrieve it with the <code>$_GET</code> superglobal using <code>$_GET['username']</code>. Let&rsquo;s write some code:</p>
 
 <p>Atop profile.php…</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -115,7 +137,7 @@ $statement-&gt;bind_param(&#39;si&#39;, $_POST[&#39;content&#39;], $_SESSION[&#3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
 $sql = &#34;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&#34;;
 $statement = $conn-&gt;prepare($sql);
 $statement-&gt;bind_param(&#39;s&#39;, $_GET[&#39;username&#39;]);
@@ -131,12 +153,12 @@ $statement-&gt;fetch();
 <h1 id="user-posts">User posts</h1>
 
 <p>Then again, we want to show only the posts belonging to the user whose profile is being displayed. Taking a cue from the home page which displays the posts of all users across FaceClone (part 3), we can create a new sql query:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$user_posts_sql = &#34;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&#34;;</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$user_posts_sql = &#34;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&#34;;</pre></td></tr></table>
 </div>
 </div>
 <p>In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. <code>$id</code> is the user&rsquo;s id got from the query to fetch a user&rsquo;s record.</p>
@@ -145,9 +167,9 @@ $statement-&gt;fetch();
 
 <p>Lastly, we need to allow users to make changes to their profiles. There&rsquo;s a little form in profile.php we can use to update status and location. Let&rsquo;s make it work!
 The form…</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -162,7 +184,7 @@ The form…</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
 &lt;form method=&#34;post&#34; action=&#34;php/edit-profile.php&#34;&gt;
 &lt;div class=&#34;form-group&#34;&gt;
     &lt;input class=&#34;form-control&#34; type=&#34;text&#34; name=&#34;status&#34; placeholder=&#34;Status&#34; value=&#34;&#34;&gt;
@@ -178,9 +200,9 @@ The form…</p>
 </div>
 </div>
 <p>Now create a file in the php folder called edit-profile.php with the following code:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -193,7 +215,7 @@ The form…</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
     require_once &#34;../functions.php&#34;;
     db_connect();
     $sql = &#34;UPDATE users SET status = ?, location = ? WHERE id = ?&#34;;
@@ -258,9 +280,14 @@ The form…</p>
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

@@ -6,7 +6,7 @@
 
     <title>Support Vector Machine | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,34 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Support Vector Machine" />
+<meta property="og:description" content="The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/support-vector-machine/" />
+<meta property="article:published_time" content="2017-12-26T08:44:05&#43;01:00"/>
+<meta property="article:modified_time" content="2017-12-26T08:44:05&#43;01:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Support Vector Machine"/>
+<meta name="twitter:description" content="The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data."/>
+
+    
+<meta itemprop="name" content="Support Vector Machine">
+<meta itemprop="description" content="The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.">
+
+
+<meta itemprop="datePublished" content="2017-12-26T08:44:05&#43;01:00" />
+<meta itemprop="dateModified" content="2017-12-26T08:44:05&#43;01:00" />
+<meta itemprop="wordCount" content="1177">
+
+
+
+<meta itemprop="keywords" content="ML Chops Series," />
+
 </head>
 
 
@@ -43,12 +71,9 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2017-12-26">Dec 26, 2017</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -145,9 +170,9 @@ if (!doNotTrack) {
 <h1 id="code">Code</h1>
 
 <p>Data:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -155,7 +180,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
 import cvxopt  
 import cvxopt.solvers
 
@@ -164,9 +189,9 @@ labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])</pre></td></tr></table>
 </div>
 </div>
 <p>Train/fit using CVXOPT:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -210,7 +235,7 @@ labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def fit(X, y):  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def fit(X, y):  
   n_samples, n_features = X.shape
 
   # Gram matrix
@@ -255,9 +280,9 @@ labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])</pre></td></tr></table>
 </div>
 </div>
 <p>Predict:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -268,7 +293,7 @@ labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">w, b = fit(features, labels)
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">w, b = fit(features, labels)
 
 def predict(x):  
   classification = np.sign(np.dot(x, w) + b)  
@@ -339,9 +364,14 @@ print(predict(x))</pre></td></tr></table>
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

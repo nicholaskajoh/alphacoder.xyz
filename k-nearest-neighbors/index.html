@@ -6,7 +6,7 @@
 
     <title>K Nearest Neighbors | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,34 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="K Nearest Neighbors" />
+<meta property="og:description" content="K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a classifier as the experts would call it.
+Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/k-nearest-neighbors/" />
+<meta property="article:published_time" content="2017-12-09T08:44:05&#43;01:00"/>
+<meta property="article:modified_time" content="2017-12-09T08:44:05&#43;01:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="K Nearest Neighbors"/>
+<meta name="twitter:description" content="K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a classifier as the experts would call it.
+Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though."/>
+
+    
+<meta itemprop="name" content="K Nearest Neighbors">
+<meta itemprop="description" content="K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a classifier as the experts would call it.
+Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though.">
+
+
+<meta itemprop="datePublished" content="2017-12-09T08:44:05&#43;01:00" />
+<meta itemprop="dateModified" content="2017-12-09T08:44:05&#43;01:00" />
+<meta itemprop="wordCount" content="1239">
+
+
+
+<meta itemprop="keywords" content="ML Chops Series," />
+
 </head>
 
 
@@ -43,12 +71,9 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2017-12-09">Dec 9, 2017</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -75,9 +100,9 @@ if (!doNotTrack) {
 <h1 id="supervised-learning">Supervised learning</h1>
 
 <p>KNN is a supervised learning algorithm. Supervised learning algorithms infer from labelled training data. Say we want to determine whether a person is male or female, the following samples may be useful:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -85,7 +110,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">height (ft)    weight (kg)    sex  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">height (ft)    weight (kg)    sex  
 6.3            50.2           Male  
 5.9            79.7           Female  
 5.1            61.4           Female  
@@ -130,16 +155,16 @@ if (!doNotTrack) {
 <h1 id="code">Code</h1>
 
 <p>Let’s use the data from that table 👆 above…</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
 from collections import Counter
 
 data = {&#34;male&#34;: [[6.3, 50.2], [5.6, 47.1]],  
@@ -149,9 +174,9 @@ data = {&#34;male&#34;: [[6.3, 50.2], [5.6, 47.1]],
 <p><strong>NB:</strong> You need <a href="https://pypi.python.org/pypi/numpy">Numpy</a> installed on your computer.</p>
 
 <p>Next, let’s write a predict function. This function takes in the input feature set (Python list) we want to classify e.g <code>[6.0, 52.1]</code> -&gt; <code>[height, weight]</code>, as well as the value of k, and returns a class (<code>Male</code> or <code>Female</code>).</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -166,7 +191,7 @@ data = {&#34;male&#34;: [[6.3, 50.2], [5.6, 47.1]],
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def predict(input_feature_set, k):  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def predict(input_feature_set, k):  
   distances = []
 
   for group in data:  
@@ -200,36 +225,36 @@ data = {&#34;male&#34;: [[6.3, 50.2], [5.6, 47.1]],
 <p>Then we dispose the distances with the new <code>votes</code> variable using <code>[d[1] for d in nearest]</code>. We don’t need the numbers anymore, only the nearest classes/groups e.g <code>[“male”, “female”, “male”]</code>.</p>
 
 <p>Finally, we count the occurrences of each class in <code>votes</code> and return the class with the highest occurrence.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">prediction = Counter(votes).most_common(1)[0][0]
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">prediction = Counter(votes).most_common(1)[0][0]
 
 return prediction</pre></td></tr></table>
 </div>
 </div>
 <h1 id="predict">Predict</h1>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">print(predict([6.0, 52.1], 3))</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">print(predict([6.0, 52.1], 3))</pre></td></tr></table>
 </div>
 </div>
 <h1 id="accuracy">Accuracy</h1>
 
 <p>To find out how accurate a KNN classifier is, we can divide a given data set into training and testing data, then run the test data through the predict function, noting if the classifier got the class right or wrong. This can be used to calculate accuracy, like so:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">accuracy = correct_predictions / test_sample_size * 100</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">accuracy = correct_predictions / test_sample_size * 100</pre></td></tr></table>
 </div>
 </div>
 <h1 id="confidence">Confidence</h1>
@@ -290,9 +315,14 @@ return prediction</pre></td></tr></table>
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

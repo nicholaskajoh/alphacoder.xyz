@@ -6,7 +6,7 @@
 
     <title>Dockerizing Django in development and production | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,37 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Dockerizing Django in development and production" />
+<meta property="og:description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
+TL;DR: Sample project You can check out the code on GitHub.
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/dockerizing-django/" />
+<meta property="article:published_time" content="2018-08-15T12:54:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-08-15T12:54:00&#43;00:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dockerizing Django in development and production"/>
+<meta name="twitter:description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
+TL;DR: Sample project You can check out the code on GitHub.
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3."/>
+
+    
+<meta itemprop="name" content="Dockerizing Django in development and production">
+<meta itemprop="description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
+TL;DR: Sample project You can check out the code on GitHub.
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.">
+
+
+<meta itemprop="datePublished" content="2018-08-15T12:54:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-15T12:54:00&#43;00:00" />
+<meta itemprop="wordCount" content="985">
+
+
+
+<meta itemprop="keywords" content="Docker,Django," />
+
 </head>
 
 
@@ -43,13 +74,10 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2018-08-15">Aug 15, 2018</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
     <a href="http://alphacoder.xyz/tag/django/">Django</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -62,9 +90,9 @@ if (!doNotTrack) {
 <p>You can <a href="https://github.com/nicholaskajoh/dockerized-django">check out the code</a> on GitHub.</p>
 
 <h2 id="dockerfile">Dockerfile</h2>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -85,7 +113,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">FROM python:3.6-alpine
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">FROM python:3.6-alpine
 
 RUN apk --update add \
     build-base \
@@ -113,9 +141,9 @@ COPY . /www/</pre></td></tr></table>
 <h2 id="docker-compose-yml">docker-compose.yml</h2>
 
 <p>I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -140,7 +168,7 @@ COPY . /www/</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">version: &#34;3&#34;
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">version: &#34;3&#34;
 services:
   web:
     build: .
@@ -168,9 +196,9 @@ services:
 <p>There are two services in this Compose file — web and db. The web service builds the Django app using the <em>Dockerfile</em> in the previous section. A volume is created to map the project directory in the host to the one in the container (<code>- .:/www</code>) so that any changes made on the host are mirrored in the container. The <code>command</code> parameter uses Django’s dev server to run the app (<code>python manage.py runserver 0.0.0.0:8000</code>).</p>
 
 <p>The db service uses a PostgreSQL image and maps PostgreSQL’s data directory to <code>./postgres/data</code> in the host, so that DB data is persisted even if the container gets destroyed. This very PostgreSQL image (<a href="https://hub.docker.com/_/postgres/">the official postgreSQL image</a>) uses several environment variables to configure PostgreSQL, including <code>POSTGRES_USER</code>, <code>POSTGRES_PASSWORD</code> and <code>POSTGRES_DB</code>.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -182,7 +210,7 @@ services:
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># .env
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># .env
 DEBUG=1
 ALLOWED_HOSTS=*
 SECRET_KEY=secret123
@@ -201,9 +229,9 @@ POSTGRES_DB=mypgsqldb</pre></td></tr></table>
 <p>My production configs usually differ a bit from their development counterpart. I use Gunicorn to serve the Django app, and NGINX as a reverse proxy and static/media file server.</p>
 
 <p>This setup, while good for production, is not very convenient in development where the goal is often to <em>break things and move fast</em>. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my <em>docker-compose.prod.yml</em> file.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -226,7 +254,7 @@ POSTGRES_DB=mypgsqldb</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">version: &#34;3&#34;
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">version: &#34;3&#34;
 services:
   web:
     build: .
@@ -252,9 +280,9 @@ services:
 <p>The web service in the production Compose file looks identical to one in the development file, except for the <code>command</code> parameter (majorly). It uses <a href="http://gunicorn.org">Gunicorn</a> (<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver">which is more suitable</a>) to serve the application (<code>gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi</code>).</p>
 
 <p>There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps <code>/etc/nginx/conf.d</code> to the <code>./nginx/conf.d</code> folder on the host which contains <a href="https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf"><em>dockerizeddjango.conf</em></a>.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -276,7 +304,7 @@ services:
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># dockerizeddjango.conf
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># dockerizeddjango.conf
 server {
   listen 80;
   server_name localhost;
@@ -303,24 +331,24 @@ server {
 <p>Did you observe the use of service names in some files? e.g <code>POSTGRES_HOST=db</code> and <code>proxy_pass http://web:8080;</code>. <strong>db</strong> and <strong>web</strong> resolve to the IP addresses of their containers. This is handled by Docker Compose so that we don’t have to worry about what the IP address of a container is or hardcode IP addresses that might change later.</p>
 
 <p>Use the following command to run the Compose file:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ docker-compose -f docker-compose.prod.yml up --build -d</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ docker-compose -f docker-compose.prod.yml up --build -d</pre></td></tr></table>
 </div>
 </div>
 <p>The <code>-f</code> parameter specifies the production Compose file, <em>docker-compose.prod.yml</em> (Docker Compose defaults to <em>docker-compose.yml</em>). <code>--build</code> tells Compose to rebuild the images each time the command is run, and the <code>-d</code> flag runs the containers in detached mode so that they keep running in the background even when your terminal is closed.</p>
 
 <p>You can run migrations and create an admin user with the following commands:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ docker-compose -f docker-compose.prod.yml run web python manage.py migrate
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ docker-compose -f docker-compose.prod.yml run web python manage.py migrate
 $ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput</pre></td></tr></table>
 </div>
 </div>
@@ -366,9 +394,14 @@ $ docker-compose -f docker-compose.prod.yml run web python manage.py collectstat
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

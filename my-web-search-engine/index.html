@@ -6,7 +6,7 @@
 
     <title>I built my own web search engine — here’s how | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,37 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="I built my own web search engine — here’s how" />
+<meta property="og:description" content="I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
+About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
+The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/my-web-search-engine/" />
+<meta property="article:published_time" content="2018-07-26T14:16:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-07-26T14:16:00&#43;00:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="I built my own web search engine — here’s how"/>
+<meta name="twitter:description" content="I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
+About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
+The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place."/>
+
+    
+<meta itemprop="name" content="I built my own web search engine — here’s how">
+<meta itemprop="description" content="I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
+About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
+The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place.">
+
+
+<meta itemprop="datePublished" content="2018-07-26T14:16:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-07-26T14:16:00&#43;00:00" />
+<meta itemprop="wordCount" content="1614">
+
+
+
+<meta itemprop="keywords" content="" />
+
 </head>
 
 
@@ -43,9 +74,7 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2018-07-26">Jul 26, 2018</time>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -87,9 +116,9 @@ if (!doNotTrack) {
 <p><a href="https://scrapy.org/">Scrapy</a> is a free and open source web crawling framework. With Scrapy, you can create <a href="https://en.wikipedia.org/wiki/Web_crawler">a <em>spider</em></a>, give it a bunch of urls to crawl and tell it what to do with the pages it fetches. You can even tell the spider to crawl the links it finds on the pages it crawls, allowing it to discover new pages.</p>
 
 <p>I took a very lazy approach to parsing the scrapped pages. I used LXML to extract only the text from the HTML response. Say there’s a HTML page like so:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -106,7 +135,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;html&gt;
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;How Google Search Works&lt;/title&gt;
     &lt;/head&gt;
@@ -124,20 +153,20 @@ if (!doNotTrack) {
 </div>
 </div>
 <p>The output would be:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.</pre></td></tr></table>
 </div>
 </div>
 <p><em>NB: You lose a lot of important data by doing this but it simplifies things a lot</em> 😊</p>
 
 <p>I also extract all the links in each page (necessary for PageRank).</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -145,7 +174,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Page (How Google Search Works):
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">Page (How Google Search Works):
     url: https://example.com/google-search
     content: How Google Search Works
         links:
@@ -156,12 +185,12 @@ if (!doNotTrack) {
 <p>There’s a list of allowed domains in the configs (<code>SPIDER_ALLOWED_DOMAINS</code>) which helps to fence the spider. It only crawls pages from the websites in that list.</p>
 
 <p>The spider crawls periodically via a cronjob which runs the custom flask command <code>flask crawl</code>. A <code>--recrawl</code> option can be added to the command to tell the spider whether to crawl new pages or crawl pages it has crawled before in order to update them.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ flask crawl --recrawl True</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ flask crawl --recrawl True</pre></td></tr></table>
 </div>
 </div>
 <p>A list of urls to crawl (called Crawl List) is maintained in the DB. There needs to be at least one url in the list for the spider to start crawling. As it crawls, it updates the list with new urls and marks the ones it has crawled.</p>
@@ -169,14 +198,14 @@ if (!doNotTrack) {
 <h2 id="indexing">Indexing</h2>
 
 <p>Indexes help us find things quicker e.g the Table of Contents or Glossary in a book. If we wanted to index a website’s SQL DB, we could create an index table similar to this:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">id title   description    keywords       page
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">id title   description    keywords       page
 ------------------------------------------------
 1  G.O.A.T Greatest of... messi, ronaldo /p/goat</pre></td></tr></table>
 </div>
@@ -184,9 +213,9 @@ if (!doNotTrack) {
 <p>This is a <a href="https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index"><em>forward index</em></a>. It’s very similar to a Table of Contents (which usually has chapter titles, descriptions and page numbers). Instead of writing expensive and complex queries, you can simply lookup the index table and return matching records. However, as the records in the index increase, lookup becomes slower and slower.</p>
 
 <p>There is another type of index which makes searching much faster. It’s the <a href="https://en.wikipedia.org/wiki/Inverted_index"><em>inverted index</em></a>. This is the opposite of the forward index. Instead of having a list of pages and the keywords they contain, we have a list of keywords and the pages they are contained in. This is quite similar to a glossary.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -194,7 +223,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">id word     pages
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">id word     pages
 --------------------------------------------------------
 1  greatest /p/goat /u/messi /u/ronaldo /t/football
 2  of       /p/goat
@@ -219,12 +248,12 @@ if (!doNotTrack) {
 <h2 id="searching-and-autocomplete">Searching and autocomplete</h2>
 
 <p>When a user types in a query into <em>devsearch</em>, the query is divided into a list of words. The index collection (MongoDB) is filtered for records that have any of those words. Each index record has a score which is precomputed using the formula:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">score = (tfidf / max(tfidf) * 0.7) + (pagerank / max(pagerank) * 0.3)</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">score = (tfidf / max(tfidf) * 0.7) + (pagerank / max(pagerank) * 0.3)</pre></td></tr></table>
 </div>
 </div>
 <p>TFIDF represents 70% of the score and PageRank represents the remaining 30.</p>
@@ -287,9 +316,14 @@ if (!doNotTrack) {
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

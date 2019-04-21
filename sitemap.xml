@@ -8,13 +8,47 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/</loc>
+    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/blog/</loc>
+    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</loc>
     <lastmod>2019-03-04T13:54:48+01:00</lastmod>
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/javascript/</loc>
+    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/node.js/</loc>
+    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tags/</loc>
+    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</loc>
     <lastmod>2019-03-04T06:39:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/databases/</loc>
+    <lastmod>2019-03-04T06:39:01+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -25,6 +59,36 @@
   <url>
     <loc>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</loc>
     <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/docker/</loc>
+    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/gcp/</loc>
+    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/gke/</loc>
+    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/kubernetes/</loc>
+    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/microservices/</loc>
+    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -43,8 +107,26 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/startups/</loc>
+    <lastmod>2018-12-16T05:23:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</loc>
     <lastmod>2018-12-10T20:46:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/aws/</loc>
+    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/git/</loc>
+    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -58,13 +140,61 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/babel/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/grunt/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/npm/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/sass/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/understanding-modern-front-end-development/</loc>
     <lastmod>2018-11-09T13:06:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/webpack/</loc>
+    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/land-an-internship-at-a-great-nigerian-startup/</loc>
     <lastmod>2018-09-30T07:45:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/internships/</loc>
+    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/nigeria/</loc>
+    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/django/</loc>
+    <lastmod>2018-08-15T12:54:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -83,6 +213,12 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/traefik/</loc>
+    <lastmod>2018-06-28T17:41:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</loc>
     <lastmod>2018-06-13T19:59:00+00:00</lastmod>
   </url>
@@ -93,6 +229,12 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/ml-chops-series/</loc>
+    <lastmod>2018-05-01T08:44:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</loc>
     <lastmod>2018-02-18T08:50:00+00:00</lastmod>
   </url>
@@ -100,6 +242,18 @@
   <url>
     <loc>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</loc>
     <lastmod>2018-01-30T11:52:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/heroku/</loc>
+    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/react/</loc>
+    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -133,6 +287,12 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/css/</loc>
+    <lastmod>2017-11-19T20:07:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/responsive-grid-system/</loc>
     <lastmod>2017-11-19T20:07:00+00:00</lastmod>
   </url>
@@ -140,6 +300,12 @@
   <url>
     <loc>http://alphacoder.xyz/facebook-clone-6/</loc>
     <lastmod>2017-09-23T09:07:23+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tag/facebook-clone-series/</loc>
+    <lastmod>2017-09-23T09:07:23+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -168,6 +334,12 @@
   </url>
   
   <url>
+    <loc>http://alphacoder.xyz/tag/html/</loc>
+    <lastmod>2017-06-07T21:48:21+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/html-css-js/</loc>
     <lastmod>2017-06-07T21:48:21+01:00</lastmod>
   </url>
@@ -183,186 +355,13 @@
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/tag/aws/</loc>
-    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/babel/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/blog/</loc>
-    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/courses/</loc>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/css/</loc>
-    <lastmod>2017-11-19T20:07:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/databases/</loc>
-    <lastmod>2019-03-04T06:39:01+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/django/</loc>
-    <lastmod>2018-08-15T12:54:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/docker/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/facebook-clone-series/</loc>
-    <lastmod>2017-09-23T09:07:23+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/gcp/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/git/</loc>
-    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/gke/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/grunt/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/heroku/</loc>
-    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/html/</loc>
-    <lastmod>2017-06-07T21:48:21+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/</loc>
-    <lastmod>2019-04-02T04:08:11+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/internships/</loc>
-    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/javascript/</loc>
-    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://alphacoder.xyz/tag/jquery/</loc>
     <lastmod>2017-02-26T05:43:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/tag/kubernetes/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/microservices/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/ml-chops-series/</loc>
-    <lastmod>2018-05-01T08:44:05+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/nigeria/</loc>
-    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/node.js/</loc>
-    <lastmod>2019-03-04T13:54:48+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/npm/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/react/</loc>
-    <lastmod>2018-01-30T11:52:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/sass/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/startups/</loc>
-    <lastmod>2018-12-16T05:23:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/</loc>
-    <lastmod>2018-12-02T13:13:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/traefik/</loc>
-    <lastmod>2018-06-28T17:41:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/webpack/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://alphacoder.xyz/courses/</loc>
   </url>
   
 </urlset>

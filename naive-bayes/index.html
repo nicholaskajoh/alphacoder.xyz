@@ -6,7 +6,7 @@
 
     <title>Naive Bayes | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,40 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Naive Bayes" />
+<meta property="og:description" content="Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
+Bayes formula
+Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/naive-bayes/" />
+<meta property="article:published_time" content="2017-12-26T08:44:05&#43;01:00"/>
+<meta property="article:modified_time" content="2017-12-26T08:44:05&#43;01:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Naive Bayes"/>
+<meta name="twitter:description" content="Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
+Bayes formula
+Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:"/>
+
+    
+<meta itemprop="name" content="Naive Bayes">
+<meta itemprop="description" content="Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
+Bayes formula
+Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
+The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:">
+
+
+<meta itemprop="datePublished" content="2017-12-26T08:44:05&#43;01:00" />
+<meta itemprop="dateModified" content="2017-12-26T08:44:05&#43;01:00" />
+<meta itemprop="wordCount" content="1011">
+
+
+
+<meta itemprop="keywords" content="ML Chops Series," />
+
 </head>
 
 
@@ -43,12 +77,9 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2017-12-26">Dec 26, 2017</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -74,9 +105,9 @@ if (!doNotTrack) {
 </ul>
 
 <p>Let’s consider the data we used in the last post on KNNs:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -84,7 +115,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">height (ft)    weight (kg)    sex  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">height (ft)    weight (kg)    sex  
 6.3            50.2           Male  
 5.9            79.7           Female  
 5.1            61.4           Female  
@@ -143,9 +174,9 @@ if (!doNotTrack) {
 <p>First things first! The data.</p>
 
 <p>For convenience, I’m using 3 arrays:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -153,7 +184,7 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np
 
 # data  
 heights = np.array([6.3, 5.9, 5.1, 5.6, 5.1])  
@@ -162,9 +193,9 @@ classes = np.array([&#34;Male&#34;, &#34;Female&#34;, &#34;Female&#34; , &#34;Ma
 </div>
 </div>
 <p>Next, let’s find P(Class) for Male and Female:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -176,7 +207,7 @@ classes = np.array([&#34;Male&#34;, &#34;Female&#34;, &#34;Female&#34; , &#34;Ma
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">males_count = 0  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">males_count = 0  
 females_count = 0  
 sample_size = len(classes)  
 for x in classes:  
@@ -191,9 +222,9 @@ p_female = females_count / sample_size</pre></td></tr></table>
 <h1 id="pdfs">PDFs</h1>
 
 <p>We need to find the various means and variances required to compute the PDFs:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -216,7 +247,7 @@ p_female = females_count / sample_size</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">heights_of_males = []  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">heights_of_males = []  
 weights_of_males = []  
 heights_of_females = []  
 weights_of_females = []
@@ -242,22 +273,22 @@ var_weight_females = np.var(weights_of_females)</pre></td></tr></table>
 <p>Now to the PDF formula in code&hellip;</p>
 
 <p>Let’s define a function as we’ll use it severally:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def the_pdf(x, mean, variance):  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def the_pdf(x, mean, variance):  
   pd = 1 / (np.sqrt(2 * np.pi * variance)) * np.exp((-(x - mean)**2) / (2 * variance))  
   return pd</pre></td></tr></table>
 </div>
 </div>
 <h1 id="predict">Predict</h1>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -277,7 +308,7 @@ var_weight_females = np.var(weights_of_females)</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = [5.8, 82.1] # [height, weight]
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = [5.8, 82.1] # [height, weight]
 
 p_height_male = the_pdf(x[0], mean_height_males, var_height_males)  
 p_weight_male = the_pdf(x[0], mean_weight_males, var_weight_males)  
@@ -298,14 +329,14 @@ else:
 </div>
 </div>
 <p>Output:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">P(Male | height &amp; weight) = 7.92248128417e-103  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">P(Male | height &amp; weight) = 7.92248128417e-103  
 P(Female | height &amp; weight) = 0.00355626444241  
 class = Female</pre></td></tr></table>
 </div>
@@ -360,9 +391,14 @@ class = Female</pre></td></tr></table>
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

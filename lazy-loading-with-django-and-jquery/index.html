@@ -6,7 +6,7 @@
 
     <title>Lazy load your content with Django and jQuery | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,40 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Lazy load your content with Django and jQuery" />
+<meta property="og:description" content="Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
+Templates Create 2 templates, index.html and posts.html.
+index.html
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &lt;html&gt; &lt;head&gt; &lt;script type=&#34;text/javascript&#34;&gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/lazy-loading-with-django-and-jquery/" />
+<meta property="article:published_time" content="2017-02-26T05:43:00&#43;00:00"/>
+<meta property="article:modified_time" content="2017-02-26T05:43:00&#43;00:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lazy load your content with Django and jQuery"/>
+<meta name="twitter:description" content="Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
+Templates Create 2 templates, index.html and posts.html.
+index.html
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &lt;html&gt; &lt;head&gt; &lt;script type=&#34;text/javascript&#34;&gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script."/>
+
+    
+<meta itemprop="name" content="Lazy load your content with Django and jQuery">
+<meta itemprop="description" content="Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
+Templates Create 2 templates, index.html and posts.html.
+index.html
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &lt;html&gt; &lt;head&gt; &lt;script type=&#34;text/javascript&#34;&gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.">
+
+
+<meta itemprop="datePublished" content="2017-02-26T05:43:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-02-26T05:43:00&#43;00:00" />
+<meta itemprop="wordCount" content="604">
+
+
+
+<meta itemprop="keywords" content="Django,jQuery," />
+
 </head>
 
 
@@ -43,13 +77,10 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2017-02-26">Feb 26, 2017</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/django/">Django</a>
     <a href="http://alphacoder.xyz/tag/jquery/">jQuery</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -62,9 +93,9 @@ if (!doNotTrack) {
 <p>Create 2 templates, <em>index.html</em> and <em>posts.html</em>.</p>
 
 <p><em>index.html</em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -82,45 +113,45 @@ if (!doNotTrack) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;html&gt;
-  &lt;head&gt;
-    &lt;script type=&#34;text/javascript&#34;&gt;
-      // A CSRF token is required when making post requests in Django
-      // To be used for making AJAX requests in script.js
-      window.CSRF_TOKEN = &#34;{{ csrf_token }}&#34;;
-    &lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h2&gt;My Blog Posts&lt;/h2&gt;
-    &lt;div id=&#34;posts&#34;&gt;{% include &#39;myapp/posts.html&#39; %}&lt;/div&gt;
-    &lt;div&gt;
-      &lt;a id=&#34;lazyLoadLink&#34; 
-         href=&#34;javascript:void(0);&#34; 
-         data-page=&#34;2&#34;&gt;Load More Posts&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#8b008b;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">head</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">script</span> <span style="color:#658b00">type</span>=<span style="color:#cd5555">&#34;text/javascript&#34;</span>&gt;
+      <span style="color:#228b22">// A CSRF token is required when making post requests in Django
+</span><span style="color:#228b22"></span>      <span style="color:#228b22">// To be used for making AJAX requests in script.js
+</span><span style="color:#228b22"></span>      <span style="color:#658b00">window</span>.CSRF_TOKEN = <span style="color:#cd5555">&#34;{{ csrf_token }}&#34;</span>;
+    &lt;/<span style="color:#8b008b;font-weight:bold">script</span>&gt;
+  &lt;/<span style="color:#8b008b;font-weight:bold">head</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">h2</span>&gt;My Blog Posts&lt;/<span style="color:#8b008b;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">div</span> <span style="color:#658b00">id</span>=<span style="color:#cd5555">&#34;posts&#34;</span>&gt;{% include &#39;myapp/posts.html&#39; %}&lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+      &lt;<span style="color:#8b008b;font-weight:bold">a</span> <span style="color:#658b00">id</span>=<span style="color:#cd5555">&#34;lazyLoadLink&#34;</span> 
+          <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;javascript:void(0);&#34;</span> 
+          <span style="color:#658b00">data-page</span>=<span style="color:#cd5555">&#34;2&#34;</span>&gt;Load More Posts&lt;/<span style="color:#8b008b;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+  &lt;/<span style="color:#8b008b;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#8b008b;font-weight:bold">html</span>&gt;</code></pre></td></tr></table>
 </div>
 </div>
 <p><em>posts.html</em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">{% for post in posts %}
-&lt;div&gt;
-  &lt;h4&gt;{{ post.title }}&lt;/h4&gt;
-  &lt;p&gt;{{ post.content }}&lt;/p&gt;
-&lt;/div&gt;
-{% endfor %}</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% for post in posts %}
+&lt;<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">h4</span>&gt;{{ post.title }}&lt;/<span style="color:#8b008b;font-weight:bold">h4</span>&gt;
+  &lt;<span style="color:#8b008b;font-weight:bold">p</span>&gt;{{ post.content }}&lt;/<span style="color:#8b008b;font-weight:bold">p</span>&gt;
+&lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+{% endfor %}</code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="urls-views-model">Urls, Views, Model</h2>
@@ -128,28 +159,28 @@ if (!doNotTrack) {
 <p>Create/update <em>urls.py</em> and <em>views.py</em> as follows.</p>
 
 <p><em>urls.py</em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">from myapp import views
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">myapp</span> <span style="color:#8b008b;font-weight:bold">import</span> views
 
 urlpatterns = [
-    url(r&#39;^$&#39;, views.index, name=&#39;index&#39;),
-    url(r&#39;^lazy_load_posts/$&#39;, views.lazy_load_posts, name=&#39;lazy_load_posts&#39;),
-]</pre></td></tr></table>
+    url(<span style="color:#cd5555">r</span><span style="color:#cd5555">&#39;^$&#39;</span>, views.index, name=<span style="color:#cd5555">&#39;index&#39;</span>),
+    url(<span style="color:#cd5555">r</span><span style="color:#cd5555">&#39;^lazy_load_posts/$&#39;</span>, views.lazy_load_posts, name=<span style="color:#cd5555">&#39;lazy_load_posts&#39;</span>),
+]</code></pre></td></tr></table>
 </div>
 </div>
 <p><em>views.py</em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -183,63 +214,63 @@ urlpatterns = [
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">from django.shortcuts <span style="color:#00f">import</span> render
-from myapp.models <span style="color:#00f">import</span> Post
-from django.template <span style="color:#00f">import</span> loader
-from django.core.paginator <span style="color:#00f">import</span> Paginator, EmptyPage, PageNotAnInteger
-from django.http <span style="color:#00f">import</span> JsonResponse
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.shortcuts</span> <span style="color:#8b008b;font-weight:bold">import</span> render
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">myapp.models</span> <span style="color:#8b008b;font-weight:bold">import</span> Post
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.template</span> <span style="color:#8b008b;font-weight:bold">import</span> loader
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.core.paginator</span> <span style="color:#8b008b;font-weight:bold">import</span> Paginator, EmptyPage, PageNotAnInteger
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.http</span> <span style="color:#8b008b;font-weight:bold">import</span> JsonResponse
 
-def index(request):
-    posts = Post.objects.all()[:5]
-    <span style="color:#00f">return</span> render(request, <span style="">&#39;</span>myapp/index.html<span style="">&#39;</span>, {<span style="">&#39;</span>posts<span style="">&#39;</span>: posts})
+<span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">index</span>(request):
+    posts = Post.objects.<span style="color:#658b00">all</span>()[:<span style="color:#b452cd">5</span>]
+    <span style="color:#8b008b;font-weight:bold">return</span> render(request, <span style="color:#cd5555">&#39;myapp/index.html&#39;</span>, {<span style="color:#cd5555">&#39;posts&#39;</span>: posts})
 
-def lazy_load_posts(request):
-    page = request.POST.get(<span style="">&#39;</span>page<span style="">&#39;</span>)
-    posts = Post.objects.all()
-    <span style="">#</span> use Django<span style="">&#39;</span>s pagination
-    <span style="">#</span> https:<span style="color:#008000">//docs.djangoproject.com/en/dev/topics/pagination/
-</span><span style="color:#008000"></span>    results_per_page = 5
+<span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">lazy_load_posts</span>(request):
+    page = request.POST.get(<span style="color:#cd5555">&#39;page&#39;</span>)
+    posts = Post.objects.<span style="color:#658b00">all</span>()
+    <span style="color:#228b22"># use Django&#39;s pagination</span>
+    <span style="color:#228b22"># https://docs.djangoproject.com/en/dev/topics/pagination/</span>
+    results_per_page = <span style="color:#b452cd">5</span>
     paginator = Paginator(posts, results_per_page)
-    try:
+    <span style="color:#8b008b;font-weight:bold">try</span>:
         posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(2)
-    except EmptyPage:
+    <span style="color:#8b008b;font-weight:bold">except</span> PageNotAnInteger:
+        posts = paginator.page(<span style="color:#b452cd">2</span>)
+    <span style="color:#8b008b;font-weight:bold">except</span> EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    <span style="">#</span> build a html posts list with the paginated posts
+    <span style="color:#228b22"># build a html posts list with the paginated posts</span>
     posts_html = loader.render_to_string(
-        <span style="">&#39;</span>myapp/posts.html<span style="">&#39;</span>,
-        {<span style="">&#39;</span>posts<span style="">&#39;</span>: posts}
+        <span style="color:#cd5555">&#39;myapp/posts.html&#39;</span>,
+        {<span style="color:#cd5555">&#39;posts&#39;</span>: posts}
     )
-    <span style="">#</span> <span style="color:#00f">package</span> output data and <span style="color:#00f">return</span> it as a JSON object
+    <span style="color:#228b22"># package output data and return it as a JSON object</span>
     output_data = {
-        <span style="">&#39;</span>posts_html<span style="">&#39;</span>: posts_html,
-        <span style="">&#39;</span>has_next<span style="">&#39;</span>: posts.has_next()
+        <span style="color:#cd5555">&#39;posts_html&#39;</span>: posts_html,
+        <span style="color:#cd5555">&#39;has_next&#39;</span>: posts.has_next()
     }
-    <span style="color:#00f">return</span> JsonResponse(output_data)</pre></td></tr></table>
+    <span style="color:#8b008b;font-weight:bold">return</span> JsonResponse(output_data)</code></pre></td></tr></table>
 </div>
 </div>
 <p>Create a post model.</p>
 
 <p><em>models.py</em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">from __future__ import unicode_literals
-from django.db import models
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">__future__</span> <span style="color:#8b008b;font-weight:bold">import</span> unicode_literals
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.db</span> <span style="color:#8b008b;font-weight:bold">import</span> models
 
-class Post(models.Model):
+<span style="color:#8b008b;font-weight:bold">class</span> <span style="color:#008b45;font-weight:bold">Post</span>(models.Model):
     title = models.CharField()
-    content = models.TextField()</pre></td></tr></table>
+    content = models.TextField()</code></pre></td></tr></table>
 </div>
 </div>
 <p>The <code>index</code> function in <em>views.py</em> renders the <em>index.html</em> page. It retrieves and sends a list of post objects (the first page) to the template. The <code>lazy_load_posts</code> function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the <code>Paginator</code> class and generates a html string using the <em>posts.html</em> template.</p>
@@ -247,9 +278,9 @@ class Post(models.Model):
 <p>The paginator object provides a <em>has_next</em> method which checks if there’s another page to load. If there is, the page <code>data-</code> attribute of the anchor tag in <em>index.html</em> is incremented by 1 so that when “Load More Posts” is clicked again, it loads the next page.</p>
 
 <p><em>script.js</em></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -278,40 +309,41 @@ class Post(models.Model):
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(function($) {
-  $(&#39;#lazyLoadLink&#39;).on(&#39;click&#39;, function() {
-    var link = $(this);
-    var page = link.data(&#39;page&#39;);
-    $.ajax({
-      type: &#39;post&#39;,
-      url: &#39;/lazy_load_posts/&#39;,
-      data: {
-        &#39;page&#39;: page,
-        &#39;csrfmiddlewaretoken&#39;: window.CSRF_TOKEN // from index.html
-      },
-      success: function(data) {
-        // if there are still more pages to load,
-        // add 1 to the &#34;Load More Posts&#34; link&#39;s page data attribute
-        // else hide the link
-        if (data.has_next) {
-            link.data(&#39;page&#39;, page+1);
-        } else {
-          link.hide();
-        }
-        // append html to the posts div
-        $(&#39;#div&#39;).append(data.posts_html);
-      },
-      error: function(xhr, status, error) {
-        // shit happens friends!
-      }
-    });
-  });
-}(jQuery));</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    (<span style="color:#8b008b;font-weight:bold">function</span>($) {
+      $(<span style="color:#cd5555">&#39;#lazyLoadLink&#39;</span>).on(<span style="color:#cd5555">&#39;click&#39;</span>, <span style="color:#8b008b;font-weight:bold">function</span>() {
+        <span style="color:#8b008b;font-weight:bold">var</span> link = $(<span style="color:#8b008b;font-weight:bold">this</span>);
+        <span style="color:#8b008b;font-weight:bold">var</span> page = link.data(<span style="color:#cd5555">&#39;page&#39;</span>);
+        $.ajax({
+          type: <span style="color:#cd5555">&#39;post&#39;</span>,
+          url: <span style="color:#cd5555">&#39;/lazy_load_posts/&#39;</span>,
+          data: {
+            <span style="color:#cd5555">&#39;page&#39;</span>: page,
+            <span style="color:#cd5555">&#39;csrfmiddlewaretoken&#39;</span>: <span style="color:#658b00">window</span>.CSRF_TOKEN <span style="color:#228b22">// from index.html
+</span><span style="color:#228b22"></span>          },
+          success: <span style="color:#8b008b;font-weight:bold">function</span>(data) {
+            <span style="color:#228b22">// if there are still more pages to load,
+</span><span style="color:#228b22"></span>            <span style="color:#228b22">// add 1 to the &#34;Load More Posts&#34; link&#39;s page data attribute
+</span><span style="color:#228b22"></span>            <span style="color:#228b22">// else hide the link
+</span><span style="color:#228b22"></span>            <span style="color:#8b008b;font-weight:bold">if</span> (data.has_next) {
+                link.data(<span style="color:#cd5555">&#39;page&#39;</span>, page+<span style="color:#b452cd">1</span>);
+            } <span style="color:#8b008b;font-weight:bold">else</span> {
+              link.hide();
+            }
+            <span style="color:#228b22">// append html to the posts div
+</span><span style="color:#228b22"></span>            $(<span style="color:#cd5555">&#39;#div&#39;</span>).append(data.posts_html);
+          },
+          error: <span style="color:#8b008b;font-weight:bold">function</span>(xhr, status, error) {
+            <span style="color:#228b22">// shit happens friends!
+</span><span style="color:#228b22"></span>          }
+        });
+      });
+    }(jQuery));
+</code></pre></td></tr></table>
 </div>
 </div>
-<p>The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the <code>lazy_load_posts</code> function. If the request is successful, we append returned data to the posts <em>div</em> (<em>id=&ldquo;posts&rdquo;</em>).</p>
+<p>The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the <code>lazy_load_posts</code> view. If a request is successful, the returned data is appended to the posts <code>div</code> (<code>id=&quot;posts&quot;</code>).</p>
 
 <p>All the code snippets in this tutorial can be found on <a href="https://gist.github.com/nicholaskajoh/ae85bb836f2a6254244c847b962095d4">this Github Gist</a>.</p>
 
@@ -357,9 +389,14 @@ class Post(models.Model):
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

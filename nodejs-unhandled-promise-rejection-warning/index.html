@@ -6,7 +6,7 @@
 
     <title>Fixing UnhandledPromiseRejectionWarning in Node.js | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,34 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Fixing UnhandledPromiseRejectionWarning in Node.js" />
+<meta property="og:description" content="JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
+1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);   If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/" />
+<meta property="article:published_time" content="2019-03-04T13:54:48&#43;01:00"/>
+<meta property="article:modified_time" content="2019-03-04T13:54:48&#43;01:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Fixing UnhandledPromiseRejectionWarning in Node.js"/>
+<meta name="twitter:description" content="JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
+1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);   If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about."/>
+
+    
+<meta itemprop="name" content="Fixing UnhandledPromiseRejectionWarning in Node.js">
+<meta itemprop="description" content="JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
+1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);   If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.">
+
+
+<meta itemprop="datePublished" content="2019-03-04T13:54:48&#43;01:00" />
+<meta itemprop="dateModified" content="2019-03-04T13:54:48&#43;01:00" />
+<meta itemprop="wordCount" content="739">
+
+
+
+<meta itemprop="keywords" content="Node.js,JavaScript," />
+
 </head>
 
 
@@ -43,24 +71,21 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2019-03-04">Mar 4, 2019</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/node.js/">Node.js</a>
     <a href="http://alphacoder.xyz/tag/javascript/">JavaScript</a>
-    &#x5d;
 </div>
 </header>
 <article>
     <p>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks —  functions which are executed when an operation has been completed.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000);
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000);
 console.log(&#39;The last shall be the first!&#39;);</pre></td></tr></table>
 </div>
 </div>
@@ -69,9 +94,9 @@ console.log(&#39;The last shall be the first!&#39;);</pre></td></tr></table>
 <p>If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with <a href="http://callbackhell.com/">callback hell</a>. Callbacks can easily make code unreadable and difficult to reason about. Thankfully, we have Promises!</p>
 
 <p>Promise objects represent the eventual completion or failure of an async operation. We can wrap a function that accepts a callback in a Promise and use the fulfillment handler <code>.then()</code> to retrieve returned data and/or continue performing other operations.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -83,7 +108,7 @@ console.log(&#39;The last shall be the first!&#39;);</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
     setTimeout(function() {
         console.log(&#39;Slow and steady wins the race.&#39;);
         resolve();
@@ -98,9 +123,9 @@ slowAndSteady
 <p><img src="/images/prm-rjctn/promise-js.gif" alt="" /></p>
 
 <p>Better still we can now use Async/Await (ECMAScript 2017/ES8) —  synctactic sugar for Promises —  to make our JavaScript simpler and easier to read.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -113,7 +138,7 @@ slowAndSteady
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
     setTimeout(function() {
         console.log(&#39;Slow and steady wins the race.&#39;);
         resolve();
@@ -129,9 +154,9 @@ slowAndSteady
 <p><img src="/images/prm-rjctn/await-js.gif" alt="" /></p>
 
 <p>There&rsquo;s a little problem though. It&rsquo;s very easy to forget to handle Promise rejections, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we&rsquo;re shown the <code>UnhandledPromiseRejectionWarning</code> by Node.js.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -140,7 +165,7 @@ slowAndSteady
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
     reject();
 });
 
@@ -152,9 +177,9 @@ slowAndSteady
 <p><img src="/images/prm-rjctn/promise-rejection.gif" alt="" /></p>
 
 <p>We also get the warning if an error (e.g validation error) is thrown inside the Promise.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -163,7 +188,7 @@ slowAndSteady
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
     throw new Error(&#39;Summ just happen right now :(&#39;);
 });
 
@@ -177,9 +202,9 @@ slowAndSteady
 <p>If you didn&rsquo;t already notice from the warning, <strong>&ldquo;Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code&rdquo;</strong>. This means not handling Promises properly can crash your app!</p>
 
 <p>You can handle Promise rejections by using the failure handler <code>.catch()</code> or a try/catch block.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -191,7 +216,7 @@ slowAndSteady
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
     reject();
 });
 slowAndSteady
@@ -204,9 +229,9 @@ slowAndSteady
 </div>
 </div>
 <p><img src="/images/prm-rjctn/dot-catch.gif" alt="" /></p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -219,7 +244,7 @@ slowAndSteady
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const slowAndSteady = new Promise(function(resolve, reject) {
     throw new Error(&#39;Summ just happen right now :(&#39;);
 });
 
@@ -235,9 +260,9 @@ slowAndSteady
 <p><img src="/images/prm-rjctn/try-catch.gif" alt="" /></p>
 
 <p>It&rsquo;s not that simple though. Things become more interesting when you have a chain of Promises.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -254,7 +279,7 @@ slowAndSteady
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const promise1 = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const promise1 = new Promise(function(resolve, reject) {
     throw new Error(&#39;Promise 1 has tanked.&#39;);
 });
 
@@ -276,9 +301,9 @@ const promise2 = new Promise(function(resolve, reject) {
 <p>We still get the warning even though <code>promise2</code> is wrapped in a try/catch. Wrapping a whole function with try/catch won&rsquo;t cover all Promises!</p>
 
 <p>It&rsquo;s obvious that proper exception handling is needed in <code>promise2</code>.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -295,7 +320,7 @@ const promise2 = new Promise(function(resolve, reject) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const promise1 = new Promise(function(resolve, reject) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">const promise1 = new Promise(function(resolve, reject) {
     throw new Error(&#39;Promise 1 has tanked.&#39;);
 });
 
@@ -313,22 +338,22 @@ const promise2 = new Promise(function(resolve, reject) {
 </div>
 </div>
 <p>But you might not be able to anticipate where exception/error handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">process.on(&#39;unhandledRejection&#39;, function(err) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">process.on(&#39;unhandledRejection&#39;, function(err) {
     console.log(err);
 });</pre></td></tr></table>
 </div>
 </div>
 <p>If you use error tracking software, this is a good place to notify your team about the error so that it can be fixed ASAP!</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -350,7 +375,7 @@ const promise2 = new Promise(function(resolve, reject) {
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">process.on(&#39;unhandledRejection&#39;, function(err) {
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">process.on(&#39;unhandledRejection&#39;, function(err) {
     console.log(err);
     // sendInTheCalvary(err);
 });
@@ -416,9 +441,14 @@ const promise2 = new Promise(function(resolve, reject) {
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

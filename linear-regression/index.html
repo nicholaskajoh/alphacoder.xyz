@@ -6,7 +6,7 @@
 
     <title>Linear Regression | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,34 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Linear Regression" />
+<meta property="og:description" content="What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
+ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/linear-regression/" />
+<meta property="article:published_time" content="2017-12-04T08:44:05&#43;01:00"/>
+<meta property="article:modified_time" content="2017-12-04T08:44:05&#43;01:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linear Regression"/>
+<meta name="twitter:description" content="What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
+ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself."/>
+
+    
+<meta itemprop="name" content="Linear Regression">
+<meta itemprop="description" content="What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
+ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself.">
+
+
+<meta itemprop="datePublished" content="2017-12-04T08:44:05&#43;01:00" />
+<meta itemprop="dateModified" content="2017-12-04T08:44:05&#43;01:00" />
+<meta itemprop="wordCount" content="1391">
+
+
+
+<meta itemprop="keywords" content="ML Chops Series," />
+
 </head>
 
 
@@ -43,12 +71,9 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2017-12-04">Dec 4, 2017</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -134,14 +159,14 @@ if (!doNotTrack) {
 <h1 id="simple-example">Simple example</h1>
 
 <p>Say we have the years 2001, 2002, 2003, &hellip;, 2010 and oil prices 43.1, 45.2, 43.7, 49.0, 50.5, 53.7, 53.0, 56.8, 57.2, 60.0. We could come up with a table like so:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x (yrs)   1    2    3    4    5    6    7    8    9    10
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x (yrs)   1    2    3    4    5    6    7    8    9    10
 
 y (in $)  43.1 45.2 43.7 49.0 50.5 53.7 53.0 56.8 57.2 60.0</pre></td></tr></table>
 </div>
@@ -149,9 +174,9 @@ y (in $)  43.1 45.2 43.7 49.0 50.5 53.7 53.0 56.8 57.2 60.0</pre></td></tr></tab
 <p>I used 1 to 10 to represent 2001 to 2010 so that calculations would be easier to comprehend. It doesn’t affect anything. You can use the years to do your calculation if that resonates with you. Keep in mind though that the difference of any two consecutive values of x must be 1.</p>
 
 <p>Using code, we can calculate the slope and intercept like so:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -162,7 +187,7 @@ y (in $)  43.1 45.2 43.7 49.0 50.5 53.7 53.0 56.8 57.2 60.0</pre></td></tr></tab
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
 from statistics import mean
 
 xs = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])  
@@ -176,14 +201,14 @@ c = mean(ys) - (m * mean(xs))</pre></td></tr></table>
 <h1 id="predict">Predict</h1>
 
 <p>If we want to predict how much oil would cost in 2018, all we need to do is supply <em>x</em> in our model. <em>x</em> would be 18. Thus:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = 18  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = 18  
 y = m * x + c  
 print(y)</pre></td></tr></table>
 </div>
@@ -208,9 +233,9 @@ print(y)</pre></td></tr></table>
 <p>y bar is the <em>mean of the ys</em></p>
 
 <p>To calculate the R-squared for a given model:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -218,7 +243,7 @@ print(y)</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">best_fit_line = [(m * x) + c for x in xs]
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">best_fit_line = [(m * x) + c for x in xs]
 
 SSy_hat = sum([y * y for y in (best_fit_line - ys)]) # y hat line  
 SSy_mean = sum([y * y for y in [y - mean(ys) for y in ys]]) # mean of ys
@@ -274,9 +299,14 @@ r2 = 1 - (SSy_hat / SSy_mean)</pre></td></tr></table>
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

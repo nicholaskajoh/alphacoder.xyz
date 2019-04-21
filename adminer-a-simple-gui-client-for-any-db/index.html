@@ -6,7 +6,7 @@
 
     <title>Adminer — a simple GUI client for any DB | Alpha Coder</title>
 
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}</style>
+    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -22,6 +22,34 @@ if (!doNotTrack) {
     
 
     
+
+    <meta property="og:title" content="Adminer — a simple GUI client for any DB" />
+<meta property="og:description" content="In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
+Before Adminer, I used pgAdmin III. I hoped it&rsquo;d be similar to PHPMyAdmin but it wasn&rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/" />
+<meta property="article:published_time" content="2019-03-04T06:39:01&#43;00:00"/>
+<meta property="article:modified_time" content="2019-03-04T06:39:01&#43;00:00"/>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adminer — a simple GUI client for any DB"/>
+<meta name="twitter:description" content="In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
+Before Adminer, I used pgAdmin III. I hoped it&rsquo;d be similar to PHPMyAdmin but it wasn&rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks."/>
+
+    
+<meta itemprop="name" content="Adminer — a simple GUI client for any DB">
+<meta itemprop="description" content="In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
+Before Adminer, I used pgAdmin III. I hoped it&rsquo;d be similar to PHPMyAdmin but it wasn&rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks.">
+
+
+<meta itemprop="datePublished" content="2019-03-04T06:39:01&#43;00:00" />
+<meta itemprop="dateModified" content="2019-03-04T06:39:01&#43;00:00" />
+<meta itemprop="wordCount" content="887">
+
+
+
+<meta itemprop="keywords" content="Databases," />
+
 </head>
 
 
@@ -43,12 +71,9 @@ if (!doNotTrack) {
     
 
 <div class="post-meta">
-    Date &#x5b;
     <time datetime="2019-03-04">Mar 4, 2019</time>
-    &#x5d;
-    Tag &#x5b;
+    | Tags:
     <a href="http://alphacoder.xyz/tag/databases/">Databases</a>
-    &#x5d;
 </div>
 </header>
 <article>
@@ -73,16 +98,16 @@ if (!doNotTrack) {
 </ul>
 
 <p><strong>NB:</strong> After installation, add the PHP CLI to your path if it&rsquo;s not already added. You can test this by running <code>php --version</code>. You should get a similar result to the one shown below.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ php --version
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ php --version
 PHP 7.2.15-0ubuntu0.18.04.1 (cli) (built: Feb  8 2019 14:54:22) ( NTS )
 Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
@@ -112,16 +137,16 @@ Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
 <p>Adminer is just one PHP file! You can <a href="https://www.adminer.org/#download">download it from the Adminer website</a>. The latest version at the time of writing this tutorial is <a href="https://github.com/vrana/adminer/releases/download/v4.7.1/adminer-4.7.1.php">4.7.1</a>. When you download the PHP file, you can put it anywhere you want. Mine is in a directory named <em>adminer</em> (i.e <code>~/dev/adminer</code>) and is renamed to <em>adminer.php</em>.</p>
 
 <p>Start up a terminal and change directory to the folder containing Adminer. In my case, it&rsquo;s <code>~/dev/adminer</code>. Now run PHP&rsquo;s development server on a port of your choice.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">~/dev/adminer$ php -S localhost:8080
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">~/dev/adminer$ php -S localhost:8080
 PHP 7.2.15-0ubuntu0.18.04.1 Development Server started at Mon Mar  4 04:41:07 2019
 Listening on http://localhost:8080
 Document root is /home/nicholas/dev/adminer
@@ -152,9 +177,9 @@ fields instead of the regular text input.</p>
 <li><p>Create a plugins directory in your <em>adminer</em> directory (e.g <code>~/dev/adminer/plugins</code>) and <a href="https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php">add this <em>plugin.php</em> file</a> in it. <em>plugin.php</em> is required to use plugins with Adminer.</p></li>
 
 <li><p>Create an <em>index.php</em> file in your <em>adminer</em> directory (i.e <code>~/dev/adminer</code>) and add the following code.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -182,7 +207,7 @@ fields instead of the regular text input.</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
 function adminer_object() {
     // required to run any plugin
     include_once &#34;./plugins/plugin.php&#34;;
@@ -214,15 +239,15 @@ include &#34;./adminer.php&#34;;
 <li><p>Add <a href="https://raw.githubusercontent.com/vrana/adminer/master/plugins/edit-textarea.php">the <em>edit-textarea</em> plugin source file (<em>edit-textarea.php</em>)</a> to your plugins directory.</p></li>
 
 <li><p>Initialize the plugin in <em>index.php</em> by adding <code>new AdminerEditTextarea()</code> in the <code>$plugins</code> array.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$plugins = array(
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$plugins = array(
     // specify enabled plugins here
     new AdminerEditTextarea(),
 );</pre></td></tr></table>
@@ -279,9 +304,14 @@ include &#34;./adminer.php&#34;;
 
     
     
-    <div class="copyright">© [ This Year ] Nicholas Kajoh</div>
+    <div class="copyright">© Nicholas Kajoh</div>
     
 </div>
-</body>
+
+
+<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script>
+  mediumZoom(document.querySelectorAll('img'));
+</script></body>
 
 </html>

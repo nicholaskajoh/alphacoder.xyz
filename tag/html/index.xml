@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Html on Alpha Coder</title>
+    <title>HTML on Alpha Coder</title>
     <link>http://alphacoder.xyz/tag/html/</link>
-    <description>Recent content in Html on Alpha Coder</description>
+    <description>Recent content in HTML on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <copyright>© [ This Year ] Nicholas Kajoh</copyright>
+    <copyright>© Nicholas Kajoh</copyright>
     <lastBuildDate>Wed, 07 Jun 2017 21:48:21 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/tag/html/index.xml" rel="self" type="application/rss+xml" />
