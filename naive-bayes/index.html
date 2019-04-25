@@ -50,7 +50,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 
 <meta itemprop="datePublished" content="2017-12-26T08:44:05&#43;01:00" />
 <meta itemprop="dateModified" content="2017-12-26T08:44:05&#43;01:00" />
-<meta itemprop="wordCount" content="1011">
+<meta itemprop="wordCount" content="1012">
 
 
 
@@ -85,11 +85,11 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 <article>
     
 
-<p><img src="https://cdn-images-1.medium.com/max/800/1*qad9PbdO5VmEFqlKQlDkmA.jpeg" alt="" /></p>
+<p><img src="/images/mlc-nb/nb-meme.jpeg" alt="" /></p>
 
 <p>Naive Bayes is a classifier just like <a href="/k-nearest-neighbors">K Nearest Neighbors</a>. The Naive Bayes algorithm applies the popular <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes Theorem</a> (used to calculate conditional probability) given by the formula:</p>
 
-<p><img src="https://cdn-images-1.medium.com/max/800/1*wriGVURvD0fys36Wbxq5Tw.png" alt="" />
+<p><img src="/images/mlc-nb/bayes-formula.png" alt="" />
 <em>Bayes formula</em></p>
 
 <p>Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: <a href="https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem">https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem</a>.</p>
@@ -133,7 +133,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 
 <p>Let’s put the formula into context for better understanding:</p>
 
-<p><img src="https://cdn-images-1.medium.com/max/800/1*QhofvdC7CJTat3qypFLh8A.png" alt="" />
+<p><img src="/images/mlc-nb/male-person-prob.png" alt="" />
 <em>Probability that a person is Male</em></p>
 
 <p>Substitute <em>Female</em> for <em>Male</em> in the formula and you have the probability that a person is female.</p>
@@ -155,7 +155,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 
 <p>The <a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a> can be computed using the following formula:</p>
 
-<p><img src="https://cdn-images-1.medium.com/max/800/1*IsSvVaGDrA71--LZ10TGtQ.png" alt="" />
+<p><img src="/images/mlc-nb/pdf.png" alt="" />
 <em>The PDF</em></p>
 
 <p>Substitute Female with Male and/or weight with height to calculate other PDFs.</p>
@@ -176,26 +176,26 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 <p>For convenience, I’m using 3 arrays:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">numpy</span> <span style="color:#8b008b;font-weight:bold">as</span> <span style="color:#008b45;text-decoration:underline">np</span>
 
-# data  
-heights = np.array([6.3, 5.9, 5.1, 5.6, 5.1])  
-weights = np.array([50.2, 79.7, 61.4, 47.1, 59.8])  
-classes = np.array([&#34;Male&#34;, &#34;Female&#34;, &#34;Female&#34; , &#34;Male&#34;, &#34;Female&#34;])</pre></td></tr></table>
+<span style="color:#228b22"># data  </span>
+heights = np.array([<span style="color:#b452cd">6.3</span>, <span style="color:#b452cd">5.9</span>, <span style="color:#b452cd">5.1</span>, <span style="color:#b452cd">5.6</span>, <span style="color:#b452cd">5.1</span>])  
+weights = np.array([<span style="color:#b452cd">50.2</span>, <span style="color:#b452cd">79.7</span>, <span style="color:#b452cd">61.4</span>, <span style="color:#b452cd">47.1</span>, <span style="color:#b452cd">59.8</span>])  
+classes = np.array([<span style="color:#cd5555">&#34;Male&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span> , <span style="color:#cd5555">&#34;Male&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span>])</code></pre></td></tr></table>
 </div>
 </div>
 <p>Next, let’s find P(Class) for Male and Female:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -205,18 +205,18 @@ classes = np.array([&#34;Male&#34;, &#34;Female&#34;, &#34;Female&#34; , &#34;Ma
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">males_count = 0  
-females_count = 0  
-sample_size = len(classes)  
-for x in classes:  
-  if x == &#34;Male&#34;:  
-    males_count += 1  
-  else:  
-    females_count += 1  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">males_count = <span style="color:#b452cd">0</span>  
+females_count = <span style="color:#b452cd">0</span>  
+sample_size = <span style="color:#658b00">len</span>(classes)  
+<span style="color:#8b008b;font-weight:bold">for</span> x <span style="color:#8b008b">in</span> classes:  
+    <span style="color:#8b008b;font-weight:bold">if</span> x == <span style="color:#cd5555">&#34;Male&#34;</span>:  
+        males_count += <span style="color:#b452cd">1</span>  
+    <span style="color:#8b008b;font-weight:bold">else</span>:  
+        females_count += <span style="color:#b452cd">1</span>  
 p_male = males_count / sample_size  
-p_female = females_count / sample_size</pre></td></tr></table>
+p_female = females_count / sample_size</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="pdfs">PDFs</h1>
@@ -224,7 +224,7 @@ p_female = females_count / sample_size</pre></td></tr></table>
 <p>We need to find the various means and variances required to compute the PDFs:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -245,20 +245,20 @@ p_female = females_count / sample_size</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">heights_of_males = []  
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">heights_of_males = []  
 weights_of_males = []  
 heights_of_females = []  
 weights_of_females = []
 
-for i in range(sample_size):  
-  if classes[i] == &#34;Male&#34;:  
-    heights_of_males.append(heights[i])  
-    weights_of_males.append(weights[i])  
-  else:  
-    heights_of_females.append(heights[i])  
-    weights_of_females.append(weights[i])
+<span style="color:#8b008b;font-weight:bold">for</span> i <span style="color:#8b008b">in</span> <span style="color:#658b00">range</span>(sample_size):  
+    <span style="color:#8b008b;font-weight:bold">if</span> classes[i] == <span style="color:#cd5555">&#34;Male&#34;</span>:  
+        heights_of_males.append(heights[i])  
+        weights_of_males.append(weights[i])  
+    <span style="color:#8b008b;font-weight:bold">else</span>:
+        heights_of_females.append(heights[i])  
+        weights_of_females.append(weights[i])
 
 mean_height_males = np.mean(heights_of_males)  
 mean_weight_males = np.mean(weights_of_males)  
@@ -267,7 +267,7 @@ mean_weight_females = np.mean(weights_of_females)
 var_height_males = np.var(heights_of_males)  
 var_weight_males = np.var(weights_of_males)  
 var_height_females = np.var(heights_of_females)  
-var_weight_females = np.var(weights_of_females)</pre></td></tr></table>
+var_weight_females = np.var(weights_of_females)</code></pre></td></tr></table>
 </div>
 </div>
 <p>Now to the PDF formula in code&hellip;</p>
@@ -275,20 +275,20 @@ var_weight_females = np.var(weights_of_females)</pre></td></tr></table>
 <p>Let’s define a function as we’ll use it severally:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def the_pdf(x, mean, variance):  
-  pd = 1 / (np.sqrt(2 * np.pi * variance)) * np.exp((-(x - mean)**2) / (2 * variance))  
-  return pd</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">the_pdf</span>(x, mean, variance):  
+    pd = <span style="color:#b452cd">1</span> / (np.sqrt(<span style="color:#b452cd">2</span> * np.pi * variance)) * np.exp((-(x - mean)**<span style="color:#b452cd">2</span>) / (<span style="color:#b452cd">2</span> * variance))  
+    <span style="color:#8b008b;font-weight:bold">return</span> pd</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="predict">Predict</h1>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -306,26 +306,28 @@ var_weight_females = np.var(weights_of_females)</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></pre></td>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = [5.8, 82.1] # [height, weight]
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = [<span style="color:#b452cd">5.8</span>, <span style="color:#b452cd">82.1</span>] <span style="color:#228b22"># [height, weight]</span>
 
-p_height_male = the_pdf(x[0], mean_height_males, var_height_males)  
-p_weight_male = the_pdf(x[0], mean_weight_males, var_weight_males)  
-p_height_female = the_pdf(x[0], mean_height_females, var_height_females)  
-p_weight_female = the_pdf(x[0], mean_weight_females, var_weight_females)
+p_height_male = the_pdf(x[<span style="color:#b452cd">0</span>], mean_height_males, var_height_males)
+p_weight_male = the_pdf(x[<span style="color:#b452cd">1</span>], mean_weight_males, var_weight_males)
+p_height_female = the_pdf(x[<span style="color:#b452cd">0</span>], mean_height_females, var_height_females)
+p_weight_female = the_pdf(x[<span style="color:#b452cd">1</span>], mean_weight_females, var_weight_females)
 
-# Get class probabilities  
+
+<span style="color:#228b22"># Get class probabilities  </span>
 p_male_h_and_w = p_male * p_height_male * p_weight_male  
 p_female_h_and_w = p_female * p_height_female * p_weight_female  
-print(&#34;P(Male | height &amp; weight) =&#34;, p_male_h_and_w)  
-print(&#34;P(Female | height &amp; weight) =&#34;, p_female_h_and_w)
+<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;P(Male | height &amp; weight) =&#34;</span>, p_male_h_and_w)  
+<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;P(Female | height &amp; weight) =&#34;</span>, p_female_h_and_w)
 
-# Return prediction  
-if p_male_h_and_w &gt; p_female_h_and_w:  
-  print(&#34;class = Male&#34;)  
-else:  
-  print(&#34;class = Female&#34;)</pre></td></tr></table>
+<span style="color:#228b22"># Return prediction  </span>
+<span style="color:#8b008b;font-weight:bold">if</span> p_male_h_and_w &gt; p_female_h_and_w:  
+    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;class = Male&#34;</span>)  
+<span style="color:#8b008b;font-weight:bold">else</span>:  
+    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;class = Female&#34;</span>)</code></pre></td></tr></table>
 </div>
 </div>
 <p>Output:</p>

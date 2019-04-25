@@ -26,7 +26,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="Dockerizing Django in development and production" />
 <meta property="og:description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3." />
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/dockerizing-django/" />
 <meta property="article:published_time" content="2018-08-15T12:54:00&#43;00:00"/>
@@ -36,18 +36,18 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3." />
 <meta name="twitter:title" content="Dockerizing Django in development and production"/>
 <meta name="twitter:description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3."/>
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3."/>
 
     
 <meta itemprop="name" content="Dockerizing Django in development and production">
 <meta itemprop="description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.">
+Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.">
 
 
 <meta itemprop="datePublished" content="2018-08-15T12:54:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-08-15T12:54:00&#43;00:00" />
-<meta itemprop="wordCount" content="985">
+<meta itemprop="wordCount" content="898">
 
 
 
@@ -92,7 +92,7 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.">
 <h2 id="dockerfile">Dockerfile</h2>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -111,27 +111,27 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROM python:3.">
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">FROM python:3.6-alpine
-
-RUN apk --update add \
-    build-base \
-    postgresql \
-    postgresql-dev \
-    libpq \
-    # pillow dependencies
-    jpeg-dev \
-    zlib-dev
-
-RUN mkdir /www
-WORKDIR /www
-COPY requirements.txt /www/
-RUN pip install -r requirements.txt
-
-ENV PYTHONUNBUFFERED 1
-
-COPY . /www/</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> python:3.6-alpine</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> apk --update add <span style="color:#cd5555">\
+</span><span style="color:#cd5555"></span>    build-base <span style="color:#cd5555">\
+</span><span style="color:#cd5555"></span>    postgresql <span style="color:#cd5555">\
+</span><span style="color:#cd5555"></span>    postgresql-dev <span style="color:#cd5555">\
+</span><span style="color:#cd5555"></span>    libpq <span style="color:#cd5555">\
+</span><span style="color:#cd5555"></span>    <span style="color:#228b22"># pillow dependencies</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span>    jpeg-dev <span style="color:#cd5555">\
+</span><span style="color:#cd5555"></span>    zlib-dev<span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> mkdir /www<span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">WORKDIR</span><span style="color:#cd5555"> /www</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span>COPY requirements.txt /www/<span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> pip install -r requirements.txt<span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">ENV</span><span style="color:#cd5555"> PYTHONUNBUFFERED 1</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2"></span>COPY . /www/</code></pre></td></tr></table>
 </div>
 </div>
 <p>This <strong>Dockerfile</strong> is pretty straightforward. It starts from a Python-Alpine base image, then installs the dependencies that Django needs, notably <code>postgresql</code> and <code>postgresql-dev</code>. This Django project is setup to use PostgreSQL. If you want to use another database engine like MySQL or MongoDB, you need to install the required adapters/dependencies. Also, if you’re dealing with images (ImageField), you need to install <code>jpeg-dev</code> and <code>zlib-dev</code> as well (see <a href="https://pillow.readthedocs.io/en/latest/installation.html#building-from-source">Pillow dependencies</a>).</p>
@@ -143,7 +143,7 @@ COPY . /www/</pre></td></tr></table>
 <p>I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -166,31 +166,31 @@ COPY . /www/</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">version: &#34;3&#34;
-services:
-  web:
-    build: .
-    restart: on-failure
-    env_file:
-      - ./.env
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/www
-    ports:
-      - &#34;8000:8000&#34;
-    depends_on:
-      - db
-  db:
-    image: &#34;postgres:10.3-alpine&#34;
-    restart: unless-stopped
-    env_file:
-      - ./.env
-    ports:
-      - &#34;5432:5432&#34;
-    volumes:
-      - ./postgres/data:/var/lib/postgresql/data</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;3&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>services:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>web:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>build:<span style="color:#bbb"> </span>.<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>restart:<span style="color:#bbb"> </span>on-failure<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>env_file:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./.env<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>command:<span style="color:#bbb"> </span>python<span style="color:#bbb"> </span>manage.py<span style="color:#bbb"> </span>runserver<span style="color:#bbb"> </span><span style="color:#b452cd">0.0</span>.<span style="color:#b452cd">0.0</span>:<span style="color:#b452cd">8000</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>volumes:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>.:/www<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>ports:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;8000:8000&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>depends_on:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>db<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>db:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>image:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;postgres:10.3-alpine&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>restart:<span style="color:#bbb"> </span>unless-stopped<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>env_file:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./.env<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>ports:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;5432:5432&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>volumes:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./postgres/data:/var/lib/postgresql/data</code></pre></td></tr></table>
 </div>
 </div>
 <p>There are two services in this Compose file — web and db. The web service builds the Django app using the <em>Dockerfile</em> in the previous section. A volume is created to map the project directory in the host to the one in the container (<code>- .:/www</code>) so that any changes made on the host are mirrored in the container. The <code>command</code> parameter uses Django’s dev server to run the app (<code>python manage.py runserver 0.0.0.0:8000</code>).</p>
@@ -231,7 +231,7 @@ POSTGRES_DB=mypgsqldb</pre></td></tr></table>
 <p>This setup, while good for production, is not very convenient in development where the goal is often to <em>break things and move fast</em>. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my <em>docker-compose.prod.yml</em> file.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -252,29 +252,29 @@ POSTGRES_DB=mypgsqldb</pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">version: &#34;3&#34;
-services:
-  web:
-    build: .
-    restart: on-failure
-    env_file:
-      - ./.env
-    command: gunicorn --bind 0.0.0.0:8080 dockerizeddjango.wsgi
-    ports:
-      - &#34;8080:8080&#34;
-    depends_on:
-      - nginx
-  nginx:
-    image: &#34;nginx&#34;
-    restart: always
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./staticfiles:/static
-      - ./mediafiles:/media
-    ports:
-      - &#34;80:80&#34;</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;3&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>services:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>web:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>build:<span style="color:#bbb"> </span>.<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>restart:<span style="color:#bbb"> </span>on-failure<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>env_file:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./.env<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>command:<span style="color:#bbb"> </span>gunicorn<span style="color:#bbb"> </span>--bind<span style="color:#bbb"> </span><span style="color:#b452cd">0.0</span>.<span style="color:#b452cd">0.0</span>:<span style="color:#b452cd">8080</span><span style="color:#bbb"> </span>dockerizeddjango.wsgi<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>ports:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;8080:8080&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>depends_on:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>nginx:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>image:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;nginx&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>restart:<span style="color:#bbb"> </span>always<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>volumes:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./nginx/conf.d:/etc/nginx/conf.d<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./staticfiles:/static<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span>./mediafiles:/media<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>ports:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>-<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;80:80&#34;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>The web service in the production Compose file looks identical to one in the development file, except for the <code>command</code> parameter (majorly). It uses <a href="http://gunicorn.org">Gunicorn</a> (<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver">which is more suitable</a>) to serve the application (<code>gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi</code>).</p>
@@ -282,7 +282,7 @@ services:
 <p>There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps <code>/etc/nginx/conf.d</code> to the <code>./nginx/conf.d</code> folder on the host which contains <a href="https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf"><em>dockerizeddjango.conf</em></a>.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -302,28 +302,28 @@ services:
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"># dockerizeddjango.conf
-server {
-  listen 80;
-  server_name localhost;
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#228b22"># dockerizeddjango.conf
+</span><span style="color:#228b22"></span><span style="color:#8b008b;font-weight:bold">server</span> {
+  <span style="color:#8b008b;font-weight:bold">listen</span> <span style="color:#b452cd">80</span>;
+  <span style="color:#8b008b;font-weight:bold">server_name</span> <span style="color:#cd5555">localhost</span>;
 
-  # serve static files
-  location /static/ {
-    alias /static/;
+  <span style="color:#228b22"># serve static files
+</span><span style="color:#228b22"></span>  <span style="color:#8b008b;font-weight:bold">location</span> <span style="color:#cd5555">/static/</span> {
+    <span style="color:#8b008b;font-weight:bold">alias</span> <span style="color:#cd5555">/static/</span>;
   }
 
-  # serve media files
-  location /media/ {
-    alias /media/;
+  <span style="color:#228b22"># serve media files
+</span><span style="color:#228b22"></span>  <span style="color:#8b008b;font-weight:bold">location</span> <span style="color:#cd5555">/media/</span> {
+    <span style="color:#8b008b;font-weight:bold">alias</span> <span style="color:#cd5555">/media/</span>;
   }
 
-  # pass requests for dynamic content to gunicorn
-  location / {
-    proxy_pass http://web:8080;
+  <span style="color:#228b22"># pass requests for dynamic content to gunicorn
+</span><span style="color:#228b22"></span>  <span style="color:#8b008b;font-weight:bold">location</span> <span style="color:#cd5555">/</span> {
+    <span style="color:#8b008b;font-weight:bold">proxy_pass</span> <span style="color:#cd5555">http://web:8080</span>;
   }
-}</pre></td></tr></table>
+}</code></pre></td></tr></table>
 </div>
 </div>
 <p>This is a very basic Nginx config file. It’s also pretty self-explanatory. It passes requests with <code>/static</code> (e.g <em>example.com/static/virus.js</em>) and <code>/media</code> (e.g <em>example.com/media/anonymous.jpg</em>) to the <code>/static</code> and <code>/media</code> directories on the web container respectively. These directories are mapped to the <code>/staticfiles</code> and <code>/mediafiles</code> directories on the host where <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L98">staticfiles are collected</a> and <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L104">media files uploaded</a>. Other requests are proxied to Gunicorn.</p>
@@ -333,10 +333,10 @@ server {
 <p>Use the following command to run the Compose file:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ docker-compose -f docker-compose.prod.yml up --build -d</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.prod.yml up --build -d</code></pre></td></tr></table>
 </div>
 </div>
 <p>The <code>-f</code> parameter specifies the production Compose file, <em>docker-compose.prod.yml</em> (Docker Compose defaults to <em>docker-compose.yml</em>). <code>--build</code> tells Compose to rebuild the images each time the command is run, and the <code>-d</code> flag runs the containers in detached mode so that they keep running in the background even when your terminal is closed.</p>
@@ -344,12 +344,12 @@ server {
 <p>You can run migrations and create an admin user with the following commands:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ docker-compose -f docker-compose.prod.yml run web python manage.py migrate
-$ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.prod.yml run web python manage.py migrate
+docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput</code></pre></td></tr></table>
 </div>
 </div>
 </article>
