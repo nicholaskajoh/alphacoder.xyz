@@ -2,11 +2,9 @@
 author = "Nicholas Kajoh"
 date = 2018-01-11T14:39:00.000Z
 draft = false
-image = "/content/images/2018/12/rawpixel-296613-unsplash-sm.jpg"
 slug = "dead-simple-react-django-setup"
 tags = ["React","Django"]
 title = "Here’s a dead simple React-Django setup for your next project"
-
 +++
 
 
