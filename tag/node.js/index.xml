@@ -19,7 +19,7 @@
       
       <guid>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
       <description>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
-1 2  setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;);   If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
+1 2  setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;);    If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
     </item>
     
   </channel>

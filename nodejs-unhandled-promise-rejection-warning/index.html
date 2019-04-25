@@ -25,7 +25,7 @@ if (!doNotTrack) {
 
     <meta property="og:title" content="Fixing UnhandledPromiseRejectionWarning in Node.js" />
 <meta property="og:description" content="JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
-1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);   If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about." />
+1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);    If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/" />
 <meta property="article:published_time" content="2019-03-04T13:54:48&#43;01:00"/>
@@ -34,12 +34,12 @@ if (!doNotTrack) {
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fixing UnhandledPromiseRejectionWarning in Node.js"/>
 <meta name="twitter:description" content="JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
-1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);   If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about."/>
+1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);    If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about."/>
 
     
 <meta itemprop="name" content="Fixing UnhandledPromiseRejectionWarning in Node.js">
 <meta itemprop="description" content="JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
-1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);   If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.">
+1 2  setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000); console.log(&#39;The last shall be the first!&#39;);    If you&rsquo;ve written JavaScript for a while, you&rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.">
 
 
 <meta itemprop="datePublished" content="2019-03-04T13:54:48&#43;01:00" />
@@ -60,7 +60,7 @@ if (!doNotTrack) {
         <div class="header-menu">
             <a href="/blog/">Blog</a>
             <a href="/courses/">Courses</a>
-            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+            <a href="https://tinyletter.com/nicholaskajoh">Newsletter</a>
         </div>
     </h1>
 </div>
@@ -81,12 +81,13 @@ if (!doNotTrack) {
     <p>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks —  functions which are executed when an operation has been completed.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">setTimeout(function() { console.log(&#39;Slow and steady wins the race.&#39;); }, 5000);
-console.log(&#39;The last shall be the first!&#39;);</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">setTimeout(<span style="color:#8b008b;font-weight:bold">function</span>() { console.log(<span style="color:#cd5555">&#39;Slow and steady wins the race.&#39;</span>); }, <span style="color:#b452cd">5000</span>);
+console.log(<span style="color:#cd5555">&#39;The last shall be the first!&#39;</span>);
+</code></pre></td></tr></table>
 </div>
 </div>
 <p><img src="/images/prm-rjctn/async-js.gif" alt="" /></p>
@@ -401,7 +402,34 @@ const promise2 = new Promise(function(resolve, reject) {
 
 </article>
 
-<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+<form
+  style="border: 1px solid #ccc; padding: 3px; text-align: center; border-radius: 2px; margin: 15px 0;"
+  action="https://tinyletter.com/nicholaskajoh"
+  method="post"
+  target="popupwindow" onsubmit="window.open('https://tinyletter.com/nicholaskajoh', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+    <div style="padding: 5px;">
+      <h2>Subscribe to the Alpha Coder Newsletter!</h2>
+
+      <p>Get timely updates on new articles, courses and more from Nicholas Kajoh. Unsubscribe anytime.</p>
+      
+      <input
+        type="text"
+        style="width: 150px; height: 30px; padding-left: 5px; border: 1px solid #ccc; border-radius: 2px;"
+        name="email"
+        placeholder="night.king@westeros.org">
+      <input type="hidden" value="1" name="embed">
+      <input
+        type="submit"
+        style="height: 34px; color: #fff; background-color: #00e; border: 1px solid #00e; border-radius: 2px;"
+        value="Subscribe">
+      
+      <p>
+        Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>. 😊
+      </p>
+    </div>
+</form>
+
 
 
   <br><div id="disqus_thread"></div>

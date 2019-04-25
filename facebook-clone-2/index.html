@@ -57,7 +57,7 @@ if (!doNotTrack) {
         <div class="header-menu">
             <a href="/blog/">Blog</a>
             <a href="/courses/">Courses</a>
-            <a href="http://bit.ly/nksnewsletter">Newsletter</a>
+            <a href="https://tinyletter.com/nicholaskajoh">Newsletter</a>
         </div>
     </h1>
 </div>
@@ -333,7 +333,34 @@ Once Apache and MySQL start running, go to your browser and visit <a href="http:
 
 </article>
 
-<a href="http://bit.ly/nksnewsletter" target="_blank">Subscribe to my newsletter</a> for updates on new articles, courses and more. Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>.<br>
+
+<form
+  style="border: 1px solid #ccc; padding: 3px; text-align: center; border-radius: 2px; margin: 15px 0;"
+  action="https://tinyletter.com/nicholaskajoh"
+  method="post"
+  target="popupwindow" onsubmit="window.open('https://tinyletter.com/nicholaskajoh', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+    <div style="padding: 5px;">
+      <h2>Subscribe to the Alpha Coder Newsletter!</h2>
+
+      <p>Get timely updates on new articles, courses and more from Nicholas Kajoh. Unsubscribe anytime.</p>
+      
+      <input
+        type="text"
+        style="width: 150px; height: 30px; padding-left: 5px; border: 1px solid #ccc; border-radius: 2px;"
+        name="email"
+        placeholder="night.king@westeros.org">
+      <input type="hidden" value="1" name="embed">
+      <input
+        type="submit"
+        style="height: 34px; color: #fff; background-color: #00e; border: 1px solid #00e; border-radius: 2px;"
+        value="Subscribe">
+      
+      <p>
+        Enjoy the content on Alpha Coder? Please <a href="http://buymeacoff.ee/nicholaskajoh" target="_blank">buy me a coffee</a>. 😊
+      </p>
+    </div>
+</form>
+
 
 
   <br><div id="disqus_thread"></div>
