@@ -6,11 +6,11 @@ tags: ["ML Chops Series"]
 draft: false
 ---
 
-![](https://cdn-images-1.medium.com/max/800/1*qad9PbdO5VmEFqlKQlDkmA.jpeg)
+![](/images/mlc-nb/nb-meme.jpeg)
 
 Naive Bayes is a classifier just like [K Nearest Neighbors](/k-nearest-neighbors). The Naive Bayes algorithm applies the popular [Bayes Theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) (used to calculate conditional probability) given by the formula:
 
-![](https://cdn-images-1.medium.com/max/800/1*wriGVURvD0fys36Wbxq5Tw.png)
+![](/images/mlc-nb/bayes-formula.png)
 _Bayes formula_
 
 Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: [https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem](https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem).
@@ -24,12 +24,14 @@ Here’s a great explanation to read if you’ve not come across/don’t underst
 
 Let’s consider the data we used in the last post on KNNs:
 
-    height (ft)    weight (kg)    sex  
-    6.3            50.2           Male  
-    5.9            79.7           Female  
-    5.1            61.4           Female  
-    5.6            47.1           Male  
-    5.1            59.8           Female
+```
+height (ft)    weight (kg)    sex  
+6.3            50.2           Male  
+5.9            79.7           Female  
+5.1            61.4           Female  
+5.6            47.1           Male  
+5.1            59.8           Female
+```
 
 In Naive Bayes, we calculate the probabilities of an input feature set being in each of the classes in the data and return the class with the highest probability as the predicted output.
 
@@ -41,7 +43,7 @@ You guessed right! **Bayes formula**.
 
 Let’s put the formula into context for better understanding:
 
-![](https://cdn-images-1.medium.com/max/800/1*QhofvdC7CJTat3qypFLh8A.png)
+![](/images/mlc-nb/male-person-prob.png)
 _Probability that a person is Male_
 
 Substitute _Female_ for _Male_ in the formula and you have the probability that a person is female.
@@ -61,7 +63,7 @@ The probability of selecting a person from a given class is the simplest calcula
 
 The [PDF](https://en.wikipedia.org/wiki/Probability_density_function) can be computed using the following formula:
 
-![](https://cdn-images-1.medium.com/max/800/1*IsSvVaGDrA71--LZ10TGtQ.png)
+![](/images/mlc-nb/pdf.png)
 _The PDF_
 
 Substitute Female with Male and/or weight with height to calculate other PDFs.
@@ -79,91 +81,104 @@ First things first! The data.
 
 For convenience, I’m using 3 arrays:
 
-    import numpy as np
+```python
+import numpy as np
 
-    # data  
-    heights = np.array([6.3, 5.9, 5.1, 5.6, 5.1])  
-    weights = np.array([50.2, 79.7, 61.4, 47.1, 59.8])  
-    classes = np.array(["Male", "Female", "Female" , "Male", "Female"])
+# data  
+heights = np.array([6.3, 5.9, 5.1, 5.6, 5.1])  
+weights = np.array([50.2, 79.7, 61.4, 47.1, 59.8])  
+classes = np.array(["Male", "Female", "Female" , "Male", "Female"])
+```
 
 Next, let’s find P(Class) for Male and Female:
 
-    males_count = 0  
-    females_count = 0  
-    sample_size = len(classes)  
-    for x in classes:  
-      if x == "Male":  
+```python
+males_count = 0  
+females_count = 0  
+sample_size = len(classes)  
+for x in classes:  
+    if x == "Male":  
         males_count += 1  
-      else:  
+    else:  
         females_count += 1  
-    p_male = males_count / sample_size  
-    p_female = females_count / sample_size
+p_male = males_count / sample_size  
+p_female = females_count / sample_size
+```
 
 # PDFs
 
 We need to find the various means and variances required to compute the PDFs:
 
-    heights_of_males = []  
-    weights_of_males = []  
-    heights_of_females = []  
-    weights_of_females = []
+```python
+heights_of_males = []  
+weights_of_males = []  
+heights_of_females = []  
+weights_of_females = []
 
-    for i in range(sample_size):  
-      if classes[i] == "Male":  
+for i in range(sample_size):  
+    if classes[i] == "Male":  
         heights_of_males.append(heights[i])  
         weights_of_males.append(weights[i])  
-      else:  
+    else:
         heights_of_females.append(heights[i])  
         weights_of_females.append(weights[i])
 
-    mean_height_males = np.mean(heights_of_males)  
-    mean_weight_males = np.mean(weights_of_males)  
-    mean_height_females = np.mean(heights_of_females)  
-    mean_weight_females = np.mean(weights_of_females)  
-    var_height_males = np.var(heights_of_males)  
-    var_weight_males = np.var(weights_of_males)  
-    var_height_females = np.var(heights_of_females)  
-    var_weight_females = np.var(weights_of_females)
+mean_height_males = np.mean(heights_of_males)  
+mean_weight_males = np.mean(weights_of_males)  
+mean_height_females = np.mean(heights_of_females)  
+mean_weight_females = np.mean(weights_of_females)  
+var_height_males = np.var(heights_of_males)  
+var_weight_males = np.var(weights_of_males)  
+var_height_females = np.var(heights_of_females)  
+var_weight_females = np.var(weights_of_females)
+```
 
 Now to the PDF formula in code...
 
 Let’s define a function as we’ll use it severally:
 
-    def the_pdf(x, mean, variance):  
-      pd = 1 / (np.sqrt(2 * np.pi * variance)) * np.exp((-(x - mean)**2) / (2 * variance))  
-      return pd
+```python
+def the_pdf(x, mean, variance):  
+    pd = 1 / (np.sqrt(2 * np.pi * variance)) * np.exp((-(x - mean)**2) / (2 * variance))  
+    return pd
+```
 
 # Predict
 
-    x = [5.8, 82.1] # [height, weight]
+```python
+x = [5.8, 82.1] # [height, weight]
 
-    p_height_male = the_pdf(x[0], mean_height_males, var_height_males)  
-    p_weight_male = the_pdf(x[0], mean_weight_males, var_weight_males)  
-    p_height_female = the_pdf(x[0], mean_height_females, var_height_females)  
-    p_weight_female = the_pdf(x[0], mean_weight_females, var_weight_females)
+p_height_male = the_pdf(x[0], mean_height_males, var_height_males)
+p_weight_male = the_pdf(x[1], mean_weight_males, var_weight_males)
+p_height_female = the_pdf(x[0], mean_height_females, var_height_females)
+p_weight_female = the_pdf(x[1], mean_weight_females, var_weight_females)
 
-    # Get class probabilities  
-    p_male_h_and_w = p_male * p_height_male * p_weight_male  
-    p_female_h_and_w = p_female * p_height_female * p_weight_female  
-    print("P(Male | height & weight) =", p_male_h_and_w)  
-    print("P(Female | height & weight) =", p_female_h_and_w)
 
-    # Return prediction  
-    if p_male_h_and_w > p_female_h_and_w:  
-      print("class = Male")  
-    else:  
-      print("class = Female")
+# Get class probabilities  
+p_male_h_and_w = p_male * p_height_male * p_weight_male  
+p_female_h_and_w = p_female * p_height_female * p_weight_female  
+print("P(Male | height & weight) =", p_male_h_and_w)  
+print("P(Female | height & weight) =", p_female_h_and_w)
+
+# Return prediction  
+if p_male_h_and_w > p_female_h_and_w:  
+    print("class = Male")  
+else:  
+    print("class = Female")
+```
 
 Output:
 
-    P(Male | height & weight) = 7.92248128417e-103  
-    P(Female | height & weight) = 0.00355626444241  
-    class = Female
+```
+P(Male | height & weight) = 7.92248128417e-103  
+P(Female | height & weight) = 0.00355626444241  
+class = Female
+```
 
 Putting everything together, we have:
 
 <script src="https://gist.github.com/nicholaskajoh/3ae130a7e7df91141c3efdbc7a989304.js"></script>
 
-Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: [https://github.com/nicholaskajoh/ML\_Chops/tree/master/naive-bayes](https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes).
+Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: [https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes](https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes).
 
 If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍
