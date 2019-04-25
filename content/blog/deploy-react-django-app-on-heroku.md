@@ -2,15 +2,13 @@
 author = "Nicholas Kajoh"
 date = 2018-01-30T11:52:00.000Z
 draft = false
-image = "/content/images/2018/12/sergey-zolkin-192937-unsplash-sm.jpg"
 slug = "deploy-react-django-app-on-heroku"
 tags = ["React","Django","Heroku"]
 title = "Deploy your React-Django app on Heroku"
-
 +++
 
 
-This is a follow up to my post on _[setting up a React-Django web app](https://alphacoder.xyz/dead-simple-react-django-setup/)_. You can take a quick glance if you’ve not seen it yet.
+This is a follow up to my post on _[setting up a React-Django web app](/dead-simple-react-django-setup/)_. You can take a quick glance if you’ve not seen it yet.
 
 **TL;DR: The setup is deployed at** [**http://react-django.herokuapp.com**](http://react-django.herokuapp.com/) **(nothing much there actually) and the code at** [**https://github.com/nicholaskajoh/React-Django**](https://github.com/nicholaskajoh/React-Django)**.**
 
@@ -23,7 +21,7 @@ Heroku dashboard
 
 First things first. You need a Heroku account. Head over to [Heroku.com](https://heroku.com) and sign up/login, then go to your dashboard at [https://dashboard.heroku.com](https://dashboard.heroku.com) and create a new app.
 
-![](https://cdn-images-1.medium.com/max/1000/1*J2mxZwYUbFFCTnXOORLMlw.png)
+![](/images/dply-dj/heroku-dashboard.png)
 
 Heroku CLI
 ----------
@@ -36,7 +34,7 @@ Now, let’s link our project to the Heroku app we created using the Heroku CLI 
 *   Login with your Heroku account on the CLI using `heroku login`.
 *   Add the Heroku remote via `heroku git:remote -a your-heroku-app`.
 
-![](https://cdn-images-1.medium.com/max/800/1*A4icz0o5vRhq1zGDdpcLkQ.png)
+![](/images/dply-dj/link-app-to-heroku.png)
 
 I already initialized Git in the project prior to this.
 
@@ -51,22 +49,26 @@ Our app would run on a Python server, even though we’ll use Node/NPM to build/
 
 You can add buildpacks via the Heroku CLI. Head back to your terminal and run the following to set/add the buildpacks we need.
 
-    $ heroku buildpacks:set heroku/python
+```shell
+heroku buildpacks:set heroku/python
+```
 
 Now add the buildpack for Node.js.
 
-    $ heroku buildpacks:add --index 1 heroku/nodejs
+```shell
+heroku buildpacks:add --index 1 heroku/nodejs
+```
 
 We can see the buildpacks we’ve added by running `heroku buildpacks`. The last buildpack on the list determines the process type of the app.
 
-![](https://cdn-images-1.medium.com/max/800/1*cQr2gThuZbUr-sY4yKUwog.png)
+![](/images/dply-dj/buildpacks.png)
 
 package.json
 ------------
 
 We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command `npm run build` in the _postinstall_ hook.
 
-![](https://cdn-images-1.medium.com/max/800/1*lJJMhR8OnPe2YJXGbzn2YQ.png)
+![](/images/dply-dj/package-json.png)
 
 See postinstall under scripts
 
@@ -77,8 +79,10 @@ Procfile
 
 Create a file called _[Procfile](https://devcenter.heroku.com/articles/procfile)_ (no file extension) in the project root and add the following code:
 
-    release: python manage.py migrate
-    web: gunicorn reactdjango.wsgi --log-file -
+```
+release: python manage.py migrate
+web: gunicorn reactdjango.wsgi --log-file -
+```
 
 Replace `reactdjango.wsgi` with `YOUR-DJANGO-APP-NAME.wsgi`.
 
@@ -87,43 +91,52 @@ requirements.txt
 
 The Python buildpack, after installing Python looks for _requirements.txt_ to install the dependencies in it. Add the following to the requirements file, including all the other dependencies your Django app needs.
 
-    django>=2.1.2
-    gunicorn==19.7.1
-    whitenoise==3.3.1
+```
+django>=2.1.2
+gunicorn==19.7.1
+whitenoise==3.3.1
+```
 
 **PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.**
 
 By the way, you can specify the Python version you want by adding it to a file named _runtime.txt_ in the project root.
 
-    python-3.5.2
-
+```
+python-3.5.2
+```
 Configure whitenoise to serve static files by doing the following:
 
 Add _static root_ and _static files storage_ in _settings.py_
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+```python
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+```
 
 Add whitenoise to your _wsgi.py_ file.
 
-    import os
-    from django.core.wsgi
-    import get_wsgi_application
-    from whitenoise.django import DjangoWhiteNoise
-    
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "reactdjango.settings")
-    
-    application = get_wsgi_application()
-    application = DjangoWhiteNoise(application)
+```python
+import os
+from django.core.wsgi
+import get_wsgi_application
+from whitenoise.django import DjangoWhiteNoise
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "reactdjango.settings")
+
+application = get_wsgi_application()
+application = DjangoWhiteNoise(application)
+```
 
 Allowed hosts
 -------------
 
 In your _settings.py_, you need to add your Heroku domain to allowed hosts.
 
-    ALLOWED_HOSTS = ['react-django.herokuapp.com', '127.0.0.1:8000']
+```python
+ALLOWED_HOSTS = ['react-django.herokuapp.com', '127.0.0.1:8000']
+```
 
 **NB: I personally prefer to add allowed hosts using environment variables e.g with** [**python-dotenv**](https://github.com/theskumar/python-dotenv)**.**
 
@@ -132,9 +145,11 @@ Commit, push
 
 It’s time to commit and push the changes. Phew!
 
-    $ git add .
-    $ git commit -m "blah blah blah"
-    $ git push heroku master
+```shell
+git add .
+git commit -m "blah blah blah"
+git push heroku master
+```
 
 After the build is done and your app has been released, visit _YOUR-APP-NAME.herokuapp.com_. Neat!
 
