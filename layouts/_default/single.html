@@ -31,6 +31,20 @@
 </form>
 <!-- ./newsletter form -->
 
+<!-- previous and next posts -->
+{{ if .PrevInSection }}
+  <p>
+    Previous post: <a href="{{ .PrevInSection.Permalink }}"><strong>{{ .PrevInSection.Title }}</strong></a>
+  </p>
+{{ end }}
+
+{{ if .NextInSection }}
+  <p>
+    Next post: <a href="{{ .NextInSection.Permalink }}"><strong>{{ .NextInSection.Title }}</strong></a>
+  </p>
+{{ end }}
+<!-- ./previous and next posts -->
+
 {{ if ne .Params.showComments false }}
   <br>{{ template "_internal/disqus.html" . }}
 {{ end }}
