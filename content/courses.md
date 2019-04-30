@@ -3,7 +3,7 @@ title: "Courses"
 showComments: false
 ---
 
-I'm currently working on two awesome video courses to be released soon™: **Node.js Testing** and **Build and Deploy Microservices**. [Subscribe to my newsletter](http://bit.ly/nksnewsletter) to get notified when they're released.
+I'm currently working on two awesome video courses to be released soon™: **Node.js Testing** and **Build and Deploy Microservices**. [Subscribe to my newsletter](https://tinyletter.com/nicholaskajoh) to get notified when they're released.
 
 **Node.js Testing** takes you through the fundamentals of software testing. You'll learn why testing is important and how to write a solid test suite with Node.js. We'll go through several concepts including static, unit, integration and end-to-end testing, test coverage, and mocking. We'll also explore popular testing libraries in the Node.js ecosystem that can help us write and ship quality code faster, and work on building and testing a real world web application. What's more? This course is 100% free!
 
