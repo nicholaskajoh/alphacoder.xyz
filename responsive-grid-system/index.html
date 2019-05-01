@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Write your own responsive grid system with few lines of CSS code | Alpha Coder</title>
+    <title>A responsive grid system with few lines of CSS | Alpha Coder</title>
 
     <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:18px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
     
@@ -23,8 +23,8 @@ if (!doNotTrack) {
 
     
 
-    <meta property="og:title" content="Write your own responsive grid system with few lines of CSS code" />
-<meta property="og:description" content="How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However there are times when you need something light!
+    <meta property="og:title" content="A responsive grid system with few lines of CSS" />
+<meta property="og:description" content="How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need something light!
 Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/responsive-grid-system/" />
@@ -32,19 +32,19 @@ Say you’re learning a new framework or testing out some code and you want to t
 <meta property="article:modified_time" content="2017-11-19T20:07:00&#43;00:00"/>
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Write your own responsive grid system with few lines of CSS code"/>
-<meta name="twitter:description" content="How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However there are times when you need something light!
+<meta name="twitter:title" content="A responsive grid system with few lines of CSS"/>
+<meta name="twitter:description" content="How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need something light!
 Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?"/>
 
     
-<meta itemprop="name" content="Write your own responsive grid system with few lines of CSS code">
-<meta itemprop="description" content="How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However there are times when you need something light!
+<meta itemprop="name" content="A responsive grid system with few lines of CSS">
+<meta itemprop="description" content="How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need something light!
 Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?">
 
 
 <meta itemprop="datePublished" content="2017-11-19T20:07:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-11-19T20:07:00&#43;00:00" />
-<meta itemprop="wordCount" content="636">
+<meta itemprop="wordCount" content="560">
 
 
 
@@ -67,7 +67,7 @@ Say you’re learning a new framework or testing out some code and you want to t
 <div id="content">
 
 <header>
-    <h1>Write your own responsive grid system with few lines of CSS code</h1>
+    <h1>A responsive grid system with few lines of CSS</h1>
     
 
 <div class="post-meta">
@@ -77,46 +77,44 @@ Say you’re learning a new framework or testing out some code and you want to t
 </div>
 </header>
 <article>
-    <p>How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However there are times when you need <em>something light</em>!</p>
+    <p>How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need <em>something light</em>!</p>
 
 <p>Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?</p>
 
-<p>While adding Bootstrap may sound easier, you may be faced with the nightmare that is overriding classes. Nobody loves overriding the classes they don’t want/need, plus you’re now distracted from what you really want to accomplish.</p>
-
-<p>Besides, you don’t lose anything by learning how to write a grid system. In fact, it makes you understand and appreciate CSS libraries and better. True story!</p>
+<p>While adding Bootstrap may sound easier, you might be faced with the nightmare that is overriding classes. Nobody loves overriding the classes they don’t want/need, plus you’re now distracted from what you really want to accomplish. Besides, you don’t lose anything by learning how to write a grid system. In fact, it makes you understand and appreciate CSS libraries and better.</p>
 
 <p>There was this school project I had to work on. It was pretty basic, but I needed a grid system. I had already decided to build it from the ground up with only vanilla, so Bootstrap or Materialize was not an option. I had to learn how to write my own grid system. It turns out that it’s not difficult at all. In fact, I wrote a grid system with a few lines of CSS code.</p>
 
-<p>Now before we get into <a href="https://en.wikipedia.org/wiki/The_Matrix_(franchise)"><em>The Matrix</em></a>, it’s important to note that there are several ways of building a grid system; each with its own quirks. It’s easy to forget that CSS 1.0 wasn’t made with grid in mind as the webosphere is now littered with millions of sites using layouts of all shapes and sizes.</p>
+<p>It’s important to note that there are several ways of building a grid system; each with its own quirks. It’s easy to forget that CSS 1.0 wasn’t made with grid in mind as the webosphere is now littered with millions of sites using layouts of all shapes and sizes.</p>
 
-<p>Devs cooked up various workarounds and hacks. They used <strong>tables</strong> to create grids back in the day. <em>Wicked!</em> More recently, they used <strong>floats</strong>. Float grids sufficed until they didn’t. They are still in use today. However, <strong>flexbox</strong> has replaced float grid systems on many sites online. Flexbox was made to solve the grid problem. Sweet! Nevertheless, flexbox has it’s own limitations. The new kid on the block <strong>grid layout</strong>, was created to handle more complex systems that web apps of today demand.</p>
+<p>Devs cooked up various workarounds and hacks. They used <strong>tables</strong> to create grids back in the day. More recently, they used <strong>floats</strong>. Float grids sufficed until they didn’t. They are still in use today. However, <strong>flexbox</strong> has replaced float grid systems on many sites online. Flexbox was made to solve the grid problem. Nevertheless, flexbox has it’s own limitations. The new kid on the block, <strong>grid layout</strong>, was created to handle more complex systems that web apps of today demand.</p>
 
-<p>I used flexbox to create a simple grid system. Flexbox is great! It is supported in major browsers and is easy to implement. Take a look at the cute bit of CSS code…</p>
+<p>I used flexbox to create a simple grid system. Flexbox is great! It&rsquo;s supported in major browsers and is easy to implement.</p>
 
-<p>I don’t want get into the intricacies of flexbox. I’ll be reinventing the wheel by doing that. Instead I’ll point you to a resource that helped me wrap my head around it. Nonetheless, from the code, it’s pretty easy to figure out how everything kinda works. It’s basically some flexbox code and media queries for 3 view ports — mobile, tablet and desktop.</p>
+<script src="https://gist.github.com/nicholaskajoh/35702b2e0791c4329e80cde9d0d3e9ba.js"></script>
 
-<p>Just add this simple markup and you’re good to go…</p>
+<p>I don’t want get into the intricacies of flexbox. I’ll be reinventing the wheel by doing that. Instead I’ll point you to a resource that helped me wrap my head around it. Nonetheless, from the code, it’s relatively easy to figure out how everything kinda works. It’s basically some flexbox code and media queries for 3 view ports — mobile, tablet and desktop.</p>
+
+<p>Just add the following simple markup and you’re good to go.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></pre></td>
+</span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;section&gt;
-    &lt;article&gt;Content&lt;/article&gt;
-    &lt;aside&gt;Sidebar&lt;/aside&gt;
-&lt;/section&gt;</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#8b008b;font-weight:bold">section</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">article</span>&gt;Content&lt;/<span style="color:#8b008b;font-weight:bold">article</span>&gt;
+    &lt;<span style="color:#8b008b;font-weight:bold">aside</span>&gt;Sidebar&lt;/<span style="color:#8b008b;font-weight:bold">aside</span>&gt;
+&lt;/<span style="color:#8b008b;font-weight:bold">section</span>&gt;</code></pre></td></tr></table>
 </div>
 </div>
-<p>Of course, you can’t do some of the naughty things you may be accustomed to with CSS libraries and all. For simple layouts, you probably wouldn’t need to do stuff like that. Anyhoo, you can always add a few more lines for other neat functionalities. If you feel you’re doing too much, it may be time to throw in a library or something. If you feel Bootstrap is too overweight, there are a ton of CSS grid libraries. I don’t want to name names, but Google is your friend. A search would yield a ton of interesting results.</p>
-
-<p>At the end of the day when all is said some is done, you would have learnt a thing or two about grid systems in CSS. Awesome!</p>
+<p>You can always add a few more lines for other neat functionalities. If you feel you’re doing too much, it may be time to throw in a library or something. If you feel Bootstrap or any other UI library is overkill, there are a ton of CSS grid libraries. I don’t want to name names, but Google is your friend. A search would yield a ton of interesting results.</p>
 
 <p>Check out the repo for this tutorial: <a href="https://github.com/nicholaskajoh/Simple-CSS-Grid">https://github.com/nicholaskajoh/Simple-CSS-Grid</a>.</p>
 
-<p>Also, ensure to check out <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Chris Coyier’s complete guide to flexbox</a>. If you have the time, totally go through <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">Chris House’ complete guide to grid</a>.</p>
+<p>Also, you should totally read <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Chris Coyier’s complete guide to flexbox</a>. If you have the time, go through <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">Chris House’ complete guide to grid</a> as well.</p>
 
 </article>
 
