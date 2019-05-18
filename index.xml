@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© Nicholas Kajoh</copyright>
-    <lastBuildDate>Tue, 02 Apr 2019 04:08:11 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 May 2019 15:22:12 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Machine Learning explained</title>
+      <link>http://alphacoder.xyz/machine-learning-explained/</link>
+      <pubDate>Sat, 18 May 2019 15:22:12 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/machine-learning-explained/</guid>
+      <description>Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn&amp;rsquo;t actually understand what Machine Learning is. And without understanding — at least on a high level — it&amp;rsquo;s nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub.</description>
+    </item>
     
     <item>
       <title>How to configure wildcard subdomains</title>
