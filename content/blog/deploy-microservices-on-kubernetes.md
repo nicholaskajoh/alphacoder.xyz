@@ -4,7 +4,7 @@ draft = false
 date = 2019-02-01T16:44:09.460Z
 slug = "deploy-microservices-on-kubernetes"
 title = "Deploy microservices on Kubernetes"
-tags = ["Kubernetes", "Microservices", "Docker", "GKE", "GCP"]
+tags = ["Kubernetes", "Microservices", "Docker"]
 +++
 
 
