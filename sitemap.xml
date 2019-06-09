@@ -73,18 +73,6 @@
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/tag/gcp/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/gke/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://alphacoder.xyz/tag/kubernetes/</loc>
     <lastmod>2019-02-01T16:44:09+00:00</lastmod>
     <priority>0</priority>
@@ -186,12 +174,6 @@
   
   <url>
     <loc>http://alphacoder.xyz/tag/internships/</loc>
-    <lastmod>2018-09-30T07:45:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/nigeria/</loc>
     <lastmod>2018-09-30T07:45:00+00:00</lastmod>
     <priority>0</priority>
   </url>

@@ -49,24 +49,6 @@
     </item>
     
     <item>
-      <title>GCP</title>
-      <link>http://alphacoder.xyz/tag/gcp/</link>
-      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/tag/gcp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GKE</title>
-      <link>http://alphacoder.xyz/tag/gke/</link>
-      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/tag/gke/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Kubernetes</title>
       <link>http://alphacoder.xyz/tag/kubernetes/</link>
       <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
@@ -162,15 +144,6 @@
       <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/tag/internships/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Nigeria</title>
-      <link>http://alphacoder.xyz/tag/nigeria/</link>
-      <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/tag/nigeria/</guid>
       <description></description>
     </item>
     
