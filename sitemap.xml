@@ -133,38 +133,8 @@
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/tag/babel/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/grunt/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/npm/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/sass/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://alphacoder.xyz/understanding-modern-front-end-development/</loc>
     <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/webpack/</loc>
-    <lastmod>2018-11-09T13:06:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -349,6 +319,10 @@
   
   <url>
     <loc>http://alphacoder.xyz/courses/</loc>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/support/</loc>
   </url>
   
 </urlset>
