@@ -1,6 +1,8 @@
 ---
 title: "Courses"
 showComments: false
+showPrevAndNextPosts: false
+showCustomAds: false
 ---
 
 I'm currently working on two awesome video courses to be released soon™: **Node.js Testing** and **Build and Deploy Microservices**. [Subscribe to my newsletter](https://tinyletter.com/nicholaskajoh) to get notified when they're released.

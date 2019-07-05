@@ -33,12 +33,12 @@ pygmentsStyle = "perldoc"
         name = "Blog"
         weight = 1
     [[menu.main]]
-        url = "/courses/"
-        name = "Courses"
+        url = "/support/"
+        name = "Support"
         weight = 2
     [[menu.main]]
-        url = "https://tinyletter.com/nicholaskajoh"
-        name = "Newsletter"
+        url = "/courses/"
+        name = "Courses"
         weight = 3
 
     # Footer
