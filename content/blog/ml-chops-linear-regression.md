@@ -43,7 +43,7 @@ The graph below may help you visualize linear data better…
 ![](https://cdn-images-1.medium.com/max/800/1*iC2R89E_DBY5fSuQApTwhg.png)
 _Graph of linear data_
 
-The first thing you probably noticed is how somewhat scattered the data points are. There’s is a pattern though, and it’s linear. As the value on the horizontal axis increases, the value on the vertical axis \[generally\] increases as well (positive correlation).
+The first thing you probably noticed is how somewhat scattered the data points are. There is a pattern though, and it’s linear. As the value on the horizontal axis increases, the value on the vertical axis \[generally\] increases as well (positive correlation).
 
 # Best fit line
 
