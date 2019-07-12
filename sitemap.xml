@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://alphacoder.xyz/</loc>
-    <lastmod>2019-05-18T15:22:12+00:00</lastmod>
+    <loc>http://alphacoder.xyz/vehicle-counting/</loc>
+    <lastmod>2019-07-12T00:30:43+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/machine-learning-explained/</loc>
-    <lastmod>2019-05-18T15:22:12+00:00</lastmod>
+    <loc>http://alphacoder.xyz/</loc>
+    <lastmod>2019-07-12T00:30:43+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://alphacoder.xyz/blog/</loc>
+    <lastmod>2019-07-12T00:30:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/machine-learning-explained/</loc>
     <lastmod>2019-05-18T15:22:12+00:00</lastmod>
   </url>
   
