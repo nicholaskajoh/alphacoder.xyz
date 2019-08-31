@@ -5,7 +5,7 @@ showPrevAndNextPosts: false
 showCustomAds: false
 ---
 
-Are you stuck trying to use one or more articles on Alpha Coder to solve a technical/programming problem in your project? You're in luck! I offer paid support to Alpha Coder readers.
+Are you stuck trying to use an article on Alpha Coder or any of my open source projects to solve a technical/programming problem in your project? You're in luck! I offer paid support.
 
 I can help you:
 
