@@ -55,7 +55,7 @@ pygmentsStyle = "perldoc"
         name = "Buy me a coffee"
         weight = 3
     [[menu.footer]]
-        url = "/post/index.xml"
+        url = "/blog/index.xml"
         name = "RSS"
         weight = 4
 
