@@ -4,7 +4,27 @@
   
   <url>
     <loc>http://alphacoder.xyz/tag/docker/</loc>
-    <lastmod>2019-09-01T06:18:43+01:00</lastmod>
+    <lastmod>2019-09-01T06:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/connect-to-host-database-from-docker-container/</loc>
+    <lastmod>2019-09-01T06:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/</loc>
+    <lastmod>2019-09-01T06:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/blog/</loc>
+    <lastmod>2019-09-01T06:29:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/tags/</loc>
+    <lastmod>2019-09-01T06:29:54+01:00</lastmod>
   </url>
   
   <url>
@@ -14,21 +34,6 @@
   
   <url>
     <loc>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</loc>
-    <lastmod>2019-09-01T06:18:43+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/</loc>
-    <lastmod>2019-09-01T06:18:43+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/blog/</loc>
-    <lastmod>2019-09-01T06:18:43+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tags/</loc>
     <lastmod>2019-09-01T06:18:43+01:00</lastmod>
   </url>
   

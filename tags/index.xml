@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© Nicholas Kajoh</copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 06:18:43 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2019 06:29:54 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Docker</title>
       <link>http://alphacoder.xyz/tag/docker/</link>
-      <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+      <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
       
       <guid>http://alphacoder.xyz/tag/docker/</guid>
       <description></description>
