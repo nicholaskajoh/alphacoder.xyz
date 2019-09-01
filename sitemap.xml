@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://alphacoder.xyz/tag/docker/</loc>
+    <lastmod>2019-09-01T06:18:43+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://alphacoder.xyz/tag/elasticsearch/</loc>
     <lastmod>2019-09-01T06:18:43+01:00</lastmod>
   </url>
@@ -74,11 +79,6 @@
   
   <url>
     <loc>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</loc>
-    <lastmod>2019-02-01T16:44:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/tag/docker/</loc>
     <lastmod>2019-02-01T16:44:09+00:00</lastmod>
   </url>
   

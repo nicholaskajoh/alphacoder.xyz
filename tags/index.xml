@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Docker</title>
+      <link>http://alphacoder.xyz/tag/docker/</link>
+      <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/tag/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Elasticsearch</title>
       <link>http://alphacoder.xyz/tag/elasticsearch/</link>
       <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
@@ -45,15 +54,6 @@
       <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/tag/databases/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>http://alphacoder.xyz/tag/docker/</link>
-      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/tag/docker/</guid>
       <description></description>
     </item>
     

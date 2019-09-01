@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© Nicholas Kajoh</copyright>
-    <lastBuildDate>Fri, 01 Feb 2019 16:44:09 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2019 06:18:43 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/tag/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
+      <link>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
+      <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+      
+      <guid>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
+      <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
+Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
+    </item>
     
     <item>
       <title>Deploy microservices on Kubernetes</title>
