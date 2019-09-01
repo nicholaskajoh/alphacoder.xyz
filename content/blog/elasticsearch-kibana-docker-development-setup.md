@@ -3,7 +3,7 @@ title: "Here's a quick Elasticsearch-Kibana setup via Docker for development"
 slug: elasticsearch-kibana-docker-development-setup
 date: 2019-09-01T06:18:43+01:00
 draft: false
-tags: ["Elasticsearch"]
+tags: ["Elasticsearch", "Docker"]
 ---
 
 Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch & Kibana? Here's a quick Elasticsearch-Kibana setup using Docker for your dev environment.
