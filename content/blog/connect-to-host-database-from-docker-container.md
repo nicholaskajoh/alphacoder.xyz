@@ -18,7 +18,7 @@ While the second and third options are similar in the sense that the DB runs loc
 
 Connecting to a host DB from a container via localhost doesn't work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container's localhost as you might imagine. You need to go outside the container by using your computer's internal IP address.
 
-You can point to your host's DB by setting an environment variable in your container for instance.
+You can point to your host's DB by setting the following environment variable in your container for instance.
 
 Docker for Mac/Windows:
 ```
