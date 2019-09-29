@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© Nicholas Kajoh</copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 06:29:54 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 17:37:55 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Authentication strategies in microservices architecture</title>
+      <link>http://alphacoder.xyz/microservices-architecture-authentication/</link>
+      <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/microservices-architecture-authentication/</guid>
+      <description>When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
+In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.</description>
+    </item>
     
     <item>
       <title>How to connect to a host&#39;s database from inside a Docker container</title>
