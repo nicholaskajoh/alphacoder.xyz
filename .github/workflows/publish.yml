@@ -1,0 +1,32 @@
+name: Publish Blog
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone repo and configure Git
+      run: |
+        git clone --recurse-submodules https://$API_TOKEN:x-oauth-basic@github.com/$GITHUB_REPOSITORY.git .
+        git config --global user.email "bot@alphacoder.xyz"
+        git config --global user.name "Mr Robot"
+
+    - name: Install Hugo and run publish script
+      run: |
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+        test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+        test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+        echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+        brew install hugo
+        hugo version
+        
+        mkdir public
+        git worktree add -B gh-pages public origin/gh-pages
+        chmod +x ./publish.sh && ./publish.sh
