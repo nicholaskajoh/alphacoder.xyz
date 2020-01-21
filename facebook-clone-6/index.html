@@ -38,16 +38,13 @@ if (!doNotTrack) {
 
     <meta itemprop="name" content="Build a Facebook clone from scratch with PHP — Part 6">
 <meta itemprop="description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 (this article) Build a Facebook clone from scratch with PHP — Part 7  Relationships are the point of social networks.">
-
-
 <meta itemprop="datePublished" content="2017-09-23T09:07:23&#43;01:00" />
 <meta itemprop="dateModified" content="2017-09-23T09:07:23&#43;01:00" />
-<meta itemprop="wordCount" content="1490">
+<meta itemprop="wordCount" content="1384">
 
 
 
 <meta itemprop="keywords" content="Facebook Clone Series," />
-
 </head>
 
 
@@ -75,10 +72,7 @@ if (!doNotTrack) {
 </div>
 </header>
 <article>
-    
-
-<h1 id="all-parts">All parts</h1>
-
+    <h1 id="all-parts">All parts</h1>
 <ul>
 <li><a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a></li>
 <li><a href="/facebook-clone-2">Build a Facebook clone from scratch with PHP — Part 2</a></li>
@@ -88,186 +82,69 @@ if (!doNotTrack) {
 <li>Build a Facebook clone from scratch with PHP — Part 6 (this article)</li>
 <li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
 </ul>
-
-<p>Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &ldquo;friend&rdquo; model of relationships (I&rsquo;m your friend; you&rsquo;re my friend). There are other models like the popular &ldquo;following-follower&rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we&rsquo;ll explore a very basic approach. Also, we won&rsquo;t be exploiting the relationship model we&rsquo;ll be creating in the workings of our application. Again, it&rsquo;s to keep things simple.</p>
-
+<p>Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &ldquo;friend&rdquo; model of relationships (I'm your friend; you're my friend). There are other models like the popular &ldquo;following-follower&rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we'll explore a very basic approach. Also, we won't be exploiting the relationship model we'll be creating in the workings of our application. Again, it's to keep things simple.</p>
 <h1 id="friend-relationships">Friend relationships</h1>
-
-<p><em>I&rsquo;m your friend and you&rsquo;re my friend</em>. That&rsquo;s the idea for the friend relationship model. It starts by making a friend request. The user at the receiving end may choose to accept or decline the request. If they accept, the user who made the request is added to their friends&rsquo; list and vice versa [or so] thus a relationship exists between the two of them. If a request is declined, nothing happens, basically.</p>
-
-<p>Without further ado, let&rsquo;s implement something of that sort for FaceClone.</p>
-
+<p><em>I'm your friend and you're my friend</em>. That's the idea for the friend relationship model. It starts by making a friend request. The user at the receiving end may choose to accept or decline the request. If they accept, the user who made the request is added to their friends&rsquo; list and vice versa [or so] thus a relationship exists between the two of them. If a request is declined, nothing happens, basically.</p>
+<p>Without further ado, let's implement something of that sort for FaceClone.</p>
 <h1 id="list-users">List users</h1>
-
-<p>We want to provide a list of FaceClone users to a user so that they can add any of them as friends. The right sidebar of the home.php template has an &ldquo;add friend&rdquo; panel. Let&rsquo;s use it. All we need do is list out all our users.</p>
-
-<p>In the &ldquo;add friend&rdquo; section, we&rsquo;ll have…</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;h4&gt;add friend&lt;/h4&gt;
+<p>We want to provide a list of FaceClone users to a user so that they can add any of them as friends. The right sidebar of the home.php template has an &ldquo;add friend&rdquo; panel. Let's use it. All we need do is list out all our users.</p>
+<p>In the &ldquo;add friend&rdquo; section, we'll have…</p>
+<pre><code>&lt;h4&gt;add friend&lt;/h4&gt;
 &lt;?php
-    $sql = &#34;SELECT id, username, (SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION[&#39;user_id&#39;]}) AS is_friend FROM users WHERE id != {$_SESSION[&#39;user_id&#39;]} HAVING is_friend = 0&#34;;
+    $sql = &quot;SELECT id, username, (SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION['user_id']}) AS is_friend FROM users WHERE id != {$_SESSION['user_id']} HAVING is_friend = 0&quot;;
     $result = $conn-&gt;query($sql);
 
     if ($result-&gt;num_rows &gt; 0) {
         ?&gt;&lt;ul&gt;&lt;?php
-
+    
         while($fc_user = $result-&gt;fetch_assoc()) {
             ?&gt;&lt;li&gt;
-                &lt;a href=&#34;profile.php?username=&lt;?php echo $fc_user[&#39;username&#39;]; ?&gt;&#34;&gt;
-                    &lt;?php echo $fc_user[&#39;username&#39;]; ?&gt;
+                &lt;a href=&quot;profile.php?username=&lt;?php echo $fc_user['username']; ?&gt;&quot;&gt;
+                    &lt;?php echo $fc_user['username']; ?&gt;
                 &lt;/a&gt; 
-                &lt;a href=&#34;php/add-friend.php?uid=&lt;?php echo $fc_user[&#39;id&#39;]; ?&gt;&#34;&gt;[add]&lt;/a&gt;
+                &lt;a href=&quot;php/add-friend.php?uid=&lt;?php echo $fc_user['id']; ?&gt;&quot;&gt;[add]&lt;/a&gt;
             &lt;/li&gt;&lt;?php
         }
-
+    
         ?&gt;&lt;/ul&gt;&lt;?php
     } else {
-        ?&gt;&lt;p class=&#34;text-center&#34;&gt;No users to add!&lt;/p&gt;&lt;?php
+        ?&gt;&lt;p class=&quot;text-center&quot;&gt;No users to add!&lt;/p&gt;&lt;?php
     }
-?&gt;</pre></td></tr></table>
-</div>
-</div>
-<p>Now that&rsquo;s some code! Let&rsquo;s break it down bit by bit. We want to list FaceClone users. That&rsquo;s the goal. So why do we have a long and &ldquo;complex&rdquo; SQL query? Can&rsquo;t we just use <code>SELECT * FROM users</code>? We can. But it&rsquo;s not that simple. There are 2 constraints we need to set. First, users that are already friends with the current user (who is looking to get new friends) shouldn&rsquo;t be displayed on the list. That makes sense right? Secondly, the current user shouldn&rsquo;t be on the list. You shouldn&rsquo;t be able to friend yourself, should you? There are other constraints that can be added to make things more fluid as well as &ldquo;waterproof&rdquo;, but considering them would just make things more complicated so we&rsquo;ll just leave things as they are.</p>
-
+?&gt;
+</code></pre>
+<p>Now that's some code! Let's break it down bit by bit. We want to list FaceClone users. That's the goal. So why do we have a long and &ldquo;complex&rdquo; SQL query? Can't we just use <code>SELECT * FROM users</code>? We can. But it's not that simple. There are 2 constraints we need to set. First, users that are already friends with the current user (who is looking to get new friends) shouldn't be displayed on the list. That makes sense right? Secondly, the current user shouldn't be on the list. You shouldn't be able to friend yourself, should you? There are other constraints that can be added to make things more fluid as well as &ldquo;waterproof&rdquo;, but considering them would just make things more complicated so we'll just leave things as they are.</p>
 <p>To achieve the first constraint, we added a column to the users table results called <code>is_friend</code>.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">(SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION[&#39;user_id&#39;]}) AS is_friend</pre></td></tr></table>
-</div>
-</div>
+<pre><code>(SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION['user_id']}) AS is_friend
+</code></pre>
 <p>This column would contain a 0 or 1 for each user record. 0 means not a friend of the current user while 1 means [already] a friend. Using the <code>HAVING</code> keyword, we exclude records with <code>is_friend</code> value of 1. That is&hellip;</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">HAVING is_friend = 0</pre></td></tr></table>
-</div>
-</div>
+<pre><code>HAVING is_friend = 0
+</code></pre>
 <p>The second constraint is achieved using the <code>WHERE</code> clause to exclude the current user from the list thus:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">WHERE id != {$_SESSION[&#39;user_id&#39;]}</pre></td></tr></table>
-</div>
-</div>
-<h1 id="send-a-friend-request">Send a friend request</h1>
-
-<p>In the users list, there&rsquo;s an add friend link beside each username.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;a href=&#34;php/add-friend.php?uid=&lt;?php echo $fc_user[&#39;id&#39;]; ?&gt;&#34;&gt;[add]&lt;/a&gt;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>WHERE id != {$_SESSION['user_id']}
+</code></pre>
+<h1 id="send-a-friendrequest">Send a friend request</h1>
+<p>In the users list, there's an add friend link beside each username.</p>
+<pre><code>&lt;a href=&quot;php/add-friend.php?uid=&lt;?php echo $fc_user['id']; ?&gt;&quot;&gt;[add]&lt;/a&gt;
+</code></pre>
 <p>The links lead to a GET endpoint <code>php/add-friend.php?uid=</code>. Go ahead, as always and create a file in the php folder called add-friend.php with the following code&hellip;</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
-    require_once &#34;../functions.php&#34;;
+<pre><code>&lt;?php
+    require_once &quot;../functions.php&quot;;
     db_connect();
-    $sql = &#34;INSERT INTO friend_requests (user_id, friend_id) VALUES (?, ?)&#34;;
+    $sql = &quot;INSERT INTO friend_requests (user_id, friend_id) VALUES (?, ?)&quot;;
     $statement = $conn-&gt;prepare($sql);
-    $statement-&gt;bind_param(&#39;ii&#39;, $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;]);
+    $statement-&gt;bind_param('ii', $_SESSION['user_id'], $_GET['uid']);
     if ($statement-&gt;execute()) {
-        redirect_to(&#34;/home.php?request_sent=true&#34;);
+        redirect_to(&quot;/home.php?request_sent=true&quot;);
     } else {
-        echo &#34;Error: &#34; . $conn-&gt;error;
-    }</pre></td></tr></table>
-</div>
-</div>
+        echo &quot;Error: &quot; . $conn-&gt;error;
+    }
+</code></pre>
 <p>With a supplied user id in the GET request, we can create a new friend request. The user to whom the request is being made is the friend so their id is stored in <code>friend_id</code>.</p>
-
-<h1 id="accept-decline-friend-requests">Accept/decline friend requests</h1>
-
+<h1 id="acceptdecline-friendrequests">Accept/decline friend requests</h1>
 <p>The user who is requested should be able to see who requested them and choose whether to accept or decline. The left sidebar in home.php provides such a facility. With a little padding, we could arrive at something like this:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;h4&gt;friend requests&lt;/h4&gt;
+<pre><code>&lt;h4&gt;friend requests&lt;/h4&gt;
 &lt;?php
-    $sql = &#34;SELECT * FROM friend_requests WHERE friend_id = {$_SESSION[&#39;user_id&#39;]}&#34;;
+    $sql = &quot;SELECT * FROM friend_requests WHERE friend_id = {$_SESSION['user_id']}&quot;;
     $result = $conn-&gt;query($sql);
 
     if ($result-&gt;num_rows &gt; 0) {
@@ -275,20 +152,20 @@ if (!doNotTrack) {
 
         while($f_request = $result-&gt;fetch_assoc()) {
             ?&gt;&lt;li&gt;&lt;?php
-
-            $u_sql = &#34;SELECT * FROM users WHERE id = {$f_request[&#39;user_id&#39;]} LIMIT 1&#34;;
+                
+            $u_sql = &quot;SELECT * FROM users WHERE id = {$f_request['user_id']} LIMIT 1&quot;;
             $u_result = $conn-&gt;query($u_sql);
             $fr_user = $u_result-&gt;fetch_assoc();
-
-            ?&gt;&lt;a href=&#34;profile.php?username=&lt;?php echo $fr_user[&#39;username&#39;]; ?&gt;&#34;&gt;
-                &lt;?php echo $fr_user[&#39;username&#39;]; ?&gt;
+            
+            ?&gt;&lt;a href=&quot;profile.php?username=&lt;?php echo $fr_user['username']; ?&gt;&quot;&gt;
+                &lt;?php echo $fr_user['username']; ?&gt;
             &lt;/a&gt; 
-
-            &lt;a class=&#34;text-success&#34; href=&#34;php/accept-request.php?uid=&lt;?php echo $fr_user[&#39;id&#39;]; ?&gt;&#34;&gt;
+                
+            &lt;a class=&quot;text-success&quot; href=&quot;php/accept-request.php?uid=&lt;?php echo $fr_user['id']; ?&gt;&quot;&gt;
                 [accept]
             &lt;/a&gt; 
-
-            &lt;a class=&#34;text-danger&#34; href=&#34;php/remove-request.php?uid=&lt;?php echo $fr_user[&#39;id&#39;]; ?&gt;&#34;&gt;
+                
+            &lt;a class=&quot;text-danger&quot; href=&quot;php/remove-request.php?uid=&lt;?php echo $fr_user['id']; ?&gt;&quot;&gt;
                 [decline]
             &lt;/a&gt;
 
@@ -297,120 +174,60 @@ if (!doNotTrack) {
 
         ?&gt;&lt;/ul&gt;&lt;?php
     } else {
-        ?&gt;&lt;p class=&#34;text-center&#34;&gt;No friend requests!&lt;/p&gt;&lt;?php
+        ?&gt;&lt;p class=&quot;text-center&quot;&gt;No friend requests!&lt;/p&gt;&lt;?php
     }
-?&gt;</pre></td></tr></table>
-</div>
-</div>
+?&gt;
+</code></pre>
 <p>In the snippet above, there are two sets of queries. The first pulls out all the friend requests to the current user. The second fetches data (of the requesting user) for each friend request.</p>
-
-<p>There are two links beside each user&rsquo;s username. One to accept and the other to decline. They both lead to different end points. The former to <code>php/accept-request.php?uid=</code> and the latter to <code>php/remove-request.php?uid=</code>.</p>
-
+<p>There are two links beside each user's username. One to accept and the other to decline. They both lead to different end points. The former to <code>php/accept-request.php?uid=</code> and the latter to <code>php/remove-request.php?uid=</code>.</p>
 <p>Remove request:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
-    require_once &#34;../functions.php&#34;;
+<pre><code>&lt;?php
+    require_once &quot;../functions.php&quot;;
     db_connect();
-    $sql = &#34;DELETE FROM friend_requests WHERE user_id = ?&#34;;
+    $sql = &quot;DELETE FROM friend_requests WHERE user_id = ?&quot;;
     $statement = $conn-&gt;prepare($sql);
-    $statement-&gt;bind_param(&#39;i&#39;, $_GET[&#39;uid&#39;]);
+    $statement-&gt;bind_param('i', $_GET['uid']);
     if ($statement-&gt;execute()) {
-        redirect_to(&#34;/profile.php?username=&#34; . $_SESSION[&#39;user_username&#39;]);
+        redirect_to(&quot;/profile.php?username=&quot; . $_SESSION['user_username']);
     } else {
-        echo &#34;Error: &#34; . $conn-&gt;error;
-    }</pre></td></tr></table>
-</div>
-</div>
+        echo &quot;Error: &quot; . $conn-&gt;error;
+    }
+</code></pre>
 <p>Accept request:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
-    require_once &#34;../functions.php&#34;;
+<pre><code>&lt;?php
+    require_once &quot;../functions.php&quot;;
     db_connect();
     // add users to friends table
-    $statement = $conn-&gt;prepare(&#34;INSERT INTO friends (user_id, friend_id) VALUES (?, ?), (?, ?)&#34;);
-    $statement-&gt;bind_param(&#39;iiii&#39;, $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;], $_GET[&#39;uid&#39;], $_SESSION[&#39;user_id&#39;]);
+    $statement = $conn-&gt;prepare(&quot;INSERT INTO friends (user_id, friend_id) VALUES (?, ?), (?, ?)&quot;);
+    $statement-&gt;bind_param('iiii', $_SESSION['user_id'], $_GET['uid'], $_GET['uid'], $_SESSION['user_id']);
     // remove friend request
     if ($statement-&gt;execute()) {
-        redirect_to(&#34;/php/remove-request.php?uid=&#34; . $_GET[&#39;uid&#39;]);
+        redirect_to(&quot;/php/remove-request.php?uid=&quot; . $_GET['uid']);
     } else {
-        echo &#34;Error: &#34; . $conn-&gt;error;
-    }</pre></td></tr></table>
-</div>
-</div>
+        echo &quot;Error: &quot; . $conn-&gt;error;
+    }
+</code></pre>
 <p>Friendship is two-sided. I am your and you are my friend. As such, in accept-request.php we insert two records. In one, the current user is the friend and in the other the requesting user is the friend. While it seems like unnecessary duplication, it proves easier to manage. Also notice we use remove-request.php in accept-request.php to delete a friend request once two users have been added as friends.</p>
-
 <h1 id="unfriend-user">Unfriend user</h1>
-
 <p>Unfriending is as simple as removing the records in the friends table that connects two users.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
-    require_once &#34;../functions.php&#34;;
+<pre><code>&lt;?php
+    require_once &quot;../functions.php&quot;;
     db_connect();
-    $sql = &#34;DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)&#34;;
+    $sql = &quot;DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)&quot;;
     $statement = $conn-&gt;prepare($sql);
-    $statement-&gt;bind_param(&#39;iiii&#39;, $_GET[&#39;uid&#39;], $_SESSION[&#39;user_id&#39;], $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;]);
+    $statement-&gt;bind_param('iiii', $_GET['uid'], $_SESSION['user_id'], $_SESSION['user_id'], $_GET['uid']);
     if ($statement-&gt;execute()) {
-        redirect_to(&#34;/profile.php?username=&#34; . $_SESSION[&#39;user_username&#39;]);
+        redirect_to(&quot;/profile.php?username=&quot; . $_SESSION['user_username']);
     } else {
-        echo &#34;Error: &#34; . $conn-&gt;error;
-    }</pre></td></tr></table>
-</div>
-</div>
-<p>Viola! We&rsquo;ve built friend relationships into FaceClone!</p>
-
-<p>Again, we&rsquo;re not exploiting the relationships we just created, to keep things simple. But it&rsquo;s pretty straightforward to do so. For example, instead of displaying all FaceClone posts on a user&rsquo;s feed, we could display only posts from their friends. We could also make some of a user&rsquo;s profile information only available to their friends. If we had a chat feature, we could allow only friends chat with each other. As a social network grows, this would make more sense. So if you&rsquo;re working on your social network app after this series (I totally encourage it), keep in mind what the relationships you create would imply.</p>
-
-<p><em>At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There&rsquo;s always something to add to make it easier, faster and/or better to use.</em></p>
-
-<p>We&rsquo;ll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!</p>
-
+        echo &quot;Error: &quot; . $conn-&gt;error;
+    }
+</code></pre>
+<p>Viola! We've built friend relationships into FaceClone!</p>
+<p>Again, we're not exploiting the relationships we just created, to keep things simple. But it's pretty straightforward to do so. For example, instead of displaying all FaceClone posts on a user's feed, we could display only posts from their friends. We could also make some of a user's profile information only available to their friends. If we had a chat feature, we could allow only friends chat with each other. As a social network grows, this would make more sense. So if you're working on your social network app after this series (I totally encourage it), keep in mind what the relationships you create would imply.</p>
+<p><em>At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There's always something to add to make it easier, faster and/or better to use.</em></p>
+<p>We'll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!</p>
 <p><strong>The final code for this part is contained in my <a href="https://github.com/nicholaskajoh/faceclone">FaceClone repo</a>. Visit the link and click on the part-6 folder to see progress made so far.</strong></p>
-
 <p>Next: <a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a>.</p>
-
 <p>Previous: <a href="/facebook-clone-5">Build a Facebook clone from scratch with PHP — Part 5</a>.</p>
 
 </article>

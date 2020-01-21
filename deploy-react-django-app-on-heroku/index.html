@@ -28,7 +28,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="Deploy your React-Django app on Heroku" />
 <meta property="og:description" content="This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
 TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
-We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using." />
+ We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/deploy-react-django-app-on-heroku/" />
 <meta property="article:published_time" content="2018-01-30T11:52:00+00:00" />
@@ -38,14 +38,12 @@ We’re going to be deploying the app we setup in the previous post on Heroku. H
 <meta name="twitter:title" content="Deploy your React-Django app on Heroku"/>
 <meta name="twitter:description" content="This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
 TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
-We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using."/>
+ We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using."/>
 
     <meta itemprop="name" content="Deploy your React-Django app on Heroku">
 <meta itemprop="description" content="This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
 TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
-We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.">
-
-
+ We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.">
 <meta itemprop="datePublished" content="2018-01-30T11:52:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-30T11:52:00&#43;00:00" />
 <meta itemprop="wordCount" content="773">
@@ -53,7 +51,6 @@ We’re going to be deploying the app we setup in the previous post on Heroku. H
 
 
 <meta itemprop="keywords" content="React,Django,Heroku," />
-
 </head>
 
 
@@ -83,140 +80,109 @@ We’re going to be deploying the app we setup in the previous post on Heroku. H
 </div>
 </header>
 <article>
-    
-
-<p>This is a follow up to my post on <em><a href="/dead-simple-react-django-setup/">setting up a React-Django web app</a></em>. You can take a quick glance if you’ve not seen it yet.</p>
-
+    <p>This is a follow up to my post on <em><a href="/dead-simple-react-django-setup/">setting up a React-Django web app</a></em>. You can take a quick glance if you’ve not seen it yet.</p>
 <p><strong>TL;DR: The setup is deployed at</strong> <a href="http://react-django.herokuapp.com/"><strong>http://react-django.herokuapp.com</strong></a> <strong>(nothing much there actually) and the code at</strong> <a href="https://github.com/nicholaskajoh/React-Django"><strong>https://github.com/nicholaskajoh/React-Django</strong></a><strong>.</strong></p>
-
-<hr />
-
+<hr>
 <p>We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</p>
-
 <h2 id="heroku-dashboard">Heroku dashboard</h2>
-
 <p>First things first. You need a Heroku account. Head over to <a href="https://heroku.com">Heroku.com</a> and sign up/login, then go to your dashboard at <a href="https://dashboard.heroku.com">https://dashboard.heroku.com</a> and create a new app.</p>
-
-<p><img src="/images/dply-dj/heroku-dashboard.png" alt="" /></p>
-
+<p><img src="/images/dply-dj/heroku-dashboard.png" alt=""></p>
 <h2 id="heroku-cli">Heroku CLI</h2>
-
 <p>There are a couple deploy methods to choose from on Heroku (visit the <em>deploy</em> tab on the app page on the dashboard). Here, we’ll use the <em>Heroku Git</em> method via the <em>Heroku CLI</em>. You can use <a href="https://devcenter.heroku.com/articles/heroku-cli">this guide to learn how to set up Heroku CLI on your OS</a>.</p>
-
 <p>Now, let’s link our project to the Heroku app we created using the Heroku CLI and Git.</p>
-
 <ul>
 <li>Initialize a Git repository in the root folder of the project with <code>git init</code> (you need to have Git installed on your computer).</li>
 <li>Login with your Heroku account on the CLI using <code>heroku login</code>.</li>
 <li>Add the Heroku remote via <code>heroku git:remote -a your-heroku-app</code>.</li>
 </ul>
-
-<p><img src="/images/dply-dj/link-app-to-heroku.png" alt="" /></p>
-
+<p><img src="/images/dply-dj/link-app-to-heroku.png" alt=""></p>
 <p>I already initialized Git in the project prior to this.</p>
-
 <h2 id="heroku-buildpacks">Heroku buildpacks</h2>
-
 <p>The React app build process depends on NPM, so we need Node.js. We also need Python to run Django.</p>
-
 <p>Heroku uses <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> to transform deployed code into slugs which can be executed by Dynos (server instances on Heroku). We’ll be needing two buildpacks. One for Node and another for Python.</p>
-
 <p>Our app would run on a Python server, even though we’ll use Node/NPM to build/bundle the React frontend. So the Python buildpack will be the main one in our config. The main buildpack determines the process type of the Heroku app. You can <a href="https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app">read about multiple buildpacks</a> to understand how they work.</p>
-
 <p>You can add buildpacks via the Heroku CLI. Head back to your terminal and run the following to set/add the buildpacks we need.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">heroku buildpacks:set heroku/python</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">heroku buildpacks:set heroku/python
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Now add the buildpack for Node.js.</p>
+</div><p>Now add the buildpack for Node.js.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">heroku buildpacks:add --index <span style="color:#b452cd">1</span> heroku/nodejs</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">heroku buildpacks:add --index <span style="color:#b452cd">1</span> heroku/nodejs
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>We can see the buildpacks we’ve added by running <code>heroku buildpacks</code>. The last buildpack on the list determines the process type of the app.</p>
-
-<p><img src="/images/dply-dj/buildpacks.png" alt="" /></p>
-
-<h2 id="package-json">package.json</h2>
-
+</div><p>We can see the buildpacks we’ve added by running <code>heroku buildpacks</code>. The last buildpack on the list determines the process type of the app.</p>
+<p><img src="/images/dply-dj/buildpacks.png" alt=""></p>
+<h2 id="packagejson">package.json</h2>
 <p>We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command <code>npm run build</code> in the <em>postinstall</em> hook.</p>
-
-<p><img src="/images/dply-dj/package-json.png" alt="" /></p>
-
+<p><img src="/images/dply-dj/package-json.png" alt=""></p>
 <p>See postinstall under scripts</p>
-
 <p>Notice that I specified Node and NPM versions in <em>engines</em>. The buildpack will install these exact versions. It’s highly recommended you use the versions running on your PC to avoid errors from a version that might be incompatible with your code.</p>
-
 <h2 id="procfile">Procfile</h2>
-
 <p>Create a file called <em><a href="https://devcenter.heroku.com/articles/procfile">Procfile</a></em> (no file extension) in the project root and add the following code:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">release: python manage.py migrate
-web: gunicorn reactdjango.wsgi --log-file -</pre></td></tr></table>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">release: python manage.py migrate
+web: gunicorn reactdjango.wsgi --log-file -
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Replace <code>reactdjango.wsgi</code> with <code>YOUR-DJANGO-APP-NAME.wsgi</code>.</p>
-
-<h2 id="requirements-txt">requirements.txt</h2>
-
+</div><p>Replace <code>reactdjango.wsgi</code> with <code>YOUR-DJANGO-APP-NAME.wsgi</code>.</p>
+<h2 id="requirementstxt">requirements.txt</h2>
 <p>The Python buildpack, after installing Python looks for <em>requirements.txt</em> to install the dependencies in it. Add the following to the requirements file, including all the other dependencies your Django app needs.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">django&gt;=2.1.2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">django&gt;=2.1.2
 gunicorn==19.7.1
-whitenoise==3.3.1</pre></td></tr></table>
+whitenoise==3.3.1
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.</strong></p>
-
+</div><p><strong>PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.</strong></p>
 <p>By the way, you can specify the Python version you want by adding it to a file named <em>runtime.txt</em> in the project root.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">python-3.5.2</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">python-3.5.2
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Configure whitenoise to serve static files by doing the following:</p>
-
+</div><p>Configure whitenoise to serve static files by doing the following:</p>
 <p>Add <em>static root</em> and <em>static files storage</em> in <em>settings.py</em></p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_ROOT = os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;staticfiles&#39;</span>)
-STATICFILES_STORAGE = <span style="color:#cd5555">&#39;whitenoise.django.GzipManifestStaticFilesStorage&#39;</span></code></pre></td></tr></table>
+STATIC_ROOT = os.path.join(BASE_DIR, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">staticfiles</span><span style="color:#cd5555">&#39;</span>)
+STATICFILES_STORAGE = <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">whitenoise.django.GzipManifestStaticFilesStorage</span><span style="color:#cd5555">&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Add whitenoise to your <em>wsgi.py</em> file.</p>
+</div><p>Add whitenoise to your <em>wsgi.py</em> file.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -226,50 +192,45 @@ STATICFILES_STORAGE = <span style="color:#cd5555">&#39;whitenoise.django.GzipMan
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">os</span>
 <span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.core.wsgi</span>
 <span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">get_wsgi_application</span>
 <span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">whitenoise.django</span> <span style="color:#8b008b;font-weight:bold">import</span> DjangoWhiteNoise
 
-os.environ.setdefault(<span style="color:#cd5555">&#34;DJANGO_SETTINGS_MODULE&#34;</span>, <span style="color:#cd5555">&#34;reactdjango.settings&#34;</span>)
+os.environ.setdefault(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">DJANGO_SETTINGS_MODULE</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">reactdjango.settings</span><span style="color:#cd5555">&#34;</span>)
 
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)</code></pre></td></tr></table>
+application = DjangoWhiteNoise(application)
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="allowed-hosts">Allowed hosts</h2>
-
+</div><h2 id="allowed-hosts">Allowed hosts</h2>
 <p>In your <em>settings.py</em>, you need to add your Heroku domain to allowed hosts.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ALLOWED_HOSTS = [<span style="color:#cd5555">&#39;react-django.herokuapp.com&#39;</span>, <span style="color:#cd5555">&#39;127.0.0.1:8000&#39;</span>]</code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ALLOWED_HOSTS = [<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">react-django.herokuapp.com</span><span style="color:#cd5555">&#39;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">127.0.0.1:8000</span><span style="color:#cd5555">&#39;</span>]
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><strong>NB: I personally prefer to add allowed hosts using environment variables e.g with</strong> <a href="https://github.com/theskumar/python-dotenv"><strong>python-dotenv</strong></a><strong>.</strong></p>
-
+</div><p><strong>NB: I personally prefer to add allowed hosts using environment variables e.g with</strong> <a href="https://github.com/theskumar/python-dotenv"><strong>python-dotenv</strong></a><strong>.</strong></p>
 <h2 id="commit-push">Commit, push</h2>
-
 <p>It’s time to commit and push the changes. Phew!</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git add .
 git commit -m <span style="color:#cd5555">&#34;blah blah blah&#34;</span>
-git push heroku master</code></pre></td></tr></table>
+git push heroku master
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>After the build is done and your app has been released, visit <em>YOUR-APP-NAME.herokuapp.com</em>. Neat!</p>
-
+</div><p>After the build is done and your app has been released, visit <em>YOUR-APP-NAME.herokuapp.com</em>. Neat!</p>
 <p><em>Two libraries you might find really helpful when building your Django API are</em> <a href="http://www.django-rest-framework.org/"><em>Django Rest Framework</em></a> <em>and</em> <a href="https://github.com/ottoyiu/django-cors-headers/"><em>Django CORS Headers</em></a><em>. You should check them out!</em></p>
-
 <p>If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.</p>
 
 </article>

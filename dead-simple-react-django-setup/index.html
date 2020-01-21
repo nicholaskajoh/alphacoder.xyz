@@ -44,8 +44,6 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 <meta itemprop="description" content="There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
 TL;DR: https://github.com/nicholaskajoh/React-Django.
 Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.">
-
-
 <meta itemprop="datePublished" content="2018-01-11T14:39:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-11T14:39:00&#43;00:00" />
 <meta itemprop="wordCount" content="584">
@@ -53,7 +51,6 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 
 
 <meta itemprop="keywords" content="React,Django," />
-
 </head>
 
 
@@ -82,18 +79,11 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 </div>
 </header>
 <article>
-    
-
-<p>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.</p>
-
+    <p>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.</p>
 <p><strong>TL;DR: <a href="https://github.com/nicholaskajoh/React-Django">https://github.com/nicholaskajoh/React-Django</a>.</strong></p>
-
 <p>Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.js and everything would work fine.</p>
-
 <h2 id="django">Django</h2>
-
 <p>Follow the steps below to setup Django:</p>
-
 <ul>
 <li>Have Python and pip installed on your computer.</li>
 <li>Install <a href="http://virtualenvwrapper.readthedocs.io/en/latest/install.html">virtualenv and virtualenvwrapper</a> by running <code>pip install virtualenvwrapper</code>.</li>
@@ -105,13 +95,9 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 <li>Add <em>mynewapp</em> to installed apps in <em>settings.py</em>.</li>
 <li>Run app with <code>python manage.py runserver</code>.</li>
 </ul>
-
 <p>See the <a href="https://docs.djangoproject.com/en/dev/topics/install/">official Django installation guide</a> for more info.</p>
-
 <h2 id="react">React</h2>
-
 <p>We’ll be using <a href="https://github.com/facebookincubator/create-react-app">Create React App</a> in this setup. Feel free to use your preferred method of/tool for setting up a React project.</p>
-
 <ul>
 <li>Have Node.js and NPM installed.</li>
 <li>Run <code>npm install -g create-react-app</code>.</li>
@@ -119,27 +105,18 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 <li>Copy/cut all the contents of the React app (in <em>name-of-project</em> folder) and paste in the root of the Django project.**</li>
 <li>Run app with <code>npm start</code> from the project root.</li>
 </ul>
-
 <h2 id="configure">Configure</h2>
-
 <p>If you followed all the instructions above, you should have both React and Django apps in one folder. See the starred step (**) under the <em>React</em> heading. Good!</p>
-
 <p>The React app is the SPA (Single Page App) while the Django app is the API. Let’s do some config, shall we?</p>
-
 <p>The goal is to expose two sets of urls/routes. One for the SPA (e.g <em>example.com</em>, <em>example.com/home</em>, etc) and the other for the API (e.g <em>example.com/api/posts</em>, <em>example.com/api/post/1</em>, etc).</p>
-
 <p>The React-Django app would be deployed on a Python web server, so we can easily achieve this using Django.</p>
-
 <h4 id="step-1-build">Step 1: build</h4>
-
 <p>Run <code>npm run build</code>. This creates a folder named <em>build</em> in the project root containing a production-ready version of the React app.</p>
-
-<h4 id="step-2-settings-py">Step 2: settings.py</h4>
-
+<h4 id="step-2-settingspy">Step 2: settings.py</h4>
 <p>Add the <em>build</em> folder to template directories in <em>settings.py</em> so that Django can load <em>/build/index.html</em> as a template.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -151,39 +128,38 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TEMPLATES = [
     {
         <span style="color:#228b22"># ...</span>
-        <span style="color:#cd5555">&#39;DIRS&#39;</span>: [
-            os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;build&#39;</span>)
+        <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">DIRS</span><span style="color:#cd5555">&#39;</span>: [
+            os.path.join(BASE_DIR, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">build</span><span style="color:#cd5555">&#39;</span>)
         ],
         <span style="color:#228b22"># ...</span>
     }
-]</code></pre></td></tr></table>
+]
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Also add <em>/build/static</em> to static files directory so that <code>collectstatic</code> can copy the css and js files.</p>
+</div><p>Also add <em>/build/static</em> to static files directory so that <code>collectstatic</code> can copy the css and js files.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;build/static&#39;</span>),
-]</code></pre></td></tr></table>
+    os.path.join(BASE_DIR, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">build/static</span><span style="color:#cd5555">&#39;</span>),
+]
+</code></pre></td></tr></table>
 </div>
-</div>
-<h4 id="step-3-urls-py">Step 3: urls.py</h4>
-
+</div><h4 id="step-3-urlspy">Step 3: urls.py</h4>
 <p>Add pattern to return <em>/build/index.html</em> in <em>urls.py</em> as follows:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -193,30 +169,24 @@ TEMPLATES = [
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.contrib</span> <span style="color:#8b008b;font-weight:bold">import</span> admin
 <span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.urls</span> <span style="color:#8b008b;font-weight:bold">import</span> path, re_path
 <span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.views.generic</span> <span style="color:#8b008b;font-weight:bold">import</span> TemplateView
 
 urlpatterns = [
-    path(<span style="color:#cd5555">&#39;admin/&#39;</span>, admin.site.urls),
+    path(<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">admin/</span><span style="color:#cd5555">&#39;</span>, admin.site.urls),
     <span style="color:#228b22"># path(&#39;api/&#39;, include(&#39;mynewapp.urls&#39;)),</span>
-    re_path(<span style="color:#cd5555">&#39;.*&#39;</span>, TemplateView.as_view(template_name=<span style="color:#cd5555">&#39;index.html&#39;</span>)),
-]</code></pre></td></tr></table>
+    re_path(<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">.*</span><span style="color:#cd5555">&#39;</span>, TemplateView.as_view(template_name=<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">index.html</span><span style="color:#cd5555">&#39;</span>)),
+]
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Run Django’s dev server (<code>python manage.py runserver</code>) to test the app.</p>
-
-<h2 id="angular-vue-js-etc">Angular, Vue.js, etc</h2>
-
+</div><p>Run Django’s dev server (<code>python manage.py runserver</code>) to test the app.</p>
+<h2 id="angular-vuejs-etc">Angular, Vue.js, etc</h2>
 <p>As you’ve seen with React, all you need to do is make a build available to Django, then configure Django to handle API requests and React to handle normal web page routes. You can use the same steps to setup Angular, Vue.js etc with Django.</p>
-
 <h2 id="repo">Repo</h2>
-
 <p>Check out the code for this tutorial here: <a href="https://github.com/nicholaskajoh/React-Django">https://github.com/nicholaskajoh/React-Django</a>.</p>
-
 <h2 id="deploy">Deploy</h2>
-
 <p>Deploying the React-Django app is a story for another day. The process largely depends on your hosting environment and workflow. I made <a href="https://alphacoder.xyz/deploy-react-django-app-on-heroku/">a post on deploying it to Heroku</a>.</p>
 
 </article>

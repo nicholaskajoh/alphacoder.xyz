@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Databases on Alpha Coder</title>
@@ -19,7 +19,7 @@
       
       <guid>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
       <description>In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
-Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks.</description>
+Before Adminer, I used pgAdmin III. I hoped it&#39;d be similar to PHPMyAdmin but it wasn&#39;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks.</description>
     </item>
     
   </channel>

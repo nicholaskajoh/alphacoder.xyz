@@ -41,16 +41,13 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support V
     <meta itemprop="name" content="K Means">
 <meta itemprop="description" content="We’ve been talking classification for a while now — from K Nearest Neighbors to Naive Bayes to Support Vector Machines. In this post, we’ll be looking at clustering using an algorithm called K Means. Let’s dive in&hellip;
 The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article)  K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.">
-
-
 <meta itemprop="datePublished" content="2018-05-01T08:44:05&#43;01:00" />
 <meta itemprop="dateModified" content="2018-05-01T08:44:05&#43;01:00" />
-<meta itemprop="wordCount" content="888">
+<meta itemprop="wordCount" content="841">
 
 
 
 <meta itemprop="keywords" content="ML Chops Series," />
-
 </head>
 
 
@@ -78,14 +75,9 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support V
 </div>
 </header>
 <article>
-    
-
-<p>We’ve been talking <strong>classification</strong> for a while now — from <em>K Nearest Neighbors</em> to <em>Naive Bayes</em> to <em>Support Vector Machines</em>. In this post, we’ll be looking at <strong>clustering</strong> using an algorithm called <strong><em>K Means</em></strong>. Let’s dive in&hellip;</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*C2uxvEivKa4FQYimkl6OJA.jpeg" alt="" /></p>
-
+    <p>We’ve been talking <strong>classification</strong> for a while now — from <em>K Nearest Neighbors</em> to <em>Naive Bayes</em> to <em>Support Vector Machines</em>. In this post, we’ll be looking at <strong>clustering</strong> using an algorithm called <strong><em>K Means</em></strong>. Let’s dive in&hellip;</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*C2uxvEivKa4FQYimkl6OJA.jpeg" alt=""></p>
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
-
 <ul>
 <li><a href="/linear-regression">Linear Regression</a></li>
 <li><a href="/k-nearest-neighbors">K Nearest Neighbors</a></li>
@@ -93,115 +85,39 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support V
 <li><a href="/support-vector-machine">Support Vector Machine</a></li>
 <li>K Means (this article)</li>
 </ul>
-
 <p>K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, <em>K</em> based on feature similarity. The algorithm works iteratively to assign each data point to one of <em>K</em> groups. Each group is identified by a centroid (the center point of the group) and data points are grouped with the centroid they’re closest to. The centroids are determined during training through optimization.</p>
-
 <p><strong><em>NB:</em></strong> <em>Unsupervised learning involves training an algorithm with unclassified or unlabeled data. It’s up to the algorithm to figure out a pattern in the data and, in the case of clustering, group similar data points together.</em></p>
-
-<h3 id="how-it-works">How it works</h3>
-
+<h3 id="how-itworks">How it works</h3>
 <ol>
 <li>First, we select the number of groups/clusters, K we want. To figure out what value of K to use, you can visualize the data to see how many groups it can be separated into. This is not always possible because the data can be in more than 3 dimensions. In such a case, you need to have an expectation from your data. Maybe you’re trying to separate good oranges from bad ones. In this case, K = 2.</li>
 <li>Next, we create K centroids. The easiest way to do this is to use the first K feature sets from our data or just do a random selection.</li>
 <li>These centroids are not optimized. The training process involves moving the centroids until they’re at the center of each group, at which point we can quite correctly determine what group a given data point should be in (the centroid to which it’s closest). With our starting centroids, we iterate through the data grouping each point to the centroid it’s closest to. Afterwards, we change the centroids by taking the <strong>mean</strong> of all the data points in each group.</li>
 <li>This process continues repetitively until we notice the centroids are not changing much or at all. This means we’re optimized!</li>
 </ol>
-
 <h3 id="code">Code</h3>
-
 <p>First things first, the data</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np
+<pre><code>import numpy as np
 
 data = np.array([  
     [4, 3], [0, 0], [2, 4], [3, 4], [5, 4], [-2, 1], [-3, 0], [-3, -3], [8, 12], [11, 11], [9, 10]  
-])</pre></td></tr></table>
-</div>
-</div>
+])
+</code></pre>
 <p>Visually, the above data looks like this</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*qsdD6dP7zqBd-jQO2sg0pQ.png" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/800/1*qsdD6dP7zqBd-jQO2sg0pQ.png" alt=""></p>
 <p>From the graph you can easily see the data can be grouped into 3 clusters. Thus <code>K = 3</code>.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">K = 3  
+<pre><code>K = 3  
 tol = 0.001  
-max_iter = 25</pre></td></tr></table>
-</div>
-</div>
+max_iter = 25
+</code></pre>
 <p>Notice the variables <code>tol</code> and <code>max_ter</code>. <code>tol</code> stands for tolerance and represents a percentage (0.001%). As we said earlier, we know we’re optimized when there’s little or no change in the centroids. If the change is greater than 0.001%, we tolerate and keep iterating.</p>
-
 <p>But we can’t keep iterating forever/for too long in the case where we can’t optimize further and the change remains greater than 0.001. So we set <code>max_iter</code>, the maximum number of iterations we’re willing to do.</p>
-
 <p>Next, let’s create the centroids. Their initial values would be the first K data points.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">centroids = {}  
+<pre><code>centroids = {}  
 for i in range(K):  
-    centroids[i] = data[i]</pre></td></tr></table>
-</div>
-</div>
+    centroids[i] = data[i]
+</code></pre>
 <p>Now unto the meat of the algorithm which is the optimization</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">groups = {}  
+<pre><code>groups = {}  
 for i in range(max_iter):  
     # step 1  
     for j in range(K):  
@@ -236,43 +152,25 @@ for i in range(max_iter):
             optimized = False  
             break  
     if optimized:  
-        break</pre></td></tr></table>
-</div>
-</div>
+        break
+</code></pre>
 <p>Let break things down step by step…</p>
-
 <h4 id="step-1">Step 1</h4>
-
 <p>Initialize the <code>groups</code> dictionary with K empty arrays. This ensures <code>groups</code> is empty at the start of each iteration.</p>
-
-<h4 id="step-2-1">Step 2.1</h4>
-
+<h4 id="step-21">Step 2.1</h4>
 <p>Iterate through the data, calculating the euclidean distance of a given feature set from all the centroids.</p>
-
-<h4 id="step-2-2">Step 2.2</h4>
-
+<h4 id="step-22">Step 2.2</h4>
 <p>The feature set is added to the group of the centroid it’s closest to.</p>
-
 <h4 id="step-3">Step 3</h4>
-
 <p>Store the current centroids in <code>old_centroids</code>. The centroids are going to change soon. But we need the old centroids to see how much has changed since the last iteration.</p>
-
 <h4 id="step-4">Step 4</h4>
-
 <p>Calculate the new centroids by taking the average of all the feature sets in each centroid group.</p>
-
 <h4 id="step-5">Step 5</h4>
-
 <p>Check if the change in any of the centroids is greater than 0.001%. If yes, then we’re not yet optimized.</p>
-
 <p>Here’s the full code for your perusal. It includes some lines of matplotlib code to visualize the data.</p>
-
-<script src="https://gist.github.com/nicholaskajoh/a667e20925abfb5f8ad9bf748b5092fe.js"></script>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png" alt="" /></p>
-
+<!-- raw HTML omitted -->
+<p><img src="https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png" alt=""></p>
 <p>Check out the ML Chops repo for a class-based implementation and an example with real world data: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means">https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means</a>.</p>
-
 <p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
 
 </article>

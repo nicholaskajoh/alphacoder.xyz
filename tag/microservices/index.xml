@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Microservices on Alpha Coder</title>
@@ -18,8 +18,8 @@
       <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/microservices-architecture-authentication/</guid>
-      <description>When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
-In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.</description>
+      <description>When moving from monolith to microservices or considering microservices for a greenfield project, it&#39;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
+In this article, I outline the most common auth strategies I&#39;ve come across working with microservices, describing how they work and identifying their pros and cons.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@ In this article, I outline the most common auth strategies I&amp;rsquo;ve come a
       <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
-      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.
+      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&#39;s an Engineer&#39;s nightmare to say the least.
 Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;.</description>
     </item>
     

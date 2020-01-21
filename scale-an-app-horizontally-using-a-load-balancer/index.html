@@ -41,8 +41,6 @@ One way to scale is by optimizing your code. That may involve removing unnecessa
     <meta itemprop="name" content="How to scale an app horizontally using a load balancer">
 <meta itemprop="description" content="As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.
 One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.">
-
-
 <meta itemprop="datePublished" content="2018-06-13T19:59:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-06-13T19:59:00&#43;00:00" />
 <meta itemprop="wordCount" content="1061">
@@ -50,7 +48,6 @@ One way to scale is by optimizing your code. That may involve removing unnecessa
 
 
 <meta itemprop="keywords" content="" />
-
 </head>
 
 
@@ -76,62 +73,33 @@ One way to scale is by optimizing your code. That may involve removing unnecessa
 </div>
 </header>
 <article>
-    
-
-<p>As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.</p>
-
+    <p>As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.</p>
 <p>One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.</p>
-
 <p>There are mainly two ways to go about it — juice up a single server or run your app on multiple servers.</p>
-
 <p>The former is called <strong>vertical scaling</strong> and involves adding more memory, compute and/or storage to your server. This is very easy to accomplish if you run your app on a PaaS or IaaS platform. However, there’s only so much RAM/CPU/SSD etc you can get on one machine. Also, running high-end hardware is usually very expensive.</p>
-
 <p>The latter approach is called <strong>horizontal scaling</strong>. It involves running your application on multiple servers and sharing traffic/load among them. Using this approach has some advantages. For one, you can scale infinitely. You just add more servers. Also, your app becomes <em>highly available</em> because if one server crashes/goes offline, you have other servers to handle incoming requests and/or other workloads.</p>
-
 <p>Horizontal scaling works by placing a <strong>load balancer</strong> in front of your app servers. A load balancer is also a server. Its primary job is to distribute traffic among other servers.</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*YdLgSOulNgyYgdwc8Xh9Iw.png" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/800/1*YdLgSOulNgyYgdwc8Xh9Iw.png" alt=""></p>
 <p>Horizontal scaling (A, B, C and D represent your app servers)</p>
-
 <p>Most cloud providers have one-click-setup load balancers you can use if you run your app in their infrastructure. You may also choose to create your own load balancer using open source software like Nginx, HAProxy, Traefik etc.</p>
-
 <p>In this tutorial, we’re going to scale an app horizontally on DigitalOcean using their cloud load balancer. Let’s do this!</p>
-
 <h2 id="the-hits-app">The hits app</h2>
-
 <p>The app we’ll be scaling in this tutorial is called <strong><em>hits</em></strong>. It’s a simple Flask (Python) app that displays page hits. It counts every page load as a hit, and stores and caches the count in a PostgreSQL and Redis database respectively.</p>
-
 <p><em>hits</em> source code: <a href="https://github.com/nicholaskajoh/hits"><strong>https://github.com/nicholaskajoh/hits</strong></a>.</p>
-
 <p>The <em>hits</em> app is containerized using Docker for easy development and deployment. Knowledge of Python/Flask or Docker is not required to follow through in this tutorial. There are simple instructions provided in the README of the source code to run the app both locally and online.</p>
-
 <h2 id="digitalocean">DigitalOcean</h2>
-
 <p>DigitalOcean is a popular cloud computing platform loved for it’s simplicity and pocket-friendly pricing. We’ll be using their VMs/servers (which they call Droplets) to run the <em>hits</em> app.</p>
-
 <p>You’ll need to create an account on <a href="https://m.do.co/c/e38dd092b1ad">digitalocean.com</a> to get started. Droplets start at $5 per month but coupons abound. You can use my referral link and get $10 free: <a href="https://m.do.co/c/e38dd092b1ad">https://m.do.co/c/e38dd092b1ad</a>. More coupons here: <a href="https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f">https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f</a>.</p>
-
 <h2 id="droplets">Droplets</h2>
-
 <p>Once you’ve signed up, verified your account and redeemed/purchased credits, head over to <a href="https://cloud.digitalocean.com">https://cloud.digitalocean.com</a> and create a new droplet.</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*SAvbqvGB12X0zymRCEbWMw.jpeg" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*SAvbqvGB12X0zymRCEbWMw.jpeg" alt=""></p>
 <p>My droplets are already up 😉</p>
-
 <p>You can choose the configs you want if you know your way around provisioning servers. If you don’t, you may use the options shown in the screenshot below.</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*CyGtHD4hAIVZwZts5kI00A.jpeg" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/800/1*CyGtHD4hAIVZwZts5kI00A.jpeg" alt=""></p>
 <p>Create a droplet</p>
-
 <p>When your servers are up, you’ll need to connect to them via SSH. It’s advisable to generate an SSH key for your computer (<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604">https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604</a>). Alternatively, you can use username and password to login to your droplets.</p>
-
 <h2 id="setup">Setup</h2>
-
 <p>Here are the steps (in summary) to setup <em>hits</em> on your droplet. You may <a href="https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340">use <em>tmux</em></a> to perform the steps simultaneously on multiple servers.</p>
-
 <ul>
 <li>SSH into the droplet as root (user) using <code>ssh root@DROPLET_IP_ADDRESS</code>. Windows users may need an SSH client like PuTTY (<a href="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/">https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/</a>).</li>
 <li>Create a non-root user and login as that user (<a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04</a>)</li>
@@ -140,41 +108,23 @@ One way to scale is by optimizing your code. That may involve removing unnecessa
 <li>Install Docker and Docker Compose (<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04</a>). You can test your installations by running <code>docker --version</code> and <code>docker-compose --version</code>. Ensure the docker service is running: <code>sudo systemctl status docker</code>.</li>
 <li>Build and run the <em>hits</em> application: <code>docker-compose -f docker-compose.prod.yml up --build -d</code> (you should be in the root directory of the project (/www/var/hits). Now when you visit, your droplet’s IP address, you should be greeted by the <em>hits</em> app.</li>
 </ul>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*q_W-QTcla8D4ecyplNtvDw.jpeg" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/800/1*q_W-QTcla8D4ecyplNtvDw.jpeg" alt=""></p>
 <p>The hits app 🙌</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*ci5wRdiGkabNsPyY2xIdaA.png" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*ci5wRdiGkabNsPyY2xIdaA.png" alt=""></p>
 <p>My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)</p>
-
 <h2 id="load-balancer">Load balancer</h2>
-
 <p>Once all your servers are up and running, create a new load balancer.</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*a7406vz2Slq4q19LaRHfHA.jpeg" alt="" /></p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*-KS7Q9NK4S9-FCZP3i5BVQ.jpeg" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*a7406vz2Slq4q19LaRHfHA.jpeg" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*-KS7Q9NK4S9-FCZP3i5BVQ.jpeg" alt=""></p>
 <p>Once your load balancer is up, add your droplets to it.</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*O4PcqIRqWw03v_-Swbc7VQ.jpeg" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/800/1*O4PcqIRqWw03v_-Swbc7VQ.jpeg" alt=""></p>
 <p>Now you can visit your load balancer’s IP address. The APP INSTANCE shows what instance of the application (droplet) a request was routed to.</p>
-
 <p>Let’s go into the settings of the load balancer for a bit…</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*aIdtTYKJAU6ouagaw7GS-Q.jpeg" alt="" /></p>
-
+<p><img src="https://cdn-images-1.medium.com/max/800/1*aIdtTYKJAU6ouagaw7GS-Q.jpeg" alt=""></p>
 <p>Load balancer settings</p>
-
 <p>So DigitalOcean gives us options to customize our load balancer.</p>
-
 <p>We can choose an algorithm for the load balancer to use to route traffic to the droplets. There’s <em>Round Robin</em> and <em>Least Connections</em>. In Round Robin, the requests are routed in a circular order from one droplet to the next. On the other hand, Least Connections routes to the server with the least traffic.</p>
-
-<p>There’s also health checks. You can set an endpoint e.g your app’s home page (<a href="http://0.0.0.0:80">http://0.0.0.0:80</a>) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.</p>
-
+<p>There’s also health checks. You can set an endpoint e.g your app’s home page (http://0.0.0.0:80) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.</p>
 <p>With Sticky sessions, you can glue a user to a particular server. If enabled, after a user’s first request, follow up requests would be routed to the same server.</p>
 
 </article>

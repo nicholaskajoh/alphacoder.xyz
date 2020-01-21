@@ -41,16 +41,13 @@ ML Chops is a series meant to explain the inner workings of these algorithms so 
     <meta itemprop="name" content="Linear Regression">
 <meta itemprop="description" content="What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
 ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself.">
-
-
 <meta itemprop="datePublished" content="2017-12-04T08:44:05&#43;01:00" />
 <meta itemprop="dateModified" content="2017-12-04T08:44:05&#43;01:00" />
-<meta itemprop="wordCount" content="1390">
+<meta itemprop="wordCount" content="1369">
 
 
 
 <meta itemprop="keywords" content="ML Chops Series," />
-
 </head>
 
 
@@ -78,18 +75,11 @@ ML Chops is a series meant to explain the inner workings of these algorithms so 
 </div>
 </header>
 <article>
-    
-
-<p>What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*otatqOkzhxFl4LXtkbDmhQ.jpeg" alt="" /></p>
-
+    <p>What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*otatqOkzhxFl4LXtkbDmhQ.jpeg" alt=""></p>
 <p><strong>ML Chops</strong> is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself. We’ll be using the Python programming language.</p>
-
 <p>There’s a repo on my GitHub where all the code can be found. The url is: <a href="https://github.com/nicholaskajoh/ML_Chops">https://github.com/nicholaskajoh/ML_Chops</a>.</p>
-
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
-
 <ul>
 <li>Linear Regression (this article)</li>
 <li><a href="/k-nearest-neighbors">K Nearest Neighbors</a></li>
@@ -97,98 +87,46 @@ ML Chops is a series meant to explain the inner workings of these algorithms so 
 <li><a href="/support-vector-machine">Support Vector Machine</a></li>
 <li><a href="/k-means">K Means</a></li>
 </ul>
-
 <h1 id="machine-learning">Machine Learning</h1>
-
 <p>I’m assuming Machine Learning is not strange-ish to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.</p>
-
 <p>If all this sounds Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cKxRvEZd3Mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<!-- raw HTML omitted -->
 <p>If you’re good at this point, then let’s talk Linear Regression.</p>
-
 <h1 id="linear-regression-lr">Linear Regression (LR)</h1>
-
 <p>Linear Regression is a simple model for predicting <a href="https://www.mathsisfun.com/definitions/continuous-data.html">continuous data</a>/real-valued outputs. It’s commonly used in subjects like physics, chemistry and math. I first came across it in secondary school practical physics when I had to predict outputs using data recorded during experiments. Sound familiar? 🙄</p>
-
 <p>Imagine you want to predict the price per barrel of crude oil in Nigeria for tomorrow, next week or next month. With data on the prices over the years or past months, you can make a fairly accurate forecast of what the price would be using LR. Keep in mind that we’re assuming the data is correlated (positively or negatively). If it’s not correlated, then LR is probably not a good fit. We’ll talk about other algorithms that can handle nonlinear data later on in the series. For now we need to use linear data else, our predictions would be really really bad. We don’t want bad! 😒</p>
-
 <p>The graph below may help you visualize linear data better…</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*iC2R89E_DBY5fSuQApTwhg.png" alt="" />
+<p><img src="https://cdn-images-1.medium.com/max/800/1*iC2R89E_DBY5fSuQApTwhg.png" alt="">
 <em>Graph of linear data</em></p>
-
 <p>The first thing you probably noticed is how somewhat scattered the data points are. There’s a pattern though, and it’s linear. As the value on the horizontal axis increases, the value on the vertical axis [generally] increases as well (positive correlation).</p>
-
-<h1 id="best-fit-line">Best fit line</h1>
-
+<h1 id="best-fitline">Best fit line</h1>
 <p>There’s a green line that passes through some of the points on the graph. It’s called the <strong>line of best fit</strong>. Ideally this line should pass through all the points. However there is some “error” in the data. This explains why there is some scatteredness in the plot.</p>
-
 <p>The line of best fit is the best possible line you can draw to fit the data. If the data had no errors, this line would pass through every point in the graph. The real world is not that perfect though. There’s always some degree of error. For instance, the price of crude oil generally increases year after year but not by a constant amount. It may increase $3 this year and $1 next year. As a result, we can’t know for sure how much it would cost in the near future, but we can make predictions given the best fit line. But how do we get the best fit line?</p>
-
-<h1 id="equation-of-a-line">Equation of a line</h1>
-
+<h1 id="equation-of-aline">Equation of a line</h1>
 <p>Recall the equation of a straight line? It’s <code>y = mx + c</code>. The best fit line is a straight line so we can use this equation to figure it out.</p>
-
 <p><em>x</em> is the independent variable. In the case of the crude oil example, it’s a year (e.g 2001, 2002, 2003, …, 2010 etc).</p>
-
 <p><em>y</em> is the dependent variable. This is the value we want to predict. Given the prices of oil from 2001 to 2010, we may want to predict the price in 2011, 2012 or even 2018.</p>
-
 <p><em>m</em> is the slope of the line. It’s a number that measures its “steepness”. In other words, it is the change in <em>y</em> for a unit change in <em>x</em> along the line.</p>
-
 <p><em>c</em> is the y intercept. That is, the point where the line crosses the vertical/y-axis.</p>
-
 <p>We know <em>x</em>. We want to find <em>y</em>. We just need to figure out what <em>m</em> and <em>c</em> is for the best fit line (of a given data set) to be able to make predictions… 🤔</p>
-
 <p>It turns out that there are formulas from which we can evaluate the slope, <em>m</em> and y intercept, <em>c.</em> Once we get the slope and y intercept, our model is ready!</p>
-
 <p>Mathematically, our LR model may look like this: <code>y = 2.1x + 1.4</code> where m = 2.1 and c = 1.4</p>
-
 <h1 id="slope">Slope</h1>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*vji1X_3xW3lZsXUY4Vf-cg.png" alt="" />
+<p><img src="https://cdn-images-1.medium.com/max/800/1*vji1X_3xW3lZsXUY4Vf-cg.png" alt="">
 <em>slope formula</em></p>
-
 <p><strong>NB:</strong> the <em>bar</em> symbol represents <strong>mean/average</strong>. E.g “X bar” is the mean of the Xs in the dataset.</p>
-
 <h1 id="intercept">Intercept</h1>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*MtVs1yxkMyl2MpK2Wystbg.png" alt="" />
+<p><img src="https://cdn-images-1.medium.com/max/800/1*MtVs1yxkMyl2MpK2Wystbg.png" alt="">
 <em>y intercept formula</em></p>
-
 <h1 id="simple-example">Simple example</h1>
-
 <p>Say we have the years 2001, 2002, 2003, &hellip;, 2010 and oil prices 43.1, 45.2, 43.7, 49.0, 50.5, 53.7, 53.0, 56.8, 57.2, 60.0. We could come up with a table like so:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x (yrs)   1    2    3    4    5    6    7    8    9    10
+<pre><code>x (yrs)   1    2    3    4    5    6    7    8    9    10
 
-y (in $)  43.1 45.2 43.7 49.0 50.5 53.7 53.0 56.8 57.2 60.0</pre></td></tr></table>
-</div>
-</div>
+y (in $)  43.1 45.2 43.7 49.0 50.5 53.7 53.0 56.8 57.2 60.0
+</code></pre>
 <p>I used 1 to 10 to represent 2001 to 2010 so that calculations would be easier to comprehend. It doesn’t affect anything. You can use the years to do your calculation if that resonates with you. Keep in mind though that the difference of any two consecutive values of x must be 1.</p>
-
 <p>Using code, we can calculate the slope and intercept like so:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np  
+<pre><code>import numpy as np  
 from statistics import mean
 
 xs = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])  
@@ -196,66 +134,34 @@ ys = np.array([43.1, 45.2, 43.7, 49.0, 50.5, 53.7, 53.0, 56.8, 57.2, 60.0])
 
 m = ((mean(xs) * mean(ys)) - mean(xs * ys)) / (mean(xs)**2 - mean(xs * xs))
 
-c = mean(ys) - (m * mean(xs))</pre></td></tr></table>
-</div>
-</div>
+c = mean(ys) - (m * mean(xs))
+</code></pre>
 <h1 id="predict">Predict</h1>
-
 <p>If we want to predict how much oil would cost in 2018, all we need to do is supply <em>x</em> in our model. <em>x</em> would be 18. Thus:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x = 18  
+<pre><code>x = 18  
 y = m * x + c  
-print(y)</pre></td></tr></table>
-</div>
-</div>
+print(y)
+</code></pre>
 <h1 id="model-accuracy">Model accuracy</h1>
-
 <p>Accuracy is very important to Machine Learning developers. Our LR model makes predictions. It’s of interest to us to know how accurate these predictions are. While 80% accuracy of a model that predicts the price of oil for me sounds good enough, it’s probably a deal breaker for my client who buys and sells oil. He’s probably looking for somewhere around 95 to 99.9%. 80% is too much risk!</p>
-
 <p>There are several ways to calculate how accurate a LR model is. We’re going to talk about one of them called R-squared. It’s a statistical measure of how close the data are to the fitted regression line/best fit line. It is also known as the coefficient of determination. With R-squared, we’re simply asking: <em>how good is the best fit line?</em></p>
-
 <p>Of course, if the best fit line is not good enough, then it’s the data to blame (it’s the best fit line duh 😜). Regardless, it means the predictions made using the line would be less accurate.</p>
-
 <p>R-squared is given by the formula:</p>
-
-<p><img src="https://cdn-images-1.medium.com/max/800/1*HTeayn8hGYQzICFcYc3OdA.png" alt="" />
+<p><img src="https://cdn-images-1.medium.com/max/800/1*HTeayn8hGYQzICFcYc3OdA.png" alt="">
 <em>r squared</em></p>
-
 <p>SS stands for <em>Sum of Squared error of</em></p>
-
 <p>y hat line (y with the caret) is the <em>ys of the best fit line ( for each x)</em></p>
-
 <p>y bar is the <em>mean of the ys</em></p>
-
 <p>To calculate the R-squared for a given model:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">best_fit_line = [(m * x) + c for x in xs]
+<pre><code>best_fit_line = [(m * x) + c for x in xs]
 
 SSy_hat = sum([y * y for y in (best_fit_line - ys)]) # y hat line  
 SSy_mean = sum([y * y for y in [y - mean(ys) for y in ys]]) # mean of ys
 
-r2 = 1 - (SSy_hat / SSy_mean)</pre></td></tr></table>
-</div>
-</div>
+r2 = 1 - (SSy_hat / SSy_mean)
+</code></pre>
 <p>The range of r2 is usually 0 to 1 so you can multiply it by 100 to get a percentage.</p>
-
 <p>Don’t forget to check out the repo for the complete Linear Regression code: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression">https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression</a>.</p>
-
 <p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
 
 </article>

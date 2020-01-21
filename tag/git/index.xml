@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on Alpha Coder</title>
@@ -19,7 +19,7 @@
       
       <guid>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
       <description>AWS provides you with a .pem file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…
-1. Copy private key in PEM to .ssh folder 1  $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2   2. Generate and save public key 1  $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.</description>
+1. Copy private key in PEM to .ssh folder $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2  2. Generate and save public key $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.</description>
     </item>
     
     <item>
@@ -29,7 +29,7 @@
       
       <guid>http://alphacoder.xyz/git-workflows/</guid>
       <description>Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.
-In this post, we’ll be discussing two popular Git workflows you should know — Gitflow and the Forking workflow.</description>
+In this post, we’ll be discussing two popular Git workflows you should know — Gitflow and the Forking workflow. Let’s dig right in!</description>
     </item>
     
   </channel>

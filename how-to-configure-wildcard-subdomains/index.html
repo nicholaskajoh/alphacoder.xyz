@@ -41,16 +41,13 @@ To configure wildcard subdomains, all you need to do is add a &ldquo;match all&r
     <meta itemprop="name" content="How to configure wildcard subdomains">
 <meta itemprop="description" content="Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as team-name.awesomeapp.com or org-name.beta.awesomeapp.com. These subdomains are variable, meaning that they are not predefined and can contain any valid domain name characters.
 To configure wildcard subdomains, all you need to do is add a &ldquo;match all&rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application.">
-
-
 <meta itemprop="datePublished" content="2019-04-02T04:08:11&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-02T04:08:11&#43;00:00" />
-<meta itemprop="wordCount" content="298">
+<meta itemprop="wordCount" content="280">
 
 
 
 <meta itemprop="keywords" content="" />
-
 </head>
 
 
@@ -77,67 +74,35 @@ To configure wildcard subdomains, all you need to do is add a &ldquo;match all&r
 </header>
 <article>
     <p>Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as <strong>team-name.awesomeapp.com</strong> or <strong>org-name.beta.awesomeapp.com</strong>. These subdomains are variable, meaning that they are not predefined and can contain any valid <a href="https://en.wikipedia.org/wiki/Domain_name">domain name</a> characters.</p>
-
-<p>To configure wildcard subdomains, all you need to do is add a &ldquo;match all&rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app&rsquo;s url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization&rsquo;s details for instance.</p>
-
-<p>Here&rsquo;s a sample application that displays avatars from <a href="http://avatars.adorable.io">Adorable Avatars</a> based on the subdomain you use.</p>
-
-<p><img src="/images/wcsubd/demo.gif" alt="" /></p>
-
+<p>To configure wildcard subdomains, all you need to do is add a &ldquo;match all&rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app's url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization's details for instance.</p>
+<p>Here's a sample application that displays avatars from <a href="http://avatars.adorable.io">Adorable Avatars</a> based on the subdomain you use.</p>
+<p><img src="/images/wcsubd/demo.gif" alt=""></p>
 <p>Visit <code>some-random-name.wildcard-subdomains.alphacoder.xyz</code> where <code>some-random-name</code> can be anything you like and watch the avatars change!</p>
-
 <p>To use wildcard subdomains, go to your domain registrar and create a &ldquo;match all&rdquo; CNAME record</p>
-
-<p><img src="/images/wcsubd/dns-conf.jpg" alt="" /></p>
-
+<p><img src="/images/wcsubd/dns-conf.jpg" alt=""></p>
 <p>If you want subdomains like <code>some-random-name.alphacoder.xyz</code>, feel free to skip the <code>.wildcard-subdomains</code> so that you have only <code>*</code> in the host field.</p>
-
 <p>The web page has just a few lines of code</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;!DOCTYPE html&gt;
-&lt;html lang=&#34;en&#34;&gt;
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
   &lt;title&gt;Wildcard subdomains&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
-  &lt;h1 id=&#34;subdomain&#34;&gt;&lt;/h1&gt;
-  &lt;img id=&#34;avatar&#34;&gt;
+  &lt;h1 id=&quot;subdomain&quot;&gt;&lt;/h1&gt;
+  &lt;img id=&quot;avatar&quot;&gt;
 
   &lt;script&gt;
-    var subdomain = window.location.hostname.split(&#39;.&#39;)[0];
-    document.getElementById(&#39;subdomain&#39;).textContent = subdomain;
-    var avatarSrc = &#39;https://api.adorable.io/avatars/285/&#39; + subdomain + &#39;.png&#39;;
-    document.getElementById(&#39;avatar&#39;).src = avatarSrc;
+    var subdomain = window.location.hostname.split('.')[0];
+    document.getElementById('subdomain').textContent = subdomain;
+    var avatarSrc = 'https://api.adorable.io/avatars/285/' + subdomain + '.png';
+    document.getElementById('avatar').src = avatarSrc;
   &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</pre></td></tr></table>
-</div>
-</div>
+&lt;/html&gt;
+</code></pre>
 <p>The most important part of the code is line 12, which gets the subdomain from the hostname (<code>window.location.hostname.split('.')[0]</code>).</p>
-
-<p>In development, you can use <code>lvh.me</code> (e.g <code>some-random-name.lvh.me:8080</code>) to test your application instead of <code>127.0.0.1</code>. <code>some-random-name.localhost</code> also works on browsers I&rsquo;ve tested.</p>
+<p>In development, you can use <code>lvh.me</code> (e.g <code>some-random-name.lvh.me:8080</code>) to test your application instead of <code>127.0.0.1</code>. <code>some-random-name.localhost</code> also works on browsers I've tested.</p>
 
 </article>
 

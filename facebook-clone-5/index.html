@@ -38,16 +38,13 @@ if (!doNotTrack) {
 
     <meta itemprop="name" content="Build a Facebook clone from scratch with PHP — Part 5">
 <meta itemprop="description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile.">
-
-
 <meta itemprop="datePublished" content="2017-09-20T09:07:20&#43;01:00" />
 <meta itemprop="dateModified" content="2017-09-20T09:07:20&#43;01:00" />
-<meta itemprop="wordCount" content="711">
+<meta itemprop="wordCount" content="672">
 
 
 
 <meta itemprop="keywords" content="Facebook Clone Series," />
-
 </head>
 
 
@@ -75,10 +72,7 @@ if (!doNotTrack) {
 </div>
 </header>
 <article>
-    
-
-<h1 id="all-parts">All parts</h1>
-
+    <h1 id="all-parts">All parts</h1>
 <ul>
 <li><a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a></li>
 <li><a href="/facebook-clone-2">Build a Facebook clone from scratch with PHP — Part 2</a></li>
@@ -88,155 +82,74 @@ if (!doNotTrack) {
 <li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
 <li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
 </ul>
-
-<p>Every Facebook user has a profile. Let&rsquo;s create profile pages for FaceClone users!</p>
-
-<p><img src="/images/fbc5/faceclone-profile.png" alt="" />
+<p>Every Facebook user has a profile. Let's create profile pages for FaceClone users!</p>
+<p><img src="/images/fbc5/faceclone-profile.png" alt="">
 <em>FaceClone profile page</em></p>
-
-<h1 id="but-before-i-forget">But before I forget&hellip;</h1>
-
-<p>Recall that we used id of <em>zero</em> for the user_id fields in our posts table. That was because we didn&rsquo;t have any users. Now that we do, let&rsquo;s change things a bit.
+<h1 id="but-before-iforget">But before I forget&hellip;</h1>
+<p>Recall that we used id of <em>zero</em> for the user_id fields in our posts table. That was because we didn't have any users. Now that we do, let's change things a bit.
 The query in create-post.php becomes&hellip;</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
-$sql = &#34;INSERT INTO posts (content, user_id) VALUES (?, ?)&#34;;
+<pre><code>...
+$sql = &quot;INSERT INTO posts (content, user_id) VALUES (?, ?)&quot;;
 ...
-$statement-&gt;bind_param(&#39;si&#39;, $_POST[&#39;content&#39;], $_SESSION[&#39;user_id&#39;]);
-...</pre></td></tr></table>
-</div>
-</div>
+$statement-&gt;bind_param('si', $_POST['content'], $_SESSION['user_id']);
+...
+</code></pre>
 <p>We simply change the user_id value to the user_id session which is created when a user logs in.</p>
-
 <p><strong>NB:</strong> Since registration now works in our application, you may delete the dummy user accounts and use the registration form for account/user creation.</p>
-
 <h1 id="so">So&hellip;</h1>
-
-<p>Isn&rsquo;t there just one profile page (i.e profile.php)? How do we create profile pages for &ldquo;all&rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user&rsquo;s username as a parameter in the profile url and use it (the username) to pull the user&rsquo;s data from the DB. E.g example.com/profile.php?username=nicholas.</p>
-
-<p>Since the username is sent through a GET request, we can retrieve it with the <code>$_GET</code> superglobal using <code>$_GET['username']</code>. Let&rsquo;s write some code:</p>
-
+<p>Isn't there just one profile page (i.e profile.php)? How do we create profile pages for &ldquo;all&rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user's username as a parameter in the profile url and use it (the username) to pull the user's data from the DB. E.g example.com/profile.php?username=nicholas.</p>
+<p>Since the username is sent through a GET request, we can retrieve it with the <code>$_GET</code> superglobal using <code>$_GET['username']</code>. Let's write some code:</p>
 <p>Atop profile.php…</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
-$sql = &#34;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&#34;;
+<pre><code>...
+$sql = &quot;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&quot;;
 $statement = $conn-&gt;prepare($sql);
-$statement-&gt;bind_param(&#39;s&#39;, $_GET[&#39;username&#39;]);
+$statement-&gt;bind_param('s', $_GET['username']);
 $statement-&gt;execute();
 $statement-&gt;store_result();
 $statement-&gt;bind_result($id, $username, $status, $profile_image_url, $location);
 $statement-&gt;fetch();
-...</pre></td></tr></table>
-</div>
-</div>
-<p>First, we get the username, then run a query to fetch a user using their username and that&rsquo;s just about it. <code>$id</code>, <code>$username</code>, <code>$status</code>, <code>$profile_image_url</code> and <code>$location</code> variables can now be echoed out where we need them in the page.</p>
-
+...
+</code></pre>
+<p>First, we get the username, then run a query to fetch a user using their username and that's just about it. <code>$id</code>, <code>$username</code>, <code>$status</code>, <code>$profile_image_url</code> and <code>$location</code> variables can now be echoed out where we need them in the page.</p>
 <h1 id="user-posts">User posts</h1>
-
 <p>Then again, we want to show only the posts belonging to the user whose profile is being displayed. Taking a cue from the home page which displays the posts of all users across FaceClone (part 3), we can create a new sql query:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$user_posts_sql = &#34;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&#34;;</pre></td></tr></table>
-</div>
-</div>
-<p>In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. <code>$id</code> is the user&rsquo;s id got from the query to fetch a user&rsquo;s record.</p>
-
+<pre><code>$user_posts_sql = &quot;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&quot;;
+</code></pre>
+<p>In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. <code>$id</code> is the user's id got from the query to fetch a user's record.</p>
 <h1 id="edit-profile">Edit profile</h1>
-
-<p>Lastly, we need to allow users to make changes to their profiles. There&rsquo;s a little form in profile.php we can use to update status and location. Let&rsquo;s make it work!
+<p>Lastly, we need to allow users to make changes to their profiles. There's a little form in profile.php we can use to update status and location. Let's make it work!
 The form…</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">...
-&lt;form method=&#34;post&#34; action=&#34;php/edit-profile.php&#34;&gt;
-&lt;div class=&#34;form-group&#34;&gt;
-    &lt;input class=&#34;form-control&#34; type=&#34;text&#34; name=&#34;status&#34; placeholder=&#34;Status&#34; value=&#34;&#34;&gt;
+<pre><code>...
+&lt;form method=&quot;post&quot; action=&quot;php/edit-profile.php&quot;&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; name=&quot;status&quot; placeholder=&quot;Status&quot; value=&quot;&quot;&gt;
 &lt;/div&gt;
-&lt;div class=&#34;form-group&#34;&gt;
-    &lt;input class=&#34;form-control&#34; type=&#34;text&#34; name=&#34;location&#34; placeholder=&#34;Location&#34; value=&#34;&#34;&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; name=&quot;location&quot; placeholder=&quot;Location&quot; value=&quot;&quot;&gt;
 &lt;/div&gt;
-&lt;div class=&#34;form-group&#34;&gt;
-    &lt;input class=&#34;btn btn-primary&#34; type=&#34;submit&#34; value=&#34;Save&#34;&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input class=&quot;btn btn-primary&quot; type=&quot;submit&quot; value=&quot;Save&quot;&gt;
 &lt;/div&gt;
 &lt;/form&gt;
-...</pre></td></tr></table>
-</div>
-</div>
+...
+</code></pre>
 <p>Now create a file in the php folder called edit-profile.php with the following code:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;?php
-    require_once &#34;../functions.php&#34;;
+<pre><code>&lt;?php
+    require_once &quot;../functions.php&quot;;
     db_connect();
-    $sql = &#34;UPDATE users SET status = ?, location = ? WHERE id = ?&#34;;
+    $sql = &quot;UPDATE users SET status = ?, location = ? WHERE id = ?&quot;;
     $statement = $conn-&gt;prepare($sql);
-    $statement-&gt;bind_param(&#39;ssi&#39;, $_POST[&#39;status&#39;], $_POST[&#39;location&#39;], $_SESSION[&#39;user_id&#39;]);
+    $statement-&gt;bind_param('ssi', $_POST['status'], $_POST['location'], $_SESSION['user_id']);
     if ($statement-&gt;execute()) {
-        redirect_to(&#34;/profile.php?username={$_SESSION[&#39;user_username&#39;]}&#34;);
+        redirect_to(&quot;/profile.php?username={$_SESSION['user_username']}&quot;);
     } else {
-        echo &#34;Error: &#34; . $conn-&gt;error;
-    }</pre></td></tr></table>
-</div>
-</div>
-<p>You&rsquo;re probably used to the above snippet by now. We update the status and location of a user using the <code>UPDATE</code> sql statement then redirect back to profile.php. Sweet!</p>
-
-<p>&ast;drops mic&ast;</p>
-
+        echo &quot;Error: &quot; . $conn-&gt;error;
+    }
+</code></pre>
+<p>You're probably used to the above snippet by now. We update the status and location of a user using the <code>UPDATE</code> sql statement then redirect back to profile.php. Sweet!</p>
+<p>*drops mic*</p>
 <p><strong>The final code for this part is contained in my <a href="https://github.com/nicholaskajoh/faceclone">FaceClone repo</a>. Visit the link and click on the part-5 folder to see progress made so far.</strong></p>
-
 <p>Next: <a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a>.</p>
-
 <p>Previous: <a href="/facebook-clone-4">Build a Facebook clone from scratch with PHP — Part 4</a>.</p>
 
 </article>

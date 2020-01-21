@@ -47,8 +47,6 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 Bayes formula
 Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
 The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:">
-
-
 <meta itemprop="datePublished" content="2017-12-26T08:44:05&#43;01:00" />
 <meta itemprop="dateModified" content="2017-12-26T08:44:05&#43;01:00" />
 <meta itemprop="wordCount" content="1012">
@@ -56,7 +54,6 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 
 
 <meta itemprop="keywords" content="ML Chops Series," />
-
 </head>
 
 
@@ -84,19 +81,12 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 </div>
 </header>
 <article>
-    
-
-<p><img src="/images/mlc-nb/nb-meme.jpeg" alt="" /></p>
-
+    <p><img src="/images/mlc-nb/nb-meme.jpeg" alt=""></p>
 <p>Naive Bayes is a classifier just like <a href="/k-nearest-neighbors">K Nearest Neighbors</a>. The Naive Bayes algorithm applies the popular <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes Theorem</a> (used to calculate conditional probability) given by the formula:</p>
-
-<p><img src="/images/mlc-nb/bayes-formula.png" alt="" />
+<p><img src="/images/mlc-nb/bayes-formula.png" alt="">
 <em>Bayes formula</em></p>
-
 <p>Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: <a href="https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem">https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem</a>.</p>
-
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
-
 <ul>
 <li><a href="/linear-regression">Linear Regression</a></li>
 <li><a href="/k-nearest-neighbors">K Nearest Neighbors</a></li>
@@ -104,99 +94,78 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 <li><a href="/support-vector-machine">Support Vector Machine</a></li>
 <li><a href="/k-means">K Means</a></li>
 </ul>
-
 <p>Let’s consider the data we used in the last post on KNNs:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">height (ft)    weight (kg)    sex  
-6.3            50.2           Male  
-5.9            79.7           Female  
-5.1            61.4           Female  
-5.6            47.1           Male  
-5.1            59.8           Female</pre></td></tr></table>
-</div>
-</div>
-<p>In Naive Bayes, we calculate the probabilities of an input feature set being in each of the classes in the data and return the class with the highest probability as the predicted output.</p>
-
-<p>Our goal with the data in the table above is to determine whether an individual is <em>Male</em> or <em>Female</em>. Given the height and weight of a person e.g <code>[height, weight] -&gt; [5.8, 82.1]</code>, a Naive Bayes classifier calculates the probabilities of the person being a Male and a Female e.g <code>[(“Male”, 7.92248128417e-103), (“Female”, 0.00355626444241)]</code> then returns the class with the highest probability (in this example <code>“Female”</code>).</p>
-
-<p>How do we find the probabilities for each class?</p>
-
-<p>You guessed right! <strong>Bayes formula</strong>.</p>
-
-<p>Let’s put the formula into context for better understanding:</p>
-
-<p><img src="/images/mlc-nb/male-person-prob.png" alt="" />
-<em>Probability that a person is Male</em></p>
-
-<p>Substitute <em>Female</em> for <em>Male</em> in the formula and you have the probability that a person is female.</p>
-
-<p>Let’s explain terms in the equation briefly:</p>
-
-<ul>
-<li><strong>P(Male | height &amp; weight)</strong> is the probability that a person is Male given their height and weight (better put: given all the features provided in the data). This is what we’re looking for.</li>
-<li><strong>P(Male)</strong> is the probability of selecting a Male person from the data.</li>
-<li><strong>P(height | Male)</strong> and <strong>P(weight | Male)</strong> equate to <strong>P(B|A)</strong> [from the first formula]. <strong>P(height | Male)</strong> is the probability of getting the height of a person given that they are Male (same for the weight). Essentially we want to find the percentage of Males with the same height as the person we’re classifying. This not feasible with our data however because both height and weight are continuous. Besides, it would be very costly when we have a large amount of training data (we’d have to run through the data every time to count the number of people with same height and weight with the person being classified). Thankfully, we have the <strong>Probability Density Function (PDF)</strong> to help us with this. We’ll use PDF to determine both <strong>P(height | Male)</strong> and <strong>P(weight | Male)</strong> in a bit.</li>
-<li><strong>P(height &amp; weight)</strong> or better put <strong>P(all features)</strong> is the <a href="https://en.wikipedia.org/wiki/Marginal_distribution">marginal probability</a>. For our classification, it’s not really useful to us because it’s the denominator for all class probabilities. We’re actually interested in finding the class with the highest probability and not the actually probability figure like 0.9 for instance. We might as well not use it since we’re dividing by it in every class probability calculation. It doesn’t change anything. We’ll still get the class with the highest probability.</li>
-</ul>
-
-<h1 id="p-class">P(Class)</h1>
-
-<p>The probability of selecting a person from a given class is the simplest calculation to perform. From the data table, we can see that there are 5 samples. 2 are Male. Thus <strong>P(Male)</strong> = <sup>2</sup>&frasl;<sub>5</sub>. And 3 are Female. Thus <strong>P(Female)</strong> = <sup>3</sup>&frasl;<sub>5</sub>.</p>
-
-<h1 id="the-pdf">The PDF</h1>
-
-<p>The <a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a> can be computed using the following formula:</p>
-
-<p><img src="/images/mlc-nb/pdf.png" alt="" />
-<em>The PDF</em></p>
-
-<p>Substitute Female with Male and/or weight with height to calculate other PDFs.</p>
-
-<p>Using PDF, we assume:</p>
-
-<ul>
-<li>Each feature is uncorrelated from the others (i.e height is independent of weight for instance).</li>
-<li>The values of the features (i.e heights, weights) are <a href="https://www.thoughtco.com/what-is-normal-distribution-3026707">normally distributed</a>.</li>
-</ul>
-
-<p>These are assumptions and are not completely true most times for a given data set. As such, we’re being “naive” by assuming.</p>
-
-<h1 id="code">Code</h1>
-
-<p>First things first! The data.</p>
-
-<p>For convenience, I’m using 3 arrays:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">height (ft)    weight (kg)    sex  
+6.3            50.2           Male  
+5.9            79.7           Female  
+5.1            61.4           Female  
+5.6            47.1           Male  
+5.1            59.8           Female
+</code></pre></td></tr></table>
+</div>
+</div><p>In Naive Bayes, we calculate the probabilities of an input feature set being in each of the classes in the data and return the class with the highest probability as the predicted output.</p>
+<p>Our goal with the data in the table above is to determine whether an individual is <em>Male</em> or <em>Female</em>. Given the height and weight of a person e.g <code>[height, weight] -&gt; [5.8, 82.1]</code>, a Naive Bayes classifier calculates the probabilities of the person being a Male and a Female e.g <code>[(“Male”, 7.92248128417e-103), (“Female”, 0.00355626444241)]</code> then returns the class with the highest probability (in this example <code>“Female”</code>).</p>
+<p>How do we find the probabilities for each class?</p>
+<p>You guessed right! <strong>Bayes formula</strong>.</p>
+<p>Let’s put the formula into context for better understanding:</p>
+<p><img src="/images/mlc-nb/male-person-prob.png" alt="">
+<em>Probability that a person is Male</em></p>
+<p>Substitute <em>Female</em> for <em>Male</em> in the formula and you have the probability that a person is female.</p>
+<p>Let’s explain terms in the equation briefly:</p>
+<ul>
+<li><strong>P(Male | height &amp; weight)</strong> is the probability that a person is Male given their height and weight (better put: given all the features provided in the data). This is what we’re looking for.</li>
+<li><strong>P(Male)</strong> is the probability of selecting a Male person from the data.</li>
+<li><strong>P(height | Male)</strong> and <strong>P(weight | Male)</strong> equate to <strong>P(B|A)</strong> [from the first formula]. <strong>P(height | Male)</strong> is the probability of getting the height of a person given that they are Male (same for the weight). Essentially we want to find the percentage of Males with the same height as the person we’re classifying. This not feasible with our data however because both height and weight are continuous. Besides, it would be very costly when we have a large amount of training data (we’d have to run through the data every time to count the number of people with same height and weight with the person being classified). Thankfully, we have the <strong>Probability Density Function (PDF)</strong> to help us with this. We’ll use PDF to determine both <strong>P(height | Male)</strong> and <strong>P(weight | Male)</strong> in a bit.</li>
+<li><strong>P(height &amp; weight)</strong> or better put <strong>P(all features)</strong> is the <a href="https://en.wikipedia.org/wiki/Marginal_distribution">marginal probability</a>. For our classification, it’s not really useful to us because it’s the denominator for all class probabilities. We’re actually interested in finding the class with the highest probability and not the actually probability figure like 0.9 for instance. We might as well not use it since we’re dividing by it in every class probability calculation. It doesn’t change anything. We’ll still get the class with the highest probability.</li>
+</ul>
+<h1 id="pclass">P(Class)</h1>
+<p>The probability of selecting a person from a given class is the simplest calculation to perform. From the data table, we can see that there are 5 samples. 2 are Male. Thus <strong>P(Male)</strong> = 2/5. And 3 are Female. Thus <strong>P(Female)</strong> = 3/5.</p>
+<h1 id="the-pdf">The PDF</h1>
+<p>The <a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a> can be computed using the following formula:</p>
+<p><img src="/images/mlc-nb/pdf.png" alt="">
+<em>The PDF</em></p>
+<p>Substitute Female with Male and/or weight with height to calculate other PDFs.</p>
+<p>Using PDF, we assume:</p>
+<ul>
+<li>Each feature is uncorrelated from the others (i.e height is independent of weight for instance).</li>
+<li>The values of the features (i.e heights, weights) are <a href="https://www.thoughtco.com/what-is-normal-distribution-3026707">normally distributed</a>.</li>
+</ul>
+<p>These are assumptions and are not completely true most times for a given data set. As such, we’re being “naive” by assuming.</p>
+<h1 id="code">Code</h1>
+<p>First things first! The data.</p>
+<p>For convenience, I’m using 3 arrays:</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">numpy</span> <span style="color:#8b008b;font-weight:bold">as</span> <span style="color:#008b45;text-decoration:underline">np</span>
 
 <span style="color:#228b22"># data  </span>
 heights = np.array([<span style="color:#b452cd">6.3</span>, <span style="color:#b452cd">5.9</span>, <span style="color:#b452cd">5.1</span>, <span style="color:#b452cd">5.6</span>, <span style="color:#b452cd">5.1</span>])  
 weights = np.array([<span style="color:#b452cd">50.2</span>, <span style="color:#b452cd">79.7</span>, <span style="color:#b452cd">61.4</span>, <span style="color:#b452cd">47.1</span>, <span style="color:#b452cd">59.8</span>])  
-classes = np.array([<span style="color:#cd5555">&#34;Male&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span> , <span style="color:#cd5555">&#34;Male&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span>])</code></pre></td></tr></table>
+classes = np.array([<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Female</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Female</span><span style="color:#cd5555">&#34;</span> , <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Female</span><span style="color:#cd5555">&#34;</span>])
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Next, let’s find P(Class) for Male and Female:</p>
+</div><p>Next, let’s find P(Class) for Male and Female:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -207,25 +176,24 @@ classes = np.array([<span style="color:#cd5555">&#34;Male&#34;</span>, <span sty
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">males_count = <span style="color:#b452cd">0</span>  
 females_count = <span style="color:#b452cd">0</span>  
 sample_size = <span style="color:#658b00">len</span>(classes)  
 <span style="color:#8b008b;font-weight:bold">for</span> x <span style="color:#8b008b">in</span> classes:  
-    <span style="color:#8b008b;font-weight:bold">if</span> x == <span style="color:#cd5555">&#34;Male&#34;</span>:  
+    <span style="color:#8b008b;font-weight:bold">if</span> x == <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>:  
         males_count += <span style="color:#b452cd">1</span>  
     <span style="color:#8b008b;font-weight:bold">else</span>:  
         females_count += <span style="color:#b452cd">1</span>  
 p_male = males_count / sample_size  
-p_female = females_count / sample_size</code></pre></td></tr></table>
+p_female = females_count / sample_size
+</code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="pdfs">PDFs</h1>
-
+</div><h1 id="pdfs">PDFs</h1>
 <p>We need to find the various means and variances required to compute the PDFs:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -247,14 +215,14 @@ p_female = females_count / sample_size</code></pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">heights_of_males = []  
 weights_of_males = []  
 heights_of_females = []  
 weights_of_females = []
 
 <span style="color:#8b008b;font-weight:bold">for</span> i <span style="color:#8b008b">in</span> <span style="color:#658b00">range</span>(sample_size):  
-    <span style="color:#8b008b;font-weight:bold">if</span> classes[i] == <span style="color:#cd5555">&#34;Male&#34;</span>:  
+    <span style="color:#8b008b;font-weight:bold">if</span> classes[i] == <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>:  
         heights_of_males.append(heights[i])  
         weights_of_males.append(weights[i])  
     <span style="color:#8b008b;font-weight:bold">else</span>:
@@ -268,28 +236,27 @@ mean_weight_females = np.mean(weights_of_females)
 var_height_males = np.var(heights_of_males)  
 var_weight_males = np.var(weights_of_males)  
 var_height_females = np.var(heights_of_females)  
-var_weight_females = np.var(weights_of_females)</code></pre></td></tr></table>
+var_weight_females = np.var(weights_of_females)
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Now to the PDF formula in code&hellip;</p>
-
+</div><p>Now to the PDF formula in code&hellip;</p>
 <p>Let’s define a function as we’ll use it severally:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">the_pdf</span>(x, mean, variance):  
     pd = <span style="color:#b452cd">1</span> / (np.sqrt(<span style="color:#b452cd">2</span> * np.pi * variance)) * np.exp((-(x - mean)**<span style="color:#b452cd">2</span>) / (<span style="color:#b452cd">2</span> * variance))  
-    <span style="color:#8b008b;font-weight:bold">return</span> pd</code></pre></td></tr></table>
+    <span style="color:#8b008b;font-weight:bold">return</span> pd
+</code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="predict">Predict</h1>
+</div><h1 id="predict">Predict</h1>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -309,7 +276,7 @@ var_weight_females = np.var(weights_of_females)</code></pre></td></tr></table>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = [<span style="color:#b452cd">5.8</span>, <span style="color:#b452cd">82.1</span>] <span style="color:#228b22"># [height, weight]</span>
 
 p_height_male = the_pdf(x[<span style="color:#b452cd">0</span>], mean_height_males, var_height_males)
@@ -321,35 +288,32 @@ p_weight_female = the_pdf(x[<span style="color:#b452cd">1</span>], mean_weight_f
 <span style="color:#228b22"># Get class probabilities  </span>
 p_male_h_and_w = p_male * p_height_male * p_weight_male  
 p_female_h_and_w = p_female * p_height_female * p_weight_female  
-<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;P(Male | height &amp; weight) =&#34;</span>, p_male_h_and_w)  
-<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;P(Female | height &amp; weight) =&#34;</span>, p_female_h_and_w)
+<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">P(Male | height &amp; weight) =</span><span style="color:#cd5555">&#34;</span>, p_male_h_and_w)  
+<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">P(Female | height &amp; weight) =</span><span style="color:#cd5555">&#34;</span>, p_female_h_and_w)
 
 <span style="color:#228b22"># Return prediction  </span>
 <span style="color:#8b008b;font-weight:bold">if</span> p_male_h_and_w &gt; p_female_h_and_w:  
-    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;class = Male&#34;</span>)  
+    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">class = Male</span><span style="color:#cd5555">&#34;</span>)  
 <span style="color:#8b008b;font-weight:bold">else</span>:  
-    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;class = Female&#34;</span>)</code></pre></td></tr></table>
+    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">class = Female</span><span style="color:#cd5555">&#34;</span>)
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Output:</p>
+</div><p>Output:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">P(Male | height &amp; weight) = 7.92248128417e-103  
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">P(Male | height &amp; weight) = 7.92248128417e-103  
 P(Female | height &amp; weight) = 0.00355626444241  
-class = Female</pre></td></tr></table>
+class = Female
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Putting everything together, we have:</p>
-
-<script src="https://gist.github.com/nicholaskajoh/3ae130a7e7df91141c3efdbc7a989304.js"></script>
-
+</div><p>Putting everything together, we have:</p>
+<!-- raw HTML omitted -->
 <p>Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes">https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes</a>.</p>
-
 <p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
 
 </article>

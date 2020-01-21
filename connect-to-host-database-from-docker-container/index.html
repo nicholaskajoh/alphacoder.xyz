@@ -27,7 +27,7 @@ if (!doNotTrack) {
 
     <meta property="og:title" content="How to connect to a host&#39;s database from inside a Docker container" />
 <meta property="og:description" content="There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&rsquo;t be able to develop without an internet connection." />
+ Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&#39;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&#39;t be able to develop without an internet connection." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/connect-to-host-database-from-docker-container/" />
 <meta property="article:published_time" content="2019-09-01T06:29:54+01:00" />
@@ -36,13 +36,11 @@ if (!doNotTrack) {
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to connect to a host&#39;s database from inside a Docker container"/>
 <meta name="twitter:description" content="There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&rsquo;t be able to develop without an internet connection."/>
+ Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&#39;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&#39;t be able to develop without an internet connection."/>
 
     <meta itemprop="name" content="How to connect to a host&#39;s database from inside a Docker container">
 <meta itemprop="description" content="There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&rsquo;t be able to develop without an internet connection.">
-
-
+ Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&#39;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&#39;t be able to develop without an internet connection.">
 <meta itemprop="datePublished" content="2019-09-01T06:29:54&#43;01:00" />
 <meta itemprop="dateModified" content="2019-09-01T06:29:54&#43;01:00" />
 <meta itemprop="wordCount" content="230">
@@ -50,7 +48,6 @@ if (!doNotTrack) {
 
 
 <meta itemprop="keywords" content="Docker," />
-
 </head>
 
 
@@ -68,7 +65,7 @@ if (!doNotTrack) {
 <div id="content">
 
 <header>
-    <h1>How to connect to a host&rsquo;s database from inside a Docker container</h1>
+    <h1>How to connect to a host's database from inside a Docker container</h1>
     
 
 <div class="post-meta">
@@ -79,37 +76,32 @@ if (!doNotTrack) {
 </header>
 <article>
     <p>There are several ways to interact with a DB when developing using Docker:</p>
-
 <ol>
 <li>Connect to an online DB instance.</li>
 <li>Connect to a local DB running in another container.</li>
 <li>Connect to a local DB running on a host machine (e.g your laptop).</li>
 </ol>
-
-<p>The first option can be easy and fast to setup i.e if you&rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&rsquo;t be able to develop without an internet connection.</p>
-
-<p>While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don&rsquo;t want to have to mount a volume on the host in order to persist your data or run an additional container.</p>
-
-<p>Connecting to a host DB from a container via localhost doesn&rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&rsquo;s internal IP address.</p>
-
-<p>You can point to your host&rsquo;s DB by setting the following environment variable in your container for instance.</p>
-
+<p>The first option can be easy and fast to setup i.e if you're using a managed DB service. But these conveniences come at a monetary cost. Plus, you won't be able to develop without an internet connection.</p>
+<p>While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don't want to have to mount a volume on the host in order to persist your data or run an additional container.</p>
+<p>Connecting to a host DB from a container via localhost doesn't work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container's localhost as you might imagine. You need to go outside the container by using your computer's internal IP address.</p>
+<p>You can point to your host's DB by setting the following environment variable in your container for instance.</p>
 <p>Docker for Mac/Windows:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">DB_HOST=host.docker.internal</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">DB_HOST=host.docker.internal
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Linux:</p>
+</div><p>Linux:</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">DB_HOST=$(ip route show default | awk &#39;/default/ {print $3}&#39;)</pre></td></tr></table>
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">DB_HOST=$(ip route show default | awk &#39;/default/ {print $3}&#39;)
+</code></pre></td></tr></table>
 </div>
 </div>
 </article>
