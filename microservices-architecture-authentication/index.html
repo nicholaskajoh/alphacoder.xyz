@@ -26,8 +26,8 @@ if (!doNotTrack) {
     
 
     <meta property="og:title" content="Authentication strategies in microservices architecture" />
-<meta property="og:description" content="When moving from monolith to microservices or considering microservices for a greenfield project, it&#39;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
-In this article, I outline the most common auth strategies I&#39;ve come across working with microservices, describing how they work and identifying their pros and cons." />
+<meta property="og:description" content="When moving from monolith to microservices or considering microservices for a greenfield project, it&rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
+In this article, I outline the most common auth strategies I&rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/microservices-architecture-authentication/" />
 <meta property="article:published_time" content="2019-09-29T17:37:55+00:00" />
@@ -35,12 +35,12 @@ In this article, I outline the most common auth strategies I&#39;ve come across 
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Authentication strategies in microservices architecture"/>
-<meta name="twitter:description" content="When moving from monolith to microservices or considering microservices for a greenfield project, it&#39;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
-In this article, I outline the most common auth strategies I&#39;ve come across working with microservices, describing how they work and identifying their pros and cons."/>
+<meta name="twitter:description" content="When moving from monolith to microservices or considering microservices for a greenfield project, it&rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
+In this article, I outline the most common auth strategies I&rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons."/>
 
     <meta itemprop="name" content="Authentication strategies in microservices architecture">
-<meta itemprop="description" content="When moving from monolith to microservices or considering microservices for a greenfield project, it&#39;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
-In this article, I outline the most common auth strategies I&#39;ve come across working with microservices, describing how they work and identifying their pros and cons.">
+<meta itemprop="description" content="When moving from monolith to microservices or considering microservices for a greenfield project, it&rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
+In this article, I outline the most common auth strategies I&rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.">
 <meta itemprop="datePublished" content="2019-09-29T17:37:55&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-29T17:37:55&#43;00:00" />
 <meta itemprop="wordCount" content="654">
@@ -75,14 +75,14 @@ In this article, I outline the most common auth strategies I&#39;ve come across 
 </div>
 </header>
 <article>
-    <p>When moving from monolith to microservices or considering microservices for a greenfield project, it's important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.</p>
-<p>In this article, I outline the most common auth strategies I've come across working with microservices, describing how they work and identifying their pros and cons.</p>
+    <p>When moving from monolith to microservices or considering microservices for a greenfield project, it&rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.</p>
+<p>In this article, I outline the most common auth strategies I&rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.</p>
 <h1 id="auth-service">Auth service</h1>
 <p>In this strategy, a microservice is created for the purpose of authentication. This service is contacted by downstream services required to authenticate client requests before processing them.</p>
 <p><img src="/images/msvc-auth/auth-svc.png" alt=""></p>
 <p>Pros:</p>
 <ul>
-<li>It's easy to implement and reason about, especially when transitioning from a monolith. The auth service is essentially a utility other services reach out to for their authentication needs.</li>
+<li>It&rsquo;s easy to implement and reason about, especially when transitioning from a monolith. The auth service is essentially a utility other services reach out to for their authentication needs.</li>
 </ul>
 <p>Cons:</p>
 <ul>
@@ -94,21 +94,21 @@ In this article, I outline the most common auth strategies I&#39;ve come across 
 </li>
 </ul>
 <h1 id="jwt-verification-per-service">JWT verification per service</h1>
-<p>This approach is an extension of the previous strategy and is intended to reduce dependence on the auth service. Authentication primarily involves issuing and verifying tokens. JWT (<a href="https://jwt.io">JSON Web Tokens</a>) can be used to verify tokens without having to hit a database or other persistent storage. This means each service can verify requests on their own. Token issuing is done in the auth service, while verification is handled in every service where it's required. A client library is usually used to share this verification functionality with all the services that need to perform authentication.</p>
+<p>This approach is an extension of the previous strategy and is intended to reduce dependence on the auth service. Authentication primarily involves issuing and verifying tokens. JWT (<a href="https://jwt.io">JSON Web Tokens</a>) can be used to verify tokens without having to hit a database or other persistent storage. This means each service can verify requests on their own. Token issuing is done in the auth service, while verification is handled in every service where it&rsquo;s required. A client library is usually used to share this verification functionality with all the services that need to perform authentication.</p>
 <p><img src="/images/msvc-auth/jwt-verifier.png" alt=""></p>
 <p>Pros:</p>
 <ul>
 <li>
-<p>There's no single point of failure, auth-wise. The authentication service is only used for issuing tokens. All other services can handle token verification on their own.</p>
+<p>There&rsquo;s no single point of failure, auth-wise. The authentication service is only used for issuing tokens. All other services can handle token verification on their own.</p>
 </li>
 <li>
-<p>It's easy to create a client library for token verification which can be shared by all the services that require auth (assuming a single tech stack is used across board).</p>
+<p>It&rsquo;s easy to create a client library for token verification which can be shared by all the services that require auth (assuming a single tech stack is used across board).</p>
 </li>
 </ul>
 <p>Cons:</p>
 <ul>
 <li>
-<p>JWT can't be invalidated on-demand. While this is not a problem for some types of applications, it's a deal breaker for others e.g an enterprise app where an admin might want to disable or delete a user or a finance app where a user might want to sign out from one or more devices remotely.</p>
+<p>JWT can&rsquo;t be invalidated on-demand. While this is not a problem for some types of applications, it&rsquo;s a deal breaker for others e.g an enterprise app where an admin might want to disable or delete a user or a finance app where a user might want to sign out from one or more devices remotely.</p>
 </li>
 <li>
 <p>Making a change to the verification logic (e.g adding a new permission) requires updating all dependent services. This might be a Herculean task if a large number of services are involved.</p>
@@ -142,7 +142,7 @@ In this article, I outline the most common auth strategies I&#39;ve come across 
 </ul>
 <p>Cons:</p>
 <ul>
-<li>Switching to an API gateway's auth system from an existing application's auth implementation can be difficult and time-consuming.</li>
+<li>Switching to an API gateway&rsquo;s auth system from an existing application&rsquo;s auth implementation can be difficult and time-consuming.</li>
 </ul>
 
 </article>

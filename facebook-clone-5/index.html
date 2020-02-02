@@ -82,11 +82,11 @@ if (!doNotTrack) {
 <li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
 <li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
 </ul>
-<p>Every Facebook user has a profile. Let's create profile pages for FaceClone users!</p>
+<p>Every Facebook user has a profile. Let&rsquo;s create profile pages for FaceClone users!</p>
 <p><img src="/images/fbc5/faceclone-profile.png" alt="">
 <em>FaceClone profile page</em></p>
 <h1 id="but-before-iforget">But before I forget&hellip;</h1>
-<p>Recall that we used id of <em>zero</em> for the user_id fields in our posts table. That was because we didn't have any users. Now that we do, let's change things a bit.
+<p>Recall that we used id of <em>zero</em> for the user_id fields in our posts table. That was because we didn&rsquo;t have any users. Now that we do, let&rsquo;s change things a bit.
 The query in create-post.php becomes&hellip;</p>
 <pre><code>...
 $sql = &quot;INSERT INTO posts (content, user_id) VALUES (?, ?)&quot;;
@@ -97,8 +97,8 @@ $statement-&gt;bind_param('si', $_POST['content'], $_SESSION['user_id']);
 <p>We simply change the user_id value to the user_id session which is created when a user logs in.</p>
 <p><strong>NB:</strong> Since registration now works in our application, you may delete the dummy user accounts and use the registration form for account/user creation.</p>
 <h1 id="so">So&hellip;</h1>
-<p>Isn't there just one profile page (i.e profile.php)? How do we create profile pages for &ldquo;all&rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user's username as a parameter in the profile url and use it (the username) to pull the user's data from the DB. E.g example.com/profile.php?username=nicholas.</p>
-<p>Since the username is sent through a GET request, we can retrieve it with the <code>$_GET</code> superglobal using <code>$_GET['username']</code>. Let's write some code:</p>
+<p>Isn&rsquo;t there just one profile page (i.e profile.php)? How do we create profile pages for &ldquo;all&rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user&rsquo;s username as a parameter in the profile url and use it (the username) to pull the user&rsquo;s data from the DB. E.g example.com/profile.php?username=nicholas.</p>
+<p>Since the username is sent through a GET request, we can retrieve it with the <code>$_GET</code> superglobal using <code>$_GET['username']</code>. Let&rsquo;s write some code:</p>
 <p>Atop profile.php…</p>
 <pre><code>...
 $sql = &quot;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&quot;;
@@ -110,14 +110,14 @@ $statement-&gt;bind_result($id, $username, $status, $profile_image_url, $locatio
 $statement-&gt;fetch();
 ...
 </code></pre>
-<p>First, we get the username, then run a query to fetch a user using their username and that's just about it. <code>$id</code>, <code>$username</code>, <code>$status</code>, <code>$profile_image_url</code> and <code>$location</code> variables can now be echoed out where we need them in the page.</p>
+<p>First, we get the username, then run a query to fetch a user using their username and that&rsquo;s just about it. <code>$id</code>, <code>$username</code>, <code>$status</code>, <code>$profile_image_url</code> and <code>$location</code> variables can now be echoed out where we need them in the page.</p>
 <h1 id="user-posts">User posts</h1>
 <p>Then again, we want to show only the posts belonging to the user whose profile is being displayed. Taking a cue from the home page which displays the posts of all users across FaceClone (part 3), we can create a new sql query:</p>
 <pre><code>$user_posts_sql = &quot;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&quot;;
 </code></pre>
-<p>In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. <code>$id</code> is the user's id got from the query to fetch a user's record.</p>
+<p>In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. <code>$id</code> is the user&rsquo;s id got from the query to fetch a user&rsquo;s record.</p>
 <h1 id="edit-profile">Edit profile</h1>
-<p>Lastly, we need to allow users to make changes to their profiles. There's a little form in profile.php we can use to update status and location. Let's make it work!
+<p>Lastly, we need to allow users to make changes to their profiles. There&rsquo;s a little form in profile.php we can use to update status and location. Let&rsquo;s make it work!
 The form…</p>
 <pre><code>...
 &lt;form method=&quot;post&quot; action=&quot;php/edit-profile.php&quot;&gt;
@@ -146,7 +146,7 @@ The form…</p>
         echo &quot;Error: &quot; . $conn-&gt;error;
     }
 </code></pre>
-<p>You're probably used to the above snippet by now. We update the status and location of a user using the <code>UPDATE</code> sql statement then redirect back to profile.php. Sweet!</p>
+<p>You&rsquo;re probably used to the above snippet by now. We update the status and location of a user using the <code>UPDATE</code> sql statement then redirect back to profile.php. Sweet!</p>
 <p>*drops mic*</p>
 <p><strong>The final code for this part is contained in my <a href="https://github.com/nicholaskajoh/faceclone">FaceClone repo</a>. Visit the link and click on the part-5 folder to see progress made so far.</strong></p>
 <p>Next: <a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a>.</p>

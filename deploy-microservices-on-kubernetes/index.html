@@ -26,7 +26,7 @@ if (!doNotTrack) {
     
 
     <meta property="og:title" content="Deploy microservices on Kubernetes" />
-<meta property="og:description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&#39;s an Engineer&#39;s nightmare to say the least.
+<meta property="og:description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.
 Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/deploy-microservices-on-kubernetes/" />
@@ -35,15 +35,15 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Deploy microservices on Kubernetes"/>
-<meta name="twitter:description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&#39;s an Engineer&#39;s nightmare to say the least.
+<meta name="twitter:description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.
 Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;."/>
 
     <meta itemprop="name" content="Deploy microservices on Kubernetes">
-<meta itemprop="description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&#39;s an Engineer&#39;s nightmare to say the least.
+<meta itemprop="description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.
 Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;.">
 <meta itemprop="datePublished" content="2019-02-01T16:44:09&#43;00:00" />
 <meta itemprop="dateModified" content="2019-02-01T16:44:09&#43;00:00" />
-<meta itemprop="wordCount" content="1722">
+<meta itemprop="wordCount" content="1730">
 
 
 
@@ -77,10 +77,10 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 </div>
 </header>
 <article>
-    <p>Kubernetes (AKA k8s) has gained <a href="https://kubernetes.io/case-studies/">widespread adoption</a> in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. <a href="http://pinterest.com">Pinterest</a> uses <a href="https://www.cncf.io/case-study-pinterest/">a suite of over 1000 microservices</a> to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It's an Engineer's nightmare to say the least.</p>
+    <p>Kubernetes (AKA k8s) has gained <a href="https://kubernetes.io/case-studies/">widespread adoption</a> in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. <a href="http://pinterest.com">Pinterest</a> uses <a href="https://www.cncf.io/case-study-pinterest/">a suite of over 1000 microservices</a> to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.</p>
 <p>Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;. In simple terms, Kubernetes helps to automate the deployment and management of containerized applications. This means we can package an app (code, dependencies and config) <a href="https://www.docker.com/resources/what-container">in a container</a> and hand it over to Kubernetes to deploy and scale without worrying about our infrastructure. Under the hood, Kubernetes decides where to run what, monitors the systems and fixes things if something goes wrong.</p>
 <h1 id="microservice-architecture">Microservice architecture</h1>
-<p>I particularly like <a href="https://martinfowler.com/microservices/">James Lewis&rsquo; and Martin Fowler's definition of microservices</a> as it points out why Kubernetes is such a good solution for the architecture. &ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by <strong>fully automated deployment machinery</strong>. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&rdquo;. Kubernetes is in fact a &ldquo;fully automated deployment machine&rdquo; that provides a powerful abstraction layer atop server infrastructure.</p>
+<p>I particularly like <a href="https://martinfowler.com/microservices/">James Lewis&rsquo; and Martin Fowler&rsquo;s definition of microservices</a> as it points out why Kubernetes is such a good solution for the architecture. &ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by <strong>fully automated deployment machinery</strong>. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&rdquo;. Kubernetes is in fact a &ldquo;fully automated deployment machine&rdquo; that provides a powerful abstraction layer atop server infrastructure.</p>
 <h1 id="common-kubernetes-terms">Common Kubernetes terms</h1>
 <p>Below are some common terms associated with Kubernetes.</p>
 <ul>
@@ -91,7 +91,7 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <li><strong>Service:</strong> Pods are mortal. Consumers should however not be burdened with figuring out what pods are available and how to access them. Services keep track of all available pods of a certain type and provide a way to access them.</li>
 </ul>
 <h1 id="yoloo">Yoloo</h1>
-<p>In this tutorial, we'll be deploying a simple microservices app called Yoloo on <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine (GKE)</a>, a managed Kubernetes service on Google Cloud Platform. Yoloo uses a pre-trained YOLO (<a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">You Only Look Once</a>) model to detect common objects such as bottles and humans in an image. It comprises two microservices, <em>detector</em> and <em>viewer</em>. The detector service is a Python/Flask app which takes an image and passes it through the YOLO model to identify the objects in it. The viewer service is a PHP app that acts as a front-end by providing a User Interface for uploading and viewing the images. The app is built to use two external, managed services: Cloudinary for image hosting and Redis for data storage. The source code is available <a href="https://github.com/nicholaskajoh/microservices">on my GitHub</a>.</p>
+<p>In this tutorial, we&rsquo;ll be deploying a simple microservices app called Yoloo on <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine (GKE)</a>, a managed Kubernetes service on Google Cloud Platform. Yoloo uses a pre-trained YOLO (<a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">You Only Look Once</a>) model to detect common objects such as bottles and humans in an image. It comprises two microservices, <em>detector</em> and <em>viewer</em>. The detector service is a Python/Flask app which takes an image and passes it through the YOLO model to identify the objects in it. The viewer service is a PHP app that acts as a front-end by providing a User Interface for uploading and viewing the images. The app is built to use two external, managed services: Cloudinary for image hosting and Redis for data storage. The source code is available <a href="https://github.com/nicholaskajoh/microservices">on my GitHub</a>.</p>
 <p><a href="https://github.com/nicholaskajoh/microservices/archive/master.zip">Download</a> or clone the project with Git: <code>git clone https://github.com/nicholaskajoh/microservices.git</code>.</p>
 <p>Detector service Dockerfile.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -167,7 +167,7 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <p><img src="/images/ms-k8s/new-cluster-gke.jpg" alt="">
 <em>Create a new k8s cluster</em></p>
 <h1 id="google-container-registry-gcr">Google Container Registry (GCR)</h1>
-<p>Kubernetes uses container images to launch pods. Images need to be stored in a registry where they can be pulled from. GCP provides a registry, the <a href="https://cloud.google.com/container-registry/">Google Container Registry</a>, which can be used to store Docker images. Let's build the images for the detector and viewer services and push them to GCR.</p>
+<p>Kubernetes uses container images to launch pods. Images need to be stored in a registry where they can be pulled from. GCP provides a registry, the <a href="https://cloud.google.com/container-registry/">Google Container Registry</a>, which can be used to store Docker images. Let&rsquo;s build the images for the detector and viewer services and push them to GCR.</p>
 <ul>
 <li>Install <a href="https://cloud.google.com/sdk/install">Google Cloud SDK</a> for your OS.</li>
 <li>Login: <code>gcloud auth login</code>.</li>
@@ -209,32 +209,32 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
-</span><span style="color:#bbb"></span>kind:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span>metadata:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>detector-svc-deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span>spec:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>replicas:<span style="color:#bbb"> </span><span style="color:#b452cd">3</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>minReadySeconds:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>strategy:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>type:<span style="color:#bbb"> </span>RollingUpdate<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>rollingUpdate:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>maxUnavailable:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>maxSurge:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>template:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>metadata:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>labels:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>app:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>spec:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>containers:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>-<span style="color:#bbb"> </span>image:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/detector-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>imagePullPolicy:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>name:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>ports:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>-<span style="color:#bbb"> </span>containerPort:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span>envFrom:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>-<span style="color:#bbb"> </span>secretRef:<span style="color:#bbb">
-</span><span style="color:#bbb">                </span>name:<span style="color:#bbb"> </span>detector-svc-secrets<span style="color:#bbb">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">minReadySeconds</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">strategy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>RollingUpdate<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">rollingUpdate</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxUnavailable</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxSurge</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/detector-svc<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">envFrom</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-secrets<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>In this deployment, we want to run 3 copies (<code>replicas: 3</code>) of the detector service (<code>- image: gcr.io/{PROJECT_ID}/detector-svc</code>) for availability and scalability. We label the pods (<code>app: detector-svc</code>) so that they can easily be referenced as a group. We alse choose rolling updates (<code>type: RollingUpdate</code>) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.</p>
@@ -266,33 +266,33 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
-</span><span style="color:#bbb"></span>kind:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span>metadata:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>viewer-svc-deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span>spec:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>replicas:<span style="color:#bbb"> </span><span style="color:#b452cd">2</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>minReadySeconds:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>strategy:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>type:<span style="color:#bbb"> </span>Recreate<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>template:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>metadata:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>labels:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>app:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>spec:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>containers:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>-<span style="color:#bbb"> </span>image:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/viewer-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>imagePullPolicy:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>name:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>ports:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>-<span style="color:#bbb"> </span>containerPort:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span>envFrom:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>-<span style="color:#bbb"> </span>secretRef:<span style="color:#bbb">
-</span><span style="color:#bbb">                </span>name:<span style="color:#bbb"> </span>viewer-svc-secrets<span style="color:#bbb">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">2</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">minReadySeconds</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">strategy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Recreate<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/viewer-svc<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">envFrom</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-secrets<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
-</div><p>We choose a different redeployment strategy (<code>type: Recreate</code>) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we're going with 2 replicas here.</p>
-<p>Notice <code>envFrom</code> under <code>containers</code> in both deployments? We'll be loading our environment variables from a k8s Secret which we'll create soon.</p>
+</div><p>We choose a different redeployment strategy (<code>type: Recreate</code>) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&rsquo;re going with 2 replicas here.</p>
+<p>Notice <code>envFrom</code> under <code>containers</code> in both deployments? We&rsquo;ll be loading our environment variables from a k8s Secret which we&rsquo;ll create soon.</p>
 <h1 id="services">Services</h1>
 <p>The k8s services (not to be confused with microservices) in detector and viewer, <code>detector-service.yaml</code> and <code>viewer-service.yaml</code>, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer service uses the LoadBalancer service which exposes it externally to the outside world.</p>
 <p>Detector k8s service.</p>
@@ -312,18 +312,18 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
-</span><span style="color:#bbb"></span>kind:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
-</span><span style="color:#bbb"></span>metadata:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>detector-service<span style="color:#bbb">
-</span><span style="color:#bbb"></span>spec:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>type:<span style="color:#bbb"> </span>ClusterIP<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>ports:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>-<span style="color:#bbb"> </span>port:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span>protocol:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>targetPort:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>selector:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>app:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>ClusterIP<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>Viewer k8s service.</p>
@@ -343,18 +343,18 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
-</span><span style="color:#bbb"></span>kind:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
-</span><span style="color:#bbb"></span>metadata:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>name:<span style="color:#bbb"> </span>viewer-service<span style="color:#bbb">
-</span><span style="color:#bbb"></span>spec:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>type:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>ports:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>-<span style="color:#bbb"> </span>port:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span>protocol:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>targetPort:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span>selector:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span>app:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p><strong>NB:</strong> we use the labels (<code>app: detector-svc</code> and <code>app: viewer-svc</code>) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.</p>

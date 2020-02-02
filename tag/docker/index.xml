@@ -19,7 +19,7 @@
       
       <guid>http://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
       <description>There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&#39;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&#39;t be able to develop without an internet connection.</description>
+ Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@
       <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
       
       <guid>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
-      <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&#39;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
+      <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
 Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
     </item>
     
@@ -38,7 +38,7 @@ Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: dock
       <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
       
       <guid>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
-      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&#39;s an Engineer&#39;s nightmare to say the least.
+      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.
 Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;.</description>
     </item>
     

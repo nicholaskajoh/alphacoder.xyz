@@ -82,10 +82,10 @@ if (!doNotTrack) {
 <li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
 <li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
 </ul>
-<p>Posts are the heart and soul of Facebook. In this part, we'll be writing code that would allow us view, make and delete posts on FaceClone.</p>
+<p>Posts are the heart and soul of Facebook. In this part, we&rsquo;ll be writing code that would allow us view, make and delete posts on FaceClone.</p>
 <p><img src="/images/fbc3/faceclone-home.png" alt=""></p>
 <h1 id="functionsphp">Functions.php</h1>
-<p>In the spirit of code reusability A.K.A writing DRY (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Don't Repeat Yourself</a>) code, let's create a functions.php file in the root of our project. We'll use this file to write different bits of code — functions — which can be used across our app. Now include functions.php at the top of all app pages like so:</p>
+<p>In the spirit of code reusability A.K.A writing DRY (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Don&rsquo;t Repeat Yourself</a>) code, let&rsquo;s create a functions.php file in the root of our project. We&rsquo;ll use this file to write different bits of code — functions — which can be used across our app. Now include functions.php at the top of all app pages like so:</p>
 <pre><code>&lt;?php require_once &quot;functions.php&quot;; ?&gt;
 </code></pre>
 <h1 id="connect-todb">Connect to DB</h1>
@@ -121,16 +121,16 @@ if (!doNotTrack) {
 <p><img src="/images/fbc3/db-connect.jpg" alt="">
 <em>Connect FaceClone to the DB</em></p>
 <p>The above code is quite self-explanatory. We specify our database server name, username, password and the particular database we want to access. Then, we use the MySQLi extension to establish a connection to the database. There are other extensions and therefore ways to connect to a database. Also, we can choose to <a href="https://www.w3schools.com/php/php_mysql_connect.asp">write the code procedurally or using object-oriented programming</a>.</p>
-<p>Ensure your MySQL server is running. You can start the server from XAMPP's control panel.</p>
+<p>Ensure your MySQL server is running. You can start the server from XAMPP&rsquo;s control panel.</p>
 <p><img src="/images/fbc3/xampp-control-panel.jpg" alt="">
 <em>XAMPP control panel</em></p>
-<p>Now that we have a connection, let's write code to get posts from the database. Wait! There's no data in there, is there? Let's quickly generate some data. Head over to PHP My Admin and have some fun.</p>
+<p>Now that we have a connection, let&rsquo;s write code to get posts from the database. Wait! There&rsquo;s no data in there, is there? Let&rsquo;s quickly generate some data. Head over to PHP My Admin and have some fun.</p>
 <p>Go to faceclone &gt; posts &gt; insert&hellip;</p>
 <p><img src="/images/fbc3/create-dummy-data.png" alt="">
 <em>Add dummy data to your DB</em></p>
-<p><strong>NB:</strong> I set user_id to 0 cos we don't have any users yet.</p>
+<p><strong>NB:</strong> I set user_id to 0 cos we don&rsquo;t have any users yet.</p>
 <h1 id="view-posts">View posts</h1>
-<p>Now, let's get the posts from the DB to our home page. There's already template code for posts with some static data. Using the template, we'll have something like this:</p>
+<p>Now, let&rsquo;s get the posts from the DB to our home page. There&rsquo;s already template code for posts with some static data. Using the template, we&rsquo;ll have something like this:</p>
 <pre><code>&lt;!-- post --&gt;
 &lt;?php 
     $sql = &quot;SELECT * FROM posts&quot;;
@@ -160,13 +160,13 @@ if (!doNotTrack) {
 </code></pre>
 <p>Nothing much here. First, we write an SQL query and execute it, then we get the results and display each post using a while loop. The query SELECT * FROM posts simply says &ldquo;get all the records from the posts table&rdquo;.</p>
 <p><strong>Tip:</strong> The words (in the code) with <code>$</code> before them are variable names (e.g <code>$result</code>). We use the dollar sign to denote variable names in PHP.</p>
-<p>We're not done yet though. Wouldn't it be better to display the more recent posts first? We can do that by adjusting our query a little bit.</p>
+<p>We&rsquo;re not done yet though. Wouldn&rsquo;t it be better to display the more recent posts first? We can do that by adjusting our query a little bit.</p>
 <pre><code>SELECT * FROM posts ORDER BY created_at DESC
 </code></pre>
 <p>Bingo!</p>
 <h1 id="make-posts">Make posts</h1>
-<p>We don't expect users to use PHP MyAdmin to make posts on FaceClone, do we? It only seems logical that we allow users create posts in our app. Thanks to the template, we have a nifty little textbox on the home page.</p>
-<p><em>This point in our journey looks like a good time to separate concerns. We could write the code that'll create a new post in home.php, but this can lead to messy code as there may be too many moving parts, so to speak, in one file. Let's avoid this by creating a new folder called php in the root of our project to store php files which aren't pages. functions.php fits the description of a file that should be in the php folder. Let's leave it where it is, though. I like to keep it in the root folder as it serves kind of like a general purpose.</em></p>
+<p>We don&rsquo;t expect users to use PHP MyAdmin to make posts on FaceClone, do we? It only seems logical that we allow users create posts in our app. Thanks to the template, we have a nifty little textbox on the home page.</p>
+<p><em>This point in our journey looks like a good time to separate concerns. We could write the code that&rsquo;ll create a new post in home.php, but this can lead to messy code as there may be too many moving parts, so to speak, in one file. Let&rsquo;s avoid this by creating a new folder called php in the root of our project to store php files which aren&rsquo;t pages. functions.php fits the description of a file that should be in the php folder. Let&rsquo;s leave it where it is, though. I like to keep it in the root folder as it serves kind of like a general purpose.</em></p>
 <p>Create a new file in the php folder called create-post.php and add the following code:</p>
 <pre><code>&lt;?php
     require_once &quot;../functions.php&quot;;
@@ -193,7 +193,7 @@ if (!doNotTrack) {
 &lt;/form&gt;&lt;hr&gt;
 &lt;!-- ./post form --&gt;
 </code></pre>
-<p>The code to create a post is straightforward. We write a query and execute it. If it's executed (meaning everything went well), we redirect to the home page where we can see the newly created post. Else, we throw an error.</p>
+<p>The code to create a post is straightforward. We write a query and execute it. If it&rsquo;s executed (meaning everything went well), we redirect to the home page where we can see the newly created post. Else, we throw an error.</p>
 <p><code>$_POST</code> is a superglobal. superglobals are variables that are always accessible regardless of scope i.e you can access them from any function, class or file without having to do anything. $_POST is an array that contains data sent in POST requests. When a user submits the form to create a post, we can access the content in <code>$_POST</code> variable using <code>$_POST['content']</code>.</p>
 <p><strong>NB:</strong> Ensure the default value for the created_at column of the posts table is set to <code>CURRENT_TIMESTAMP</code>.
 The redirect_to method is a custom method. Add the definition to functions.php.</p>
@@ -217,9 +217,9 @@ The redirect_to method is a custom method. Add the definition to functions.php.<
     }
     $conn-&gt;close();
 </code></pre>
-<p>Now when we click the delete link for a post, it's gone for good! 😊</p>
+<p>Now when we click the delete link for a post, it&rsquo;s gone for good! 😊</p>
 <p><code>$_GET</code> is another superglobal. As you might imagine, it contains data sent from GET requests.</p>
-<p>That's it for part 3!</p>
+<p>That&rsquo;s it for part 3!</p>
 <p><strong>The final code for this part is contained in my FaceClone repo here: <a href="https://github.com/nicholaskajoh/faceclone">https://github.com/nicholaskajoh/faceclone</a>. Visit the link and click on the part-3 folder to see progress made so far.</strong></p>
 <p>Next: <a href="/facebook-clone-4">Build a Facebook clone from scratch with PHP — Part 4</a>.</p>
 <p>Previous: <a href="/facebook-clone-2">Build a Facebook clone from scratch with PHP — Part 2</a>.</p>

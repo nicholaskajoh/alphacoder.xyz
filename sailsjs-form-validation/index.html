@@ -28,7 +28,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="Server-side form validation from A to Z with Sails.js" />
 <meta property="og:description" content="NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.
 TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
-Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&#39;s not enough." />
+Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&rsquo;s not enough." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/sailsjs-form-validation/" />
 <meta property="article:published_time" content="2017-05-26T23:06:50+01:00" />
@@ -38,12 +38,12 @@ Data validation is a very essential part of any API/web app. Client-side validat
 <meta name="twitter:title" content="Server-side form validation from A to Z with Sails.js"/>
 <meta name="twitter:description" content="NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.
 TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
-Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&#39;s not enough."/>
+Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&rsquo;s not enough."/>
 
     <meta itemprop="name" content="Server-side form validation from A to Z with Sails.js">
 <meta itemprop="description" content="NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.
 TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
-Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&#39;s not enough.">
+Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&rsquo;s not enough.">
 <meta itemprop="datePublished" content="2017-05-26T23:06:50&#43;01:00" />
 <meta itemprop="dateModified" content="2017-05-26T23:06:50&#43;01:00" />
 <meta itemprop="wordCount" content="801">
@@ -78,8 +78,8 @@ Data validation is a very essential part of any API/web app. Client-side validat
 <article>
     <p><strong>NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.</strong></p>
 <p><strong>TL;DR:</strong> <a href="https://github.com/nicholaskajoh/sails-form-validation">https://github.com/nicholaskajoh/sails-form-validation</a>.</p>
-<p>Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that's not enough. HTML, CSS and Javascript validation can be messed with. You need to validate on your server too.</p>
-<p>I couldn't find a tutorial that deals in full with the whole process of form validation in Sails.js so I decided to write one. Mind you, I'm open to contributions on how best to do it so if you know something, post a comment.</p>
+<p>Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&rsquo;s not enough. HTML, CSS and Javascript validation can be messed with. You need to validate on your server too.</p>
+<p>I couldn&rsquo;t find a tutorial that deals in full with the whole process of form validation in Sails.js so I decided to write one. Mind you, I&rsquo;m open to contributions on how best to do it so if you know something, post a comment.</p>
 <h1 id="model">Model</h1>
 <p>Validation in Sails happens at model level. The attributes in a model contain rules that define what data should be stored in the database table/collection it represents. Say we have a model Product, we could write validation rules like so:</p>
 <pre><code>/* my-sails-app/api/models/Product.js */
@@ -110,8 +110,8 @@ module.exports = {
 </code></pre>
 <p>We can easily identify the rules from the above code sample. The constraints used include <code>type</code>, <code>unique</code>, <code>in</code> and <code>required</code>. For the full list of validation rules, head over to <a href="https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations">the Sails docs</a>.</p>
 <h1 id="validation-messages">Validation Messages</h1>
-<p>When users submit invalid data, we need to provide them useful error messages so they can make the necessary corrections. We can define custom error messages for the validation rules we set for a given attribute. Sails doesn't support custom error messages out of the box but there's a nifty little library for that. It's called <a href="https://github.com/lykmapipo/sails-hook-validation">sails-hook-validation</a> and can be installed in your app by running <code>npm install sails-hook-validation --save</code>.</p>
-<p>With this, we can define fine error messages instead of the very generic error messages Sails provides. It's annoyingly easy to add validation messages:</p>
+<p>When users submit invalid data, we need to provide them useful error messages so they can make the necessary corrections. We can define custom error messages for the validation rules we set for a given attribute. Sails doesn&rsquo;t support custom error messages out of the box but there&rsquo;s a nifty little library for that. It&rsquo;s called <a href="https://github.com/lykmapipo/sails-hook-validation">sails-hook-validation</a> and can be installed in your app by running <code>npm install sails-hook-validation --save</code>.</p>
+<p>With this, we can define fine error messages instead of the very generic error messages Sails provides. It&rsquo;s annoyingly easy to add validation messages:</p>
 <pre><code>/* my-sails-app/api/models/Product.js */
 module.exports = {
     tableName: 'products',
@@ -132,7 +132,7 @@ module.exports = {
 }
 </code></pre>
 <h1 id="controller">Controller</h1>
-<p>Let's create a controller that serves as well as processes our form. Here's a snippet:</p>
+<p>Let&rsquo;s create a controller that serves as well as processes our form. Here&rsquo;s a snippet:</p>
 <pre><code>/* my-sails-app/api/controllers/ProductController.js */
 shortid = require('shortid');
 
@@ -172,7 +172,7 @@ module.exports = {
     },
 };
 </code></pre>
-<p>The <code>ProductController</code> is where most of the good stuff happens. Let's break things down piece by piece to get a grasp of what's going on. But before we do that, consider how our routes file may look:</p>
+<p>The <code>ProductController</code> is where most of the good stuff happens. Let&rsquo;s break things down piece by piece to get a grasp of what&rsquo;s going on. But before we do that, consider how our routes file may look:</p>
 <pre><code>/* my-sails-app/config/routes.js */
 module.exports.routes = {
     'GET /product/:ref': 'ProductController.show',
@@ -181,7 +181,7 @@ module.exports.routes = {
 </code></pre>
 <p>You could also use the <a href="http://sailsjs.com/documentation/concepts/blueprints">Sails Blueprints thingy</a>. Not a fan of it though.</p>
 <p>Now back to the controller. There are 2 functions in <code>ProductController</code>. The first <code>show()</code> displays a product given its reference <code>ref</code>. If the reference is not found, a 404 page is returned.</p>
-<p>The second method <code>add()</code> does 2 things. If it receives a GET request, it returns a form users can add products with. If it receives a POST request (i.e the form is being submitted), it attempts to create a new product and redirect to the product's page. If this fails (meaning there's a validation error), the form is returned with validation errors (<code>data.errors</code>) and the data previously submitted (<code>data.old</code>). We populate the form with <code>data.old</code> so that users don't have to retype everything if they submit an invalid form.</p>
+<p>The second method <code>add()</code> does 2 things. If it receives a GET request, it returns a form users can add products with. If it receives a POST request (i.e the form is being submitted), it attempts to create a new product and redirect to the product&rsquo;s page. If this fails (meaning there&rsquo;s a validation error), the form is returned with validation errors (<code>data.errors</code>) and the data previously submitted (<code>data.old</code>). We populate the form with <code>data.old</code> so that users don&rsquo;t have to retype everything if they submit an invalid form.</p>
 <h1 id="view">View</h1>
 <p>Now to our form view. Here you go:</p>
 <pre><code>&lt;!-- my-sails-app/views/add-product-form.ejs --&gt;

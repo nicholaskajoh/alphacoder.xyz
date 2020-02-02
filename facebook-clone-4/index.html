@@ -82,7 +82,7 @@ if (!doNotTrack) {
 <li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
 <li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
 </ul>
-<p>Users are at the center of any application. It's all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can't be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we're going to make all this possible, and some.</p>
+<p>Users are at the center of any application. It&rsquo;s all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can&rsquo;t be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we&rsquo;re going to make all this possible, and some.</p>
 <h1 id="registration">Registration</h1>
 <p>We already have a registration form in our index.php template.</p>
 <pre><code>...
@@ -117,8 +117,8 @@ if (!doNotTrack) {
     }
 </code></pre>
 <p>Like always, the code is easy to understand. After we call <code>db_connect()</code> to help us establish a connection to the database, we build an SQL query, an insert query that, well, inserts (or creates) data in our DB.</p>
-<p>If you've noticed, we've been using &ldquo;prepared statements&rdquo; to perform some SQL queries. There are couple other ways to perform operations [using PHP] on our DB (e.g the way we used to pull up post records in part 3). Prepared statements are however preferred/safer for operations that change/manipulate data because, BAD PEOPLE (the black hats) can attempt to mess us up using SQL Injection. There's no time to talk about SQL Injection here but hey, Google is your friend. Anyways, let's move on.</p>
-<p>Another security concern is with passwords. It is bad practice to store &ldquo;raw&rdquo; passwords because if someone gets access to your DB, they can screw you and your users over. It's safer to &ldquo;hash&rdquo; passwords. Hashing algorithms perform one-way transformations, turning one string to another string called a hash. There are a good number of hashing algorithms you can use for passwords e.g md5, sha1, bcrypt etc. Lucky for us, we don't have to worry about these algorithms. PHP provides a hashing function we can use:</p>
+<p>If you&rsquo;ve noticed, we&rsquo;ve been using &ldquo;prepared statements&rdquo; to perform some SQL queries. There are couple other ways to perform operations [using PHP] on our DB (e.g the way we used to pull up post records in part 3). Prepared statements are however preferred/safer for operations that change/manipulate data because, BAD PEOPLE (the black hats) can attempt to mess us up using SQL Injection. There&rsquo;s no time to talk about SQL Injection here but hey, Google is your friend. Anyways, let&rsquo;s move on.</p>
+<p>Another security concern is with passwords. It is bad practice to store &ldquo;raw&rdquo; passwords because if someone gets access to your DB, they can screw you and your users over. It&rsquo;s safer to &ldquo;hash&rdquo; passwords. Hashing algorithms perform one-way transformations, turning one string to another string called a hash. There are a good number of hashing algorithms you can use for passwords e.g md5, sha1, bcrypt etc. Lucky for us, we don&rsquo;t have to worry about these algorithms. PHP provides a hashing function we can use:</p>
 <pre><code>password_hash('secret123', PASSWORD_DEFAULT);
 </code></pre>
 <p>Password hashes are usually a long string of &ldquo;random&rdquo; characters like this:</p>
@@ -147,9 +147,9 @@ if (!doNotTrack) {
 <p><strong>Authorization</strong> - If a user is who they say they are, then we can give them access to resources (e.g pages) unavailable to people not registered to our app. We have to do some kind of check to see if a request coming to our server is from a &ldquo;legit&rdquo; user and then authorize/allow access to the page they requested.</p>
 </li>
 </ol>
-<p>We use <em>sessions</em> to authorize requests. Like the name implies, a session grants access to an application's resources for a period. For instance, after being authenticated by security at, say, a library (probably with a student or National ID), you can do whatever you like (read books, watch educational material, browse the internet etc) until you leave/the library is closed for the day. When you visit next time, you must be authenticated again. But while you're in the library, nobody asks you to identify yourself before picking up a book or watching some educational video. It is believed that you have been &ldquo;authenticated&rdquo;, so to speak.</p>
-<p>PHP provides us a superglobal called <code>$_SESSION</code> - an array which contains session variables. The variables we store in <code>$_SESSION</code> persist until the browser is closed. I don't want to go into exactly how sessions work. Again, Google is your friend, so google.</p>
-<p>Here's a snippet of the login form:</p>
+<p>We use <em>sessions</em> to authorize requests. Like the name implies, a session grants access to an application&rsquo;s resources for a period. For instance, after being authenticated by security at, say, a library (probably with a student or National ID), you can do whatever you like (read books, watch educational material, browse the internet etc) until you leave/the library is closed for the day. When you visit next time, you must be authenticated again. But while you&rsquo;re in the library, nobody asks you to identify yourself before picking up a book or watching some educational video. It is believed that you have been &ldquo;authenticated&rdquo;, so to speak.</p>
+<p>PHP provides us a superglobal called <code>$_SESSION</code> - an array which contains session variables. The variables we store in <code>$_SESSION</code> persist until the browser is closed. I don&rsquo;t want to go into exactly how sessions work. Again, Google is your friend, so google.</p>
+<p>Here&rsquo;s a snippet of the login form:</p>
 <pre><code>...
 &lt;form method=&quot;post&quot; action=&quot;php/login.php&quot;&gt;
 &lt;div class=&quot;form-group&quot;&gt;
@@ -187,10 +187,10 @@ if (!doNotTrack) {
         echo &quot;Error: &quot; . $conn-&gt;error;
     }
 </code></pre>
-<p>As with the the code for registration, login.php is easy to digest. We establish a connection with our dear DB, then write a query to fetch a user with the supplied username. Next, we get the hashed password of the fetched user record and compare it to the password provided by the user to see if they match. PHP provides another slick function to do this called, as you could guess, <code>password_verify()</code>. Once our user has been verified to have provided the correct details, we create 2 sessions. One to store the user's id and the other the user's username. Then we redirect them to home.php.</p>
-<p>With the sessions in place, we can check any request coming to our server to know if it's from an authenticated user or not, and who the user is if they're authenticated. This is vital for our app cos we don't want unregistered persons to access pages like home.php as well as to take actions like creating a post or making a friend request. Also, we want to be able to know [the user] who takes a given action. These sessions help us achieve just that.</p>
+<p>As with the the code for registration, login.php is easy to digest. We establish a connection with our dear DB, then write a query to fetch a user with the supplied username. Next, we get the hashed password of the fetched user record and compare it to the password provided by the user to see if they match. PHP provides another slick function to do this called, as you could guess, <code>password_verify()</code>. Once our user has been verified to have provided the correct details, we create 2 sessions. One to store the user&rsquo;s id and the other the user&rsquo;s username. Then we redirect them to home.php.</p>
+<p>With the sessions in place, we can check any request coming to our server to know if it&rsquo;s from an authenticated user or not, and who the user is if they&rsquo;re authenticated. This is vital for our app cos we don&rsquo;t want unregistered persons to access pages like home.php as well as to take actions like creating a post or making a friend request. Also, we want to be able to know [the user] who takes a given action. These sessions help us achieve just that.</p>
 <p>But how?</p>
-<p>For starters, let's a write function that allows only authenticated users to access the home page. The unauthenticated are redirected to index.php.</p>
+<p>For starters, let&rsquo;s a write function that allows only authenticated users to access the home page. The unauthenticated are redirected to index.php.</p>
 <pre><code>function is_auth() {
     return isset($_SESSION['user_id']);
 }
@@ -203,7 +203,7 @@ function check_auth() {
 </code></pre>
 <p>There are two functions defined above. The first <code>is_auth()</code> is a helper function for <code>check_auth()</code>. It checks if a user has been authenticated using the <code>user_id</code> session. <code>check_auth()</code> is the main function here. It uses <code>is_auth()</code> to check if a request is not authenticated and then redirects to index.php.</p>
 <p>Now you can place <code>check_auth()</code> atop all the pages you want restricted.</p>
-<p><strong>NB:</strong> You need to place the function <code>session_start()</code> at the beginning of every page where sessions would be used, for them to work. functions.php is a nice place to put this function cos it's required at the start of all our pages.</p>
+<p><strong>NB:</strong> You need to place the function <code>session_start()</code> at the beginning of every page where sessions would be used, for them to work. functions.php is a nice place to put this function cos it&rsquo;s required at the start of all our pages.</p>
 <pre><code>&lt;?php
     session_start();
     function db_connect() {
@@ -220,9 +220,9 @@ function check_auth() {
     session_destroy();
     redirect_to(&quot;/index.php&quot;);
 </code></pre>
-<p>That's all! Hopefully, there's nothing to explain here. Right?</p>
+<p>That&rsquo;s all! Hopefully, there&rsquo;s nothing to explain here. Right?</p>
 <p>Great!</p>
-<p>Just create a logout link like so: <code>&lt;a href=&quot;php/logout.php&quot;&gt;Logout&lt;/a&gt;</code> and you're good.</p>
+<p>Just create a logout link like so: <code>&lt;a href=&quot;php/logout.php&quot;&gt;Logout&lt;/a&gt;</code> and you&rsquo;re good.</p>
 <p>At this point, we can call it a day. Phew!!!</p>
 <p>Well done!</p>
 <p><strong>The final code for this part is contained in my FaceClone repo here: <a href="https://github.com/nicholaskajoh/faceclone">https://github.com/nicholaskajoh/faceclone</a>. Visit the link and click on the part-4 folder to see progress made so far.</strong></p>

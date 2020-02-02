@@ -82,13 +82,13 @@ if (!doNotTrack) {
 <li>Build a Facebook clone from scratch with PHP — Part 6 (this article)</li>
 <li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
 </ul>
-<p>Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &ldquo;friend&rdquo; model of relationships (I'm your friend; you're my friend). There are other models like the popular &ldquo;following-follower&rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we'll explore a very basic approach. Also, we won't be exploiting the relationship model we'll be creating in the workings of our application. Again, it's to keep things simple.</p>
+<p>Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &ldquo;friend&rdquo; model of relationships (I&rsquo;m your friend; you&rsquo;re my friend). There are other models like the popular &ldquo;following-follower&rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we&rsquo;ll explore a very basic approach. Also, we won&rsquo;t be exploiting the relationship model we&rsquo;ll be creating in the workings of our application. Again, it&rsquo;s to keep things simple.</p>
 <h1 id="friend-relationships">Friend relationships</h1>
-<p><em>I'm your friend and you're my friend</em>. That's the idea for the friend relationship model. It starts by making a friend request. The user at the receiving end may choose to accept or decline the request. If they accept, the user who made the request is added to their friends&rsquo; list and vice versa [or so] thus a relationship exists between the two of them. If a request is declined, nothing happens, basically.</p>
-<p>Without further ado, let's implement something of that sort for FaceClone.</p>
+<p><em>I&rsquo;m your friend and you&rsquo;re my friend</em>. That&rsquo;s the idea for the friend relationship model. It starts by making a friend request. The user at the receiving end may choose to accept or decline the request. If they accept, the user who made the request is added to their friends&rsquo; list and vice versa [or so] thus a relationship exists between the two of them. If a request is declined, nothing happens, basically.</p>
+<p>Without further ado, let&rsquo;s implement something of that sort for FaceClone.</p>
 <h1 id="list-users">List users</h1>
-<p>We want to provide a list of FaceClone users to a user so that they can add any of them as friends. The right sidebar of the home.php template has an &ldquo;add friend&rdquo; panel. Let's use it. All we need do is list out all our users.</p>
-<p>In the &ldquo;add friend&rdquo; section, we'll have…</p>
+<p>We want to provide a list of FaceClone users to a user so that they can add any of them as friends. The right sidebar of the home.php template has an &ldquo;add friend&rdquo; panel. Let&rsquo;s use it. All we need do is list out all our users.</p>
+<p>In the &ldquo;add friend&rdquo; section, we&rsquo;ll have…</p>
 <pre><code>&lt;h4&gt;add friend&lt;/h4&gt;
 &lt;?php
     $sql = &quot;SELECT id, username, (SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION['user_id']}) AS is_friend FROM users WHERE id != {$_SESSION['user_id']} HAVING is_friend = 0&quot;;
@@ -112,7 +112,7 @@ if (!doNotTrack) {
     }
 ?&gt;
 </code></pre>
-<p>Now that's some code! Let's break it down bit by bit. We want to list FaceClone users. That's the goal. So why do we have a long and &ldquo;complex&rdquo; SQL query? Can't we just use <code>SELECT * FROM users</code>? We can. But it's not that simple. There are 2 constraints we need to set. First, users that are already friends with the current user (who is looking to get new friends) shouldn't be displayed on the list. That makes sense right? Secondly, the current user shouldn't be on the list. You shouldn't be able to friend yourself, should you? There are other constraints that can be added to make things more fluid as well as &ldquo;waterproof&rdquo;, but considering them would just make things more complicated so we'll just leave things as they are.</p>
+<p>Now that&rsquo;s some code! Let&rsquo;s break it down bit by bit. We want to list FaceClone users. That&rsquo;s the goal. So why do we have a long and &ldquo;complex&rdquo; SQL query? Can&rsquo;t we just use <code>SELECT * FROM users</code>? We can. But it&rsquo;s not that simple. There are 2 constraints we need to set. First, users that are already friends with the current user (who is looking to get new friends) shouldn&rsquo;t be displayed on the list. That makes sense right? Secondly, the current user shouldn&rsquo;t be on the list. You shouldn&rsquo;t be able to friend yourself, should you? There are other constraints that can be added to make things more fluid as well as &ldquo;waterproof&rdquo;, but considering them would just make things more complicated so we&rsquo;ll just leave things as they are.</p>
 <p>To achieve the first constraint, we added a column to the users table results called <code>is_friend</code>.</p>
 <pre><code>(SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION['user_id']}) AS is_friend
 </code></pre>
@@ -123,7 +123,7 @@ if (!doNotTrack) {
 <pre><code>WHERE id != {$_SESSION['user_id']}
 </code></pre>
 <h1 id="send-a-friendrequest">Send a friend request</h1>
-<p>In the users list, there's an add friend link beside each username.</p>
+<p>In the users list, there&rsquo;s an add friend link beside each username.</p>
 <pre><code>&lt;a href=&quot;php/add-friend.php?uid=&lt;?php echo $fc_user['id']; ?&gt;&quot;&gt;[add]&lt;/a&gt;
 </code></pre>
 <p>The links lead to a GET endpoint <code>php/add-friend.php?uid=</code>. Go ahead, as always and create a file in the php folder called add-friend.php with the following code&hellip;</p>
@@ -179,7 +179,7 @@ if (!doNotTrack) {
 ?&gt;
 </code></pre>
 <p>In the snippet above, there are two sets of queries. The first pulls out all the friend requests to the current user. The second fetches data (of the requesting user) for each friend request.</p>
-<p>There are two links beside each user's username. One to accept and the other to decline. They both lead to different end points. The former to <code>php/accept-request.php?uid=</code> and the latter to <code>php/remove-request.php?uid=</code>.</p>
+<p>There are two links beside each user&rsquo;s username. One to accept and the other to decline. They both lead to different end points. The former to <code>php/accept-request.php?uid=</code> and the latter to <code>php/remove-request.php?uid=</code>.</p>
 <p>Remove request:</p>
 <pre><code>&lt;?php
     require_once &quot;../functions.php&quot;;
@@ -222,10 +222,10 @@ if (!doNotTrack) {
         echo &quot;Error: &quot; . $conn-&gt;error;
     }
 </code></pre>
-<p>Viola! We've built friend relationships into FaceClone!</p>
-<p>Again, we're not exploiting the relationships we just created, to keep things simple. But it's pretty straightforward to do so. For example, instead of displaying all FaceClone posts on a user's feed, we could display only posts from their friends. We could also make some of a user's profile information only available to their friends. If we had a chat feature, we could allow only friends chat with each other. As a social network grows, this would make more sense. So if you're working on your social network app after this series (I totally encourage it), keep in mind what the relationships you create would imply.</p>
-<p><em>At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There's always something to add to make it easier, faster and/or better to use.</em></p>
-<p>We'll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!</p>
+<p>Viola! We&rsquo;ve built friend relationships into FaceClone!</p>
+<p>Again, we&rsquo;re not exploiting the relationships we just created, to keep things simple. But it&rsquo;s pretty straightforward to do so. For example, instead of displaying all FaceClone posts on a user&rsquo;s feed, we could display only posts from their friends. We could also make some of a user&rsquo;s profile information only available to their friends. If we had a chat feature, we could allow only friends chat with each other. As a social network grows, this would make more sense. So if you&rsquo;re working on your social network app after this series (I totally encourage it), keep in mind what the relationships you create would imply.</p>
+<p><em>At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There&rsquo;s always something to add to make it easier, faster and/or better to use.</em></p>
+<p>We&rsquo;ll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!</p>
 <p><strong>The final code for this part is contained in my <a href="https://github.com/nicholaskajoh/faceclone">FaceClone repo</a>. Visit the link and click on the part-6 folder to see progress made so far.</strong></p>
 <p>Next: <a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a>.</p>
 <p>Previous: <a href="/facebook-clone-5">Build a Facebook clone from scratch with PHP — Part 5</a>.</p>

@@ -26,7 +26,7 @@ if (!doNotTrack) {
     
 
     <meta property="og:title" content="Hello Hugo!" />
-<meta property="og:description" content="If you haven&#39;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&#39;s design in the process. In this post, I&#39;ll share my experience using Ghost and explain why I moved again." />
+<meta property="og:description" content="If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://alphacoder.xyz/hello-hugo/" />
 <meta property="article:published_time" content="2019-01-31T09:30:21+01:00" />
@@ -34,10 +34,10 @@ if (!doNotTrack) {
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hello Hugo!"/>
-<meta name="twitter:description" content="If you haven&#39;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&#39;s design in the process. In this post, I&#39;ll share my experience using Ghost and explain why I moved again."/>
+<meta name="twitter:description" content="If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again."/>
 
     <meta itemprop="name" content="Hello Hugo!">
-<meta itemprop="description" content="If you haven&#39;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&#39;s design in the process. In this post, I&#39;ll share my experience using Ghost and explain why I moved again.">
+<meta itemprop="description" content="If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again.">
 <meta itemprop="datePublished" content="2019-01-31T09:30:21&#43;01:00" />
 <meta itemprop="dateModified" content="2019-01-31T09:30:21&#43;01:00" />
 <meta itemprop="wordCount" content="628">
@@ -70,27 +70,27 @@ if (!doNotTrack) {
 </div>
 </header>
 <article>
-    <p>If you haven't yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration <a href="/from-medium-to-ghost">from a Medium.com publication to a self-hosted Ghost installation on Vultr</a>. Shortly after, I decided to ditch <a href="http://ghost.org">Ghost</a> (a Node.js CMS) for <a href="http://gohugo.io">Hugo</a> (a static site generator built with Go). I also changed the blog's design in the process. In this post, I'll share my experience using Ghost and explain why I moved again.</p>
-<p>Ghost is a great CMS. It's simple, it's clean and a joy to use. The story editor is very similar to Medium's so I immediately felt at home using it. There were however a few concerns I had about using Ghost.</p>
+    <p>If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration <a href="/from-medium-to-ghost">from a Medium.com publication to a self-hosted Ghost installation on Vultr</a>. Shortly after, I decided to ditch <a href="http://ghost.org">Ghost</a> (a Node.js CMS) for <a href="http://gohugo.io">Hugo</a> (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again.</p>
+<p>Ghost is a great CMS. It&rsquo;s simple, it&rsquo;s clean and a joy to use. The story editor is very similar to Medium&rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.</p>
 <ul>
 <li>
-<p><strong>Theme customization and update:</strong> I needed a quick way to make changes to my blog's theme and a way to update it periodically without clearing out all my customizations. I couldn't find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog's server to push changes, but I never got to do it. I manually edited the theme's files on the server with nano as a temporary fix for quick customizations which is less than ideal.</p>
+<p><strong>Theme customization and update:</strong> I needed a quick way to make changes to my blog&rsquo;s theme and a way to update it periodically without clearing out all my customizations. I couldn&rsquo;t find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog&rsquo;s server to push changes, but I never got to do it. I manually edited the theme&rsquo;s files on the server with nano as a temporary fix for quick customizations which is less than ideal.</p>
 </li>
 <li>
-<p><strong>Backup:</strong> I wanted automatic backups for my posts. I couldn't find a clean way to do periodic backups automatically. Ghost's data export doesn't include images, so if I wanted to backup all my data, I'd have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn't find a ready-made solution for that.</p>
+<p><strong>Backup:</strong> I wanted automatic backups for my posts. I couldn&rsquo;t find a clean way to do periodic backups automatically. Ghost&rsquo;s data export doesn&rsquo;t include images, so if I wanted to backup all my data, I&rsquo;d have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn&rsquo;t find a ready-made solution for that.</p>
 </li>
 <li>
-<p><strong>Offline writing and editing:</strong> Inspiration to write can come at any time whether you're connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.</p>
+<p><strong>Offline writing and editing:</strong> Inspiration to write can come at any time whether you&rsquo;re connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.</p>
 </li>
 <li>
-<p><strong>Cost:</strong> While the cost of self-hosting my Ghost blog was affordable, I figured I'd need to pay more once I started getting more traffic. But beyond that, I don't see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.</p>
+<p><strong>Cost:</strong> While the cost of self-hosting my Ghost blog was affordable, I figured I&rsquo;d need to pay more once I started getting more traffic. But beyond that, I don&rsquo;t see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.</p>
 </li>
 </ul>
-<p>Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog's repository so it's really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.</p>
-<p>The <a href="https://themes.gohugo.io/simple-hugo-theme/">new theme on the blog</a> is inspired by <a href="http://bettermotherfuckingwebsite.com">http://bettermotherfuckingwebsite.com</a>. I wanted something clean, accessible and performant — something that doesn't get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.</p>
-<p>I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn't consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn't do 301 redirects. Apparently it's against the law. I'm however hopeful that the blog will pick up soon.</p>
-<p>The blog's source is available on GitHub: <a href="https://github.com/nicholaskajoh/alphacoder.xyz">https://github.com/nicholaskajoh/alphacoder.xyz</a>.</p>
-<p>Okay. That's it for now. Hopefully I don't jump ship again.</p>
+<p>Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&rsquo;s repository so it&rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.</p>
+<p>The <a href="https://themes.gohugo.io/simple-hugo-theme/">new theme on the blog</a> is inspired by <a href="http://bettermotherfuckingwebsite.com">http://bettermotherfuckingwebsite.com</a>. I wanted something clean, accessible and performant — something that doesn&rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.</p>
+<p>I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&rsquo;t do 301 redirects. Apparently it&rsquo;s against the law. I&rsquo;m however hopeful that the blog will pick up soon.</p>
+<p>The blog&rsquo;s source is available on GitHub: <a href="https://github.com/nicholaskajoh/alphacoder.xyz">https://github.com/nicholaskajoh/alphacoder.xyz</a>.</p>
+<p>Okay. That&rsquo;s it for now. Hopefully I don&rsquo;t jump ship again.</p>
 
 </article>
 

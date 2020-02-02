@@ -74,8 +74,8 @@ To configure wildcard subdomains, all you need to do is add a &ldquo;match all&r
 </header>
 <article>
     <p>Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as <strong>team-name.awesomeapp.com</strong> or <strong>org-name.beta.awesomeapp.com</strong>. These subdomains are variable, meaning that they are not predefined and can contain any valid <a href="https://en.wikipedia.org/wiki/Domain_name">domain name</a> characters.</p>
-<p>To configure wildcard subdomains, all you need to do is add a &ldquo;match all&rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app's url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization's details for instance.</p>
-<p>Here's a sample application that displays avatars from <a href="http://avatars.adorable.io">Adorable Avatars</a> based on the subdomain you use.</p>
+<p>To configure wildcard subdomains, all you need to do is add a &ldquo;match all&rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app&rsquo;s url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization&rsquo;s details for instance.</p>
+<p>Here&rsquo;s a sample application that displays avatars from <a href="http://avatars.adorable.io">Adorable Avatars</a> based on the subdomain you use.</p>
 <p><img src="/images/wcsubd/demo.gif" alt=""></p>
 <p>Visit <code>some-random-name.wildcard-subdomains.alphacoder.xyz</code> where <code>some-random-name</code> can be anything you like and watch the avatars change!</p>
 <p>To use wildcard subdomains, go to your domain registrar and create a &ldquo;match all&rdquo; CNAME record</p>
@@ -102,7 +102,7 @@ To configure wildcard subdomains, all you need to do is add a &ldquo;match all&r
 &lt;/html&gt;
 </code></pre>
 <p>The most important part of the code is line 12, which gets the subdomain from the hostname (<code>window.location.hostname.split('.')[0]</code>).</p>
-<p>In development, you can use <code>lvh.me</code> (e.g <code>some-random-name.lvh.me:8080</code>) to test your application instead of <code>127.0.0.1</code>. <code>some-random-name.localhost</code> also works on browsers I've tested.</p>
+<p>In development, you can use <code>lvh.me</code> (e.g <code>some-random-name.lvh.me:8080</code>) to test your application instead of <code>127.0.0.1</code>. <code>some-random-name.localhost</code> also works on browsers I&rsquo;ve tested.</p>
 
 </article>
 
