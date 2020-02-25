@@ -107,7 +107,7 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.">
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> python:3.6-alpine</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> apk --update add <span style="color:#cd5555">\
 </span><span style="color:#cd5555"></span>    build-base <span style="color:#cd5555">\
 </span><span style="color:#cd5555"></span>    postgresql <span style="color:#cd5555">\
@@ -116,14 +116,14 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.">
 </span><span style="color:#cd5555"></span>    <span style="color:#228b22"># pillow dependencies</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span>    jpeg-dev <span style="color:#cd5555">\
 </span><span style="color:#cd5555"></span>    zlib-dev<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> mkdir /www<span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">WORKDIR</span><span style="color:#cd5555"> /www</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> requirements.txt /www/<span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> pip install -r requirements.txt<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">ENV</span> PYTHONUNBUFFERED <span style="color:#b452cd">1</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> . /www/<span style="color:#a61717;background-color:#e3d2d2">
 </span></code></pre></td></tr></table>
 </div>
@@ -160,27 +160,27 @@ Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.">
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">version</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;3&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">services</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">web</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">build</span>:<span style="color:#bbb"> </span>.<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">web</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">build</span>:<span style="color:#bbb"> </span>.<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>on-failure<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">env_file</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">command</span>:<span style="color:#bbb"> </span>python<span style="color:#bbb"> </span>manage.py<span style="color:#bbb"> </span>runserver<span style="color:#bbb"> </span><span style="color:#b452cd">0.0</span><span style="color:#b452cd">.0</span><span style="color:#b452cd">.0</span>:<span style="color:#b452cd">8000</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">command</span>:<span style="color:#bbb"> </span>python<span style="color:#bbb"> </span>manage.py<span style="color:#bbb"> </span>runserver<span style="color:#bbb"> </span><span style="color:#b452cd">0.0.0.0</span>:<span style="color:#b452cd">8000</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">volumes</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- .:/www<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- .:/www<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;8000:8000&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;8000:8000&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">depends_on</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- db<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- db<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">db</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;postgres:10.3-alpine&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;postgres:10.3-alpine&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>unless-stopped<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">env_file</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;5432:5432&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;5432:5432&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">volumes</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- ./postgres/data:/var/lib/postgresql/data<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- ./postgres/data:/var/lib/postgresql/data<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>There are two services in this Compose file — web and db. The web service builds the Django app using the <em>Dockerfile</em> in the previous section. A volume is created to map the project directory in the host to the one in the container (<code>- .:/www</code>) so that any changes made on the host are mirrored in the container. The <code>command</code> parameter uses Django’s dev server to run the app (<code>python manage.py runserver 0.0.0.0:8000</code>).</p>
@@ -242,25 +242,25 @@ POSTGRES_DB=mypgsqldb
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">version</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;3&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">services</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">web</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">build</span>:<span style="color:#bbb"> </span>.<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">web</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">build</span>:<span style="color:#bbb"> </span>.<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>on-failure<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">env_file</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">command</span>:<span style="color:#bbb"> </span>gunicorn<span style="color:#bbb"> </span>--bind<span style="color:#bbb"> </span><span style="color:#b452cd">0.0</span><span style="color:#b452cd">.0</span><span style="color:#b452cd">.0</span>:<span style="color:#b452cd">8080</span><span style="color:#bbb"> </span>dockerizeddjango.wsgi<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">command</span>:<span style="color:#bbb"> </span>gunicorn<span style="color:#bbb"> </span>--bind<span style="color:#bbb"> </span><span style="color:#b452cd">0.0.0.0</span>:<span style="color:#b452cd">8080</span><span style="color:#bbb"> </span>dockerizeddjango.wsgi<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;8080:8080&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;8080:8080&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">depends_on</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- nginx<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- nginx<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">nginx</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;nginx&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;nginx&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>always<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">volumes</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- ./nginx/conf.d:/etc/nginx/conf.d<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- ./nginx/conf.d:/etc/nginx/conf.d<span style="color:#bbb">
 </span><span style="color:#bbb">      </span>- ./staticfiles:/static<span style="color:#bbb">
 </span><span style="color:#bbb">      </span>- ./mediafiles:/media<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;80:80&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;80:80&#34;</span><span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>The web service in the production Compose file looks identical to one in the development file, except for the <code>command</code> parameter (majorly). It uses <a href="http://gunicorn.org">Gunicorn</a> (<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver">which is more suitable</a>) to serve the application (<code>gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi</code>).</p>

@@ -163,8 +163,8 @@ index.html
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">myapp</span> <span style="color:#8b008b;font-weight:bold">import</span> views
 
 urlpatterns = [
-    url(<span style="color:#cd5555">r</span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">^$</span><span style="color:#cd5555">&#39;</span>, views.index, name=<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">index</span><span style="color:#cd5555">&#39;</span>),
-    url(<span style="color:#cd5555">r</span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">^lazy_load_posts/$</span><span style="color:#cd5555">&#39;</span>, views.lazy_load_posts, name=<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">lazy_load_posts</span><span style="color:#cd5555">&#39;</span>),
+    url(<span style="color:#cd5555">r</span><span style="color:#cd5555">&#39;^$&#39;</span>, views.index, name=<span style="color:#cd5555">&#39;index&#39;</span>),
+    url(<span style="color:#cd5555">r</span><span style="color:#cd5555">&#39;^lazy_load_posts/$&#39;</span>, views.lazy_load_posts, name=<span style="color:#cd5555">&#39;lazy_load_posts&#39;</span>),
 ]
 </code></pre></td></tr></table>
 </div>
@@ -215,10 +215,10 @@ urlpatterns = [
 
 <span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">index</span>(request):
     posts = Post.objects.all()[:<span style="color:#b452cd">5</span>]
-    <span style="color:#8b008b;font-weight:bold">return</span> render(request, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">myapp/index.html</span><span style="color:#cd5555">&#39;</span>, {<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">posts</span><span style="color:#cd5555">&#39;</span>: posts})
+    <span style="color:#8b008b;font-weight:bold">return</span> render(request, <span style="color:#cd5555">&#39;myapp/index.html&#39;</span>, {<span style="color:#cd5555">&#39;posts&#39;</span>: posts})
 
 <span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">lazy_load_posts</span>(request):
-    page = request.POST.get(<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">page</span><span style="color:#cd5555">&#39;</span>)
+    page = request.POST.get(<span style="color:#cd5555">&#39;page&#39;</span>)
     posts = Post.objects.all()
     <span style="color:#228b22"># use Django&#39;s pagination</span>
     <span style="color:#228b22"># https://docs.djangoproject.com/en/dev/topics/pagination/</span>
@@ -232,13 +232,13 @@ urlpatterns = [
         posts = paginator.page(paginator.num_pages)
     <span style="color:#228b22"># build a html posts list with the paginated posts</span>
     posts_html = loader.render_to_string(
-        <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">myapp/posts.html</span><span style="color:#cd5555">&#39;</span>,
-        {<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">posts</span><span style="color:#cd5555">&#39;</span>: posts}
+        <span style="color:#cd5555">&#39;myapp/posts.html&#39;</span>,
+        {<span style="color:#cd5555">&#39;posts&#39;</span>: posts}
     )
     <span style="color:#228b22"># package output data and return it as a JSON object</span>
     output_data = {
-        <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">posts_html</span><span style="color:#cd5555">&#39;</span>: posts_html,
-        <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">has_next</span><span style="color:#cd5555">&#39;</span>: posts.has_next()
+        <span style="color:#cd5555">&#39;posts_html&#39;</span>: posts_html,
+        <span style="color:#cd5555">&#39;has_next&#39;</span>: posts.has_next()
     }
     <span style="color:#8b008b;font-weight:bold">return</span> JsonResponse(output_data)
 </code></pre></td></tr></table>

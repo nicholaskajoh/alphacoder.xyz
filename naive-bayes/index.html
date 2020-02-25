@@ -159,7 +159,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
 <span style="color:#228b22"># data  </span>
 heights = np.array([<span style="color:#b452cd">6.3</span>, <span style="color:#b452cd">5.9</span>, <span style="color:#b452cd">5.1</span>, <span style="color:#b452cd">5.6</span>, <span style="color:#b452cd">5.1</span>])  
 weights = np.array([<span style="color:#b452cd">50.2</span>, <span style="color:#b452cd">79.7</span>, <span style="color:#b452cd">61.4</span>, <span style="color:#b452cd">47.1</span>, <span style="color:#b452cd">59.8</span>])  
-classes = np.array([<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Female</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Female</span><span style="color:#cd5555">&#34;</span> , <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Female</span><span style="color:#cd5555">&#34;</span>])
+classes = np.array([<span style="color:#cd5555">&#34;Male&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span> , <span style="color:#cd5555">&#34;Male&#34;</span>, <span style="color:#cd5555">&#34;Female&#34;</span>])
 </code></pre></td></tr></table>
 </div>
 </div><p>Next, let’s find P(Class) for Male and Female:</p>
@@ -181,7 +181,7 @@ classes = np.array([<span style="color:#cd5555"></span><span style="color:#cd555
 females_count = <span style="color:#b452cd">0</span>  
 sample_size = <span style="color:#658b00">len</span>(classes)  
 <span style="color:#8b008b;font-weight:bold">for</span> x <span style="color:#8b008b">in</span> classes:  
-    <span style="color:#8b008b;font-weight:bold">if</span> x == <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>:  
+    <span style="color:#8b008b;font-weight:bold">if</span> x == <span style="color:#cd5555">&#34;Male&#34;</span>:  
         males_count += <span style="color:#b452cd">1</span>  
     <span style="color:#8b008b;font-weight:bold">else</span>:  
         females_count += <span style="color:#b452cd">1</span>  
@@ -222,7 +222,7 @@ heights_of_females = []
 weights_of_females = []
 
 <span style="color:#8b008b;font-weight:bold">for</span> i <span style="color:#8b008b">in</span> <span style="color:#658b00">range</span>(sample_size):  
-    <span style="color:#8b008b;font-weight:bold">if</span> classes[i] == <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">Male</span><span style="color:#cd5555">&#34;</span>:  
+    <span style="color:#8b008b;font-weight:bold">if</span> classes[i] == <span style="color:#cd5555">&#34;Male&#34;</span>:  
         heights_of_males.append(heights[i])  
         weights_of_males.append(weights[i])  
     <span style="color:#8b008b;font-weight:bold">else</span>:
@@ -288,14 +288,14 @@ p_weight_female = the_pdf(x[<span style="color:#b452cd">1</span>], mean_weight_f
 <span style="color:#228b22"># Get class probabilities  </span>
 p_male_h_and_w = p_male * p_height_male * p_weight_male  
 p_female_h_and_w = p_female * p_height_female * p_weight_female  
-<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">P(Male | height &amp; weight) =</span><span style="color:#cd5555">&#34;</span>, p_male_h_and_w)  
-<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">P(Female | height &amp; weight) =</span><span style="color:#cd5555">&#34;</span>, p_female_h_and_w)
+<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;P(Male | height &amp; weight) =&#34;</span>, p_male_h_and_w)  
+<span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;P(Female | height &amp; weight) =&#34;</span>, p_female_h_and_w)
 
 <span style="color:#228b22"># Return prediction  </span>
 <span style="color:#8b008b;font-weight:bold">if</span> p_male_h_and_w &gt; p_female_h_and_w:  
-    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">class = Male</span><span style="color:#cd5555">&#34;</span>)  
+    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;class = Male&#34;</span>)  
 <span style="color:#8b008b;font-weight:bold">else</span>:  
-    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">class = Female</span><span style="color:#cd5555">&#34;</span>)
+    <span style="color:#8b008b;font-weight:bold">print</span>(<span style="color:#cd5555">&#34;class = Female&#34;</span>)
 </code></pre></td></tr></table>
 </div>
 </div><p>Output:</p>

@@ -134,8 +134,8 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
 TEMPLATES = [
     {
         <span style="color:#228b22"># ...</span>
-        <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">DIRS</span><span style="color:#cd5555">&#39;</span>: [
-            os.path.join(BASE_DIR, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">build</span><span style="color:#cd5555">&#39;</span>)
+        <span style="color:#cd5555">&#39;DIRS&#39;</span>: [
+            os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;build&#39;</span>)
         ],
         <span style="color:#228b22"># ...</span>
     }
@@ -151,7 +151,7 @@ TEMPLATES = [
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">build/static</span><span style="color:#cd5555">&#39;</span>),
+    os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;build/static&#39;</span>),
 ]
 </code></pre></td></tr></table>
 </div>
@@ -175,9 +175,9 @@ TEMPLATES = [
 <span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.views.generic</span> <span style="color:#8b008b;font-weight:bold">import</span> TemplateView
 
 urlpatterns = [
-    path(<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">admin/</span><span style="color:#cd5555">&#39;</span>, admin.site.urls),
+    path(<span style="color:#cd5555">&#39;admin/&#39;</span>, admin.site.urls),
     <span style="color:#228b22"># path(&#39;api/&#39;, include(&#39;mynewapp.urls&#39;)),</span>
-    re_path(<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">.*</span><span style="color:#cd5555">&#39;</span>, TemplateView.as_view(template_name=<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">index.html</span><span style="color:#cd5555">&#39;</span>)),
+    re_path(<span style="color:#cd5555">&#39;.*&#39;</span>, TemplateView.as_view(template_name=<span style="color:#cd5555">&#39;index.html&#39;</span>)),
 ]
 </code></pre></td></tr></table>
 </div>

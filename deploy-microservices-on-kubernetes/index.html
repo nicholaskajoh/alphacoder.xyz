@@ -112,14 +112,14 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> python:3.6-stretch</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">EXPOSE</span><span style="color:#cd5555"> 8080</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> mkdir /www<span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">WORKDIR</span><span style="color:#cd5555"> /www</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> requirements.txt /www/<span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> pip install -r requirements.txt<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">ENV</span> PYTHONUNBUFFERED <span style="color:#b452cd">1</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> . /www/<span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">CMD</span> gunicorn --bind 0.0.0.0:8080 wsgi<span style="color:#a61717;background-color:#e3d2d2">
 </span></code></pre></td></tr></table>
@@ -135,7 +135,7 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> php:7.2-apache</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">EXPOSE</span><span style="color:#cd5555"> 80</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#a61717;background-color:#e3d2d2">
+</span><span style="color:#a61717;background-color:#e3d2d2">
 </span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> . /var/www/html/<span style="color:#a61717;background-color:#e3d2d2">
 </span></code></pre></td></tr></table>
 </div>
@@ -212,29 +212,29 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-deployment<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-deployment<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">3</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">minReadySeconds</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">strategy</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>RollingUpdate<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>RollingUpdate<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">rollingUpdate</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxUnavailable</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxUnavailable</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
 </span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxSurge</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">template</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/detector-svc<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/detector-svc<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">envFrom</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-secrets<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-secrets<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>In this deployment, we want to run 3 copies (<code>replicas: 3</code>) of the detector service (<code>- image: gcr.io/{PROJECT_ID}/detector-svc</code>) for availability and scalability. We label the pods (<code>app: detector-svc</code>) so that they can easily be referenced as a group. We alse choose rolling updates (<code>type: RollingUpdate</code>) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.</p>
@@ -269,26 +269,26 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-deployment<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-deployment<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">2</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">2</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">minReadySeconds</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">strategy</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Recreate<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Recreate<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">template</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/viewer-svc<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/viewer-svc<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">envFrom</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-secrets<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-secrets<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>We choose a different redeployment strategy (<code>type: Recreate</code>) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&rsquo;re going with 2 replicas here.</p>
@@ -315,15 +315,15 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-service<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-service<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>ClusterIP<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>ClusterIP<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">selector</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>Viewer k8s service.</p>
@@ -346,15 +346,15 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-service<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-service<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">selector</span>:<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
 </span></code></pre></td></tr></table>
 </div>
 </div><p><strong>NB:</strong> we use the labels (<code>app: detector-svc</code> and <code>app: viewer-svc</code>) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.</p>

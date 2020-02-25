@@ -175,8 +175,8 @@ whitenoise==3.3.1
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_ROOT = os.path.join(BASE_DIR, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">staticfiles</span><span style="color:#cd5555">&#39;</span>)
-STATICFILES_STORAGE = <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">whitenoise.django.GzipManifestStaticFilesStorage</span><span style="color:#cd5555">&#39;</span>
+STATIC_ROOT = os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;staticfiles&#39;</span>)
+STATICFILES_STORAGE = <span style="color:#cd5555">&#39;whitenoise.django.GzipManifestStaticFilesStorage&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Add whitenoise to your <em>wsgi.py</em> file.</p>
@@ -198,7 +198,7 @@ STATICFILES_STORAGE = <span style="color:#cd5555"></span><span style="color:#cd5
 <span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">get_wsgi_application</span>
 <span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">whitenoise.django</span> <span style="color:#8b008b;font-weight:bold">import</span> DjangoWhiteNoise
 
-os.environ.setdefault(<span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">DJANGO_SETTINGS_MODULE</span><span style="color:#cd5555">&#34;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#34;</span><span style="color:#cd5555">reactdjango.settings</span><span style="color:#cd5555">&#34;</span>)
+os.environ.setdefault(<span style="color:#cd5555">&#34;DJANGO_SETTINGS_MODULE&#34;</span>, <span style="color:#cd5555">&#34;reactdjango.settings&#34;</span>)
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
@@ -211,7 +211,7 @@ application = DjangoWhiteNoise(application)
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ALLOWED_HOSTS = [<span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">react-django.herokuapp.com</span><span style="color:#cd5555">&#39;</span>, <span style="color:#cd5555"></span><span style="color:#cd5555">&#39;</span><span style="color:#cd5555">127.0.0.1:8000</span><span style="color:#cd5555">&#39;</span>]
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ALLOWED_HOSTS = [<span style="color:#cd5555">&#39;react-django.herokuapp.com&#39;</span>, <span style="color:#cd5555">&#39;127.0.0.1:8000&#39;</span>]
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>NB: I personally prefer to add allowed hosts using environment variables e.g with</strong> <a href="https://github.com/theskumar/python-dotenv"><strong>python-dotenv</strong></a><strong>.</strong></p>
