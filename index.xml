@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>I code, therefore I am on Alpha Coder</title>
+    <title>Software engineering with great finesse on Alpha Coder</title>
     <link>http://alphacoder.xyz/</link>
-    <description>Recent content in I code, therefore I am on Alpha Coder</description>
+    <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <copyright>© Nicholas Kajoh</copyright>
+    <copyright>© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Sun, 29 Sep 2019 17:37:55 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
@@ -419,27 +419,6 @@ Data validation is a very essential part of any API/web app. Client-side validat
 Templates Create 2 templates, index.html and posts.html.
 index.html
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.</description>
-    </item>
-    
-    <item>
-      <title>Courses</title>
-      <link>http://alphacoder.xyz/courses/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/courses/</guid>
-      <description>I&amp;rsquo;m currently working on two awesome video courses to be released soon™: Node.js Testing and Build and Deploy Microservices. Subscribe to my newsletter to get notified when they&amp;rsquo;re released.
-Node.js Testing takes you through the fundamentals of software testing. You&amp;rsquo;ll learn why testing is important and how to write a solid test suite with Node.js. We&amp;rsquo;ll go through several concepts including static, unit, integration and end-to-end testing, test coverage, and mocking.</description>
-    </item>
-    
-    <item>
-      <title>Support</title>
-      <link>http://alphacoder.xyz/support/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/support/</guid>
-      <description>Are you stuck trying to use an article on Alpha Coder or any of my open source projects to solve a technical/programming problem in your project? You&amp;rsquo;re in luck! I offer paid support.
-I can help you:
- Gain a deeper understanding of the subject matter of any article so that you can apply the knowledge in solving your problem. With a second pair of eyes to debug and fix your code.</description>
     </item>
     
   </channel>

@@ -8,17 +8,17 @@
   </url>
   
   <url>
-    <loc>http://alphacoder.xyz/</loc>
-    <lastmod>2019-09-29T17:37:55+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://alphacoder.xyz/tag/microservices/</loc>
     <lastmod>2019-09-29T17:37:55+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://alphacoder.xyz/blog/</loc>
+    <lastmod>2019-09-29T17:37:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alphacoder.xyz/</loc>
     <lastmod>2019-09-29T17:37:55+00:00</lastmod>
   </url>
   
@@ -320,14 +320,6 @@
   <url>
     <loc>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</loc>
     <lastmod>2017-02-26T05:43:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/courses/</loc>
-  </url>
-  
-  <url>
-    <loc>http://alphacoder.xyz/support/</loc>
   </url>
   
 </urlset>
