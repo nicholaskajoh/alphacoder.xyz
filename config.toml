@@ -13,7 +13,7 @@ googleAnalytics = "UA-82728104-5"
 disqusShortname = "alphacoderxyz"
 
 # Copyright
-copyright = "© Nicholas Kajoh"
+copyright = "© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved."
 
 # Highlighting
 pygmentsCodefences = true
@@ -33,26 +33,26 @@ pygmentsStyle = "perldoc"
         name = "Blog"
         weight = 1
     [[menu.main]]
-        url = "/support/"
-        name = "Support"
+        url = "https://courses.alphacoder.xyz"
+        name = "Courses"
         weight = 2
     [[menu.main]]
-        url = "/courses/"
-        name = "Courses"
+        url = "https://community.alphacoder.xyz"
+        name = "Community"
         weight = 3
 
     # Footer
     [[menu.footer]]
-        url = "http://twitter.com/nicholaskajoh"
+        url = "https://twitter.com/AlphaCoderXYZ"
         name = "Twitter"
         weight = 1
     [[menu.footer]]
-        url = "https://github.com/nicholaskajoh"
-        name = "GitHub"
+        url = "https://www.linkedin.com/company/alphacoder"
+        name = "LinkedIn"
         weight = 2
     [[menu.footer]]
-        url = "http://buymeacoff.ee/nicholaskajoh"
-        name = "Buy me a coffee"
+        url = "mailto:support@alphacoder.xyz"
+        name = "Email"
         weight = 3
     [[menu.footer]]
         url = "/blog/index.xml"
