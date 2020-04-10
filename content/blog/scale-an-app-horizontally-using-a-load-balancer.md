@@ -2,7 +2,6 @@
 author = "Nicholas Kajoh"
 date = 2018-06-13T19:59:00.000Z
 draft = false
-image = "/content/images/2018/12/leio-mclaren-leiomclaren-307277-unsplash-sm-1.jpg"
 slug = "scale-an-app-horizontally-using-a-load-balancer"
 title = "How to scale an app horizontally using a load balancer"
 
@@ -21,9 +20,8 @@ The latter approach is called **horizontal scaling**. It involves running your a
 
 Horizontal scaling works by placing a **load balancer** in front of your app servers. A load balancer is also a server. Its primary job is to distribute traffic among other servers.
 
-![](https://cdn-images-1.medium.com/max/800/1*YdLgSOulNgyYgdwc8Xh9Iw.png)
-
-Horizontal scaling (A, B, C and D represent your app servers)
+![](/images/ld-blncr/load-balancer-diagram.png)
+_Horizontal scaling (A, B, C and D represent your app servers)_
 
 Most cloud providers have one-click-setup load balancers you can use if you run your app in their infrastructure. You may also choose to create your own load balancer using open source software like Nginx, HAProxy, Traefik etc.
 
@@ -41,7 +39,7 @@ The _hits_ app is containerized using Docker for easy development and deployment
 DigitalOcean
 ------------
 
-DigitalOcean is a popular cloud computing platform loved for it’s simplicity and pocket-friendly pricing. We’ll be using their VMs/servers (which they call Droplets) to run the _hits_ app.
+DigitalOcean is a popular cloud computing platform loved for its simplicity and pocket-friendly pricing. We’ll be using their VMs/servers (which they call Droplets) to run the _hits_ app.
 
 You’ll need to create an account on [digitalocean.com](https://m.do.co/c/e38dd092b1ad) to get started. Droplets start at $5 per month but coupons abound. You can use my referral link and get $10 free: [https://m.do.co/c/e38dd092b1ad](https://m.do.co/c/e38dd092b1ad). More coupons here: [https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f](https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f).
 
@@ -50,15 +48,13 @@ Droplets
 
 Once you’ve signed up, verified your account and redeemed/purchased credits, head over to [https://cloud.digitalocean.com](https://cloud.digitalocean.com) and create a new droplet.
 
-![](https://cdn-images-1.medium.com/max/1000/1*SAvbqvGB12X0zymRCEbWMw.jpeg)
-
-My droplets are already up 😉
+![](/images/ld-blncr/droplets.jpeg)
+_My droplets are already up 😉_
 
 You can choose the configs you want if you know your way around provisioning servers. If you don’t, you may use the options shown in the screenshot below.
 
-![](https://cdn-images-1.medium.com/max/800/1*CyGtHD4hAIVZwZts5kI00A.jpeg)
-
-Create a droplet
+![](/images/ld-blncr/create-droplet.jpeg)
+_Create a droplet_
 
 When your servers are up, you’ll need to connect to them via SSH. It’s advisable to generate an SSH key for your computer ([https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604)). Alternatively, you can use username and password to login to your droplets.
 
@@ -74,34 +70,31 @@ Here are the steps (in summary) to setup _hits_ on your droplet. You may [use _t
 *   Install Docker and Docker Compose ([https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04), [https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04)). You can test your installations by running `docker --version` and `docker-compose --version`. Ensure the docker service is running: `sudo systemctl status docker`.
 *   Build and run the _hits_ application: `docker-compose -f docker-compose.prod.yml up --build -d` (you should be in the root directory of the project (/www/var/hits). Now when you visit, your droplet’s IP address, you should be greeted by the _hits_ app.
 
-![](https://cdn-images-1.medium.com/max/800/1*q_W-QTcla8D4ecyplNtvDw.jpeg)
+![](/images/ld-blncr/hits-app.jpeg)
+_The hits app 🙌_
 
-The hits app 🙌
-
-![](https://cdn-images-1.medium.com/max/1000/1*ci5wRdiGkabNsPyY2xIdaA.png)
-
-My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)
+![](/images/ld-blncr/hits-env.png)
+_My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)_
 
 Load balancer
 -------------
 
 Once all your servers are up and running, create a new load balancer.
 
-![](https://cdn-images-1.medium.com/max/1000/1*a7406vz2Slq4q19LaRHfHA.jpeg)
+![](/images/ld-blncr/load-balancer.jpeg)
 
-![](https://cdn-images-1.medium.com/max/800/1*-KS7Q9NK4S9-FCZP3i5BVQ.jpeg)
+![](/images/ld-blncr/create-load-balancer.jpeg)
 
 Once your load balancer is up, add your droplets to it.
 
-![](https://cdn-images-1.medium.com/max/800/1*O4PcqIRqWw03v_-Swbc7VQ.jpeg)
+![](/images/ld-blncr/add-droplets-to-lb.jpeg)
 
 Now you can visit your load balancer’s IP address. The APP INSTANCE shows what instance of the application (droplet) a request was routed to.
 
 Let’s go into the settings of the load balancer for a bit…
 
-![](https://cdn-images-1.medium.com/max/800/1*aIdtTYKJAU6ouagaw7GS-Q.jpeg)
-
-Load balancer settings
+![](/images/ld-blncr/lb-settings.jpeg)
+_Load balancer settings_
 
 So DigitalOcean gives us options to customize our load balancer.
 
