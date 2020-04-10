@@ -1,5 +1,5 @@
 # Alpha Coder
-A programming blog by Nicholas Kajoh built with Hugo. Visit [alphacoder.xyz](http://alphacoder.xyz).
+A programming blog by Nicholas Kajoh built with Hugo. Visit [alphacoder.xyz/blog](http://alphacoder.xyz/blog).
 
 ## Setup
 - Install [Hugo](https://gohugo.io/getting-started/installing).
