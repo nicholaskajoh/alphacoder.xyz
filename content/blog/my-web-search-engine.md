@@ -2,7 +2,6 @@
 author = "Nicholas Kajoh"
 date = 2018-07-26T14:16:00.000Z
 draft = false
-image = "/content/images/2018/12/pexels-photo-1430121.jpeg"
 slug = "my-web-search-engine"
 title = "I built my own web search engine — here’s how"
 
@@ -45,46 +44,50 @@ Crawling web pages with Scrapy
 
 I took a very lazy approach to parsing the scrapped pages. I used LXML to extract only the text from the HTML response. Say there’s a HTML page like so:
 
-    <html>
-        <head>
-            <title>How Google Search Works</title>
-        </head>
-        <body>
-            <h1>Crawling and indexing</h1>
-            <p>As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index.</p>
-            
-            <h1>Search algorithms</h1>
-            <p>Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second.</p>
-            
-            <h1>Useful responses</h1>
-            <p>With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.</p>
-        </body>
-    </html>
-    
+```html
+<html>
+    <head>
+        <title>How Google Search Works</title>
+    </head>
+    <body>
+        <h1>Crawling and indexing</h1>
+        <p>As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index.</p>
+        
+        <h1>Search algorithms</h1>
+        <p>Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second.</p>
+        
+        <h1>Useful responses</h1>
+        <p>With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.</p>
+    </body>
+</html>
+```    
 
 The output would be:
 
-    How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.
-    
+```
+How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.
+```
 
 _NB: You lose a lot of important data by doing this but it simplifies things a lot_ 😊
 
 I also extract all the links in each page (necessary for PageRank).
 
-    Page (How Google Search Works):
-        url: https://example.com/google-search
-        content: How Google Search Works
-            links:
-                - Link (Google Search)
-                - Link (Search Engines Wiki)
-    
+```
+Page (How Google Search Works):
+    url: https://example.com/google-search
+    content: How Google Search Works
+        links:
+            - Link (Google Search)
+            - Link (Search Engines Wiki)
+```
 
 There’s a list of allowed domains in the configs (`SPIDER_ALLOWED_DOMAINS`) which helps to fence the spider. It only crawls pages from the websites in that list.
 
 The spider crawls periodically via a cronjob which runs the custom flask command `flask crawl`. A `--recrawl` option can be added to the command to tell the spider whether to crawl new pages or crawl pages it has crawled before in order to update them.
 
-    $ flask crawl --recrawl True
-    
+```sh
+$ flask crawl --recrawl True
+```    
 
 A list of urls to crawl (called Crawl List) is maintained in the DB. There needs to be at least one url in the list for the spider to start crawling. As it crawls, it updates the list with new urls and marks the ones it has crawled.
 
@@ -93,22 +96,24 @@ Indexing
 
 Indexes help us find things quicker e.g the Table of Contents or Glossary in a book. If we wanted to index a website’s SQL DB, we could create an index table similar to this:
 
-    id title   description    keywords       page
-    ------------------------------------------------
-    1  G.O.A.T Greatest of... messi, ronaldo /p/goat
-    
+```
+id title   description    keywords       page
+------------------------------------------------
+1  G.O.A.T Greatest of... messi, ronaldo /p/goat
+```
 
 This is a [_forward index_](https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index). It’s very similar to a Table of Contents (which usually has chapter titles, descriptions and page numbers). Instead of writing expensive and complex queries, you can simply lookup the index table and return matching records. However, as the records in the index increase, lookup becomes slower and slower.
 
 There is another type of index which makes searching much faster. It’s the [_inverted index_](https://en.wikipedia.org/wiki/Inverted_index). This is the opposite of the forward index. Instead of having a list of pages and the keywords they contain, we have a list of keywords and the pages they are contained in. This is quite similar to a glossary.
 
-    id word     pages
-    --------------------------------------------------------
-    1  greatest /p/goat /u/messi /u/ronaldo /t/football
-    2  of       /p/goat
-    3  all      /p/goat /home
-    4  time     /p/goat /fixtures
-    
+```
+id word     pages
+--------------------------------------------------------
+1  greatest /p/goat /u/messi /u/ronaldo /t/football
+2  of       /p/goat
+3  all      /p/goat /home
+4  time     /p/goat /fixtures
+```
 
 The trade-off with the inverted index is _higher disk comsumption for faster lookup speed_. I used an inverted index for _devsearch_.
 
@@ -130,8 +135,9 @@ Searching and autocomplete
 
 When a user types in a query into _devsearch_, the query is divided into a list of words. The index collection (MongoDB) is filtered for records that have any of those words. Each index record has a score which is precomputed using the formula:
 
-    score = (tfidf / max(tfidf) * 0.7) + (pagerank / max(pagerank) * 0.3)
-    
+```py
+score = (tfidf / max(tfidf) * 0.7) + (pagerank / max(pagerank) * 0.3)
+```
 
 TFIDF represents 70% of the score and PageRank represents the remaining 30.
 
