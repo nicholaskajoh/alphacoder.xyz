@@ -76,11 +76,11 @@ TEMPLATES = [
 ```
     
 
-Also add _/build/static_ to static files directory so that `collectstatic` can copy the css and js files.
+Also add _build_ as a static files directory so that `collectstatic` can copy the css and js files.
 
 ```python
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'),
+    os.path.join(BASE_DIR, 'build'),
 ]
 ```
     
