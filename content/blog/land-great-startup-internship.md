@@ -2,16 +2,16 @@
 author = "Nicholas Kajoh"
 date = 2018-09-30T07:45:00.000Z
 draft = false
-slug = "land-an-internship-at-a-great-nigerian-startup"
+slug = "land-great-startup-internship"
 tags = ["Internships", "Startups"]
-title = "How to land an internship at a great Nigerian startup"
+title = "How to land an internship at a great startup"
 
 +++
 
 
-Getting an internship at a great company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
+Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
 
-Here are some tips on how to land an internship at a great Nigerian startup…
+Here are some tips on how to land an internship at a great startup…
 
 Do your homework
 ----------------
@@ -23,7 +23,7 @@ Make a list of all the startups you’re interested in applying to and do your r
 Don’t go through the front door
 -------------------------------
 
-Going through the front door means applying to a company directly e.g from a job ad or sending them an email. Many Nigerian startups don’t have formal internship programs. As such, its hard to find good internship job ads on/offline. Also, from personal experience sending tons of emails, I’ve found that a good number of companies don’t respond. The ones that do usually say something along the lines of “sorry, we’re not recruiting interns at this time” (really annoying).
+Going through the front door means applying to a company directly e.g from a job ad or sending them an email. Many startups don’t have formal internship programs. As such, its hard to find good internship job ads on/offline. Also, from personal experience sending tons of emails, I’ve found that a good number of companies don’t respond. The ones that do usually say something along the lines of “sorry, we’re not recruiting interns at this time” (really annoying).
 
 There was this company that said they didn’t take interns at the time but I knew people who were interning there. In fact, I asked someone who was interning there how he got in and he told me he “just got a call”. What was the interview process like? “I wasn’t interviewed”. Who called you? He refused to tell me. He definitely knew a top dog at the company. For sure.
 
