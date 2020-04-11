@@ -16,31 +16,33 @@ I couldn't find a tutorial that deals in full with the whole process of form val
 # Model
 Validation in Sails happens at model level. The attributes in a model contain rules that define what data should be stored in the database table/collection it represents. Say we have a model Product, we could write validation rules like so:
 
-    /* my-sails-app/api/models/Product.js */
-    module.exports = {
-        tableName: 'products',
-        attributes: {
-            // primitive
-            ref: {
-                type: 'string',
-                unique: true,
-            },
-            name: {
-                type: 'string',
-                required: true,
-            },
-            price:{
-                type: 'float',
-                required: true,
-            },
-            label: {
-                type: 'string',
-                in: ["black", "yellow"],
-            }
-            // associations
-            ...
+```js
+/* my-sails-app/api/models/Product.js */
+module.exports = {
+    tableName: 'products',
+    attributes: {
+        // primitive
+        ref: {
+            type: 'string',
+            unique: true,
         },
-    };
+        name: {
+            type: 'string',
+            required: true,
+        },
+        price:{
+            type: 'float',
+            required: true,
+        },
+        label: {
+            type: 'string',
+            in: ["black", "yellow"],
+        }
+        // associations
+        ...
+    },
+};
+```
 
 We can easily identify the rules from the above code sample. The constraints used include `type`, `unique`, `in` and `required`. For the full list of validation rules, head over to [the Sails docs](https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations).
 
@@ -49,74 +51,80 @@ When users submit invalid data, we need to provide them useful error messages so
 
 With this, we can define fine error messages instead of the very generic error messages Sails provides. It's annoyingly easy to add validation messages:
 
-    /* my-sails-app/api/models/Product.js */
-    module.exports = {
-        tableName: 'products',
-        attributes: {
-            ...
+```js
+/* my-sails-app/api/models/Product.js */
+module.exports = {
+    tableName: 'products',
+    attributes: {
+        ...
+    },
+    validationMessages: {
+        name: {
+            required: "Who adds a product without a name? SMH.",
         },
-        validationMessages: {
-            name: {
-                required: "Who adds a product without a name? SMH.",
-            },
-            price: {
-                required: "Seriously? Wanna donate this product or what?",
-            },
-            label: {
-                in: "Only black and yellow labels are allowed bro!",
-            }
+        price: {
+            required: "Seriously? Wanna donate this product or what?",
         },
-    }
+        label: {
+            in: "Only black and yellow labels are allowed bro!",
+        }
+    },
+}
+```
 
 # Controller
 Let's create a controller that serves as well as processes our form. Here's a snippet:
 
-    /* my-sails-app/api/controllers/ProductController.js */
-    shortid = require('shortid');
+```js
+/* my-sails-app/api/controllers/ProductController.js */
+shortid = require('shortid');
 
-    module.exports = {
-        async show(req, res) {
+module.exports = {
+    async show(req, res) {
+        try {
+            const product = await Product.findOne({ ref: req.param('ref') });
+            if (!product) return res.notFound();
+            return res.view('product', { product });
+        } catch(err) {
+            console.log(err);
+        }
+    },
+    async add(req, res) {
+        const data = {
+            errors: {},
+            old: {},
+        };
+        if (req.method === 'POST') {
             try {
-                const product = await Product.findOne({ ref: req.param('ref') });
-                if (!product) return res.notFound();
-                return res.view('product', { product });
+                const product = await Product.create({
+                    ref: shortid.generate(),
+                    name: req.body.name,
+                    price: parseFloat(req.body.price),
+                    label: req.body.label,
+                });
+                return res.redirect(`product/${product.ref}`);
             } catch(err) {
-                console.log(err);
-            }
-        },
-        async add(req, res) {
-            const data = {
-                errors: {},
-                old: {},
-            };
-            if (req.method === 'POST') {
-                try {
-                    const product = await Product.create({
-                        ref: shortid.generate(),
-                        name: req.body.name,
-                        price: parseFloat(req.body.price),
-                        label: req.body.label,
-                    });
-                    return res.redirect(`product/${product.ref}`);
-                } catch(err) {
-                    if(err.invalidAttributes) {
-                        data.errors = err.Errors;
-                        data.old = req.body;
-                    }
+                if(err.invalidAttributes) {
+                    data.errors = err.Errors;
+                    data.old = req.body;
                 }
             }
+        }
 
-            return res.view('add-product-form', data);
-        },
-    };
+        return res.view('add-product-form', data);
+    },
+};
+```
 
 The `ProductController` is where most of the good stuff happens. Let's break things down piece by piece to get a grasp of what's going on. But before we do that, consider how our routes file may look:
 
-    /* my-sails-app/config/routes.js */
-    module.exports.routes = {
-        'GET /product/:ref': 'ProductController.show',
-        '/products/add': 'ProductController.add',
-    };
+```js
+/* my-sails-app/config/routes.js */
+module.exports.routes = {
+    'GET /product/:ref': 'ProductController.show',
+    '/products/add': 'ProductController.add',
+};
+```
 
 You could also use the [Sails Blueprints thingy](http://sailsjs.com/documentation/concepts/blueprints). Not a fan of it though.
 
@@ -127,26 +135,28 @@ The second method `add()` does 2 things. If it receives a GET request, it return
 # View
 Now to our form view. Here you go:
 
-    <!-- my-sails-app/views/add-product-form.ejs -->
-    <form method="post" action="">
-        <!-- name -->
-        <div class="form-group">
-            <% if(errors.name) { %>
-                <div class="alert alert-danger">
-                <% errors.name.forEach(err => { %>
-                    <p><%= err.message %></p>
-                <% }); %>
-                </div>
-            <% } %>
+```html
+<!-- my-sails-app/views/add-product-form.ejs -->
+<form method="post" action="">
+    <!-- name -->
+    <div class="form-group">
+        <% if(errors.name) { %>
+            <div class="alert alert-danger">
+            <% errors.name.forEach(err => { %>
+                <p><%= err.message %></p>
+            <% }); %>
+            </div>
+        <% } %>
 
-            <label>Name</label>
-            <input class="form-control" type="text" name="name" value="<% if(old.name) { %><%= old.name %><% } %>">
-        </div>
-        <!-- ./name -->
+        <label>Name</label>
+        <input class="form-control" type="text" name="name" value="<% if(old.name) { %><%= old.name %><% } %>">
+    </div>
+    <!-- ./name -->
 
-        ...
-    </form>
+    ...
+</form>
+```
 
 The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.
 
-__Demo project: https://github.com/nicholaskajoh/sails-form-validation.__
+**Demo project: https://github.com/nicholaskajoh/sails-form-validation.**
