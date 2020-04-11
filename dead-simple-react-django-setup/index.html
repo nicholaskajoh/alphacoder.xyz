@@ -50,7 +50,7 @@ TL;DR: https://github.com/nicholaskajoh/React-Django.
 Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.">
 <meta itemprop="datePublished" content="2018-01-11T14:39:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-11T14:39:00&#43;00:00" />
-<meta itemprop="wordCount" content="584">
+<meta itemprop="wordCount" content="585">
 
 
 
@@ -146,7 +146,7 @@ TEMPLATES = [
 ]
 </code></pre></td></tr></table>
 </div>
-</div><p>Also add <em>/build/static</em> to static files directory so that <code>collectstatic</code> can copy the css and js files.</p>
+</div><p>Also add <em>build</em> as a static files directory so that <code>collectstatic</code> can copy the css and js files.</p>
 <div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -155,7 +155,7 @@ TEMPLATES = [
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;build/static&#39;</span>),
+    os.path.join(BASE_DIR, <span style="color:#cd5555">&#39;build&#39;</span>),
 ]
 </code></pre></td></tr></table>
 </div>

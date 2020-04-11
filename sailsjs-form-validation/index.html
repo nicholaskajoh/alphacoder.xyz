@@ -50,7 +50,7 @@ TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
 Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&rsquo;s not enough.">
 <meta itemprop="datePublished" content="2017-05-26T23:06:50&#43;01:00" />
 <meta itemprop="dateModified" content="2017-05-26T23:06:50&#43;01:00" />
-<meta itemprop="wordCount" content="801">
+<meta itemprop="wordCount" content="906">
 
 
 
@@ -86,130 +86,260 @@ Data validation is a very essential part of any API/web app. Client-side validat
 <p>I couldn&rsquo;t find a tutorial that deals in full with the whole process of form validation in Sails.js so I decided to write one. Mind you, I&rsquo;m open to contributions on how best to do it so if you know something, post a comment.</p>
 <h1 id="model">Model</h1>
 <p>Validation in Sails happens at model level. The attributes in a model contain rules that define what data should be stored in the database table/collection it represents. Say we have a model Product, we could write validation rules like so:</p>
-<pre><code>/* my-sails-app/api/models/Product.js */
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#228b22">/* my-sails-app/api/models/Product.js */</span>
 module.exports = {
-    tableName: 'products',
+    tableName: <span style="color:#cd5555">&#39;products&#39;</span>,
     attributes: {
-        // primitive
-        ref: {
-            type: 'string',
-            unique: true,
+        <span style="color:#228b22">// primitive
+</span><span style="color:#228b22"></span>        ref: {
+            type: <span style="color:#cd5555">&#39;string&#39;</span>,
+            unique: <span style="color:#8b008b;font-weight:bold">true</span>,
         },
         name: {
-            type: 'string',
-            required: true,
+            type: <span style="color:#cd5555">&#39;string&#39;</span>,
+            required: <span style="color:#8b008b;font-weight:bold">true</span>,
         },
         price:{
-            type: 'float',
-            required: true,
+            type: <span style="color:#cd5555">&#39;float&#39;</span>,
+            required: <span style="color:#8b008b;font-weight:bold">true</span>,
         },
         label: {
-            type: 'string',
-            in: [&quot;black&quot;, &quot;yellow&quot;],
+            type: <span style="color:#cd5555">&#39;string&#39;</span>,
+            <span style="color:#8b008b;font-weight:bold">in</span>: [<span style="color:#cd5555">&#34;black&#34;</span>, <span style="color:#cd5555">&#34;yellow&#34;</span>],
         }
-        // associations
-        ...
+        <span style="color:#228b22">// associations
+</span><span style="color:#228b22"></span>        ...
     },
 };
-</code></pre>
-<p>We can easily identify the rules from the above code sample. The constraints used include <code>type</code>, <code>unique</code>, <code>in</code> and <code>required</code>. For the full list of validation rules, head over to <a href="https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations">the Sails docs</a>.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>We can easily identify the rules from the above code sample. The constraints used include <code>type</code>, <code>unique</code>, <code>in</code> and <code>required</code>. For the full list of validation rules, head over to <a href="https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations">the Sails docs</a>.</p>
 <h1 id="validation-messages">Validation Messages</h1>
 <p>When users submit invalid data, we need to provide them useful error messages so they can make the necessary corrections. We can define custom error messages for the validation rules we set for a given attribute. Sails doesn&rsquo;t support custom error messages out of the box but there&rsquo;s a nifty little library for that. It&rsquo;s called <a href="https://github.com/lykmapipo/sails-hook-validation">sails-hook-validation</a> and can be installed in your app by running <code>npm install sails-hook-validation --save</code>.</p>
 <p>With this, we can define fine error messages instead of the very generic error messages Sails provides. It&rsquo;s annoyingly easy to add validation messages:</p>
-<pre><code>/* my-sails-app/api/models/Product.js */
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#228b22">/* my-sails-app/api/models/Product.js */</span>
 module.exports = {
-    tableName: 'products',
+    tableName: <span style="color:#cd5555">&#39;products&#39;</span>,
     attributes: {
         ...
     },
     validationMessages: {
         name: {
-            required: &quot;Who adds a product without a name? SMH.&quot;,
+            required: <span style="color:#cd5555">&#34;Who adds a product without a name? SMH.&#34;</span>,
         },
         price: {
-            required: &quot;Seriously? Wanna donate this product or what?&quot;,
+            required: <span style="color:#cd5555">&#34;Seriously? Wanna donate this product or what?&#34;</span>,
         },
         label: {
-            in: &quot;Only black and yellow labels are allowed bro!&quot;,
+            <span style="color:#8b008b;font-weight:bold">in</span>: <span style="color:#cd5555">&#34;Only black and yellow labels are allowed bro!&#34;</span>,
         }
     },
 }
-</code></pre>
-<h1 id="controller">Controller</h1>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="controller">Controller</h1>
 <p>Let&rsquo;s create a controller that serves as well as processes our form. Here&rsquo;s a snippet:</p>
-<pre><code>/* my-sails-app/api/controllers/ProductController.js */
-shortid = require('shortid');
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#228b22">/* my-sails-app/api/controllers/ProductController.js */</span>
+shortid = require(<span style="color:#cd5555">&#39;shortid&#39;</span>);
 
 module.exports = {
     async show(req, res) {
-        try {
-            const product = await Product.findOne({ ref: req.param('ref') });
-            if (!product) return res.notFound();
-            return res.view('product', { product });
-        } catch(err) {
+        <span style="color:#8b008b;font-weight:bold">try</span> {
+            <span style="color:#8b008b;font-weight:bold">const</span> product = await Product.findOne({ ref: req.param(<span style="color:#cd5555">&#39;ref&#39;</span>) });
+            <span style="color:#8b008b;font-weight:bold">if</span> (!product) <span style="color:#8b008b;font-weight:bold">return</span> res.notFound();
+            <span style="color:#8b008b;font-weight:bold">return</span> res.view(<span style="color:#cd5555">&#39;product&#39;</span>, { product });
+        } <span style="color:#8b008b;font-weight:bold">catch</span>(err) {
             console.log(err);
         }
     },
     async add(req, res) {
-        const data = {
+        <span style="color:#8b008b;font-weight:bold">const</span> data = {
             errors: {},
             old: {},
         };
-        if (req.method === 'POST') {
-            try {
-                const product = await Product.create({
+        <span style="color:#8b008b;font-weight:bold">if</span> (req.method === <span style="color:#cd5555">&#39;POST&#39;</span>) {
+            <span style="color:#8b008b;font-weight:bold">try</span> {
+                <span style="color:#8b008b;font-weight:bold">const</span> product = await Product.create({
                     ref: shortid.generate(),
                     name: req.body.name,
-                    price: parseFloat(req.body.price),
+                    price: <span style="color:#658b00">parseFloat</span>(req.body.price),
                     label: req.body.label,
                 });
-                return res.redirect(`product/${product.ref}`);
-            } catch(err) {
-                if(err.invalidAttributes) {
+                <span style="color:#8b008b;font-weight:bold">return</span> res.redirect(<span style="color:#cd5555">`product/</span><span style="color:#cd5555">${</span>product.ref<span style="color:#cd5555">}</span><span style="color:#cd5555">`</span>);
+            } <span style="color:#8b008b;font-weight:bold">catch</span>(err) {
+                <span style="color:#8b008b;font-weight:bold">if</span>(err.invalidAttributes) {
                     data.errors = err.Errors;
                     data.old = req.body;
                 }
             }
         }
 
-        return res.view('add-product-form', data);
+        <span style="color:#8b008b;font-weight:bold">return</span> res.view(<span style="color:#cd5555">&#39;add-product-form&#39;</span>, data);
     },
 };
-</code></pre>
-<p>The <code>ProductController</code> is where most of the good stuff happens. Let&rsquo;s break things down piece by piece to get a grasp of what&rsquo;s going on. But before we do that, consider how our routes file may look:</p>
-<pre><code>/* my-sails-app/config/routes.js */
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>ProductController</code> is where most of the good stuff happens. Let&rsquo;s break things down piece by piece to get a grasp of what&rsquo;s going on. But before we do that, consider how our routes file may look:</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#228b22">/* my-sails-app/config/routes.js */</span>
 module.exports.routes = {
-    'GET /product/:ref': 'ProductController.show',
-    '/products/add': 'ProductController.add',
+    <span style="color:#cd5555">&#39;GET /product/:ref&#39;</span>: <span style="color:#cd5555">&#39;ProductController.show&#39;</span>,
+    <span style="color:#cd5555">&#39;/products/add&#39;</span>: <span style="color:#cd5555">&#39;ProductController.add&#39;</span>,
 };
-</code></pre>
-<p>You could also use the <a href="http://sailsjs.com/documentation/concepts/blueprints">Sails Blueprints thingy</a>. Not a fan of it though.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>You could also use the <a href="http://sailsjs.com/documentation/concepts/blueprints">Sails Blueprints thingy</a>. Not a fan of it though.</p>
 <p>Now back to the controller. There are 2 functions in <code>ProductController</code>. The first <code>show()</code> displays a product given its reference <code>ref</code>. If the reference is not found, a 404 page is returned.</p>
 <p>The second method <code>add()</code> does 2 things. If it receives a GET request, it returns a form users can add products with. If it receives a POST request (i.e the form is being submitted), it attempts to create a new product and redirect to the product&rsquo;s page. If this fails (meaning there&rsquo;s a validation error), the form is returned with validation errors (<code>data.errors</code>) and the data previously submitted (<code>data.old</code>). We populate the form with <code>data.old</code> so that users don&rsquo;t have to retype everything if they submit an invalid form.</p>
 <h1 id="view">View</h1>
 <p>Now to our form view. Here you go:</p>
-<pre><code>&lt;!-- my-sails-app/views/add-product-form.ejs --&gt;
-&lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
-    &lt;!-- name --&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;% if(errors.name) { %&gt;
-            &lt;div class=&quot;alert alert-danger&quot;&gt;
-            &lt;% errors.name.forEach(err =&gt; { %&gt;
-                &lt;p&gt;&lt;%= err.message %&gt;&lt;/p&gt;
-            &lt;% }); %&gt;
-            &lt;/div&gt;
-        &lt;% } %&gt;
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#228b22">&lt;!-- my-sails-app/views/add-product-form.ejs --&gt;</span>
+&lt;<span style="color:#8b008b;font-weight:bold">form</span> <span style="color:#658b00">method</span>=<span style="color:#cd5555">&#34;post&#34;</span> <span style="color:#658b00">action</span>=<span style="color:#cd5555">&#34;&#34;</span>&gt;
+    <span style="color:#228b22">&lt;!-- name --&gt;</span>
+    &lt;<span style="color:#8b008b;font-weight:bold">div</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;form-group&#34;</span>&gt;
+        <span style="color:#a61717;background-color:#e3d2d2">&lt;</span>% if(errors.name) { %&gt;
+            &lt;<span style="color:#8b008b;font-weight:bold">div</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;alert alert-danger&#34;</span>&gt;
+            <span style="color:#a61717;background-color:#e3d2d2">&lt;</span>% errors.name.forEach(err =&gt; { %&gt;
+                &lt;<span style="color:#8b008b;font-weight:bold">p</span>&gt;<span style="color:#a61717;background-color:#e3d2d2">&lt;</span>%= err.message %&gt;&lt;/<span style="color:#8b008b;font-weight:bold">p</span>&gt;
+            <span style="color:#a61717;background-color:#e3d2d2">&lt;</span>% }); %&gt;
+            &lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+        <span style="color:#a61717;background-color:#e3d2d2">&lt;</span>% } %&gt;
 
-        &lt;label&gt;Name&lt;/label&gt;
-        &lt;input class=&quot;form-control&quot; type=&quot;text&quot; name=&quot;name&quot; value=&quot;&lt;% if(old.name) { %&gt;&lt;%= old.name %&gt;&lt;% } %&gt;&quot;&gt;
-    &lt;/div&gt;
-    &lt;!-- ./name --&gt;
+        &lt;<span style="color:#8b008b;font-weight:bold">label</span>&gt;Name&lt;/<span style="color:#8b008b;font-weight:bold">label</span>&gt;
+        &lt;<span style="color:#8b008b;font-weight:bold">input</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;form-control&#34;</span> <span style="color:#658b00">type</span>=<span style="color:#cd5555">&#34;text&#34;</span> <span style="color:#658b00">name</span>=<span style="color:#cd5555">&#34;name&#34;</span> <span style="color:#658b00">value</span>=<span style="color:#cd5555">&#34;&lt;% if(old.name) { %&gt;&lt;%= old.name %&gt;&lt;% } %&gt;&#34;</span>&gt;
+    &lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
+    <span style="color:#228b22">&lt;!-- ./name --&gt;</span>
 
     ...
-&lt;/form&gt;
-</code></pre>
-<p>The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.</p>
-<p>__Demo project: <a href="https://github.com/nicholaskajoh/sails-form-validation.__">https://github.com/nicholaskajoh/sails-form-validation.__</a></p>
+&lt;/<span style="color:#8b008b;font-weight:bold">form</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.</p>
+<p><strong>Demo project: <a href="https://github.com/nicholaskajoh/sails-form-validation">https://github.com/nicholaskajoh/sails-form-validation</a>.</strong></p>
 
 </article>
 
