@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 29 Sep 2019 17:37:55 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2020 18:17:48 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What level of abstraction should I play on?</title>
+      <link>http://alphacoder.xyz/levels-of-abstraction/</link>
+      <pubDate>Sun, 12 Apr 2020 18:17:48 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/levels-of-abstraction/</guid>
+      <description>&amp;ldquo;I built it from scratch!&amp;rdquo;
+A major sentiment among some of the developer circles I interacted with and was part of in my earlier days of coding was that you were a better &amp;ldquo;real&amp;rdquo; developer if you could build stuff &amp;ldquo;from scratch&amp;rdquo;. You&amp;rsquo;d often hear people scoff at building websites with WordPress, for example. &amp;ldquo;I built this site from scratch with raw HTML, CSS and JavaScript. No framework or CMS!&amp;rdquo; It was a thing of pride.</description>
+    </item>
     
     <item>
       <title>Authentication strategies in microservices architecture</title>
