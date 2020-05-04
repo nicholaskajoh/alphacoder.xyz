@@ -5,7 +5,7 @@ images = ["/images/hero.jpg"]
 
 ![](/images/hero.jpg)
 
-__Alpha Coder__ is an educational content platform for software professionals interested in honing their skills and building a solid career in tech. We distribute top-notch content through the following channels:
+__Alpha Coder__ is an educational content platform for software professionals interested in honing their skills and building a solid career in tech. We provide top-notch content through the following channels:
 
 - [Alpha Coder Blog](/blog/): A programming blog comprising 40+ high-quality articles (tutorials and expositions) targeted at the zealous engineer who loves to tinker and figure things out.
 - [Alpha Coder Courses](https://courses.alphacoder.xyz): An online learning platform offering hands-on video courses on software engineering skills sought after in the industry.
