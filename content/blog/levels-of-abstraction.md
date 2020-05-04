@@ -17,7 +17,7 @@ I'm spending quite some time these days tinkering with hardware and learning the
 
 While it's very funny (for me at least), I'm pointing it out because it's underlay by two ideas relevant to this article.
 
-1. Technically speaking, you can't build anything from scratch. You have to start from somewhere and then create abstractions to offset complexity as it increases.
+1. Technically speaking, [you can't build anything from scratch](https://www.youtube.com/watch?v=7s664NsLeFM). You have to start from somewhere and then create abstractions to offset complexity as it increases.
 2. There are many many levels of abstraction that make it possible for us to interact with computers the way we do. Much more than we might realize.
 
 As a developer with a never-ending thirst for knowledge, I've always asked myself, "what level of abstraction should I play on?" There are just so many abstraction layers that it is not practical to work across all these levels. Moreso, abstractions are primarily intended to remove the need for interacting with other abstractions.
