@@ -47,7 +47,7 @@ Luckily, there are cloud platforms that take away the stress of all that, allowi
 Luckily, there are cloud platforms that take away the stress of all that, allowing you to ship faster and deliver your product(s) at scale. Cloudinary is one of such platforms. It tags itself as the media management platform for web and mobile developers — an end-to-end solution for all your image and video needs.">
 <meta itemprop="datePublished" content="2018-02-18T08:50:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-02-18T08:50:00&#43;00:00" />
-<meta itemprop="wordCount" content="732">
+<meta itemprop="wordCount" content="785">
 
 
 
@@ -89,98 +89,217 @@ Luckily, there are cloud platforms that take away the stress of all that, allowi
 <p><img src="https://cdn-images-1.medium.com/max/1000/1*ZxPbpbatoeCyZzldXXoX2Q.png" alt=""></p>
 <h2 id="install">Install</h2>
 <p>Cloudinary has an open source <a href="https://pypi.python.org/pypi/cloudinary">integration library for Python/Django</a>. Install it using pip.</p>
-<pre><code>$ pip install cloudinary
-</code></pre>
-<h2 id="settings">Settings</h2>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pip install cloudinary
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="settings">Settings</h2>
 <p>Go to your project’s <em>settings.py</em> and make the following additions.</p>
 <p>First import cloudinary.</p>
-<pre><code>import cloudinary
-</code></pre>
-<p>Then add cloudinary to installed apps.</p>
-<pre><code>INSTALLED_APPS = [
-    'cloudinary',
-    # other apps
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">cloudinary</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Then add cloudinary to installed apps.</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">INSTALLED_APPS = [
+    <span style="color:#cd5555">&#39;cloudinary&#39;</span>,
+    <span style="color:#228b22"># other apps</span>
 ]
-</code></pre>
-<p>Now add the configs from your console.</p>
-<pre><code>cloudinary.config(
+</code></pre></td></tr></table>
+</div>
+</div><p>Now add the configs from your console.</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">cloudinary.config(
     cloud_name = CLOUDINARY_CLOUD_NAME,
     api_key = CLOUDINARY_API_KEY,
     api_secret = CLOUDINARY_API_SECRET
 )
-</code></pre>
-<p>Replace <code>CLOUDINARY_CLOUD_NAME</code>, <code>CLOUDINARY_API_KEY</code> and <code>CLOUDINARY_API_SECRET</code> as appropriate (they should be in quotes e.g <code>cloud_name = &quot;tchalla&quot;</code>).</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Replace <code>CLOUDINARY_CLOUD_NAME</code>, <code>CLOUDINARY_API_KEY</code> and <code>CLOUDINARY_API_SECRET</code> as appropriate (they should be in quotes e.g <code>cloud_name = &quot;tchalla&quot;</code>).</p>
 <h2 id="models">Models</h2>
 <p>At any point and in any file in your Django project, you can easily make use of all the functions and classes the Cloudinary Python library provides. For instance, you can upload a file like so.</p>
-<pre><code>import cloudinary.uploader
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">cloudinary.uploader</span>
 
-cloudinary.uploader.upload(&quot;my_picture.jpg&quot;)
-</code></pre>
-<p>See <a href="https://cloudinary.com/documentation/django_image_upload">https://cloudinary.com/documentation/django_image_upload</a> for more info on uploads.</p>
+cloudinary.uploader.upload(<span style="color:#cd5555">&#34;my_picture.jpg&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>See <a href="https://cloudinary.com/documentation/django_image_upload">https://cloudinary.com/documentation/django_image_upload</a> for more info on uploads.</p>
 <p>However, you want to handle things the Django way as this would allow you utilize the rich APIs that Django ships with. By “the Django way”, I mean using models (in this case).</p>
 <p>In Django, you can use ImageField or FileField in your model. Cloudinary provides CloudinaryField. Let’s create a Photo model using CloudinaryField in <em>models.py</em>.</p>
-<pre><code>from django.db import models
-from cloudinary.models import CloudinaryField
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.db</span> <span style="color:#8b008b;font-weight:bold">import</span> models
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">cloudinary.models</span> <span style="color:#8b008b;font-weight:bold">import</span> CloudinaryField
 
-class Photo(models.Model):
-    image = CloudinaryField('image')
-    caption = models.CharField(max_length=100, blank=True)
+<span style="color:#8b008b;font-weight:bold">class</span> <span style="color:#008b45;font-weight:bold">Photo</span>(models.Model):
+    image = CloudinaryField(<span style="color:#cd5555">&#39;image&#39;</span>)
+    caption = models.CharField(max_length=<span style="color:#b452cd">100</span>, blank=True)
 
-    def __str__(self):
-        return self.caption if self.caption != &quot;&quot; else &quot;No caption&quot;
-</code></pre>
-<p>Additionally, if you want to delete an image from Cloudinary when it’s model instance is deleted in your app (Django/Cloudinary doesn’t do this by default), you can add the following pre-delete signal after your model definition.</p>
-<pre><code>@receiver(pre_delete, sender=Photo)
-def photo_delete(sender, instance, **kwargs):
+    <span style="color:#8b008b;font-weight:bold">def</span> __str__(self):
+        <span style="color:#8b008b;font-weight:bold">return</span> self.caption <span style="color:#8b008b;font-weight:bold">if</span> self.caption != <span style="color:#cd5555">&#34;&#34;</span> <span style="color:#8b008b;font-weight:bold">else</span> <span style="color:#cd5555">&#34;No caption&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Additionally, if you want to delete an image from Cloudinary when it’s model instance is deleted in your app (Django/Cloudinary doesn’t do this by default), you can add the following pre-delete signal after your model definition.</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#707a7c">@receiver</span>(pre_delete, sender=Photo)
+<span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">photo_delete</span>(sender, instance, **kwargs):
     cloudinary.uploader.destroy(instance.image.public_id)
-</code></pre>
-<p>Then add the following imports at the top of the file.</p>
-<pre><code>from django.db.models.signals import pre_delete
-import cloudinary
-</code></pre>
-<h2 id="forms">Forms</h2>
+</code></pre></td></tr></table>
+</div>
+</div><p>Then add the following imports at the top of the file.</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.db.models.signals</span> <span style="color:#8b008b;font-weight:bold">import</span> pre_delete
+<span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">cloudinary</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="forms">Forms</h2>
 <p>Using ModelForm to create a form from the Photo model, we have:</p>
-<pre><code>from django.forms import ModelForm
-from .models import Photo
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.forms</span> <span style="color:#8b008b;font-weight:bold">import</span> ModelForm
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">.models</span> <span style="color:#8b008b;font-weight:bold">import</span> Photo
 
-class PhotoForm(ModelForm):
-    class Meta:
+<span style="color:#8b008b;font-weight:bold">class</span> <span style="color:#008b45;font-weight:bold">PhotoForm</span>(ModelForm):
+    <span style="color:#8b008b;font-weight:bold">class</span> <span style="color:#008b45;font-weight:bold">Meta</span>:
         model = Photo
-        fields = ('image', 'caption', )
-</code></pre>
-<h2 id="views">Views</h2>
+        fields = (<span style="color:#cd5555">&#39;image&#39;</span>, <span style="color:#cd5555">&#39;caption&#39;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="views">Views</h2>
 <p>For the view of PhotoForm form, we could have:</p>
-<pre><code>from django.shortcuts import render, redirect
-from .forms import PhotoForm
-from .models import Photo
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">django.shortcuts</span> <span style="color:#8b008b;font-weight:bold">import</span> render, redirect
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">.forms</span> <span style="color:#8b008b;font-weight:bold">import</span> PhotoForm
+<span style="color:#8b008b;font-weight:bold">from</span> <span style="color:#008b45;text-decoration:underline">.models</span> <span style="color:#8b008b;font-weight:bold">import</span> Photo
 
-def add_photo(request):
-    if request.method == &quot;POST&quot;:
+<span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">add_photo</span>(request):
+    <span style="color:#8b008b;font-weight:bold">if</span> request.method == <span style="color:#cd5555">&#34;POST&#34;</span>:
         form = PhotoForm(request.POST, request.FILES)
-        if form.is_valid():
+        <span style="color:#8b008b;font-weight:bold">if</span> form.is_valid():
             photo = Photo()
-            photo.caption = request.POST.get('caption')
+            photo.caption = request.POST.get(<span style="color:#cd5555">&#39;caption&#39;</span>)
             photo.save()
-            return redirect('/photo/' + photo.id)
-    else:
+            <span style="color:#8b008b;font-weight:bold">return</span> redirect(<span style="color:#cd5555">&#39;/photo/&#39;</span> + photo.id)
+    <span style="color:#8b008b;font-weight:bold">else</span>:
         form = PhotoForm()
 
-    return render(request, 'add-photo.html', {'form': form})
-</code></pre>
-<h2 id="template">Template</h2>
+    <span style="color:#8b008b;font-weight:bold">return</span> render(request, <span style="color:#cd5555">&#39;add-photo.html&#39;</span>, {<span style="color:#cd5555">&#39;form&#39;</span>: form})
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="template">Template</h2>
 <p>In the upload form template, you can simple do <code>{{ form }}</code> or manually design the HTML form to your taste.</p>
 <h2 id="display">Display</h2>
 <p>Displaying images from Cloudinary in your app is super simple and straight forward. If we fetch a Photo model instance in a view using <code>photo = Photo.objects.get(id=1)</code>, we can retrieve the image with <code>photo.image</code> which returns a CloudinaryResource object. This object has properties such as public_id, url, size (bytes), format etc.</p>
 <p>One way to display the image in a template after passing the photo object from the view is to use the url property.</p>
-<pre><code>&lt;img src=&quot;{{ photo.image.url }}&quot;&gt;
-</code></pre>
-<p>This is great and all but it won’t afford us the opportunity to use the many image transformation options Cloudinary provides. Fortunately, the Cloudinary library provides a template tag we can load up and use.</p>
-<pre><code>{% load cloudinary %}{% cloudinary photo.image.public_id className=&quot;my-class&quot; height=200 width=100 %}
-</code></pre>
-<p>This template tag allows you to not only specify any Cloudinary transformation parameter, but also to specify regular HTML image tag attributes (like <code>title</code> and <code>alt</code>). For instance, we specified the class (className) <code>my-class</code> in the snippet above. This actually generates an image tag. E.g</p>
-<pre><code>&lt;img class=&quot;my-class&quot; src=&quot;https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg&quot; height=&quot;200&quot; width=&quot;100&quot;&gt;
-</code></pre>
-<p>Read about all the transformation parameters available here: <a href="https://cloudinary.com/documentation/image_transformations">https://cloudinary.com/documentation/image_transformations</a>.</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#8b008b;font-weight:bold">img</span> <span style="color:#658b00">src</span>=<span style="color:#cd5555">&#34;{{ photo.image.url }}&#34;</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>This is great and all but it won’t afford us the opportunity to use the many image transformation options Cloudinary provides. Fortunately, the Cloudinary library provides a template tag we can load up and use.</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{% load cloudinary %}{% cloudinary photo.image.public_id className=&#34;my-class&#34; height=200 width=100 %}
+</code></pre></td></tr></table>
+</div>
+</div><p>This template tag allows you to not only specify any Cloudinary transformation parameter, but also to specify regular HTML image tag attributes (like <code>title</code> and <code>alt</code>). For instance, we specified the class (className) <code>my-class</code> in the snippet above. This actually generates an image tag. E.g</p>
+<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#8b008b;font-weight:bold">img</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;my-class&#34;</span> <span style="color:#658b00">src</span>=<span style="color:#cd5555">&#34;https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg&#34;</span> <span style="color:#658b00">height</span>=<span style="color:#cd5555">&#34;200&#34;</span> <span style="color:#658b00">width</span>=<span style="color:#cd5555">&#34;100&#34;</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>Read about all the transformation parameters available here: <a href="https://cloudinary.com/documentation/image_transformations">https://cloudinary.com/documentation/image_transformations</a>.</p>
 <p>That’s it!</p>
 
 </article>
