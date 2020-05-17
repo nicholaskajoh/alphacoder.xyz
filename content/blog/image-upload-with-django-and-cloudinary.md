@@ -2,7 +2,6 @@
 author = "Nicholas Kajoh"
 date = 2018-02-18T08:50:00.000Z
 draft = false
-image = "/content/images/2018/12/sarandy-westfall-742137-unsplash-sm.jpg"
 slug = "image-upload-with-django-and-cloudinary"
 tags = ["Django"]
 title = "Image upload with Django and Cloudinary"
@@ -32,8 +31,9 @@ Install
 
 Cloudinary has an open source [integration library for Python/Django](https://pypi.python.org/pypi/cloudinary). Install it using pip.
 
-    $ pip install cloudinary
-    
+```sh
+$ pip install cloudinary
+```
 
 Settings
 --------
@@ -42,25 +42,28 @@ Go to your project’s _settings.py_ and make the following additions.
 
 First import cloudinary.
 
-    import cloudinary
-    
+```py
+import cloudinary
+```
 
 Then add cloudinary to installed apps.
 
-    INSTALLED_APPS = [
-        'cloudinary',
-        # other apps
-    ]
-    
+```py
+INSTALLED_APPS = [
+    'cloudinary',
+    # other apps
+]
+```
 
 Now add the configs from your console.
 
-    cloudinary.config(
-        cloud_name = CLOUDINARY_CLOUD_NAME,
-        api_key = CLOUDINARY_API_KEY,
-        api_secret = CLOUDINARY_API_SECRET
-    )
-    
+```py
+cloudinary.config(
+    cloud_name = CLOUDINARY_CLOUD_NAME,
+    api_key = CLOUDINARY_API_KEY,
+    api_secret = CLOUDINARY_API_SECRET
+)
+```   
 
 Replace `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY` and `CLOUDINARY_API_SECRET` as appropriate (they should be in quotes e.g `cloud_name = "tchalla"`).
 
@@ -69,10 +72,11 @@ Models
 
 At any point and in any file in your Django project, you can easily make use of all the functions and classes the Cloudinary Python library provides. For instance, you can upload a file like so.
 
-    import cloudinary.uploader
-    
-    cloudinary.uploader.upload("my_picture.jpg")
-    
+```py
+import cloudinary.uploader
+
+cloudinary.uploader.upload("my_picture.jpg")
+```
 
 See [https://cloudinary.com/documentation/django\_image\_upload](https://cloudinary.com/documentation/django_image_upload) for more info on uploads.
 
@@ -80,66 +84,71 @@ However, you want to handle things the Django way as this would allow you utiliz
 
 In Django, you can use ImageField or FileField in your model. Cloudinary provides CloudinaryField. Let’s create a Photo model using CloudinaryField in _models.py_.
 
-    from django.db import models
-    from cloudinary.models import CloudinaryField
-    
-    class Photo(models.Model):
-        image = CloudinaryField('image')
-        caption = models.CharField(max_length=100, blank=True)
-    
-        def __str__(self):
-            return self.caption if self.caption != "" else "No caption"
-    
+```py
+from django.db import models
+from cloudinary.models import CloudinaryField
+
+class Photo(models.Model):
+    image = CloudinaryField('image')
+    caption = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.caption if self.caption != "" else "No caption"
+``` 
 
 Additionally, if you want to delete an image from Cloudinary when it’s model instance is deleted in your app (Django/Cloudinary doesn’t do this by default), you can add the following pre-delete signal after your model definition.
 
-    @receiver(pre_delete, sender=Photo)
-    def photo_delete(sender, instance, **kwargs):
-        cloudinary.uploader.destroy(instance.image.public_id)
-    
+```py
+@receiver(pre_delete, sender=Photo)
+def photo_delete(sender, instance, **kwargs):
+    cloudinary.uploader.destroy(instance.image.public_id)
+```
 
 Then add the following imports at the top of the file.
 
-    from django.db.models.signals import pre_delete
-    import cloudinary
-    
+```py
+from django.db.models.signals import pre_delete
+import cloudinary
+```
 
 Forms
 -----
 
 Using ModelForm to create a form from the Photo model, we have:
 
-    from django.forms import ModelForm
-    from .models import Photo
-    
-    class PhotoForm(ModelForm):
-        class Meta:
-            model = Photo
-            fields = ('image', 'caption', )
-    
+```py
+from django.forms import ModelForm
+from .models import Photo
+
+class PhotoForm(ModelForm):
+    class Meta:
+        model = Photo
+        fields = ('image', 'caption')
+```
 
 Views
 -----
 
 For the view of PhotoForm form, we could have:
 
-    from django.shortcuts import render, redirect
-    from .forms import PhotoForm
-    from .models import Photo
-    
-    def add_photo(request):
-        if request.method == "POST":
-            form = PhotoForm(request.POST, request.FILES)
-            if form.is_valid():
-                photo = Photo()
-                photo.caption = request.POST.get('caption')
-                photo.save()
-                return redirect('/photo/' + photo.id)
-        else:
-            form = PhotoForm()
-    
-        return render(request, 'add-photo.html', {'form': form})
-    
+```py
+from django.shortcuts import render, redirect
+from .forms import PhotoForm
+from .models import Photo
+
+def add_photo(request):
+    if request.method == "POST":
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            photo = Photo()
+            photo.caption = request.POST.get('caption')
+            photo.save()
+            return redirect('/photo/' + photo.id)
+    else:
+        form = PhotoForm()
+
+    return render(request, 'add-photo.html', {'form': form})
+```
 
 Template
 --------
@@ -153,18 +162,21 @@ Displaying images from Cloudinary in your app is super simple and straight forwa
 
 One way to display the image in a template after passing the photo object from the view is to use the url property.
 
-    <img src="{{ photo.image.url }}">
-    
+```html
+<img src="{{ photo.image.url }}">
+```    
 
 This is great and all but it won’t afford us the opportunity to use the many image transformation options Cloudinary provides. Fortunately, the Cloudinary library provides a template tag we can load up and use.
 
-    {% load cloudinary %}{% cloudinary photo.image.public_id className="my-class" height=200 width=100 %}
-    
+```
+{% load cloudinary %}{% cloudinary photo.image.public_id className="my-class" height=200 width=100 %}
+```
 
 This template tag allows you to not only specify any Cloudinary transformation parameter, but also to specify regular HTML image tag attributes (like `title` and `alt`). For instance, we specified the class (className) `my-class` in the snippet above. This actually generates an image tag. E.g
 
-    <img class="my-class" src="https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg" height="200" width="100">
-    
+```html
+<img class="my-class" src="https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg" height="200" width="100">
+```
 
 Read about all the transformation parameters available here: [https://cloudinary.com/documentation/image\_transformations](https://cloudinary.com/documentation/image_transformations).
 

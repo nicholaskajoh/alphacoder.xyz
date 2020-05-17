@@ -2,7 +2,6 @@
 author = "Nicholas Kajoh"
 date = 2018-06-28T17:41:00.000Z
 draft = false
-image = "/content/images/2018/12/pexels-photo-210182.jpeg"
 slug = "multiple-apps-one-server-with-docker-and-traefik"
 tags = ["Docker","Traefik"]
 title = "How to run multiple apps on one server using Docker and Traefik"
@@ -37,64 +36,63 @@ Project setup
 
 The 3 apps we’ll be running are a website (static site), a blog and a SaaS app (dasboard-ish). For the sake of demonstration, I just downloaded HTML templates online 👀. So I have a _landing page template_, _blog template_ and _dashboard template_. They’ll all be served with Ngnix 😉.
 
-![](https://cdn-images-1.medium.com/max/800/1*koXKQcVKY4JzHWn44f0tdg.png)
+![](/images/dckr-trfk/website.png)
+_website_
 
-website
+![](/images/dckr-trfk/blog.png)
+_blog_
 
-![](https://cdn-images-1.medium.com/max/800/1*BgOyioSsTyUEb7cZ7FPzPQ.png)
-
-blog
-
-![](https://cdn-images-1.medium.com/max/800/1*MDwkYroQ_GtErST3OZHlfQ.png)
-
-SaaS app
+![](/images/dckr-trfk/app.png)
+_SaaS app_
 
 Here’s the project repo: [**https://github.com/nicholaskajoh/jack**](https://github.com/nicholaskajoh/jack).
 
 Each app is put in it’s own folder, with its own _Dockerfile_. The Dockerfiles are identical since we’re basically just serving static files in all the apps.
 
-    # Dockerfile
-    FROM nginx:alpine
-    COPY . /usr/share/nginx/html
-    
+```dockerfile
+# Dockerfile
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+```
 
 The docker compose file brings everything together under one roof. Here’s how it looks:
 
-    # docker-compose.yml
-    version: "3"
-    services:
-      traefik:
-        image: traefik
-        command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-        ports:
-          - "80:80"
-          - "8080:8080"
-          - "443:443"
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
-          - /dev/null:/traefik.toml
-      app:
-        build: ./app
-        volumes:
-          - ./app:/usr/share/nginx/html
-        labels:
-          - "traefik.backend=app-be"
-          - "traefik.frontend.rule=Host:app.localhost"
-      blog:
-        build: ./blog
-        volumes:
-          - ./blog:/usr/share/nginx/html
-        labels:
-          - "traefik.backend=blog-be"
-          - "traefik.frontend.rule=Host:blog.localhost"
-      website:
-        build: ./website
-        volumes:
-          - ./website:/usr/share/nginx/html
-        labels:
-          - "traefik.backend=website-be"
-          - "traefik.frontend.rule=Host:localhost"
-    
+```yml
+# docker-compose.yml
+version: "3"
+services:
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+  app:
+    build: ./app
+    volumes:
+      - ./app:/usr/share/nginx/html
+    labels:
+      - "traefik.backend=app-be"
+      - "traefik.frontend.rule=Host:app.localhost"
+  blog:
+    build: ./blog
+    volumes:
+      - ./blog:/usr/share/nginx/html
+    labels:
+      - "traefik.backend=blog-be"
+      - "traefik.frontend.rule=Host:blog.localhost"
+  website:
+    build: ./website
+    volumes:
+      - ./website:/usr/share/nginx/html
+    labels:
+      - "traefik.backend=website-be"
+      - "traefik.frontend.rule=Host:localhost"
+```
 
 As can be seen, traefik itself is run in a container. The domain is set to localhost and the ports 80, 8080 and 443 are published. The web flag (`--web`) under command parameter tells traefik to run its API dashboard which will be exposed on port 8080.
 
@@ -105,14 +103,14 @@ Traefik can be configured using a [_traefik.toml_](https://github.com/nicholaska
 Traefik dashboard
 -----------------
 
-![](https://cdn-images-1.medium.com/max/800/1*9LsK-LbgDQ0_tFTmjNAdEw.png)
+![](/images/dckr-trfk/traefik-dashboard.png)
 
 The Traefik dashboard displays useful information including the available front-ends and back-ends, and the health of the containers. You can password protect the dashboard so only authorized persons can access it.
 
 SSL
 ---
 
-Traefik can handle SSL for you automatically. This guide ([https://docs.traefik.io/user-guide/docker-and-lets-encrypt](https://docs.traefik.io/user-guide/docker-and-lets-encrypt/)) explains the configuration process using Let’s Encrypt.
+Traefik can handle SSL for you automatically. This guide (https://docs.traefik.io/https/acme/) explains the configuration process using Let’s Encrypt.
 
 **_NB:_** _I added SSL configs in_ [_docker-compose.prod.yml_](https://github.com/nicholaskajoh/jack/blob/master/docker-compose.prod.yml) _and_ [_traefik.toml_](https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml) _for use in production._
 
