@@ -1,0 +1,33 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {{- block "title" . -}}
+        {{ .Title}}{{ if ne .Title .Site.Title }} | {{ .Site.Title }}{{ end }}
+        {{- end -}}
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    
+    {{ $styles := resources.Get "css/style.css" | minify -}}
+    <style>
+        {{- $styles.Content | safeCSS -}}
+    </style>
+
+    {{ with .OutputFormats.Get "RSS" }}
+    <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+    {{ end }}
+
+    {{ if eq .Site.IsServer false }}
+    {{ template "_internal/google_analytics_async.html" . }}
+    {{ end }}
+
+    {{ partial "head_custom" . }}
+
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    {{ template "_internal/schema.html" . }}
+    
+    <script data-ad-client="ca-pub-8057819600718362" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
