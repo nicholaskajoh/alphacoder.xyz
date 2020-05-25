@@ -6,6 +6,8 @@
 
     <title>Hello Hugo! | Alpha Coder</title>
 
+    <link rel="shortcut icon" type="image/png" href="/images/alpha-coder-logo-v1-small.png"/>
+
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     
     <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-family:merriweather,serif;font-size:16px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:15px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
@@ -44,7 +46,7 @@ if (!doNotTrack) {
 <meta itemprop="description" content="If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again.">
 <meta itemprop="datePublished" content="2019-01-31T09:30:21&#43;01:00" />
 <meta itemprop="dateModified" content="2019-01-31T09:30:21&#43;01:00" />
-<meta itemprop="wordCount" content="628">
+<meta itemprop="wordCount" content="626">
 
 
 
@@ -93,7 +95,7 @@ if (!doNotTrack) {
 </li>
 </ul>
 <p>Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&rsquo;s repository so it&rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.</p>
-<p>The <a href="https://themes.gohugo.io/simple-hugo-theme/">new theme on the blog</a> is inspired by <a href="http://bettermotherfuckingwebsite.com">http://bettermotherfuckingwebsite.com</a>. I wanted something clean, accessible and performant — something that doesn&rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.</p>
+<p>The <a href="https://github.com/nicholaskajoh/simple-hugo-theme">new blog theme</a> is inspired by <a href="http://bettermotherfuckingwebsite.com">http://bettermotherfuckingwebsite.com</a>. I wanted something clean, accessible and performant — something that doesn&rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.</p>
 <p>I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&rsquo;t do 301 redirects. Apparently it&rsquo;s against the law. I&rsquo;m however hopeful that the blog will pick up soon.</p>
 <p>The blog&rsquo;s source is available on GitHub: <a href="https://github.com/nicholaskajoh/alphacoder.xyz">https://github.com/nicholaskajoh/alphacoder.xyz</a>.</p>
 <p>Okay. That&rsquo;s it for now. Hopefully I don&rsquo;t jump ship again.</p>
@@ -103,68 +105,8 @@ if (!doNotTrack) {
 
 
 
-<form
-  style="border: 1px solid #ccc; text-align: center; border-radius: 2px; margin: 15px 0;"
-  action="https://tinyletter.com/nicholaskajoh"
-  method="post"
-  target="popupwindow" onsubmit="window.open('https://tinyletter.com/nicholaskajoh', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
-    <div style="padding: 20px;">
-      <h2 style="margin-top: 0;">Subscribe to the Alpha Coder Newsletter!</h2>
-
-      <p>Get timely updates on new articles, courses and more from Nicholas Kajoh. Unsubscribe anytime.</p>
-      
-      <input
-        type="text"
-        style="width: 150px; height: 30px; padding-left: 5px; border: 1px solid #ccc; border-radius: 2px;"
-        name="email"
-        placeholder="night.king@westeros.org">
-      <input type="hidden" value="1" name="embed">
-      <input
-        type="submit"
-        style="height: 34px; color: #fff; background-color: #00e; border: 1px solid #00e; border-radius: 2px;"
-        value="Subscribe">
-    </div>
-</form>
 
 
-
-
-  
-  
-    <p>
-      Previous post: <a href="http://alphacoder.xyz/from-medium-to-ghost/"><strong>From Medium to Ghost</strong></a>
-    </p>
-  
-
-  
-    <p>
-      Next post: <a href="http://alphacoder.xyz/deploy-microservices-on-kubernetes/"><strong>Deploy microservices on Kubernetes</strong></a>
-    </p>
-  
-  
-
-
-
-  <br><div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -173,6 +115,7 @@ if (!doNotTrack) {
     
     
     <div class="footer-links">
+        <a href="/musings/">Musings</a>
         <a href="https://twitter.com/AlphaCoderXYZ">Twitter</a>
         <a href="https://www.linkedin.com/company/alphacoder">LinkedIn</a>
         <a href="mailto:support@alphacoder.xyz">Email</a>
