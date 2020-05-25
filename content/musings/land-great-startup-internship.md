@@ -3,15 +3,16 @@ author = "Nicholas Kajoh"
 date = 2018-09-30T07:45:00.000Z
 draft = false
 slug = "land-great-startup-internship"
-tags = ["Internships", "Startups"]
 title = "How to land an internship at a great startup"
-
+showCustomAds = false
+showPrevAndNextPosts = false
+showComments = false
 +++
 
 
 Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
 
-Here are some tips on how to land an internship at a great startup…
+Here are some tips on how to land an internship at a great startup...
 
 Do your homework
 ----------------

@@ -2,15 +2,15 @@
 author = "Nicholas Kajoh"
 date = 2018-12-16T05:23:00.000Z
 draft = false
-image = "/content/images/2018/12/stanley-dai-242205-unsplash-sm.jpg"
 slug = "side-project-tip"
-tags = ["Startups"]
 title = "A tip for working on side projects"
-
+showCustomAds = false
+showPrevAndNextPosts = false
+showComments = false
 +++
 
 
-Working on sides projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one. I’ve had my fair share of this experience and a lot of projects in project graveyard have my name on it.
+Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one. I’ve had my fair share of this experience and a lot of projects in project graveyard have my name on it.
 
 I’ve thought deeply about my inability to complete many projects I started. One important reason people like me abandon projects is because their scopes are too large. Personally, I think your ideas can be as big and wild as possible. But your project’s scope? Not so much. I find my sweet spot for working on and completing a side project to be 2–4 weeks. If my project takes longer than that, I’ll probably never finish it. This is what works for me. I feel most people abandon projects because they’re too large and they give up on being able to finish it or just lose interest.
 

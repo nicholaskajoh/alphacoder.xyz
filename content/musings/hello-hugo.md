@@ -3,6 +3,9 @@ title: "Hello Hugo!"
 slug: "hello-hugo"
 date: 2019-01-31T09:30:21+01:00
 draft: false
+showCustomAds: false
+showPrevAndNextPosts: false
+showComments: false
 ---
 
 If you haven't yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration [from a Medium.com publication to a self-hosted Ghost installation on Vultr](/from-medium-to-ghost). Shortly after, I decided to ditch [Ghost](http://ghost.org) (a Node.js CMS) for [Hugo](http://gohugo.io) (a static site generator built with Go). I also changed the blog's design in the process. In this post, I'll share my experience using Ghost and explain why I moved again.
@@ -19,7 +22,7 @@ Ghost is a great CMS. It's simple, it's clean and a joy to use. The story editor
 
 Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog's repository so it's really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.
 
-The [new theme on the blog](https://themes.gohugo.io/simple-hugo-theme/) is inspired by http://bettermotherfuckingwebsite.com. I wanted something clean, accessible and performant — something that doesn't get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.
+The [new blog theme](https://github.com/nicholaskajoh/simple-hugo-theme) is inspired by http://bettermotherfuckingwebsite.com. I wanted something clean, accessible and performant — something that doesn't get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.
 
 I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn't consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn't do 301 redirects. Apparently it's against the law. I'm however hopeful that the blog will pick up soon.
 

@@ -43,21 +43,25 @@ pygmentsStyle = "perldoc"
 
     # Footer
     [[menu.footer]]
+        url = "/musings/"
+        name = "Musings"
+        weight = 1
+    [[menu.footer]]
         url = "https://twitter.com/AlphaCoderXYZ"
         name = "Twitter"
-        weight = 1
+        weight = 2
     [[menu.footer]]
         url = "https://www.linkedin.com/company/alphacoder"
         name = "LinkedIn"
-        weight = 2
+        weight = 3
     [[menu.footer]]
         url = "mailto:support@alphacoder.xyz"
         name = "Email"
-        weight = 3
+        weight = 4
     [[menu.footer]]
         url = "/blog/index.xml"
         name = "RSS"
-        weight = 4
+        weight = 5
 
 # SEO
 enableRobotsTXT = true
@@ -67,3 +71,4 @@ canonifyURLs = true
 [permalinks]
     blog = "/:slug/"
     tags = "/tag/:slug/"
+    musings = "/:slug/"

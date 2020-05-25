@@ -5,7 +5,9 @@ description = "I'll be migrating my blog Alpha Coder from Medium to Ghost. Here'
 draft = false
 slug = "from-medium-to-ghost"
 title = "From Medium to Ghost"
-
+showCustomAds = false
+showPrevAndNextPosts = false
+showComments = false
 +++
 
 
@@ -29,7 +31,7 @@ All future articles will be publish here on [alphacoder.xyz](https://alphacoder.
 What will you miss from Medium?
 -------------------------------
 
-Little if anything. I used to think Medium was the major source of traffic on my posts. It turns out it's about the least source, especially in my most trafficked articles. For instance, my top post this year had 37k views. 28k of that was from Google.com. Only 6% was from Medium. If I continue writing posts that help solve peoples' problem, I believe I'll get great traffic.
+Little if anything. I used to think Medium was the major source of traffic on my posts. It turns out it's about the least source, especially in my most trafficked articles. For instance, my top post this year had 37k views. 28k of that was from Google.com. Only 6% was from Medium. If I continue writing posts that help solve peoples' problem, I believe I'll get good traffic.
 
 Spec sheet?
 -----------
@@ -44,4 +46,4 @@ Maybe. I might be placing non-intrusive ads on the site sometime in the future i
 What should I be expecting from Alpha Coder?
 --------------------------------------------
 
-In 2019, I'm going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I'll try my best. I'll also double down on the quality of my articles, so expect high quality content. Most of my posts will be brief how-to guides, but I'll also be doing long form posts. I'll be writing more non-technical stuff too—majorly about my life as a Software Engineer. Expect a little ranting too! If you want me to write about something, please let me know on Twitter [@nicholaskajoh](https://twitter.com/nicholaskajoh) (DMs are open).
+In 2019, I'm going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I'll try my best. I'll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I'll also be doing long form posts. If you want me to write about something, please let me know on Twitter [@nicholaskajoh](https://twitter.com/nicholaskajoh) (DMs are open).
