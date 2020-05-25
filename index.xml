@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <copyright>© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 12 Apr 2020 18:17:48 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>node_modules: The Node.js black hole</title>
+      <link>http://alphacoder.xyz/node-modules/</link>
+      <pubDate>Mon, 25 May 2020 23:33:11 +0000</pubDate>
+      
+      <guid>http://alphacoder.xyz/node-modules/</guid>
+      <description>As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen the memes). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.
+Turns out it has to do with 2 things:
+ How npm (the Node package manager) resolves dependencies. How the Node.</description>
+    </item>
     
     <item>
       <title>What level of abstraction should I play on?</title>
