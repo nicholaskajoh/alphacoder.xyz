@@ -1,6 +1,6 @@
 ---
 title: "Dealing with code debt"
-code: "dealing-with-code-debt"
+slug: "dealing-with-code-debt"
 date: 2019-02-06T19:40:38.172Z
 draft: false
 ---
