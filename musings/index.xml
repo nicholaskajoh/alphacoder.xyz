@@ -2,50 +2,50 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Musings on Alpha Coder</title>
-    <link>http://alphacoder.xyz/musings/</link>
+    <link>https://alphacoder.xyz/musings/</link>
     <description>Recent content in Musings on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Thu, 31 Jan 2019 09:30:21 +0100</lastBuildDate>
     
-	<atom:link href="http://alphacoder.xyz/musings/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://alphacoder.xyz/musings/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello Hugo!</title>
-      <link>http://alphacoder.xyz/hello-hugo/</link>
+      <link>https://alphacoder.xyz/hello-hugo/</link>
       <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/hello-hugo/</guid>
+      <guid>https://alphacoder.xyz/hello-hugo/</guid>
       <description>If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.</description>
     </item>
     
     <item>
       <title>From Medium to Ghost</title>
-      <link>http://alphacoder.xyz/from-medium-to-ghost/</link>
+      <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
       <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/from-medium-to-ghost/</guid>
+      <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
       <description>Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at alphacoder.xyz. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.
 Why the move? I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.</description>
     </item>
     
     <item>
       <title>A tip for working on side projects</title>
-      <link>http://alphacoder.xyz/side-project-tip/</link>
+      <link>https://alphacoder.xyz/side-project-tip/</link>
       <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/side-project-tip/</guid>
+      <guid>https://alphacoder.xyz/side-project-tip/</guid>
       <description>Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one.</description>
     </item>
     
     <item>
       <title>How to land an internship at a great startup</title>
-      <link>http://alphacoder.xyz/land-great-startup-internship/</link>
+      <link>https://alphacoder.xyz/land-great-startup-internship/</link>
       <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/land-great-startup-internship/</guid>
+      <guid>https://alphacoder.xyz/land-great-startup-internship/</guid>
       <description>Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
 Here are some tips on how to land an internship at a great startup&amp;hellip;
 Do your homework I remember being caught off guard when asked about the company I was applying to by my interviewer.</description>

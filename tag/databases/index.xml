@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Databases on Alpha Coder</title>
-    <link>http://alphacoder.xyz/tag/databases/</link>
+    <link>https://alphacoder.xyz/tag/databases/</link>
     <description>Recent content in Databases on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Mon, 04 Mar 2019 06:39:01 +0000</lastBuildDate>
     
-	<atom:link href="http://alphacoder.xyz/tag/databases/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://alphacoder.xyz/tag/databases/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Adminer — a simple GUI client for any DB</title>
-      <link>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
+      <link>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
       <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
+      <guid>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
       <description>In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
 Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks.</description>
     </item>

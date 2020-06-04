@@ -1,24 +1,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software engineering with great finesse on Alpha Coder</title>
-    <link>http://alphacoder.xyz/</link>
+    <link>https://alphacoder.xyz/</link>
     <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
     
-        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>Dealing with code debt</title>
-        <link>http://alphacoder.xyz/dealing-with-code-debt/</link>
+        <link>https://alphacoder.xyz/dealing-with-code-debt/</link>
         <pubDate>Wed, 06 Feb 2019 19:40:38 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/dealing-with-code-debt/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/dealing-with-code-debt/ -&lt;p&gt;Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s &lt;del&gt;human&lt;/del&gt; developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/dealing-with-code-debt/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/dealing-with-code-debt/ -&lt;p&gt;Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s &lt;del&gt;human&lt;/del&gt; developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.&lt;/p&gt;
 &lt;p&gt;Code debt is not necessarily a bad thing though. As bestselling &lt;em&gt;Rich Dad, Poor Dad&lt;/em&gt; author Robert Kiyosaki says, &amp;ldquo;good debt makes you rich and bad debt makes you poor&amp;rdquo;. It must however be kept at a minimum at all times. This can be achieved by avoiding debt as much as is within one&amp;rsquo;s power and spending a good chunck of dev time paying off the debts already owed. A wise man once said &amp;ldquo;a good developer always pays their code debts&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;When could we incur code debt i.e &amp;ldquo;good&amp;rdquo; debt? Writing elegant and future-proof code is not always possible as one may have limited time and/or experience in a given domain. For instance, it is not uncommon to find a lot of code debt in fast-paced environments like at startups trying to ship an MVP or find product-market fit. However, if the debts are not paid soon afterwards, a lot of damage can happen in future.&lt;/p&gt;
 &lt;p&gt;Outlined below are some steps to take in dealing with code debt.&lt;/p&gt;
@@ -43,18 +43,18 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Any reasonably complex codebase has some debt. Even simple ones do. The goal is to reduce this debt as much as possible and keep it that way as more code is added. This must be done proactively or else debt would compound to the point where continued development isn&amp;rsquo;t feasible any longer. At this point, a rewrite may be the only logical solution. This can hurt a business and its development team badly.&lt;/p&gt;
-- http://alphacoder.xyz/dealing-with-code-debt/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/dealing-with-code-debt/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Deploy microservices on Kubernetes</title>
-        <link>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
+        <link>https://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
         <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/deploy-microservices-on-kubernetes/ -&lt;p&gt;Kubernetes (AKA k8s) has gained &lt;a href=&#34;https://kubernetes.io/case-studies/&#34;&gt;widespread adoption&lt;/a&gt; in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. &lt;a href=&#34;http://pinterest.com&#34;&gt;Pinterest&lt;/a&gt; uses &lt;a href=&#34;https://www.cncf.io/case-study-pinterest/&#34;&gt;a suite of over 1000 microservices&lt;/a&gt; to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/deploy-microservices-on-kubernetes/ -&lt;p&gt;Kubernetes (AKA k8s) has gained &lt;a href=&#34;https://kubernetes.io/case-studies/&#34;&gt;widespread adoption&lt;/a&gt; in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. &lt;a href=&#34;http://pinterest.com&#34;&gt;Pinterest&lt;/a&gt; uses &lt;a href=&#34;https://www.cncf.io/case-study-pinterest/&#34;&gt;a suite of over 1000 microservices&lt;/a&gt; to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.&lt;/p&gt;
 &lt;p&gt;Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;. In simple terms, Kubernetes helps to automate the deployment and management of containerized applications. This means we can package an app (code, dependencies and config) &lt;a href=&#34;https://www.docker.com/resources/what-container&#34;&gt;in a container&lt;/a&gt; and hand it over to Kubernetes to deploy and scale without worrying about our infrastructure. Under the hood, Kubernetes decides where to run what, monitors the systems and fixes things if something goes wrong.&lt;/p&gt;
 &lt;h1 id=&#34;microservice-architecture&#34;&gt;Microservice architecture&lt;/h1&gt;
 &lt;p&gt;I particularly like &lt;a href=&#34;https://martinfowler.com/microservices/&#34;&gt;James Lewis&amp;rsquo; and Martin Fowler&amp;rsquo;s definition of microservices&lt;/a&gt; as it points out why Kubernetes is such a good solution for the architecture. &amp;ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by &lt;strong&gt;fully automated deployment machinery&lt;/strong&gt;. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&amp;rdquo;. Kubernetes is in fact a &amp;ldquo;fully automated deployment machine&amp;rdquo; that provides a powerful abstraction layer atop server infrastructure.&lt;/p&gt;
@@ -95,11 +95,11 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;google-cloud-platform-gcp&#34;&gt;Google Cloud Platform (GCP)&lt;/h1&gt;
 &lt;p&gt;Visit &lt;a href=&#34;https://console.cloud.google.com/home/dashboard&#34;&gt;https://console.cloud.google.com/home/dashboard&lt;/a&gt; and create a new project. You need to have a Google account.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Google offers &lt;a href=&#34;https://cloud.google.com/free/&#34;&gt;a tier with $300 free credit&lt;/a&gt; (for 1 year) to use any GCP product you want.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/new-project-gcp.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/new-project-gcp.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create a new project on Google Cloud Platform&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Make sure you &lt;a href=&#34;https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_new_project&#34;&gt;enable billing&lt;/a&gt; for your project.&lt;/p&gt;
 &lt;p&gt;Go to the &lt;a href=&#34;https://console.cloud.google.com/kubernetes&#34;&gt;Kubernetes section&lt;/a&gt; of GCP and create a new &lt;em&gt;standard&lt;/em&gt; cluster. GKE uses VM instances on Google Compute Engine as nodes in the cluster.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/new-cluster-gke.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/new-cluster-gke.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create a new k8s cluster&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;google-container-registry-gcr&#34;&gt;Google Container Registry (GCR)&lt;/h1&gt;
 &lt;p&gt;Kubernetes uses container images to launch pods. Images need to be stored in a registry where they can be pulled from. GCP provides a registry, the &lt;a href=&#34;https://cloud.google.com/container-registry/&#34;&gt;Google Container Registry&lt;/a&gt;, which can be used to store Docker images. Let&amp;rsquo;s build the images for the detector and viewer services and push them to GCR.&lt;/p&gt;
@@ -199,9 +199,9 @@
 &lt;h1 id=&#34;cloudinary-and-redis&#34;&gt;Cloudinary and Redis&lt;/h1&gt;
 &lt;p&gt;As mentioned earlier, Yoloo depends on Cloudinary and Redis. Cloudinary is a cloud-based image/video hosting service and Redis is an in-memory key-value database.&lt;/p&gt;
 &lt;p&gt;Create an account &lt;a href=&#34;https://cloudinary.com&#34;&gt;on Cloudinary&lt;/a&gt; and &lt;a href=&#34;https://redislabs.com&#34;&gt;on Redis Labs&lt;/a&gt; (a free managed Redis hosting service).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/cloudinary-console.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/cloudinary-console.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Cloudinary console&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/redislabs-config.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/redislabs-config.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Redis Labs configuration&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Create &lt;em&gt;.env&lt;/em&gt; files from the example env files in both services (&lt;em&gt;.env.example&lt;/em&gt;) and populate them with your Cloudinary and Redis credentials.&lt;/p&gt;
 &lt;p&gt;Detector service .env&lt;/p&gt;
@@ -237,7 +237,7 @@ kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create secret generic detector-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;detector/.env --dry-run -o yaml | kubectl apply -f -
 kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;viewer/.env --dry-run -o yaml | kubectl apply -f -
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit your GKE cluster dashboard on GCP and check the &lt;em&gt;Configuration&lt;/em&gt; section. You should see the detector and viewer service secrets.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/gke-config.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/gke-config.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;GKE cluster Config showing detector and viewer service secrets&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the &lt;code&gt;jq&lt;/code&gt; utility (&lt;a href=&#34;https://stedolan.github.io/jq/&#34;&gt;https://stedolan.github.io/jq/&lt;/a&gt;) and run the following where &lt;code&gt;my-secrets&lt;/code&gt; is the name of your k8s secret.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get secret my-secrets -o json | jq &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span&gt;
@@ -245,34 +245,34 @@ kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f detector/detector-deployment.yaml
 kubectl apply -f viewer/viewer-deployment.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check the &lt;em&gt;Workloads&lt;/em&gt; section of the dashboard. You should see the detector and viewer service deployments.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/gke-workloads.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/gke-workloads.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;GKE cluster Workloads showing the microservice deployments&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Create the services.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f detector/detector-service.yaml
 kubectl apply -f viewer/viewer-service.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The detector and viewer k8s services can be found in the &lt;em&gt;Services&lt;/em&gt; section of the dashboard.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/gke-services.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/gke-services.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;GKE cluster Services showing the k8s services for Yoloo&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;To visit the application, go to the viewer service page on the dashboard and locate the &lt;em&gt;External endpoints&lt;/em&gt; IP address.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/viewer-svc-external-ip.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/viewer-svc-external-ip.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Viewer service external IP address&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/yoloo-app-ui.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/yoloo-app-ui.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;UI of the Yoloo app&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/yoloo-sample-output.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/yoloo-sample-output.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Sample output image from Yoloo&lt;/em&gt;&lt;/p&gt;
-- http://alphacoder.xyz/deploy-microservices-on-kubernetes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/deploy-microservices-on-kubernetes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Hello Hugo!</title>
-        <link>http://alphacoder.xyz/hello-hugo/</link>
+        <link>https://alphacoder.xyz/hello-hugo/</link>
         <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/hello-hugo/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/hello-hugo/ -&lt;p&gt;If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration &lt;a href=&#34;http://alphacoder.xyz/from-medium-to-ghost&#34;&gt;from a Medium.com publication to a self-hosted Ghost installation on Vultr&lt;/a&gt;. Shortly after, I decided to ditch &lt;a href=&#34;http://ghost.org&#34;&gt;Ghost&lt;/a&gt; (a Node.js CMS) for &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/hello-hugo/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/hello-hugo/ -&lt;p&gt;If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration &lt;a href=&#34;https://alphacoder.xyz/from-medium-to-ghost&#34;&gt;from a Medium.com publication to a self-hosted Ghost installation on Vultr&lt;/a&gt;. Shortly after, I decided to ditch &lt;a href=&#34;http://ghost.org&#34;&gt;Ghost&lt;/a&gt; (a Node.js CMS) for &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.&lt;/p&gt;
 &lt;p&gt;Ghost is a great CMS. It&amp;rsquo;s simple, it&amp;rsquo;s clean and a joy to use. The story editor is very similar to Medium&amp;rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -293,18 +293,18 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&amp;rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&amp;rsquo;t do 301 redirects. Apparently it&amp;rsquo;s against the law. I&amp;rsquo;m however hopeful that the blog will pick up soon.&lt;/p&gt;
 &lt;p&gt;The blog&amp;rsquo;s source is available on GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/alphacoder.xyz&#34;&gt;https://github.com/nicholaskajoh/alphacoder.xyz&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Okay. That&amp;rsquo;s it for now. Hopefully I don&amp;rsquo;t jump ship again.&lt;/p&gt;
-- http://alphacoder.xyz/hello-hugo/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/hello-hugo/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>From Medium to Ghost</title>
-        <link>http://alphacoder.xyz/from-medium-to-ghost/</link>
+        <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
         <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/from-medium-to-ghost/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/from-medium-to-ghost/ -&lt;p&gt;Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/from-medium-to-ghost/ -&lt;p&gt;Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.&lt;/p&gt;
 &lt;h2 id=&#34;why-the-move&#34;&gt;Why the move?&lt;/h2&gt;
 &lt;p&gt;I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.5k from 15 articles in 2017. I&amp;rsquo;d wanted to take things up a notch with proper branding (colors, custom domain etc) to make it easier to sell myself as a Software Engineer and Teacher, for quite a while. In September, I created a Medium publication after deciding that self-hosting a blog would be too much work. I didn&amp;rsquo;t quite like the publication thingy, but it was really easy to setup so I went with it; up until the point when I wanted to use a custom domain. Medium does not allow that anymore. Annoyed, I started to look for alternatives. I chose Ghost.&lt;/p&gt;
 &lt;h2 id=&#34;why-ghost&#34;&gt;Why Ghost?&lt;/h2&gt;
@@ -319,36 +319,36 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;Maybe. I might be placing non-intrusive ads on the site sometime in the future in order to offset the costs of running the blog.&lt;/p&gt;
 &lt;h2 id=&#34;what-should-i-be-expecting-from-alpha-coder&#34;&gt;What should I be expecting from Alpha Coder?&lt;/h2&gt;
 &lt;p&gt;In 2019, I&amp;rsquo;m going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I&amp;rsquo;ll try my best. I&amp;rsquo;ll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I&amp;rsquo;ll also be doing long form posts. If you want me to write about something, please let me know on Twitter &lt;a href=&#34;https://twitter.com/nicholaskajoh&#34;&gt;@nicholaskajoh&lt;/a&gt; (DMs are open).&lt;/p&gt;
-- http://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>A tip for working on side projects</title>
-        <link>http://alphacoder.xyz/side-project-tip/</link>
+        <link>https://alphacoder.xyz/side-project-tip/</link>
         <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/side-project-tip/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/side-project-tip/ -&lt;p&gt;Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one. I’ve had my fair share of this experience and a lot of projects in project graveyard have my name on it.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/side-project-tip/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/side-project-tip/ -&lt;p&gt;Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one. I’ve had my fair share of this experience and a lot of projects in project graveyard have my name on it.&lt;/p&gt;
 &lt;p&gt;I’ve thought deeply about my inability to complete many projects I started. One important reason people like me abandon projects is because their scopes are too large. Personally, I think your ideas can be as big and wild as possible. But your project’s scope? Not so much. I find my sweet spot for working on and completing a side project to be 2–4 weeks. If my project takes longer than that, I’ll probably never finish it. This is what works for me. I feel most people abandon projects because they’re too large and they give up on being able to finish it or just lose interest.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Think small, build small&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;In order to complete a project within a two-to-four-week timeline, I outline all the features of the project and select the most important one/ones which can be completed within that time. Even if you’re building the next Facebook, 4 weeks is enough time to crudely ship the core features that define your app. If this or a similar timeline is not enough (say you’re building an enterprise app that needs to have &lt;em&gt;x&lt;/em&gt; features for clients to buy in), you should consider working full time on the project and probably getting others to collaborate on it.&lt;/p&gt;
 &lt;p&gt;My recommendation when working on side projects is to think small and build small. Your software doesn’t have to solve world hunger or serve 1 million people to be useful or even successful. In fact, some of the more successful products today started out as side projects that aimed at simplifying a multi-step process for accomplishing a common task to a one-step one. Yes, it can be that simple!&lt;/p&gt;
-- http://alphacoder.xyz/side-project-tip/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/side-project-tip/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Check domain availability from your terminal</title>
-        <link>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
+        <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
         <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/check-domain-availability-from-your-terminal/ -&lt;p&gt;I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been &lt;em&gt;legitly&lt;/em&gt; purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/check-domain-availability-from-your-terminal/ -&lt;p&gt;I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been &lt;em&gt;legitly&lt;/em&gt; purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.&lt;/p&gt;
 &lt;p&gt;You can boycott registrars by doing a WHOIS lookup on the desired domain instead. If a match is found, info about the domain is displayed but if no match is found, you know the site is available. There are a couple of websites that provide this functionality, most notably &lt;a href=&#34;https://www.whois.com/&#34;&gt;https://www.whois.com&lt;/a&gt;. Alternatively, you can use the WHOIS CLI tool.&lt;/p&gt;
 &lt;p&gt;To install, run…&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ sudo apt install whois
@@ -361,18 +361,18 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*_KfHQUBzwAQUiq0NaGFAeQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;If not, you’ll get something like this…&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*b2-XSsJ-M2Z_5lbPiv0qCw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- http://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>How to Git push to an AWS EC2 remote using a PEM file</title>
-        <link>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+        <link>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
         <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ -&lt;p&gt;AWS provides you with a &lt;em&gt;.pem&lt;/em&gt; file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…&lt;/p&gt;
+        <guid>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ -&lt;p&gt;AWS provides you with a &lt;em&gt;.pem&lt;/em&gt; file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…&lt;/p&gt;
 &lt;h3 id=&#34;1-copy-private-key-in-pem-to-ssh-folder&#34;&gt;1. Copy private key in PEM to .ssh folder&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;$ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2
 &lt;/code&gt;&lt;/pre&gt;
@@ -398,18 +398,18 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now push…&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ git push ec2server&lt;/code&gt;&lt;/pre&gt;
-- http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>2 Git workflows you should know</title>
-        <link>http://alphacoder.xyz/git-workflows/</link>
+        <link>https://alphacoder.xyz/git-workflows/</link>
         <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/git-workflows/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/git-workflows/ -&lt;p&gt;Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/git-workflows/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/git-workflows/ -&lt;p&gt;Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.&lt;/p&gt;
 &lt;p&gt;In this post, we’ll be discussing two popular Git workflows you should know — &lt;em&gt;Gitflow&lt;/em&gt; and the &lt;em&gt;Forking workflow&lt;/em&gt;. Let’s dig right in!&lt;/p&gt;
 &lt;h3 id=&#34;gitflow&#34;&gt;Gitflow&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*8-zDz1s5Atux_yNW_mXmfg@2x.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -426,18 +426,18 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;A fork is a server-side clone of a repository. You can fork any public repository on &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; and you’ll get a copy of it on your own account. You can make any changes you want to this fork. Forks need to be regularly synchronized with the upstream (official) repository so that they can have the latest changes.&lt;/p&gt;
 &lt;p&gt;A Pull Request (PR) is a request to merge the changes from a branch in a fork to an upstream repository. A project maintainer may accept, reject or request changes to a PR before it’s merged.&lt;/p&gt;
 &lt;p&gt;You can learn more about this workflow with &lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow&#34;&gt;this tutorial from Atlassian.com&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/git-workflows/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/git-workflows/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Understanding modern front-end development</title>
-        <link>http://alphacoder.xyz/understanding-modern-front-end-development/</link>
+        <link>https://alphacoder.xyz/understanding-modern-front-end-development/</link>
         <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/understanding-modern-front-end-development/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/understanding-modern-front-end-development/ -&lt;p&gt;It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/understanding-modern-front-end-development/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/understanding-modern-front-end-development/ -&lt;p&gt;It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.&lt;/p&gt;
 &lt;p&gt;We’re going to discuss the following:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;package managers (npm)&lt;/li&gt;
@@ -477,18 +477,18 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;A popular option for a CSS processor is SASS, which stands for Syntactically Awesome Style Sheet. SASS supports variables, loops, mixins with arguments etc. You can learn more about SASS by reading &lt;a href=&#34;https://sass-lang.com/guide&#34;&gt;the official guide&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
 &lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
-- http://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>How to land an internship at a great startup</title>
-        <link>http://alphacoder.xyz/land-great-startup-internship/</link>
+        <link>https://alphacoder.xyz/land-great-startup-internship/</link>
         <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/land-great-startup-internship/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/land-great-startup-internship/ -&lt;p&gt;Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/land-great-startup-internship/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/land-great-startup-internship/ -&lt;p&gt;Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.&lt;/p&gt;
 &lt;p&gt;Here are some tips on how to land an internship at a great startup&amp;hellip;&lt;/p&gt;
 &lt;h2 id=&#34;do-your-homework&#34;&gt;Do your homework&lt;/h2&gt;
 &lt;p&gt;I remember being caught off guard when asked about the company I was applying to by my interviewer. I knew very little about the them. Great startups want folks who know and care about their vision and products.&lt;/p&gt;
@@ -506,7 +506,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;I’ve found that a one-page CV with the headings: Summary, Experience, Projects, Skills, Education and Accomplishments does the trick. But I’m no CV expert. Do read &lt;a href=&#34;https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume/&#34;&gt;My Personal Formula for a Winning Resume&lt;/a&gt; by Laszlo Buck and watch &lt;a href=&#34;https://www.youtube.com/watch?v=zrXZBkYzuZo&#34;&gt;How to: Work at Google — Resume Tips&lt;/a&gt; for more insights.&lt;/p&gt;
 &lt;h2 id=&#34;dont-lie&#34;&gt;Don’t lie&lt;/h2&gt;
 &lt;p&gt;Don’t lie about your abilities! You’ll probably interview with a developer/designer who has years of experience working with a plethora of technologies. They can spot liars easily. Don’t try to wow them. Instead, tell them about your learning journey — where you want to go, how far you’ve come and how working with them would move you towards achieving your goals.&lt;/p&gt;
-- http://alphacoder.xyz/land-great-startup-internship/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/land-great-startup-internship/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

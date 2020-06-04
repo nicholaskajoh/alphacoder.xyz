@@ -1,31 +1,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software engineering with great finesse on Alpha Coder</title>
-    <link>http://alphacoder.xyz/</link>
+    <link>https://alphacoder.xyz/</link>
     <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
     
-        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 7</title>
-        <link>http://alphacoder.xyz/facebook-clone-7/</link>
+        <link>https://alphacoder.xyz/facebook-clone-7/</link>
         <pubDate>Sat, 09 Dec 2017 09:07:25 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-7/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-7/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-7/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-7/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 7 (this article)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!&lt;/p&gt;
@@ -36,57 +36,57 @@
 &lt;h1 id=&#34;000webhost&#34;&gt;000webhost&lt;/h1&gt;
 &lt;p&gt;Visit &lt;a href=&#34;https://www.000webhost.com&#34;&gt;https://www.000webhost.com&lt;/a&gt; and sign up for an account. You may need to verify your account by email.&lt;/p&gt;
 &lt;p&gt;Login and create a new website using the dialog as shown below:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/000webhost-new-site.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/000webhost-new-site.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create a new website on 000webhost&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Note the password you set. We&amp;rsquo;ll use it in a bit.&lt;/p&gt;
 &lt;p&gt;Say you named your site faceclone-app, you can check it out using the address faceclone-app.000webhost.com.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/new-site-page.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/new-site-page.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;000webhost&amp;rsquo;s new website page&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;ftp&#34;&gt;FTP&lt;/h1&gt;
 &lt;p&gt;Remember FileZilla from Part 1? We&amp;rsquo;ll be using FileZilla, a File Transfer Protocol (FTP) app to upload FaceClone to 000webhost.&lt;/p&gt;
 &lt;p&gt;First go to settings on 000webhost. Make sure FTP transfer is set to on. Also take note of the FTP host name and username.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/enable-ftp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/enable-ftp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Now start FileZilla.&lt;/p&gt;
 &lt;p&gt;Slot in hostname, username and password (the password for your 000webhost site) in the fields a top the screen and click &lt;em&gt;Quick connect&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/connect-with-ftp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/connect-with-ftp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The left part of FileZilla represents your local computer while the right side represents the remote computer (000webhost&amp;rsquo;s server). If you&amp;rsquo;re able to connect successfully, the file system of your site&amp;rsquo;s server would open up on the right side.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; You must be connected to the internet for this to work.&lt;/p&gt;
 &lt;p&gt;Navigate your computer&amp;rsquo;s file system to the folder where the FaceClone source code is located. Select all the files and folders there and copy them to your website&amp;rsquo;s server&amp;rsquo;s public_html folder.&lt;/p&gt;
 &lt;p&gt;Once the copying is done, try refreshing your 000webhost website page e.g &lt;em&gt;faceclone-app.000webhost.com&lt;/em&gt;. You should see something similar to this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/faceclone-db-error.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/faceclone-db-error.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Everything seems to work f&amp;hellip; The DB&amp;rsquo;s not working. That&amp;rsquo;s a problem! 😑&lt;/p&gt;
 &lt;h1 id=&#34;db-setup&#34;&gt;DB setup&lt;/h1&gt;
 &lt;p&gt;We need to setup a database on 000webhost to store FaceClone data. Our website&amp;rsquo;s database server rejected the database parameters we have in the source code i.e &lt;em&gt;root&lt;/em&gt; as username with no password. That configuration was for the local database server. We need to change the parameters.&lt;/p&gt;
 &lt;p&gt;To create a database on 000webhost, navigate to the &lt;em&gt;Manage database&lt;/em&gt; tab and click on &lt;em&gt;New Database&lt;/em&gt;. You need to set a database name, user and password.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/new-db.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/new-db.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Note that a prefix was added to the database name and user. We&amp;rsquo;ll be using these values (including the db password you set) to configure the FaceClone app.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/manage-dbs.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/manage-dbs.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Navigate to the File manager tab and click Upload files now. You&amp;rsquo;ll be redirected to &lt;a href=&#34;https://files.000webhost.com&#34;&gt;https://files.000webhost.com&lt;/a&gt; where you should see all the files uploaded via FTP.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/000webhost-files.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/000webhost-files.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Right click on functions.php and click edit.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/edit-functions.php.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/edit-functions.php.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Change the database params as appropriate, save and close.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/update-db-params.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/update-db-params.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Change the params in functions.php&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Now try refreshing your app&amp;rsquo;s url&amp;hellip;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/faceclone-index-page.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/faceclone-index-page.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Hurray! It works!!!&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;import-schema&#34;&gt;Import schema&lt;/h1&gt;
 &lt;p&gt;We&amp;rsquo;re not done yet. We need to import the database schema in the new database we created on 000webhost. The schema can be found &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone-site/blob/master/faceclone.sql&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Navigate to the &lt;em&gt;Manage database&lt;/em&gt; tab, click on the &lt;em&gt;Manage&lt;/em&gt; dropdown for your FaceClone database then select PhpMyAdmin.&lt;/p&gt;
 &lt;p&gt;Use your database user and password for PhpMyAdmin.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/phpmyadmin-login.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/phpmyadmin-login.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;PhpMyAdmin login&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/phpmyadmin-home.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/phpmyadmin-home.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;PhpMyAdmin home&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Select your FaceClone database from the sidebar and click on the import tab.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/phpmyadmin-import.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/phpmyadmin-import.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Select the schema from your computer and click go&amp;hellip;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/phpmyadmin-import2.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/phpmyadmin-import2.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Perfecto!&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Test out the whole app to ensure there are no breaking errors lurking around&amp;hellip; 😏&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/faceclone-signup-success.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc7/faceclone-home.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/faceclone-signup-success.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc7/faceclone-home.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Remember to change &lt;em&gt;Show errors&lt;/em&gt; in the settings to &lt;strong&gt;Off&lt;/strong&gt; when you&amp;rsquo;re done testing the app.&lt;/p&gt;
 &lt;p&gt;Awesome!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;P.S.&lt;/strong&gt; You can share links to your FaceClone app in the comments.&lt;/p&gt;
@@ -96,28 +96,28 @@
 &lt;hr&gt;
 &lt;p&gt;A big thanks to you if you followed through to this point! 🎉🎉🎉&lt;/p&gt;
 &lt;p&gt;I wish you success in your software development endeavours. Keep building!!!&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-7/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-7/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>K Nearest Neighbors</title>
-        <link>http://alphacoder.xyz/k-nearest-neighbors/</link>
+        <link>https://alphacoder.xyz/k-nearest-neighbors/</link>
         <pubDate>Sat, 09 Dec 2017 08:44:05 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/k-nearest-neighbors/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/k-nearest-neighbors/ -&lt;p&gt;K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a &lt;strong&gt;classifier&lt;/strong&gt; as the experts would call it.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/k-nearest-neighbors/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/k-nearest-neighbors/ -&lt;p&gt;K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a &lt;strong&gt;classifier&lt;/strong&gt; as the experts would call it.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*eg_VDV5KPHZ-aIzbI11fwg.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though. What if computers could do that for us?&lt;/p&gt;
 &lt;p&gt;Teaching computers to classify things has been very tedious until Machine Learning. While hard-coded rules may work for a given problem set, everything falls like a pack of cards when a few parameters are added/changed/removed. Worse, a solution becomes useless when a new problem arises. That’s bad for business. 😠&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;K Nearest Neighbors (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;supervised-learning&#34;&gt;Supervised learning&lt;/h1&gt;
 &lt;p&gt;KNN is a supervised learning algorithm. Supervised learning algorithms infer from labelled training data. Say we want to determine whether a person is male or female, the following samples may be useful:&lt;/p&gt;
@@ -199,28 +199,28 @@ return prediction
 &lt;p&gt;I suggest you try out KNN with a couple popular data sets to get a feel of how powerful the algorithm is. There are many free KNN data sets online like &lt;a href=&#34;https://www.kaggle.com/styven/iris-dataset&#34;&gt;the Iris data set&lt;/a&gt; and the &lt;a href=&#34;https://www.kaggle.com/uciml/breast-cancer-wisconsin-data&#34;&gt;Breast Cancer Wisconsin (diagnostic) data set&lt;/a&gt;. You should totally check them out!&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for the complete KNN code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- http://alphacoder.xyz/k-nearest-neighbors/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/k-nearest-neighbors/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Linear Regression</title>
-        <link>http://alphacoder.xyz/linear-regression/</link>
+        <link>https://alphacoder.xyz/linear-regression/</link>
         <pubDate>Mon, 04 Dec 2017 08:44:05 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/linear-regression/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/linear-regression/ -&lt;p&gt;What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/linear-regression/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/linear-regression/ -&lt;p&gt;What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*otatqOkzhxFl4LXtkbDmhQ.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ML Chops&lt;/strong&gt; is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself. We’ll be using the Python programming language.&lt;/p&gt;
 &lt;p&gt;There’s a repo on my GitHub where all the code can be found. The url is: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops&#34;&gt;https://github.com/nicholaskajoh/ML_Chops&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Linear Regression (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;machine-learning&#34;&gt;Machine Learning&lt;/h1&gt;
 &lt;p&gt;I’m assuming Machine Learning is not strange-ish to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.&lt;/p&gt;
@@ -298,18 +298,18 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;p&gt;The range of r2 is usually 0 to 1 so you can multiply it by 100 to get a percentage.&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the repo for the complete Linear Regression code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- http://alphacoder.xyz/linear-regression/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/linear-regression/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>A responsive grid system with few lines of CSS</title>
-        <link>http://alphacoder.xyz/responsive-grid-system/</link>
+        <link>https://alphacoder.xyz/responsive-grid-system/</link>
         <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/responsive-grid-system/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/responsive-grid-system/ -&lt;p&gt;How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need &lt;em&gt;something light&lt;/em&gt;!&lt;/p&gt;
+        <guid>https://alphacoder.xyz/responsive-grid-system/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/responsive-grid-system/ -&lt;p&gt;How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need &lt;em&gt;something light&lt;/em&gt;!&lt;/p&gt;
 &lt;p&gt;Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?&lt;/p&gt;
 &lt;p&gt;While adding Bootstrap may sound easier, you might be faced with the nightmare that is overriding classes. Nobody loves overriding the classes they don’t want/need, plus you’re now distracted from what you really want to accomplish. Besides, you don’t lose anything by learning how to write a grid system. In fact, it makes you understand and appreciate CSS libraries and better.&lt;/p&gt;
 &lt;p&gt;There was this school project I had to work on. It was pretty basic, but I needed a grid system. I had already decided to build it from the ground up with only vanilla, so Bootstrap or Materialize was not an option. I had to learn how to write my own grid system. It turns out that it’s not difficult at all. In fact, I wrote a grid system with a few lines of CSS code.&lt;/p&gt;
@@ -326,26 +326,26 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can always add a few more lines for other neat functionalities. If you feel you’re doing too much, it may be time to throw in a library or something. If you feel Bootstrap or any other UI library is overkill, there are a ton of CSS grid libraries. I don’t want to name names, but Google is your friend. A search would yield a ton of interesting results.&lt;/p&gt;
 &lt;p&gt;Check out the repo for this tutorial: &lt;a href=&#34;https://github.com/nicholaskajoh/Simple-CSS-Grid&#34;&gt;https://github.com/nicholaskajoh/Simple-CSS-Grid&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also, you should totally read &lt;a href=&#34;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&#34;&gt;Chris Coyier’s complete guide to flexbox&lt;/a&gt;. If you have the time, go through &lt;a href=&#34;https://css-tricks.com/snippets/css/complete-guide-grid/&#34;&gt;Chris House’ complete guide to grid&lt;/a&gt; as well.&lt;/p&gt;
-- http://alphacoder.xyz/responsive-grid-system/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/responsive-grid-system/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 6</title>
-        <link>http://alphacoder.xyz/facebook-clone-6/</link>
+        <link>https://alphacoder.xyz/facebook-clone-6/</link>
         <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-6/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-6/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-6/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-6/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 6 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &amp;ldquo;friend&amp;rdquo; model of relationships (I&amp;rsquo;m your friend; you&amp;rsquo;re my friend). There are other models like the popular &amp;ldquo;following-follower&amp;rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we&amp;rsquo;ll explore a very basic approach. Also, we won&amp;rsquo;t be exploiting the relationship model we&amp;rsquo;ll be creating in the workings of our application. Again, it&amp;rsquo;s to keep things simple.&lt;/p&gt;
 &lt;h1 id=&#34;friend-relationships&#34;&gt;Friend relationships&lt;/h1&gt;
@@ -492,31 +492,31 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;p&gt;&lt;em&gt;At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There&amp;rsquo;s always something to add to make it easier, faster and/or better to use.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-6 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-6/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-6/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 5</title>
-        <link>http://alphacoder.xyz/facebook-clone-5/</link>
+        <link>https://alphacoder.xyz/facebook-clone-5/</link>
         <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-5/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-5/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-5/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-5/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 5 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Every Facebook user has a profile. Let&amp;rsquo;s create profile pages for FaceClone users!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc5/faceclone-profile.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc5/faceclone-profile.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;FaceClone profile page&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;but-before-iforget&#34;&gt;But before I forget&amp;hellip;&lt;/h1&gt;
 &lt;p&gt;Recall that we used id of &lt;em&gt;zero&lt;/em&gt; for the user_id fields in our posts table. That was because we didn&amp;rsquo;t have any users. Now that we do, let&amp;rsquo;s change things a bit.
@@ -582,28 +582,28 @@ The form…&lt;/p&gt;
 &lt;p&gt;You&amp;rsquo;re probably used to the above snippet by now. We update the status and location of a user using the &lt;code&gt;UPDATE&lt;/code&gt; sql statement then redirect back to profile.php. Sweet!&lt;/p&gt;
 &lt;p&gt;*drops mic*&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-5 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-5/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-5/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 4</title>
-        <link>http://alphacoder.xyz/facebook-clone-4/</link>
+        <link>https://alphacoder.xyz/facebook-clone-4/</link>
         <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-4/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-4/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-4/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 4 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Users are at the center of any application. It&amp;rsquo;s all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can&amp;rsquo;t be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we&amp;rsquo;re going to make all this possible, and some.&lt;/p&gt;
 &lt;h1 id=&#34;registration&#34;&gt;Registration&lt;/h1&gt;
@@ -749,31 +749,31 @@ function check_auth() {
 &lt;p&gt;At this point, we can call it a day. Phew!!!&lt;/p&gt;
 &lt;p&gt;Well done!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-4 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-4/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-4/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 3</title>
-        <link>http://alphacoder.xyz/facebook-clone-3/</link>
+        <link>https://alphacoder.xyz/facebook-clone-3/</link>
         <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-3/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-3/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-3/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-3/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 3 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Posts are the heart and soul of Facebook. In this part, we&amp;rsquo;ll be writing code that would allow us view, make and delete posts on FaceClone.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc3/faceclone-home.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/faceclone-home.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;functionsphp&#34;&gt;Functions.php&lt;/h1&gt;
 &lt;p&gt;In the spirit of code reusability A.K.A writing DRY (&lt;a href=&#34;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&#34;&gt;Don&amp;rsquo;t Repeat Yourself&lt;/a&gt;) code, let&amp;rsquo;s create a functions.php file in the root of our project. We&amp;rsquo;ll use this file to write different bits of code — functions — which can be used across our app. Now include functions.php at the top of all app pages like so:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;?php require_once &amp;quot;functions.php&amp;quot;; ?&amp;gt;
@@ -808,15 +808,15 @@ function check_auth() {
 &amp;lt;main class=&amp;quot;container&amp;quot;&amp;gt;
 ...
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc3/db-connect.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/db-connect.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Connect FaceClone to the DB&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The above code is quite self-explanatory. We specify our database server name, username, password and the particular database we want to access. Then, we use the MySQLi extension to establish a connection to the database. There are other extensions and therefore ways to connect to a database. Also, we can choose to &lt;a href=&#34;https://www.w3schools.com/php/php_mysql_connect.asp&#34;&gt;write the code procedurally or using object-oriented programming&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Ensure your MySQL server is running. You can start the server from XAMPP&amp;rsquo;s control panel.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc3/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;XAMPP control panel&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Now that we have a connection, let&amp;rsquo;s write code to get posts from the database. Wait! There&amp;rsquo;s no data in there, is there? Let&amp;rsquo;s quickly generate some data. Head over to PHP My Admin and have some fun.&lt;/p&gt;
 &lt;p&gt;Go to faceclone &amp;gt; posts &amp;gt; insert&amp;hellip;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc3/create-dummy-data.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/create-dummy-data.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Add dummy data to your DB&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I set user_id to 0 cos we don&amp;rsquo;t have any users yet.&lt;/p&gt;
 &lt;h1 id=&#34;view-posts&#34;&gt;View posts&lt;/h1&gt;
@@ -911,28 +911,28 @@ The redirect_to method is a custom method. Add the definition to functions.php.&
 &lt;p&gt;&lt;code&gt;$_GET&lt;/code&gt; is another superglobal. As you might imagine, it contains data sent from GET requests.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s it for part 3!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-3 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-3/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-3/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 2</title>
-        <link>http://alphacoder.xyz/facebook-clone-2/</link>
+        <link>https://alphacoder.xyz/facebook-clone-2/</link>
         <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-2/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-2/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-2/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-2/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 2 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;a-little-about-php-andmysql&#34;&gt;A little about PHP and MySQL&lt;/h1&gt;
 &lt;p&gt;So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template. We also didn&amp;rsquo;t get to talk about MySQL, the database we&amp;rsquo;ll be using. Let&amp;rsquo;s quickly get to know a little about PHP and MySQL.&lt;/p&gt;
@@ -1011,65 +1011,65 @@ We&amp;rsquo;ve just created 2 partials. We need to include them in all our temp
 &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;footer.php&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run PHP&amp;rsquo;s development server to to confirm everything works fine.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Open up a terminal and change directory to the project&amp;rsquo;s folder then run &lt;code&gt;php -S localhost:8080&lt;/code&gt; to start the server (refer to part 1 if you don&amp;rsquo;t remember how to run the app).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/faceclone-home.php.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/faceclone-home.php.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;lets-write-a-dbschema&#34;&gt;Let&amp;rsquo;s write a DB schema&lt;/h1&gt;
 &lt;p&gt;We need to &amp;ldquo;architect&amp;rdquo; a schema for our database. There&amp;rsquo;s quite some data that needs to be stored. When a user makes a post, we need to store it so they (and other users) can view it [later]. We even need to store information about users like their usernames and passwords. There needs to be some structure. We must know before hand what data we want to store and how we want to store it. A schema is simply a representation of a database structure. Smooth and easy!&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s the schema I made for FaceClone:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/faceclone-schema.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/faceclone-schema.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This schema is very basic. I should have specified the data types for each column. But don&amp;rsquo;t worry, we&amp;rsquo;ll choose data types when we transform this schema into a real database. The column names suggest the data that would be stored under them. The id columns allow us uniquely identify records in the database. If we want to get a post from the database, we need a unique feature that identifies it - the id. For the users table, we could use the username column to identify users because each user&amp;rsquo;s username must be unique but we&amp;rsquo;ll be using ids nonetheless.&lt;/p&gt;
 &lt;p&gt;The user_id and friend_id columns are foreign key columns. user_id represents a user in the users table. Every post, for example must belong to a user. Instead of adding fields like username, password, location etc to the posts table to represent the user who made a given post, we can simply add a reference (user_id) which represents a user&amp;rsquo;s id in users table. This is some form of normalization and in helps us avoid redundancy/duplicate data.&lt;/p&gt;
 &lt;h1 id=&#34;create-thedatabase&#34;&gt;Create the Database&lt;/h1&gt;
 &lt;p&gt;With a schema in sight, we should get started creating the database for FaceClone. Power up XAMMP to begin. When XAMPP is executed, a view like the one below greets you:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;XAMPP&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Start Apache and MySQL. We&amp;rsquo;re going to use a web app called PHP My Admin to create our database. We&amp;rsquo;ll serve PHP My Admin with Apache (a web server). We also need MySQL server running too.
 Once Apache and MySQL start running, go to your browser and visit http://localhost/phpmyadmin. You should be greeted by a page that looks like:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/phpmyadmin.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/phpmyadmin.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;PHP My Admin&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Click on the databases tab to create a new database. Let&amp;rsquo;s call our database faceclone. Once our database is created, we are taken to a screen where we can create tables. Type in the name of the table and the number of columns and click &amp;ldquo;Go&amp;rdquo;. Our posts table for instance would have 4 columns: id, content, user_id and created_at. Go ahead and create all the database tables like so:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/create-posts.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-posts.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create posts table&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; For &lt;em&gt;id&lt;/em&gt; columns, remember to make the index PRIMARY and tick the AI (auto increment) checkbox.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/create-users.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-users.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create users table&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/create-friends.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-friends.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create friends table&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc2/create-friend-requests.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-friend-requests.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create friend_requests table&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Done with that? Cool. Our database is up and ready!&lt;/p&gt;
 &lt;p&gt;That wraps it up for part 2!!!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-2 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-2/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-2/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Build a Facebook clone from scratch with PHP — Part 1</title>
-        <link>http://alphacoder.xyz/facebook-clone-1/</link>
+        <link>https://alphacoder.xyz/facebook-clone-1/</link>
         <pubDate>Sun, 11 Jun 2017 01:22:37 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/facebook-clone-1/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/facebook-clone-1/ -&lt;p&gt;In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!&lt;/p&gt;
+        <guid>https://alphacoder.xyz/facebook-clone-1/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-1/ -&lt;p&gt;In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!&lt;/p&gt;
 &lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Build a Facebook clone from scratch with PHP — Part 1 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;were-making-facebook-wow&#34;&gt;We&amp;rsquo;re making Facebook? Wow!&lt;/h1&gt;
 &lt;p&gt;Facebook is the largest social network platform in the world. I mean, it&amp;rsquo;s crazy! An application that serves ~2 billion people? Insane! Facebook over the years has become more and more complex, adding new and exciting features as the days go by.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;d like to, at this rather early juncture, outline what we&amp;rsquo;ll be building.&lt;/p&gt;
 &lt;p&gt;Facebook is big. There are photos, groups, messaging, pages, videos, live videos, stories, VR and more. That&amp;rsquo;s a lot. What we&amp;rsquo;ll be building here is good ol&amp;rsquo; Facebook of 2004 — probably less. We want to focus on the initial core features of Facebook — posts, profiles, timelines, friend relationships and login/registration. Awesome!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc1/faceclone-screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/faceclone-screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;is-it-forme&#34;&gt;Is it for me?&lt;/h1&gt;
-&lt;p&gt;If you have at least a basic understanding of programming concepts and front end web development (i.e HTML, CSS, Javascript) this series is for you. If you have little/zero knowledge of front end web development, you can check out this post I wrote: &lt;a href=&#34;http://alphacoder.xyz/html-css-js&#34;&gt;HTML, CSS and Javascript as fast as possible&lt;/a&gt;. If it doesn&amp;rsquo;t help, you&amp;rsquo;ll need to pick up some more elaborate course/tutorial to get up to speed. It&amp;rsquo;s vital you have some general knowledge of computer programming though to get the best from the series.&lt;/p&gt;
+&lt;p&gt;If you have at least a basic understanding of programming concepts and front end web development (i.e HTML, CSS, Javascript) this series is for you. If you have little/zero knowledge of front end web development, you can check out this post I wrote: &lt;a href=&#34;https://alphacoder.xyz/html-css-js&#34;&gt;HTML, CSS and Javascript as fast as possible&lt;/a&gt;. If it doesn&amp;rsquo;t help, you&amp;rsquo;ll need to pick up some more elaborate course/tutorial to get up to speed. It&amp;rsquo;s vital you have some general knowledge of computer programming though to get the best from the series.&lt;/p&gt;
 &lt;h1 id=&#34;what-youll-beneeding&#34;&gt;What you&amp;rsquo;ll be needing&lt;/h1&gt;
 &lt;p&gt;All you&amp;rsquo;ll be needing is a PC/Mac and 3 apps you can download for free online:&lt;/p&gt;
 &lt;ol&gt;
@@ -1085,7 +1085,7 @@ Once Apache and MySQL start running, go to your browser and visit http://localho
 &lt;p&gt;I built a HTML template for the project. I figured it&amp;rsquo;ll be better to focus on PHP and MySQL than HTML, CSS and Javascript. Besides, using a ready-made template would enable us work faster which is what we want, right?
 Here&amp;rsquo;s the repo for the template: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone-html-template&#34;&gt;https://github.com/nicholaskajoh/faceclone-html-template&lt;/a&gt;. Click on the green &amp;ldquo;clone or download&amp;rdquo; button, then &amp;ldquo;download ZIP&amp;rdquo; to get the template. Unzip it to any location of your choice.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s quickly observe the structure of the template folder:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc1/template-folder-structure.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/template-folder-structure.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Folder structure for the template (ignore the .git folder)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The folder structure should be similar to the screenshot above. The .gitignore and README.md files are repo files and are not needed here so we can delete them.&lt;/p&gt;
 &lt;p&gt;The css folder contain css files for styling our web app. There are several &amp;ldquo;bootstrap&amp;rdquo; files and a style.css file. &lt;a href=&#34;https://getbootstrap.com&#34;&gt;Bootstrap&lt;/a&gt; is a HTML, CSS and Javascript framework that helps us built beautiful and responsive UIs quickly. I used Bootstrap for the template. In the style.css file, I specified a couple of styles to customize Bootstrap.&lt;/p&gt;
@@ -1099,18 +1099,18 @@ Here&amp;rsquo;s the repo for the template: &lt;a href=&#34;https://github.com/n
 &lt;pre&gt;&lt;code&gt;php -v
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You should get a result similar to the screenshot below (i.e the version of PHP you have installed):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc1/php-version.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/php-version.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;A terminal window&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If you get a weird message like &amp;ldquo;invalid command&amp;rdquo; or something, your XAMPP is probably not properly installed. Post a comment on this article if you have any issues installing any of the apps we&amp;rsquo;ll be using.&lt;/p&gt;
 &lt;p&gt;Now type in &lt;code&gt;php -S localhost:8080&lt;/code&gt; and hit enter. This command starts up the PHP development server on port 8080. Visit http://localhost:8080 on your browser. Our FaceClone template is opened up!
 Unlike when we clicked index.html or the other html files to open them up in our browser, the page that is displayed was &amp;ldquo;served&amp;rdquo; by a server. This means we can run PHP code in them. Great!&lt;/p&gt;
 &lt;p&gt;But we actually can&amp;rsquo;t! Not yet. We have to change those files from html to php so that our server knows that they contain PHP and must be &amp;ldquo;pre-processed&amp;rdquo; before they are served. So go ahead and change home.html to home.php and so on for the other html files. Now we should have a folder structure similar to this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/fbc1/template-to-php.jpg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/template-to-php.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Your folder structure should look like this (ignore the .gitkeep file)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s all for part 1. Cool!!!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-1 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/facebook-clone-1/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-1/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

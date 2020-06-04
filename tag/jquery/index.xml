@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jQuery on Alpha Coder</title>
-    <link>http://alphacoder.xyz/tag/jquery/</link>
+    <link>https://alphacoder.xyz/tag/jquery/</link>
     <description>Recent content in jQuery on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Sun, 26 Feb 2017 05:43:00 +0000</lastBuildDate>
     
-	<atom:link href="http://alphacoder.xyz/tag/jquery/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://alphacoder.xyz/tag/jquery/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Lazy load your content with Django and jQuery</title>
-      <link>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
+      <link>https://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
       <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
       
-      <guid>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
+      <guid>https://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
       <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
 Templates Create 2 templates, index.html and posts.html.
 index.html

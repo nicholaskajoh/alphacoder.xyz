@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Facebook Clone Series on Alpha Coder</title>
-    <link>http://alphacoder.xyz/tag/facebook-clone-series/</link>
+    <link>https://alphacoder.xyz/tag/facebook-clone-series/</link>
     <description>Recent content in Facebook Clone Series on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Sat, 23 Sep 2017 09:07:23 +0100</lastBuildDate>
     
-	<atom:link href="http://alphacoder.xyz/tag/facebook-clone-series/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://alphacoder.xyz/tag/facebook-clone-series/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 6</title>
-      <link>http://alphacoder.xyz/facebook-clone-6/</link>
+      <link>https://alphacoder.xyz/facebook-clone-6/</link>
       <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/facebook-clone-6/</guid>
+      <guid>https://alphacoder.xyz/facebook-clone-6/</guid>
       <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 (this article) Build a Facebook clone from scratch with PHP — Part 7  Relationships are the point of social networks.</description>
     </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 5</title>
-      <link>http://alphacoder.xyz/facebook-clone-5/</link>
+      <link>https://alphacoder.xyz/facebook-clone-5/</link>
       <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/facebook-clone-5/</guid>
+      <guid>https://alphacoder.xyz/facebook-clone-5/</guid>
       <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile.</description>
     </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 4</title>
-      <link>http://alphacoder.xyz/facebook-clone-4/</link>
+      <link>https://alphacoder.xyz/facebook-clone-4/</link>
       <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/facebook-clone-4/</guid>
+      <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
       <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 (this article) Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Users are at the center of any application.</description>
     </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 3</title>
-      <link>http://alphacoder.xyz/facebook-clone-3/</link>
+      <link>https://alphacoder.xyz/facebook-clone-3/</link>
       <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/facebook-clone-3/</guid>
+      <guid>https://alphacoder.xyz/facebook-clone-3/</guid>
       <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 (this article) Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Posts are the heart and soul of Facebook.</description>
     </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 2</title>
-      <link>http://alphacoder.xyz/facebook-clone-2/</link>
+      <link>https://alphacoder.xyz/facebook-clone-2/</link>
       <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/facebook-clone-2/</guid>
+      <guid>https://alphacoder.xyz/facebook-clone-2/</guid>
       <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  A little about PHP and MySQL So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template.</description>
     </item>
     
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 1</title>
-      <link>http://alphacoder.xyz/facebook-clone-1/</link>
+      <link>https://alphacoder.xyz/facebook-clone-1/</link>
       <pubDate>Sun, 11 Jun 2017 01:22:37 +0100</pubDate>
       
-      <guid>http://alphacoder.xyz/facebook-clone-1/</guid>
+      <guid>https://alphacoder.xyz/facebook-clone-1/</guid>
       <description>In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!
 All parts  Build a Facebook clone from scratch with PHP — Part 1 (this article) Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  We&amp;rsquo;re making Facebook?</description>
     </item>

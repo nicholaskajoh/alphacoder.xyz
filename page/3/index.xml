@@ -1,24 +1,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software engineering with great finesse on Alpha Coder</title>
-    <link>http://alphacoder.xyz/</link>
+    <link>https://alphacoder.xyz/</link>
     <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
     
-        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>Dockerizing Django in development and production</title>
-        <link>http://alphacoder.xyz/dockerizing-django/</link>
+        <link>https://alphacoder.xyz/dockerizing-django/</link>
         <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/dockerizing-django/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/dockerizing-django/ -&lt;p&gt;Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/dockerizing-django/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/dockerizing-django/ -&lt;p&gt;Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.&lt;/p&gt;
 &lt;h2 id=&#34;tldr-sample-project&#34;&gt;TL;DR: Sample project&lt;/h2&gt;
 &lt;p&gt;You can &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django&#34;&gt;check out the code&lt;/a&gt; on GitHub.&lt;/p&gt;
 &lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
@@ -135,18 +135,18 @@ POSTGRES_DB=mypgsqldb
 &lt;p&gt;You can run migrations and create an admin user with the following commands:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker-compose -f docker-compose.prod.yml run web python manage.py migrate
 docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- http://alphacoder.xyz/dockerizing-django/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://alphacoder.xyz/dockerizing-django/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>I built my own web search engine — here’s how</title>
-        <link>http://alphacoder.xyz/my-web-search-engine/</link>
+        <link>https://alphacoder.xyz/my-web-search-engine/</link>
         <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/my-web-search-engine/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/my-web-search-engine/ -&lt;p&gt;I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!&lt;/p&gt;
+        <guid>https://alphacoder.xyz/my-web-search-engine/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/my-web-search-engine/ -&lt;p&gt;I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!&lt;/p&gt;
 &lt;h2 id=&#34;about-my-search-engine-devsearch&#34;&gt;About my search engine, devsearch&lt;/h2&gt;
 &lt;p&gt;It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.&lt;/p&gt;
 &lt;p&gt;The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place. It would take tons of servers to crawl a meaningful portion of the web in good time. I didn’t have the time or the servers. I decided to focus on tech/software development content (hence the name &lt;em&gt;devsearch&lt;/em&gt;) and to deal only with textual data.&lt;/p&gt;
@@ -231,18 +231,18 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;hr&gt;
 &lt;p&gt;The search results from &lt;em&gt;devsearch&lt;/em&gt; are abysmal (good thing I wasn’t hoping to build the next Google Search). However, I learnt a ton about search engines and search algorithms, and have already started exploring the areas most interesting to me. Most important, I understand a little better how search engines work! 🙌&lt;/p&gt;
 &lt;p&gt;You can find the source code for &lt;em&gt;devsearch&lt;/em&gt; on my GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/devsearch&#34;&gt;&lt;strong&gt;nicholaskajoh/devsearch&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/my-web-search-engine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/my-web-search-engine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>How to run multiple apps on one server using Docker and Traefik</title>
-        <link>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
+        <link>https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
         <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ -&lt;p&gt;Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ -&lt;p&gt;Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.&lt;/p&gt;
 &lt;h2 id=&#34;use-case&#34;&gt;Use case&lt;/h2&gt;
 &lt;p&gt;Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end). You can even run two different websites (example1.com and example2.com) if you want.&lt;/p&gt;
 &lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
@@ -253,11 +253,11 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;p&gt;We’ll be using Docker via Docker Compose. Docker Compose makes it easy to run multi-container Docker applications. You can configure all your containers in one file and run them at once with a single command. Read more here: &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;https://docs.docker.com/compose&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;project-setup&#34;&gt;Project setup&lt;/h2&gt;
 &lt;p&gt;The 3 apps we’ll be running are a website (static site), a blog and a SaaS app (dasboard-ish). For the sake of demonstration, I just downloaded HTML templates online 👀. So I have a &lt;em&gt;landing page template&lt;/em&gt;, &lt;em&gt;blog template&lt;/em&gt; and &lt;em&gt;dashboard template&lt;/em&gt;. They’ll all be served with Ngnix 😉.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/website.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/website.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;website&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/blog.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/blog.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;blog&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/app.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/app.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;SaaS app&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Here’s the project repo: &lt;a href=&#34;https://github.com/nicholaskajoh/jack&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/jack&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Each app is put in it’s own folder, with its own &lt;em&gt;Dockerfile&lt;/em&gt;. The Dockerfiles are identical since we’re basically just serving static files in all the apps.&lt;/p&gt;
@@ -303,31 +303,31 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;p&gt;Traefik can be configured using a &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; file. It can also pick configs from service labels. As such, we specified the &lt;code&gt;traefik.backend&lt;/code&gt; and &lt;code&gt;traefik.frontend.rule&lt;/code&gt; configs using labels. &lt;code&gt;traefik.backend&lt;/code&gt; specifies the service to handle requests from &lt;code&gt;traefik.frontend.rule&lt;/code&gt;. So if we go to &lt;em&gt;app.localhost&lt;/em&gt;, we will be served content from the app service. Same with &lt;em&gt;localhost&lt;/em&gt; and website, and &lt;em&gt;blog.localhost&lt;/em&gt; and blog.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Try it out:&lt;/strong&gt; clone &lt;a href=&#34;https://github.com/nicholaskajoh/jack&#34;&gt;Jack&lt;/a&gt;, run &lt;code&gt;docker-compose up&lt;/code&gt; and visit &lt;em&gt;localhost&lt;/em&gt;, &lt;em&gt;app.localhost&lt;/em&gt; and &lt;em&gt;blog.localhost&lt;/em&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;traefik-dashboard&#34;&gt;Traefik dashboard&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/traefik-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/traefik-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The Traefik dashboard displays useful information including the available front-ends and back-ends, and the health of the containers. You can password protect the dashboard so only authorized persons can access it.&lt;/p&gt;
 &lt;h2 id=&#34;ssl&#34;&gt;SSL&lt;/h2&gt;
 &lt;p&gt;Traefik can handle SSL for you automatically. This guide (&lt;a href=&#34;https://docs.traefik.io/https/acme/&#34;&gt;https://docs.traefik.io/https/acme/&lt;/a&gt;) explains the configuration process using Let’s Encrypt.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;NB:&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;I added SSL configs in&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/docker-compose.prod.yml&#34;&gt;&lt;em&gt;docker-compose.prod.yml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;for use in production.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;scaling-and-load-balancing&#34;&gt;Scaling and load balancing&lt;/h2&gt;
 &lt;p&gt;Traefik load balances multiple instances of a given service automatically. You can use the scale flag/parameter in docker compose to run multiple instances of your containers.&lt;/p&gt;
-- http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>How to scale an app horizontally using a load balancer</title>
-        <link>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
+        <link>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
         <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ -&lt;p&gt;As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ -&lt;p&gt;As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.&lt;/p&gt;
 &lt;p&gt;One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.&lt;/p&gt;
 &lt;p&gt;There are mainly two ways to go about it — juice up a single server or run your app on multiple servers.&lt;/p&gt;
 &lt;p&gt;The former is called &lt;strong&gt;vertical scaling&lt;/strong&gt; and involves adding more memory, compute and/or storage to your server. This is very easy to accomplish if you run your app on a PaaS or IaaS platform. However, there’s only so much RAM/CPU/SSD etc you can get on one machine. Also, running high-end hardware is usually very expensive.&lt;/p&gt;
 &lt;p&gt;The latter approach is called &lt;strong&gt;horizontal scaling&lt;/strong&gt;. It involves running your application on multiple servers and sharing traffic/load among them. Using this approach has some advantages. For one, you can scale infinitely. You just add more servers. Also, your app becomes &lt;em&gt;highly available&lt;/em&gt; because if one server crashes/goes offline, you have other servers to handle incoming requests and/or other workloads.&lt;/p&gt;
 &lt;p&gt;Horizontal scaling works by placing a &lt;strong&gt;load balancer&lt;/strong&gt; in front of your app servers. A load balancer is also a server. Its primary job is to distribute traffic among other servers.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/load-balancer-diagram.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/load-balancer-diagram.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Horizontal scaling (A, B, C and D represent your app servers)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Most cloud providers have one-click-setup load balancers you can use if you run your app in their infrastructure. You may also choose to create your own load balancer using open source software like Nginx, HAProxy, Traefik etc.&lt;/p&gt;
 &lt;p&gt;In this tutorial, we’re going to scale an app horizontally on DigitalOcean using their cloud load balancer. Let’s do this!&lt;/p&gt;
@@ -340,10 +340,10 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;p&gt;You’ll need to create an account on &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;digitalocean.com&lt;/a&gt; to get started. Droplets start at $5 per month but coupons abound. You can use my referral link and get $10 free: &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;https://m.do.co/c/e38dd092b1ad&lt;/a&gt;. More coupons here: &lt;a href=&#34;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&#34;&gt;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;droplets&#34;&gt;Droplets&lt;/h2&gt;
 &lt;p&gt;Once you’ve signed up, verified your account and redeemed/purchased credits, head over to &lt;a href=&#34;https://cloud.digitalocean.com&#34;&gt;https://cloud.digitalocean.com&lt;/a&gt; and create a new droplet.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/droplets.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/droplets.jpeg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;My droplets are already up 😉&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;You can choose the configs you want if you know your way around provisioning servers. If you don’t, you may use the options shown in the screenshot below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/create-droplet.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/create-droplet.jpeg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Create a droplet&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;When your servers are up, you’ll need to connect to them via SSH. It’s advisable to generate an SSH key for your computer (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&lt;/a&gt;). Alternatively, you can use username and password to login to your droplets.&lt;/p&gt;
 &lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
@@ -356,43 +356,43 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;li&gt;Install Docker and Docker Compose (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&lt;/a&gt;, &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&lt;/a&gt;). You can test your installations by running &lt;code&gt;docker --version&lt;/code&gt; and &lt;code&gt;docker-compose --version&lt;/code&gt;. Ensure the docker service is running: &lt;code&gt;sudo systemctl status docker&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Build and run the &lt;em&gt;hits&lt;/em&gt; application: &lt;code&gt;docker-compose -f docker-compose.prod.yml up --build -d&lt;/code&gt; (you should be in the root directory of the project (/www/var/hits). Now when you visit, your droplet’s IP address, you should be greeted by the &lt;em&gt;hits&lt;/em&gt; app.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/hits-app.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/hits-app.jpeg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;The hits app 🙌&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/hits-env.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/hits-env.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;load-balancer&#34;&gt;Load balancer&lt;/h2&gt;
 &lt;p&gt;Once all your servers are up and running, create a new load balancer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/create-load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/create-load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once your load balancer is up, add your droplets to it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/add-droplets-to-lb.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/add-droplets-to-lb.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Now you can visit your load balancer’s IP address. The APP INSTANCE shows what instance of the application (droplet) a request was routed to.&lt;/p&gt;
 &lt;p&gt;Let’s go into the settings of the load balancer for a bit…&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/lb-settings.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/lb-settings.jpeg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Load balancer settings&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;So DigitalOcean gives us options to customize our load balancer.&lt;/p&gt;
 &lt;p&gt;We can choose an algorithm for the load balancer to use to route traffic to the droplets. There’s &lt;em&gt;Round Robin&lt;/em&gt; and &lt;em&gt;Least Connections&lt;/em&gt;. In Round Robin, the requests are routed in a circular order from one droplet to the next. On the other hand, Least Connections routes to the server with the least traffic.&lt;/p&gt;
 &lt;p&gt;There’s also health checks. You can set an endpoint e.g your app’s home page (http://0.0.0.0:80) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.&lt;/p&gt;
 &lt;p&gt;With Sticky sessions, you can glue a user to a particular server. If enabled, after a user’s first request, follow up requests would be routed to the same server.&lt;/p&gt;
-- http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>K Means</title>
-        <link>http://alphacoder.xyz/k-means/</link>
+        <link>https://alphacoder.xyz/k-means/</link>
         <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/k-means/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/k-means/ -&lt;p&gt;We’ve been talking &lt;strong&gt;classification&lt;/strong&gt; for a while now — from &lt;em&gt;K Nearest Neighbors&lt;/em&gt; to &lt;em&gt;Naive Bayes&lt;/em&gt; to &lt;em&gt;Support Vector Machines&lt;/em&gt;. In this post, we’ll be looking at &lt;strong&gt;clustering&lt;/strong&gt; using an algorithm called &lt;strong&gt;&lt;em&gt;K Means&lt;/em&gt;&lt;/strong&gt;. Let’s dive in&amp;hellip;&lt;/p&gt;
+        <guid>https://alphacoder.xyz/k-means/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/k-means/ -&lt;p&gt;We’ve been talking &lt;strong&gt;classification&lt;/strong&gt; for a while now — from &lt;em&gt;K Nearest Neighbors&lt;/em&gt; to &lt;em&gt;Naive Bayes&lt;/em&gt; to &lt;em&gt;Support Vector Machines&lt;/em&gt;. In this post, we’ll be looking at &lt;strong&gt;clustering&lt;/strong&gt; using an algorithm called &lt;strong&gt;&lt;em&gt;K Means&lt;/em&gt;&lt;/strong&gt;. Let’s dive in&amp;hellip;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*C2uxvEivKa4FQYimkl6OJA.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;K Means (this article)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, &lt;em&gt;K&lt;/em&gt; based on feature similarity. The algorithm works iteratively to assign each data point to one of &lt;em&gt;K&lt;/em&gt; groups. Each group is identified by a centroid (the center point of the group) and data points are grouped with the centroid they’re closest to. The centroids are determined during training through optimization.&lt;/p&gt;
@@ -482,18 +482,18 @@ for i in range(max_iter):
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Check out the ML Chops repo for a class-based implementation and an example with real world data: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- http://alphacoder.xyz/k-means/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/k-means/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Image upload with Django and Cloudinary</title>
-        <link>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
+        <link>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
         <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/image-upload-with-django-and-cloudinary/ -&lt;p&gt;Managing files/images can be a hassle. It can be a real pain to have to deal with uploads, storage, manipulation, administration and delivery of media content in every project you start/or are involved in.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ -&lt;p&gt;Managing files/images can be a hassle. It can be a real pain to have to deal with uploads, storage, manipulation, administration and delivery of media content in every project you start/or are involved in.&lt;/p&gt;
 &lt;p&gt;Luckily, there are cloud platforms that take away the stress of all that, allowing you to ship faster and deliver your product(s) at scale. Cloudinary is one of such platforms. It tags itself as &lt;em&gt;the media management platform for web and mobile developers — an end-to-end solution for all your image and video needs&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Aside Cloudinary’s easy to use API, I was attracted by their very generous free plan. See for yourself at &lt;a href=&#34;https://cloudinary.com/pricing&#34;&gt;https://cloudinary.com/pricing&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Learn more about Cloudinary: &lt;a href=&#34;https://cloudinary.com/solutions&#34;&gt;https://cloudinary.com/solutions&lt;/a&gt;.&lt;/p&gt;
@@ -583,24 +583,24 @@ cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;sp
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my-class&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;height&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;200&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;width&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100&amp;#34;&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Read about all the transformation parameters available here: &lt;a href=&#34;https://cloudinary.com/documentation/image_transformations&#34;&gt;https://cloudinary.com/documentation/image_transformations&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;That’s it!&lt;/p&gt;
-- http://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Deploy your React-Django app on Heroku</title>
-        <link>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
+        <link>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
         <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/deploy-react-django-app-on-heroku/ -&lt;p&gt;This is a follow up to my post on &lt;em&gt;&lt;a href=&#34;http://alphacoder.xyz/dead-simple-react-django-setup/&#34;&gt;setting up a React-Django web app&lt;/a&gt;&lt;/em&gt;. You can take a quick glance if you’ve not seen it yet.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/deploy-react-django-app-on-heroku/ -&lt;p&gt;This is a follow up to my post on &lt;em&gt;&lt;a href=&#34;https://alphacoder.xyz/dead-simple-react-django-setup/&#34;&gt;setting up a React-Django web app&lt;/a&gt;&lt;/em&gt;. You can take a quick glance if you’ve not seen it yet.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TL;DR: The setup is deployed at&lt;/strong&gt; &lt;a href=&#34;http://react-django.herokuapp.com/&#34;&gt;&lt;strong&gt;http://react-django.herokuapp.com&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;(nothing much there actually) and the code at&lt;/strong&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/React-Django&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.&lt;/p&gt;
 &lt;h2 id=&#34;heroku-dashboard&#34;&gt;Heroku dashboard&lt;/h2&gt;
 &lt;p&gt;First things first. You need a Heroku account. Head over to &lt;a href=&#34;https://heroku.com&#34;&gt;Heroku.com&lt;/a&gt; and sign up/login, then go to your dashboard at &lt;a href=&#34;https://dashboard.heroku.com&#34;&gt;https://dashboard.heroku.com&lt;/a&gt; and create a new app.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/heroku-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/heroku-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;heroku-cli&#34;&gt;Heroku CLI&lt;/h2&gt;
 &lt;p&gt;There are a couple deploy methods to choose from on Heroku (visit the &lt;em&gt;deploy&lt;/em&gt; tab on the app page on the dashboard). Here, we’ll use the &lt;em&gt;Heroku Git&lt;/em&gt; method via the &lt;em&gt;Heroku CLI&lt;/em&gt;. You can use &lt;a href=&#34;https://devcenter.heroku.com/articles/heroku-cli&#34;&gt;this guide to learn how to set up Heroku CLI on your OS&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Now, let’s link our project to the Heroku app we created using the Heroku CLI and Git.&lt;/p&gt;
@@ -609,7 +609,7 @@ cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;sp
 &lt;li&gt;Login with your Heroku account on the CLI using &lt;code&gt;heroku login&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Add the Heroku remote via &lt;code&gt;heroku git:remote -a your-heroku-app&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/link-app-to-heroku.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/link-app-to-heroku.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I already initialized Git in the project prior to this.&lt;/p&gt;
 &lt;h2 id=&#34;heroku-buildpacks&#34;&gt;Heroku buildpacks&lt;/h2&gt;
 &lt;p&gt;The React app build process depends on NPM, so we need Node.js. We also need Python to run Django.&lt;/p&gt;
@@ -620,10 +620,10 @@ cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;sp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now add the buildpack for Node.js.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;heroku buildpacks:add --index &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; heroku/nodejs
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see the buildpacks we’ve added by running &lt;code&gt;heroku buildpacks&lt;/code&gt;. The last buildpack on the list determines the process type of the app.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/buildpacks.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/buildpacks.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;packagejson&#34;&gt;package.json&lt;/h2&gt;
 &lt;p&gt;We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command &lt;code&gt;npm run build&lt;/code&gt; in the &lt;em&gt;postinstall&lt;/em&gt; hook.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/package-json.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/package-json.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;See postinstall under scripts&lt;/p&gt;
 &lt;p&gt;Notice that I specified Node and NPM versions in &lt;em&gt;engines&lt;/em&gt;. The buildpack will install these exact versions. It’s highly recommended you use the versions running on your PC to avoid errors from a version that might be incompatible with your code.&lt;/p&gt;
 &lt;h2 id=&#34;procfile&#34;&gt;Procfile&lt;/h2&gt;
@@ -667,18 +667,18 @@ git push heroku master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After the build is done and your app has been released, visit &lt;em&gt;YOUR-APP-NAME.herokuapp.com&lt;/em&gt;. Neat!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Two libraries you might find really helpful when building your Django API are&lt;/em&gt; &lt;a href=&#34;http://www.django-rest-framework.org/&#34;&gt;&lt;em&gt;Django Rest Framework&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/ottoyiu/django-cors-headers/&#34;&gt;&lt;em&gt;Django CORS Headers&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. You should check them out!&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.&lt;/p&gt;
-- http://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Here’s a dead simple React-Django setup for your next project</title>
-        <link>http://alphacoder.xyz/dead-simple-react-django-setup/</link>
+        <link>https://alphacoder.xyz/dead-simple-react-django-setup/</link>
         <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
         
-        <guid>http://alphacoder.xyz/dead-simple-react-django-setup/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/dead-simple-react-django-setup/ -&lt;p&gt;There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/dead-simple-react-django-setup/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/dead-simple-react-django-setup/ -&lt;p&gt;There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TL;DR: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.js and everything would work fine.&lt;/p&gt;
 &lt;h2 id=&#34;django&#34;&gt;Django&lt;/h2&gt;
@@ -746,29 +746,29 @@ urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
 &lt;p&gt;Check out the code for this tutorial here: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
 &lt;p&gt;Deploying the React-Django app is a story for another day. The process largely depends on your hosting environment and workflow. I made &lt;a href=&#34;https://alphacoder.xyz/deploy-react-django-app-on-heroku/&#34;&gt;a post on deploying it to Heroku&lt;/a&gt;.&lt;/p&gt;
-- http://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Naive Bayes</title>
-        <link>http://alphacoder.xyz/naive-bayes/</link>
+        <link>https://alphacoder.xyz/naive-bayes/</link>
         <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/naive-bayes/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/naive-bayes/ -&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/nb-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Naive Bayes is a classifier just like &lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;. The Naive Bayes algorithm applies the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes Theorem&lt;/a&gt; (used to calculate conditional probability) given by the formula:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/bayes-formula.png&#34; alt=&#34;&#34;&gt;
+        <guid>https://alphacoder.xyz/naive-bayes/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/naive-bayes/ -&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/nb-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Naive Bayes is a classifier just like &lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;. The Naive Bayes algorithm applies the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes Theorem&lt;/a&gt; (used to calculate conditional probability) given by the formula:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/bayes-formula.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Bayes formula&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: &lt;a href=&#34;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&#34;&gt;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Naive Bayes (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Let’s consider the data we used in the last post on KNNs:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;height (ft)    weight (kg)    sex  
@@ -782,7 +782,7 @@ urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
 &lt;p&gt;How do we find the probabilities for each class?&lt;/p&gt;
 &lt;p&gt;You guessed right! &lt;strong&gt;Bayes formula&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s put the formula into context for better understanding:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/male-person-prob.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/male-person-prob.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Probability that a person is Male&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Substitute &lt;em&gt;Female&lt;/em&gt; for &lt;em&gt;Male&lt;/em&gt; in the formula and you have the probability that a person is female.&lt;/p&gt;
 &lt;p&gt;Let’s explain terms in the equation briefly:&lt;/p&gt;
@@ -796,7 +796,7 @@ urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
 &lt;p&gt;The probability of selecting a person from a given class is the simplest calculation to perform. From the data table, we can see that there are 5 samples. 2 are Male. Thus &lt;strong&gt;P(Male)&lt;/strong&gt; = 2/5. And 3 are Female. Thus &lt;strong&gt;P(Female)&lt;/strong&gt; = 3/5.&lt;/p&gt;
 &lt;h1 id=&#34;the-pdf&#34;&gt;The PDF&lt;/h1&gt;
 &lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Probability_density_function&#34;&gt;PDF&lt;/a&gt; can be computed using the following formula:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/pdf.png&#34; alt=&#34;&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/pdf.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;The PDF&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Substitute Female with Male and/or weight with height to calculate other PDFs.&lt;/p&gt;
 &lt;p&gt;Using PDF, we assume:&lt;/p&gt;
@@ -881,26 +881,26 @@ class = Female
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- http://alphacoder.xyz/naive-bayes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/naive-bayes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
     
         <item>
         <title>Support Vector Machine</title>
-        <link>http://alphacoder.xyz/support-vector-machine/</link>
+        <link>https://alphacoder.xyz/support-vector-machine/</link>
         <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
         
-        <guid>http://alphacoder.xyz/support-vector-machine/</guid>
-        <description>Alpha Coder http://alphacoder.xyz/support-vector-machine/ -&lt;p&gt;The Support Vector Machine (SVM) is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supervised_learning&#34;&gt;supervised learning&lt;/a&gt; model used for classification and regression. In this tutorial, we’ll be using it for classification.&lt;/p&gt;
+        <guid>https://alphacoder.xyz/support-vector-machine/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/support-vector-machine/ -&lt;p&gt;The Support Vector Machine (SVM) is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supervised_learning&#34;&gt;supervised learning&lt;/a&gt; model used for classification and regression. In this tutorial, we’ll be using it for classification.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*36seqRE8giOL5saMNGKCig.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Support Vector Machine (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Created by &lt;a href=&#34;https://en.wikipedia.org/wiki/Vladimir_Vapnik&#34;&gt;Vladimir Vapnik&lt;/a&gt; in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data. This boundary is known as a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperplane&#34;&gt;hyperplane&lt;/a&gt; — the best separating hyperplane.&lt;/p&gt;
 &lt;p&gt;Let’s take the points on the graph below for example:&lt;/p&gt;
@@ -1012,7 +1012,7 @@ print(predict(x))
 &lt;p&gt;If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for all the code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- http://alphacoder.xyz/support-vector-machine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/support-vector-machine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
