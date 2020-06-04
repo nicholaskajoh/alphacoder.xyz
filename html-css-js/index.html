@@ -17,15 +17,13 @@
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 	ga('create', 'UA-82728104-5', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
@@ -68,6 +66,8 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
 
 
 </head><body>
@@ -1215,6 +1215,12 @@ If you came from my <a href="/tag/facebook-clone-series">Facebook clone series</
             </nav>
             <div class="post-comment-wrapper">
                 
+<div class="comments">
+    <vue-disqus shortname="alphacoderxyz"></vue-disqus>
+</div>
+<noscript><noscript>Please activate JavaScript to view comments.</noscript></noscript>
+<a href="https://disqus.com/" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 
 
