@@ -1,9 +1,7 @@
 +++
 title = "Software engineering with great finesse"
-images = ["/images/hero-sm.jpg"]
+featured_image = "/images/hero.jpg"
 +++
-
-![](/images/hero-sm.jpg)
 
 __Alpha Coder__ is an educational content platform for software professionals interested in honing their skills and building a solid career in tech. We provide top-notch content through:
 

@@ -1,10 +1,10 @@
 baseURL = "http://alphacoder.xyz/"
-languageCode = "en-gb"
+languageCode = "en-us"
 title = "Alpha Coder"
-theme = "simple-hugo-theme"
+theme = "diary"
 
 # Pagination
-paginate = 25
+paginate = 10
 paginatePath = "page"
 
 # Google analytics
@@ -13,13 +13,7 @@ googleAnalytics = "UA-82728104-5"
 disqusShortname = "alphacoderxyz"
 
 # Copyright
-copyright = "© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved."
-
-# Highlighting
-pygmentsCodefences = true
-pygmentsCodeFencesGuessSyntax = true
-pygmentsoptions = "linenos=table"
-pygmentsStyle = "perldoc"
+copyright = "Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved."
 
 # Taxonomies
 [taxonomies]
@@ -40,28 +34,31 @@ pygmentsStyle = "perldoc"
         url = "https://community.alphacoder.xyz"
         name = "Community"
         weight = 3
-
-    # Footer
-    [[menu.footer]]
+    [[menu.main]]
         url = "/musings/"
         name = "Musings"
-        weight = 1
+        weight = 4
+    [[menu.main]]
+        url = "https://tinyletter.com/nicholaskajoh"
+        name = "Newsletter"
+        weight = 5
+
     [[menu.footer]]
         url = "https://twitter.com/AlphaCoderXYZ"
         name = "Twitter"
-        weight = 2
+        weight = 1
     [[menu.footer]]
         url = "https://www.linkedin.com/company/alphacoder"
         name = "LinkedIn"
-        weight = 3
+        weight = 2
     [[menu.footer]]
         url = "mailto:support@alphacoder.xyz"
         name = "Email"
-        weight = 4
+        weight = 3
     [[menu.footer]]
         url = "/blog/index.xml"
         name = "RSS"
-        weight = 5
+        weight = 4
 
 # SEO
 enableRobotsTXT = true
@@ -72,3 +69,19 @@ canonifyURLs = true
     blog = "/:slug/"
     tags = "/tag/:slug/"
     musings = "/:slug/"
+
+[params]
+    enableReadingTime = true
+    favicon = "/images/alpha-coder-logo-v1-small.png"
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
