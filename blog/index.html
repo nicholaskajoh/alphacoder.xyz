@@ -1,447 +1,811 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head>
+<title>Posts</title>
 
-    <title>Posts | Alpha Coder</title>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-    <link rel="shortcut icon" type="image/png" href="/images/alpha-coder-logo-v1-small.png"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-family:merriweather,serif;font-size:16px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:15px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
 
-    
-    <link href="/blog/index.xml" rel="alternate" type="application/rss+xml" title="Alpha Coder" />
-    
 
-    
-    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-82728104-5', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-    
-
-    
-
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://alphacoder.xyz/blog/" />
-<meta property="og:updated_time" content="2020-05-25T23:33:11+00:00" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
-
-    <meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
-    
-    <script type="text/javascript">
-        window._mNHandle = window._mNHandle || {};
-        window._mNHandle.queue = window._mNHandle.queue || [];
-        medianet_versionId = "3121199";
-    </script>
-    <script src="https://contextual.media.net/dmedianet.js?cid=8CUBJ5TUP" async="async"></script>
-</head>
 
 
-<body>
-<div class="header">
-    <h1>
-        <a href="/">Alpha Coder</a>
-        <div class="header-menu">
-            <a href="/blog/">Blog</a>
-            <a href="https://courses.alphacoder.xyz">Courses</a>
-            <a href="https://community.alphacoder.xyz">Community</a>
-        </div>
-    </h1>
-</div>
-<div id="content">
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+<link rel="icon" href="/images/alpha-coder-logo-v1-small.png">
 
 
 
 
-
-<ul class="posts-list">
-    
-    <li>
-        <a href="/node-modules/">node_modules: The Node.js black hole
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2020-05-25">May 25, 2020</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/node.js/">Node.js</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/levels-of-abstraction/">What level of abstraction should I play on?
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2020-04-12">Apr 12, 2020</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/microservices-architecture-authentication/">Authentication strategies in microservices architecture
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-09-29">Sep 29, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/microservices/">Microservices</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/connect-to-host-database-from-docker-container/">How to connect to a host&rsquo;s database from inside a Docker container
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-09-01">Sep 1, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/elasticsearch-kibana-docker-development-setup/">Here&rsquo;s a quick Elasticsearch-Kibana setup via Docker for development
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-09-01">Sep 1, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/elasticsearch/">Elasticsearch</a>
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/vehicle-counting/">I built a video-based vehicle counting system — here&rsquo;s how
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-07-12">Jul 12, 2019</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/machine-learning-explained/">Machine Learning explained
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-05-18">May 18, 2019</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/how-to-configure-wildcard-subdomains/">How to configure wildcard subdomains
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-04-02">Apr 2, 2019</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/nodejs-unhandled-promise-rejection-warning/">Fixing UnhandledPromiseRejectionWarning in Node.js
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-03-04">Mar 4, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/node.js/">Node.js</a>
-    <a href="http://alphacoder.xyz/tag/javascript/">JavaScript</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/adminer-a-simple-gui-client-for-any-db/">Adminer — a simple GUI client for any DB
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-03-04">Mar 4, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/databases/">Databases</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/dealing-with-code-debt/">Dealing with code debt
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-02-06">Feb 6, 2019</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/deploy-microservices-on-kubernetes/">Deploy microservices on Kubernetes
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2019-02-01">Feb 1, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/kubernetes/">Kubernetes</a>
-    <a href="http://alphacoder.xyz/tag/microservices/">Microservices</a>
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/check-domain-availability-from-your-terminal/">Check domain availability from your terminal
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-12-10">Dec 10, 2018</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/git-push-to-an-aws-ec2-remote-using-a-pem-file/">How to Git push to an AWS EC2 remote using a PEM file
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-12-02">Dec 2, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/git/">Git</a>
-    <a href="http://alphacoder.xyz/tag/aws/">AWS</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/git-workflows/">2 Git workflows you should know
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-11-22">Nov 22, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/git/">Git</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/understanding-modern-front-end-development/">Understanding modern front-end development
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-11-09">Nov 9, 2018</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/dockerizing-django/">Dockerizing Django in development and production
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-08-15">Aug 15, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-    <a href="http://alphacoder.xyz/tag/django/">Django</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/my-web-search-engine/">I built my own web search engine — here’s how
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-07-26">Jul 26, 2018</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/multiple-apps-one-server-with-docker-and-traefik/">How to run multiple apps on one server using Docker and Traefik
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-06-28">Jun 28, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-    <a href="http://alphacoder.xyz/tag/traefik/">Traefik</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/scale-an-app-horizontally-using-a-load-balancer/">How to scale an app horizontally using a load balancer
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-06-13">Jun 13, 2018</time>
-</div>
-    </li>
-    
-    <li>
-        <a href="/k-means/">K Means
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-05-01">May 1, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/image-upload-with-django-and-cloudinary/">Image upload with Django and Cloudinary
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-02-18">Feb 18, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/django/">Django</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/deploy-react-django-app-on-heroku/">Deploy your React-Django app on Heroku
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-01-30">Jan 30, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/react/">React</a>
-    <a href="http://alphacoder.xyz/tag/django/">Django</a>
-    <a href="http://alphacoder.xyz/tag/heroku/">Heroku</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/dead-simple-react-django-setup/">Here’s a dead simple React-Django setup for your next project
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2018-01-11">Jan 11, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/react/">React</a>
-    <a href="http://alphacoder.xyz/tag/django/">Django</a>
-</div>
-    </li>
-    
-    <li>
-        <a href="/naive-bayes/">Naive Bayes
-        </a>
-        
-
-<div class="post-meta">
-    <time datetime="2017-12-26">Dec 26, 2017</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/ml-chops-series/">ML Chops Series</a>
-</div>
-    </li>
-    
-</ul>
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/journal.min.ffe8db3120e35aa537e557e2fecb00baae810d2e958c5a2d3044228723cf8ae5.css" integrity="sha256-/&#43;jbMSDjWqU35Vfi/ssAuq6BDS6VjFotMEQihyPPiuU=" media="screen">
 
 
 
-
-<ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item disabled">
-    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/blog/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/blog/page/2/">2</a></li>
-    
-    
-    <li class="page-item">
-    <a href="/blog/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/blog/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
-</ul>
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/dark-mode.min.3c3373d43914bf333aabf7bc16b875e785eee2f26c9be97348fe665acd84abee.css" integrity="sha256-PDNz1DkUvzM6q/e8Frh154Xu4vJsm&#43;lzSP5mWs2Eq&#43;4=" media="screen">
 
 
-
-
-    </div>
-<div class="footer">
-    
-    
-    <div class="footer-links">
-        <a href="/musings/">Musings</a>
-        <a href="https://twitter.com/AlphaCoderXYZ">Twitter</a>
-        <a href="https://www.linkedin.com/company/alphacoder">LinkedIn</a>
-        <a href="mailto:support@alphacoder.xyz">Email</a>
-        
-        <a href="/blog/index.xml">RSS</a>
-    </div>
-    
-
-    
-    
-    <div class="copyright">© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</div>
-    
-</div>
-
-
-<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
+<script src="http://alphacoder.xyz//js/loadCSS.js"></script>
 <script>
-  mediumZoom(document.querySelectorAll('img'));
-</script></body>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2");
+</script>
 
+<script src="http://alphacoder.xyz//js/table.js"></script>
+
+
+
+
+<style>
+  .toc{
+    display: none !important;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
+                Courses
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
+                Community
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/musings/">
+                Musings
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://tinyletter.com/nicholaskajoh">
+                Newsletter
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="https://www.linkedin.com/company/alphacoder">
+    LinkedIn
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+        
+            <div class="pagination-indicator">
+                <span style="text-align: center">
+                    1<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>4
+                </span>
+            </div>
+            
+            
+
+            
+            <a class="pagination-action" href="/blog/page/2/">
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+            
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
+                    Courses
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
+                    Community
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/musings/">
+                    Musings
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://tinyletter.com/nicholaskajoh">
+                    Newsletter
+                </a>
+                
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        
+            <a class="a-block">
+                <div class="post-item-wrapper post-item-wrapper-no-hover">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title post-item-title-small year">
+                                2020
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/node-modules/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                node_modules: The Node.js black hole
+                            </div>
+                            <div class="post-item-meta">
+    2020-05-25
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    3 min
+    
+    20 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/levels-of-abstraction/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                What level of abstraction should I play on?
+                            </div>
+                            <div class="post-item-meta">
+    2020-04-12
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    3 min
+    
+    39 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+        
+            <a class="a-block">
+                <div class="post-item-wrapper post-item-wrapper-no-hover">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title post-item-title-small year">
+                                2019
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/microservices-architecture-authentication/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Authentication strategies in microservices architecture
+                            </div>
+                            <div class="post-item-meta">
+    2019-09-29
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    2 min
+    
+    58 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/connect-to-host-database-from-docker-container/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                How to connect to a host&#39;s database from inside a Docker container
+                            </div>
+                            <div class="post-item-meta">
+    2019-09-01
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    1 min
+    
+    2 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/elasticsearch-kibana-docker-development-setup/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development
+                            </div>
+                            <div class="post-item-meta">
+    2019-09-01
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    1 min
+    
+    15 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/vehicle-counting/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                I built a video-based vehicle counting system — here&#39;s how
+                            </div>
+                            <div class="post-item-meta">
+    2019-07-12
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    10 min
+    
+    37 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/machine-learning-explained/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Machine Learning explained
+                            </div>
+                            <div class="post-item-meta">
+    2019-05-18
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    7 min
+    
+    56 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/how-to-configure-wildcard-subdomains/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                How to configure wildcard subdomains
+                            </div>
+                            <div class="post-item-meta">
+    2019-04-02
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    1 min
+    
+    16 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/nodejs-unhandled-promise-rejection-warning/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Fixing UnhandledPromiseRejectionWarning in Node.js
+                            </div>
+                            <div class="post-item-meta">
+    2019-03-04
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    2 min
+    
+    51 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="/adminer-a-simple-gui-client-for-any-db/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-gaps">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                Adminer — a simple GUI client for any DB
+                            </div>
+                            <div class="post-item-meta">
+    2019-03-04
+    &emsp;
+    
+    
+    <i class="material-icons" style="font-size:10px">schedule</i>
+    
+
+    
+    
+
+    
+    3 min
+    
+    51 s
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+        
+    </div>
+</div>
+
+
+            </div>
+
+<div class="pagination">
+    
+    <a class="pagination-action" style="opacity:0">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>1/4</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/blog/page/2/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+<div id="single-column-footer">&copy;
+    
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="http://alphacoder.xyz//js/journal.js"></script>
+    </body>
 </html>

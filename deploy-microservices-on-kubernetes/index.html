@@ -1,109 +1,714 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head>
+<title>Deploy microservices on Kubernetes</title>
 
-    <title>Deploy microservices on Kubernetes | Alpha Coder</title>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-    <link rel="shortcut icon" type="image/png" href="/images/alpha-coder-logo-v1-small.png"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-family:merriweather,serif;font-size:16px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:15px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
 
-    
 
-    
-    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-82728104-5', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+<link rel="icon" href="/images/alpha-coder-logo-v1-small.png">
+
+
+
+
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/journal.min.ffe8db3120e35aa537e557e2fecb00baae810d2e958c5a2d3044228723cf8ae5.css" integrity="sha256-/&#43;jbMSDjWqU35Vfi/ssAuq6BDS6VjFotMEQihyPPiuU=" media="screen">
+
+
+
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/dark-mode.min.3c3373d43914bf333aabf7bc16b875e785eee2f26c9be97348fe665acd84abee.css" integrity="sha256-PDNz1DkUvzM6q/e8Frh154Xu4vJsm&#43;lzSP5mWs2Eq&#43;4=" media="screen">
+
+
+<script src="http://alphacoder.xyz//js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2");
+</script>
+
+<script src="http://alphacoder.xyz//js/table.js"></script>
+
+
+
+
+<script src="http://alphacoder.xyz//js/toc.js"></script>
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
     
-
+    <a class="a-block nav-head false" href="http://alphacoder.xyz/">
     
-
-    <meta property="og:title" content="Deploy microservices on Kubernetes" />
-<meta property="og:description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.
-Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://alphacoder.xyz/deploy-microservices-on-kubernetes/" />
-<meta property="article:published_time" content="2019-02-01T16:44:09+00:00" />
-<meta property="article:modified_time" content="2019-02-01T16:44:09+00:00" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Deploy microservices on Kubernetes"/>
-<meta name="twitter:description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.
-Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;."/>
-
-    <meta itemprop="name" content="Deploy microservices on Kubernetes">
-<meta itemprop="description" content="Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.
-Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;.">
-<meta itemprop="datePublished" content="2019-02-01T16:44:09&#43;00:00" />
-<meta itemprop="dateModified" content="2019-02-01T16:44:09&#43;00:00" />
-<meta itemprop="wordCount" content="1730">
-
-
-
-<meta itemprop="keywords" content="Kubernetes,Microservices,Docker," />
-    
-    <script type="text/javascript">
-        window._mNHandle = window._mNHandle || {};
-        window._mNHandle.queue = window._mNHandle.queue || [];
-        medianet_versionId = "3121199";
-    </script>
-    <script src="https://contextual.media.net/dmedianet.js?cid=8CUBJ5TUP" async="async"></script>
-</head>
-
-
-<body>
-<div class="header">
-    <h1>
-        <a href="/">Alpha Coder</a>
-        <div class="header-menu">
-            <a href="/blog/">Blog</a>
-            <a href="https://courses.alphacoder.xyz">Courses</a>
-            <a href="https://community.alphacoder.xyz">Community</a>
+        <div class="nav-title">
+            Alpha Coder
         </div>
-    </h1>
-</div>
-<div id="content">
+        
+    </a>
 
-<header>
-    <h1>Deploy microservices on Kubernetes</h1>
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
+                Courses
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
+                Community
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/musings/">
+                Musings
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://tinyletter.com/nicholaskajoh">
+                Newsletter
+            </a>
+            
+        
+    </div>
+
     
 
-<div class="post-meta">
-    <time datetime="2019-02-01">Feb 1, 2019</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/kubernetes/">Kubernetes</a>
-    <a href="http://alphacoder.xyz/tag/microservices/">Microservices</a>
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-</div>
-</header>
-<article>
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="https://www.linkedin.com/company/alphacoder">
+    LinkedIn
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
     
-    <div id="743473680">
-        <script type="text/javascript">
-            try {
-                window._mNHandle.queue.push(function (){
-                    window._mNDetails.loadTag("743473680", "728x90", "743473680");
-                });
-            }
-            catch (error) {}
-        </script>
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+
     </div>
     
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
-    <p>Kubernetes (AKA k8s) has gained <a href="https://kubernetes.io/case-studies/">widespread adoption</a> in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. <a href="http://pinterest.com">Pinterest</a> uses <a href="https://www.cncf.io/case-study-pinterest/">a suite of over 1000 microservices</a> to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.</p>
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#microservice-architecture" v-on:click="closeDrawer" id="microservice-architecture-nav">
+										 Microservice architecture
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#common-kubernetes-terms" v-on:click="closeDrawer" id="common-kubernetes-terms-nav">
+										 Common Kubernetes terms
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#yoloo" v-on:click="closeDrawer" id="yoloo-nav">
+										 Yoloo
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#google-cloud-platform-gcp" v-on:click="closeDrawer" id="google-cloud-platform-gcp-nav">
+										 Google Cloud Platform (GCP)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#google-container-registry-gcr" v-on:click="closeDrawer" id="google-container-registry-gcr-nav">
+										 Google Container Registry (GCR)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#deployments" v-on:click="closeDrawer" id="deployments-nav">
+										 Deployments
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#services" v-on:click="closeDrawer" id="services-nav">
+										 Services
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#cloudinary-and-redis" v-on:click="closeDrawer" id="cloudinary-and-redis-nav">
+										 Cloudinary and Redis
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#kubectl" v-on:click="closeDrawer" id="kubectl-nav">
+										 kubectl
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
+                    Courses
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
+                    Community
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/musings/">
+                    Musings
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://tinyletter.com/nicholaskajoh">
+                    Newsletter
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#microservice-architecture" v-on:click="closeDrawer" id="microservice-architecture-nav">
+										 Microservice architecture
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#common-kubernetes-terms" v-on:click="closeDrawer" id="common-kubernetes-terms-nav">
+										 Common Kubernetes terms
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#yoloo" v-on:click="closeDrawer" id="yoloo-nav">
+										 Yoloo
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#google-cloud-platform-gcp" v-on:click="closeDrawer" id="google-cloud-platform-gcp-nav">
+										 Google Cloud Platform (GCP)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#google-container-registry-gcr" v-on:click="closeDrawer" id="google-container-registry-gcr-nav">
+										 Google Container Registry (GCR)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#deployments" v-on:click="closeDrawer" id="deployments-nav">
+										 Deployments
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#services" v-on:click="closeDrawer" id="services-nav">
+										 Services
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#cloudinary-and-redis" v-on:click="closeDrawer" id="cloudinary-and-redis-nav">
+										 Cloudinary and Redis
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#kubectl" v-on:click="closeDrawer" id="kubectl-nav">
+										 kubectl
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Deploy microservices on Kubernetes
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2019-02-01 16:44
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/kubernetes">Kubernetes</a>
+                                &nbsp;
+                            
+                                <a href="/tags/microservices">Microservices</a>
+                                &nbsp;
+                            
+                                <a href="/tags/docker">Docker</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            7 min
+                            
+                            50 s.
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body" v-pre>
+                    <p>Kubernetes (AKA k8s) has gained <a href="https://kubernetes.io/case-studies/">widespread adoption</a> in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. <a href="http://pinterest.com">Pinterest</a> uses <a href="https://www.cncf.io/case-study-pinterest/">a suite of over 1000 microservices</a> to power their &ldquo;discovery engine&rdquo;. Imagine having to configure and manage servers to run these services manually. It&rsquo;s an Engineer&rsquo;s nightmare to say the least.</p>
 <p>Kubernetes bills itself as &ldquo;a portable, extensible open-source platform for managing containerized workloads and services&rdquo;. In simple terms, Kubernetes helps to automate the deployment and management of containerized applications. This means we can package an app (code, dependencies and config) <a href="https://www.docker.com/resources/what-container">in a container</a> and hand it over to Kubernetes to deploy and scale without worrying about our infrastructure. Under the hood, Kubernetes decides where to run what, monitors the systems and fixes things if something goes wrong.</p>
 <h1 id="microservice-architecture">Microservice architecture</h1>
 <p>I particularly like <a href="https://martinfowler.com/microservices/">James Lewis&rsquo; and Martin Fowler&rsquo;s definition of microservices</a> as it points out why Kubernetes is such a good solution for the architecture. &ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by <strong>fully automated deployment machinery</strong>. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&rdquo;. Kubernetes is in fact a &ldquo;fully automated deployment machine&rdquo; that provides a powerful abstraction layer atop server infrastructure.</p>
@@ -120,70 +725,28 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <p>In this tutorial, we&rsquo;ll be deploying a simple microservices app called Yoloo on <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine (GKE)</a>, a managed Kubernetes service on Google Cloud Platform. Yoloo uses a pre-trained YOLO (<a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">You Only Look Once</a>) model to detect common objects such as bottles and humans in an image. It comprises two microservices, <em>detector</em> and <em>viewer</em>. The detector service is a Python/Flask app which takes an image and passes it through the YOLO model to identify the objects in it. The viewer service is a PHP app that acts as a front-end by providing a User Interface for uploading and viewing the images. The app is built to use two external, managed services: Cloudinary for image hosting and Redis for data storage. The source code is available <a href="https://github.com/nicholaskajoh/microservices">on my GitHub</a>.</p>
 <p><a href="https://github.com/nicholaskajoh/microservices/archive/master.zip">Download</a> or clone the project with Git: <code>git clone https://github.com/nicholaskajoh/microservices.git</code>.</p>
 <p>Detector service Dockerfile.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> python:3.6-stretch</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">EXPOSE</span><span style="color:#cd5555"> 8080</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> mkdir /www<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">WORKDIR</span><span style="color:#cd5555"> /www</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> requirements.txt /www/<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> pip install -r requirements.txt<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">ENV</span> PYTHONUNBUFFERED <span style="color:#b452cd">1</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> . /www/<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">CMD</span> gunicorn --bind 0.0.0.0:8080 wsgi<span style="color:#a61717;background-color:#e3d2d2">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>Viewer service Dockerfile.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> php:7.2-apache</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">EXPOSE</span><span style="color:#cd5555"> 80</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> . /var/www/html/<span style="color:#a61717;background-color:#e3d2d2">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>Download the YOLO weights in the detector directory.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#658b00">cd</span> detector/ &amp;&amp; wget https://pjreddie.com/media/files/yolov3.weights
-</code></pre></td></tr></table>
-</div>
-</div><p>Change directory to <code>viewer/</code> and install the PHP dependencies. You need to have <a href="https://www.apachefriends.org/index.html">PHP</a> and <a href="https://getcomposer.org">Composer</a> installed.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">composer install
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="google-cloud-platform-gcp">Google Cloud Platform (GCP)</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> python:3.6-stretch</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir /www<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /www</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> requirements.txt /www/<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> pip install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> PYTHONUNBUFFERED <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /www/<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> gunicorn --bind 0.0.0.0:8080 wsgi<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Viewer service Dockerfile.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> php:7.2-apache</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 80</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /var/www/html/<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Download the YOLO weights in the detector directory.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd detector/ <span style="color:#f92672">&amp;&amp;</span> wget https://pjreddie.com/media/files/yolov3.weights
+</code></pre></div><p>Change directory to <code>viewer/</code> and install the PHP dependencies. You need to have <a href="https://www.apachefriends.org/index.html">PHP</a> and <a href="https://getcomposer.org">Composer</a> installed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">composer install
+</code></pre></div><h1 id="google-cloud-platform-gcp">Google Cloud Platform (GCP)</h1>
 <p>Visit <a href="https://console.cloud.google.com/home/dashboard">https://console.cloud.google.com/home/dashboard</a> and create a new project. You need to have a Google account.</p>
 <p><strong>NB:</strong> Google offers <a href="https://cloud.google.com/free/">a tier with $300 free credit</a> (for 1 year) to use any GCP product you want.</p>
 <p><img src="/images/ms-k8s/new-project-gcp.jpg" alt="">
@@ -205,185 +768,88 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <h1 id="deployments">Deployments</h1>
 <p>The detector and viewer services contain deployment files, <code>detector-deployment.yaml</code> and <code>viewer-deployment.yaml</code> respectively, which tell k8s what workloads we want to run.</p>
 <p>Detector service deployment.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">3</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">minReadySeconds</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">strategy</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>RollingUpdate<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">rollingUpdate</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxUnavailable</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">maxSurge</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">1</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">template</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/detector-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">envFrom</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-svc-secrets<span style="color:#bbb">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>In this deployment, we want to run 3 copies (<code>replicas: 3</code>) of the detector service (<code>- image: gcr.io/{PROJECT_ID}/detector-svc</code>) for availability and scalability. We label the pods (<code>app: detector-svc</code>) so that they can easily be referenced as a group. We alse choose rolling updates (<code>type: RollingUpdate</code>) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: extensions/v1beta1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: detector-svc-deployment
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">3</span>
+  <span style="color:#66d9ef">minReadySeconds</span>: <span style="color:#ae81ff">15</span>
+  <span style="color:#66d9ef">strategy</span>:
+    <span style="color:#66d9ef">type</span>: RollingUpdate
+    <span style="color:#66d9ef">rollingUpdate</span>:
+      <span style="color:#66d9ef">maxUnavailable</span>: <span style="color:#ae81ff">1</span>
+      <span style="color:#66d9ef">maxSurge</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app</span>: detector-svc
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+        - <span style="color:#66d9ef">image</span>: gcr.io/{PROJECT_ID}/detector-svc
+          <span style="color:#66d9ef">imagePullPolicy</span>: Always
+          <span style="color:#66d9ef">name</span>: detector-svc
+          <span style="color:#66d9ef">ports</span>:
+            - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">8080</span>
+          <span style="color:#66d9ef">envFrom</span>:
+            - <span style="color:#66d9ef">secretRef</span>:
+                <span style="color:#66d9ef">name</span>: detector-svc-secrets
+</code></pre></div><p>In this deployment, we want to run 3 copies (<code>replicas: 3</code>) of the detector service (<code>- image: gcr.io/{PROJECT_ID}/detector-svc</code>) for availability and scalability. We label the pods (<code>app: detector-svc</code>) so that they can easily be referenced as a group. We alse choose rolling updates (<code>type: RollingUpdate</code>) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.</p>
 <p>Viewer service deployment.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>extensions/v1beta1<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-deployment<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">2</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">minReadySeconds</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">15</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">strategy</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Recreate<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">template</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">labels</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span><span style="color:#8b008b;font-weight:bold">containers</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">        </span>- <span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/{PROJECT_ID}/viewer-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>Always<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#8b008b;font-weight:bold">envFrom</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">            </span>- <span style="color:#8b008b;font-weight:bold">secretRef</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">                </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-svc-secrets<span style="color:#bbb">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>We choose a different redeployment strategy (<code>type: Recreate</code>) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&rsquo;re going with 2 replicas here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: extensions/v1beta1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: viewer-svc-deployment
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">minReadySeconds</span>: <span style="color:#ae81ff">15</span>
+  <span style="color:#66d9ef">strategy</span>:
+    <span style="color:#66d9ef">type</span>: Recreate
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app</span>: viewer-svc
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+        - <span style="color:#66d9ef">image</span>: gcr.io/{PROJECT_ID}/viewer-svc
+          <span style="color:#66d9ef">imagePullPolicy</span>: Always
+          <span style="color:#66d9ef">name</span>: viewer-svc
+          <span style="color:#66d9ef">ports</span>:
+            - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+          <span style="color:#66d9ef">envFrom</span>:
+            - <span style="color:#66d9ef">secretRef</span>:
+                <span style="color:#66d9ef">name</span>: viewer-svc-secrets
+</code></pre></div><p>We choose a different redeployment strategy (<code>type: Recreate</code>) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&rsquo;re going with 2 replicas here.</p>
 <p>Notice <code>envFrom</code> under <code>containers</code> in both deployments? We&rsquo;ll be loading our environment variables from a k8s Secret which we&rsquo;ll create soon.</p>
 <h1 id="services">Services</h1>
 <p>The k8s services (not to be confused with microservices) in detector and viewer, <code>detector-service.yaml</code> and <code>viewer-service.yaml</code>, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer service uses the LoadBalancer service which exposes it externally to the outside world.</p>
 <p>Detector k8s service.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>detector-service<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>ClusterIP<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">8080</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">selector</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>detector-svc<span style="color:#bbb">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>Viewer k8s service.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">metadata</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">name</span>:<span style="color:#bbb"> </span>viewer-service<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>- <span style="color:#8b008b;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#b452cd">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">selector</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">app</span>:<span style="color:#bbb"> </span>viewer-svc<span style="color:#bbb">
-</span></code></pre></td></tr></table>
-</div>
-</div><p><strong>NB:</strong> we use the labels (<code>app: detector-svc</code> and <code>app: viewer-svc</code>) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: detector-service
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">type</span>: ClusterIP
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">protocol</span>: TCP
+    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">8080</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app</span>: detector-svc
+</code></pre></div><p>Viewer k8s service.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: viewer-service
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">type</span>: LoadBalancer
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">protocol</span>: TCP
+    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">80</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app</span>: viewer-svc
+</code></pre></div><p><strong>NB:</strong> we use the labels (<code>app: detector-svc</code> and <code>app: viewer-svc</code>) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.</p>
 <h1 id="cloudinary-and-redis">Cloudinary and Redis</h1>
 <p>As mentioned earlier, Yoloo depends on Cloudinary and Redis. Cloudinary is a cloud-based image/video hosting service and Redis is an in-memory key-value database.</p>
 <p>Create an account <a href="https://cloudinary.com">on Cloudinary</a> and <a href="https://redislabs.com">on Redis Labs</a> (a free managed Redis hosting service).</p>
@@ -393,148 +859,52 @@ Kubernetes bills itself as &ldquo;a portable, extensible open-source platform fo
 <em>Redis Labs configuration</em></p>
 <p>Create <em>.env</em> files from the example env files in both services (<em>.env.example</em>) and populate them with your Cloudinary and Redis credentials.</p>
 <p>Detector service .env</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">FLASK_APP=detector.py
+<pre><code>FLASK_APP=detector.py
 FLASK_ENV=production
 CLOUDINARY_CLOUD_NAME=somethingawesome
 CLOUDINARY_API_KEY=0123456789876543210
 CLOUDINARY_API_SECRET=formyappseyesonly
-</code></pre></td></tr></table>
-</div>
-</div><p>Viewer service .env</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">CLOUDINARY_CLOUD_NAME=somethingawesome
+</code></pre><p>Viewer service .env</p>
+<pre><code>CLOUDINARY_CLOUD_NAME=somethingawesome
 CLOUDINARY_API_KEY=0123456789876543210
 CLOUDINARY_API_SECRET=formyappseyesonly
 DETECTOR_SVC_URL=http://detector-service
 REDIS_URL=redis://:password@127.0.0.1:6379
-</code></pre></td></tr></table>
-</div>
-</div><p>Notice the url in <code>DETECTOR_SVC_URL</code>? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use <code>http://detector-service</code> and not have to worry about what IP a service actually uses.</p>
+</code></pre><p>Notice the url in <code>DETECTOR_SVC_URL</code>? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use <code>http://detector-service</code> and not have to worry about what IP a service actually uses.</p>
 <h1 id="kubectl">kubectl</h1>
 <p>kubectl is a CLI tool for running commands against Kubernetes clusters. To get Kubernetes to run our microservices, we need to apply our deployments and services on the cluster. Outlined below are the steps involved.</p>
 <p>Install <code>kubectl</code> CLI <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">for your OS</a>.</p>
 <p>Set your Yoloo GCP project as default on the <code>gcloud</code> CLI.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud config <span style="color:#658b00">set</span> project {PROJECT_ID}
-</code></pre></td></tr></table>
-</div>
-</div><p>Set the default compute zone or region of your cluster. You can find this in the cluster details page on your GCP dashboard.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud config <span style="color:#658b00">set</span> compute/zone {COMPUTE_ZONE}
-</code></pre></td></tr></table>
-</div>
-</div><p>or</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud config <span style="color:#658b00">set</span> compute/region {COMPUTE_REGION}
-</code></pre></td></tr></table>
-</div>
-</div><p>Generate a <code>kubeconfig</code> entry to run <code>kubectl</code> commands against a your GCP cluster.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters get-credentials {CLUSTER_NAME}    
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>NB:</strong> if you use minikube, you can use the following command to switch back to your local cluster.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl config use-context minikube
-</code></pre></td></tr></table>
-</div>
-</div><p>Create k8s Secrets from the .env files in both services.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env
-kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env
-</code></pre></td></tr></table>
-</div>
-</div><p>You can use the following commands to update the secrets.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic detector-svc-secrets --from-env-file=detector/.env --dry-run -o yaml | kubectl apply -f -
-kubectl create secret generic viewer-svc-secrets --from-env-file=viewer/.env --dry-run -o yaml | kubectl apply -f -
-</code></pre></td></tr></table>
-</div>
-</div><p>Visit your GKE cluster dashboard on GCP and check the <em>Configuration</em> section. You should see the detector and viewer service secrets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud config set project <span style="color:#f92672">{</span>PROJECT_ID<span style="color:#f92672">}</span>
+</code></pre></div><p>Set the default compute zone or region of your cluster. You can find this in the cluster details page on your GCP dashboard.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud config set compute/zone <span style="color:#f92672">{</span>COMPUTE_ZONE<span style="color:#f92672">}</span>
+</code></pre></div><p>or</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud config set compute/region <span style="color:#f92672">{</span>COMPUTE_REGION<span style="color:#f92672">}</span>
+</code></pre></div><p>Generate a <code>kubeconfig</code> entry to run <code>kubectl</code> commands against a your GCP cluster.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcloud container clusters get-credentials <span style="color:#f92672">{</span>CLUSTER_NAME<span style="color:#f92672">}</span>    
+</code></pre></div><p><strong>NB:</strong> if you use minikube, you can use the following command to switch back to your local cluster.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl config use-context minikube
+</code></pre></div><p>Create k8s Secrets from the .env files in both services.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic detector-svc-secrets --from-env-file<span style="color:#f92672">=</span>detector/.env
+kubectl create secret generic viewer-svc-secrets --from-env-file<span style="color:#f92672">=</span>viewer/.env
+</code></pre></div><p>You can use the following commands to update the secrets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret generic detector-svc-secrets --from-env-file<span style="color:#f92672">=</span>detector/.env --dry-run -o yaml | kubectl apply -f -
+kubectl create secret generic viewer-svc-secrets --from-env-file<span style="color:#f92672">=</span>viewer/.env --dry-run -o yaml | kubectl apply -f -
+</code></pre></div><p>Visit your GKE cluster dashboard on GCP and check the <em>Configuration</em> section. You should see the detector and viewer service secrets.</p>
 <p><img src="/images/ms-k8s/gke-config.jpg" alt="">
 <em>GKE cluster Config showing detector and viewer service secrets</em></p>
 <p><strong>NB:</strong> If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the <code>jq</code> utility (<a href="https://stedolan.github.io/jq/">https://stedolan.github.io/jq/</a>) and run the following where <code>my-secrets</code> is the name of your k8s secret.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get secret my-secrets -o json | jq <span style="color:#cd5555">&#39;.data | map_values(@base64d)&#39;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Create the deployments.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f detector/detector-deployment.yaml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get secret my-secrets -o json | jq <span style="color:#e6db74">&#39;.data | map_values(@base64d)&#39;</span>
+</code></pre></div><p>Create the deployments.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f detector/detector-deployment.yaml
 kubectl apply -f viewer/viewer-deployment.yaml
-</code></pre></td></tr></table>
-</div>
-</div><p>Check the <em>Workloads</em> section of the dashboard. You should see the detector and viewer service deployments.</p>
+</code></pre></div><p>Check the <em>Workloads</em> section of the dashboard. You should see the detector and viewer service deployments.</p>
 <p><img src="/images/ms-k8s/gke-workloads.jpg" alt="">
 <em>GKE cluster Workloads showing the microservice deployments</em></p>
 <p>Create the services.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f detector/detector-service.yaml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f detector/detector-service.yaml
 kubectl apply -f viewer/viewer-service.yaml
-</code></pre></td></tr></table>
-</div>
-</div><p>The detector and viewer k8s services can be found in the <em>Services</em> section of the dashboard.</p>
+</code></pre></div><p>The detector and viewer k8s services can be found in the <em>Services</em> section of the dashboard.</p>
 <p><img src="/images/ms-k8s/gke-services.jpg" alt="">
 <em>GKE cluster Services showing the k8s services for Yoloo</em></p>
 <p>To visit the application, go to the viewer service page on the dashboard and locate the <em>External endpoints</em> IP address.</p>
@@ -546,101 +916,148 @@ kubectl apply -f viewer/viewer-service.yaml
 <p><img src="/images/ms-k8s/yoloo-sample-output.jpg" alt="">
 <em>Sample output image from Yoloo</em></p>
 
-</article>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2019-02-01</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://alphacoder.xyz/dealing-with-code-debt/">
+			Next<br>Dealing with code debt
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://alphacoder.xyz/hello-hugo/">
+			Previous<br>Hello Hugo!
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
 
 
 
 
-<form
-  style="border: 1px solid #ccc; text-align: center; border-radius: 2px; margin: 15px 0;"
-  action="https://tinyletter.com/nicholaskajoh"
-  method="post"
-  target="popupwindow" onsubmit="window.open('https://tinyletter.com/nicholaskajoh', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
-    <div style="padding: 20px;">
-      <h2 style="margin-top: 0;">Subscribe to the Alpha Coder Newsletter!</h2>
 
-      <p>Get timely updates on new articles, courses and more from Nicholas Kajoh. Unsubscribe anytime.</p>
-      
-      <input
-        type="text"
-        style="width: 150px; height: 30px; padding-left: 5px; border: 1px solid #ccc; border-radius: 2px;"
-        name="email"
-        placeholder="night.king@westeros.org">
-      <input type="hidden" value="1" name="embed">
-      <input
-        type="submit"
-        style="height: 34px; color: #fff; background-color: #00e; border: 1px solid #00e; border-radius: 2px;"
-        value="Subscribe">
+
+            </div>
+        </div>
     </div>
-</form>
-
-
-
-
-  
-  
-    <p>
-      Previous post: <a href="http://alphacoder.xyz/check-domain-availability-from-your-terminal/"><strong>Check domain availability from your terminal</strong></a>
-    </p>
-  
-
-  
-    <p>
-      Next post: <a href="http://alphacoder.xyz/dealing-with-code-debt/"><strong>Dealing with code debt</strong></a>
-    </p>
-  
-  
-
-
-
-  <br><div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-
-    </div>
-<div class="footer">
-    
-    
-    <div class="footer-links">
-        <a href="/musings/">Musings</a>
-        <a href="https://twitter.com/AlphaCoderXYZ">Twitter</a>
-        <a href="https://www.linkedin.com/company/alphacoder">LinkedIn</a>
-        <a href="mailto:support@alphacoder.xyz">Email</a>
-        
-        <a href="/blog/index.xml">RSS</a>
-    </div>
-    
-
-    
-    
-    <div class="copyright">© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</div>
-    
 </div>
 
+            </div><div id="single-column-footer">&copy;
+    
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+</div>
+            </div>
+    <script>
+let app;
 
-<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
-<script>
-  mediumZoom(document.querySelectorAll('img'));
-</script></body>
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
 
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="http://alphacoder.xyz//js/journal.js"></script>
+    </body>
 </html>

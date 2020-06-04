@@ -1,0 +1,446 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software engineering with great finesse on Alpha Coder</title>
+    <link>http://alphacoder.xyz/</link>
+    <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
+    
+        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>HTML, CSS and Javascript as fast as possible</title>
+        <link>http://alphacoder.xyz/html-css-js/</link>
+        <pubDate>Wed, 07 Jun 2017 21:48:21 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/html-css-js/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/html-css-js/ -&lt;p&gt;This post is a prequel to a series of posts on &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;building a Facebook clone with PHP from scratch&lt;/a&gt; authored by yours truly. It&amp;rsquo;s intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.&lt;/p&gt;
+&lt;p&gt;HTML, CSS and Javascript are front-end languages i.e they run on the client (your user&amp;rsquo;s device/browser). HTML is a templating language. CSS helps you style HTML and Javascript is &amp;ldquo;an object-oriented computer programming language commonly used to create interactive effects within web browsers.&amp;rdquo; Javascript in short, brings life to your web application.&lt;/p&gt;
+&lt;p&gt;This post is meant to brush you up on the very basics. I don&amp;rsquo;t expect you to start writing HTML, CSS and Javascript code after following through with this post. My aim is to demystify these languages. When you start the Facebook clone series, I don&amp;rsquo;t want you running away from code snippets written in these languages.
+Also, if you&amp;rsquo;re new to these languages, I expect that you push further to more detailed resources. There are a ton of free courses to help you. A Google search is a good start!
+With that, let&amp;rsquo;s begin&amp;hellip;&lt;/p&gt;
+&lt;h1 id=&#34;html&#34;&gt;HTML&lt;/h1&gt;
+&lt;p&gt;HTML stands for Hypertext Markup Language, but you probably already knew that. A html document is a file that contains html code. Create a file called index.html, open it in a text editor of your choice (e.g Notepad) and type the following code (don&amp;rsquo;t copy paste please):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;p&amp;gt;My first HTML code!&amp;lt;/p&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save the file and open it with a browser. When you do, you should see &amp;ldquo;My first HTML code!&amp;rdquo; on the page. Congrats! But before we celebrate, let&amp;rsquo;s understand what&amp;rsquo;s going on in the above code.&lt;/p&gt;
+&lt;h2 id=&#34;tags-elements&#34;&gt;Tags, elements&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; and all the others enclosed in &lt;code&gt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;/&lt;/code&gt; are called tags or elements. Tags/elements are the building blocks of html. The tags like &lt;code&gt;&amp;lt;this&amp;gt;&lt;/code&gt; are called opening tags and the ones like &lt;code&gt;&amp;lt;/this&amp;gt;&lt;/code&gt; are called closing tags. Not all elements have closing tags. We&amp;rsquo;ll use such tags in a jiffy.
+The visible part of a html document is enclosed between &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt; so let&amp;rsquo;s focus on that in this post. But html totally gives itself away. &lt;code&gt;&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;&lt;/code&gt; for instance suggests that the title of something should be contained between its tags. Let&amp;rsquo;s go ahead and write something between the title tags like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;title&amp;gt;Great page!&amp;lt;/title&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save your index.html file again and refresh the page in your browser. Did you notice any change on the tabs bar? HTML is that simple!&lt;/p&gt;
+&lt;h2 id=&#34;attributes&#34;&gt;Attributes&lt;/h2&gt;
+&lt;p&gt;Tags have attributes. Attributes are those properties we add to &amp;ldquo;customize&amp;rdquo; or add more functionality to elements. Each html element has a set of attributes which you can specify. In fact, you can even create your own attributes. But let&amp;rsquo;s not go there just yet.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Add this bit of code within the body tag. Save and refresh your browser.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;a&lt;/code&gt; tag is how you create links in html. &lt;code&gt;href&lt;/code&gt; is an attribute that specifies where the link would take a user if they clicked on it. In this case, it&amp;rsquo;s &lt;code&gt;www.example.com&lt;/code&gt;. We&amp;rsquo;ll see more attributes as we move on. Let&amp;rsquo;s learn a couple more tags!&lt;/p&gt;
+&lt;h2 id=&#34;image-tag&#34;&gt;Image tag&lt;/h2&gt;
+&lt;p&gt;To add an image to a html page, we use the image tag:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;me.png&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;src&lt;/code&gt; is an attribute for the img tag which specifies the location of the image to display. Place an image in the same folder as your index.html file and display it on your page using the img tag. Make sure the source (i.e src) in your tag corresponds to the image filename and extension e.g my-pic.jpg.
+&lt;code&gt;img&lt;/code&gt; is an example of an element that has just an opening tag and no closing tag.
+We can add more attributes to better customize our image:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;me.png&amp;quot; width=&amp;quot;50&amp;quot; height=&amp;quot;100&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Experiment a bit with with these numbers would you!&lt;/p&gt;
+&lt;h2 id=&#34;form-fieldtag&#34;&gt;Form field tag&lt;/h2&gt;
+&lt;p&gt;The last html element we&amp;rsquo;ll look at before we wrap this up is the form field tag. It&amp;rsquo;s pretty easy:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;title&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Form inputs are very handy when we want to get information from users. But we can also populate an input with data ourselves:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;title&amp;quot; value=&amp;quot;HTML is good right?&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In summary, html is all about elements/tags and their attributes. Really simple stuff.
+There are a ton of html tags and attributes. Now you know the basics, go learn all the other html elements. Here&amp;rsquo;s a list of all html elements and their attributes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I recommend &lt;a href=&#34;https://code.visualstudio.com/download&#34;&gt;VS Code&lt;/a&gt; if you don&amp;rsquo;t yet have a proper text editor/IDE. VS Code includes support for syntax highlighting and intelligent code completion which makes it easier and faster to write code.&lt;/p&gt;
+&lt;h1 id=&#34;css&#34;&gt;CSS&lt;/h1&gt;
+&lt;p&gt;CSS stands for Cascading Style Sheets. You probably didn&amp;rsquo;t know that (lol). It is a language that &amp;ldquo;describes the style of a HTML document&amp;rdquo;. It specifies how html elements should be displayed.&lt;/p&gt;
+&lt;h2 id=&#34;how-itworks&#34;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;There a ton of CSS properties to style an html element/a set of html elements. To apply a given style, you type the property name and value like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;property-name: value;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For instance, if we want to change to color of content enclosed in some html tag, we could do something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color: red;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;styling-yourhtml&#34;&gt;Styling your HTML&lt;/h2&gt;
+&lt;p&gt;There are 3 major ways of adding CSS to HTML code:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Adding inline CSS to HTML tags&lt;/li&gt;
+&lt;li&gt;Embedding CSS into the HTML&lt;/li&gt;
+&lt;li&gt;Linking to a separate CSS file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The easiest way to add css to html is inline through the use of the style attribute. Let&amp;rsquo;s go back to our index.html file and add the style attribute to the a tag like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a style=&amp;quot;color: red;&amp;quot; href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is inline CSS. Save and open index.html in your browser to see the changes.&lt;/p&gt;
+&lt;p&gt;We can also embed css in html with the use of the &lt;code&gt;style&lt;/code&gt; html tag:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+a {
+    color: lightgreen;
+}
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above code, I enclosed the &lt;code&gt;color&lt;/code&gt; property I defined in curly braces. The &lt;code&gt;a&lt;/code&gt; before the first brace is called a selector. It tells the browser that this style should only affect &lt;code&gt;a&lt;/code&gt; tags. Thus all &lt;code&gt;a&lt;/code&gt; elements I create in index.html will be lightgreen. Add another &lt;code&gt;a&lt;/code&gt; tag and see what happens.&lt;/p&gt;
+&lt;p&gt;What if we want only the click me link to be lightgreen? Well, I could add an &lt;code&gt;id&lt;/code&gt; attribute to it and change the css to fit like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+#clickHereLink {
+    color: lightgreen;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;a id=&amp;quot;clickHereLink&amp;quot; href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice the hash (&lt;code&gt;#&lt;/code&gt;) in the code? That&amp;rsquo;s how we write a selector that refers to &lt;code&gt;id&lt;/code&gt; attributes in css.
+The &lt;code&gt;id&lt;/code&gt; attribute uniquely identifies an element. What if we wanted only a bunch of a tags to be lightgreen? Two or more elements can&amp;rsquo;t have same id. What do we do? The class attribute to the rescue! Just add a class to the elements you want affected like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.green-link {
+    color: lightgreen;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;a class=&amp;quot;green-link&amp;quot; href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&amp;lt;a class=&amp;quot;green-link&amp;quot; href=&amp;quot;https://instagram.com&amp;quot;&amp;gt;I love Instagram&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;https://krak.lol&amp;quot;&amp;gt;I love Krak.lol too!&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice the dot (&lt;code&gt;.&lt;/code&gt;) before the class name green-link? That&amp;rsquo;s how we write a selector that refers to a class in css.&lt;/p&gt;
+&lt;p&gt;The last major way of adding css to html is linking to a separate css file. Here we &amp;ldquo;import&amp;rdquo; css from an external file to our html file. Create a file called styles.css in the same folder as your index.html file and type the following code in it.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;body {
+    font-family: Arial;
+    font-size: 20px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, add the bit of code that follows immediately under the title element in your html code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot; href=&amp;quot;styles.css&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save all and refresh. You should see some changes.&lt;/p&gt;
+&lt;p&gt;So ya, that&amp;rsquo;s css in brief. There are a couple other things to learn before you can say &amp;ldquo;I know CSS&amp;rdquo;. But this is a great start! Check out these links to find all css selectors and properties. Here: &lt;a href=&#34;https://www.w3schools.com/cssref/&#34;&gt;https://www.w3schools.com/cssref/&lt;/a&gt; and here: &lt;a href=&#34;https://www.w3schools.com/cssref/css_selectors.asp&#34;&gt;https://www.w3schools.com/cssref/css_selectors.asp&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;javascript&#34;&gt;JavaScript&lt;/h1&gt;
+&lt;p&gt;JavaScript or js for short is a programming language that adds interactivity to your website. It&amp;rsquo;s one of the most popular programming languages today and it&amp;rsquo;s use goes beyond just the web. Let&amp;rsquo;s learn JavaScript!&lt;/p&gt;
+&lt;h2 id=&#34;variables&#34;&gt;Variables&lt;/h2&gt;
+&lt;p&gt;Variables are containers to store values in. To create a variable in js, you use the var keyword:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var myNumber = 5;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;data-types&#34;&gt;Data types&lt;/h2&gt;
+&lt;p&gt;Variables have different data types. They include:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Number&lt;/strong&gt; e.g &lt;code&gt;var n = 1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;String&lt;/strong&gt; e.g &lt;code&gt;var myName = &amp;quot;Nicholas&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Boolean&lt;/strong&gt; e.g &lt;code&gt;var iLoveYou = true;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Array&lt;/strong&gt; e.g &lt;code&gt;var booksOfTheBible = [&#39;John&#39;, &#39;Genesis&#39;, &#39;Daniel&#39;, &#39;Exodos&#39;, &#39;Amos&#39;];&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Object&lt;/strong&gt; e.g &lt;code&gt;var father = {name: &amp;quot;The Rock&amp;quot;, age: 42, isGood: true};&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Notice the semicolon at the end of each statement? Think of it as the full stop we have in written English.&lt;/p&gt;
+&lt;p&gt;Also, don&amp;rsquo;t worry so much about these data types. I&amp;rsquo;ll leave a reference at the end of this post that&amp;rsquo;ll help you understand them better.&lt;/p&gt;
+&lt;h2 id=&#34;operators&#34;&gt;Operators&lt;/h2&gt;
+&lt;p&gt;Operators are mathematical symbols which produce results based on 2 values/variables. They include:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;add/concatenation&lt;/strong&gt; e.g &lt;code&gt;n + 1;&lt;/code&gt;, &lt;code&gt;&#39;Hello &#39;+&#39;World&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;subtract, multiply, divide&lt;/strong&gt; e.g &lt;code&gt;3 - 2;&lt;/code&gt;, &lt;code&gt;num1 * num2;&lt;/code&gt;, &lt;code&gt;45 / n;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;assignment&lt;/strong&gt; e.g &lt;code&gt;n = 7;&lt;/code&gt;, &lt;code&gt;name = &amp;quot;Nick&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;identity (boolean)&lt;/strong&gt; e.g &lt;code&gt;4 === 3;&lt;/code&gt; (is 4 equal to 3?)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;negation (boolean)&lt;/strong&gt; e.g &lt;code&gt;4 !== 3;&lt;/code&gt; or &lt;code&gt;!(4 === 3);&lt;/code&gt; (is 4 not equal to 3?)&lt;/p&gt;
+&lt;p&gt;Here are a couple more operators to explore: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators&#34;&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;conditionals&#34;&gt;Conditionals&lt;/h2&gt;
+&lt;p&gt;Conditionals are control structures that allow you test if an expression is true or not.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if(5 === 1) {
+  console.log(&amp;quot;No&amp;quot;);
+} else {
+  console.log(&amp;quot;Yey&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;functions&#34;&gt;Functions&lt;/h2&gt;
+&lt;p&gt;Functions allow us group bits of code into reusable components. Here&amp;rsquo;s how to write one:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function doSomethingDifficult(){
+  return &amp;quot;I have done the impossible!&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can call the function like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var difficultStuff = doSomethingDifficult();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;events&#34;&gt;Events&lt;/h2&gt;
+&lt;p&gt;Events listen for when things happen in your web application e.g a button click or a scroll. Say we want to do something when any part of our web page is clicked, we can write the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;document.querySelector(&#39;body&#39;).onClick = function() {
+  // do something e.g alert
+  alert(&amp;quot;I just did something!&amp;quot;);
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The JavaScript part of this post is very very brief and scratches just the surface. However, it exposes some of the functionality JavaScript provides. Hopefully, you have a rough sketch of what JavaScript is like. It&amp;rsquo;s not &amp;ldquo;that hard&amp;rdquo; and you can learn it. Here&amp;rsquo;s a great reference for JavaScript that teaches the basics: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics&#34;&gt;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics&lt;/a&gt;.
+If you came from my &lt;a href=&#34;http://alphacoder.xyz/tag/facebook-clone-series&#34;&gt;Facebook clone series&lt;/a&gt;, now is the time to &lt;a href=&#34;http://alphacoder.xyz/facebook-clone-1&#34;&gt;jump back&lt;/a&gt; and build something!&lt;/p&gt;
+- http://alphacoder.xyz/html-css-js/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Server-side form validation from A to Z with Sails.js</title>
+        <link>http://alphacoder.xyz/sailsjs-form-validation/</link>
+        <pubDate>Fri, 26 May 2017 23:06:50 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/sailsjs-form-validation/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/sailsjs-form-validation/ -&lt;p&gt;&lt;strong&gt;NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/sails-form-validation&#34;&gt;https://github.com/nicholaskajoh/sails-form-validation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &amp;ldquo;in real-time&amp;rdquo; as they try to feed your backend with much needed data, but that&amp;rsquo;s not enough. HTML, CSS and Javascript validation can be messed with. You need to validate on your server too.&lt;/p&gt;
+&lt;p&gt;I couldn&amp;rsquo;t find a tutorial that deals in full with the whole process of form validation in Sails.js so I decided to write one. Mind you, I&amp;rsquo;m open to contributions on how best to do it so if you know something, post a comment.&lt;/p&gt;
+&lt;h1 id=&#34;model&#34;&gt;Model&lt;/h1&gt;
+&lt;p&gt;Validation in Sails happens at model level. The attributes in a model contain rules that define what data should be stored in the database table/collection it represents. Say we have a model Product, we could write validation rules like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/api/models/Product.js */&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;tableName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;products&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;attributes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#75715e&#34;&gt;// primitive
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;,
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;unique&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;,
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;{
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;float&amp;#39;&lt;/span&gt;,
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;,
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;yellow&amp;#34;&lt;/span&gt;],
+        }
+        &lt;span style=&#34;color:#75715e&#34;&gt;// associations
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        ...
+    },
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can easily identify the rules from the above code sample. The constraints used include &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;unique&lt;/code&gt;, &lt;code&gt;in&lt;/code&gt; and &lt;code&gt;required&lt;/code&gt;. For the full list of validation rules, head over to &lt;a href=&#34;https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations&#34;&gt;the Sails docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;validation-messages&#34;&gt;Validation Messages&lt;/h1&gt;
+&lt;p&gt;When users submit invalid data, we need to provide them useful error messages so they can make the necessary corrections. We can define custom error messages for the validation rules we set for a given attribute. Sails doesn&amp;rsquo;t support custom error messages out of the box but there&amp;rsquo;s a nifty little library for that. It&amp;rsquo;s called &lt;a href=&#34;https://github.com/lykmapipo/sails-hook-validation&#34;&gt;sails-hook-validation&lt;/a&gt; and can be installed in your app by running &lt;code&gt;npm install sails-hook-validation --save&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With this, we can define fine error messages instead of the very generic error messages Sails provides. It&amp;rsquo;s annoyingly easy to add validation messages:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/api/models/Product.js */&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;tableName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;products&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;attributes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        ...
+    },
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;validationMessages&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Who adds a product without a name? SMH.&amp;#34;&lt;/span&gt;,
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Seriously? Wanna donate this product or what?&amp;#34;&lt;/span&gt;,
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Only black and yellow labels are allowed bro!&amp;#34;&lt;/span&gt;,
+        }
+    },
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;controller&#34;&gt;Controller&lt;/h1&gt;
+&lt;p&gt;Let&amp;rsquo;s create a controller that serves as well as processes our form. Here&amp;rsquo;s a snippet:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/api/controllers/ProductController.js */&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;shortid&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;shortid&amp;#39;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;show&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;) {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Product&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;findOne&lt;/span&gt;({ &lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;param&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ref&amp;#39;&lt;/span&gt;) });
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;notFound&lt;/span&gt;();
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;product&amp;#39;&lt;/span&gt;, { &lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt; });
+        } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+        }
+    },
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;) {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;errors&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {},
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {},
+        };
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;method&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;) {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Product&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;({
+                    &lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;shortid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;generate&lt;/span&gt;(),
+                    &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;,
+                    &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; parseFloat(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;),
+                    &lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;,
+                });
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;redirect&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;`product/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;);
+            } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;invalidAttributes&lt;/span&gt;) {
+                    &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;errors&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Errors&lt;/span&gt;;
+                    &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;;
+                }
+            }
+        }
+
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add-product-form&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;);
+    },
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;ProductController&lt;/code&gt; is where most of the good stuff happens. Let&amp;rsquo;s break things down piece by piece to get a grasp of what&amp;rsquo;s going on. But before we do that, consider how our routes file may look:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/config/routes.js */&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;routes&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;GET /product/:ref&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ProductController.show&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/products/add&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ProductController.add&amp;#39;&lt;/span&gt;,
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You could also use the &lt;a href=&#34;http://sailsjs.com/documentation/concepts/blueprints&#34;&gt;Sails Blueprints thingy&lt;/a&gt;. Not a fan of it though.&lt;/p&gt;
+&lt;p&gt;Now back to the controller. There are 2 functions in &lt;code&gt;ProductController&lt;/code&gt;. The first &lt;code&gt;show()&lt;/code&gt; displays a product given its reference &lt;code&gt;ref&lt;/code&gt;. If the reference is not found, a 404 page is returned.&lt;/p&gt;
+&lt;p&gt;The second method &lt;code&gt;add()&lt;/code&gt; does 2 things. If it receives a GET request, it returns a form users can add products with. If it receives a POST request (i.e the form is being submitted), it attempts to create a new product and redirect to the product&amp;rsquo;s page. If this fails (meaning there&amp;rsquo;s a validation error), the form is returned with validation errors (&lt;code&gt;data.errors&lt;/code&gt;) and the data previously submitted (&lt;code&gt;data.old&lt;/code&gt;). We populate the form with &lt;code&gt;data.old&lt;/code&gt; so that users don&amp;rsquo;t have to retype everything if they submit an invalid form.&lt;/p&gt;
+&lt;h1 id=&#34;view&#34;&gt;View&lt;/h1&gt;
+&lt;p&gt;Now to our form view. Here you go:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- my-sails-app/views/add-product-form.ejs --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;method&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;post&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- name --&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-group&amp;#34;&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% if(errors.name) { %&amp;gt;
+            &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;alert alert-danger&amp;#34;&lt;/span&gt;&amp;gt;
+            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% errors.name.forEach(err =&amp;gt; { %&amp;gt;
+                &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;%= err.message %&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% }); %&amp;gt;
+            &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% } %&amp;gt;
+
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;label&lt;/span&gt;&amp;gt;Name&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;label&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;% if(old.name) { %&amp;gt;&amp;lt;%= old.name %&amp;gt;&amp;lt;% } %&amp;gt;&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./name --&amp;gt;&lt;/span&gt;
+
+    ...
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;form&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Demo project: &lt;a href=&#34;https://github.com/nicholaskajoh/sails-form-validation&#34;&gt;https://github.com/nicholaskajoh/sails-form-validation&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+- http://alphacoder.xyz/sailsjs-form-validation/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Lazy load your content with Django and jQuery</title>
+        <link>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
+        <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/lazy-loading-with-django-and-jquery/ -&lt;p&gt;Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.&lt;/p&gt;
+&lt;h2 id=&#34;templates&#34;&gt;Templates&lt;/h2&gt;
+&lt;p&gt;Create 2 templates, &lt;em&gt;index.html&lt;/em&gt; and &lt;em&gt;posts.html&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;index.html&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;&amp;gt;
+      &lt;span style=&#34;color:#75715e&#34;&gt;// A CSRF token is required when making post requests in Django
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// To be used for making AJAX requests in script.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      window.&lt;span style=&#34;color:#a6e22e&#34;&gt;CSRF_TOKEN&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ csrf_token }}&amp;#34;&lt;/span&gt;;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h2&lt;/span&gt;&amp;gt;My Blog Posts&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h2&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;posts&amp;#34;&lt;/span&gt;&amp;gt;{% include &amp;#39;myapp/posts.html&amp;#39; %}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lazyLoadLink&amp;#34;&lt;/span&gt; 
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;javascript:void(0);&amp;#34;&lt;/span&gt; 
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;data-page&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;&amp;gt;Load More Posts&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;posts.html&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;{% for post in posts %}
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h4&lt;/span&gt;&amp;gt;{{ post.title }}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h4&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;{{ post.content }}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+{% endfor %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;urls-views-model&#34;&gt;Urls, Views, Model&lt;/h2&gt;
+&lt;p&gt;Create/update &lt;em&gt;urls.py&lt;/em&gt; and &lt;em&gt;views.py&lt;/em&gt; as follows.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;urls.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; myapp &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; views
+
+urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+    url(&lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;^$&amp;#39;&lt;/span&gt;, views&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;index, name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;index&amp;#39;&lt;/span&gt;),
+    url(&lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;^lazy_load_posts/$&amp;#39;&lt;/span&gt;, views&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;lazy_load_posts, name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lazy_load_posts&amp;#39;&lt;/span&gt;),
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;views.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.shortcuts &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; render
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; myapp.models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Post
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.template &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; loader
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.core.paginator &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Paginator, EmptyPage, PageNotAnInteger
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.http &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; JsonResponse
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;(request):
+    posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Post&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;objects&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;all()[:&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;]
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; render(request, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp/index.html&amp;#39;&lt;/span&gt;, {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;: posts})
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lazy_load_posts&lt;/span&gt;(request):
+    page &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;POST&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;)
+    posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Post&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;objects&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;all()
+    &lt;span style=&#34;color:#75715e&#34;&gt;# use Django&amp;#39;s pagination&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# https://docs.djangoproject.com/en/dev/topics/pagination/&lt;/span&gt;
+    results_per_page &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+    paginator &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Paginator(posts, results_per_page)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+        posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;page(page)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; PageNotAnInteger:
+        posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;page(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; EmptyPage:
+        posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;page(paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;num_pages)
+    &lt;span style=&#34;color:#75715e&#34;&gt;# build a html posts list with the paginated posts&lt;/span&gt;
+    posts_html &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; loader&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render_to_string(
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp/posts.html&amp;#39;&lt;/span&gt;,
+        {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;: posts}
+    )
+    &lt;span style=&#34;color:#75715e&#34;&gt;# package output data and return it as a JSON object&lt;/span&gt;
+    output_data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;posts_html&amp;#39;&lt;/span&gt;: posts_html,
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;has_next&amp;#39;&lt;/span&gt;: posts&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;has_next()
+    }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; JsonResponse(output_data)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a post model.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;models.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; __future__ &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; unicode_literals
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.db &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; models
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Post&lt;/span&gt;(models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Model):
+    title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CharField()
+    content &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;TextField()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;index&lt;/code&gt; function in &lt;em&gt;views.py&lt;/em&gt; renders the &lt;em&gt;index.html&lt;/em&gt; page. It retrieves and sends a list of post objects (the first page) to the template. The &lt;code&gt;lazy_load_posts&lt;/code&gt; function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the &lt;code&gt;Paginator&lt;/code&gt; class and generates a html string using the &lt;em&gt;posts.html&lt;/em&gt; template.&lt;/p&gt;
+&lt;p&gt;The paginator object provides a &lt;em&gt;has_next&lt;/em&gt; method which checks if there’s another page to load. If there is, the page &lt;code&gt;data-&lt;/code&gt; attribute of the anchor tag in &lt;em&gt;index.html&lt;/em&gt; is incremented by 1 so that when “Load More Posts” is clicked again, it loads the next page.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;script.js&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;    (&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;) {
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#lazyLoadLink&amp;#39;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;);
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;);
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ajax&lt;/span&gt;({
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;post&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;url&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/lazy_load_posts/&amp;#39;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;,
+            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;csrfmiddlewaretoken&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; window.&lt;span style=&#34;color:#a6e22e&#34;&gt;CSRF_TOKEN&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// from index.html
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          },
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;) {
+            &lt;span style=&#34;color:#75715e&#34;&gt;// if there are still more pages to load,
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// add 1 to the &amp;#34;Load More Posts&amp;#34; link&amp;#39;s page data attribute
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// else hide the link
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;has_next&lt;/span&gt;) {
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+            } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+              &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;hide&lt;/span&gt;();
+            }
+            &lt;span style=&#34;color:#75715e&#34;&gt;// append html to the posts div
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#div&amp;#39;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;append&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;posts_html&lt;/span&gt;);
+          },
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;xhr&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;status&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;error&lt;/span&gt;) {
+            &lt;span style=&#34;color:#75715e&#34;&gt;// shit happens friends!
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          }
+        });
+      });
+    }(&lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt;));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the &lt;code&gt;lazy_load_posts&lt;/code&gt; view. If a request is successful, the returned data is appended to the posts &lt;code&gt;div&lt;/code&gt; (&lt;code&gt;id=&amp;quot;posts&amp;quot;&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;All the code snippets in this tutorial can be found on &lt;a href=&#34;https://gist.github.com/nicholaskajoh/ae85bb836f2a6254244c847b962095d4&#34;&gt;this Github Gist&lt;/a&gt;.&lt;/p&gt;
+- http://alphacoder.xyz/lazy-loading-with-django-and-jquery/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

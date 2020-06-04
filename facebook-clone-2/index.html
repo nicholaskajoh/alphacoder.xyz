@@ -1,104 +1,670 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head>
+<title>Build a Facebook clone from scratch with PHP — Part 2</title>
 
-    <title>Build a Facebook clone from scratch with PHP — Part 2 | Alpha Coder</title>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-    <link rel="shortcut icon" type="image/png" href="/images/alpha-coder-logo-v1-small.png"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-family:merriweather,serif;font-size:16px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:15px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
 
-    
 
-    
-    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-82728104-5', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+<link rel="icon" href="/images/alpha-coder-logo-v1-small.png">
+
+
+
+
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/journal.min.ffe8db3120e35aa537e557e2fecb00baae810d2e958c5a2d3044228723cf8ae5.css" integrity="sha256-/&#43;jbMSDjWqU35Vfi/ssAuq6BDS6VjFotMEQihyPPiuU=" media="screen">
+
+
+
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/dark-mode.min.3c3373d43914bf333aabf7bc16b875e785eee2f26c9be97348fe665acd84abee.css" integrity="sha256-PDNz1DkUvzM6q/e8Frh154Xu4vJsm&#43;lzSP5mWs2Eq&#43;4=" media="screen">
+
+
+<script src="http://alphacoder.xyz//js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2");
+</script>
+
+<script src="http://alphacoder.xyz//js/table.js"></script>
+
+
+
+
+<script src="http://alphacoder.xyz//js/toc.js"></script>
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
     
-
+    <a class="a-block nav-head false" href="http://alphacoder.xyz/">
     
-
-    <meta property="og:title" content="Build a Facebook clone from scratch with PHP — Part 2" />
-<meta property="og:description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  A little about PHP and MySQL So in part 1, we didn&rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://alphacoder.xyz/facebook-clone-2/" />
-<meta property="article:published_time" content="2017-06-17T05:53:39+01:00" />
-<meta property="article:modified_time" content="2017-06-17T05:53:39+01:00" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Build a Facebook clone from scratch with PHP — Part 2"/>
-<meta name="twitter:description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  A little about PHP and MySQL So in part 1, we didn&rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template."/>
-
-    <meta itemprop="name" content="Build a Facebook clone from scratch with PHP — Part 2">
-<meta itemprop="description" content="All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  A little about PHP and MySQL So in part 1, we didn&rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template.">
-<meta itemprop="datePublished" content="2017-06-17T05:53:39&#43;01:00" />
-<meta itemprop="dateModified" content="2017-06-17T05:53:39&#43;01:00" />
-<meta itemprop="wordCount" content="1592">
-
-
-
-<meta itemprop="keywords" content="Facebook Clone Series," />
-    
-    <script type="text/javascript">
-        window._mNHandle = window._mNHandle || {};
-        window._mNHandle.queue = window._mNHandle.queue || [];
-        medianet_versionId = "3121199";
-    </script>
-    <script src="https://contextual.media.net/dmedianet.js?cid=8CUBJ5TUP" async="async"></script>
-</head>
-
-
-<body>
-<div class="header">
-    <h1>
-        <a href="/">Alpha Coder</a>
-        <div class="header-menu">
-            <a href="/blog/">Blog</a>
-            <a href="https://courses.alphacoder.xyz">Courses</a>
-            <a href="https://community.alphacoder.xyz">Community</a>
+        <div class="nav-title">
+            Alpha Coder
         </div>
-    </h1>
-</div>
-<div id="content">
+        
+    </a>
 
-<header>
-    <h1>Build a Facebook clone from scratch with PHP — Part 2</h1>
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
+                Courses
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
+                Community
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/musings/">
+                Musings
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://tinyletter.com/nicholaskajoh">
+                Newsletter
+            </a>
+            
+        
+    </div>
+
     
 
-<div class="post-meta">
-    <time datetime="2017-06-17">Jun 17, 2017</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/facebook-clone-series/">Facebook Clone Series</a>
-</div>
-</header>
-<article>
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="https://www.linkedin.com/company/alphacoder">
+    LinkedIn
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
     
-    <div id="743473680">
-        <script type="text/javascript">
-            try {
-                window._mNHandle.queue.push(function (){
-                    window._mNDetails.loadTag("743473680", "728x90", "743473680");
-                });
-            }
-            catch (error) {}
-        </script>
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+
     </div>
     
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
-    <h1 id="all-parts">All parts</h1>
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#all-parts" v-on:click="closeDrawer" id="all-parts-nav">
+										 All parts
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#a-little-about-php-andmysql" v-on:click="closeDrawer" id="a-little-about-php-andmysql-nav">
+										 A little about PHP and MySQL
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#php" v-on:click="closeDrawer" id="php-nav">
+										 PHP
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#mysql" v-on:click="closeDrawer" id="mysql-nav">
+										 MySQL
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#back-to-business" v-on:click="closeDrawer" id="back-to-business-nav">
+										 Back to business…
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#partials" v-on:click="closeDrawer" id="partials-nav">
+										 Partials
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#lets-write-a-dbschema" v-on:click="closeDrawer" id="lets-write-a-dbschema-nav">
+										 Let’s write a DB schema
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#create-thedatabase" v-on:click="closeDrawer" id="create-thedatabase-nav">
+										 Create the Database
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
+                    Courses
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
+                    Community
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/musings/">
+                    Musings
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://tinyletter.com/nicholaskajoh">
+                    Newsletter
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#all-parts" v-on:click="closeDrawer" id="all-parts-nav">
+										 All parts
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#a-little-about-php-andmysql" v-on:click="closeDrawer" id="a-little-about-php-andmysql-nav">
+										 A little about PHP and MySQL
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#php" v-on:click="closeDrawer" id="php-nav">
+										 PHP
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#mysql" v-on:click="closeDrawer" id="mysql-nav">
+										 MySQL
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#back-to-business" v-on:click="closeDrawer" id="back-to-business-nav">
+										 Back to business…
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#partials" v-on:click="closeDrawer" id="partials-nav">
+										 Partials
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#lets-write-a-dbschema" v-on:click="closeDrawer" id="lets-write-a-dbschema-nav">
+										 Let’s write a DB schema
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#create-thedatabase" v-on:click="closeDrawer" id="create-thedatabase-nav">
+										 Create the Database
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Build a Facebook clone from scratch with PHP — Part 2
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2017-06-17 05:53
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/facebook-clone-series">Facebook Clone Series</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            6 min
+                            
+                            59 s.
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body" v-pre>
+                    <h1 id="all-parts">All parts</h1>
 <ul>
 <li><a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a></li>
 <li>Build a Facebook clone from scratch with PHP — Part 2 (this article)</li>
@@ -115,172 +681,75 @@ if (!doNotTrack) {
 <p>PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. - http://php.net/manual/en/intro-whatis.php</p>
 </blockquote>
 <p>PHP is the most popular server-side programming language for the web and runs millions of websites. To write PHP, all we need to do is create a file with a <em>.php</em> file extension and add the php tags <code>&lt;?php</code> and <code>?&gt;</code>. <code>&lt;?php</code> is the opening tag and <code>?&gt;</code> the closing tag. We can write a Hello World PHP program like so:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#1e889b">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#8b008b;font-weight:bold">html</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">head</span>&gt;
-    &lt;<span style="color:#8b008b;font-weight:bold">title</span>&gt;&lt;/<span style="color:#8b008b;font-weight:bold">title</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">head</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">body</span>&gt;
-    <span style="color:#1e889b">&lt;?php</span> <span style="color:#8b008b;font-weight:bold">echo</span> <span style="color:#cd5555">&#34;Hello World&#34;</span>; <span style="color:#1e889b">?&gt;</span>
-&lt;/<span style="color:#8b008b;font-weight:bold">body</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">html</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, <code>&lt;?php</code> and <code>?&gt;</code> which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#1e889b">&lt;?php</span>
-    <span style="color:#8b008b;font-weight:bold">echo</span> <span style="color:#cd5555">&#34;Hello World&#34;</span>;
-<span style="color:#1e889b">?&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>We may choose to omit the closing tag <code>?&gt;</code> in this case to have:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#1e889b">&lt;?php</span>
-    <span style="color:#8b008b;font-weight:bold">echo</span> <span style="color:#cd5555">&#34;Hello World&#34;</span>;
-</code></pre></td></tr></table>
-</div>
-</div><p><code>echo</code> prints out Hello World as HTML text when the php file is served. We&rsquo;ll be learning PHP as we go about building FaceClone. Don&rsquo;t worry, PHP is pretty easy! 👍</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+    <span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>; <span style="color:#75715e">?&gt;</span>
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, <code>&lt;?php</code> and <code>?&gt;</code> which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+    <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>;
+<span style="color:#75715e">?&gt;</span>
+</code></pre></div><p>We may choose to omit the closing tag <code>?&gt;</code> in this case to have:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+    <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>;
+</code></pre></div><p><code>echo</code> prints out Hello World as HTML text when the php file is served. We&rsquo;ll be learning PHP as we go about building FaceClone. Don&rsquo;t worry, PHP is pretty easy! 👍</p>
 <h1 id="mysql">MySQL</h1>
 <p>MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We&rsquo;ll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we&rsquo;ll create tables like <em>users</em> (to store information about our users) and <em>posts</em> (to store our users&rsquo; posts). Tables have columns. For a users table, we could have columns like <em>name</em>, <em>password</em>, <em>email</em> etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#8b008b;font-weight:bold">SELECT</span> * <span style="color:#8b008b;font-weight:bold">FROM</span> posts
-</code></pre></td></tr></table>
-</div>
-</div><p><code>SELECT</code> lets us read data from the database. <code>*</code> gets all the columns in the table posts. We could use <code>SELECT name, email FROM posts</code> if we don&rsquo;t want all the columns from the posts table. We&rsquo;ll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you&rsquo;ll want to write. Sweet!!!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> posts
+</code></pre></div><p><code>SELECT</code> lets us read data from the database. <code>*</code> gets all the columns in the table posts. We could use <code>SELECT name, email FROM posts</code> if we don&rsquo;t want all the columns from the posts table. We&rsquo;ll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you&rsquo;ll want to write. Sweet!!!</p>
 <h1 id="back-to-business">Back to business&hellip;</h1>
 <p>When we changed our template files from .html to .php, we broke our navigation links. Let&rsquo;s go ahead and fix that. We just need to change the href attributes of those links to .php. Or not. We have 3 templates and need to make each change 3 times. That&rsquo;s not much of a problem since there are only 3 templates. What if there were 10, 15, 20? It doesn&rsquo;t make sense to make the same change x times. The navigation bar is a component we use in all of our templates. Why don&rsquo;t we make it reusable?</p>
 <h1 id="partials">Partials</h1>
 <p>We can achieve reusability by creating partials. Partials are files that contain different components of our app. So we can have a header partial and a footer partial. If we need a header in home.php, all we need to do is simply &ldquo;include&rdquo; it. Let&rsquo;s go ahead and do that. Create a header.php and footer.php file in the same folder as your other templates. It may be more efficient to create a folder for partials but we&rsquo;ll just have the templates and partials together for now. In your header.php, add the following code (the snippet below can be gotten from home.php or profile.php):</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#1e889b">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#8b008b;font-weight:bold">html</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">head</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">title</span>&gt;FaceClone&lt;/<span style="color:#8b008b;font-weight:bold">title</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">link</span> <span style="color:#658b00">rel</span>=<span style="color:#cd5555">&#34;stylesheet&#34;</span> <span style="color:#658b00">type</span>=<span style="color:#cd5555">&#34;text/css&#34;</span> <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;css/bootstrap.min.css&#34;</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">link</span> <span style="color:#658b00">rel</span>=<span style="color:#cd5555">&#34;stylesheet&#34;</span> <span style="color:#658b00">type</span>=<span style="color:#cd5555">&#34;text/css&#34;</span> <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;css/style.css&#34;</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">head</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">body</span>&gt;
-<span style="color:#228b22">&lt;!-- nav --&gt;</span>
-&lt;<span style="color:#8b008b;font-weight:bold">nav</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;navbar navbar-default&#34;</span>&gt;
-    &lt;<span style="color:#8b008b;font-weight:bold">div</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;container-fluid&#34;</span>&gt;
-    &lt;<span style="color:#8b008b;font-weight:bold">div</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;navbar-header&#34;</span>&gt;
-        &lt;<span style="color:#8b008b;font-weight:bold">a</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;navbar-brand&#34;</span> <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;index.html&#34;</span>&gt;FaceClone&lt;/<span style="color:#8b008b;font-weight:bold">a</span>&gt;
-    &lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
-    &lt;<span style="color:#8b008b;font-weight:bold">ul</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;nav navbar-nav navbar-right&#34;</span>&gt;
-        &lt;<span style="color:#8b008b;font-weight:bold">li</span>&gt;&lt;<span style="color:#8b008b;font-weight:bold">a</span> <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;home.html&#34;</span>&gt;Home&lt;/<span style="color:#8b008b;font-weight:bold">a</span>&gt;&lt;/<span style="color:#8b008b;font-weight:bold">li</span>&gt;
-        &lt;<span style="color:#8b008b;font-weight:bold">li</span>&gt;&lt;<span style="color:#8b008b;font-weight:bold">a</span> <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;profile.html&#34;</span>&gt;Profile&lt;/<span style="color:#8b008b;font-weight:bold">a</span>&gt;&lt;/<span style="color:#8b008b;font-weight:bold">li</span>&gt;
-        &lt;<span style="color:#8b008b;font-weight:bold">li</span>&gt;&lt;<span style="color:#8b008b;font-weight:bold">a</span> <span style="color:#658b00">href</span>=<span style="color:#cd5555">&#34;#&#34;</span>&gt;Logout&lt;/<span style="color:#8b008b;font-weight:bold">a</span>&gt;&lt;/<span style="color:#8b008b;font-weight:bold">li</span>&gt;
-    &lt;/<span style="color:#8b008b;font-weight:bold">ul</span>&gt;
-    &lt;/<span style="color:#8b008b;font-weight:bold">div</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">nav</span>&gt;
-<span style="color:#228b22">&lt;!-- ./nav --&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Then in footer.php add:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#228b22">&lt;!-- footer --&gt;</span>
-&lt;<span style="color:#8b008b;font-weight:bold">footer</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;container text-center&#34;</span>&gt;
-    &lt;<span style="color:#8b008b;font-weight:bold">ul</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;nav nav-pills pull-right&#34;</span>&gt;
-    &lt;<span style="color:#8b008b;font-weight:bold">li</span>&gt;FaceClone - Made by [your name here]&lt;/<span style="color:#8b008b;font-weight:bold">li</span>&gt;
-    &lt;/<span style="color:#8b008b;font-weight:bold">ul</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">footer</span>&gt;
-<span style="color:#228b22">&lt;!-- ./footer --&gt;</span>
-&lt;<span style="color:#8b008b;font-weight:bold">script</span> <span style="color:#658b00">type</span>=<span style="color:#cd5555">&#34;text/javascript&#34;</span> <span style="color:#658b00">src</span>=<span style="color:#cd5555">&#34;js/bootstrap.min.js&#34;</span>&gt;&lt;/<span style="color:#8b008b;font-weight:bold">script</span>&gt;
-&lt;<span style="color:#8b008b;font-weight:bold">script</span> <span style="color:#658b00">type</span>=<span style="color:#cd5555">&#34;text/javascript&#34;</span> <span style="color:#658b00">src</span>=<span style="color:#cd5555">&#34;js/script.js&#34;</span>&gt;&lt;/<span style="color:#8b008b;font-weight:bold">script</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">body</span>&gt;
-&lt;/<span style="color:#8b008b;font-weight:bold">html</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so <code>href=&quot;home.html&quot;</code> becomes <code>href=&quot;home.php&quot;</code> for example.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">title</span>&gt;FaceClone&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;css/bootstrap.min.css&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;css/style.css&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+<span style="color:#75715e">&lt;!-- nav --&gt;</span>
+&lt;<span style="color:#f92672">nav</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;navbar navbar-default&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container-fluid&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;navbar-header&#34;</span>&gt;
+        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;navbar-brand&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;index.html&#34;</span>&gt;FaceClone&lt;/<span style="color:#f92672">a</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">ul</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav navbar-nav navbar-right&#34;</span>&gt;
+        &lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;home.html&#34;</span>&gt;Home&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+        &lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;profile.html&#34;</span>&gt;Profile&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+        &lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#&#34;</span>&gt;Logout&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+    &lt;/<span style="color:#f92672">ul</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">nav</span>&gt;
+<span style="color:#75715e">&lt;!-- ./nav --&gt;</span>
+</code></pre></div><p>Then in footer.php add:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- footer --&gt;</span>
+&lt;<span style="color:#f92672">footer</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container text-center&#34;</span>&gt;
+    &lt;<span style="color:#f92672">ul</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav nav-pills pull-right&#34;</span>&gt;
+    &lt;<span style="color:#f92672">li</span>&gt;FaceClone - Made by [your name here]&lt;/<span style="color:#f92672">li</span>&gt;
+    &lt;/<span style="color:#f92672">ul</span>&gt;
+&lt;/<span style="color:#f92672">footer</span>&gt;
+<span style="color:#75715e">&lt;!-- ./footer --&gt;</span>
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;js/bootstrap.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;js/script.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so <code>href=&quot;home.html&quot;</code> becomes <code>href=&quot;home.php&quot;</code> for example.
 We&rsquo;ve just created 2 partials. We need to include them in all our template files. To do so, clear the header and footer code (which we&rsquo;ve already moved to header.php and footer.php respectively) in our template files and add <code>&lt;?php include &quot;header.php&quot;; ?&gt;</code> and <code>&lt;?php include &quot;header.php&quot;; ?&gt;</code> like so:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#1e889b">&lt;?php</span> <span style="color:#8b008b;font-weight:bold">include</span> <span style="color:#cd5555">&#34;header.php&#34;</span> <span style="color:#1e889b">?&gt;</span>
-<span style="color:#1e889b">&lt;! - main --&gt;</span>
-&lt;<span style="color:#8b008b;font-weight:bold">main</span> <span style="color:#658b00">class</span>=<span style="color:#cd5555">&#34;container&#34;</span>&gt;
-<span style="color:#228b22">&lt;!-- page content here --&gt;</span>
-&lt;/<span style="color:#8b008b;font-weight:bold">main</span>&gt;
-<span style="color:#228b22">&lt;!-- ./main --&gt;</span>
-<span style="color:#1e889b">&lt;?php</span> <span style="color:#8b008b;font-weight:bold">include</span> <span style="color:#cd5555">&#34;footer.php&#34;</span> <span style="color:#1e889b">?&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Run PHP&rsquo;s development server to to confirm everything works fine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">include</span> <span style="color:#e6db74">&#34;header.php&#34;</span> <span style="color:#75715e">?&gt;</span>
+<span style="color:#75715e">&lt;! - main --&gt;</span>
+&lt;<span style="color:#f92672">main</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+<span style="color:#75715e">&lt;!-- page content here --&gt;</span>
+&lt;/<span style="color:#f92672">main</span>&gt;
+<span style="color:#75715e">&lt;!-- ./main --&gt;</span>
+<span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">include</span> <span style="color:#e6db74">&#34;footer.php&#34;</span> <span style="color:#75715e">?&gt;</span>
+</code></pre></div><p>Run PHP&rsquo;s development server to to confirm everything works fine.</p>
 <p><strong>NB:</strong> Open up a terminal and change directory to the project&rsquo;s folder then run <code>php -S localhost:8080</code> to start the server (refer to part 1 if you don&rsquo;t remember how to run the app).</p>
 <p><img src="/images/fbc2/faceclone-home.php.png" alt=""></p>
 <h1 id="lets-write-a-dbschema">Let&rsquo;s write a DB schema</h1>
@@ -313,101 +782,148 @@ Once Apache and MySQL start running, go to your browser and visit http://localho
 <p>Next: <a href="/facebook-clone-3">Build a Facebook clone from scratch with PHP — Part 3</a>.</p>
 <p>Previous: <a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a>.</p>
 
-</article>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2017-06-17</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://alphacoder.xyz/facebook-clone-3/">
+			Next<br>Build a Facebook clone from scratch with PHP — Part 3
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://alphacoder.xyz/facebook-clone-1/">
+			Previous<br>Build a Facebook clone from scratch with PHP — Part 1
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
 
 
 
 
-<form
-  style="border: 1px solid #ccc; text-align: center; border-radius: 2px; margin: 15px 0;"
-  action="https://tinyletter.com/nicholaskajoh"
-  method="post"
-  target="popupwindow" onsubmit="window.open('https://tinyletter.com/nicholaskajoh', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
-    <div style="padding: 20px;">
-      <h2 style="margin-top: 0;">Subscribe to the Alpha Coder Newsletter!</h2>
 
-      <p>Get timely updates on new articles, courses and more from Nicholas Kajoh. Unsubscribe anytime.</p>
-      
-      <input
-        type="text"
-        style="width: 150px; height: 30px; padding-left: 5px; border: 1px solid #ccc; border-radius: 2px;"
-        name="email"
-        placeholder="night.king@westeros.org">
-      <input type="hidden" value="1" name="embed">
-      <input
-        type="submit"
-        style="height: 34px; color: #fff; background-color: #00e; border: 1px solid #00e; border-radius: 2px;"
-        value="Subscribe">
+
+            </div>
+        </div>
     </div>
-</form>
-
-
-
-
-  
-  
-    <p>
-      Previous post: <a href="http://alphacoder.xyz/facebook-clone-1/"><strong>Build a Facebook clone from scratch with PHP — Part 1</strong></a>
-    </p>
-  
-
-  
-    <p>
-      Next post: <a href="http://alphacoder.xyz/facebook-clone-3/"><strong>Build a Facebook clone from scratch with PHP — Part 3</strong></a>
-    </p>
-  
-  
-
-
-
-  <br><div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-
-    </div>
-<div class="footer">
-    
-    
-    <div class="footer-links">
-        <a href="/musings/">Musings</a>
-        <a href="https://twitter.com/AlphaCoderXYZ">Twitter</a>
-        <a href="https://www.linkedin.com/company/alphacoder">LinkedIn</a>
-        <a href="mailto:support@alphacoder.xyz">Email</a>
-        
-        <a href="/blog/index.xml">RSS</a>
-    </div>
-    
-
-    
-    
-    <div class="copyright">© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</div>
-    
 </div>
 
+            </div><div id="single-column-footer">&copy;
+    
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+</div>
+            </div>
+    <script>
+let app;
 
-<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
-<script>
-  mediumZoom(document.querySelectorAll('img'));
-</script></body>
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
 
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="http://alphacoder.xyz//js/journal.js"></script>
+    </body>
 </html>

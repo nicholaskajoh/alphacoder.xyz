@@ -5,8 +5,8 @@
     <link>http://alphacoder.xyz/tag/docker/</link>
     <description>Recent content in Docker on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    <copyright>© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <language>en-us</language>
+    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Sun, 01 Sep 2019 06:29:54 +0100</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/tag/docker/index.xml" rel="self" type="application/rss+xml" />
@@ -50,7 +50,7 @@ Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platfor
       <guid>http://alphacoder.xyz/dockerizing-django/</guid>
       <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.</description>
+Dockerfile FROMpython:3.6-alpineRUN apk --update add \  build-base \  postgresql \  postgresql-dev \  libpq \  # pillow dependencies jpeg-dev \  zlib-devRUN mkdir /wwwWORKDIR/wwwCOPY requirements.</description>
     </item>
     
     <item>

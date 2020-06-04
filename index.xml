@@ -1,446 +1,661 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Software engineering with great finesse on Alpha Coder</title>
     <link>http://alphacoder.xyz/</link>
     <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    <copyright>© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <language>en-us</language>
+    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
     
-	<atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>node_modules: The Node.js black hole</title>
-      <link>http://alphacoder.xyz/node-modules/</link>
-      <pubDate>Mon, 25 May 2020 23:33:11 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/node-modules/</guid>
-      <description>As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen the memes). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.
-Turns out it has to do with 2 things:
- How npm (the Node package manager) resolves dependencies. How the Node.</description>
-    </item>
     
-    <item>
-      <title>What level of abstraction should I play on?</title>
-      <link>http://alphacoder.xyz/levels-of-abstraction/</link>
-      <pubDate>Sun, 12 Apr 2020 18:17:48 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/levels-of-abstraction/</guid>
-      <description>&amp;ldquo;I built it from scratch!&amp;rdquo;
-A major sentiment among some of the developer circles I interacted with and was part of in my earlier days of coding was that you were a better &amp;ldquo;real&amp;rdquo; developer if you could build stuff &amp;ldquo;from scratch&amp;rdquo;. You&amp;rsquo;d often hear people scoff at building websites with WordPress, for example. &amp;ldquo;I built this site from scratch with raw HTML, CSS and JavaScript. No framework or CMS!&amp;rdquo; It was a thing of pride.</description>
-    </item>
+        <item>
+        <title>node_modules: The Node.js black hole</title>
+        <link>http://alphacoder.xyz/node-modules/</link>
+        <pubDate>Mon, 25 May 2020 23:33:11 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/node-modules/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/node-modules/ -&lt;p&gt;As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen &lt;a href=&#34;https://www.reddit.com/r/ProgrammerHumor/comments/6s0wov/heaviest_objects_in_the_universe/&#34;&gt;the memes&lt;/a&gt;). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.&lt;/p&gt;
+&lt;p&gt;Turns out it has to do with 2 things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How npm (the Node package manager) resolves dependencies.&lt;/li&gt;
+&lt;li&gt;How the Node.js community likes to develop packages.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;dependency-resolution&#34;&gt;Dependency resolution&lt;/h1&gt;
+&lt;p&gt;npm differs from other popular package managers such as pip and RubGems in terms of how it resolves dependencies. npm may download multiple versions of a package where as pip/RubyGems will attempt to find a single version that satisfies all its dependents.&lt;/p&gt;
+&lt;p&gt;Say your app has 2 dependencies &lt;em&gt;Package A&lt;/em&gt; and &lt;em&gt;Package B&lt;/em&gt;, and &lt;em&gt;Package B&lt;/em&gt; depends on &lt;em&gt;Package C&lt;/em&gt;, and &lt;em&gt;Package A&lt;/em&gt; and &lt;em&gt;Package C&lt;/em&gt; depend on &lt;em&gt;Package D&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;npm &lt;em&gt;might&lt;/em&gt; resolve your dependencies like so i.e downloading 2 copies of &lt;em&gt;Package D&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/nde-mdls/npm-dep-graph.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;On the other hand, pip/RubyGems will download 1 version of &lt;em&gt;Package D&lt;/em&gt; which satisfies &lt;em&gt;Package A&lt;/em&gt; and &lt;em&gt;Package C&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/nde-mdls/pip-rubygems-dep-graph.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;At first glance, the pip/RubyGems strategy might seem like the better approach but each has its pros and cons.&lt;/p&gt;
+&lt;p&gt;While the pip/RubyGems dependency management approach conserves space, it can lead to &amp;ldquo;dependency hell&amp;rdquo; i.e a situation where the package manager is unable to find a version of a package that satisfies all its dependents. In such a case, the developer will have to fix things manually. This may involve upgrading/downgrading one or more dependencies and/or eliminating them entirely. As you might imagine, this can be a pain. Doing the job of a package manager is not fun. And should you decide to downgrade a package, you might be opening up your app to vulnerabilities. As your app grows and you add more dependencies, you are more likely to face dependency hell.&lt;/p&gt;
+&lt;p&gt;The npm approach solves the dependency hell problem. If &lt;em&gt;Package A&lt;/em&gt; requires v2 of &lt;em&gt;Package D&lt;/em&gt; and &lt;em&gt;Package C&lt;/em&gt; requires v5 of &lt;em&gt;Package D&lt;/em&gt;, npm will download both versions. This is neat, but it doesn&amp;rsquo;t come without its challenges. As you are already well aware, your app bundles become very large. But there&amp;rsquo;s another problem that could occur in this approach. If you have one or more packages that expose a dependency as part of their interface, you might encounter version conflicts. For instance, if you have the latest version of React as a dependency in your project and you also have a component library dependency that uses an old version of React, you&amp;rsquo;d most likely encounter compatibility issues that might not be easy to detect at first glance. With the pip/RubyGems approach, you&amp;rsquo;d catch the problem pretty much at the start while trying to install the dependencies. Fortunately though, npm has a solution for this: &lt;a href=&#34;https://nodejs.org/es/blog/npm/peer-dependencies/&#34;&gt;peer dependencies&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s worth mentioning that npm optimizes your dependency graph by employing deduplication i.e if &lt;em&gt;Package A&lt;/em&gt; and &lt;em&gt;Package C&lt;/em&gt; require v1 of &lt;em&gt;Package D&lt;/em&gt;, npm will only download one copy of &lt;em&gt;Package D&lt;/em&gt;. You can run &lt;code&gt;npm ls&lt;/code&gt; in your project&amp;rsquo;s root directory to view the &amp;ldquo;deduped&amp;rdquo; packages in your dependency graph. Check out &lt;a href=&#34;https://gist.github.com/nicholaskajoh/a4b068818b965b95f6eae3aa285e4fc3&#34;&gt;the deduplicated packages&lt;/a&gt; in &lt;a href=&#34;https://www.npmjs.com/package/knex&#34;&gt;Knex&lt;/a&gt;, the SQL query builder.&lt;/p&gt;
+&lt;p&gt;Looking at these 2 dependency management strategies with the merits and demerits in mind, the npm approach seems like the better one to me, but I may be biased.&lt;/p&gt;
+&lt;h1 id=&#34;small-packages&#34;&gt;Small packages&lt;/h1&gt;
+&lt;p&gt;The Node.js community is &amp;ldquo;notorious&amp;rdquo; for building &lt;a href=&#34;https://www.npmjs.com/~sindresorhus&#34;&gt;very small packages&lt;/a&gt;. It&amp;rsquo;s also big on reusing as much code as possible. The end result is npm packages that can easily contain a dozen or more dependencies which in turn have their own dependencies. Take Knex for example. As at the time of writing this article, it has 17 direct dependencies — dev dependencies not included (&lt;code&gt;npm ls --only=prod --depth=0 | wc -l&lt;/code&gt;) — and a total of 257 dependencies (&lt;code&gt;npm ls --only=prod | wc -l&lt;/code&gt;). This means if you start and new Node project and run &lt;code&gt;npm install knex&lt;/code&gt;, you&amp;rsquo;d have 258 dependencies on your hands right off the bat!&lt;/p&gt;
+&lt;p&gt;One could argue that this pattern of building small packages and using lots of dependencies is fueled by npm&amp;rsquo;s dependency management strategy. If npm used the pip/RubyGems approach, Node.js developers would be wary of having many dependencies for fear of dependency hell. Perhaps there&amp;rsquo;s just one reason for the Node.js black hole. Having explored it, it seems pretty reasonable to me!&lt;/p&gt;
+- http://alphacoder.xyz/node-modules/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>Authentication strategies in microservices architecture</title>
-      <link>http://alphacoder.xyz/microservices-architecture-authentication/</link>
-      <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/microservices-architecture-authentication/</guid>
-      <description>When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
-In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.</description>
-    </item>
     
-    <item>
-      <title>How to connect to a host&#39;s database from inside a Docker container</title>
-      <link>http://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
-      <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
-      <description>There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
-    </item>
     
-    <item>
-      <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
-      <link>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
-      <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
-      <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
-Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
-    </item>
+        <item>
+        <title>What level of abstraction should I play on?</title>
+        <link>http://alphacoder.xyz/levels-of-abstraction/</link>
+        <pubDate>Sun, 12 Apr 2020 18:17:48 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/levels-of-abstraction/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/levels-of-abstraction/ -&lt;p&gt;&amp;ldquo;I built it from scratch!&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;A major sentiment among some of the developer circles I interacted with and was part of in my earlier days of coding was that you were a &lt;del&gt;better&lt;/del&gt; &amp;ldquo;real&amp;rdquo; developer if you could build stuff &amp;ldquo;from scratch&amp;rdquo;. You&amp;rsquo;d often hear people scoff at building websites with WordPress, for example. &amp;ldquo;I built this site from scratch with raw HTML, CSS and JavaScript. No framework or CMS!&amp;rdquo; It was a thing of pride. It meant you really knew your stuff.&lt;/p&gt;
+&lt;p&gt;I was a WordPress guy at the time so this didn&amp;rsquo;t really sit well with me. Was I a fake developer for using WordPress? And what does building from scratch even mean? Not using frameworks, boilerplates or CMSes? Writing assembly or machine code? Crafting electric circuits?&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m spending quite some time these days tinkering with hardware and learning the more low level computer stuff. I&amp;rsquo;m particularly interested in &lt;a href=&#34;https://eater.net&#34;&gt;Ben Eater&amp;rsquo;s work&lt;/a&gt;. A couple weeks ago, I was watching one of his YouTube videos titled &lt;a href=&#34;https://www.youtube.com/watch?v=LnzuMJLZRdU&#34;&gt;&amp;ldquo;Hello, world from scratch on a 6502 — Part 1&amp;rdquo;&lt;/a&gt;. I found the top comment interesting.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/abstrn/yt-comment.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;While it&amp;rsquo;s very funny (for me at least), I&amp;rsquo;m pointing it out because it&amp;rsquo;s underlay by two ideas relevant to this article.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Technically speaking, &lt;a href=&#34;https://www.youtube.com/watch?v=7s664NsLeFM&#34;&gt;you can&amp;rsquo;t build anything from scratch&lt;/a&gt;. You have to start from somewhere and then create abstractions to offset complexity as it increases.&lt;/li&gt;
+&lt;li&gt;There are many many levels of abstraction that make it possible for us to interact with computers the way we do. Much more than we might realize.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As a developer with a never-ending thirst for knowledge, I&amp;rsquo;ve always asked myself, &amp;ldquo;what level of abstraction should I play on?&amp;rdquo; There are just so many abstraction layers that it is not practical to work across all these levels. Moreso, abstractions are primarily intended to remove the need for interacting with other abstractions.&lt;/p&gt;
+&lt;p&gt;After years of experimentation in different levels of abstraction to figure out where to play on, I came up with two criteria for determining the best abstractions for me to use and how to decide whether to move up or down the stack.&lt;/p&gt;
+&lt;h1 id=&#34;does-it-offer-the-most-business-value&#34;&gt;Does it offer the most business value?&lt;/h1&gt;
+&lt;p&gt;Much as I&amp;rsquo;d love to build my next website in assembly or better still, by stitching a bunch of transistors together, I&amp;rsquo;ve yet to because for me, there&amp;rsquo;s very little business value in doing so. While important, these abstractions offer little or no benefit to someone like me who needs to move and iterate quickly in order to achieve their goals. Whereas, abstractions like web frameworks, CMSes and website builders might be of great benefit.&lt;/p&gt;
+&lt;p&gt;I was big on WordPress in my freelancing days not because I particularly enjoyed wading through dozens of themes to find something satisfactory or hacking plugins to suit my needs. It was because it provided a lot of value to me and my clients — low setup and maintenance costs, out-of-box content management, ample technical support and so on. I&amp;rsquo;ve been using a website builder to develop a couple sites lately. It&amp;rsquo;s been a huge time saver! And given that my time is becoming more expensive by the day, it&amp;rsquo;s a really nice value-add.&lt;/p&gt;
+&lt;p&gt;As a rule of thumb, I go for the highest possible level of abstraction that can get me the functionality I need. This might mean using a fully-managed SaaS product rather than building and maintaining a service in-house, or using tooling and technologies that prioritize velocity in order to ship features and fix bugs faster.&lt;/p&gt;
+&lt;h1 id=&#34;is-the-abstraction-starting-to-leak&#34;&gt;Is the abstraction starting to leak?&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/&#34;&gt;The law of leaky abstractions&lt;/a&gt; states &amp;ldquo;All non-trivial abstractions, to some degree, are leaky.&amp;rdquo; While the first criteria encourages opting for a high level of abstraction which makes it easier and faster to achieve an objective, this one advocates moving one or more levels lower when abstractions begin to leak.&lt;/p&gt;
+&lt;p&gt;If you find yourself writing a lot of CSS to override other CSS, perhaps it is time to drop Bootstrap and build your own UI component library, or pick another library with less abstraction. If you&amp;rsquo;re spending a lot of time hacking a framework because its APIs can no longer give you the functionality you need, you should probably start migrating away from it and building your own abstractions using language-native APIs.&lt;/p&gt;
+&lt;p&gt;An exemplification of the basic philosophy is this: &lt;em&gt;I don&amp;rsquo;t have to worry about the intricacies of paradigm X in language Y because there&amp;rsquo;s this nifty little library that exposes a streamlined API for achieving what I want. When my needs grow beyond what the library offers, I&amp;rsquo;ll begin to dig into the weeds of the paradigm. Right now, I&amp;rsquo;m more focused on delivering value with what I&amp;rsquo;m building than trying to understand every detail of some component I need to consume. When the abstraction begins to leak, I&amp;rsquo;ll cross that river.&lt;/em&gt;&lt;/p&gt;
+- http://alphacoder.xyz/levels-of-abstraction/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>I built a video-based vehicle counting system — here&#39;s how</title>
-      <link>http://alphacoder.xyz/vehicle-counting/</link>
-      <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/vehicle-counting/</guid>
-      <description>I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared a demo on Twitter that went semi-viral!
-In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!
-TL;DR: I built a video-based vehicle counting system using Python/OpenCV.</description>
-    </item>
     
-    <item>
-      <title>Machine Learning explained</title>
-      <link>http://alphacoder.xyz/machine-learning-explained/</link>
-      <pubDate>Sat, 18 May 2019 15:22:12 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/machine-learning-explained/</guid>
-      <description>Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn&amp;rsquo;t actually understand what Machine Learning is. And without understanding — at least on a high level — it&amp;rsquo;s nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub.</description>
-    </item>
     
-    <item>
-      <title>How to configure wildcard subdomains</title>
-      <link>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
-      <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
-      <description>Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as team-name.awesomeapp.com or org-name.beta.awesomeapp.com. These subdomains are variable, meaning that they are not predefined and can contain any valid domain name characters.
-To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application.</description>
-    </item>
+        <item>
+        <title>Authentication strategies in microservices architecture</title>
+        <link>http://alphacoder.xyz/microservices-architecture-authentication/</link>
+        <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/microservices-architecture-authentication/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/microservices-architecture-authentication/ -&lt;p&gt;When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.&lt;/p&gt;
+&lt;p&gt;In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.&lt;/p&gt;
+&lt;h1 id=&#34;auth-service&#34;&gt;Auth service&lt;/h1&gt;
+&lt;p&gt;In this strategy, a microservice is created for the purpose of authentication. This service is contacted by downstream services required to authenticate client requests before processing them.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/msvc-auth/auth-svc.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s easy to implement and reason about, especially when transitioning from a monolith. The auth service is essentially a utility other services reach out to for their authentication needs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It introduces a single point of failure. If the auth service is down, the whole application (or most of it) is down.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Increased latency. The time taken to make a request to and get a response from the auth service can hurt the average response time of a microservices application negatively.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;jwt-verification-per-service&#34;&gt;JWT verification per service&lt;/h1&gt;
+&lt;p&gt;This approach is an extension of the previous strategy and is intended to reduce dependence on the auth service. Authentication primarily involves issuing and verifying tokens. JWT (&lt;a href=&#34;https://jwt.io&#34;&gt;JSON Web Tokens&lt;/a&gt;) can be used to verify tokens without having to hit a database or other persistent storage. This means each service can verify requests on their own. Token issuing is done in the auth service, while verification is handled in every service where it&amp;rsquo;s required. A client library is usually used to share this verification functionality with all the services that need to perform authentication.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/msvc-auth/jwt-verifier.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;There&amp;rsquo;s no single point of failure, auth-wise. The authentication service is only used for issuing tokens. All other services can handle token verification on their own.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It&amp;rsquo;s easy to create a client library for token verification which can be shared by all the services that require auth (assuming a single tech stack is used across board).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;JWT can&amp;rsquo;t be invalidated on-demand. While this is not a problem for some types of applications, it&amp;rsquo;s a deal breaker for others e.g an enterprise app where an admin might want to disable or delete a user or a finance app where a user might want to sign out from one or more devices remotely.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making a change to the verification logic (e.g adding a new permission) requires updating all dependent services. This might be a Herculean task if a large number of services are involved.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;token-blacklist-cache&#34;&gt;Token blacklist cache&lt;/h1&gt;
+&lt;p&gt;To compensate for the shortcomings of JWT, a cache can be used to store tokens that need to be invalidated. This means that every service must contact a shared cache to check if a token has been blacklisted after successfully verifying it, before proceeding to execute any auth-protected code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/msvc-auth/token-blacklist-cache.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JWTs can be invalidated on-demand through blacklisting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This strategy is not feasible in a system where each service has its own datastore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If multiple services are allowed to write to the cache, they might erroneously modify token blacklist data, causing problems that might be difficult to detect and fix.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The shared cache introduces a single point of failure to the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;api-gateway-auth&#34;&gt;API gateway auth&lt;/h1&gt;
+&lt;p&gt;Most, if not all, microservices applications use an API gateway. An API gateway is the entry point where client requests go to before being sent to the appropriate API/edge services. The main function of a gateway is routing requests but they can be used for other purposes such as analytics, rate-limiting, data transformation, logging, health monitoring, caching and as you might have already guessed, authentication.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/msvc-auth/api-gateway-auth.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Separation of concerns. Services can communicate freely with each other and do what they need to do as authentication has already been handled downstream by the gateway.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Switching to an API gateway&amp;rsquo;s auth system from an existing application&amp;rsquo;s auth implementation can be difficult and time-consuming.&lt;/li&gt;
+&lt;/ul&gt;
+- http://alphacoder.xyz/microservices-architecture-authentication/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
-      <link>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>
-      <pubDate>Mon, 04 Mar 2019 13:54:48 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
-      <description>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
-1 2  setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;);   If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
-    </item>
     
-    <item>
-      <title>Adminer — a simple GUI client for any DB</title>
-      <link>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
-      <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
-      <description>In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
-Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks.</description>
-    </item>
     
-    <item>
-      <title>Dealing with code debt</title>
-      <link>http://alphacoder.xyz/dealing-with-code-debt/</link>
-      <pubDate>Wed, 06 Feb 2019 19:40:38 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/dealing-with-code-debt/</guid>
-      <description>Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s human developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.</description>
-    </item>
+        <item>
+        <title>How to connect to a host&#39;s database from inside a Docker container</title>
+        <link>http://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
+        <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/connect-to-host-database-from-docker-container/ -&lt;p&gt;There are several ways to interact with a DB when developing using Docker:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Connect to an online DB instance.&lt;/li&gt;
+&lt;li&gt;Connect to a local DB running in another container.&lt;/li&gt;
+&lt;li&gt;Connect to a local DB running on a host machine (e.g your laptop).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.&lt;/p&gt;
+&lt;p&gt;While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don&amp;rsquo;t want to have to mount a volume on the host in order to persist your data or run an additional container.&lt;/p&gt;
+&lt;p&gt;Connecting to a host DB from a container via localhost doesn&amp;rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&amp;rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&amp;rsquo;s internal IP address.&lt;/p&gt;
+&lt;p&gt;You can point to your host&amp;rsquo;s DB by setting the following environment variable in your container for instance.&lt;/p&gt;
+&lt;p&gt;Docker for Mac/Windows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DB_HOST=host.docker.internal
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &#39;/default/ {print $3}&#39;)
+&lt;/code&gt;&lt;/pre&gt;- http://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>Deploy microservices on Kubernetes</title>
-      <link>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
-      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
-      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.
-Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;.</description>
-    </item>
     
-    <item>
-      <title>Hello Hugo!</title>
-      <link>http://alphacoder.xyz/hello-hugo/</link>
-      <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/hello-hugo/</guid>
-      <description>If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.</description>
-    </item>
     
-    <item>
-      <title>From Medium to Ghost</title>
-      <link>http://alphacoder.xyz/from-medium-to-ghost/</link>
-      <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/from-medium-to-ghost/</guid>
-      <description>Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at alphacoder.xyz. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.
-Why the move? I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.</description>
-    </item>
+        <item>
+        <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
+        <link>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
+        <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ -&lt;p&gt;Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.&lt;/p&gt;
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/install/&#34;&gt;Install Docker for your OS&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Pull the Docker image for Elasticsearch: &lt;code&gt;docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0&lt;/code&gt; (you can change &lt;strong&gt;7.3.0&lt;/strong&gt; to &lt;a href=&#34;https://www.docker.elastic.co/&#34;&gt;the latest or your preferred version&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Pull the Docker image for Kibana: &lt;code&gt;docker pull docker.elastic.co/kibana/kibana:7.3.0&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;run&#34;&gt;Run&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker container stop es_dev &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker container rm es_dev
+docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --name es_dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9200:9200 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9300:9300 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;
+docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --link es_dev:elasticsearch &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.3.0 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first command stops the container named &lt;code&gt;es_dev&lt;/code&gt; (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named &lt;code&gt;es_dev&lt;/code&gt;, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (&lt;code&gt;es_dev&lt;/code&gt;) where the Elasticsearch cluster is running. The last two commands are run concurrently.&lt;/p&gt;
+&lt;p&gt;You can add these three commands to a shell file (e.g &lt;em&gt;elastic.sh&lt;/em&gt;) in order to run a single command to start Elasticsearch and Kibana i.e &lt;code&gt;chmod +x elastic.sh &amp;amp;&amp;amp; ./elastic.sh&lt;/code&gt; the first time and &lt;code&gt;./elastic.sh&lt;/code&gt; subsequently.&lt;/p&gt;
+&lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch: &lt;code&gt;curl http://127.0.0.1:9200/_cat/health&lt;/code&gt; (you should have a status of &lt;strong&gt;green&lt;/strong&gt; if everything went well).&lt;/li&gt;
+&lt;li&gt;Kibana: visit &lt;strong&gt;http://localhost:5601&lt;/strong&gt; (the Kibana dashboard should load up).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;configure&#34;&gt;Configure&lt;/h1&gt;
+&lt;p&gt;Elasticsearch and Kibana can be configured using YAML. You can create config files and point to them when starting the containers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch: add &lt;code&gt;-v path/to/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
+&lt;li&gt;Kibana: add &lt;code&gt;-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
+&lt;/ul&gt;
+- http://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>A tip for working on side projects</title>
-      <link>http://alphacoder.xyz/side-project-tip/</link>
-      <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/side-project-tip/</guid>
-      <description>Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one.</description>
-    </item>
     
-    <item>
-      <title>Check domain availability from your terminal</title>
-      <link>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
-      <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
-      <description>I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been legitly purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing.</description>
-    </item>
     
-    <item>
-      <title>How to Git push to an AWS EC2 remote using a PEM file</title>
-      <link>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
-      <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
-      <description>AWS provides you with a .pem file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…
-1. Copy private key in PEM to .ssh folder $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2  2. Generate and save public key $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.</description>
-    </item>
+        <item>
+        <title>I built a video-based vehicle counting system — here&#39;s how</title>
+        <link>http://alphacoder.xyz/vehicle-counting/</link>
+        <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/vehicle-counting/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/vehicle-counting/ -&lt;p&gt;I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared &lt;a href=&#34;https://twitter.com/nicholaskajoh/status/1115016849840844805?s=20&#34;&gt;a demo on Twitter&lt;/a&gt; that went semi-viral!&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; I built a video-based vehicle counting system using Python/OpenCV. You can find the &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;code on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/vcs/vehicle_counting.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;how-it-works&#34;&gt;How it works&lt;/h1&gt;
+&lt;p&gt;The vehicle counting system I built is made up of three main components: a detector, tracker and counter. The detector identifies vehicles in a given frame of video and returns a list of bounding boxes around the vehicles to the tracker. The tracker uses the bounding boxes to track the vehicles in subsequent frames. The detector is also used to update the trackers periodically to ensure that they are still tracking the vehicles correctly. The counter counts vehicles when they leave the frame or makes use of a counting line drawn across a road.&lt;/p&gt;
+&lt;h1 id=&#34;why-vehicle-counting&#34;&gt;Why vehicle counting?&lt;/h1&gt;
+&lt;p&gt;Computer Vision (CV) had been on my list of things to learn for a long time so I decided to use the opportunity of my final project to learn it. I actually wanted to build a turn-based or real-time strategy game that used a healthy dose of AI but I knew I wouldn&amp;rsquo;t have been able to complete it in time for my defence so I figured a CV project was the way to go as I&amp;rsquo;d very likely get to use Machine Learning (ML).&lt;/p&gt;
+&lt;p&gt;Computer Vision is an interdisciplinary field concerned with giving computers the ability to &amp;ldquo;see&amp;rdquo; or be able to understand the contents of digital images such as photos and videos. While vision is a trivial task for humans and animals, it&amp;rsquo;s currently quite difficult for machines. However, a lot of progress has been made in the field in the last few decades and new techniques and technologies to make CV faster and more accurate are actively being researched.&lt;/p&gt;
+&lt;p&gt;A vehicle counting system, as you might have already inferred, is a system that counts vehicles on the road. Why would you want to build one? Why would you want to count vehicles on the road? Here are some reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Traffic management and planning:&lt;/strong&gt; If you have a good sense of the volume of traffic moving along a given road or network of roads, you can better understand congestion and then manage and/or make plans to reduce/eliminate it. Vehicle count data is very useful to urban city planners and transport authorities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Traffic control:&lt;/strong&gt; No one likes to be stuck behind a red light especially when the road is free. Vehicle counting systems can be integrated with traffic light control software to intelligiently direct vehicles based on the current traffic situation in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parking management:&lt;/strong&gt; A VCS can be installed at the entrance of a parking lot to monitor vehicles coming in and going out in order to determine whether there are slots available at any given time. It can also be used to ensure the number of vehicles in a given place (such as a hotel or events center) does not exceed its capacity by controlling Automatic Barrier Gates as opposed to issuing tags.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advertising:&lt;/strong&gt; Billboard advertisers and their clients are interested in the volume of vehicular traffic along a road where they have ads or where they want to install a billboard because they can make estimates of the number of people who see their ads per time using the data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;why-video&#34;&gt;Why video?&lt;/h1&gt;
+&lt;p&gt;There are a handful of ways to count vehicles on the road from manual counts to pneumatic tubes to piezoelectric sensors. Why was video used? Why is it preferred?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sensor data (video footage) can be used to verify the system’s results which
+makes it easier and faster to evaluate and improve the system.&lt;/li&gt;
+&lt;li&gt;The footage can also be used for other purposes including surveillance,
+automatic plate number recognition, vehicle type detection and vehicle speed
+detection to name a few.&lt;/li&gt;
+&lt;li&gt;It is relatively cheaper to implement and scale as a permanent vehicle counting
+system compared to other systems.&lt;/li&gt;
+&lt;li&gt;It can track and count multiple vehicles moving in different directions across
+several lanes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;learning-opencv&#34;&gt;Learning OpenCV&lt;/h1&gt;
+&lt;p&gt;Since I&amp;rsquo;m proficient in Python, OpenCV was the logical tool to use. &lt;a href=&#34;https://opencv.org&#34;&gt;OpenCV&lt;/a&gt; is an
+open-source library made up of a collection of modules for performing real-time Computer
+Vision tasks. I used the YouTube tutorial series &lt;a href=&#34;https://www.youtube.com/playlist?list=PLQVvvaa0QuDdttJXlLtAJxJetJcqmqlQq&#34;&gt;OpenCV with Python for Image and Video Analysis&lt;/a&gt; by Harrison Kinsley of &lt;a href=&#34;https://pythonprogramming.net&#34;&gt;PythonProgramming.net&lt;/a&gt; to learn the basics. I was quickly able to learn how to load images and videos, overlay text, shapes or images on media, manipulate pixels on images as a pre-processing step or to produce a visual, perform background substraction to detect objects, run Haar Cascades for object detection etc.&lt;/p&gt;
+&lt;h1 id=&#34;components-of-the-vcs&#34;&gt;Components of the VCS&lt;/h1&gt;
+&lt;p&gt;I had little or no idea on how to build a VCS so I looked online for inspiration. I found a C++ project which used background subtraction and decided to port it to Python. This gave me to opportunity to go through every line of the code and understand it at a deeper level. I completed the port and tested it out on the traffic scenes I&amp;rsquo;d recorded. The results were very poor. I began thinking of better algorithms and techniques to use. I broke the problem down into three sub-problems: detection, tracking and counting.&lt;/p&gt;
+&lt;h2 id=&#34;detection&#34;&gt;Detection&lt;/h2&gt;
+&lt;p&gt;This is a crucial and probably the most important part of building a VCS. Detection is an aspect of CV and image processing concerned with identifying instances of objects of a certain class, like vehicles or people, in images and videos. Popular areas of interest in object detection include pedestrian detection and face detection. Object detection can be applied in solving hard problems in areas like image search and video surveillance. It is used widely in computer vision tasks including face detection, face recognition, and object tracking.&lt;/p&gt;
+&lt;p&gt;All object types have special attributes that help in classifying them. For instance, all faces are round. Object detection algorithms use these special attributes to identify
+objects in images and videos. I experimented with several object detection techniques, most notably background subtraction, Haar Cascades and YOLO.&lt;/p&gt;
+&lt;h3 id=&#34;background-subtraction&#34;&gt;Background subtraction&lt;/h3&gt;
+&lt;p&gt;The first detector I used to id vehicles was a background substractor. Background or image subtraction is the process of extracting the foreground of an image from its background. If you have a background image like a road without vehicles in it, you can subtract this image from another image of the same road (from the exact same view) which contains vehicles to detect those vehicles. The background pixels would cancel each other out and the objects in the foreground would pop out.&lt;/p&gt;
+&lt;p&gt;What if you don&amp;rsquo;t have a background image? You can achieve the same results if the objects you&amp;rsquo;re interested in detecting are in motion, the background is static and the camera is stationary. In this case, all you have to do is evaluate the difference between consecutive images i.e image 2 minus image 1, image 3 minus image 2, image 4 minus image 3 etc. This works because the pixels of moving objects constantly shift hence are not cancelled out like the background pixels and thus pop out as the foreground.&lt;/p&gt;
+&lt;p&gt;The images below show what background substraction looks like.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/vcs/frame.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/vcs/bgsub.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;While background substraction was easy to implement and super fast, I was unable to arrive at a suitable threshold for detecting vehicle blobs. Vehicles are not the only objects that move on/across the road. There are pedestrians, animals, people with carts or wheelbarrows, skateboarders etc. Also, objects change in size and shape as they move across the view due to perspective, and vehicles may be occluded by other vehicles in the scene and thus interpreted as one object.&lt;/p&gt;
+&lt;p&gt;I observed a lot of noise as well mainly due to the waving of trees and commercial activities going on in the background. While noise reduction techniques such as Gaussian Blur and selecting a Region of Interest (ROI) for detection helped, the overall performance of the detector was still underwhelming. After spending quite a while trying to tweak things in order to increase accuracy, I decided I needed another detector.&lt;/p&gt;
+&lt;h3 id=&#34;haar-cascades&#34;&gt;Haar Cascades&lt;/h3&gt;
+&lt;p&gt;Haar Cascades are object detection models based on the concept of &lt;a href=&#34;https://en.wikipedia.org/wiki/Haar-like_feature&#34;&gt;Haar-like features&lt;/a&gt; developed by Paul Viola and Michael Jones and published in their 2001 paper titled &lt;a href=&#34;https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf&#34;&gt;Rapid Object Detection using a Boosted Cascade of Simple Features&lt;/a&gt;. I tried out a car detector Haar Cascade I found online. It produced a lot of false positives which made counts erroneous. I considered creating my own model but it seemed like a Herculean task at the time. I decided to try deep learning instead.&lt;/p&gt;
+&lt;p&gt;I plan to create a custom Haar Cascade with data got from testing the VCS in the real world in the near future. Haar Cascades are generally a lot faster than deep learning object detection models so if I can get the model to be just as accurate or more accurate than the deep learning alternatives, it might be possible to run the VCS efficiently on devices like Raspberry Pis instead of depending on the cloud for processing power.&lt;/p&gt;
+&lt;p&gt;If you want to learn more about Haar Cascades, &lt;a href=&#34;https://www.youtube.com/watch?v=uEJ71VlUmMQ&#34;&gt;check out this video&lt;/a&gt; which explains how the technique works for face detection.&lt;/p&gt;
+&lt;h3 id=&#34;yolo&#34;&gt;YOLO&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://pjreddie.com/darknet/yolo/&#34;&gt;YOLO&lt;/a&gt; (You Only Look Once) is a popular deep learning model/architecture for object detection. I found out about it through &lt;a href=&#34;https://www.youtube.com/watch?v=Cgxsv1riJhI&#34;&gt;a TED talk given by one of its creators Joseph Redmon&lt;/a&gt; and wondered if I could use it in the VCS project. Fortunately, OpenCV provides a deep neural network module with which can be used to import and run YOLO models easily. I downloaded a model trained on the &lt;a href=&#34;http://cocodataset.org&#34;&gt;COCO dataset&lt;/a&gt; from the YOLO website and tried it out. The results were very good so I stuck with YOLO for detection. I&amp;rsquo;ve since added support for other deep learning models/libraries. It&amp;rsquo;s actually quite easy to modify the code to support a model of your choice.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/vcs/yolo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;If you want to learn more about YOLO, you should definitely take a look at these papers: &lt;a href=&#34;https://pjreddie.com/media/files/papers/yolo_1.pdf&#34;&gt;You Only Look Once:
+Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjreddie.com/media/files/papers/YOLOv3.pdf&#34;&gt;YOLOv3: An Incremental Improvement&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;tracking&#34;&gt;Tracking&lt;/h2&gt;
+&lt;p&gt;Tracking is the process of following the path or movements of an object with the purpose of finding it or observing its course. The uses of video tracking include augmented reality, surveillance and security, video compression and communication, video editing, human-computer interaction, traffic control and medical imaging.&lt;/p&gt;
+&lt;p&gt;The goal of tracking is to associate target objects in sequential frames of a video. This association can be very hard to accomplish when the objects are moving fast in relation to the frame rate of the video. Things get even more complicated when tracked objects change their orientation over time. In this scenario, video tracking systems normally use a motion model which details how the image of the target might look for several possible orientations of the object.&lt;/p&gt;
+&lt;h3 id=&#34;centroid-tracking&#34;&gt;Centroid tracking&lt;/h3&gt;
+&lt;p&gt;I first experimented with the centroid tracking algorithm since it was easy for me to implement. Centroid tracking works by associating the centroid of a bounding box around a detected object in one frame with a centroid in a subsequent frame based on some measure of proximity between them such as euclidean distance. Aside having to run detection on every frame which is computationally expensive, it was difficult for me to find a good threshold that reliably determines if two consecutive centroids belong to a single object or not. Among other things, the value for this threshold must consider the size of the object, and the frame rate and resolution of the video. After several failed attempts to tweak the algorithm to work well with my test videos, I started looking for alternatives.&lt;/p&gt;
+&lt;h3 id=&#34;opencv-tracking-algorithms-csrt-and-kcf&#34;&gt;OpenCV tracking algorithms (CSRT and KCF)&lt;/h3&gt;
+&lt;p&gt;In my search for better tracking algorithms, I found out that &lt;a href=&#34;https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/&#34;&gt;OpenCV has implementations of some state-of-the-art algorithms&lt;/a&gt; including BOOSTING, MIL, KCF, TLD, MEDIANFLOW, GOTURN, MOSSE and CSRT. I settled for CSRT (&lt;a href=&#34;https://pdfs.semanticscholar.org/b16a/583ee173f222c690242aaff7925838893fe8.pdf&#34;&gt;Discriminative Correlation Filter with Channel and Spatial Reliability&lt;/a&gt;) and KCF (&lt;a href=&#34;https://arxiv.org/pdf/1404.7584.pdf&#34;&gt;Kernelized Correlation Filters&lt;/a&gt;) because they gave the best results. CSRT, while more accurate, is computationally expensive. In traffic scenes where there are not a lot of vehicles on the road, KCF usually does better.&lt;/p&gt;
+&lt;p&gt;There was a challenge with CSRT AND KCF however. Vehicles, and thus their bounding boxes, change in size as they move across the frame of a video due to perspective but these trackers can&amp;rsquo;t adjust the size of their bounding boxes as they track an object. Eventually when an object is large or small enough, the algorithm becomes unable to find the object even though it&amp;rsquo;s still in frame. To solve this problem, the detector is periodically run to update the trackers with new bounding boxes. But before going for this approach, I experimented with Camshift.&lt;/p&gt;
+&lt;h3 id=&#34;camshift&#34;&gt;Camshift&lt;/h3&gt;
+&lt;p&gt;CAMshift (Continuously Adaptive Meanshift) is a tracking algorithm developed by Gary Bradski and described in his 1988 paper titled &lt;a href=&#34;http://opencv.jp/opencv-1.0.0_org/docs/papers/camshift.pdf&#34;&gt;Computer Vision Face Tracking for Use in a Perceptual User Interface&lt;/a&gt;. Unlike CSRT and KCF, it adapts a bounding box with the size and rotation of its target object. However, I observed a problem which made it unusable for the VCS. Camshift was having a hard time tracking vehicles because they were moving too fast for it. It performed pretty well when I tried to track slow-moving objects but was always left behind by fast-moving ones (e.g vehicles) shortly after the tracking began.&lt;/p&gt;
+&lt;h2 id=&#34;counting&#34;&gt;Counting&lt;/h2&gt;
+&lt;p&gt;Counting was the easiest part! Vehicles are counted when they leave the frame or cross a line at an exit point of the frame. Using a counting line makes it easier to count vehicles moving in a certain direction.&lt;/p&gt;
+&lt;h1 id=&#34;contribute&#34;&gt;Contribute&lt;/h1&gt;
+&lt;p&gt;The VCS is free and open source software available &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;on GitHub&lt;/a&gt;. You can contribute to the project by taking it for a spin and reporting issues/bugs or working on parts of it that need improvement.&lt;/p&gt;
+- http://alphacoder.xyz/vehicle-counting/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>2 Git workflows you should know</title>
-      <link>http://alphacoder.xyz/git-workflows/</link>
-      <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/git-workflows/</guid>
-      <description>Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.
-In this post, we’ll be discussing two popular Git workflows you should know — Gitflow and the Forking workflow. Let’s dig right in!</description>
-    </item>
     
-    <item>
-      <title>Understanding modern front-end development</title>
-      <link>http://alphacoder.xyz/understanding-modern-front-end-development/</link>
-      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/understanding-modern-front-end-development/</guid>
-      <description>It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.</description>
-    </item>
     
-    <item>
-      <title>How to land an internship at a great startup</title>
-      <link>http://alphacoder.xyz/land-great-startup-internship/</link>
-      <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/land-great-startup-internship/</guid>
-      <description>Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
-Here are some tips on how to land an internship at a great startup&amp;hellip;
-Do your homework I remember being caught off guard when asked about the company I was applying to by my interviewer.</description>
-    </item>
+        <item>
+        <title>Machine Learning explained</title>
+        <link>http://alphacoder.xyz/machine-learning-explained/</link>
+        <pubDate>Sat, 18 May 2019 15:22:12 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/machine-learning-explained/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/machine-learning-explained/ -&lt;p&gt;Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn&amp;rsquo;t actually understand what Machine Learning is. And without understanding — at least on a high level — it&amp;rsquo;s nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub. Even then, you might have a hard time getting them to work or customizing them to suit your needs.&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll be explaining what Machine Learning is with newbies in mind. I&amp;rsquo;ll also expatiate on some of the commonly used jargon in the space so that you can more easily find your way around ML material and improve your skills.&lt;/p&gt;
+&lt;h1 id=&#34;what-is-machine-learning&#34;&gt;What is Machine Learning?&lt;/h1&gt;
+&lt;p&gt;ML is an approach to building Artificial Intelligence (AI) systems which involves writing computer programs that &amp;ldquo;learn&amp;rdquo; from data. That is, they are not explicitly programmed to perform a specific task such as solving a quadratic equation or authenticating a user. Instead, they learn to solve a given problem by example.&lt;/p&gt;
+&lt;p&gt;AI is an aspect of computer science concerned with building intelligent machines or software. Intelligence is a rather vague concept (especially in today&amp;rsquo;s world of tech where just about everything is &amp;ldquo;smart&amp;rdquo;) so this definition is probably not sufficient.&lt;/p&gt;
+&lt;p&gt;In simple terms, intelligence in AI is the ability of computers to solve problems that are easier for humans or animals to do e.g driving a car or searching for food. There are several techniques used in AI today but our focus here is ML as you&amp;rsquo;d expect.&lt;/p&gt;
+&lt;p&gt;Say you wanted to write a program that can determine if a photo contains a dog or not. How would you go about it?&lt;/p&gt;
+&lt;p&gt;You could try to code features that may be used to identify a dog as well as what combinations of these features distinguish dogs from other animals (and objects). That&amp;rsquo;s a hard enough task. But you&amp;rsquo;ll also have to consider:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Position:&lt;/strong&gt; Is the dog sitting or standing or lying down or running? What part of the photo is the dog located?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Size and orientation:&lt;/strong&gt; How large or small is the dog in comparison to the rest of the photo? Is the photo rotated?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Occlusion:&lt;/strong&gt; Is any part of the dog covered by another object? What part? By how much?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s say you succeeded in creating the perfect dog detector. What happens when you want to detect ducks. Can you repurpose the dog detector to also detect ducks. Probably not, because you&amp;rsquo;ll be dealing with an almost completely new set of features and combinations.&lt;/p&gt;
+&lt;p&gt;Fortunately, ML excels in these sort of tasks because we can show an ML algorithm photos of dogs and have it figure out the necessary features and combinations, as well as consider position, size, orientation, and occlusion. More so, it can be repurposed to detect ducks, cats and indeed any other animal or object for that matter just by showing it relevant photos. We&amp;rsquo;ll find out a little bit about how this can be done as we proceed.&lt;/p&gt;
+&lt;h1 id=&#34;what-are-ml-models&#34;&gt;What are ML models?&lt;/h1&gt;
+&lt;p&gt;A machine learning model is essentially a function which maps a set of inputs to a set of outputs. The inputs are features (e.g of a human being — height, weight etc) and the outputs are predictions (e.g sex — male or female).&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take the following mathematical function for example:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;V = 4/3 * PI * r^3
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is the formula for the volume of a sphere. The input is &lt;code&gt;r&lt;/code&gt; (the radius of the sphere) and the output is &lt;code&gt;V&lt;/code&gt; (the sphere&amp;rsquo;s volume). &lt;a href=&#34;https://en.wikipedia.org/wiki/Pi&#34;&gt;Pi&lt;/a&gt; is not an input since it&amp;rsquo;s constant (about 3.14), as is the literal value &lt;code&gt;4/3&lt;/code&gt;. The sphere volume formula was derived analytically using tools like calculus, geometry and trigonometry. Not all problems can be solved through such means. Some problems are not feasible or too complex to model in this way. It&amp;rsquo;s a lot easier to show computers the problem and/or answers and have them figure out an approximate model that solves it.&lt;/p&gt;
+&lt;h3 id=&#34;training&#34;&gt;Training&lt;/h3&gt;
+&lt;p&gt;Models are optimized or fine-tuned through a process known as training. Say you wanted to build your dog detector, like we considered in a previous section, by creating a machine learning model. At the point of initialization, the dog detector model is like a newborn baby. It doesn&amp;rsquo;t know anything and behaves rather randomly. During training, it&amp;rsquo;s shown a bunch of photos of dogs of different types, shapes and sizes, as well as photos of other objects so that it can make the right distinctions. At the end of training, you&amp;rsquo;d expect it to know how to detect dogs with a high level of accuracy.&lt;/p&gt;
+&lt;h3 id=&#34;datasets&#34;&gt;Datasets&lt;/h3&gt;
+&lt;p&gt;Data is the heart and soul of machine learning — it&amp;rsquo;s what &amp;ldquo;machines&amp;rdquo; use to &amp;ldquo;learn&amp;rdquo;. A dataset is a collection of data which can be used to train, test and validate machine learning models. The more varied and rich a dataset is, the better a model we can produce. Good data directly translates to a good model. As such, it&amp;rsquo;s important to know what good data for a given problem looks like and how to obtain it. Machine learning models, unlike humans need a lot of data to work well. Some models consume millions of records! Knowing where to source data as well as how to prepare it for training is an invaluable skill for any ML practitioner to hone.&lt;/p&gt;
+&lt;h3 id=&#34;testing&#34;&gt;Testing&lt;/h3&gt;
+&lt;p&gt;Testing is the process of evaluating a model to see how well it performs. It helps us know how well a model is doing and where it needs work, as well as benchmark it against other models. Datasets are usually divided into training and testing sets. Models are trained with one set, and tested and validated with others so that we can be sure that they&amp;rsquo;re actually learning instead of overfitting. If your math teacher brings the examples they gave in class in an exam, you don&amp;rsquo;t need to understand the calculations to pass. You can just cram your notes and ace the test without understanding a thing. This is bad because when faced with similar problems in an external exam or competition, you&amp;rsquo;ll likely perform poorly. The same goes for an overfitted model.&lt;/p&gt;
+&lt;p&gt;There are several metrics used in evaluating ML models. Some of the more popular ones include accuracy, confidence, &lt;a href=&#34;https://en.wikipedia.org/wiki/Confusion_matrix&#34;&gt;confusion matrices&lt;/a&gt;, &lt;a href=&#34;https://en.wikipedia.org/wiki/Mean_squared_error&#34;&gt;mean squared error&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/F1_score&#34;&gt;F1 score&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;types-of-ml&#34;&gt;Types of ML&lt;/h1&gt;
+&lt;p&gt;ML algorithms are generally classified into 3 main types. They are:&lt;/p&gt;
+&lt;h3 id=&#34;supervised-learning&#34;&gt;Supervised learning&lt;/h3&gt;
+&lt;p&gt;This is a type of machine learning which involves the use of labelled data. That is, we have a dataset containing input features (e.g the heights and weights of a number of people) and output labels (e.g their sex or age), and we want an ML algorithm to be able to make accurate predictions after learning from such data. Supervised learning is divided into classification and regression. Classification models output discrete values e.g &amp;ldquo;male&amp;rdquo; or &amp;ldquo;female&amp;rdquo;, or &amp;ldquo;red&amp;rdquo;, &amp;ldquo;blue&amp;rdquo;, or &amp;ldquo;green&amp;rdquo;, while regression models output continuous values such as a prediction for the price of a barrel of crude oil next year e.g $50.43.&lt;/p&gt;
+&lt;h3 id=&#34;unsupervised-learning&#34;&gt;Unsupervised learning&lt;/h3&gt;
+&lt;p&gt;Unsupervised learning involves the use of unlabelled data to build machine learning models. We basically give an algorithm data and let it figure out patterns in it. We might give an ML algorithm the weights, heights and other features of individuals in a school and it might group them into &amp;ldquo;healthy&amp;rdquo; or &amp;ldquo;sick&amp;rdquo;, or &amp;ldquo;plays football&amp;rdquo;, &amp;ldquo;plays basketball&amp;rdquo; or &amp;ldquo;plays volleyball&amp;rdquo;. This sort of clustering provides valuable insights that can find application in a number of areas such as recommendation and segmentation.&lt;/p&gt;
+&lt;h3 id=&#34;reinforcement-learning&#34;&gt;Reinforcement learning&lt;/h3&gt;
+&lt;p&gt;Reinforcement learning involves building goal-oriented models that learn through &amp;ldquo;rewards&amp;rdquo; and &amp;ldquo;punishment&amp;rdquo;. When an agent trained using reinforcement learning reaches a desired state, it is incentivized with a reward and if it reaches an undesired state, it is discouraged through punishment. This technique was used to build &lt;a href=&#34;https://deepmind.com/blog/alphago-zero-learning-scratch/&#34;&gt;AlphaGo Zero&lt;/a&gt;, an AI agent which was able to beat the world&amp;rsquo;s best &lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;Go&lt;/a&gt; players.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I have a blog series here on Alpha Coder called &lt;a href=&#34;http://alphacoder.xyz/tag/ml-chops-series&#34;&gt;ML Chops&lt;/a&gt;. It&amp;rsquo;s a set of tutorials on how some popular ML algorithms work and how to implement them from scratch using the Python programming language. You should check it out!&lt;/p&gt;
+&lt;h1 id=&#34;neural-networks-and-deep-learning&#34;&gt;Neural networks and deep learning&lt;/h1&gt;
+&lt;p&gt;If you follow tech and startup news, you&amp;rsquo;ve probably heard the words &amp;ldquo;neural networks&amp;rdquo; and &amp;ldquo;deep learning&amp;rdquo; being tossed all around. What are they? And why is there so much hype around them?&lt;/p&gt;
+&lt;p&gt;A neural network is a machine learning framework made up of a collection of connected nodes called neurons arranged in layers. A neuron receives input signals from one or more neurons behind it, performs one or more computations with them and transmits an output signal to the neurons in front of it. The nodes at the ends of the network are the input and output layers while the nodes inbetween form sets of hidden layers. Neural networks are loosely modelled after biological neural networks which allow living things perform very complex physical and chemical activities. If you want to learn more about neural networks, &lt;a href=&#34;https://www.youtube.com/watch?v=aircAruvnKk&#34;&gt;But what *is* a Neural Network?&lt;/a&gt; by &lt;em&gt;3Blue1Brown&lt;/em&gt; is one of the best resources out there to give you a comprehensive introduction.&lt;/p&gt;
+&lt;p&gt;Deep learning is the creation and training of neural networks that contain more than one hidden layer. A network with one hidden layer is a regular neural network and one with two or more hidden layers is a &amp;ldquo;deep&amp;rdquo; neural network. Deep neural networks usually perform better than regular ones because they can encode more information within the network. However, using deeper neural networks doesn&amp;rsquo;t necessarily translate to obtaining better results. There are other factors involved.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a lot of hype around neural networks and deep learning because these tools have changed the game by making feats that seemed impossible just a couple years ago possible. They are used heavily in building state-of-the-art Computer Vision and Natural Language Processing (NLP) applications today.&lt;/p&gt;
+&lt;h1 id=&#34;ml-is-not-a-silver-bullet&#34;&gt;ML is not a silver bullet&lt;/h1&gt;
+&lt;p&gt;Analytical models, if they&amp;rsquo;re possible and feasible to arrive at, are better than machine learning because they produce answers and not predictions. ML is not a silver bullet like some may have you believe. There are problems machine learning methods excel in. There are others where analytical approaches are simpler and produce better results. Before employing ML, ask yourself: can this problem be solved analytically?&lt;/p&gt;
+- http://alphacoder.xyz/machine-learning-explained/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>Dockerizing Django in development and production</title>
-      <link>http://alphacoder.xyz/dockerizing-django/</link>
-      <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/dockerizing-django/</guid>
-      <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
-TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.</description>
-    </item>
     
-    <item>
-      <title>I built my own web search engine — here’s how</title>
-      <link>http://alphacoder.xyz/my-web-search-engine/</link>
-      <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/my-web-search-engine/</guid>
-      <description>I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
-About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
-The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place.</description>
-    </item>
     
-    <item>
-      <title>How to run multiple apps on one server using Docker and Traefik</title>
-      <link>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
-      <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
-      <description>Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.
-Use case Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end).</description>
-    </item>
+        <item>
+        <title>How to configure wildcard subdomains</title>
+        <link>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
+        <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/how-to-configure-wildcard-subdomains/ -&lt;p&gt;Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as &lt;strong&gt;team-name.awesomeapp.com&lt;/strong&gt; or &lt;strong&gt;org-name.beta.awesomeapp.com&lt;/strong&gt;. These subdomains are variable, meaning that they are not predefined and can contain any valid &lt;a href=&#34;https://en.wikipedia.org/wiki/Domain_name&#34;&gt;domain name&lt;/a&gt; characters.&lt;/p&gt;
+&lt;p&gt;To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app&amp;rsquo;s url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization&amp;rsquo;s details for instance.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a sample application that displays avatars from &lt;a href=&#34;http://avatars.adorable.io&#34;&gt;Adorable Avatars&lt;/a&gt; based on the subdomain you use.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/wcsubd/demo.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Visit &lt;code&gt;some-random-name.wildcard-subdomains.alphacoder.xyz&lt;/code&gt; where &lt;code&gt;some-random-name&lt;/code&gt; can be anything you like and watch the avatars change!&lt;/p&gt;
+&lt;p&gt;To use wildcard subdomains, go to your domain registrar and create a &amp;ldquo;match all&amp;rdquo; CNAME record&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/wcsubd/dns-conf.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If you want subdomains like &lt;code&gt;some-random-name.alphacoder.xyz&lt;/code&gt;, feel free to skip the &lt;code&gt;.wildcard-subdomains&lt;/code&gt; so that you have only &lt;code&gt;*&lt;/code&gt; in the host field.&lt;/p&gt;
+&lt;p&gt;The web page has just a few lines of code&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+  &amp;lt;title&amp;gt;Wildcard subdomains&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+
+  &amp;lt;h1 id=&amp;quot;subdomain&amp;quot;&amp;gt;&amp;lt;/h1&amp;gt;
+  &amp;lt;img id=&amp;quot;avatar&amp;quot;&amp;gt;
+
+  &amp;lt;script&amp;gt;
+    var subdomain = window.location.hostname.split(&#39;.&#39;)[0];
+    document.getElementById(&#39;subdomain&#39;).textContent = subdomain;
+    var avatarSrc = &#39;https://api.adorable.io/avatars/285/&#39; + subdomain + &#39;.png&#39;;
+    document.getElementById(&#39;avatar&#39;).src = avatarSrc;
+  &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The most important part of the code is line 12, which gets the subdomain from the hostname (&lt;code&gt;window.location.hostname.split(&#39;.&#39;)[0]&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;In development, you can use &lt;code&gt;lvh.me&lt;/code&gt; (e.g &lt;code&gt;some-random-name.lvh.me:8080&lt;/code&gt;) to test your application instead of &lt;code&gt;127.0.0.1&lt;/code&gt;. &lt;code&gt;some-random-name.localhost&lt;/code&gt; also works on browsers I&amp;rsquo;ve tested.&lt;/p&gt;
+- http://alphacoder.xyz/how-to-configure-wildcard-subdomains/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>How to scale an app horizontally using a load balancer</title>
-      <link>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
-      <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
-      <description>As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.
-One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.</description>
-    </item>
     
-    <item>
-      <title>K Means</title>
-      <link>http://alphacoder.xyz/k-means/</link>
-      <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/k-means/</guid>
-      <description>We’ve been talking classification for a while now — from K Nearest Neighbors to Naive Bayes to Support Vector Machines. In this post, we’ll be looking at clustering using an algorithm called K Means. Let’s dive in&amp;hellip;
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article)  K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
-    </item>
     
-    <item>
-      <title>Image upload with Django and Cloudinary</title>
-      <link>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
-      <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</guid>
-      <description>Managing files/images can be a hassle. It can be a real pain to have to deal with uploads, storage, manipulation, administration and delivery of media content in every project you start/or are involved in.
-Luckily, there are cloud platforms that take away the stress of all that, allowing you to ship faster and deliver your product(s) at scale. Cloudinary is one of such platforms. It tags itself as the media management platform for web and mobile developers — an end-to-end solution for all your image and video needs.</description>
-    </item>
+        <item>
+        <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
+        <link>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>
+        <pubDate>Mon, 04 Mar 2019 13:54:48 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ -&lt;p&gt;JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks —  functions which are executed when an operation has been completed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;); }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/async-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with &lt;a href=&#34;http://callbackhell.com/&#34;&gt;callback hell&lt;/a&gt;. Callbacks can easily make code unreadable and difficult to reason about. Thankfully, we have Promises!&lt;/p&gt;
+&lt;p&gt;Promise objects represent the eventual completion or failure of an async operation. We can wrap a function that accepts a callback in a Promise and use the fulfillment handler &lt;code&gt;.then()&lt;/code&gt; to retrieve returned data and/or continue performing other operations.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;);
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;();
+    }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+});
+&lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;
+    .&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/promise-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Better still we can now use Async/Await (ECMAScript 2017/ES8) —  synctactic sugar for Promises —  to make our JavaScript simpler and easier to read.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;);
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;();
+    }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/await-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a little problem though. It&amp;rsquo;s very easy to forget to handle Promise rejections, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we&amp;rsquo;re shown the &lt;code&gt;UnhandledPromiseRejectionWarning&lt;/code&gt; by Node.js.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;();
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/promise-rejection.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We also get the warning if an error (e.g validation error) is thrown inside the Promise.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Summ just happen right now :(&amp;#39;&lt;/span&gt;);
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/throw-rejection.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If you didn&amp;rsquo;t already notice from the warning, &lt;strong&gt;&amp;ldquo;Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code&amp;rdquo;&lt;/strong&gt;. This means not handling Promises properly can crash your app!&lt;/p&gt;
+&lt;p&gt;You can handle Promise rejections by using the failure handler &lt;code&gt;.catch()&lt;/code&gt; or a try/catch block.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;();
+});
+&lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;
+    .&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+    })
+    .&lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;error: &amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/dot-catch.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Summ just happen right now :(&amp;#39;&lt;/span&gt;);
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+    }
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/try-catch.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s not that simple though. Things become more interesting when you have a chain of Promises.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
+});
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;();
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
+    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+    }
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/double-promise.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We still get the warning even though &lt;code&gt;promise2&lt;/code&gt; is wrapped in a try/catch. Wrapping a whole function with try/catch won&amp;rsquo;t cover all Promises!&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s obvious that proper exception handling is needed in &lt;code&gt;promise2&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
+});
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;().&lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;(); });
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
+    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+    }
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But you might not be able to anticipate where exception/error handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;process&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;unhandledRejection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you use error tracking software, this is a good place to notify your team about the error so that it can be fixed ASAP!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;process&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;unhandledRejection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+    &lt;span style=&#34;color:#75715e&#34;&gt;// sendInTheCalvary(err);
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
+});
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;();
+});
+
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
+    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+    }
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/prm-rjctn/handle-all-rejections.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>Deploy your React-Django app on Heroku</title>
-      <link>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
-      <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
-      <description>This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
-TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
- We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
-    </item>
     
-    <item>
-      <title>Here’s a dead simple React-Django setup for your next project</title>
-      <link>http://alphacoder.xyz/dead-simple-react-django-setup/</link>
-      <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/dead-simple-react-django-setup/</guid>
-      <description>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
-TL;DR: https://github.com/nicholaskajoh/React-Django.
-Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.</description>
-    </item>
     
-    <item>
-      <title>Naive Bayes</title>
-      <link>http://alphacoder.xyz/naive-bayes/</link>
-      <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/naive-bayes/</guid>
-      <description>Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
-Bayes formula
-Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:</description>
-    </item>
+        <item>
+        <title>Adminer — a simple GUI client for any DB</title>
+        <link>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
+        <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ -&lt;p&gt;In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called &lt;a href=&#34;https://www.adminer.org&#34;&gt;Adminer&lt;/a&gt;. Adminer is a is a full-featured database management tool built with PHP.&lt;/p&gt;
+&lt;p&gt;Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks. Coming from PHPMyAdmin, this was a no no for me.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d used PHPMyAdmin (via XAMPP) for MySQL but decided to skip XAMPP when I moved from Windows to Ubuntu/Linux a few years ago. So I started using MySQL Workbench. I was also using MongoDB Compass (and Studio 3T briefly) for MongDB.&lt;/p&gt;
+&lt;p&gt;Now I use Adminer for all my DBs. I actively work with MySQL, PostgreSQL and MongoDB so this is really cool. So far, I&amp;rsquo;ve had zero issues with Adminer. It&amp;rsquo;s fast, simple and gets out of the way when I need to get stuff done.&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll show you how to setup Adminer on your machine.&lt;/p&gt;
+&lt;h3 id=&#34;install-php-for-your-os&#34;&gt;Install PHP for your OS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jeffgeerling.com/blog/2018/installing-php-7-and-composer-on-windows-10&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-7-on-ubuntu/&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; After installation, add the PHP CLI to your path if it&amp;rsquo;s not already added. You can test this by running &lt;code&gt;php --version&lt;/code&gt;. You should get a similar result to the one shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ php --version
+PHP 7.2.15-0ubuntu0.18.04.1 (cli) (built: Feb  8 2019 14:54:22) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.2.15-0ubuntu0.18.04.1, Copyright (c) 1999-2018, by Zend Technologies
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;install-a-db-server-optional&#34;&gt;Install a DB server (optional)&lt;/h3&gt;
+&lt;p&gt;Adminer currently supports MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, SimpleDB, Elasticsearch and MongoDB. If you want to use any of these databases locally, you need to install them on your machine.&lt;/p&gt;
+&lt;p&gt;You can also connect to a DB server on a remote machine (e.g a DigitalOcean VPS) or a managed DB service (e.g AWS RDS). In this case, you don&amp;rsquo;t need to install the DB server on your computer.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll be demonstrating with MySQL here. If you want to follow along, you can install MySQL for your OS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-mysql-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;install-db-extensions-for-php-optional&#34;&gt;Install DB extensions for PHP (optional)&lt;/h3&gt;
+&lt;p&gt;If you installed a DB server (the previous step), you might need to &lt;a href=&#34;http://php.net/manual/en/refs.database.php&#34;&gt;install the PHP extension for it&lt;/a&gt; and/or update your PHP config file.&lt;/p&gt;
+&lt;h3 id=&#34;download-and-setup-adminer&#34;&gt;Download and setup Adminer&lt;/h3&gt;
+&lt;p&gt;Adminer is just one PHP file! You can &lt;a href=&#34;https://www.adminer.org/#download&#34;&gt;download it from the Adminer website&lt;/a&gt;. The latest version at the time of writing this tutorial is &lt;a href=&#34;https://github.com/vrana/adminer/releases/download/v4.7.1/adminer-4.7.1.php&#34;&gt;4.7.1&lt;/a&gt;. When you download the PHP file, you can put it anywhere you want. Mine is in a directory named &lt;em&gt;adminer&lt;/em&gt; (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and is renamed to &lt;em&gt;adminer.php&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Start up a terminal and change directory to the folder containing Adminer. In my case, it&amp;rsquo;s &lt;code&gt;~/dev/adminer&lt;/code&gt;. Now run PHP&amp;rsquo;s development server on a port of your choice.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~/dev/adminer$ php -S localhost:8080
+PHP 7.2.15-0ubuntu0.18.04.1 Development Server started at Mon Mar  4 04:41:07 2019
+Listening on http://localhost:8080
+Document root is /home/nicholas/dev/adminer
+Press Ctrl-C to quit.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Visit localhost on your browser (&lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;). You should be greeted by the screen below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/admnr/adminer-login.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now login to your DB. Mine is MySQL.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/admnr/mysql-dbs.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Ensure your DB server is running. If you get an error like &amp;ldquo;None of the supported PHP extensions (MySQLi, MySQL, PDO_MySQL) are available&amp;rdquo; when trying to login, it means you didn&amp;rsquo;t install and/or configure the DB extension for PHP properly.&lt;/p&gt;
+&lt;h3 id=&#34;extend-adminer-with-plugins&#34;&gt;Extend Adminer with plugins&lt;/h3&gt;
+&lt;p&gt;If you need more features on Adminer, you can use plugins. There are &lt;a href=&#34;https://www.adminer.org/en/plugins/&#34;&gt;a ton of plugins already available&lt;/a&gt; and you can create yours if you want.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s install one of the  plugins: &lt;em&gt;edit-textarea&lt;/em&gt;. It uses &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt; for &lt;em&gt;char&lt;/em&gt; and &lt;em&gt;varchar&lt;/em&gt;
+fields instead of the regular text input.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/admnr/text-input.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;char and varchar fields are edited in a text input by default&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a plugins directory in your &lt;em&gt;adminer&lt;/em&gt; directory (e.g &lt;code&gt;~/dev/adminer/plugins&lt;/code&gt;) and &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php&#34;&gt;add this &lt;em&gt;plugin.php&lt;/em&gt; file&lt;/a&gt; in it. &lt;em&gt;plugin.php&lt;/em&gt; is required to use plugins with Adminer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create an &lt;em&gt;index.php&lt;/em&gt; file in your &lt;em&gt;adminer&lt;/em&gt; directory (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and add the following code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;?php
+  function adminer_object() {
+      // required to run any plugin
+      include_once &amp;quot;./plugins/plugin.php&amp;quot;;
+        
+      // autoloader
+      foreach (glob(&amp;quot;plugins/*.php&amp;quot;) as $filename) {
+          include_once &amp;quot;./$filename&amp;quot;;
+      }
+        
+      $plugins = array(
+          // specify enabled plugins here
+      );
+        
+      /* It is possible to combine customization and plugins:
+      class AdminerCustomization extends AdminerPlugin {
+      }
+      return new AdminerCustomization($plugins);
+      */
+        
+      return new AdminerPlugin($plugins);
+  }
+
+  // include original Adminer or Adminer Editor
+  include &amp;quot;./adminer.php&amp;quot;;
+  ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/edit-textarea.php&#34;&gt;the &lt;em&gt;edit-textarea&lt;/em&gt; plugin source file (&lt;em&gt;edit-textarea.php&lt;/em&gt;)&lt;/a&gt; to your plugins directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the plugin in &lt;em&gt;index.php&lt;/em&gt; by adding &lt;code&gt;new AdminerEditTextarea()&lt;/code&gt; in the &lt;code&gt;$plugins&lt;/code&gt; array.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  $plugins = array(
+      // specify enabled plugins here
+      new AdminerEditTextarea(),
+  );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;em&gt;localhost:8080&lt;/em&gt; (NOT &lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;) in your browser, login and check it out!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/admnr/textarea.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Now you can edit using a text area&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; To add a another plugin, all you need to do now is place the plugin source file in the &lt;em&gt;plugins&lt;/em&gt; directory and initialize it with the &lt;code&gt;new&lt;/code&gt; keyword in the &lt;code&gt;$plugins&lt;/code&gt; array (in &lt;em&gt;index.php&lt;/em&gt;) e.g &lt;code&gt;new SomeAwesomePlugin()&lt;/code&gt;.&lt;/p&gt;
+- http://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
-    <item>
-      <title>Support Vector Machine</title>
-      <link>http://alphacoder.xyz/support-vector-machine/</link>
-      <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/support-vector-machine/</guid>
-      <description>The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 7</title>
-      <link>http://alphacoder.xyz/facebook-clone-7/</link>
-      <pubDate>Sat, 09 Dec 2017 09:07:25 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-7/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 (this article)  It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!</description>
-    </item>
-    
-    <item>
-      <title>K Nearest Neighbors</title>
-      <link>http://alphacoder.xyz/k-nearest-neighbors/</link>
-      <pubDate>Sat, 09 Dec 2017 08:44:05 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/k-nearest-neighbors/</guid>
-      <description>K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a classifier as the experts would call it.
-Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though.</description>
-    </item>
-    
-    <item>
-      <title>Linear Regression</title>
-      <link>http://alphacoder.xyz/linear-regression/</link>
-      <pubDate>Mon, 04 Dec 2017 08:44:05 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/linear-regression/</guid>
-      <description>What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
-ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself.</description>
-    </item>
-    
-    <item>
-      <title>A responsive grid system with few lines of CSS</title>
-      <link>http://alphacoder.xyz/responsive-grid-system/</link>
-      <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/responsive-grid-system/</guid>
-      <description>How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need something light!
-Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 6</title>
-      <link>http://alphacoder.xyz/facebook-clone-6/</link>
-      <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-6/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 (this article) Build a Facebook clone from scratch with PHP — Part 7  Relationships are the point of social networks.</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 5</title>
-      <link>http://alphacoder.xyz/facebook-clone-5/</link>
-      <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-5/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile.</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 4</title>
-      <link>http://alphacoder.xyz/facebook-clone-4/</link>
-      <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-4/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 (this article) Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Users are at the center of any application.</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 3</title>
-      <link>http://alphacoder.xyz/facebook-clone-3/</link>
-      <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-3/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 (this article) Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Posts are the heart and soul of Facebook.</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 2</title>
-      <link>http://alphacoder.xyz/facebook-clone-2/</link>
-      <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-2/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  A little about PHP and MySQL So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template.</description>
-    </item>
-    
-    <item>
-      <title>Build a Facebook clone from scratch with PHP — Part 1</title>
-      <link>http://alphacoder.xyz/facebook-clone-1/</link>
-      <pubDate>Sun, 11 Jun 2017 01:22:37 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/facebook-clone-1/</guid>
-      <description>In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!
-All parts  Build a Facebook clone from scratch with PHP — Part 1 (this article) Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  We&amp;rsquo;re making Facebook?</description>
-    </item>
-    
-    <item>
-      <title>HTML, CSS and Javascript as fast as possible</title>
-      <link>http://alphacoder.xyz/html-css-js/</link>
-      <pubDate>Wed, 07 Jun 2017 21:48:21 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/html-css-js/</guid>
-      <description>This post is a prequel to a series of posts on building a Facebook clone with PHP from scratch authored by yours truly. It&amp;rsquo;s intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.
-HTML, CSS and Javascript are front-end languages i.e they run on the client (your user&amp;rsquo;s device/browser). HTML is a templating language. CSS helps you style HTML and Javascript is &amp;ldquo;an object-oriented computer programming language commonly used to create interactive effects within web browsers.</description>
-    </item>
-    
-    <item>
-      <title>Server-side form validation from A to Z with Sails.js</title>
-      <link>http://alphacoder.xyz/sailsjs-form-validation/</link>
-      <pubDate>Fri, 26 May 2017 23:06:50 +0100</pubDate>
-      
-      <guid>http://alphacoder.xyz/sailsjs-form-validation/</guid>
-      <description>NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.
-TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
-Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &amp;ldquo;in real-time&amp;rdquo; as they try to feed your backend with much needed data, but that&amp;rsquo;s not enough.</description>
-    </item>
-    
-    <item>
-      <title>Lazy load your content with Django and jQuery</title>
-      <link>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
-      <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
-      
-      <guid>http://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
-      <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
-Templates Create 2 templates, index.html and posts.html.
-index.html
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.</description>
-    </item>
     
   </channel>
-</rss>
+</rss> 

@@ -5,8 +5,8 @@
     <link>http://alphacoder.xyz/blog/</link>
     <description>Recent content in Posts on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    <copyright>© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <language>en-us</language>
+    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
     <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
     
 	<atom:link href="http://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
@@ -100,7 +100,7 @@ To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match a
       
       <guid>http://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
       <description>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
-1 2  setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;);   If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
+setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;); If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
     </item>
     
     <item>
@@ -178,7 +178,7 @@ In this post, we’ll be discussing two popular Git workflows you should know 
       <guid>http://alphacoder.xyz/dockerizing-django/</guid>
       <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.</description>
+Dockerfile FROMpython:3.6-alpineRUN apk --update add \  build-base \  postgresql \  postgresql-dev \  libpq \  # pillow dependencies jpeg-dev \  zlib-devRUN mkdir /wwwWORKDIR/wwwCOPY requirements.</description>
     </item>
     
     <item>
@@ -400,7 +400,7 @@ Data validation is a very essential part of any API/web app. Client-side validat
       <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
 Templates Create 2 templates, index.html and posts.html.
 index.html
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.</description>
+&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.js  window.CSRF_TOKEN = &amp;#34;{{ csrf_token }}&amp;#34;; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;My Blog Posts&amp;lt;/h2&amp;gt; &amp;lt;div id=&amp;#34;posts&amp;#34;&amp;gt;{% include &amp;#39;myapp/posts.</description>
     </item>
     
   </channel>

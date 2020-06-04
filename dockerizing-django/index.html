@@ -1,231 +1,605 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head>
+<title>Dockerizing Django in development and production</title>
 
-    <title>Dockerizing Django in development and production | Alpha Coder</title>
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
 
-    <link rel="shortcut icon" type="image/png" href="/images/alpha-coder-logo-v1-small.png"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    
-    <style>body{margin:40px auto;max-width:650px;line-height:1.6;font-family:merriweather,serif;font-size:16px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}div.header h1{padding-top:0;padding-bottom:8px;margin-bottom:24px;font-size:15px;font-weight:400;border-bottom:1px solid}.header-menu{float:right}.header-menu a{padding-left:5px}ul.pagination{list-style-type:none;text-align:center;padding:0}ul.pagination>li{padding:0 8px;display:inline-block}div.footer{border-top:1px solid;text-align:center}.footer-links a{padding:0 5px}img{max-width:100%;max-height:100%;display:block;margin-left:auto;margin-right:auto}a,a:visited,a:hover,a:active{color:#00e}.posts-list li:not(:last-child){padding-bottom:20px}.post-meta a:not(:last-child){padding-right:5px}blockquote{margin-top:10px;margin-bottom:10px;margin-left:50px;padding-left:15px;border-left:3px solid #ccc;background-color:#f9f9f9;font-style:italic}</style>
 
-    
 
-    
-    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-82728104-5', 'auto');
 	
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+<link rel="icon" href="/images/alpha-coder-logo-v1-small.png">
+
+
+
+
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/journal.min.ffe8db3120e35aa537e557e2fecb00baae810d2e958c5a2d3044228723cf8ae5.css" integrity="sha256-/&#43;jbMSDjWqU35Vfi/ssAuq6BDS6VjFotMEQihyPPiuU=" media="screen">
+
+
+
+<link rel="stylesheet" href="http://alphacoder.xyz/scss/dark-mode.min.3c3373d43914bf333aabf7bc16b875e785eee2f26c9be97348fe665acd84abee.css" integrity="sha256-PDNz1DkUvzM6q/e8Frh154Xu4vJsm&#43;lzSP5mWs2Eq&#43;4=" media="screen">
+
+
+<script src="http://alphacoder.xyz//js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2");
+</script>
+
+<script src="http://alphacoder.xyz//js/table.js"></script>
+
+
+
+
+<script src="http://alphacoder.xyz//js/toc.js"></script>
+
+
+
+
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
     
-
+    <a class="a-block nav-head false" href="http://alphacoder.xyz/">
     
-
-    <meta property="og:title" content="Dockerizing Django in development and production" />
-<meta property="og:description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
-TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://alphacoder.xyz/dockerizing-django/" />
-<meta property="article:published_time" content="2018-08-15T12:54:00+00:00" />
-<meta property="article:modified_time" content="2018-08-15T12:54:00+00:00" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Dockerizing Django in development and production"/>
-<meta name="twitter:description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
-TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3."/>
-
-    <meta itemprop="name" content="Dockerizing Django in development and production">
-<meta itemprop="description" content="Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
-TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  FROMpython:3.">
-<meta itemprop="datePublished" content="2018-08-15T12:54:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-08-15T12:54:00&#43;00:00" />
-<meta itemprop="wordCount" content="913">
-
-
-
-<meta itemprop="keywords" content="Docker,Django," />
-    
-    <script type="text/javascript">
-        window._mNHandle = window._mNHandle || {};
-        window._mNHandle.queue = window._mNHandle.queue || [];
-        medianet_versionId = "3121199";
-    </script>
-    <script src="https://contextual.media.net/dmedianet.js?cid=8CUBJ5TUP" async="async"></script>
-</head>
-
-
-<body>
-<div class="header">
-    <h1>
-        <a href="/">Alpha Coder</a>
-        <div class="header-menu">
-            <a href="/blog/">Blog</a>
-            <a href="https://courses.alphacoder.xyz">Courses</a>
-            <a href="https://community.alphacoder.xyz">Community</a>
+        <div class="nav-title">
+            Alpha Coder
         </div>
-    </h1>
-</div>
-<div id="content">
+        
+    </a>
 
-<header>
-    <h1>Dockerizing Django in development and production</h1>
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
+                Courses
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
+                Community
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/musings/">
+                Musings
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://tinyletter.com/nicholaskajoh">
+                Newsletter
+            </a>
+            
+        
+    </div>
+
     
 
-<div class="post-meta">
-    <time datetime="2018-08-15">Aug 15, 2018</time>
-    | Tags:
-    <a href="http://alphacoder.xyz/tag/docker/">Docker</a>
-    <a href="http://alphacoder.xyz/tag/django/">Django</a>
-</div>
-</header>
-<article>
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="https://www.linkedin.com/company/alphacoder">
+    LinkedIn
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
     
-    <div id="743473680">
-        <script type="text/javascript">
-            try {
-                window._mNHandle.queue.push(function (){
-                    window._mNDetails.loadTag("743473680", "728x90", "743473680");
-                });
-            }
-            catch (error) {}
-        </script>
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
+    
+
     </div>
     
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
-    <p>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.</p>
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tldr-sample-project" v-on:click="closeDrawer" id="tldr-sample-project-nav">
+										 TL;DR: Sample project
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#dockerfile" v-on:click="closeDrawer" id="dockerfile-nav">
+										 Dockerfile
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#docker-composeyml" v-on:click="closeDrawer" id="docker-composeyml-nav">
+										 docker-compose.yml
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#docker-composeprodyml" v-on:click="closeDrawer" id="docker-composeprodyml-nav">
+										 docker-compose.prod.yml
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
+                    Courses
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
+                    Community
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/musings/">
+                    Musings
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://tinyletter.com/nicholaskajoh">
+                    Newsletter
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tldr-sample-project" v-on:click="closeDrawer" id="tldr-sample-project-nav">
+										 TL;DR: Sample project
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#dockerfile" v-on:click="closeDrawer" id="dockerfile-nav">
+										 Dockerfile
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#docker-composeyml" v-on:click="closeDrawer" id="docker-composeyml-nav">
+										 docker-compose.yml
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#docker-composeprodyml" v-on:click="closeDrawer" id="docker-composeprodyml-nav">
+										 docker-compose.prod.yml
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Dockerizing Django in development and production
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2018-08-15 12:54
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/docker">Docker</a>
+                                &nbsp;
+                            
+                                <a href="/tags/django">Django</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            4 min
+                            
+                            12 s.
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body" v-pre>
+                    <p>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.</p>
 <h2 id="tldr-sample-project">TL;DR: Sample project</h2>
 <p>You can <a href="https://github.com/nicholaskajoh/dockerized-django">check out the code</a> on GitHub.</p>
 <h2 id="dockerfile">Dockerfile</h2>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#8b008b;font-weight:bold">FROM</span><span style="color:#cd5555"> python:3.6-alpine</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> apk --update add <span style="color:#cd5555">\
-</span><span style="color:#cd5555"></span>    build-base <span style="color:#cd5555">\
-</span><span style="color:#cd5555"></span>    postgresql <span style="color:#cd5555">\
-</span><span style="color:#cd5555"></span>    postgresql-dev <span style="color:#cd5555">\
-</span><span style="color:#cd5555"></span>    libpq <span style="color:#cd5555">\
-</span><span style="color:#cd5555"></span>    <span style="color:#228b22"># pillow dependencies</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span>    jpeg-dev <span style="color:#cd5555">\
-</span><span style="color:#cd5555"></span>    zlib-dev<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> mkdir /www<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">WORKDIR</span><span style="color:#cd5555"> /www</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> requirements.txt /www/<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">RUN</span> pip install -r requirements.txt<span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">ENV</span> PYTHONUNBUFFERED <span style="color:#b452cd">1</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2">
-</span><span style="color:#a61717;background-color:#e3d2d2"></span><span style="color:#8b008b;font-weight:bold">COPY</span> . /www/<span style="color:#a61717;background-color:#e3d2d2">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>This <strong>Dockerfile</strong> is pretty straightforward. It starts from a Python-Alpine base image, then installs the dependencies that Django needs, notably <code>postgresql</code> and <code>postgresql-dev</code>. This Django project is setup to use PostgreSQL. If you want to use another database engine like MySQL or MongoDB, you need to install the required adapters/dependencies. Also, if you’re dealing with images (ImageField), you need to install <code>jpeg-dev</code> and <code>zlib-dev</code> as well (see <a href="https://pillow.readthedocs.io/en/latest/installation.html#building-from-source">Pillow dependencies</a>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> python:3.6-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apk --update add <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    build-base <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgresql <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    postgresql-dev <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    libpq <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#75715e"># pillow dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>    jpeg-dev <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    zlib-dev<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir /www<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /www</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> requirements.txt /www/<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> pip install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> PYTHONUNBUFFERED <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /www/<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>This <strong>Dockerfile</strong> is pretty straightforward. It starts from a Python-Alpine base image, then installs the dependencies that Django needs, notably <code>postgresql</code> and <code>postgresql-dev</code>. This Django project is setup to use PostgreSQL. If you want to use another database engine like MySQL or MongoDB, you need to install the required adapters/dependencies. Also, if you’re dealing with images (ImageField), you need to install <code>jpeg-dev</code> and <code>zlib-dev</code> as well (see <a href="https://pillow.readthedocs.io/en/latest/installation.html#building-from-source">Pillow dependencies</a>).</p>
 <p>Afterwards, it installs the packages in <em>requirements.txt</em>, then copies everything in the project root to <code>/www/</code> where the image would be executed from. <code>ENV PYTHONUNBUFFERED 1</code> causes all output to <code>stdout</code> to be flushed immediately, so that you can easily see what’s going on inside your Python app from a terminal.</p>
 <h2 id="docker-composeyml">docker-compose.yml</h2>
 <p>I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">version</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;3&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">services</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">web</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">build</span>:<span style="color:#bbb"> </span>.<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>on-failure<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">env_file</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">command</span>:<span style="color:#bbb"> </span>python<span style="color:#bbb"> </span>manage.py<span style="color:#bbb"> </span>runserver<span style="color:#bbb"> </span><span style="color:#b452cd">0.0.0.0</span>:<span style="color:#b452cd">8000</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">volumes</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- .:/www<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;8000:8000&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">depends_on</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- db<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">db</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;postgres:10.3-alpine&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>unless-stopped<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">env_file</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;5432:5432&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">volumes</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./postgres/data:/var/lib/postgresql/data<span style="color:#bbb">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>There are two services in this Compose file — web and db. The web service builds the Django app using the <em>Dockerfile</em> in the previous section. A volume is created to map the project directory in the host to the one in the container (<code>- .:/www</code>) so that any changes made on the host are mirrored in the container. The <code>command</code> parameter uses Django’s dev server to run the app (<code>python manage.py runserver 0.0.0.0:8000</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">web</span>:
+    <span style="color:#66d9ef">build</span>: .
+    <span style="color:#66d9ef">restart</span>: on-failure
+    <span style="color:#66d9ef">env_file</span>:
+      - ./.env
+    <span style="color:#66d9ef">command</span>: python manage.py runserver <span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">8000</span>
+    <span style="color:#66d9ef">volumes</span>:
+      - .:/www
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+    <span style="color:#66d9ef">depends_on</span>:
+      - db
+  <span style="color:#66d9ef">db</span>:
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;postgres:10.3-alpine&#34;</span>
+    <span style="color:#66d9ef">restart</span>: unless-stopped
+    <span style="color:#66d9ef">env_file</span>:
+      - ./.env
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#e6db74">&#34;5432:5432&#34;</span>
+    <span style="color:#66d9ef">volumes</span>:
+      - ./postgres/data:/var/lib/postgresql/data
+</code></pre></div><p>There are two services in this Compose file — web and db. The web service builds the Django app using the <em>Dockerfile</em> in the previous section. A volume is created to map the project directory in the host to the one in the container (<code>- .:/www</code>) so that any changes made on the host are mirrored in the container. The <code>command</code> parameter uses Django’s dev server to run the app (<code>python manage.py runserver 0.0.0.0:8000</code>).</p>
 <p>The db service uses a PostgreSQL image and maps PostgreSQL’s data directory to <code>./postgres/data</code> in the host, so that DB data is persisted even if the container gets destroyed. This very PostgreSQL image (<a href="https://hub.docker.com/_/postgres/">the official postgreSQL image</a>) uses several environment variables to configure PostgreSQL, including <code>POSTGRES_USER</code>, <code>POSTGRES_PASSWORD</code> and <code>POSTGRES_DB</code>.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># .env
+<pre><code># .env
 DEBUG=1
 ALLOWED_HOSTS=*
 SECRET_KEY=secret123
@@ -235,227 +609,204 @@ POSTGRES_PORT=5432
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=secret123
 POSTGRES_DB=mypgsqldb
-</code></pre></td></tr></table>
-</div>
-</div><p>The above variables are made available to the services using the <code>env_file</code> parameter. The postgres variables are used by both the web and db service (see <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L56">the settings.py file in the sample project</a>).</p>
+</code></pre><p>The above variables are made available to the services using the <code>env_file</code> parameter. The postgres variables are used by both the web and db service (see <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L56">the settings.py file in the sample project</a>).</p>
 <h2 id="docker-composeprodyml">docker-compose.prod.yml</h2>
 <p>My production configs usually differ a bit from their development counterpart. I use Gunicorn to serve the Django app, and NGINX as a reverse proxy and static/media file server.</p>
 <p>This setup, while good for production, is not very convenient in development where the goal is often to <em>break things and move fast</em>. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my <em>docker-compose.prod.yml</em> file.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8b008b;font-weight:bold">version</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;3&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#8b008b;font-weight:bold">services</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">web</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">build</span>:<span style="color:#bbb"> </span>.<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>on-failure<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">env_file</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./.env<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">command</span>:<span style="color:#bbb"> </span>gunicorn<span style="color:#bbb"> </span>--bind<span style="color:#bbb"> </span><span style="color:#b452cd">0.0.0.0</span>:<span style="color:#b452cd">8080</span><span style="color:#bbb"> </span>dockerizeddjango.wsgi<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;8080:8080&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">depends_on</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- nginx<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#8b008b;font-weight:bold">nginx</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#cd5555">&#34;nginx&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>always<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">volumes</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./nginx/conf.d:/etc/nginx/conf.d<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./staticfiles:/static<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- ./mediafiles:/media<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#8b008b;font-weight:bold">ports</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#cd5555">&#34;80:80&#34;</span><span style="color:#bbb">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>The web service in the production Compose file looks identical to one in the development file, except for the <code>command</code> parameter (majorly). It uses <a href="http://gunicorn.org">Gunicorn</a> (<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver">which is more suitable</a>) to serve the application (<code>gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">web</span>:
+    <span style="color:#66d9ef">build</span>: .
+    <span style="color:#66d9ef">restart</span>: on-failure
+    <span style="color:#66d9ef">env_file</span>:
+      - ./.env
+    <span style="color:#66d9ef">command</span>: gunicorn --bind <span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">8080</span> dockerizeddjango.wsgi
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
+    <span style="color:#66d9ef">depends_on</span>:
+      - nginx
+  <span style="color:#66d9ef">nginx</span>:
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;nginx&#34;</span>
+    <span style="color:#66d9ef">restart</span>: always
+    <span style="color:#66d9ef">volumes</span>:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./staticfiles:/static
+      - ./mediafiles:/media
+    <span style="color:#66d9ef">ports</span>:
+      - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</code></pre></div><p>The web service in the production Compose file looks identical to one in the development file, except for the <code>command</code> parameter (majorly). It uses <a href="http://gunicorn.org">Gunicorn</a> (<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver">which is more suitable</a>) to serve the application (<code>gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi</code>).</p>
 <p>There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps <code>/etc/nginx/conf.d</code> to the <code>./nginx/conf.d</code> folder on the host which contains <a href="https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf"><em>dockerizeddjango.conf</em></a>.</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#228b22"># dockerizeddjango.conf
-</span><span style="color:#228b22"></span><span style="color:#8b008b;font-weight:bold">server</span> {
-  <span style="color:#8b008b;font-weight:bold">listen</span> <span style="color:#b452cd">80</span>;
-  <span style="color:#8b008b;font-weight:bold">server_name</span> <span style="color:#cd5555">localhost</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#75715e"># dockerizeddjango.conf
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">server</span> {
+  <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+  <span style="color:#f92672">server_name</span> <span style="color:#e6db74">localhost</span>;
 
-  <span style="color:#228b22"># serve static files
-</span><span style="color:#228b22"></span>  <span style="color:#8b008b;font-weight:bold">location</span> <span style="color:#cd5555">/static/</span> {
-    <span style="color:#8b008b;font-weight:bold">alias</span> <span style="color:#cd5555">/static/</span>;
+  <span style="color:#75715e"># serve static files
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/static/</span> {
+    <span style="color:#f92672">alias</span> <span style="color:#e6db74">/static/</span>;
   }
 
-  <span style="color:#228b22"># serve media files
-</span><span style="color:#228b22"></span>  <span style="color:#8b008b;font-weight:bold">location</span> <span style="color:#cd5555">/media/</span> {
-    <span style="color:#8b008b;font-weight:bold">alias</span> <span style="color:#cd5555">/media/</span>;
+  <span style="color:#75715e"># serve media files
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/media/</span> {
+    <span style="color:#f92672">alias</span> <span style="color:#e6db74">/media/</span>;
   }
 
-  <span style="color:#228b22"># pass requests for dynamic content to gunicorn
-</span><span style="color:#228b22"></span>  <span style="color:#8b008b;font-weight:bold">location</span> <span style="color:#cd5555">/</span> {
-    <span style="color:#8b008b;font-weight:bold">proxy_pass</span> <span style="color:#cd5555">http://web:8080</span>;
+  <span style="color:#75715e"># pass requests for dynamic content to gunicorn
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+    <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://web:8080</span>;
   }
 }
-</code></pre></td></tr></table>
-</div>
-</div><p>This is a very basic Nginx config file. It’s also pretty self-explanatory. It passes requests with <code>/static</code> (e.g <em>example.com/static/virus.js</em>) and <code>/media</code> (e.g <em>example.com/media/anonymous.jpg</em>) to the <code>/static</code> and <code>/media</code> directories on the web container respectively. These directories are mapped to the <code>/staticfiles</code> and <code>/mediafiles</code> directories on the host where <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L98">staticfiles are collected</a> and <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L104">media files uploaded</a>. Other requests are proxied to Gunicorn.</p>
+</code></pre></div><p>This is a very basic Nginx config file. It’s also pretty self-explanatory. It passes requests with <code>/static</code> (e.g <em>example.com/static/virus.js</em>) and <code>/media</code> (e.g <em>example.com/media/anonymous.jpg</em>) to the <code>/static</code> and <code>/media</code> directories on the web container respectively. These directories are mapped to the <code>/staticfiles</code> and <code>/mediafiles</code> directories on the host where <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L98">staticfiles are collected</a> and <a href="https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L104">media files uploaded</a>. Other requests are proxied to Gunicorn.</p>
 <p>Did you observe the use of service names in some files? e.g <code>POSTGRES_HOST=db</code> and <code>proxy_pass http://web:8080;</code>. <strong>db</strong> and <strong>web</strong> resolve to the IP addresses of their containers. This is handled by Docker Compose so that we don’t have to worry about what the IP address of a container is or hardcode IP addresses that might change later.</p>
 <p>Use the following command to run the Compose file:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.prod.yml up --build -d
-</code></pre></td></tr></table>
-</div>
-</div><p>The <code>-f</code> parameter specifies the production Compose file, <em>docker-compose.prod.yml</em> (Docker Compose defaults to <em>docker-compose.yml</em>). <code>--build</code> tells Compose to rebuild the images each time the command is run, and the <code>-d</code> flag runs the containers in detached mode so that they keep running in the background even when your terminal is closed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.prod.yml up --build -d
+</code></pre></div><p>The <code>-f</code> parameter specifies the production Compose file, <em>docker-compose.prod.yml</em> (Docker Compose defaults to <em>docker-compose.yml</em>). <code>--build</code> tells Compose to rebuild the images each time the command is run, and the <code>-d</code> flag runs the containers in detached mode so that they keep running in the background even when your terminal is closed.</p>
 <p>You can run migrations and create an admin user with the following commands:</p>
-<div class="highlight"><div style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.prod.yml run web python manage.py migrate
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.prod.yml run web python manage.py migrate
 docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput
-</code></pre></td></tr></table>
-</div>
-</div>
-</article>
+</code></pre></div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2018-08-15</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://alphacoder.xyz/land-great-startup-internship/">
+			Next<br>How to land an internship at a great startup
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://alphacoder.xyz/my-web-search-engine/">
+			Previous<br>I built my own web search engine — here’s how
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
 
 
 
 
-<form
-  style="border: 1px solid #ccc; text-align: center; border-radius: 2px; margin: 15px 0;"
-  action="https://tinyletter.com/nicholaskajoh"
-  method="post"
-  target="popupwindow" onsubmit="window.open('https://tinyletter.com/nicholaskajoh', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
-    <div style="padding: 20px;">
-      <h2 style="margin-top: 0;">Subscribe to the Alpha Coder Newsletter!</h2>
 
-      <p>Get timely updates on new articles, courses and more from Nicholas Kajoh. Unsubscribe anytime.</p>
-      
-      <input
-        type="text"
-        style="width: 150px; height: 30px; padding-left: 5px; border: 1px solid #ccc; border-radius: 2px;"
-        name="email"
-        placeholder="night.king@westeros.org">
-      <input type="hidden" value="1" name="embed">
-      <input
-        type="submit"
-        style="height: 34px; color: #fff; background-color: #00e; border: 1px solid #00e; border-radius: 2px;"
-        value="Subscribe">
+
+            </div>
+        </div>
     </div>
-</form>
+</div>
 
-
-
-
-  
-  
-    <p>
-      Previous post: <a href="http://alphacoder.xyz/my-web-search-engine/"><strong>I built my own web search engine — here’s how</strong></a>
-    </p>
-  
-
-  
-    <p>
-      Next post: <a href="http://alphacoder.xyz/understanding-modern-front-end-development/"><strong>Understanding modern front-end development</strong></a>
-    </p>
-  
-  
-
-
-
-  <br><div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+            </div><div id="single-column-footer">&copy;
     
+    Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.
     
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "alphacoderxyz" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+            </div>
+    <script>
+let app;
 
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
 
-
-    </div>
-<div class="footer">
-    
-    
-    <div class="footer-links">
-        <a href="/musings/">Musings</a>
-        <a href="https://twitter.com/AlphaCoderXYZ">Twitter</a>
-        <a href="https://www.linkedin.com/company/alphacoder">LinkedIn</a>
-        <a href="mailto:support@alphacoder.xyz">Email</a>
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
         
-        <a href="/blog/index.xml">RSS</a>
-    </div>
-    
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
 
-    
-    
-    <div class="copyright">© Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</div>
-    
-</div>
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
 
-
-<script src="https://unpkg.com/medium-zoom@1.0.4/dist/medium-zoom.min.js"></script>
-<script>
-  mediumZoom(document.querySelectorAll('img'));
-</script></body>
-
+<script src="http://alphacoder.xyz//js/journal.js"></script>
+    </body>
 </html>

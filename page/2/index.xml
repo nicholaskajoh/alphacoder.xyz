@@ -1,0 +1,514 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software engineering with great finesse on Alpha Coder</title>
+    <link>http://alphacoder.xyz/</link>
+    <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
+    
+        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Dealing with code debt</title>
+        <link>http://alphacoder.xyz/dealing-with-code-debt/</link>
+        <pubDate>Wed, 06 Feb 2019 19:40:38 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/dealing-with-code-debt/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/dealing-with-code-debt/ -&lt;p&gt;Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s &lt;del&gt;human&lt;/del&gt; developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.&lt;/p&gt;
+&lt;p&gt;Code debt is not necessarily a bad thing though. As bestselling &lt;em&gt;Rich Dad, Poor Dad&lt;/em&gt; author Robert Kiyosaki says, &amp;ldquo;good debt makes you rich and bad debt makes you poor&amp;rdquo;. It must however be kept at a minimum at all times. This can be achieved by avoiding debt as much as is within one&amp;rsquo;s power and spending a good chunck of dev time paying off the debts already owed. A wise man once said &amp;ldquo;a good developer always pays their code debts&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;When could we incur code debt i.e &amp;ldquo;good&amp;rdquo; debt? Writing elegant and future-proof code is not always possible as one may have limited time and/or experience in a given domain. For instance, it is not uncommon to find a lot of code debt in fast-paced environments like at startups trying to ship an MVP or find product-market fit. However, if the debts are not paid soon afterwards, a lot of damage can happen in future.&lt;/p&gt;
+&lt;p&gt;Outlined below are some steps to take in dealing with code debt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Design first:&lt;/strong&gt; Before writing the first line of code, make sure you have at least a conceptual idea about how the addition would fit in to what already exists to make it extensible or at least prevent it from being less flexible. Try to add as little as possible when making changes (less code generally means less debt). But also try to make things as generic as possible so that they can easily adapt to evolving requirements. To do this, an understanding of the system as a whole is vital. Make sure your team knows where the product is coming from, where it is in the present and where it&amp;rsquo;s going to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Enforce a coding style:&lt;/strong&gt; A coding style makes your codebase more readable and consistent. It can prevent developers from writing spagetti code or introducing their own ideology of what &amp;ldquo;good&amp;rdquo; code should look like. The result is higher dev velocity, less arguments, and ultimately, less debt. Use a linter to enforce a coding style. You may choose to use a standard developed by others, customize it or develop your own. Add linting to your deployment pipeline so that only acceptable code gets checked in or goes to production.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Perform code review, always:&lt;/strong&gt; Code reviews should be a core part of the software development process. Critiquing code helps catch bugs but more so, it provides a medium to question technical decisions that can lead to code debt. Devs are forced to think of the best way instead of the easy way because their work would be critiqued by their peers and may be rejected if not up to par.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Refactor regularly:&lt;/strong&gt; The more code that is added on top of code that needs to be refactored, the more difficult it is to refactor the code. Eventually, after adding more and more code (most of which would likely be &amp;ldquo;bad&amp;rdquo; code), it becomes impossible or nearly impossible to refactor or maintain and a rewrite becomes inevitable (which is costly in time and money). After every release or sprint or dev cycle, make it a duty to refactor the codebase to make it more readable, extensible, scalable etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Make documentation a requirement:&lt;/strong&gt; Documentation not only provides a reference for you and your team, it helps you establish a collective understanding of the system you&amp;rsquo;re building (that is, how it is actually expected to work). It also provides an avenue to evaluate the current implementation against what the system is supposed to be, and it sparks up questions about assumptions and decisions made.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Automate testing:&lt;/strong&gt; The most important thing for me in automated testing is regression. That is, re-running a suite of tests that set the requirements (both functional and non-functional) of the system to ensure nothing broke while a change was made. If done well, it ensures that no (or few) stones are left unturned. It also makes debugging easier and boosts developers&amp;rsquo; confidence in the system which is super important.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Any reasonably complex codebase has some debt. Even simple ones do. The goal is to reduce this debt as much as possible and keep it that way as more code is added. This must be done proactively or else debt would compound to the point where continued development isn&amp;rsquo;t feasible any longer. At this point, a rewrite may be the only logical solution. This can hurt a business and its development team badly.&lt;/p&gt;
+- http://alphacoder.xyz/dealing-with-code-debt/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Deploy microservices on Kubernetes</title>
+        <link>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
+        <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/deploy-microservices-on-kubernetes/ -&lt;p&gt;Kubernetes (AKA k8s) has gained &lt;a href=&#34;https://kubernetes.io/case-studies/&#34;&gt;widespread adoption&lt;/a&gt; in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. &lt;a href=&#34;http://pinterest.com&#34;&gt;Pinterest&lt;/a&gt; uses &lt;a href=&#34;https://www.cncf.io/case-study-pinterest/&#34;&gt;a suite of over 1000 microservices&lt;/a&gt; to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.&lt;/p&gt;
+&lt;p&gt;Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;. In simple terms, Kubernetes helps to automate the deployment and management of containerized applications. This means we can package an app (code, dependencies and config) &lt;a href=&#34;https://www.docker.com/resources/what-container&#34;&gt;in a container&lt;/a&gt; and hand it over to Kubernetes to deploy and scale without worrying about our infrastructure. Under the hood, Kubernetes decides where to run what, monitors the systems and fixes things if something goes wrong.&lt;/p&gt;
+&lt;h1 id=&#34;microservice-architecture&#34;&gt;Microservice architecture&lt;/h1&gt;
+&lt;p&gt;I particularly like &lt;a href=&#34;https://martinfowler.com/microservices/&#34;&gt;James Lewis&amp;rsquo; and Martin Fowler&amp;rsquo;s definition of microservices&lt;/a&gt; as it points out why Kubernetes is such a good solution for the architecture. &amp;ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by &lt;strong&gt;fully automated deployment machinery&lt;/strong&gt;. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&amp;rdquo;. Kubernetes is in fact a &amp;ldquo;fully automated deployment machine&amp;rdquo; that provides a powerful abstraction layer atop server infrastructure.&lt;/p&gt;
+&lt;h1 id=&#34;common-kubernetes-terms&#34;&gt;Common Kubernetes terms&lt;/h1&gt;
+&lt;p&gt;Below are some common terms associated with Kubernetes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Node:&lt;/strong&gt; A node is a single machine in a Kubernetes cluster. It can be a virtual or physical machine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cluster:&lt;/strong&gt; A cluster consists of at least one master machine and multiple worker machines called nodes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pod:&lt;/strong&gt; A pod is the basic unit of computing in Kubernetes. Containers are not run directly. Instead, they are wrapped in a pod.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deployment:&lt;/strong&gt; A deployment is used to manage a pod or set of pods. Pods are typically not created or managed directly. Deployments can automatically spin up any number of pods. If a pod dies, a deployment can automatically recreate it as well.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service:&lt;/strong&gt; Pods are mortal. Consumers should however not be burdened with figuring out what pods are available and how to access them. Services keep track of all available pods of a certain type and provide a way to access them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;yoloo&#34;&gt;Yoloo&lt;/h1&gt;
+&lt;p&gt;In this tutorial, we&amp;rsquo;ll be deploying a simple microservices app called Yoloo on &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/&#34;&gt;Google Kubernetes Engine (GKE)&lt;/a&gt;, a managed Kubernetes service on Google Cloud Platform. Yoloo uses a pre-trained YOLO (&lt;a href=&#34;https://www.youtube.com/watch?v=Cgxsv1riJhI&#34;&gt;You Only Look Once&lt;/a&gt;) model to detect common objects such as bottles and humans in an image. It comprises two microservices, &lt;em&gt;detector&lt;/em&gt; and &lt;em&gt;viewer&lt;/em&gt;. The detector service is a Python/Flask app which takes an image and passes it through the YOLO model to identify the objects in it. The viewer service is a PHP app that acts as a front-end by providing a User Interface for uploading and viewing the images. The app is built to use two external, managed services: Cloudinary for image hosting and Redis for data storage. The source code is available &lt;a href=&#34;https://github.com/nicholaskajoh/microservices&#34;&gt;on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nicholaskajoh/microservices/archive/master.zip&#34;&gt;Download&lt;/a&gt; or clone the project with Git: &lt;code&gt;git clone https://github.com/nicholaskajoh/microservices.git&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Detector service Dockerfile.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; python:3.6-stretch&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 8080&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; mkdir /www&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /www&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; requirements.txt /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; pip install -r requirements.txt&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; PYTHONUNBUFFERED &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CMD&lt;/span&gt; gunicorn --bind 0.0.0.0:8080 wsgi&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Viewer service Dockerfile.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; php:7.2-apache&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 80&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /var/www/html/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Download the YOLO weights in the detector directory.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cd detector/ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; wget https://pjreddie.com/media/files/yolov3.weights
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Change directory to &lt;code&gt;viewer/&lt;/code&gt; and install the PHP dependencies. You need to have &lt;a href=&#34;https://www.apachefriends.org/index.html&#34;&gt;PHP&lt;/a&gt; and &lt;a href=&#34;https://getcomposer.org&#34;&gt;Composer&lt;/a&gt; installed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;composer install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;google-cloud-platform-gcp&#34;&gt;Google Cloud Platform (GCP)&lt;/h1&gt;
+&lt;p&gt;Visit &lt;a href=&#34;https://console.cloud.google.com/home/dashboard&#34;&gt;https://console.cloud.google.com/home/dashboard&lt;/a&gt; and create a new project. You need to have a Google account.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Google offers &lt;a href=&#34;https://cloud.google.com/free/&#34;&gt;a tier with $300 free credit&lt;/a&gt; (for 1 year) to use any GCP product you want.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/new-project-gcp.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create a new project on Google Cloud Platform&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Make sure you &lt;a href=&#34;https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_new_project&#34;&gt;enable billing&lt;/a&gt; for your project.&lt;/p&gt;
+&lt;p&gt;Go to the &lt;a href=&#34;https://console.cloud.google.com/kubernetes&#34;&gt;Kubernetes section&lt;/a&gt; of GCP and create a new &lt;em&gt;standard&lt;/em&gt; cluster. GKE uses VM instances on Google Compute Engine as nodes in the cluster.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/new-cluster-gke.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create a new k8s cluster&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;google-container-registry-gcr&#34;&gt;Google Container Registry (GCR)&lt;/h1&gt;
+&lt;p&gt;Kubernetes uses container images to launch pods. Images need to be stored in a registry where they can be pulled from. GCP provides a registry, the &lt;a href=&#34;https://cloud.google.com/container-registry/&#34;&gt;Google Container Registry&lt;/a&gt;, which can be used to store Docker images. Let&amp;rsquo;s build the images for the detector and viewer services and push them to GCR.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href=&#34;https://cloud.google.com/sdk/install&#34;&gt;Google Cloud SDK&lt;/a&gt; for your OS.&lt;/li&gt;
+&lt;li&gt;Login: &lt;code&gt;gcloud auth login&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Configure docker to use the &lt;code&gt;gcloud&lt;/code&gt; CLI as a credential helper: &lt;code&gt;gcloud auth configure-docker&lt;/code&gt;. You only need to do this once.&lt;/li&gt;
+&lt;li&gt;Build the docker images for the microservices: &lt;code&gt;docker build -t detector-svc detector/&lt;/code&gt; and &lt;code&gt;docker build -t viewer-svc viewer/&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Tag the images with their registry names: &lt;code&gt;docker tag detector-svc gcr.io/{PROJECT_ID}/detector-svc&lt;/code&gt; and &lt;code&gt;docker tag viewer-svc gcr.io/{PROJECT_ID}/viewer-svc&lt;/code&gt;. &lt;code&gt;PROJECT_ID&lt;/code&gt; is your GCP console project ID.&lt;/li&gt;
+&lt;li&gt;Push the docker images to GCR: &lt;code&gt;docker push gcr.io/{PROJECT_ID}/detector-svc&lt;/code&gt; and &lt;code&gt;docker push gcr.io/{PROJECT_ID}/viewer-svc&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;deployments&#34;&gt;Deployments&lt;/h1&gt;
+&lt;p&gt;The detector and viewer services contain deployment files, &lt;code&gt;detector-deployment.yaml&lt;/code&gt; and &lt;code&gt;viewer-deployment.yaml&lt;/code&gt; respectively, which tell k8s what workloads we want to run.&lt;/p&gt;
+&lt;p&gt;Detector service deployment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: extensions/v1beta1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Deployment
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: detector-svc-deployment
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;replicas&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;minReadySeconds&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;15&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;strategy&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;: RollingUpdate
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;rollingUpdate&lt;/span&gt;:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;maxUnavailable&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;maxSurge&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;template&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;: detector-svc
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;containers&lt;/span&gt;:
+        - &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: gcr.io/{PROJECT_ID}/detector-svc
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;imagePullPolicy&lt;/span&gt;: Always
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: detector-svc
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+            - &lt;span style=&#34;color:#66d9ef&#34;&gt;containerPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;envFrom&lt;/span&gt;:
+            - &lt;span style=&#34;color:#66d9ef&#34;&gt;secretRef&lt;/span&gt;:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: detector-svc-secrets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this deployment, we want to run 3 copies (&lt;code&gt;replicas: 3&lt;/code&gt;) of the detector service (&lt;code&gt;- image: gcr.io/{PROJECT_ID}/detector-svc&lt;/code&gt;) for availability and scalability. We label the pods (&lt;code&gt;app: detector-svc&lt;/code&gt;) so that they can easily be referenced as a group. We alse choose rolling updates (&lt;code&gt;type: RollingUpdate&lt;/code&gt;) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.&lt;/p&gt;
+&lt;p&gt;Viewer service deployment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: extensions/v1beta1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Deployment
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: viewer-svc-deployment
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;replicas&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;minReadySeconds&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;15&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;strategy&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;: Recreate
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;template&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;: viewer-svc
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;containers&lt;/span&gt;:
+        - &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: gcr.io/{PROJECT_ID}/viewer-svc
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;imagePullPolicy&lt;/span&gt;: Always
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: viewer-svc
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+            - &lt;span style=&#34;color:#66d9ef&#34;&gt;containerPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;envFrom&lt;/span&gt;:
+            - &lt;span style=&#34;color:#66d9ef&#34;&gt;secretRef&lt;/span&gt;:
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: viewer-svc-secrets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We choose a different redeployment strategy (&lt;code&gt;type: Recreate&lt;/code&gt;) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&amp;rsquo;re going with 2 replicas here.&lt;/p&gt;
+&lt;p&gt;Notice &lt;code&gt;envFrom&lt;/code&gt; under &lt;code&gt;containers&lt;/code&gt; in both deployments? We&amp;rsquo;ll be loading our environment variables from a k8s Secret which we&amp;rsquo;ll create soon.&lt;/p&gt;
+&lt;h1 id=&#34;services&#34;&gt;Services&lt;/h1&gt;
+&lt;p&gt;The k8s services (not to be confused with microservices) in detector and viewer, &lt;code&gt;detector-service.yaml&lt;/code&gt; and &lt;code&gt;viewer-service.yaml&lt;/code&gt;, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer service uses the LoadBalancer service which exposes it externally to the outside world.&lt;/p&gt;
+&lt;p&gt;Detector k8s service.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: v1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Service
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: detector-service
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;: ClusterIP
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+  - &lt;span style=&#34;color:#66d9ef&#34;&gt;port&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;protocol&lt;/span&gt;: TCP
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;targetPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;selector&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;: detector-svc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Viewer k8s service.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: v1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Service
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: viewer-service
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;: LoadBalancer
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+  - &lt;span style=&#34;color:#66d9ef&#34;&gt;port&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;protocol&lt;/span&gt;: TCP
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;targetPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;selector&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;: viewer-svc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; we use the labels (&lt;code&gt;app: detector-svc&lt;/code&gt; and &lt;code&gt;app: viewer-svc&lt;/code&gt;) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.&lt;/p&gt;
+&lt;h1 id=&#34;cloudinary-and-redis&#34;&gt;Cloudinary and Redis&lt;/h1&gt;
+&lt;p&gt;As mentioned earlier, Yoloo depends on Cloudinary and Redis. Cloudinary is a cloud-based image/video hosting service and Redis is an in-memory key-value database.&lt;/p&gt;
+&lt;p&gt;Create an account &lt;a href=&#34;https://cloudinary.com&#34;&gt;on Cloudinary&lt;/a&gt; and &lt;a href=&#34;https://redislabs.com&#34;&gt;on Redis Labs&lt;/a&gt; (a free managed Redis hosting service).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/cloudinary-console.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Cloudinary console&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/redislabs-config.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Redis Labs configuration&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create &lt;em&gt;.env&lt;/em&gt; files from the example env files in both services (&lt;em&gt;.env.example&lt;/em&gt;) and populate them with your Cloudinary and Redis credentials.&lt;/p&gt;
+&lt;p&gt;Detector service .env&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FLASK_APP=detector.py
+FLASK_ENV=production
+CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Viewer service .env&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+DETECTOR_SVC_URL=http://detector-service
+REDIS_URL=redis://:password@127.0.0.1:6379
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notice the url in &lt;code&gt;DETECTOR_SVC_URL&lt;/code&gt;? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use &lt;code&gt;http://detector-service&lt;/code&gt; and not have to worry about what IP a service actually uses.&lt;/p&gt;
+&lt;h1 id=&#34;kubectl&#34;&gt;kubectl&lt;/h1&gt;
+&lt;p&gt;kubectl is a CLI tool for running commands against Kubernetes clusters. To get Kubernetes to run our microservices, we need to apply our deployments and services on the cluster. Outlined below are the steps involved.&lt;/p&gt;
+&lt;p&gt;Install &lt;code&gt;kubectl&lt;/code&gt; CLI &lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/install-kubectl/&#34;&gt;for your OS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Set your Yoloo GCP project as default on the &lt;code&gt;gcloud&lt;/code&gt; CLI.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gcloud config set project &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;PROJECT_ID&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Set the default compute zone or region of your cluster. You can find this in the cluster details page on your GCP dashboard.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gcloud config set compute/zone &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;COMPUTE_ZONE&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;or&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gcloud config set compute/region &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;COMPUTE_REGION&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Generate a &lt;code&gt;kubeconfig&lt;/code&gt; entry to run &lt;code&gt;kubectl&lt;/code&gt; commands against a your GCP cluster.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gcloud container clusters get-credentials &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;CLUSTER_NAME&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; if you use minikube, you can use the following command to switch back to your local cluster.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl config use-context minikube
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create k8s Secrets from the .env files in both services.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create secret generic detector-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;detector/.env
+kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;viewer/.env
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can use the following commands to update the secrets.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create secret generic detector-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;detector/.env --dry-run -o yaml | kubectl apply -f -
+kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;viewer/.env --dry-run -o yaml | kubectl apply -f -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit your GKE cluster dashboard on GCP and check the &lt;em&gt;Configuration&lt;/em&gt; section. You should see the detector and viewer service secrets.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/gke-config.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;GKE cluster Config showing detector and viewer service secrets&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the &lt;code&gt;jq&lt;/code&gt; utility (&lt;a href=&#34;https://stedolan.github.io/jq/&#34;&gt;https://stedolan.github.io/jq/&lt;/a&gt;) and run the following where &lt;code&gt;my-secrets&lt;/code&gt; is the name of your k8s secret.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get secret my-secrets -o json | jq &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the deployments.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f detector/detector-deployment.yaml
+kubectl apply -f viewer/viewer-deployment.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check the &lt;em&gt;Workloads&lt;/em&gt; section of the dashboard. You should see the detector and viewer service deployments.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/gke-workloads.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;GKE cluster Workloads showing the microservice deployments&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create the services.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f detector/detector-service.yaml
+kubectl apply -f viewer/viewer-service.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The detector and viewer k8s services can be found in the &lt;em&gt;Services&lt;/em&gt; section of the dashboard.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/gke-services.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;GKE cluster Services showing the k8s services for Yoloo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To visit the application, go to the viewer service page on the dashboard and locate the &lt;em&gt;External endpoints&lt;/em&gt; IP address.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/viewer-svc-external-ip.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Viewer service external IP address&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/yoloo-app-ui.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;UI of the Yoloo app&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ms-k8s/yoloo-sample-output.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Sample output image from Yoloo&lt;/em&gt;&lt;/p&gt;
+- http://alphacoder.xyz/deploy-microservices-on-kubernetes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Hello Hugo!</title>
+        <link>http://alphacoder.xyz/hello-hugo/</link>
+        <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/hello-hugo/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/hello-hugo/ -&lt;p&gt;If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration &lt;a href=&#34;http://alphacoder.xyz/from-medium-to-ghost&#34;&gt;from a Medium.com publication to a self-hosted Ghost installation on Vultr&lt;/a&gt;. Shortly after, I decided to ditch &lt;a href=&#34;http://ghost.org&#34;&gt;Ghost&lt;/a&gt; (a Node.js CMS) for &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.&lt;/p&gt;
+&lt;p&gt;Ghost is a great CMS. It&amp;rsquo;s simple, it&amp;rsquo;s clean and a joy to use. The story editor is very similar to Medium&amp;rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Theme customization and update:&lt;/strong&gt; I needed a quick way to make changes to my blog&amp;rsquo;s theme and a way to update it periodically without clearing out all my customizations. I couldn&amp;rsquo;t find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog&amp;rsquo;s server to push changes, but I never got to do it. I manually edited the theme&amp;rsquo;s files on the server with nano as a temporary fix for quick customizations which is less than ideal.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Backup:&lt;/strong&gt; I wanted automatic backups for my posts. I couldn&amp;rsquo;t find a clean way to do periodic backups automatically. Ghost&amp;rsquo;s data export doesn&amp;rsquo;t include images, so if I wanted to backup all my data, I&amp;rsquo;d have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn&amp;rsquo;t find a ready-made solution for that.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Offline writing and editing:&lt;/strong&gt; Inspiration to write can come at any time whether you&amp;rsquo;re connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cost:&lt;/strong&gt; While the cost of self-hosting my Ghost blog was affordable, I figured I&amp;rsquo;d need to pay more once I started getting more traffic. But beyond that, I don&amp;rsquo;t see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&amp;rsquo;s repository so it&amp;rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/nicholaskajoh/simple-hugo-theme&#34;&gt;new blog theme&lt;/a&gt; is inspired by &lt;a href=&#34;http://bettermotherfuckingwebsite.com&#34;&gt;http://bettermotherfuckingwebsite.com&lt;/a&gt;. I wanted something clean, accessible and performant — something that doesn&amp;rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.&lt;/p&gt;
+&lt;p&gt;I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&amp;rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&amp;rsquo;t do 301 redirects. Apparently it&amp;rsquo;s against the law. I&amp;rsquo;m however hopeful that the blog will pick up soon.&lt;/p&gt;
+&lt;p&gt;The blog&amp;rsquo;s source is available on GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/alphacoder.xyz&#34;&gt;https://github.com/nicholaskajoh/alphacoder.xyz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Okay. That&amp;rsquo;s it for now. Hopefully I don&amp;rsquo;t jump ship again.&lt;/p&gt;
+- http://alphacoder.xyz/hello-hugo/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>From Medium to Ghost</title>
+        <link>http://alphacoder.xyz/from-medium-to-ghost/</link>
+        <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/from-medium-to-ghost/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/from-medium-to-ghost/ -&lt;p&gt;Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.&lt;/p&gt;
+&lt;h2 id=&#34;why-the-move&#34;&gt;Why the move?&lt;/h2&gt;
+&lt;p&gt;I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.5k from 15 articles in 2017. I&amp;rsquo;d wanted to take things up a notch with proper branding (colors, custom domain etc) to make it easier to sell myself as a Software Engineer and Teacher, for quite a while. In September, I created a Medium publication after deciding that self-hosting a blog would be too much work. I didn&amp;rsquo;t quite like the publication thingy, but it was really easy to setup so I went with it; up until the point when I wanted to use a custom domain. Medium does not allow that anymore. Annoyed, I started to look for alternatives. I chose Ghost.&lt;/p&gt;
+&lt;h2 id=&#34;why-ghost&#34;&gt;Why Ghost?&lt;/h2&gt;
+&lt;p&gt;I was going to use WordPress but I decided to give Ghost a try, and I&amp;rsquo;m liking what I&amp;rsquo;m seeing so far (smooth-ish installation, clean UI etc). I was also kinda drawn by the fact that it&amp;rsquo;s built with NodeJS/JavaScript. Plus, I heard &lt;a href=&#34;https://ghost.org/vs/wordpress/&#34;&gt;it&amp;rsquo;s a lot faster&lt;/a&gt;, so&amp;hellip; you know—the faster the better.&lt;/p&gt;
+&lt;h2 id=&#34;how-are-you-migrating&#34;&gt;How are you migrating?&lt;/h2&gt;
+&lt;p&gt;All future articles will be publish here on &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. I&amp;rsquo;ll be moving older posts over manually and gradually since &lt;a href=&#34;https://medium.com/secjuice/secjuice-is-abandoning-medium-why-medium-doesnt-deserve-our-publication-2a772ac64e46&#34;&gt;Medium makes it very difficult for users to export their content to other platforms&lt;/a&gt;. Also, it&amp;rsquo;s not possible to do 301 redirects from Medium to Ghost for migrated posts, so I won&amp;rsquo;t be deleting the original articles. I&amp;rsquo;ll link from the posts on Medium to the new blog. The Medium posts (basically title plus link to this blog) will remain until I notice little or no traffic from Medium. I may decide to delete the publication then.&lt;/p&gt;
+&lt;h2 id=&#34;what-will-you-miss-from-medium&#34;&gt;What will you miss from Medium?&lt;/h2&gt;
+&lt;p&gt;Little if anything. I used to think Medium was the major source of traffic on my posts. It turns out it&amp;rsquo;s about the least source, especially in my most trafficked articles. For instance, my top post this year had 37k views. 28k of that was from Google.com. Only 6% was from Medium. If I continue writing posts that help solve peoples&amp;rsquo; problem, I believe I&amp;rsquo;ll get good traffic.&lt;/p&gt;
+&lt;h2 id=&#34;spec-sheet&#34;&gt;Spec sheet?&lt;/h2&gt;
+&lt;p&gt;So the blog uses &lt;a href=&#34;https://ghost.org&#34;&gt;Ghost&lt;/a&gt; as you already know. The Ghost installation currently runs on a $5-per-month Ubuntu server &lt;a href=&#34;https://www.vultr.com&#34;&gt;on Vultr&lt;/a&gt;. This should be okay for now. As the blog grows, I&amp;rsquo;ll increase the server capacity accordingly.&lt;/p&gt;
+&lt;h2 id=&#34;ads-on-the-blog&#34;&gt;Ads on the blog?&lt;/h2&gt;
+&lt;p&gt;Maybe. I might be placing non-intrusive ads on the site sometime in the future in order to offset the costs of running the blog.&lt;/p&gt;
+&lt;h2 id=&#34;what-should-i-be-expecting-from-alpha-coder&#34;&gt;What should I be expecting from Alpha Coder?&lt;/h2&gt;
+&lt;p&gt;In 2019, I&amp;rsquo;m going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I&amp;rsquo;ll try my best. I&amp;rsquo;ll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I&amp;rsquo;ll also be doing long form posts. If you want me to write about something, please let me know on Twitter &lt;a href=&#34;https://twitter.com/nicholaskajoh&#34;&gt;@nicholaskajoh&lt;/a&gt; (DMs are open).&lt;/p&gt;
+- http://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>A tip for working on side projects</title>
+        <link>http://alphacoder.xyz/side-project-tip/</link>
+        <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/side-project-tip/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/side-project-tip/ -&lt;p&gt;Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one. I’ve had my fair share of this experience and a lot of projects in project graveyard have my name on it.&lt;/p&gt;
+&lt;p&gt;I’ve thought deeply about my inability to complete many projects I started. One important reason people like me abandon projects is because their scopes are too large. Personally, I think your ideas can be as big and wild as possible. But your project’s scope? Not so much. I find my sweet spot for working on and completing a side project to be 2–4 weeks. If my project takes longer than that, I’ll probably never finish it. This is what works for me. I feel most people abandon projects because they’re too large and they give up on being able to finish it or just lose interest.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Think small, build small&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In order to complete a project within a two-to-four-week timeline, I outline all the features of the project and select the most important one/ones which can be completed within that time. Even if you’re building the next Facebook, 4 weeks is enough time to crudely ship the core features that define your app. If this or a similar timeline is not enough (say you’re building an enterprise app that needs to have &lt;em&gt;x&lt;/em&gt; features for clients to buy in), you should consider working full time on the project and probably getting others to collaborate on it.&lt;/p&gt;
+&lt;p&gt;My recommendation when working on side projects is to think small and build small. Your software doesn’t have to solve world hunger or serve 1 million people to be useful or even successful. In fact, some of the more successful products today started out as side projects that aimed at simplifying a multi-step process for accomplishing a common task to a one-step one. Yes, it can be that simple!&lt;/p&gt;
+- http://alphacoder.xyz/side-project-tip/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Check domain availability from your terminal</title>
+        <link>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
+        <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/check-domain-availability-from-your-terminal/ -&lt;p&gt;I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been &lt;em&gt;legitly&lt;/em&gt; purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.&lt;/p&gt;
+&lt;p&gt;You can boycott registrars by doing a WHOIS lookup on the desired domain instead. If a match is found, info about the domain is displayed but if no match is found, you know the site is available. There are a couple of websites that provide this functionality, most notably &lt;a href=&#34;https://www.whois.com/&#34;&gt;https://www.whois.com&lt;/a&gt;. Alternatively, you can use the WHOIS CLI tool.&lt;/p&gt;
+&lt;p&gt;To install, run…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo apt install whois
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;If you’re a Windows user, you can download the WHOIS CLI here:&lt;/em&gt; &lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&#34;&gt;&lt;em&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To check for availability of a site, run &lt;code&gt;whois sitename.tld&lt;/code&gt;. E.g:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ whois example.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If it&amp;rsquo;s been registered, you’ll get a result like so…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*_KfHQUBzwAQUiq0NaGFAeQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If not, you’ll get something like this…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*b2-XSsJ-M2Z_5lbPiv0qCw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- http://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to Git push to an AWS EC2 remote using a PEM file</title>
+        <link>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+        <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ -&lt;p&gt;AWS provides you with a &lt;em&gt;.pem&lt;/em&gt; file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…&lt;/p&gt;
+&lt;h3 id=&#34;1-copy-private-key-in-pem-to-ssh-folder&#34;&gt;1. Copy private key in PEM to .ssh folder&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;$ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-generate-and-save-public-key&#34;&gt;2. Generate and save public key&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.ssh/id_rsa_ec2.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-add-private-key-to-ssh-agent&#34;&gt;3. Add private key to ssh-agent&lt;/h3&gt;
+&lt;p&gt;Start ssh-agent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ eval &amp;quot;$(ssh-agent -s)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then add your key to the agent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-add ~/.ssh/id_rsa_ec2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;At this point, you should be able to access your instance without the PEM file. Instead of:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh -i my-aws-ec2-instance.pem ec2-user@ec2-ip.compute-x.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Use:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh ec2-user@ec2-ip.compute-x.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-add-remote-and-push&#34;&gt;4. Add remote and push&lt;/h3&gt;
+&lt;p&gt;Change directory to your local Git repository and add the remote URL of your server&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git remote add ec2server ec2-user@ec2-ip.compute-1.amazonaws.com:/home/ec2-user/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now push…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git push ec2server&lt;/code&gt;&lt;/pre&gt;
+- http://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>2 Git workflows you should know</title>
+        <link>http://alphacoder.xyz/git-workflows/</link>
+        <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/git-workflows/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/git-workflows/ -&lt;p&gt;Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.&lt;/p&gt;
+&lt;p&gt;In this post, we’ll be discussing two popular Git workflows you should know — &lt;em&gt;Gitflow&lt;/em&gt; and the &lt;em&gt;Forking workflow&lt;/em&gt;. Let’s dig right in!&lt;/p&gt;
+&lt;h3 id=&#34;gitflow&#34;&gt;Gitflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*8-zDz1s5Atux_yNW_mXmfg@2x.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Gitflow workflow. Source: nvie.com&lt;/p&gt;
+&lt;p&gt;Developed and popularized by &lt;a href=&#34;https://nvie.com/about&#34;&gt;Vincent Driessen&lt;/a&gt;, the Gitflow workflow is a branching model built around release management. It involves the use of two main branches (&lt;em&gt;master&lt;/em&gt; and &lt;em&gt;develop&lt;/em&gt;) and three supporting branches (&lt;em&gt;feature&lt;/em&gt;, &lt;em&gt;release&lt;/em&gt; and &lt;em&gt;hotfix&lt;/em&gt;), with strict branch off and merge rules.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;master&lt;/em&gt; branch is the production/stable branch while the &lt;em&gt;develop&lt;/em&gt; branch reflects the latest changes to the software for the next release. A &lt;em&gt;feature&lt;/em&gt; branch is created when a new feature is to be added.&lt;/p&gt;
+&lt;p&gt;When all the features for the next release have been merged to &lt;em&gt;develop&lt;/em&gt; and it is ready to be released, a versioned &lt;em&gt;release&lt;/em&gt; branch is created off &lt;em&gt;develop&lt;/em&gt;. This branch does not take any new features — only bug fixes. When the &lt;em&gt;release&lt;/em&gt; branch is ready to be taken to production, it is merged into &lt;em&gt;master&lt;/em&gt; and tagged with the release version. It is also merged into &lt;em&gt;develop&lt;/em&gt; so that &lt;em&gt;develop&lt;/em&gt; is updated with the fixes.&lt;/p&gt;
+&lt;p&gt;If a bug is discovered in production, a &lt;em&gt;hotfix&lt;/em&gt; branch is created to fix it. This branch is merged into &lt;em&gt;master&lt;/em&gt; (and versioned), as well as into &lt;em&gt;develop&lt;/em&gt; or to &lt;em&gt;release&lt;/em&gt; (if one currently exists).&lt;/p&gt;
+&lt;p&gt;You can learn more about this workflow from Vincent himself in his article titled &lt;a href=&#34;https://nvie.com/posts/a-successful-git-branching-model/&#34;&gt;A Successful Git Branching Model&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;forking-workflow&#34;&gt;Forking workflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*J4Y-c1_DbbIviHLOa9spsQ.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Forking workflow&lt;/p&gt;
+&lt;p&gt;The Forking workflow is common in open source projects where anyone can contribute. Outside collaborators are not given write access to the official repository. They must first fork the repository, create a new branch, make the changes they want, then send a Pull Request to the official repository.&lt;/p&gt;
+&lt;p&gt;A fork is a server-side clone of a repository. You can fork any public repository on &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; and you’ll get a copy of it on your own account. You can make any changes you want to this fork. Forks need to be regularly synchronized with the upstream (official) repository so that they can have the latest changes.&lt;/p&gt;
+&lt;p&gt;A Pull Request (PR) is a request to merge the changes from a branch in a fork to an upstream repository. A project maintainer may accept, reject or request changes to a PR before it’s merged.&lt;/p&gt;
+&lt;p&gt;You can learn more about this workflow with &lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow&#34;&gt;this tutorial from Atlassian.com&lt;/a&gt;.&lt;/p&gt;
+- http://alphacoder.xyz/git-workflows/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Understanding modern front-end development</title>
+        <link>http://alphacoder.xyz/understanding-modern-front-end-development/</link>
+        <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/understanding-modern-front-end-development/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/understanding-modern-front-end-development/ -&lt;p&gt;It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.&lt;/p&gt;
+&lt;p&gt;We’re going to discuss the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;package managers (npm)&lt;/li&gt;
+&lt;li&gt;transpilers (Babel)&lt;/li&gt;
+&lt;li&gt;module bundlers (Webpack)&lt;/li&gt;
+&lt;li&gt;task runners (Grunt)&lt;/li&gt;
+&lt;li&gt;CSS preprocessors (SASS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;package-managers&#34;&gt;Package Managers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*AagfZZ8bGOI4iTbLqewg6Q.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;npm logo (&lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;One important principle you’ll learn as a Sofware Developer is DRY (Don’t Repeat Yourself). Once you see yourself writing the same code in three or more places in a project, you should find a way to abstract that functionality into a reusable function, class or module.&lt;/p&gt;
+&lt;p&gt;Front-end projects have a lot in common in terms of UI components and logic so it might be an even better idea to abstract functionalities into reusable libraries, so that they may be shared across projects. A ton of libraries have been built to do all sorts of things from handling AJAX requests to manipulating dates and images. In order to cut down dev time and/or not reinvent the wheel, front-end developers use many such libraries in their projects — sometimes all too much.&lt;/p&gt;
+&lt;p&gt;It can be difficult to manage these libraries (or dependencies, as they’re commonly called) manually. Even if your project has only three dependencies, it may be hard to keep everything clean and dandy because these dependencies could have their own dependencies! This is where a package manager comes in. Package managers automate the process of installing, upgrading, configuring and removing packages (or dependencies or libraries) in your project.&lt;/p&gt;
+&lt;p&gt;npm (Node Package Manager) is a popular package manager used by front-end developers today. It is the default package manager for Node.js, an environment for running JavaScript outside of a browser. npm uses a file named &lt;em&gt;package.json&lt;/em&gt; to know the dependencies required by your project, making it easy for you and your team to run a single command that installs all the libraries you need to run your application. You can start learning how to use npm by reading &lt;a href=&#34;https://docs.npmjs.com/getting-started/what-is-npm&#34;&gt;What is npm?&lt;/a&gt; from the official docs.&lt;/p&gt;
+&lt;h1 id=&#34;transpilers&#34;&gt;Transpilers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*GH2R-pwLm2KcZjmEXc-O6Q.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;babel logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Lack of browser support for some of the newer features of JavaScript (&lt;a href=&#34;http://es6-features.org&#34;&gt;ES6&lt;/a&gt;) has been a major challenge for many front-end developers who want to use the latest and greatest to write better code and ship features faster. Developers have also desired features not available in the language (such as type annotations, generics, namespaces, interfaces etc found in &lt;a href=&#34;https://www.typescriptlang.org&#34;&gt;TypeScript&lt;/a&gt;) or just wanted syntactic sugar (like the Python-like &lt;a href=&#34;https://coffeescript.org&#34;&gt;CoffeeScript&lt;/a&gt;). Transpilers are used to solve these problems.&lt;/p&gt;
+&lt;p&gt;A transpiler (AKA source-to-source compiler) is a type of compiler that takes the source code of a program in one language and produces the equivalent source code in another language. This means I can write &lt;a href=&#34;https://softwareengineering.stackexchange.com/a/306847&#34;&gt;ES6 JavaScript&lt;/a&gt; and have it converted to ES5 so that it can run on all modern browsers. I can also choose to write TypeScript, CoffeeScript, ClojureScript or Dart code, taking advantage of features that make it faster and scalable to build large web apps.&lt;/p&gt;
+&lt;p&gt;Babel is a commonly used transpiler for converting ES6+ code into a backwards compatible version of JavaScript supported by current and older browsers. It is also used to accomplish specific tasks such as converting JSX in React.js code to JavaScript via plugins. You can try out and learn more about Babel from their official website: &lt;a href=&#34;https://babeljs.io&#34;&gt;babeljs.io&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;module-bundlers&#34;&gt;Module Bundlers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*aCVL0uOhdAJXkrPWwv06yw.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;webpack logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Web development has become increasing JavaScript-centric over the years — Single-page Applications (SPAs), Progressive Web Apps (PWAs) and such. As front-end apps were growing in complexity, it was imperative to develop tools that could package an application (code, assets) and its dependencies into light-weight and performant bundles that will be understood by browsers.&lt;/p&gt;
+&lt;p&gt;The main function of a module bundler is to package JavaScript files for use in a web browser, but bundlers are also capable of transforming and bundling other assets such as CSS files and images.&lt;/p&gt;
+&lt;p&gt;Webpack is arguably the most popular JavaScript bundler in the wild today. It has advanced features such as bundle splitting, source maps, hot module reloading and lazy loading. You can learn more about Webpack here: &lt;a href=&#34;https://webpack.js.org/concepts/&#34;&gt;https://webpack.js.org/concepts&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;task-runners&#34;&gt;Task Runners&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*qkmnWMz2Nr8FA72wK-ZLjA.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;grunt logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Task runners make life easier by doing what they do — run tasks! During development, front-end engineers find themselves repeating the same things (such as minification, compilation, unit-testing and linting) over and over again. The time used in performing these mundane tasks can be better spent doing more important things like squashing bugs and adding new features. Task runners help you automate these tasks so that you can run them quickly with one or a few commands.&lt;/p&gt;
+&lt;p&gt;Grunt is a popular task runner used in front-end apps. It uses a CLI to run custom tasks which can be defined in a file called &lt;em&gt;Gruntfile&lt;/em&gt;. You can get started with Grunt by reading &lt;a href=&#34;https://gruntjs.com/getting-started&#34;&gt;the documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;css-preprocessors&#34;&gt;CSS Preprocessors&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*iSV5npwzchT-UqNPLSxPvQ.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;sass logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;CSS preprocessors let you generate CSS from their own unique syntax. There are many CSS preprocessors available which provide features that don’t exist in pure CSS such as mixins, selector nesting, selector inheritance etc. These features make your CSS DRY, and help you write modular code, save time, create reusable components and maintain large projects fairly easily.&lt;/p&gt;
+&lt;p&gt;A popular option for a CSS processor is SASS, which stands for Syntactically Awesome Style Sheet. SASS supports variables, loops, mixins with arguments etc. You can learn more about SASS by reading &lt;a href=&#34;https://sass-lang.com/guide&#34;&gt;the official guide&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
+&lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
+- http://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to land an internship at a great startup</title>
+        <link>http://alphacoder.xyz/land-great-startup-internship/</link>
+        <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/land-great-startup-internship/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/land-great-startup-internship/ -&lt;p&gt;Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.&lt;/p&gt;
+&lt;p&gt;Here are some tips on how to land an internship at a great startup&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;do-your-homework&#34;&gt;Do your homework&lt;/h2&gt;
+&lt;p&gt;I remember being caught off guard when asked about the company I was applying to by my interviewer. I knew very little about the them. Great startups want folks who know and care about their vision and products.&lt;/p&gt;
+&lt;p&gt;Make a list of all the startups you’re interested in applying to and do your research. Google is your friend. Visit their websites, read their blogs, follow their activities on social media and checkout the latest news about them. If possible, do same for influential individuals at the companies. In addition to being able to answer questions about the company when asked, you’ll be able to learn about their products, tech stack, culture etc and know for sure if you’d like to be part of what they do.&lt;/p&gt;
+&lt;h2 id=&#34;dont-go-through-the-front-door&#34;&gt;Don’t go through the front door&lt;/h2&gt;
+&lt;p&gt;Going through the front door means applying to a company directly e.g from a job ad or sending them an email. Many startups don’t have formal internship programs. As such, its hard to find good internship job ads on/offline. Also, from personal experience sending tons of emails, I’ve found that a good number of companies don’t respond. The ones that do usually say something along the lines of “sorry, we’re not recruiting interns at this time” (really annoying).&lt;/p&gt;
+&lt;p&gt;There was this company that said they didn’t take interns at the time but I knew people who were interning there. In fact, I asked someone who was interning there how he got in and he told me he “just got a call”. What was the interview process like? “I wasn’t interviewed”. Who called you? He refused to tell me. He definitely knew a top dog at the company. For sure.&lt;/p&gt;
+&lt;p&gt;The best way to go is through the “back door”. If you can get a referral from an employee at a company or make friends with the folks in upper management, you’ll most likely get yourself a job. There are several avenues to connect with people — meetups, developer communities, Twitter, friends of friends etc. When you try to connect with people, don’t beg or ask for favors. Get them interested in you and/or your work, then register your interest in their company and opportunities for internship.&lt;/p&gt;
+&lt;p&gt;It’s hard to socialize and network, especially if you’re introverted like me. Getting people interested in you is not the easiest thing in the world but if you do a good job, you likely get yourself an interview or even an offer.&lt;/p&gt;
+&lt;h2 id=&#34;work-on-personal-projects&#34;&gt;Work on personal projects&lt;/h2&gt;
+&lt;p&gt;If you’re looking for an internship, you probably have little or no work experience, and experience is a very important factor used by employers to rate one’s skill. You can make up by working on personal projects. Personal projects help you develop yourself, and give you something to talk about at interviews and other situations where you might want to sell yourself.&lt;/p&gt;
+&lt;p&gt;When working on projects, aim for quality and not quantity. The number of apps you’ve built is not nearly as important as what the apps do, how you built them and how much impact they’ve made. You don’t have to work on something big and complex. You just need something interesting and thoughtful.&lt;/p&gt;
+&lt;h2 id=&#34;write-a-solid-cv&#34;&gt;Write a solid CV&lt;/h2&gt;
+&lt;p&gt;Most of the people (e.g CEOs, developers and recruiters) who I’ve chatted with about internship opportunities at their company have asked me to send them my CV. It’s important to have a solid CV handy during your job search.&lt;/p&gt;
+&lt;p&gt;I’ve found that a one-page CV with the headings: Summary, Experience, Projects, Skills, Education and Accomplishments does the trick. But I’m no CV expert. Do read &lt;a href=&#34;https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume/&#34;&gt;My Personal Formula for a Winning Resume&lt;/a&gt; by Laszlo Buck and watch &lt;a href=&#34;https://www.youtube.com/watch?v=zrXZBkYzuZo&#34;&gt;How to: Work at Google — Resume Tips&lt;/a&gt; for more insights.&lt;/p&gt;
+&lt;h2 id=&#34;dont-lie&#34;&gt;Don’t lie&lt;/h2&gt;
+&lt;p&gt;Don’t lie about your abilities! You’ll probably interview with a developer/designer who has years of experience working with a plethora of technologies. They can spot liars easily. Don’t try to wow them. Instead, tell them about your learning journey — where you want to go, how far you’ve come and how working with them would move you towards achieving your goals.&lt;/p&gt;
+- http://alphacoder.xyz/land-great-startup-internship/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

@@ -1,0 +1,1020 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software engineering with great finesse on Alpha Coder</title>
+    <link>http://alphacoder.xyz/</link>
+    <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
+    
+        <atom:link href="http://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Dockerizing Django in development and production</title>
+        <link>http://alphacoder.xyz/dockerizing-django/</link>
+        <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/dockerizing-django/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/dockerizing-django/ -&lt;p&gt;Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.&lt;/p&gt;
+&lt;h2 id=&#34;tldr-sample-project&#34;&gt;TL;DR: Sample project&lt;/h2&gt;
+&lt;p&gt;You can &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django&#34;&gt;check out the code&lt;/a&gt; on GitHub.&lt;/p&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; python:3.6-alpine&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apk --update add &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    build-base &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    postgresql &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    postgresql-dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    libpq &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# pillow dependencies&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;    jpeg-dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    zlib-dev&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; mkdir /www&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /www&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; requirements.txt /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; pip install -r requirements.txt&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; PYTHONUNBUFFERED &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This &lt;strong&gt;Dockerfile&lt;/strong&gt; is pretty straightforward. It starts from a Python-Alpine base image, then installs the dependencies that Django needs, notably &lt;code&gt;postgresql&lt;/code&gt; and &lt;code&gt;postgresql-dev&lt;/code&gt;. This Django project is setup to use PostgreSQL. If you want to use another database engine like MySQL or MongoDB, you need to install the required adapters/dependencies. Also, if you’re dealing with images (ImageField), you need to install &lt;code&gt;jpeg-dev&lt;/code&gt; and &lt;code&gt;zlib-dev&lt;/code&gt; as well (see &lt;a href=&#34;https://pillow.readthedocs.io/en/latest/installation.html#building-from-source&#34;&gt;Pillow dependencies&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Afterwards, it installs the packages in &lt;em&gt;requirements.txt&lt;/em&gt;, then copies everything in the project root to &lt;code&gt;/www/&lt;/code&gt; where the image would be executed from. &lt;code&gt;ENV PYTHONUNBUFFERED 1&lt;/code&gt; causes all output to &lt;code&gt;stdout&lt;/code&gt; to be flushed immediately, so that you can easily see what’s going on inside your Python app from a terminal.&lt;/p&gt;
+&lt;h2 id=&#34;docker-composeyml&#34;&gt;docker-compose.yml&lt;/h2&gt;
+&lt;p&gt;I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;services&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;web&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: .
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: on-failure
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;env_file&lt;/span&gt;:
+      - ./.env
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;command&lt;/span&gt;: python manage.py runserver &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0.0.0&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8000&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - .:/www
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8000:8000&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;depends_on&lt;/span&gt;:
+      - db
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;db&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;postgres:10.3-alpine&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: unless-stopped
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;env_file&lt;/span&gt;:
+      - ./.env
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;5432:5432&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - ./postgres/data:/var/lib/postgresql/data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There are two services in this Compose file — web and db. The web service builds the Django app using the &lt;em&gt;Dockerfile&lt;/em&gt; in the previous section. A volume is created to map the project directory in the host to the one in the container (&lt;code&gt;- .:/www&lt;/code&gt;) so that any changes made on the host are mirrored in the container. The &lt;code&gt;command&lt;/code&gt; parameter uses Django’s dev server to run the app (&lt;code&gt;python manage.py runserver 0.0.0.0:8000&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;The db service uses a PostgreSQL image and maps PostgreSQL’s data directory to &lt;code&gt;./postgres/data&lt;/code&gt; in the host, so that DB data is persisted even if the container gets destroyed. This very PostgreSQL image (&lt;a href=&#34;https://hub.docker.com/_/postgres/&#34;&gt;the official postgreSQL image&lt;/a&gt;) uses several environment variables to configure PostgreSQL, including &lt;code&gt;POSTGRES_USER&lt;/code&gt;, &lt;code&gt;POSTGRES_PASSWORD&lt;/code&gt; and &lt;code&gt;POSTGRES_DB&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# .env
+DEBUG=1
+ALLOWED_HOSTS=*
+SECRET_KEY=secret123
+
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=secret123
+POSTGRES_DB=mypgsqldb
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The above variables are made available to the services using the &lt;code&gt;env_file&lt;/code&gt; parameter. The postgres variables are used by both the web and db service (see &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L56&#34;&gt;the settings.py file in the sample project&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;docker-composeprodyml&#34;&gt;docker-compose.prod.yml&lt;/h2&gt;
+&lt;p&gt;My production configs usually differ a bit from their development counterpart. I use Gunicorn to serve the Django app, and NGINX as a reverse proxy and static/media file server.&lt;/p&gt;
+&lt;p&gt;This setup, while good for production, is not very convenient in development where the goal is often to &lt;em&gt;break things and move fast&lt;/em&gt;. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my &lt;em&gt;docker-compose.prod.yml&lt;/em&gt; file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;services&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;web&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: .
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: on-failure
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;env_file&lt;/span&gt;:
+      - ./.env
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;command&lt;/span&gt;: gunicorn --bind &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0.0.0&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt; dockerizeddjango.wsgi
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;depends_on&lt;/span&gt;:
+      - nginx
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;nginx&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: always
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./staticfiles:/static
+      - ./mediafiles:/media
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The web service in the production Compose file looks identical to one in the development file, except for the &lt;code&gt;command&lt;/code&gt; parameter (majorly). It uses &lt;a href=&#34;http://gunicorn.org&#34;&gt;Gunicorn&lt;/a&gt; (&lt;a href=&#34;https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver&#34;&gt;which is more suitable&lt;/a&gt;) to serve the application (&lt;code&gt;gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps &lt;code&gt;/etc/nginx/conf.d&lt;/code&gt; to the &lt;code&gt;./nginx/conf.d&lt;/code&gt; folder on the host which contains &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf&#34;&gt;&lt;em&gt;dockerizeddjango.conf&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# dockerizeddjango.conf
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;server&lt;/span&gt; {
+  &lt;span style=&#34;color:#f92672&#34;&gt;listen&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;;
+  &lt;span style=&#34;color:#f92672&#34;&gt;server_name&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;localhost&lt;/span&gt;;
+
+  &lt;span style=&#34;color:#75715e&#34;&gt;# serve static files
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/static/&lt;/span&gt; {
+    &lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/static/&lt;/span&gt;;
+  }
+
+  &lt;span style=&#34;color:#75715e&#34;&gt;# serve media files
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/media/&lt;/span&gt; {
+    &lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/media/&lt;/span&gt;;
+  }
+
+  &lt;span style=&#34;color:#75715e&#34;&gt;# pass requests for dynamic content to gunicorn
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt; {
+    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_pass&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;http://web:8080&lt;/span&gt;;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a very basic Nginx config file. It’s also pretty self-explanatory. It passes requests with &lt;code&gt;/static&lt;/code&gt; (e.g &lt;em&gt;example.com/static/virus.js&lt;/em&gt;) and &lt;code&gt;/media&lt;/code&gt; (e.g &lt;em&gt;example.com/media/anonymous.jpg&lt;/em&gt;) to the &lt;code&gt;/static&lt;/code&gt; and &lt;code&gt;/media&lt;/code&gt; directories on the web container respectively. These directories are mapped to the &lt;code&gt;/staticfiles&lt;/code&gt; and &lt;code&gt;/mediafiles&lt;/code&gt; directories on the host where &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L98&#34;&gt;staticfiles are collected&lt;/a&gt; and &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L104&#34;&gt;media files uploaded&lt;/a&gt;. Other requests are proxied to Gunicorn.&lt;/p&gt;
+&lt;p&gt;Did you observe the use of service names in some files? e.g &lt;code&gt;POSTGRES_HOST=db&lt;/code&gt; and &lt;code&gt;proxy_pass http://web:8080;&lt;/code&gt;. &lt;strong&gt;db&lt;/strong&gt; and &lt;strong&gt;web&lt;/strong&gt; resolve to the IP addresses of their containers. This is handled by Docker Compose so that we don’t have to worry about what the IP address of a container is or hardcode IP addresses that might change later.&lt;/p&gt;
+&lt;p&gt;Use the following command to run the Compose file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker-compose -f docker-compose.prod.yml up --build -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;-f&lt;/code&gt; parameter specifies the production Compose file, &lt;em&gt;docker-compose.prod.yml&lt;/em&gt; (Docker Compose defaults to &lt;em&gt;docker-compose.yml&lt;/em&gt;). &lt;code&gt;--build&lt;/code&gt; tells Compose to rebuild the images each time the command is run, and the &lt;code&gt;-d&lt;/code&gt; flag runs the containers in detached mode so that they keep running in the background even when your terminal is closed.&lt;/p&gt;
+&lt;p&gt;You can run migrations and create an admin user with the following commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker-compose -f docker-compose.prod.yml run web python manage.py migrate
+docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- http://alphacoder.xyz/dockerizing-django/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>I built my own web search engine — here’s how</title>
+        <link>http://alphacoder.xyz/my-web-search-engine/</link>
+        <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/my-web-search-engine/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/my-web-search-engine/ -&lt;p&gt;I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!&lt;/p&gt;
+&lt;h2 id=&#34;about-my-search-engine-devsearch&#34;&gt;About my search engine, devsearch&lt;/h2&gt;
+&lt;p&gt;It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.&lt;/p&gt;
+&lt;p&gt;The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place. It would take tons of servers to crawl a meaningful portion of the web in good time. I didn’t have the time or the servers. I decided to focus on tech/software development content (hence the name &lt;em&gt;devsearch&lt;/em&gt;) and to deal only with textual data.&lt;/p&gt;
+&lt;p&gt;The next step was to decide on the features to implement. The core functionalities of a search engine are crawling, indexing and searching. But there are a ton of other features that make the search engines we use today so good. Features like autocomplete, auto-correct, &lt;a href=&#34;https://en.wikipedia.org/wiki/Stemming&#34;&gt;stemming&lt;/a&gt;, semantic analysis, contextual search (search history, location, season etc), featured snippets, spam detection, knowledge graph etc.&lt;/p&gt;
+&lt;p&gt;The features I chose to build were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Crawling&lt;/li&gt;
+&lt;li&gt;Indexing&lt;/li&gt;
+&lt;li&gt;Searching (sorting results using TFIDF and PageRank)&lt;/li&gt;
+&lt;li&gt;Autocomplete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;stack&#34;&gt;Stack&lt;/h2&gt;
+&lt;p&gt;Python was my language of choice. I also used some HTML, CSS and JavaScript. My stack:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flask (micro framework for Python)&lt;/li&gt;
+&lt;li&gt;Scrapy (crawling framework for Python)&lt;/li&gt;
+&lt;li&gt;LXML (for processing XML and HTML in Python)&lt;/li&gt;
+&lt;li&gt;MongoEngine (object document mapper for MongoDB)&lt;/li&gt;
+&lt;li&gt;Bootstrap 4 (CSS library for UI components)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;crawling-web-pages-with-scrapy&#34;&gt;Crawling web pages with Scrapy&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://scrapy.org/&#34;&gt;Scrapy&lt;/a&gt; is a free and open source web crawling framework. With Scrapy, you can create &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_crawler&#34;&gt;a &lt;em&gt;spider&lt;/em&gt;&lt;/a&gt;, give it a bunch of urls to crawl and tell it what to do with the pages it fetches. You can even tell the spider to crawl the links it finds on the pages it crawls, allowing it to discover new pages.&lt;/p&gt;
+&lt;p&gt;I took a very lazy approach to parsing the scrapped pages. I used LXML to extract only the text from the HTML response. Say there’s a HTML page like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;How Google Search Works&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Crawling and indexing&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+        
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Search algorithms&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+        
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Useful responses&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The output would be:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;NB: You lose a lot of important data by doing this but it simplifies things a lot&lt;/em&gt; 😊&lt;/p&gt;
+&lt;p&gt;I also extract all the links in each page (necessary for PageRank).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Page (How Google Search Works):
+    url: https://example.com/google-search
+    content: How Google Search Works
+        links:
+            - Link (Google Search)
+            - Link (Search Engines Wiki)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;There’s a list of allowed domains in the configs (&lt;code&gt;SPIDER_ALLOWED_DOMAINS&lt;/code&gt;) which helps to fence the spider. It only crawls pages from the websites in that list.&lt;/p&gt;
+&lt;p&gt;The spider crawls periodically via a cronjob which runs the custom flask command &lt;code&gt;flask crawl&lt;/code&gt;. A &lt;code&gt;--recrawl&lt;/code&gt; option can be added to the command to tell the spider whether to crawl new pages or crawl pages it has crawled before in order to update them.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ flask crawl --recrawl True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A list of urls to crawl (called Crawl List) is maintained in the DB. There needs to be at least one url in the list for the spider to start crawling. As it crawls, it updates the list with new urls and marks the ones it has crawled.&lt;/p&gt;
+&lt;h2 id=&#34;indexing&#34;&gt;Indexing&lt;/h2&gt;
+&lt;p&gt;Indexes help us find things quicker e.g the Table of Contents or Glossary in a book. If we wanted to index a website’s SQL DB, we could create an index table similar to this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;id title   description    keywords       page
+------------------------------------------------
+1  G.O.A.T Greatest of... messi, ronaldo /p/goat
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index&#34;&gt;&lt;em&gt;forward index&lt;/em&gt;&lt;/a&gt;. It’s very similar to a Table of Contents (which usually has chapter titles, descriptions and page numbers). Instead of writing expensive and complex queries, you can simply lookup the index table and return matching records. However, as the records in the index increase, lookup becomes slower and slower.&lt;/p&gt;
+&lt;p&gt;There is another type of index which makes searching much faster. It’s the &lt;a href=&#34;https://en.wikipedia.org/wiki/Inverted_index&#34;&gt;&lt;em&gt;inverted index&lt;/em&gt;&lt;/a&gt;. This is the opposite of the forward index. Instead of having a list of pages and the keywords they contain, we have a list of keywords and the pages they are contained in. This is quite similar to a glossary.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;id word     pages
+--------------------------------------------------------
+1  greatest /p/goat /u/messi /u/ronaldo /t/football
+2  of       /p/goat
+3  all      /p/goat /home
+4  time     /p/goat /fixtures
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The trade-off with the inverted index is &lt;em&gt;higher disk comsumption for faster lookup speed&lt;/em&gt;. I used an inverted index for &lt;em&gt;devsearch&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;tfidf-and-pagerank&#34;&gt;TFIDF and PageRank&lt;/h2&gt;
+&lt;p&gt;Modern search engines consider many factors when ranking search results. Common factors include TFIDF, PageRank, words position, freshness, page loading speed, CTR and mobile-friendliness.&lt;/p&gt;
+&lt;p&gt;Google says they consider &lt;a href=&#34;https://backlinko.com/google-ranking-factors&#34;&gt;over 200 factors&lt;/a&gt;. Each factor has a weight that signifies its importance in the ranking process. Google keeps all this information secret to prevent people (AKA black hat SEOs) from gaming the system. They also &lt;a href=&#34;https://moz.com/google-algorithm-change&#34;&gt;change things pretty frequently&lt;/a&gt; in order to improve search results.&lt;/p&gt;
+&lt;p&gt;I chose TFIDF and PageRank for my search engine. TFIDF stands for &lt;em&gt;term frequency–inverse document frequency&lt;/em&gt;. It is a numerical statistic that is intended to reflect how important a word is to a document in a collection. The idea is that if a word appears frequently in a document, then the document is probably about that word. In this article for instance, the words ‘search’ and ‘engine’ appear frequently. So we can assume it at least has something to do with search engines, and that if someone were to search for ‘search engine’ this article would be more relevant to them than another article that mentions it once or twice. There are words that usually appear frequently in documents though e.g &lt;a href=&#34;https://en.wikipedia.org/wiki/Stop_words&#34;&gt;stop words&lt;/a&gt; like ‘a’, ‘and’, ‘the’ etc. We can offset these words and give more weight to words that occur less frequently in the whole collection but more frequently in a given document. The formula for TFIDF can be found in &lt;a href=&#34;https://en.wikipedia.org/wiki/Tf%E2%80%93idf&#34;&gt;this article on Wikipedia&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Developed by Larry Page and Sergey Brin, &lt;a href=&#34;https://en.wikipedia.org/wiki/PageRank&#34;&gt;PageRank&lt;/a&gt; is the most notable algorithm used in Google Search. PageRank works by counting the number [and quality] of links to a page to determine a rough estimate of how important the website is. The underlying assumption is that more important websites are likely to receive more links from other websites. I used &lt;a href=&#34;https://en.wikipedia.org/wiki/PageRank#Simplified_algorithm&#34;&gt;the simplified version of the algorithm&lt;/a&gt; for &lt;em&gt;devsearch&lt;/em&gt;. All pages start with an initial PageRank of 1 / N (where N = total number of pages in DB) and then “&lt;a href=&#34;https://www.woorank.com/en/edu/seo-guides/link-juice&#34;&gt;link juice&lt;/a&gt;” begins to flow until all pages are ranked.&lt;/p&gt;
+&lt;p&gt;I combined the TFIDF and PageRank values to produce a score which is used to rank results.&lt;/p&gt;
+&lt;h2 id=&#34;searching-and-autocomplete&#34;&gt;Searching and autocomplete&lt;/h2&gt;
+&lt;p&gt;When a user types in a query into &lt;em&gt;devsearch&lt;/em&gt;, the query is divided into a list of words. The index collection (MongoDB) is filtered for records that have any of those words. Each index record has a score which is precomputed using the formula:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;score &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (tfidf &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; max(tfidf) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.7&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (pagerank &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; max(pagerank) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.3&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;TFIDF represents 70% of the score and PageRank represents the remaining 30.&lt;/p&gt;
+&lt;p&gt;An aggregate score is computed for each distinct page. So if the search query is &lt;em&gt;‘rick and morty’&lt;/em&gt;, a page that contains all the words would have an aggregate score of: &lt;code&gt;total_score = score(&#39;rick&#39;) + score(&#39;and&#39;) + score(&#39;morty&#39;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The records are sorted in descending order of &lt;code&gt;total_score&lt;/code&gt; and then paginated.&lt;/p&gt;
+&lt;p&gt;Autocomplete for the search box is very very basic. I didn’t want to get AJAX involved, so I just queried the DB for a list of the top 200 searches on the search view and passed them to a JavaScript function which uses sub-string matching to determine whether a query should be shown or not when a user is typing their query. 😉&lt;/p&gt;
+&lt;h2 id=&#34;deploying-the-search-engine&#34;&gt;Deploying the search engine&lt;/h2&gt;
+&lt;p&gt;I used Docker (and Docker Compose) to containerize &lt;em&gt;devsearch&lt;/em&gt; and run it on a DigitalOcean Debian machine. The MongoDB server is also containerized. The production Docker Compose file uses Nginx as a reverse proxy for the Gunicorn server running the Flask app. Nginx also serves the static files.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The search results from &lt;em&gt;devsearch&lt;/em&gt; are abysmal (good thing I wasn’t hoping to build the next Google Search). However, I learnt a ton about search engines and search algorithms, and have already started exploring the areas most interesting to me. Most important, I understand a little better how search engines work! 🙌&lt;/p&gt;
+&lt;p&gt;You can find the source code for &lt;em&gt;devsearch&lt;/em&gt; on my GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/devsearch&#34;&gt;&lt;strong&gt;nicholaskajoh/devsearch&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+- http://alphacoder.xyz/my-web-search-engine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to run multiple apps on one server using Docker and Traefik</title>
+        <link>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
+        <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ -&lt;p&gt;Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.&lt;/p&gt;
+&lt;h2 id=&#34;use-case&#34;&gt;Use case&lt;/h2&gt;
+&lt;p&gt;Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end). You can even run two different websites (example1.com and example2.com) if you want.&lt;/p&gt;
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+&lt;p&gt;Docker is the most widely used containerization software today. It allows you bundle code with it’s config and dependencies, making it easy and seamless to deploy your apps on any machine (or several machines). It also helps in development by providing a consistent environment for collaborators on a project. More info here: &lt;a href=&#34;https://docs.docker.com/&#34;&gt;https://docs.docker.com&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;traefik&#34;&gt;Traefik&lt;/h2&gt;
+&lt;p&gt;Traefik is a HTTP reverse proxy and load balancer that integrates with Docker, Swarm, Kubernetes among other orchestration tools. You can learn more here: &lt;a href=&#34;https://docs.traefik.io/&#34;&gt;https://docs.traefik.io&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h2&gt;
+&lt;p&gt;We’ll be using Docker via Docker Compose. Docker Compose makes it easy to run multi-container Docker applications. You can configure all your containers in one file and run them at once with a single command. Read more here: &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;https://docs.docker.com/compose&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;project-setup&#34;&gt;Project setup&lt;/h2&gt;
+&lt;p&gt;The 3 apps we’ll be running are a website (static site), a blog and a SaaS app (dasboard-ish). For the sake of demonstration, I just downloaded HTML templates online 👀. So I have a &lt;em&gt;landing page template&lt;/em&gt;, &lt;em&gt;blog template&lt;/em&gt; and &lt;em&gt;dashboard template&lt;/em&gt;. They’ll all be served with Ngnix 😉.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/website.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;website&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/blog.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;blog&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/app.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;SaaS app&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here’s the project repo: &lt;a href=&#34;https://github.com/nicholaskajoh/jack&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/jack&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Each app is put in it’s own folder, with its own &lt;em&gt;Dockerfile&lt;/em&gt;. The Dockerfiles are identical since we’re basically just serving static files in all the apps.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Dockerfile&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; nginx:alpine&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /usr/share/nginx/html&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The docker compose file brings everything together under one roof. Here’s how it looks:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# docker-compose.yml&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;services&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;traefik&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: traefik
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;command&lt;/span&gt;: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;443:443&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/&lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;:/traefik.toml
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: ./app
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - ./app:/usr/share/nginx/html
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=app-be&amp;#34;&lt;/span&gt;
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:app.localhost&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;blog&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: ./blog
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - ./blog:/usr/share/nginx/html
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=blog-be&amp;#34;&lt;/span&gt;
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:blog.localhost&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;website&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: ./website
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
+      - ./website:/usr/share/nginx/html
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=website-be&amp;#34;&lt;/span&gt;
+      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:localhost&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As can be seen, traefik itself is run in a container. The domain is set to localhost and the ports 80, 8080 and 443 are published. The web flag (&lt;code&gt;--web&lt;/code&gt;) under command parameter tells traefik to run its API dashboard which will be exposed on port 8080.&lt;/p&gt;
+&lt;p&gt;Traefik can be configured using a &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; file. It can also pick configs from service labels. As such, we specified the &lt;code&gt;traefik.backend&lt;/code&gt; and &lt;code&gt;traefik.frontend.rule&lt;/code&gt; configs using labels. &lt;code&gt;traefik.backend&lt;/code&gt; specifies the service to handle requests from &lt;code&gt;traefik.frontend.rule&lt;/code&gt;. So if we go to &lt;em&gt;app.localhost&lt;/em&gt;, we will be served content from the app service. Same with &lt;em&gt;localhost&lt;/em&gt; and website, and &lt;em&gt;blog.localhost&lt;/em&gt; and blog.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Try it out:&lt;/strong&gt; clone &lt;a href=&#34;https://github.com/nicholaskajoh/jack&#34;&gt;Jack&lt;/a&gt;, run &lt;code&gt;docker-compose up&lt;/code&gt; and visit &lt;em&gt;localhost&lt;/em&gt;, &lt;em&gt;app.localhost&lt;/em&gt; and &lt;em&gt;blog.localhost&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;traefik-dashboard&#34;&gt;Traefik dashboard&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dckr-trfk/traefik-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The Traefik dashboard displays useful information including the available front-ends and back-ends, and the health of the containers. You can password protect the dashboard so only authorized persons can access it.&lt;/p&gt;
+&lt;h2 id=&#34;ssl&#34;&gt;SSL&lt;/h2&gt;
+&lt;p&gt;Traefik can handle SSL for you automatically. This guide (&lt;a href=&#34;https://docs.traefik.io/https/acme/&#34;&gt;https://docs.traefik.io/https/acme/&lt;/a&gt;) explains the configuration process using Let’s Encrypt.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NB:&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;I added SSL configs in&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/docker-compose.prod.yml&#34;&gt;&lt;em&gt;docker-compose.prod.yml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;for use in production.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scaling-and-load-balancing&#34;&gt;Scaling and load balancing&lt;/h2&gt;
+&lt;p&gt;Traefik load balances multiple instances of a given service automatically. You can use the scale flag/parameter in docker compose to run multiple instances of your containers.&lt;/p&gt;
+- http://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to scale an app horizontally using a load balancer</title>
+        <link>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
+        <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ -&lt;p&gt;As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.&lt;/p&gt;
+&lt;p&gt;One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.&lt;/p&gt;
+&lt;p&gt;There are mainly two ways to go about it — juice up a single server or run your app on multiple servers.&lt;/p&gt;
+&lt;p&gt;The former is called &lt;strong&gt;vertical scaling&lt;/strong&gt; and involves adding more memory, compute and/or storage to your server. This is very easy to accomplish if you run your app on a PaaS or IaaS platform. However, there’s only so much RAM/CPU/SSD etc you can get on one machine. Also, running high-end hardware is usually very expensive.&lt;/p&gt;
+&lt;p&gt;The latter approach is called &lt;strong&gt;horizontal scaling&lt;/strong&gt;. It involves running your application on multiple servers and sharing traffic/load among them. Using this approach has some advantages. For one, you can scale infinitely. You just add more servers. Also, your app becomes &lt;em&gt;highly available&lt;/em&gt; because if one server crashes/goes offline, you have other servers to handle incoming requests and/or other workloads.&lt;/p&gt;
+&lt;p&gt;Horizontal scaling works by placing a &lt;strong&gt;load balancer&lt;/strong&gt; in front of your app servers. A load balancer is also a server. Its primary job is to distribute traffic among other servers.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/load-balancer-diagram.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Horizontal scaling (A, B, C and D represent your app servers)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Most cloud providers have one-click-setup load balancers you can use if you run your app in their infrastructure. You may also choose to create your own load balancer using open source software like Nginx, HAProxy, Traefik etc.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we’re going to scale an app horizontally on DigitalOcean using their cloud load balancer. Let’s do this!&lt;/p&gt;
+&lt;h2 id=&#34;the-hits-app&#34;&gt;The hits app&lt;/h2&gt;
+&lt;p&gt;The app we’ll be scaling in this tutorial is called &lt;strong&gt;&lt;em&gt;hits&lt;/em&gt;&lt;/strong&gt;. It’s a simple Flask (Python) app that displays page hits. It counts every page load as a hit, and stores and caches the count in a PostgreSQL and Redis database respectively.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;hits&lt;/em&gt; source code: &lt;a href=&#34;https://github.com/nicholaskajoh/hits&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/hits&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;hits&lt;/em&gt; app is containerized using Docker for easy development and deployment. Knowledge of Python/Flask or Docker is not required to follow through in this tutorial. There are simple instructions provided in the README of the source code to run the app both locally and online.&lt;/p&gt;
+&lt;h2 id=&#34;digitalocean&#34;&gt;DigitalOcean&lt;/h2&gt;
+&lt;p&gt;DigitalOcean is a popular cloud computing platform loved for its simplicity and pocket-friendly pricing. We’ll be using their VMs/servers (which they call Droplets) to run the &lt;em&gt;hits&lt;/em&gt; app.&lt;/p&gt;
+&lt;p&gt;You’ll need to create an account on &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;digitalocean.com&lt;/a&gt; to get started. Droplets start at $5 per month but coupons abound. You can use my referral link and get $10 free: &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;https://m.do.co/c/e38dd092b1ad&lt;/a&gt;. More coupons here: &lt;a href=&#34;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&#34;&gt;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;droplets&#34;&gt;Droplets&lt;/h2&gt;
+&lt;p&gt;Once you’ve signed up, verified your account and redeemed/purchased credits, head over to &lt;a href=&#34;https://cloud.digitalocean.com&#34;&gt;https://cloud.digitalocean.com&lt;/a&gt; and create a new droplet.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/droplets.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;My droplets are already up 😉&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;You can choose the configs you want if you know your way around provisioning servers. If you don’t, you may use the options shown in the screenshot below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/create-droplet.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create a droplet&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When your servers are up, you’ll need to connect to them via SSH. It’s advisable to generate an SSH key for your computer (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&lt;/a&gt;). Alternatively, you can use username and password to login to your droplets.&lt;/p&gt;
+&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+&lt;p&gt;Here are the steps (in summary) to setup &lt;em&gt;hits&lt;/em&gt; on your droplet. You may &lt;a href=&#34;https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340&#34;&gt;use &lt;em&gt;tmux&lt;/em&gt;&lt;/a&gt; to perform the steps simultaneously on multiple servers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SSH into the droplet as root (user) using &lt;code&gt;ssh root@DROPLET_IP_ADDRESS&lt;/code&gt;. Windows users may need an SSH client like PuTTY (&lt;a href=&#34;https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/&#34;&gt;https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Create a non-root user and login as that user (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Clone the &lt;em&gt;hits&lt;/em&gt; repo into your server with &lt;code&gt;git clone [https://github.com/nicholaskajoh/hits.git](https://github.com/nicholaskajoh/hits.git.)&lt;/code&gt;&lt;a href=&#34;https://github.com/nicholaskajoh/hits.git.&#34;&gt;.&lt;/a&gt; DigitalOcean droplets come with Git pre-installed so you don’t need to install it. PS: You can clone the project anywhere you like. I cloned mine in /var/www. You can do the same with this command: &lt;code&gt;sudo mkdir /var/www &amp;amp;&amp;amp; sudo chown ${USER}: /var/www &amp;amp;&amp;amp; sudo chmod u+w /var/www &amp;amp;&amp;amp; cd /var/www &amp;amp;&amp;amp; git clone [https://github.com/nicholaskajoh/hits.git](https://github.com/nicholaskajoh/hits.git.)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create a &lt;em&gt;.env&lt;/em&gt; file in the project root. You can either copy &lt;em&gt;.env.example&lt;/em&gt; to &lt;em&gt;.env&lt;/em&gt; and make edits or create the file from scratch then add the environment variables. Use nano to edit/create the file: &lt;code&gt;sudo nano .env&lt;/code&gt;. My &lt;em&gt;.env&lt;/em&gt; own file is shown in a screenshot below. I used a managed database service for both PostgreSQL (&lt;a href=&#34;https://www.elephantsql.com/&#34;&gt;ElephantSQL&lt;/a&gt;) and Redis (&lt;a href=&#34;https://redislabs.com/&#34;&gt;Redis Labs&lt;/a&gt;). Make the &lt;code&gt;INSTANCE_ID&lt;/code&gt; environment variable unique for each droplet.&lt;/li&gt;
+&lt;li&gt;Install Docker and Docker Compose (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&lt;/a&gt;, &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&lt;/a&gt;). You can test your installations by running &lt;code&gt;docker --version&lt;/code&gt; and &lt;code&gt;docker-compose --version&lt;/code&gt;. Ensure the docker service is running: &lt;code&gt;sudo systemctl status docker&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Build and run the &lt;em&gt;hits&lt;/em&gt; application: &lt;code&gt;docker-compose -f docker-compose.prod.yml up --build -d&lt;/code&gt; (you should be in the root directory of the project (/www/var/hits). Now when you visit, your droplet’s IP address, you should be greeted by the &lt;em&gt;hits&lt;/em&gt; app.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/hits-app.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;The hits app 🙌&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/hits-env.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;load-balancer&#34;&gt;Load balancer&lt;/h2&gt;
+&lt;p&gt;Once all your servers are up and running, create a new load balancer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/create-load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once your load balancer is up, add your droplets to it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/add-droplets-to-lb.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now you can visit your load balancer’s IP address. The APP INSTANCE shows what instance of the application (droplet) a request was routed to.&lt;/p&gt;
+&lt;p&gt;Let’s go into the settings of the load balancer for a bit…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/ld-blncr/lb-settings.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Load balancer settings&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;So DigitalOcean gives us options to customize our load balancer.&lt;/p&gt;
+&lt;p&gt;We can choose an algorithm for the load balancer to use to route traffic to the droplets. There’s &lt;em&gt;Round Robin&lt;/em&gt; and &lt;em&gt;Least Connections&lt;/em&gt;. In Round Robin, the requests are routed in a circular order from one droplet to the next. On the other hand, Least Connections routes to the server with the least traffic.&lt;/p&gt;
+&lt;p&gt;There’s also health checks. You can set an endpoint e.g your app’s home page (http://0.0.0.0:80) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.&lt;/p&gt;
+&lt;p&gt;With Sticky sessions, you can glue a user to a particular server. If enabled, after a user’s first request, follow up requests would be routed to the same server.&lt;/p&gt;
+- http://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>K Means</title>
+        <link>http://alphacoder.xyz/k-means/</link>
+        <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/k-means/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/k-means/ -&lt;p&gt;We’ve been talking &lt;strong&gt;classification&lt;/strong&gt; for a while now — from &lt;em&gt;K Nearest Neighbors&lt;/em&gt; to &lt;em&gt;Naive Bayes&lt;/em&gt; to &lt;em&gt;Support Vector Machines&lt;/em&gt;. In this post, we’ll be looking at &lt;strong&gt;clustering&lt;/strong&gt; using an algorithm called &lt;strong&gt;&lt;em&gt;K Means&lt;/em&gt;&lt;/strong&gt;. Let’s dive in&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*C2uxvEivKa4FQYimkl6OJA.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;K Means (this article)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, &lt;em&gt;K&lt;/em&gt; based on feature similarity. The algorithm works iteratively to assign each data point to one of &lt;em&gt;K&lt;/em&gt; groups. Each group is identified by a centroid (the center point of the group) and data points are grouped with the centroid they’re closest to. The centroids are determined during training through optimization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NB:&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;Unsupervised learning involves training an algorithm with unclassified or unlabeled data. It’s up to the algorithm to figure out a pattern in the data and, in the case of clustering, group similar data points together.&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;how-itworks&#34;&gt;How it works&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;First, we select the number of groups/clusters, K we want. To figure out what value of K to use, you can visualize the data to see how many groups it can be separated into. This is not always possible because the data can be in more than 3 dimensions. In such a case, you need to have an expectation from your data. Maybe you’re trying to separate good oranges from bad ones. In this case, K = 2.&lt;/li&gt;
+&lt;li&gt;Next, we create K centroids. The easiest way to do this is to use the first K feature sets from our data or just do a random selection.&lt;/li&gt;
+&lt;li&gt;These centroids are not optimized. The training process involves moving the centroids until they’re at the center of each group, at which point we can quite correctly determine what group a given data point should be in (the centroid to which it’s closest). With our starting centroids, we iterate through the data grouping each point to the centroid it’s closest to. Afterwards, we change the centroids by taking the &lt;strong&gt;mean&lt;/strong&gt; of all the data points in each group.&lt;/li&gt;
+&lt;li&gt;This process continues repetitively until we notice the centroids are not changing much or at all. This means we’re optimized!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
+&lt;p&gt;First things first, the data&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import numpy as np
+
+data = np.array([  
+    [4, 3], [0, 0], [2, 4], [3, 4], [5, 4], [-2, 1], [-3, 0], [-3, -3], [8, 12], [11, 11], [9, 10]  
+])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Visually, the above data looks like this&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*qsdD6dP7zqBd-jQO2sg0pQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;From the graph you can easily see the data can be grouped into 3 clusters. Thus &lt;code&gt;K = 3&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;K = 3  
+tol = 0.001  
+max_iter = 25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice the variables &lt;code&gt;tol&lt;/code&gt; and &lt;code&gt;max_ter&lt;/code&gt;. &lt;code&gt;tol&lt;/code&gt; stands for tolerance and represents a percentage (0.001%). As we said earlier, we know we’re optimized when there’s little or no change in the centroids. If the change is greater than 0.001%, we tolerate and keep iterating.&lt;/p&gt;
+&lt;p&gt;But we can’t keep iterating forever/for too long in the case where we can’t optimize further and the change remains greater than 0.001. So we set &lt;code&gt;max_iter&lt;/code&gt;, the maximum number of iterations we’re willing to do.&lt;/p&gt;
+&lt;p&gt;Next, let’s create the centroids. Their initial values would be the first K data points.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;centroids = {}  
+for i in range(K):  
+    centroids[i] = data[i]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now unto the meat of the algorithm which is the optimization&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;groups = {}  
+for i in range(max_iter):  
+    # step 1  
+    for j in range(K):  
+        groups[j] = []
+
+    # step 2  
+    for feature_set in data:  
+        # step 2.1  
+        distances = [np.linalg.norm(feature_set - centroids[centroid_key]) for centroid_key in centroids]
+
+        # step 2.2  
+        group = distances.index(min(distances))  
+        groups[group].append(feature_set)
+
+    # step 3  
+    old_centroids = dict(centroids)
+
+    # step 4  
+    for j in range(K):  
+        centroids[j] = np.average(groups[j], axis=0)
+
+    # step 5  
+    optimized = True  
+    for centroid_key in centroids:  
+        old_centroid = old_centroids[centroid_key]  
+        new_centroid = centroids[centroid_key]  
+        a = np.array(new_centroid - old_centroid)  
+        b = np.array(old_centroid)  
+        change = np.divide(a, b, out=np.zeros_like(a), where=b!=0)
+
+        if abs(np.sum(change * 100.0)) &amp;gt; tol:  
+            optimized = False  
+            break  
+    if optimized:  
+        break
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let break things down step by step…&lt;/p&gt;
+&lt;h4 id=&#34;step-1&#34;&gt;Step 1&lt;/h4&gt;
+&lt;p&gt;Initialize the &lt;code&gt;groups&lt;/code&gt; dictionary with K empty arrays. This ensures &lt;code&gt;groups&lt;/code&gt; is empty at the start of each iteration.&lt;/p&gt;
+&lt;h4 id=&#34;step-21&#34;&gt;Step 2.1&lt;/h4&gt;
+&lt;p&gt;Iterate through the data, calculating the euclidean distance of a given feature set from all the centroids.&lt;/p&gt;
+&lt;h4 id=&#34;step-22&#34;&gt;Step 2.2&lt;/h4&gt;
+&lt;p&gt;The feature set is added to the group of the centroid it’s closest to.&lt;/p&gt;
+&lt;h4 id=&#34;step-3&#34;&gt;Step 3&lt;/h4&gt;
+&lt;p&gt;Store the current centroids in &lt;code&gt;old_centroids&lt;/code&gt;. The centroids are going to change soon. But we need the old centroids to see how much has changed since the last iteration.&lt;/p&gt;
+&lt;h4 id=&#34;step-4&#34;&gt;Step 4&lt;/h4&gt;
+&lt;p&gt;Calculate the new centroids by taking the average of all the feature sets in each centroid group.&lt;/p&gt;
+&lt;h4 id=&#34;step-5&#34;&gt;Step 5&lt;/h4&gt;
+&lt;p&gt;Check if the change in any of the centroids is greater than 0.001%. If yes, then we’re not yet optimized.&lt;/p&gt;
+&lt;p&gt;Here’s the full code for your perusal. It includes some lines of matplotlib code to visualize the data.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Check out the ML Chops repo for a class-based implementation and an example with real world data: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
+- http://alphacoder.xyz/k-means/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Image upload with Django and Cloudinary</title>
+        <link>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
+        <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/image-upload-with-django-and-cloudinary/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/image-upload-with-django-and-cloudinary/ -&lt;p&gt;Managing files/images can be a hassle. It can be a real pain to have to deal with uploads, storage, manipulation, administration and delivery of media content in every project you start/or are involved in.&lt;/p&gt;
+&lt;p&gt;Luckily, there are cloud platforms that take away the stress of all that, allowing you to ship faster and deliver your product(s) at scale. Cloudinary is one of such platforms. It tags itself as &lt;em&gt;the media management platform for web and mobile developers — an end-to-end solution for all your image and video needs&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Aside Cloudinary’s easy to use API, I was attracted by their very generous free plan. See for yourself at &lt;a href=&#34;https://cloudinary.com/pricing&#34;&gt;https://cloudinary.com/pricing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Learn more about Cloudinary: &lt;a href=&#34;https://cloudinary.com/solutions&#34;&gt;https://cloudinary.com/solutions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a quick tutorial on how setup image upload with Django and Cloudinary. Let’s roll…&lt;/p&gt;
+&lt;h2 id=&#34;console&#34;&gt;Console&lt;/h2&gt;
+&lt;p&gt;Visit &lt;a href=&#34;https://cloudinary.com&#34;&gt;Cloudinary.com&lt;/a&gt; and create an account or login if you already have one. You’ll be provided a nice dashboard/console at &lt;a href=&#34;https://cloudinary.com/console&#34;&gt;https://cloudinary.com/console&lt;/a&gt;. There you’ll find your account details i.e cloud name, API key and secret.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*ZxPbpbatoeCyZzldXXoX2Q.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
+&lt;p&gt;Cloudinary has an open source &lt;a href=&#34;https://pypi.python.org/pypi/cloudinary&#34;&gt;integration library for Python/Django&lt;/a&gt;. Install it using pip.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ pip install cloudinary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;settings&#34;&gt;Settings&lt;/h2&gt;
+&lt;p&gt;Go to your project’s &lt;em&gt;settings.py&lt;/em&gt; and make the following additions.&lt;/p&gt;
+&lt;p&gt;First import cloudinary.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cloudinary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then add cloudinary to installed apps.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;INSTALLED_APPS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cloudinary&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#75715e&#34;&gt;# other apps&lt;/span&gt;
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now add the configs from your console.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;config(
+    cloud_name &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CLOUDINARY_CLOUD_NAME,
+    api_key &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CLOUDINARY_API_KEY,
+    api_secret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CLOUDINARY_API_SECRET
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Replace &lt;code&gt;CLOUDINARY_CLOUD_NAME&lt;/code&gt;, &lt;code&gt;CLOUDINARY_API_KEY&lt;/code&gt; and &lt;code&gt;CLOUDINARY_API_SECRET&lt;/code&gt; as appropriate (they should be in quotes e.g &lt;code&gt;cloud_name = &amp;quot;tchalla&amp;quot;&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;models&#34;&gt;Models&lt;/h2&gt;
+&lt;p&gt;At any point and in any file in your Django project, you can easily make use of all the functions and classes the Cloudinary Python library provides. For instance, you can upload a file like so.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cloudinary.uploader
+
+cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;upload(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my_picture.jpg&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See &lt;a href=&#34;https://cloudinary.com/documentation/django_image_upload&#34;&gt;https://cloudinary.com/documentation/django_image_upload&lt;/a&gt; for more info on uploads.&lt;/p&gt;
+&lt;p&gt;However, you want to handle things the Django way as this would allow you utilize the rich APIs that Django ships with. By “the Django way”, I mean using models (in this case).&lt;/p&gt;
+&lt;p&gt;In Django, you can use ImageField or FileField in your model. Cloudinary provides CloudinaryField. Let’s create a Photo model using CloudinaryField in &lt;em&gt;models.py&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.db &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; models
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; cloudinary.models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; CloudinaryField
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Photo&lt;/span&gt;(models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Model):
+    image &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CloudinaryField(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;image&amp;#39;&lt;/span&gt;)
+    caption &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CharField(max_length&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;, blank&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;True)
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __str__(self):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;caption &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;caption &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;No caption&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Additionally, if you want to delete an image from Cloudinary when it’s model instance is deleted in your app (Django/Cloudinary doesn’t do this by default), you can add the following pre-delete signal after your model definition.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@receiver&lt;/span&gt;(pre_delete, sender&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Photo)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;photo_delete&lt;/span&gt;(sender, instance, &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;kwargs):
+    cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;destroy(instance&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;image&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;public_id)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then add the following imports at the top of the file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.db.models.signals &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pre_delete
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cloudinary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;forms&#34;&gt;Forms&lt;/h2&gt;
+&lt;p&gt;Using ModelForm to create a form from the Photo model, we have:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.forms &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; ModelForm
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; .models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Photo
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PhotoForm&lt;/span&gt;(ModelForm):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Meta&lt;/span&gt;:
+        model &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Photo
+        fields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;image&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;caption&amp;#39;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;views&#34;&gt;Views&lt;/h2&gt;
+&lt;p&gt;For the view of PhotoForm form, we could have:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.shortcuts &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; render, redirect
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; .forms &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; PhotoForm
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; .models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Photo
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add_photo&lt;/span&gt;(request):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;method &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;POST&amp;#34;&lt;/span&gt;:
+        form &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; PhotoForm(request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;POST, request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;FILES)
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; form&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;is_valid():
+            photo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Photo()
+            photo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;caption &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;POST&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;caption&amp;#39;&lt;/span&gt;)
+            photo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;save()
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; redirect(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/photo/&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; photo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;id)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        form &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; PhotoForm()
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; render(request, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add-photo.html&amp;#39;&lt;/span&gt;, {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;form&amp;#39;&lt;/span&gt;: form})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;template&#34;&gt;Template&lt;/h2&gt;
+&lt;p&gt;In the upload form template, you can simple do &lt;code&gt;{{ form }}&lt;/code&gt; or manually design the HTML form to your taste.&lt;/p&gt;
+&lt;h2 id=&#34;display&#34;&gt;Display&lt;/h2&gt;
+&lt;p&gt;Displaying images from Cloudinary in your app is super simple and straight forward. If we fetch a Photo model instance in a view using &lt;code&gt;photo = Photo.objects.get(id=1)&lt;/code&gt;, we can retrieve the image with &lt;code&gt;photo.image&lt;/code&gt; which returns a CloudinaryResource object. This object has properties such as public_id, url, size (bytes), format etc.&lt;/p&gt;
+&lt;p&gt;One way to display the image in a template after passing the photo object from the view is to use the url property.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ photo.image.url }}&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is great and all but it won’t afford us the opportunity to use the many image transformation options Cloudinary provides. Fortunately, the Cloudinary library provides a template tag we can load up and use.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% load cloudinary %}{% cloudinary photo.image.public_id className=&amp;quot;my-class&amp;quot; height=200 width=100 %}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This template tag allows you to not only specify any Cloudinary transformation parameter, but also to specify regular HTML image tag attributes (like &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;alt&lt;/code&gt;). For instance, we specified the class (className) &lt;code&gt;my-class&lt;/code&gt; in the snippet above. This actually generates an image tag. E.g&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my-class&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;height&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;200&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;width&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Read about all the transformation parameters available here: &lt;a href=&#34;https://cloudinary.com/documentation/image_transformations&#34;&gt;https://cloudinary.com/documentation/image_transformations&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That’s it!&lt;/p&gt;
+- http://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Deploy your React-Django app on Heroku</title>
+        <link>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
+        <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/deploy-react-django-app-on-heroku/ -&lt;p&gt;This is a follow up to my post on &lt;em&gt;&lt;a href=&#34;http://alphacoder.xyz/dead-simple-react-django-setup/&#34;&gt;setting up a React-Django web app&lt;/a&gt;&lt;/em&gt;. You can take a quick glance if you’ve not seen it yet.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR: The setup is deployed at&lt;/strong&gt; &lt;a href=&#34;http://react-django.herokuapp.com/&#34;&gt;&lt;strong&gt;http://react-django.herokuapp.com&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;(nothing much there actually) and the code at&lt;/strong&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/React-Django&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.&lt;/p&gt;
+&lt;h2 id=&#34;heroku-dashboard&#34;&gt;Heroku dashboard&lt;/h2&gt;
+&lt;p&gt;First things first. You need a Heroku account. Head over to &lt;a href=&#34;https://heroku.com&#34;&gt;Heroku.com&lt;/a&gt; and sign up/login, then go to your dashboard at &lt;a href=&#34;https://dashboard.heroku.com&#34;&gt;https://dashboard.heroku.com&lt;/a&gt; and create a new app.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/heroku-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;heroku-cli&#34;&gt;Heroku CLI&lt;/h2&gt;
+&lt;p&gt;There are a couple deploy methods to choose from on Heroku (visit the &lt;em&gt;deploy&lt;/em&gt; tab on the app page on the dashboard). Here, we’ll use the &lt;em&gt;Heroku Git&lt;/em&gt; method via the &lt;em&gt;Heroku CLI&lt;/em&gt;. You can use &lt;a href=&#34;https://devcenter.heroku.com/articles/heroku-cli&#34;&gt;this guide to learn how to set up Heroku CLI on your OS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now, let’s link our project to the Heroku app we created using the Heroku CLI and Git.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initialize a Git repository in the root folder of the project with &lt;code&gt;git init&lt;/code&gt; (you need to have Git installed on your computer).&lt;/li&gt;
+&lt;li&gt;Login with your Heroku account on the CLI using &lt;code&gt;heroku login&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add the Heroku remote via &lt;code&gt;heroku git:remote -a your-heroku-app&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/link-app-to-heroku.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I already initialized Git in the project prior to this.&lt;/p&gt;
+&lt;h2 id=&#34;heroku-buildpacks&#34;&gt;Heroku buildpacks&lt;/h2&gt;
+&lt;p&gt;The React app build process depends on NPM, so we need Node.js. We also need Python to run Django.&lt;/p&gt;
+&lt;p&gt;Heroku uses &lt;a href=&#34;https://devcenter.heroku.com/articles/buildpacks&#34;&gt;buildpacks&lt;/a&gt; to transform deployed code into slugs which can be executed by Dynos (server instances on Heroku). We’ll be needing two buildpacks. One for Node and another for Python.&lt;/p&gt;
+&lt;p&gt;Our app would run on a Python server, even though we’ll use Node/NPM to build/bundle the React frontend. So the Python buildpack will be the main one in our config. The main buildpack determines the process type of the Heroku app. You can &lt;a href=&#34;https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app&#34;&gt;read about multiple buildpacks&lt;/a&gt; to understand how they work.&lt;/p&gt;
+&lt;p&gt;You can add buildpacks via the Heroku CLI. Head back to your terminal and run the following to set/add the buildpacks we need.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;heroku buildpacks:set heroku/python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now add the buildpack for Node.js.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;heroku buildpacks:add --index &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; heroku/nodejs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see the buildpacks we’ve added by running &lt;code&gt;heroku buildpacks&lt;/code&gt;. The last buildpack on the list determines the process type of the app.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/buildpacks.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;packagejson&#34;&gt;package.json&lt;/h2&gt;
+&lt;p&gt;We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command &lt;code&gt;npm run build&lt;/code&gt; in the &lt;em&gt;postinstall&lt;/em&gt; hook.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/dply-dj/package-json.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;See postinstall under scripts&lt;/p&gt;
+&lt;p&gt;Notice that I specified Node and NPM versions in &lt;em&gt;engines&lt;/em&gt;. The buildpack will install these exact versions. It’s highly recommended you use the versions running on your PC to avoid errors from a version that might be incompatible with your code.&lt;/p&gt;
+&lt;h2 id=&#34;procfile&#34;&gt;Procfile&lt;/h2&gt;
+&lt;p&gt;Create a file called &lt;em&gt;&lt;a href=&#34;https://devcenter.heroku.com/articles/procfile&#34;&gt;Procfile&lt;/a&gt;&lt;/em&gt; (no file extension) in the project root and add the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;release: python manage.py migrate
+web: gunicorn reactdjango.wsgi --log-file -
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Replace &lt;code&gt;reactdjango.wsgi&lt;/code&gt; with &lt;code&gt;YOUR-DJANGO-APP-NAME.wsgi&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;requirementstxt&#34;&gt;requirements.txt&lt;/h2&gt;
+&lt;p&gt;The Python buildpack, after installing Python looks for &lt;em&gt;requirements.txt&lt;/em&gt; to install the dependencies in it. Add the following to the requirements file, including all the other dependencies your Django app needs.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;django&amp;gt;=2.1.2
+gunicorn==19.7.1
+whitenoise==3.3.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;By the way, you can specify the Python version you want by adding it to a file named &lt;em&gt;runtime.txt&lt;/em&gt; in the project root.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python-3.5.2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Configure whitenoise to serve static files by doing the following:&lt;/p&gt;
+&lt;p&gt;Add &lt;em&gt;static root&lt;/em&gt; and &lt;em&gt;static files storage&lt;/em&gt; in &lt;em&gt;settings.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;BASE_DIR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abspath(__file__)))
+
+STATIC_ROOT &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;staticfiles&amp;#39;&lt;/span&gt;)
+STATICFILES_STORAGE &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;whitenoise.django.GzipManifestStaticFilesStorage&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Add whitenoise to your &lt;em&gt;wsgi.py&lt;/em&gt; file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.core.wsgi
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; get_wsgi_application
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; whitenoise.django &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DjangoWhiteNoise
+
+os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;environ&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;setdefault(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DJANGO_SETTINGS_MODULE&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;reactdjango.settings&amp;#34;&lt;/span&gt;)
+
+application &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; get_wsgi_application()
+application &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DjangoWhiteNoise(application)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;allowed-hosts&#34;&gt;Allowed hosts&lt;/h2&gt;
+&lt;p&gt;In your &lt;em&gt;settings.py&lt;/em&gt;, you need to add your Heroku domain to allowed hosts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;ALLOWED_HOSTS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;react-django.herokuapp.com&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;127.0.0.1:8000&amp;#39;&lt;/span&gt;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB: I personally prefer to add allowed hosts using environment variables e.g with&lt;/strong&gt; &lt;a href=&#34;https://github.com/theskumar/python-dotenv&#34;&gt;&lt;strong&gt;python-dotenv&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;commit-push&#34;&gt;Commit, push&lt;/h2&gt;
+&lt;p&gt;It’s time to commit and push the changes. Phew!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;git add .
+git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;blah blah blah&amp;#34;&lt;/span&gt;
+git push heroku master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After the build is done and your app has been released, visit &lt;em&gt;YOUR-APP-NAME.herokuapp.com&lt;/em&gt;. Neat!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Two libraries you might find really helpful when building your Django API are&lt;/em&gt; &lt;a href=&#34;http://www.django-rest-framework.org/&#34;&gt;&lt;em&gt;Django Rest Framework&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/ottoyiu/django-cors-headers/&#34;&gt;&lt;em&gt;Django CORS Headers&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. You should check them out!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.&lt;/p&gt;
+- http://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Here’s a dead simple React-Django setup for your next project</title>
+        <link>http://alphacoder.xyz/dead-simple-react-django-setup/</link>
+        <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
+        
+        <guid>http://alphacoder.xyz/dead-simple-react-django-setup/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/dead-simple-react-django-setup/ -&lt;p&gt;There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.js and everything would work fine.&lt;/p&gt;
+&lt;h2 id=&#34;django&#34;&gt;Django&lt;/h2&gt;
+&lt;p&gt;Follow the steps below to setup Django:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have Python and pip installed on your computer.&lt;/li&gt;
+&lt;li&gt;Install &lt;a href=&#34;http://virtualenvwrapper.readthedocs.io/en/latest/install.html&#34;&gt;virtualenv and virtualenvwrapper&lt;/a&gt; by running &lt;code&gt;pip install virtualenvwrapper&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create a virtual environment for the project using &lt;code&gt;mkvirtualenv name-of-virtual-env&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;workon name-of-virtual-env&lt;/code&gt; to activate the virtual environment.&lt;/li&gt;
+&lt;li&gt;Install Django with &lt;code&gt;pip install django&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Start a django project by running &lt;code&gt;django-admin startproject nameOfProject&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Change directory to the project root and create a new app with &lt;code&gt;django-admin startapp mynewapp&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add &lt;em&gt;mynewapp&lt;/em&gt; to installed apps in &lt;em&gt;settings.py&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Run app with &lt;code&gt;python manage.py runserver&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See the &lt;a href=&#34;https://docs.djangoproject.com/en/dev/topics/install/&#34;&gt;official Django installation guide&lt;/a&gt; for more info.&lt;/p&gt;
+&lt;h2 id=&#34;react&#34;&gt;React&lt;/h2&gt;
+&lt;p&gt;We’ll be using &lt;a href=&#34;https://github.com/facebookincubator/create-react-app&#34;&gt;Create React App&lt;/a&gt; in this setup. Feel free to use your preferred method of/tool for setting up a React project.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have Node.js and NPM installed.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;npm install -g create-react-app&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create a new app with &lt;code&gt;create-react-app name-of-project&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Copy/cut all the contents of the React app (in &lt;em&gt;name-of-project&lt;/em&gt; folder) and paste in the root of the Django project.**&lt;/li&gt;
+&lt;li&gt;Run app with &lt;code&gt;npm start&lt;/code&gt; from the project root.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;configure&#34;&gt;Configure&lt;/h2&gt;
+&lt;p&gt;If you followed all the instructions above, you should have both React and Django apps in one folder. See the starred step (**) under the &lt;em&gt;React&lt;/em&gt; heading. Good!&lt;/p&gt;
+&lt;p&gt;The React app is the SPA (Single Page App) while the Django app is the API. Let’s do some config, shall we?&lt;/p&gt;
+&lt;p&gt;The goal is to expose two sets of urls/routes. One for the SPA (e.g &lt;em&gt;example.com&lt;/em&gt;, &lt;em&gt;example.com/home&lt;/em&gt;, etc) and the other for the API (e.g &lt;em&gt;example.com/api/posts&lt;/em&gt;, &lt;em&gt;example.com/api/post/1&lt;/em&gt;, etc).&lt;/p&gt;
+&lt;p&gt;The React-Django app would be deployed on a Python web server, so we can easily achieve this using Django.&lt;/p&gt;
+&lt;h4 id=&#34;step-1-build&#34;&gt;Step 1: build&lt;/h4&gt;
+&lt;p&gt;Run &lt;code&gt;npm run build&lt;/code&gt;. This creates a folder named &lt;em&gt;build&lt;/em&gt; in the project root containing a production-ready version of the React app.&lt;/p&gt;
+&lt;h4 id=&#34;step-2-settingspy&#34;&gt;Step 2: settings.py&lt;/h4&gt;
+&lt;p&gt;Add the &lt;em&gt;build&lt;/em&gt; folder to template directories in &lt;em&gt;settings.py&lt;/em&gt; so that Django can load &lt;em&gt;/build/index.html&lt;/em&gt; as a template.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;BASE_DIR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abspath(__file__)))
+
+TEMPLATES &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+    {
+        &lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;DIRS&amp;#39;&lt;/span&gt;: [
+            os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;)
+        ],
+        &lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
+    }
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Also add &lt;em&gt;build&lt;/em&gt; as a static files directory so that &lt;code&gt;collectstatic&lt;/code&gt; can copy the css and js files.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;STATICFILES_DIRS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+    os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;),
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;step-3-urlspy&#34;&gt;Step 3: urls.py&lt;/h4&gt;
+&lt;p&gt;Add pattern to return &lt;em&gt;/build/index.html&lt;/em&gt; in &lt;em&gt;urls.py&lt;/em&gt; as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.contrib &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; admin
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.urls &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; path, re_path
+&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.views.generic &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; TemplateView
+
+urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+    path(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;admin/&amp;#39;&lt;/span&gt;, admin&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;site&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;urls),
+    &lt;span style=&#34;color:#75715e&#34;&gt;# path(&amp;#39;api/&amp;#39;, include(&amp;#39;mynewapp.urls&amp;#39;)),&lt;/span&gt;
+    re_path(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.*&amp;#39;&lt;/span&gt;, TemplateView&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;as_view(template_name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;)),
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run Django’s dev server (&lt;code&gt;python manage.py runserver&lt;/code&gt;) to test the app.&lt;/p&gt;
+&lt;h2 id=&#34;angular-vuejs-etc&#34;&gt;Angular, Vue.js, etc&lt;/h2&gt;
+&lt;p&gt;As you’ve seen with React, all you need to do is make a build available to Django, then configure Django to handle API requests and React to handle normal web page routes. You can use the same steps to setup Angular, Vue.js etc with Django.&lt;/p&gt;
+&lt;h2 id=&#34;repo&#34;&gt;Repo&lt;/h2&gt;
+&lt;p&gt;Check out the code for this tutorial here: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
+&lt;p&gt;Deploying the React-Django app is a story for another day. The process largely depends on your hosting environment and workflow. I made &lt;a href=&#34;https://alphacoder.xyz/deploy-react-django-app-on-heroku/&#34;&gt;a post on deploying it to Heroku&lt;/a&gt;.&lt;/p&gt;
+- http://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Naive Bayes</title>
+        <link>http://alphacoder.xyz/naive-bayes/</link>
+        <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/naive-bayes/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/naive-bayes/ -&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/nb-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Naive Bayes is a classifier just like &lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;. The Naive Bayes algorithm applies the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes Theorem&lt;/a&gt; (used to calculate conditional probability) given by the formula:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/bayes-formula.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Bayes formula&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: &lt;a href=&#34;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&#34;&gt;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Naive Bayes (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s consider the data we used in the last post on KNNs:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;height (ft)    weight (kg)    sex  
+6.3            50.2           Male  
+5.9            79.7           Female  
+5.1            61.4           Female  
+5.6            47.1           Male  
+5.1            59.8           Female
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In Naive Bayes, we calculate the probabilities of an input feature set being in each of the classes in the data and return the class with the highest probability as the predicted output.&lt;/p&gt;
+&lt;p&gt;Our goal with the data in the table above is to determine whether an individual is &lt;em&gt;Male&lt;/em&gt; or &lt;em&gt;Female&lt;/em&gt;. Given the height and weight of a person e.g &lt;code&gt;[height, weight] -&amp;gt; [5.8, 82.1]&lt;/code&gt;, a Naive Bayes classifier calculates the probabilities of the person being a Male and a Female e.g &lt;code&gt;[(“Male”, 7.92248128417e-103), (“Female”, 0.00355626444241)]&lt;/code&gt; then returns the class with the highest probability (in this example &lt;code&gt;“Female”&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;How do we find the probabilities for each class?&lt;/p&gt;
+&lt;p&gt;You guessed right! &lt;strong&gt;Bayes formula&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s put the formula into context for better understanding:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/male-person-prob.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Probability that a person is Male&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Substitute &lt;em&gt;Female&lt;/em&gt; for &lt;em&gt;Male&lt;/em&gt; in the formula and you have the probability that a person is female.&lt;/p&gt;
+&lt;p&gt;Let’s explain terms in the equation briefly:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;P(Male | height &amp;amp; weight)&lt;/strong&gt; is the probability that a person is Male given their height and weight (better put: given all the features provided in the data). This is what we’re looking for.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;P(Male)&lt;/strong&gt; is the probability of selecting a Male person from the data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;P(height | Male)&lt;/strong&gt; and &lt;strong&gt;P(weight | Male)&lt;/strong&gt; equate to &lt;strong&gt;P(B|A)&lt;/strong&gt; [from the first formula]. &lt;strong&gt;P(height | Male)&lt;/strong&gt; is the probability of getting the height of a person given that they are Male (same for the weight). Essentially we want to find the percentage of Males with the same height as the person we’re classifying. This not feasible with our data however because both height and weight are continuous. Besides, it would be very costly when we have a large amount of training data (we’d have to run through the data every time to count the number of people with same height and weight with the person being classified). Thankfully, we have the &lt;strong&gt;Probability Density Function (PDF)&lt;/strong&gt; to help us with this. We’ll use PDF to determine both &lt;strong&gt;P(height | Male)&lt;/strong&gt; and &lt;strong&gt;P(weight | Male)&lt;/strong&gt; in a bit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;P(height &amp;amp; weight)&lt;/strong&gt; or better put &lt;strong&gt;P(all features)&lt;/strong&gt; is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Marginal_distribution&#34;&gt;marginal probability&lt;/a&gt;. For our classification, it’s not really useful to us because it’s the denominator for all class probabilities. We’re actually interested in finding the class with the highest probability and not the actually probability figure like 0.9 for instance. We might as well not use it since we’re dividing by it in every class probability calculation. It doesn’t change anything. We’ll still get the class with the highest probability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;pclass&#34;&gt;P(Class)&lt;/h1&gt;
+&lt;p&gt;The probability of selecting a person from a given class is the simplest calculation to perform. From the data table, we can see that there are 5 samples. 2 are Male. Thus &lt;strong&gt;P(Male)&lt;/strong&gt; = 2/5. And 3 are Female. Thus &lt;strong&gt;P(Female)&lt;/strong&gt; = 3/5.&lt;/p&gt;
+&lt;h1 id=&#34;the-pdf&#34;&gt;The PDF&lt;/h1&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Probability_density_function&#34;&gt;PDF&lt;/a&gt; can be computed using the following formula:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://alphacoder.xyz/images/mlc-nb/pdf.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;The PDF&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Substitute Female with Male and/or weight with height to calculate other PDFs.&lt;/p&gt;
+&lt;p&gt;Using PDF, we assume:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each feature is uncorrelated from the others (i.e height is independent of weight for instance).&lt;/li&gt;
+&lt;li&gt;The values of the features (i.e heights, weights) are &lt;a href=&#34;https://www.thoughtco.com/what-is-normal-distribution-3026707&#34;&gt;normally distributed&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are assumptions and are not completely true most times for a given data set. As such, we’re being “naive” by assuming.&lt;/p&gt;
+&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
+&lt;p&gt;First things first! The data.&lt;/p&gt;
+&lt;p&gt;For convenience, I’m using 3 arrays:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#f92672&#34;&gt;as&lt;/span&gt; np
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# data  &lt;/span&gt;
+heights &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#ae81ff&#34;&gt;6.3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.9&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.6&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.1&lt;/span&gt;])  
+weights &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#ae81ff&#34;&gt;50.2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;79.7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;61.4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;47.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;59.8&lt;/span&gt;])  
+classes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt; , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, let’s find P(Class) for Male and Female:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;males_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
+females_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
+sample_size &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(classes)  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; classes:  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;:  
+        males_count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:  
+        females_count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+p_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; males_count &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; sample_size  
+p_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; females_count &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; sample_size
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;pdfs&#34;&gt;PDFs&lt;/h1&gt;
+&lt;p&gt;We need to find the various means and variances required to compute the PDFs:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;heights_of_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
+weights_of_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
+heights_of_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
+weights_of_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(sample_size):  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; classes[i] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;:  
+        heights_of_males&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(heights[i])  
+        weights_of_males&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(weights[i])  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        heights_of_females&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(heights[i])  
+        weights_of_females&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(weights[i])
+
+mean_height_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(heights_of_males)  
+mean_weight_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(weights_of_males)  
+mean_height_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(heights_of_females)  
+mean_weight_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(weights_of_females)  
+var_height_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(heights_of_males)  
+var_weight_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(weights_of_males)  
+var_height_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(heights_of_females)  
+var_weight_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(weights_of_females)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now to the PDF formula in code&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Let’s define a function as we’ll use it severally:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;the_pdf&lt;/span&gt;(x, mean, variance):  
+    pd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sqrt(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pi &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; variance)) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exp((&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;(x &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; mean)&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; variance))  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;predict&#34;&gt;Predict&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;5.8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;82.1&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;# [height, weight]&lt;/span&gt;
+
+p_height_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], mean_height_males, var_height_males)
+p_weight_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], mean_weight_males, var_weight_males)
+p_height_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], mean_height_females, var_height_females)
+p_weight_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], mean_weight_females, var_weight_females)
+
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Get class probabilities  &lt;/span&gt;
+p_male_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; p_male &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_height_male &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_weight_male  
+p_female_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; p_female &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_height_female &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_weight_female  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P(Male | height &amp;amp; weight) =&amp;#34;&lt;/span&gt;, p_male_h_and_w)  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P(Female | height &amp;amp; weight) =&amp;#34;&lt;/span&gt;, p_female_h_and_w)
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Return prediction  &lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; p_male_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; p_female_h_and_w:  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;class = Male&amp;#34;&lt;/span&gt;)  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;class = Female&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;P(Male | height &amp;amp; weight) = 7.92248128417e-103  
+P(Female | height &amp;amp; weight) = 0.00355626444241  
+class = Female
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Putting everything together, we have:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
+- http://alphacoder.xyz/naive-bayes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Support Vector Machine</title>
+        <link>http://alphacoder.xyz/support-vector-machine/</link>
+        <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+        
+        <guid>http://alphacoder.xyz/support-vector-machine/</guid>
+        <description>Alpha Coder http://alphacoder.xyz/support-vector-machine/ -&lt;p&gt;The Support Vector Machine (SVM) is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supervised_learning&#34;&gt;supervised learning&lt;/a&gt; model used for classification and regression. In this tutorial, we’ll be using it for classification.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*36seqRE8giOL5saMNGKCig.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Support Vector Machine (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Created by &lt;a href=&#34;https://en.wikipedia.org/wiki/Vladimir_Vapnik&#34;&gt;Vladimir Vapnik&lt;/a&gt; in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data. This boundary is known as a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperplane&#34;&gt;hyperplane&lt;/a&gt; — the best separating hyperplane.&lt;/p&gt;
+&lt;p&gt;Let’s take the points on the graph below for example:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*2tviRinseZn7KMMCIPieVw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What line best divides the red pluses and green minuses? Eye-balling the data points, I came up with this.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*YtZfClUNObb85VrKWKvz6g.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Any data point that falls on the right side of the boundary is classified as a &lt;em&gt;red plus&lt;/em&gt; and any point that falls on the left side is classified as a &lt;em&gt;green minus&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How do we arrive at the best separating hyperplane, mathematically?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Well, the equation of a hyperplane is given by &lt;strong&gt;wx + b = y&lt;/strong&gt; where &lt;em&gt;w&lt;/em&gt; is the normal vector to the hyperplane, &lt;em&gt;b&lt;/em&gt; is a bias/shift and &lt;em&gt;x&lt;/em&gt; is a vector the hyperplane passes through. &lt;em&gt;y&lt;/em&gt; determines the position of the hyperplane.&lt;/p&gt;
+&lt;p&gt;Take a look at the diagram below for better understanding:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*3xsACXxhR4rZeXLTSAnfVQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It turns out that y = 0 at the best separating hyperplane. Thus the equation of the best separating hyperplane is &lt;strong&gt;wx + b = 0&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With this hyperplane, it shouldn’t be difficult to determine if an input vector (a feature set we desire to classify) is on one or the other side of it. To make a prediction, we’d return the sign of &lt;strong&gt;wx + b&lt;/strong&gt;. A positive sign (+) represents one class and negative sign (-) represents the other.&lt;/p&gt;
+&lt;p&gt;There’s just one problem. We need to find &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; when &lt;em&gt;y&lt;/em&gt; = 0. Now there’s a new question to answer. &lt;strong&gt;How do we find w and b?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We’ll come to that in a bit.&lt;/p&gt;
+&lt;h1 id=&#34;what-are-supportvectors&#34;&gt;What are Support Vectors?&lt;/h1&gt;
+&lt;p&gt;In SVM, each sample in a data set is a vector. The area covered by the data points is a vector space.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*NWryt8J6zqRWpQ5QOmEWWg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;A support vector is a vector in this vector space which determines the hyperplane that best separates the data. They are the closest points to the best separating hyperplane.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*J1D7tjrKTwBZEc8D__474g.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If any of the support vectors change, the best separating hyperplane changes as well. You could say they “support” the best separating hyperplane.&lt;/p&gt;
+&lt;p&gt;We can draw 2 hyperplanes both parallel to the best separating hyperplane that pass through the support vectors. The best separating hyperplane divides these hyperplanes into two equal parts/areas.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*EuCGXKeyCRJ_BAlm2t73tg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It turns out that these two hyperplanes are given by &lt;strong&gt;wx + b = -1&lt;/strong&gt; and &lt;strong&gt;wx + b = 1&lt;/strong&gt; as show in the graph above.&lt;/p&gt;
+&lt;h1 id=&#34;w-andb&#34;&gt;w and b&lt;/h1&gt;
+&lt;p&gt;The geometric distance between the hyperplanes enclosing the best separating hyperplane is &lt;strong&gt;2 / ||w||&lt;/strong&gt; where &lt;strong&gt;||w||&lt;/strong&gt; is the magnitude of &lt;em&gt;w&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*Dm3swkj4iJHNofRzt6zzcQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This distance is maximum at the values of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; which produce the best separating hyperplane. As such, our goal is to get a value of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; that maximize &lt;strong&gt;2 / ||w||&lt;/strong&gt;. Maximizing &lt;strong&gt;2 / ||w||&lt;/strong&gt; equates to minimizing &lt;strong&gt;||w||&lt;/strong&gt;, so we could as well do just that.&lt;/p&gt;
+&lt;p&gt;For mathematical convenience, let’s minimize &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; instead of &lt;strong&gt;||w||&lt;/strong&gt;. Note that this doesn’t change anything. Minimizing &lt;strong&gt;||w||&lt;/strong&gt; is minimizing &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There’s a constraint to this minimization given by &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt;. This ensures that we don’t maximize the distance beyond the 2 hyperplanes that separate the 2 categories of data.&lt;/p&gt;
+&lt;p&gt;This is a classic quadratic optimization problem!&lt;/p&gt;
+&lt;p&gt;We are tasked with minimizing &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; subject to &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There are several methods for optimization at our disposal including &lt;a href=&#34;https://en.wikipedia.org/wiki/Convex_optimization&#34;&gt;Convex Optimization&lt;/a&gt; and the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Sequential_minimal_optimization&#34;&gt;Sequential Minimal Optimization (SMO)&lt;/a&gt; invented by John Platt in 1998 at Microsoft.&lt;/p&gt;
+&lt;p&gt;We’ll be using Convex Optimization to solve this problem.&lt;/p&gt;
+&lt;h1 id=&#34;convex-optimization&#34;&gt;Convex Optimization&lt;/h1&gt;
+&lt;p&gt;I chose to use the &lt;a href=&#34;http://cvxopt.org/&#34;&gt;CVXOPT python library&lt;/a&gt; for Convex Optimization because I didn’t want to delve into too much math. Feel free to explore Convex Optimization (the math and the code). Here’s a little explanation of convex optimization for the problem we’re solving — to get optimum values of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*W3MMVrG7QUc3USJyrp5kaw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Suppose the optimum value for &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; is at X. We could move from A to C in a bid to get to X. B is the point where &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; is minimum but it does not satisfy the constraint &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt; (in this example) so it’s not the optimum point.&lt;/p&gt;
+&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
+&lt;p&gt;Data:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import numpy as np  
+import cvxopt  
+import cvxopt.solvers
+
+features = np.array([[5, 4], [5, -1], [3, 3], [7, 9], [6, 7], [7, 11]])  
+labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Train/fit using CVXOPT:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def fit(X, y):  
+  n_samples, n_features = X.shape
+
+  # Gram matrix
+  K = np.zeros((n_samples, n_samples))  
+  for i in range(n_samples):  
+    for j in range(n_samples):  
+      K[i,j] = np.dot(X[i], X[j])
+
+  P = cvxopt.matrix(np.outer(y,y) * K)  
+  q = cvxopt.matrix(np.ones(n_samples) * -1)  
+  A = cvxopt.matrix(y, (1, n_samples))  
+  b = cvxopt.matrix(0.0)  
+  G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))  
+  h = cvxopt.matrix(np.zeros(n_samples))
+
+  # solve QP problem
+  solution = cvxopt.solvers.qp(P, q, G, h, A, b)
+
+  # Lagrange multipliers
+  a = np.ravel(solution[&#39;x&#39;])
+
+  # Support vectors have non zero lagrange multipliers
+  sv = a &amp;gt; 1e-5  
+  ind = np.arange(len(a))[sv]  
+  a = a[sv]  
+  sv_ = X[sv]  
+  sv_y = y[sv]
+
+  # Intercept
+  b = 0  
+  for n in range(len(a)):  
+    b += sv_y[n]  
+    b -= np.sum(a * sv_y * K[ind[n], sv])  
+  b /= len(a)
+
+  # Weight vector
+  w = np.zeros(n_features)  
+  for n in range(len(a)):  
+    w += a[n] * sv_y[n] * sv_[n]
+
+  return w, b
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Predict:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;w, b = fit(features, labels)
+
+def predict(x):  
+  classification = np.sign(np.dot(x, w) + b)  
+  return classification
+
+# test  
+x = [3, 4]  
+print(predict(x))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;the-kerneltrick&#34;&gt;The Kernel trick&lt;/h1&gt;
+&lt;p&gt;The data we’ve been dealing with is linearly separable i.e we can draw a straight line (speaking in 2D) that separates the data into 2 categories. What if we have a data set like this?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*SGJF-6P3gQH5cHlarb7m6w.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;There’s no hyperplane that can separate this data.&lt;/p&gt;
+&lt;p&gt;The kernel trick introduces a new dimension to the vector space. Adding a dimension to the data in the diagram above yields a 3D vector space. Can we separate the data now? Probably.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*aBJJ38sQ1yIZBGFNBzjZmA.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!&lt;/p&gt;
+&lt;p&gt;Don’t forget to check out the ML Chops repo for all the code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
+- http://alphacoder.xyz/support-vector-machine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 
