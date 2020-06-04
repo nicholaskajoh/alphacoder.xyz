@@ -10,8 +10,6 @@ paginatePath = "page"
 # Google analytics
 googleAnalytics = "UA-82728104-5"
 
-disqusShortname = "alphacoderxyz"
-
 # Copyright
 copyright = "Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved."
 
@@ -73,6 +71,7 @@ canonifyURLs = true
 [params]
     enableReadingTime = true
     favicon = "/images/alpha-coder-logo-v1-small.png"
+    disqusShortname = "alphacoderxyz"
 
 [markup]
   [markup.highlight]
