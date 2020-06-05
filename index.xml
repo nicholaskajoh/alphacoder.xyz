@@ -6,9 +6,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Database denormalization</title>
+        <link>https://alphacoder.xyz/database-denormalization/</link>
+        <pubDate>Fri, 05 Jun 2020 13:46:02 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/database-denormalization/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/database-denormalization/ -&lt;p&gt;Normalization is a vital part of database schema design. The goal is to structure a relational database so as to reduce redundancy and improve the integrity of data. Given this understanding, denormalization sounds rather counter-intuitive. Why would one want to make a database &amp;ldquo;less normalized&amp;rdquo;?&lt;/p&gt;
+&lt;p&gt;Well, it turns out that normalization comes at a performance cost for DB read operations. This is just fine for regular applications. However, read-heavy apps start to break at scale under this setup due to resource-intensive SQL queries involving joins, subqueries and the like. Denormalization helps improve read performance by adding redundant copies of data to make for faster access using simpler queries.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s worth noting that &lt;em&gt;denormalized data&lt;/em&gt; is different from &lt;em&gt;unnormalized data&lt;/em&gt;. While the latter refers to data before normalization, the former is a transformation of normalized data.&lt;/p&gt;
+&lt;p&gt;So how does one denormalize? The changes to be made in order to denormalize your data vary based on the type of application, existing database schema and optimization needs. However, the reasoning behind them are the same i.e you want to make data retrieval as fast as possible. Outlined below are a few tips to help you in this process:&lt;/p&gt;
+&lt;h1 id=&#34;duplicate-fields-that-seldom-if-ever-change&#34;&gt;Duplicate fields that seldom if ever change&lt;/h1&gt;
+&lt;p&gt;Say you operate a popular ecommerce website and your fulfilment staff are having a hard time viewing the orders because the API that retrieves this information is slow. You might take a look and realize that the bottleneck is your &lt;em&gt;orders&lt;/em&gt; table which has lots of relationships that need to be populated in order to retrieve a couple important fields. Some of these fields will seldom, if ever change (at least within the period in which an order must be fulfilled) so you proceed to denormalize them by creating new columns in the &lt;em&gt;orders&lt;/em&gt; table.&lt;/p&gt;
+&lt;p&gt;For example, you might determine that the list of ordered products rarely changes. However, in order to get this list, you&amp;rsquo;ve had to use a join to pull the data from the &lt;em&gt;products&lt;/em&gt; table. By adding an &lt;em&gt;ordered_items&lt;/em&gt; column to the &lt;em&gt;orders&lt;/em&gt; table which will contain JSON arrays of product SKUs and order quantities, you may be able to reduce the latency of the API by a substantial amount. This, coupled with other such optimizations has the potential to deliver significant performance gains.&lt;/p&gt;
+&lt;p&gt;The cost of these changes is little. If the list of ordered products does change (a rarity), all it takes is updating the &lt;em&gt;ordered_items&lt;/em&gt; column. While this will increase disk usage, it&amp;rsquo;s not a concern for most.&lt;/p&gt;
+&lt;h1 id=&#34;duplicate-fields-with-high-read-to-write-ratios&#34;&gt;Duplicate fields with high read to write ratios&lt;/h1&gt;
+&lt;p&gt;Taking our ecommerce website scenario forward, you might discover that your products display pages have become slower because they&amp;rsquo;re one of the most trafficked part of the site. In seeking ways to optimize these pages, you realize you can simplify the query that fetches products by denormalizing some of the data in products-related tables including &lt;em&gt;product_options&lt;/em&gt;, &lt;em&gt;categories&lt;/em&gt;, &lt;em&gt;product_media&lt;/em&gt; and &lt;em&gt;tags&lt;/em&gt;. By adding several new columns in the &lt;em&gt;products&lt;/em&gt; table so you don&amp;rsquo;t have to query other tables, you might be able to increase the load times of these slow pages.&lt;/p&gt;
+&lt;p&gt;It turns out that you don&amp;rsquo;t update products very often (maybe once a week on average). However, hundreds of people view these products every second. It makes sense to denormalize in this case because your products data has a high read-write ratio.&lt;/p&gt;
+&lt;h1 id=&#34;create-columns-or-tables-for-frequently-used-aggregates&#34;&gt;Create columns or tables for frequently used aggregates&lt;/h1&gt;
+&lt;p&gt;Frequently used aggregates (for example the total amount made from orders this week or the number of times a coupon has been used) don&amp;rsquo;t have to be computed on the fly. You can pre-compute them and store the results in another table or a new column for faster retrieval. If these aggregates are likely to change in future, you can recompute them periodically or at the point when their inputs change.&lt;/p&gt;
+&lt;p&gt;It goes without saying that you should NOT denormalize until you encounter data retrieval issues. Like with most software engineering problems, there are tradeoffs! Also, denormalization is &lt;a href=&#34;https://alphacoder.xyz/database-scaling-techniques&#34;&gt;not the only way to optimize/scale databases&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/database-denormalization/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
     
     
@@ -542,118 +567,6 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 })();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/handle-all-rejections.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 - https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Adminer — a simple GUI client for any DB</title>
-        <link>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
-        <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ -&lt;p&gt;In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called &lt;a href=&#34;https://www.adminer.org&#34;&gt;Adminer&lt;/a&gt;. Adminer is a is a full-featured database management tool built with PHP.&lt;/p&gt;
-&lt;p&gt;Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks. Coming from PHPMyAdmin, this was a no no for me.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;d used PHPMyAdmin (via XAMPP) for MySQL but decided to skip XAMPP when I moved from Windows to Ubuntu/Linux a few years ago. So I started using MySQL Workbench. I was also using MongoDB Compass (and Studio 3T briefly) for MongDB.&lt;/p&gt;
-&lt;p&gt;Now I use Adminer for all my DBs. I actively work with MySQL, PostgreSQL and MongoDB so this is really cool. So far, I&amp;rsquo;ve had zero issues with Adminer. It&amp;rsquo;s fast, simple and gets out of the way when I need to get stuff done.&lt;/p&gt;
-&lt;p&gt;In this article, I&amp;rsquo;ll show you how to setup Adminer on your machine.&lt;/p&gt;
-&lt;h3 id=&#34;install-php-for-your-os&#34;&gt;Install PHP for your OS&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jeffgeerling.com/blog/2018/installing-php-7-and-composer-on-windows-10&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-7-on-ubuntu/&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; After installation, add the PHP CLI to your path if it&amp;rsquo;s not already added. You can test this by running &lt;code&gt;php --version&lt;/code&gt;. You should get a similar result to the one shown below.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ php --version
-PHP 7.2.15-0ubuntu0.18.04.1 (cli) (built: Feb  8 2019 14:54:22) ( NTS )
-Copyright (c) 1997-2018 The PHP Group
-Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
-    with Zend OPcache v7.2.15-0ubuntu0.18.04.1, Copyright (c) 1999-2018, by Zend Technologies
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;install-a-db-server-optional&#34;&gt;Install a DB server (optional)&lt;/h3&gt;
-&lt;p&gt;Adminer currently supports MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, SimpleDB, Elasticsearch and MongoDB. If you want to use any of these databases locally, you need to install them on your machine.&lt;/p&gt;
-&lt;p&gt;You can also connect to a DB server on a remote machine (e.g a DigitalOcean VPS) or a managed DB service (e.g AWS RDS). In this case, you don&amp;rsquo;t need to install the DB server on your computer.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ll be demonstrating with MySQL here. If you want to follow along, you can install MySQL for your OS.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-mysql-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;install-db-extensions-for-php-optional&#34;&gt;Install DB extensions for PHP (optional)&lt;/h3&gt;
-&lt;p&gt;If you installed a DB server (the previous step), you might need to &lt;a href=&#34;http://php.net/manual/en/refs.database.php&#34;&gt;install the PHP extension for it&lt;/a&gt; and/or update your PHP config file.&lt;/p&gt;
-&lt;h3 id=&#34;download-and-setup-adminer&#34;&gt;Download and setup Adminer&lt;/h3&gt;
-&lt;p&gt;Adminer is just one PHP file! You can &lt;a href=&#34;https://www.adminer.org/#download&#34;&gt;download it from the Adminer website&lt;/a&gt;. The latest version at the time of writing this tutorial is &lt;a href=&#34;https://github.com/vrana/adminer/releases/download/v4.7.1/adminer-4.7.1.php&#34;&gt;4.7.1&lt;/a&gt;. When you download the PHP file, you can put it anywhere you want. Mine is in a directory named &lt;em&gt;adminer&lt;/em&gt; (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and is renamed to &lt;em&gt;adminer.php&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Start up a terminal and change directory to the folder containing Adminer. In my case, it&amp;rsquo;s &lt;code&gt;~/dev/adminer&lt;/code&gt;. Now run PHP&amp;rsquo;s development server on a port of your choice.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;~/dev/adminer$ php -S localhost:8080
-PHP 7.2.15-0ubuntu0.18.04.1 Development Server started at Mon Mar  4 04:41:07 2019
-Listening on http://localhost:8080
-Document root is /home/nicholas/dev/adminer
-Press Ctrl-C to quit.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Visit localhost on your browser (&lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;). You should be greeted by the screen below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/adminer-login.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Now login to your DB. Mine is MySQL.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/mysql-dbs.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Ensure your DB server is running. If you get an error like &amp;ldquo;None of the supported PHP extensions (MySQLi, MySQL, PDO_MySQL) are available&amp;rdquo; when trying to login, it means you didn&amp;rsquo;t install and/or configure the DB extension for PHP properly.&lt;/p&gt;
-&lt;h3 id=&#34;extend-adminer-with-plugins&#34;&gt;Extend Adminer with plugins&lt;/h3&gt;
-&lt;p&gt;If you need more features on Adminer, you can use plugins. There are &lt;a href=&#34;https://www.adminer.org/en/plugins/&#34;&gt;a ton of plugins already available&lt;/a&gt; and you can create yours if you want.&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s install one of the  plugins: &lt;em&gt;edit-textarea&lt;/em&gt;. It uses &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt; for &lt;em&gt;char&lt;/em&gt; and &lt;em&gt;varchar&lt;/em&gt;
-fields instead of the regular text input.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/text-input.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;char and varchar fields are edited in a text input by default&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Create a plugins directory in your &lt;em&gt;adminer&lt;/em&gt; directory (e.g &lt;code&gt;~/dev/adminer/plugins&lt;/code&gt;) and &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php&#34;&gt;add this &lt;em&gt;plugin.php&lt;/em&gt; file&lt;/a&gt; in it. &lt;em&gt;plugin.php&lt;/em&gt; is required to use plugins with Adminer.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Create an &lt;em&gt;index.php&lt;/em&gt; file in your &lt;em&gt;adminer&lt;/em&gt; directory (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and add the following code.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  &amp;lt;?php
-  function adminer_object() {
-      // required to run any plugin
-      include_once &amp;quot;./plugins/plugin.php&amp;quot;;
-        
-      // autoloader
-      foreach (glob(&amp;quot;plugins/*.php&amp;quot;) as $filename) {
-          include_once &amp;quot;./$filename&amp;quot;;
-      }
-        
-      $plugins = array(
-          // specify enabled plugins here
-      );
-        
-      /* It is possible to combine customization and plugins:
-      class AdminerCustomization extends AdminerPlugin {
-      }
-      return new AdminerCustomization($plugins);
-      */
-        
-      return new AdminerPlugin($plugins);
-  }
-
-  // include original Adminer or Adminer Editor
-  include &amp;quot;./adminer.php&amp;quot;;
-  ?&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Add &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/edit-textarea.php&#34;&gt;the &lt;em&gt;edit-textarea&lt;/em&gt; plugin source file (&lt;em&gt;edit-textarea.php&lt;/em&gt;)&lt;/a&gt; to your plugins directory.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Initialize the plugin in &lt;em&gt;index.php&lt;/em&gt; by adding &lt;code&gt;new AdminerEditTextarea()&lt;/code&gt; in the &lt;code&gt;$plugins&lt;/code&gt; array.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  $plugins = array(
-      // specify enabled plugins here
-      new AdminerEditTextarea(),
-  );
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Visit &lt;em&gt;localhost:8080&lt;/em&gt; (NOT &lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;) in your browser, login and check it out!&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/textarea.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Now you can edit using a text area&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; To add a another plugin, all you need to do now is place the plugin source file in the &lt;em&gt;plugins&lt;/em&gt; directory and initialize it with the &lt;code&gt;new&lt;/code&gt; keyword in the &lt;code&gt;$plugins&lt;/code&gt; array (in &lt;em&gt;index.php&lt;/em&gt;) e.g &lt;code&gt;new SomeAwesomePlugin()&lt;/code&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

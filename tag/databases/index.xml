@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 Mar 2019 06:39:01 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
     
 	<atom:link href="https://alphacoder.xyz/tag/databases/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Database denormalization</title>
+      <link>https://alphacoder.xyz/database-denormalization/</link>
+      <pubDate>Fri, 05 Jun 2020 13:46:02 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/database-denormalization/</guid>
+      <description>Normalization is a vital part of database schema design. The goal is to structure a relational database so as to reduce redundancy and improve the integrity of data. Given this understanding, denormalization sounds rather counter-intuitive. Why would one want to make a database &amp;ldquo;less normalized&amp;rdquo;?
+Well, it turns out that normalization comes at a performance cost for DB read operations. This is just fine for regular applications. However, read-heavy apps start to break at scale under this setup due to resource-intensive SQL queries involving joins, subqueries and the like.</description>
+    </item>
     
     <item>
       <title>Adminer — a simple GUI client for any DB</title>

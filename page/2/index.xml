@@ -6,9 +6,121 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Adminer — a simple GUI client for any DB</title>
+        <link>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
+        <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ -&lt;p&gt;In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called &lt;a href=&#34;https://www.adminer.org&#34;&gt;Adminer&lt;/a&gt;. Adminer is a is a full-featured database management tool built with PHP.&lt;/p&gt;
+&lt;p&gt;Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks. Coming from PHPMyAdmin, this was a no no for me.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d used PHPMyAdmin (via XAMPP) for MySQL but decided to skip XAMPP when I moved from Windows to Ubuntu/Linux a few years ago. So I started using MySQL Workbench. I was also using MongoDB Compass (and Studio 3T briefly) for MongDB.&lt;/p&gt;
+&lt;p&gt;Now I use Adminer for all my DBs. I actively work with MySQL, PostgreSQL and MongoDB so this is really cool. So far, I&amp;rsquo;ve had zero issues with Adminer. It&amp;rsquo;s fast, simple and gets out of the way when I need to get stuff done.&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll show you how to setup Adminer on your machine.&lt;/p&gt;
+&lt;h3 id=&#34;install-php-for-your-os&#34;&gt;Install PHP for your OS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jeffgeerling.com/blog/2018/installing-php-7-and-composer-on-windows-10&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-7-on-ubuntu/&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; After installation, add the PHP CLI to your path if it&amp;rsquo;s not already added. You can test this by running &lt;code&gt;php --version&lt;/code&gt;. You should get a similar result to the one shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ php --version
+PHP 7.2.15-0ubuntu0.18.04.1 (cli) (built: Feb  8 2019 14:54:22) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.2.15-0ubuntu0.18.04.1, Copyright (c) 1999-2018, by Zend Technologies
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;install-a-db-server-optional&#34;&gt;Install a DB server (optional)&lt;/h3&gt;
+&lt;p&gt;Adminer currently supports MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, SimpleDB, Elasticsearch and MongoDB. If you want to use any of these databases locally, you need to install them on your machine.&lt;/p&gt;
+&lt;p&gt;You can also connect to a DB server on a remote machine (e.g a DigitalOcean VPS) or a managed DB service (e.g AWS RDS). In this case, you don&amp;rsquo;t need to install the DB server on your computer.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll be demonstrating with MySQL here. If you want to follow along, you can install MySQL for your OS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-mysql-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;install-db-extensions-for-php-optional&#34;&gt;Install DB extensions for PHP (optional)&lt;/h3&gt;
+&lt;p&gt;If you installed a DB server (the previous step), you might need to &lt;a href=&#34;http://php.net/manual/en/refs.database.php&#34;&gt;install the PHP extension for it&lt;/a&gt; and/or update your PHP config file.&lt;/p&gt;
+&lt;h3 id=&#34;download-and-setup-adminer&#34;&gt;Download and setup Adminer&lt;/h3&gt;
+&lt;p&gt;Adminer is just one PHP file! You can &lt;a href=&#34;https://www.adminer.org/#download&#34;&gt;download it from the Adminer website&lt;/a&gt;. The latest version at the time of writing this tutorial is &lt;a href=&#34;https://github.com/vrana/adminer/releases/download/v4.7.1/adminer-4.7.1.php&#34;&gt;4.7.1&lt;/a&gt;. When you download the PHP file, you can put it anywhere you want. Mine is in a directory named &lt;em&gt;adminer&lt;/em&gt; (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and is renamed to &lt;em&gt;adminer.php&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Start up a terminal and change directory to the folder containing Adminer. In my case, it&amp;rsquo;s &lt;code&gt;~/dev/adminer&lt;/code&gt;. Now run PHP&amp;rsquo;s development server on a port of your choice.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~/dev/adminer$ php -S localhost:8080
+PHP 7.2.15-0ubuntu0.18.04.1 Development Server started at Mon Mar  4 04:41:07 2019
+Listening on http://localhost:8080
+Document root is /home/nicholas/dev/adminer
+Press Ctrl-C to quit.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Visit localhost on your browser (&lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;). You should be greeted by the screen below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/adminer-login.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now login to your DB. Mine is MySQL.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/mysql-dbs.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Ensure your DB server is running. If you get an error like &amp;ldquo;None of the supported PHP extensions (MySQLi, MySQL, PDO_MySQL) are available&amp;rdquo; when trying to login, it means you didn&amp;rsquo;t install and/or configure the DB extension for PHP properly.&lt;/p&gt;
+&lt;h3 id=&#34;extend-adminer-with-plugins&#34;&gt;Extend Adminer with plugins&lt;/h3&gt;
+&lt;p&gt;If you need more features on Adminer, you can use plugins. There are &lt;a href=&#34;https://www.adminer.org/en/plugins/&#34;&gt;a ton of plugins already available&lt;/a&gt; and you can create yours if you want.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s install one of the  plugins: &lt;em&gt;edit-textarea&lt;/em&gt;. It uses &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt; for &lt;em&gt;char&lt;/em&gt; and &lt;em&gt;varchar&lt;/em&gt;
+fields instead of the regular text input.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/text-input.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;char and varchar fields are edited in a text input by default&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a plugins directory in your &lt;em&gt;adminer&lt;/em&gt; directory (e.g &lt;code&gt;~/dev/adminer/plugins&lt;/code&gt;) and &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php&#34;&gt;add this &lt;em&gt;plugin.php&lt;/em&gt; file&lt;/a&gt; in it. &lt;em&gt;plugin.php&lt;/em&gt; is required to use plugins with Adminer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create an &lt;em&gt;index.php&lt;/em&gt; file in your &lt;em&gt;adminer&lt;/em&gt; directory (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and add the following code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;?php
+  function adminer_object() {
+      // required to run any plugin
+      include_once &amp;quot;./plugins/plugin.php&amp;quot;;
+        
+      // autoloader
+      foreach (glob(&amp;quot;plugins/*.php&amp;quot;) as $filename) {
+          include_once &amp;quot;./$filename&amp;quot;;
+      }
+        
+      $plugins = array(
+          // specify enabled plugins here
+      );
+        
+      /* It is possible to combine customization and plugins:
+      class AdminerCustomization extends AdminerPlugin {
+      }
+      return new AdminerCustomization($plugins);
+      */
+        
+      return new AdminerPlugin($plugins);
+  }
+
+  // include original Adminer or Adminer Editor
+  include &amp;quot;./adminer.php&amp;quot;;
+  ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/edit-textarea.php&#34;&gt;the &lt;em&gt;edit-textarea&lt;/em&gt; plugin source file (&lt;em&gt;edit-textarea.php&lt;/em&gt;)&lt;/a&gt; to your plugins directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the plugin in &lt;em&gt;index.php&lt;/em&gt; by adding &lt;code&gt;new AdminerEditTextarea()&lt;/code&gt; in the &lt;code&gt;$plugins&lt;/code&gt; array.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  $plugins = array(
+      // specify enabled plugins here
+      new AdminerEditTextarea(),
+  );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;em&gt;localhost:8080&lt;/em&gt; (NOT &lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;) in your browser, login and check it out!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/textarea.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Now you can edit using a text area&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; To add a another plugin, all you need to do now is place the plugin source file in the &lt;em&gt;plugins&lt;/em&gt; directory and initialize it with the &lt;code&gt;new&lt;/code&gt; keyword in the &lt;code&gt;$plugins&lt;/code&gt; array (in &lt;em&gt;index.php&lt;/em&gt;) e.g &lt;code&gt;new SomeAwesomePlugin()&lt;/code&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
     
     
@@ -478,35 +590,6 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
 &lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
 - https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>How to land an internship at a great startup</title>
-        <link>https://alphacoder.xyz/land-great-startup-internship/</link>
-        <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/land-great-startup-internship/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/land-great-startup-internship/ -&lt;p&gt;Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.&lt;/p&gt;
-&lt;p&gt;Here are some tips on how to land an internship at a great startup&amp;hellip;&lt;/p&gt;
-&lt;h2 id=&#34;do-your-homework&#34;&gt;Do your homework&lt;/h2&gt;
-&lt;p&gt;I remember being caught off guard when asked about the company I was applying to by my interviewer. I knew very little about the them. Great startups want folks who know and care about their vision and products.&lt;/p&gt;
-&lt;p&gt;Make a list of all the startups you’re interested in applying to and do your research. Google is your friend. Visit their websites, read their blogs, follow their activities on social media and checkout the latest news about them. If possible, do same for influential individuals at the companies. In addition to being able to answer questions about the company when asked, you’ll be able to learn about their products, tech stack, culture etc and know for sure if you’d like to be part of what they do.&lt;/p&gt;
-&lt;h2 id=&#34;dont-go-through-the-front-door&#34;&gt;Don’t go through the front door&lt;/h2&gt;
-&lt;p&gt;Going through the front door means applying to a company directly e.g from a job ad or sending them an email. Many startups don’t have formal internship programs. As such, its hard to find good internship job ads on/offline. Also, from personal experience sending tons of emails, I’ve found that a good number of companies don’t respond. The ones that do usually say something along the lines of “sorry, we’re not recruiting interns at this time” (really annoying).&lt;/p&gt;
-&lt;p&gt;There was this company that said they didn’t take interns at the time but I knew people who were interning there. In fact, I asked someone who was interning there how he got in and he told me he “just got a call”. What was the interview process like? “I wasn’t interviewed”. Who called you? He refused to tell me. He definitely knew a top dog at the company. For sure.&lt;/p&gt;
-&lt;p&gt;The best way to go is through the “back door”. If you can get a referral from an employee at a company or make friends with the folks in upper management, you’ll most likely get yourself a job. There are several avenues to connect with people — meetups, developer communities, Twitter, friends of friends etc. When you try to connect with people, don’t beg or ask for favors. Get them interested in you and/or your work, then register your interest in their company and opportunities for internship.&lt;/p&gt;
-&lt;p&gt;It’s hard to socialize and network, especially if you’re introverted like me. Getting people interested in you is not the easiest thing in the world but if you do a good job, you likely get yourself an interview or even an offer.&lt;/p&gt;
-&lt;h2 id=&#34;work-on-personal-projects&#34;&gt;Work on personal projects&lt;/h2&gt;
-&lt;p&gt;If you’re looking for an internship, you probably have little or no work experience, and experience is a very important factor used by employers to rate one’s skill. You can make up by working on personal projects. Personal projects help you develop yourself, and give you something to talk about at interviews and other situations where you might want to sell yourself.&lt;/p&gt;
-&lt;p&gt;When working on projects, aim for quality and not quantity. The number of apps you’ve built is not nearly as important as what the apps do, how you built them and how much impact they’ve made. You don’t have to work on something big and complex. You just need something interesting and thoughtful.&lt;/p&gt;
-&lt;h2 id=&#34;write-a-solid-cv&#34;&gt;Write a solid CV&lt;/h2&gt;
-&lt;p&gt;Most of the people (e.g CEOs, developers and recruiters) who I’ve chatted with about internship opportunities at their company have asked me to send them my CV. It’s important to have a solid CV handy during your job search.&lt;/p&gt;
-&lt;p&gt;I’ve found that a one-page CV with the headings: Summary, Experience, Projects, Skills, Education and Accomplishments does the trick. But I’m no CV expert. Do read &lt;a href=&#34;https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume/&#34;&gt;My Personal Formula for a Winning Resume&lt;/a&gt; by Laszlo Buck and watch &lt;a href=&#34;https://www.youtube.com/watch?v=zrXZBkYzuZo&#34;&gt;How to: Work at Google — Resume Tips&lt;/a&gt; for more insights.&lt;/p&gt;
-&lt;h2 id=&#34;dont-lie&#34;&gt;Don’t lie&lt;/h2&gt;
-&lt;p&gt;Don’t lie about your abilities! You’ll probably interview with a developer/designer who has years of experience working with a plethora of technologies. They can spot liars easily. Don’t try to wow them. Instead, tell them about your learning journey — where you want to go, how far you’ve come and how working with them would move you towards achieving your goals.&lt;/p&gt;
-- https://alphacoder.xyz/land-great-startup-internship/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

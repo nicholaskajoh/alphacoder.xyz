@@ -6,9 +6,140 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Support Vector Machine</title>
+        <link>https://alphacoder.xyz/support-vector-machine/</link>
+        <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/support-vector-machine/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/support-vector-machine/ -&lt;p&gt;The Support Vector Machine (SVM) is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supervised_learning&#34;&gt;supervised learning&lt;/a&gt; model used for classification and regression. In this tutorial, we’ll be using it for classification.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*36seqRE8giOL5saMNGKCig.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Support Vector Machine (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Created by &lt;a href=&#34;https://en.wikipedia.org/wiki/Vladimir_Vapnik&#34;&gt;Vladimir Vapnik&lt;/a&gt; in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data. This boundary is known as a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperplane&#34;&gt;hyperplane&lt;/a&gt; — the best separating hyperplane.&lt;/p&gt;
+&lt;p&gt;Let’s take the points on the graph below for example:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*2tviRinseZn7KMMCIPieVw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What line best divides the red pluses and green minuses? Eye-balling the data points, I came up with this.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*YtZfClUNObb85VrKWKvz6g.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Any data point that falls on the right side of the boundary is classified as a &lt;em&gt;red plus&lt;/em&gt; and any point that falls on the left side is classified as a &lt;em&gt;green minus&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How do we arrive at the best separating hyperplane, mathematically?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Well, the equation of a hyperplane is given by &lt;strong&gt;wx + b = y&lt;/strong&gt; where &lt;em&gt;w&lt;/em&gt; is the normal vector to the hyperplane, &lt;em&gt;b&lt;/em&gt; is a bias/shift and &lt;em&gt;x&lt;/em&gt; is a vector the hyperplane passes through. &lt;em&gt;y&lt;/em&gt; determines the position of the hyperplane.&lt;/p&gt;
+&lt;p&gt;Take a look at the diagram below for better understanding:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*3xsACXxhR4rZeXLTSAnfVQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It turns out that y = 0 at the best separating hyperplane. Thus the equation of the best separating hyperplane is &lt;strong&gt;wx + b = 0&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With this hyperplane, it shouldn’t be difficult to determine if an input vector (a feature set we desire to classify) is on one or the other side of it. To make a prediction, we’d return the sign of &lt;strong&gt;wx + b&lt;/strong&gt;. A positive sign (+) represents one class and negative sign (-) represents the other.&lt;/p&gt;
+&lt;p&gt;There’s just one problem. We need to find &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; when &lt;em&gt;y&lt;/em&gt; = 0. Now there’s a new question to answer. &lt;strong&gt;How do we find w and b?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We’ll come to that in a bit.&lt;/p&gt;
+&lt;h1 id=&#34;what-are-supportvectors&#34;&gt;What are Support Vectors?&lt;/h1&gt;
+&lt;p&gt;In SVM, each sample in a data set is a vector. The area covered by the data points is a vector space.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*NWryt8J6zqRWpQ5QOmEWWg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;A support vector is a vector in this vector space which determines the hyperplane that best separates the data. They are the closest points to the best separating hyperplane.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*J1D7tjrKTwBZEc8D__474g.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If any of the support vectors change, the best separating hyperplane changes as well. You could say they “support” the best separating hyperplane.&lt;/p&gt;
+&lt;p&gt;We can draw 2 hyperplanes both parallel to the best separating hyperplane that pass through the support vectors. The best separating hyperplane divides these hyperplanes into two equal parts/areas.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*EuCGXKeyCRJ_BAlm2t73tg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It turns out that these two hyperplanes are given by &lt;strong&gt;wx + b = -1&lt;/strong&gt; and &lt;strong&gt;wx + b = 1&lt;/strong&gt; as show in the graph above.&lt;/p&gt;
+&lt;h1 id=&#34;w-andb&#34;&gt;w and b&lt;/h1&gt;
+&lt;p&gt;The geometric distance between the hyperplanes enclosing the best separating hyperplane is &lt;strong&gt;2 / ||w||&lt;/strong&gt; where &lt;strong&gt;||w||&lt;/strong&gt; is the magnitude of &lt;em&gt;w&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*Dm3swkj4iJHNofRzt6zzcQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This distance is maximum at the values of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; which produce the best separating hyperplane. As such, our goal is to get a value of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; that maximize &lt;strong&gt;2 / ||w||&lt;/strong&gt;. Maximizing &lt;strong&gt;2 / ||w||&lt;/strong&gt; equates to minimizing &lt;strong&gt;||w||&lt;/strong&gt;, so we could as well do just that.&lt;/p&gt;
+&lt;p&gt;For mathematical convenience, let’s minimize &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; instead of &lt;strong&gt;||w||&lt;/strong&gt;. Note that this doesn’t change anything. Minimizing &lt;strong&gt;||w||&lt;/strong&gt; is minimizing &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There’s a constraint to this minimization given by &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt;. This ensures that we don’t maximize the distance beyond the 2 hyperplanes that separate the 2 categories of data.&lt;/p&gt;
+&lt;p&gt;This is a classic quadratic optimization problem!&lt;/p&gt;
+&lt;p&gt;We are tasked with minimizing &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; subject to &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There are several methods for optimization at our disposal including &lt;a href=&#34;https://en.wikipedia.org/wiki/Convex_optimization&#34;&gt;Convex Optimization&lt;/a&gt; and the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Sequential_minimal_optimization&#34;&gt;Sequential Minimal Optimization (SMO)&lt;/a&gt; invented by John Platt in 1998 at Microsoft.&lt;/p&gt;
+&lt;p&gt;We’ll be using Convex Optimization to solve this problem.&lt;/p&gt;
+&lt;h1 id=&#34;convex-optimization&#34;&gt;Convex Optimization&lt;/h1&gt;
+&lt;p&gt;I chose to use the &lt;a href=&#34;http://cvxopt.org/&#34;&gt;CVXOPT python library&lt;/a&gt; for Convex Optimization because I didn’t want to delve into too much math. Feel free to explore Convex Optimization (the math and the code). Here’s a little explanation of convex optimization for the problem we’re solving — to get optimum values of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*W3MMVrG7QUc3USJyrp5kaw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Suppose the optimum value for &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; is at X. We could move from A to C in a bid to get to X. B is the point where &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; is minimum but it does not satisfy the constraint &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt; (in this example) so it’s not the optimum point.&lt;/p&gt;
+&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
+&lt;p&gt;Data:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import numpy as np  
+import cvxopt  
+import cvxopt.solvers
+
+features = np.array([[5, 4], [5, -1], [3, 3], [7, 9], [6, 7], [7, 11]])  
+labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Train/fit using CVXOPT:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def fit(X, y):  
+  n_samples, n_features = X.shape
+
+  # Gram matrix
+  K = np.zeros((n_samples, n_samples))  
+  for i in range(n_samples):  
+    for j in range(n_samples):  
+      K[i,j] = np.dot(X[i], X[j])
+
+  P = cvxopt.matrix(np.outer(y,y) * K)  
+  q = cvxopt.matrix(np.ones(n_samples) * -1)  
+  A = cvxopt.matrix(y, (1, n_samples))  
+  b = cvxopt.matrix(0.0)  
+  G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))  
+  h = cvxopt.matrix(np.zeros(n_samples))
+
+  # solve QP problem
+  solution = cvxopt.solvers.qp(P, q, G, h, A, b)
+
+  # Lagrange multipliers
+  a = np.ravel(solution[&#39;x&#39;])
+
+  # Support vectors have non zero lagrange multipliers
+  sv = a &amp;gt; 1e-5  
+  ind = np.arange(len(a))[sv]  
+  a = a[sv]  
+  sv_ = X[sv]  
+  sv_y = y[sv]
+
+  # Intercept
+  b = 0  
+  for n in range(len(a)):  
+    b += sv_y[n]  
+    b -= np.sum(a * sv_y * K[ind[n], sv])  
+  b /= len(a)
+
+  # Weight vector
+  w = np.zeros(n_features)  
+  for n in range(len(a)):  
+    w += a[n] * sv_y[n] * sv_[n]
+
+  return w, b
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Predict:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;w, b = fit(features, labels)
+
+def predict(x):  
+  classification = np.sign(np.dot(x, w) + b)  
+  return classification
+
+# test  
+x = [3, 4]  
+print(predict(x))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;the-kerneltrick&#34;&gt;The Kernel trick&lt;/h1&gt;
+&lt;p&gt;The data we’ve been dealing with is linearly separable i.e we can draw a straight line (speaking in 2D) that separates the data into 2 categories. What if we have a data set like this?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*SGJF-6P3gQH5cHlarb7m6w.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;There’s no hyperplane that can separate this data.&lt;/p&gt;
+&lt;p&gt;The kernel trick introduces a new dimension to the vector space. Adding a dimension to the data in the diagram above yields a 3D vector space. Can we separate the data now? Probably.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*aBJJ38sQ1yIZBGFNBzjZmA.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!&lt;/p&gt;
+&lt;p&gt;Don’t forget to check out the ML Chops repo for all the code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
+- https://alphacoder.xyz/support-vector-machine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
     
     
@@ -1042,75 +1173,6 @@ Once Apache and MySQL start running, go to your browser and visit http://localho
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;.&lt;/p&gt;
 - https://alphacoder.xyz/facebook-clone-2/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Build a Facebook clone from scratch with PHP — Part 1</title>
-        <link>https://alphacoder.xyz/facebook-clone-1/</link>
-        <pubDate>Sun, 11 Jun 2017 01:22:37 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/facebook-clone-1/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-1/ -&lt;p&gt;In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!&lt;/p&gt;
-&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 1 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;were-making-facebook-wow&#34;&gt;We&amp;rsquo;re making Facebook? Wow!&lt;/h1&gt;
-&lt;p&gt;Facebook is the largest social network platform in the world. I mean, it&amp;rsquo;s crazy! An application that serves ~2 billion people? Insane! Facebook over the years has become more and more complex, adding new and exciting features as the days go by.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;d like to, at this rather early juncture, outline what we&amp;rsquo;ll be building.&lt;/p&gt;
-&lt;p&gt;Facebook is big. There are photos, groups, messaging, pages, videos, live videos, stories, VR and more. That&amp;rsquo;s a lot. What we&amp;rsquo;ll be building here is good ol&amp;rsquo; Facebook of 2004 — probably less. We want to focus on the initial core features of Facebook — posts, profiles, timelines, friend relationships and login/registration. Awesome!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/faceclone-screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;is-it-forme&#34;&gt;Is it for me?&lt;/h1&gt;
-&lt;p&gt;If you have at least a basic understanding of programming concepts and front end web development (i.e HTML, CSS, Javascript) this series is for you. If you have little/zero knowledge of front end web development, you can check out this post I wrote: &lt;a href=&#34;https://alphacoder.xyz/html-css-js&#34;&gt;HTML, CSS and Javascript as fast as possible&lt;/a&gt;. If it doesn&amp;rsquo;t help, you&amp;rsquo;ll need to pick up some more elaborate course/tutorial to get up to speed. It&amp;rsquo;s vital you have some general knowledge of computer programming though to get the best from the series.&lt;/p&gt;
-&lt;h1 id=&#34;what-youll-beneeding&#34;&gt;What you&amp;rsquo;ll be needing&lt;/h1&gt;
-&lt;p&gt;All you&amp;rsquo;ll be needing is a PC/Mac and 3 apps you can download for free online:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;VS Code (text editor)&lt;/li&gt;
-&lt;li&gt;XAMPP (PHP interpreter, PHP development server and MySQL server)&lt;/li&gt;
-&lt;li&gt;Filezilla (FTP client)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;VS Code is a flexible light-weight text editor. We&amp;rsquo;ll be using it to write our code.&lt;/p&gt;
-&lt;p&gt;XAMPP (pronounced &amp;ldquo;zamp&amp;rdquo;) is a suite of tools that&amp;rsquo;ll help us develop &lt;em&gt;FaceClone&lt;/em&gt; (yeah, that&amp;rsquo;s the name of the Facebook clone we&amp;rsquo;ll be building). XAMPP is an acronym that stands for Cross-Platform (X), Apache (A), MariaDB (M), PHP (P) and Perl (P). We&amp;rsquo;ll be using the PHP interpreter, the PHP development server and MySQL from XAMPP. You can read more about XAMPP here.&lt;/p&gt;
-&lt;p&gt;Filezilla is an FTP client. FTP stands for File Transfer Protocol. We&amp;rsquo;ll be deploying our Facebook clone app. Filezilla is going to enable us upload our code to an online server.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; If you have issues setting up any of these apps, please let me know in the comments. I&amp;rsquo;m ready to help where I can.&lt;/p&gt;
-&lt;h1 id=&#34;the-htmltemplate&#34;&gt;The HTML template&lt;/h1&gt;
-&lt;p&gt;I built a HTML template for the project. I figured it&amp;rsquo;ll be better to focus on PHP and MySQL than HTML, CSS and Javascript. Besides, using a ready-made template would enable us work faster which is what we want, right?
-Here&amp;rsquo;s the repo for the template: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone-html-template&#34;&gt;https://github.com/nicholaskajoh/faceclone-html-template&lt;/a&gt;. Click on the green &amp;ldquo;clone or download&amp;rdquo; button, then &amp;ldquo;download ZIP&amp;rdquo; to get the template. Unzip it to any location of your choice.&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s quickly observe the structure of the template folder:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/template-folder-structure.jpg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Folder structure for the template (ignore the .git folder)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The folder structure should be similar to the screenshot above. The .gitignore and README.md files are repo files and are not needed here so we can delete them.&lt;/p&gt;
-&lt;p&gt;The css folder contain css files for styling our web app. There are several &amp;ldquo;bootstrap&amp;rdquo; files and a style.css file. &lt;a href=&#34;https://getbootstrap.com&#34;&gt;Bootstrap&lt;/a&gt; is a HTML, CSS and Javascript framework that helps us built beautiful and responsive UIs quickly. I used Bootstrap for the template. In the style.css file, I specified a couple of styles to customize Bootstrap.&lt;/p&gt;
-&lt;p&gt;The fonts folder contains the gyphicons fonts which Bootstrap uses for its icons.&lt;/p&gt;
-&lt;p&gt;The js folder contains javascript files as you would expect. There&amp;rsquo;s bootstrap.js, bootstrap.min.js and npm.js from Bootstrap and script.js where we can define custom javascript code.&lt;/p&gt;
-&lt;p&gt;There are 3 main html files: home.html, index.html and profile.html. The names of these files suggest what they contain. Go ahead and open these files with a browser. The index file contains a login and register form where our users can &amp;ldquo;login or register&amp;rdquo;. The home page contains a logged-in user&amp;rsquo;s feed as well as a couple other things and the profile page contains information about a user. The template.html file is an empty template file. You can use it to build other page templates if you want to add another other feature to your version of FaceClone!&lt;/p&gt;
-&lt;p&gt;Try opening these template files in VS Code to see the code. Compare the code with what you see in the browser and try to make sense of it. Don&amp;rsquo;t fret if you don&amp;rsquo;t understand any or all of it. We&amp;rsquo;re going to do justice to the code in later parts.&lt;/p&gt;
-&lt;h1 id=&#34;serving-ourtemplate&#34;&gt;Serving our template&lt;/h1&gt;
-&lt;p&gt;With XAMPP installed, we have access to PHP&amp;rsquo;s development server from a terminal. Browsers can interpret/run HTML, CSS and Javascript code. They however cannot run PHP code. PHP is a server-side language. This means it runs on a server. When a request is made to the server by a browser (e.g when you try to visit &lt;a href=&#34;http://www.facebook.com&#34;&gt;www.facebook.com&lt;/a&gt;), PHP executes and produces HTML code which is returned by the server to the browser.&lt;/p&gt;
-&lt;p&gt;Open up a terminal window in the root folder of the project (i.e the folder displayed in the screenshot above). You can Google how to open up a terminal in your OS if you don&amp;rsquo;t know how to. Type the following and hit enter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;php -v
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You should get a result similar to the screenshot below (i.e the version of PHP you have installed):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/php-version.jpg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;A terminal window&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;If you get a weird message like &amp;ldquo;invalid command&amp;rdquo; or something, your XAMPP is probably not properly installed. Post a comment on this article if you have any issues installing any of the apps we&amp;rsquo;ll be using.&lt;/p&gt;
-&lt;p&gt;Now type in &lt;code&gt;php -S localhost:8080&lt;/code&gt; and hit enter. This command starts up the PHP development server on port 8080. Visit http://localhost:8080 on your browser. Our FaceClone template is opened up!
-Unlike when we clicked index.html or the other html files to open them up in our browser, the page that is displayed was &amp;ldquo;served&amp;rdquo; by a server. This means we can run PHP code in them. Great!&lt;/p&gt;
-&lt;p&gt;But we actually can&amp;rsquo;t! Not yet. We have to change those files from html to php so that our server knows that they contain PHP and must be &amp;ldquo;pre-processed&amp;rdquo; before they are served. So go ahead and change home.html to home.php and so on for the other html files. Now we should have a folder structure similar to this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/template-to-php.jpg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Your folder structure should look like this (ignore the .gitkeep file)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;That&amp;rsquo;s all for part 1. Cool!!!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-1 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-1/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

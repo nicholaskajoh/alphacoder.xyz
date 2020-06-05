@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Databases</title>
+<title>Database denormalization</title>
 
 <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
@@ -57,11 +57,7 @@ if (!doNotTrack) {
 
 
 
-<style>
-  .toc{
-    display: none !important;
-  }
-</style>
+<script src="https://alphacoder.xyz//js/toc.js"></script>
 
 
 
@@ -175,6 +171,77 @@ if (!doNotTrack) {
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#duplicate-fields-that-seldom-if-ever-change" v-on:click="closeDrawer" id="duplicate-fields-that-seldom-if-ever-change-nav">
+										 Duplicate fields that seldom if ever change
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#duplicate-fields-with-high-read-to-write-ratios" v-on:click="closeDrawer" id="duplicate-fields-with-high-read-to-write-ratios-nav">
+										 Duplicate fields with high read to write ratios
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#create-columns-or-tables-for-frequently-used-aggregates" v-on:click="closeDrawer" id="create-columns-or-tables-for-frequently-used-aggregates-nav">
+										 Create columns or tables for frequently used aggregates
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -251,6 +318,77 @@ if (!doNotTrack) {
                 
             
             
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#duplicate-fields-that-seldom-if-ever-change" v-on:click="closeDrawer" id="duplicate-fields-that-seldom-if-ever-change-nav">
+										 Duplicate fields that seldom if ever change
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#duplicate-fields-with-high-read-to-write-ratios" v-on:click="closeDrawer" id="duplicate-fields-with-high-read-to-write-ratios-nav">
+										 Duplicate fields with high read to write ratios
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#create-columns-or-tables-for-frequently-used-aggregates" v-on:click="closeDrawer" id="create-columns-or-tables-for-frequently-used-aggregates-nav">
+										 Create columns or tables for frequently used aggregates
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
         </div>
     </div>
 </div>
@@ -291,77 +429,106 @@ if (!doNotTrack) {
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        <div class="post-item-wrapper post-item-wrapper-no-hover">
-            <div class="post-item post-item-no-gaps">
-                <div class="post-item-info-wrapper">
-                    <div class="post-item-title  post-item-title-small">
-                        <a href="https://alphacoder.xyz/">Software engineering with great finesse</a> / Databases
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Database denormalization
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-06-05 13:46
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/databases">Databases</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            3 min
+                            
+                            2 s.
+                        
                     </div>
                 </div>
             </div>
-        </div><a href="/database-denormalization/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Database denormalization
-                        </div>
-                        <div class="post-item-meta">
-    2020-06-05
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
+            
+            <div class="post-body-wrapper">
+                <div class="post-body" v-pre>
+                    <p>Normalization is a vital part of database schema design. The goal is to structure a relational database so as to reduce redundancy and improve the integrity of data. Given this understanding, denormalization sounds rather counter-intuitive. Why would one want to make a database &ldquo;less normalized&rdquo;?</p>
+<p>Well, it turns out that normalization comes at a performance cost for DB read operations. This is just fine for regular applications. However, read-heavy apps start to break at scale under this setup due to resource-intensive SQL queries involving joins, subqueries and the like. Denormalization helps improve read performance by adding redundant copies of data to make for faster access using simpler queries.</p>
+<p>It&rsquo;s worth noting that <em>denormalized data</em> is different from <em>unnormalized data</em>. While the latter refers to data before normalization, the former is a transformation of normalized data.</p>
+<p>So how does one denormalize? The changes to be made in order to denormalize your data vary based on the type of application, existing database schema and optimization needs. However, the reasoning behind them are the same i.e you want to make data retrieval as fast as possible. Outlined below are a few tips to help you in this process:</p>
+<h1 id="duplicate-fields-that-seldom-if-ever-change">Duplicate fields that seldom if ever change</h1>
+<p>Say you operate a popular ecommerce website and your fulfilment staff are having a hard time viewing the orders because the API that retrieves this information is slow. You might take a look and realize that the bottleneck is your <em>orders</em> table which has lots of relationships that need to be populated in order to retrieve a couple important fields. Some of these fields will seldom, if ever change (at least within the period in which an order must be fulfilled) so you proceed to denormalize them by creating new columns in the <em>orders</em> table.</p>
+<p>For example, you might determine that the list of ordered products rarely changes. However, in order to get this list, you&rsquo;ve had to use a join to pull the data from the <em>products</em> table. By adding an <em>ordered_items</em> column to the <em>orders</em> table which will contain JSON arrays of product SKUs and order quantities, you may be able to reduce the latency of the API by a substantial amount. This, coupled with other such optimizations has the potential to deliver significant performance gains.</p>
+<p>The cost of these changes is little. If the list of ordered products does change (a rarity), all it takes is updating the <em>ordered_items</em> column. While this will increase disk usage, it&rsquo;s not a concern for most.</p>
+<h1 id="duplicate-fields-with-high-read-to-write-ratios">Duplicate fields with high read to write ratios</h1>
+<p>Taking our ecommerce website scenario forward, you might discover that your products display pages have become slower because they&rsquo;re one of the most trafficked part of the site. In seeking ways to optimize these pages, you realize you can simplify the query that fetches products by denormalizing some of the data in products-related tables including <em>product_options</em>, <em>categories</em>, <em>product_media</em> and <em>tags</em>. By adding several new columns in the <em>products</em> table so you don&rsquo;t have to query other tables, you might be able to increase the load times of these slow pages.</p>
+<p>It turns out that you don&rsquo;t update products very often (maybe once a week on average). However, hundreds of people view these products every second. It makes sense to denormalize in this case because your products data has a high read-write ratio.</p>
+<h1 id="create-columns-or-tables-for-frequently-used-aggregates">Create columns or tables for frequently used aggregates</h1>
+<p>Frequently used aggregates (for example the total amount made from orders this week or the number of times a coupon has been used) don&rsquo;t have to be computed on the fly. You can pre-compute them and store the results in another table or a new column for faster retrieval. If these aggregates are likely to change in future, you can recompute them periodically or at the point when their inputs change.</p>
+<p>It goes without saying that you should NOT denormalize until you encounter data retrieval issues. Like with most software engineering problems, there are tradeoffs! Also, denormalization is <a href="/database-scaling-techniques">not the only way to optimize/scale databases</a>.</p>
 
-    
-    
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2020-06-05</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-    
-    3 min
-    
-    2 s
-    
-    
-    &emsp;
-    
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://alphacoder.xyz/node-modules/">
+			Previous<br>node_modules: The Node.js black hole
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div class="comments">
+    <vue-disqus shortname="alphacoderxyz"></vue-disqus>
 </div>
+<noscript><noscript>Please activate JavaScript to view comments.</noscript></noscript>
+<a href="https://disqus.com/" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
-                    </div>
-                </div>
+
+
+
+
+
+
+
             </div>
-        </a><a href="/adminer-a-simple-gui-client-for-any-db/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Adminer — a simple GUI client for any DB
-                        </div>
-                        <div class="post-item-meta">
-    2019-03-04
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    3 min
-    
-    51 s
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a></div>
+        </div>
+    </div>
 </div>
 
             </div><div id="single-column-footer">&copy;
