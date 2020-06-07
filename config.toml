@@ -69,7 +69,6 @@ canonifyURLs = true
     musings = "/:slug/"
 
 [params]
-    enableReadingTime = true
     favicon = "/images/alpha-coder-logo-v1-small.png"
     disqusShortname = "alphacoderxyz"
 
