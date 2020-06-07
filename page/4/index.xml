@@ -6,9 +6,144 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Naive Bayes</title>
+        <link>https://alphacoder.xyz/naive-bayes/</link>
+        <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/naive-bayes/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/naive-bayes/ -&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/nb-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Naive Bayes is a classifier just like &lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;. The Naive Bayes algorithm applies the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes Theorem&lt;/a&gt; (used to calculate conditional probability) given by the formula:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/bayes-formula.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Bayes formula&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: &lt;a href=&#34;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&#34;&gt;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Naive Bayes (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s consider the data we used in the last post on KNNs:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;height (ft)    weight (kg)    sex  
+6.3            50.2           Male  
+5.9            79.7           Female  
+5.1            61.4           Female  
+5.6            47.1           Male  
+5.1            59.8           Female
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In Naive Bayes, we calculate the probabilities of an input feature set being in each of the classes in the data and return the class with the highest probability as the predicted output.&lt;/p&gt;
+&lt;p&gt;Our goal with the data in the table above is to determine whether an individual is &lt;em&gt;Male&lt;/em&gt; or &lt;em&gt;Female&lt;/em&gt;. Given the height and weight of a person e.g &lt;code&gt;[height, weight] -&amp;gt; [5.8, 82.1]&lt;/code&gt;, a Naive Bayes classifier calculates the probabilities of the person being a Male and a Female e.g &lt;code&gt;[(“Male”, 7.92248128417e-103), (“Female”, 0.00355626444241)]&lt;/code&gt; then returns the class with the highest probability (in this example &lt;code&gt;“Female”&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;How do we find the probabilities for each class?&lt;/p&gt;
+&lt;p&gt;You guessed right! &lt;strong&gt;Bayes formula&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s put the formula into context for better understanding:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/male-person-prob.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Probability that a person is Male&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Substitute &lt;em&gt;Female&lt;/em&gt; for &lt;em&gt;Male&lt;/em&gt; in the formula and you have the probability that a person is female.&lt;/p&gt;
+&lt;p&gt;Let’s explain terms in the equation briefly:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;P(Male | height &amp;amp; weight)&lt;/strong&gt; is the probability that a person is Male given their height and weight (better put: given all the features provided in the data). This is what we’re looking for.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;P(Male)&lt;/strong&gt; is the probability of selecting a Male person from the data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;P(height | Male)&lt;/strong&gt; and &lt;strong&gt;P(weight | Male)&lt;/strong&gt; equate to &lt;strong&gt;P(B|A)&lt;/strong&gt; [from the first formula]. &lt;strong&gt;P(height | Male)&lt;/strong&gt; is the probability of getting the height of a person given that they are Male (same for the weight). Essentially we want to find the percentage of Males with the same height as the person we’re classifying. This not feasible with our data however because both height and weight are continuous. Besides, it would be very costly when we have a large amount of training data (we’d have to run through the data every time to count the number of people with same height and weight with the person being classified). Thankfully, we have the &lt;strong&gt;Probability Density Function (PDF)&lt;/strong&gt; to help us with this. We’ll use PDF to determine both &lt;strong&gt;P(height | Male)&lt;/strong&gt; and &lt;strong&gt;P(weight | Male)&lt;/strong&gt; in a bit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;P(height &amp;amp; weight)&lt;/strong&gt; or better put &lt;strong&gt;P(all features)&lt;/strong&gt; is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Marginal_distribution&#34;&gt;marginal probability&lt;/a&gt;. For our classification, it’s not really useful to us because it’s the denominator for all class probabilities. We’re actually interested in finding the class with the highest probability and not the actually probability figure like 0.9 for instance. We might as well not use it since we’re dividing by it in every class probability calculation. It doesn’t change anything. We’ll still get the class with the highest probability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;pclass&#34;&gt;P(Class)&lt;/h1&gt;
+&lt;p&gt;The probability of selecting a person from a given class is the simplest calculation to perform. From the data table, we can see that there are 5 samples. 2 are Male. Thus &lt;strong&gt;P(Male)&lt;/strong&gt; = 2/5. And 3 are Female. Thus &lt;strong&gt;P(Female)&lt;/strong&gt; = 3/5.&lt;/p&gt;
+&lt;h1 id=&#34;the-pdf&#34;&gt;The PDF&lt;/h1&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Probability_density_function&#34;&gt;PDF&lt;/a&gt; can be computed using the following formula:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/pdf.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;The PDF&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Substitute Female with Male and/or weight with height to calculate other PDFs.&lt;/p&gt;
+&lt;p&gt;Using PDF, we assume:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each feature is uncorrelated from the others (i.e height is independent of weight for instance).&lt;/li&gt;
+&lt;li&gt;The values of the features (i.e heights, weights) are &lt;a href=&#34;https://www.thoughtco.com/what-is-normal-distribution-3026707&#34;&gt;normally distributed&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are assumptions and are not completely true most times for a given data set. As such, we’re being “naive” by assuming.&lt;/p&gt;
+&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
+&lt;p&gt;First things first! The data.&lt;/p&gt;
+&lt;p&gt;For convenience, I’m using 3 arrays:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#f92672&#34;&gt;as&lt;/span&gt; np
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# data  &lt;/span&gt;
+heights &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#ae81ff&#34;&gt;6.3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.9&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.6&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.1&lt;/span&gt;])  
+weights &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#ae81ff&#34;&gt;50.2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;79.7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;61.4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;47.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;59.8&lt;/span&gt;])  
+classes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt; , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, let’s find P(Class) for Male and Female:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;males_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
+females_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
+sample_size &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(classes)  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; classes:  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;:  
+        males_count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:  
+        females_count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
+p_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; males_count &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; sample_size  
+p_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; females_count &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; sample_size
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;pdfs&#34;&gt;PDFs&lt;/h1&gt;
+&lt;p&gt;We need to find the various means and variances required to compute the PDFs:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;heights_of_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
+weights_of_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
+heights_of_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
+weights_of_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(sample_size):  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; classes[i] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;:  
+        heights_of_males&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(heights[i])  
+        weights_of_males&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(weights[i])  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+        heights_of_females&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(heights[i])  
+        weights_of_females&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(weights[i])
+
+mean_height_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(heights_of_males)  
+mean_weight_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(weights_of_males)  
+mean_height_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(heights_of_females)  
+mean_weight_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(weights_of_females)  
+var_height_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(heights_of_males)  
+var_weight_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(weights_of_males)  
+var_height_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(heights_of_females)  
+var_weight_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(weights_of_females)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now to the PDF formula in code&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Let’s define a function as we’ll use it severally:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;the_pdf&lt;/span&gt;(x, mean, variance):  
+    pd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sqrt(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pi &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; variance)) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exp((&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;(x &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; mean)&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; variance))  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;predict&#34;&gt;Predict&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;5.8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;82.1&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;# [height, weight]&lt;/span&gt;
+
+p_height_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], mean_height_males, var_height_males)
+p_weight_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], mean_weight_males, var_weight_males)
+p_height_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], mean_height_females, var_height_females)
+p_weight_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], mean_weight_females, var_weight_females)
+
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Get class probabilities  &lt;/span&gt;
+p_male_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; p_male &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_height_male &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_weight_male  
+p_female_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; p_female &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_height_female &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_weight_female  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P(Male | height &amp;amp; weight) =&amp;#34;&lt;/span&gt;, p_male_h_and_w)  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P(Female | height &amp;amp; weight) =&amp;#34;&lt;/span&gt;, p_female_h_and_w)
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# Return prediction  &lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; p_male_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; p_female_h_and_w:  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;class = Male&amp;#34;&lt;/span&gt;)  
+&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:  
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;class = Female&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;P(Male | height &amp;amp; weight) = 7.92248128417e-103  
+P(Female | height &amp;amp; weight) = 0.00355626444241  
+class = Female
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Putting everything together, we have:&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
+- https://alphacoder.xyz/naive-bayes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
     
     
@@ -1045,134 +1180,6 @@ The redirect_to method is a custom method. Add the definition to functions.php.&
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
 - https://alphacoder.xyz/facebook-clone-3/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Build a Facebook clone from scratch with PHP — Part 2</title>
-        <link>https://alphacoder.xyz/facebook-clone-2/</link>
-        <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/facebook-clone-2/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-2/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 2 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;a-little-about-php-andmysql&#34;&gt;A little about PHP and MySQL&lt;/h1&gt;
-&lt;p&gt;So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template. We also didn&amp;rsquo;t get to talk about MySQL, the database we&amp;rsquo;ll be using. Let&amp;rsquo;s quickly get to know a little about PHP and MySQL.&lt;/p&gt;
-&lt;h1 id=&#34;php&#34;&gt;PHP&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. - http://php.net/manual/en/intro-whatis.php&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;PHP is the most popular server-side programming language for the web and runs millions of websites. To write PHP, all we need to do is create a file with a &lt;em&gt;.php&lt;/em&gt; file extension and add the php tags &lt;code&gt;&amp;lt;?php&lt;/code&gt; and &lt;code&gt;?&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;?php&lt;/code&gt; is the opening tag and &lt;code&gt;?&amp;gt;&lt;/code&gt; the closing tag. We can write a Hello World PHP program like so:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, &lt;code&gt;&amp;lt;?php&lt;/code&gt; and &lt;code&gt;?&amp;gt;&lt;/code&gt; which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We may choose to omit the closing tag &lt;code&gt;?&amp;gt;&lt;/code&gt; in this case to have:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;echo&lt;/code&gt; prints out Hello World as HTML text when the php file is served. We&amp;rsquo;ll be learning PHP as we go about building FaceClone. Don&amp;rsquo;t worry, PHP is pretty easy! 👍&lt;/p&gt;
-&lt;h1 id=&#34;mysql&#34;&gt;MySQL&lt;/h1&gt;
-&lt;p&gt;MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We&amp;rsquo;ll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we&amp;rsquo;ll create tables like &lt;em&gt;users&lt;/em&gt; (to store information about our users) and &lt;em&gt;posts&lt;/em&gt; (to store our users&amp;rsquo; posts). Tables have columns. For a users table, we could have columns like &lt;em&gt;name&lt;/em&gt;, &lt;em&gt;password&lt;/em&gt;, &lt;em&gt;email&lt;/em&gt; etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;SELECT&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; posts
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;SELECT&lt;/code&gt; lets us read data from the database. &lt;code&gt;*&lt;/code&gt; gets all the columns in the table posts. We could use &lt;code&gt;SELECT name, email FROM posts&lt;/code&gt; if we don&amp;rsquo;t want all the columns from the posts table. We&amp;rsquo;ll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you&amp;rsquo;ll want to write. Sweet!!!&lt;/p&gt;
-&lt;h1 id=&#34;back-to-business&#34;&gt;Back to business&amp;hellip;&lt;/h1&gt;
-&lt;p&gt;When we changed our template files from .html to .php, we broke our navigation links. Let&amp;rsquo;s go ahead and fix that. We just need to change the href attributes of those links to .php. Or not. We have 3 templates and need to make each change 3 times. That&amp;rsquo;s not much of a problem since there are only 3 templates. What if there were 10, 15, 20? It doesn&amp;rsquo;t make sense to make the same change x times. The navigation bar is a component we use in all of our templates. Why don&amp;rsquo;t we make it reusable?&lt;/p&gt;
-&lt;h1 id=&#34;partials&#34;&gt;Partials&lt;/h1&gt;
-&lt;p&gt;We can achieve reusability by creating partials. Partials are files that contain different components of our app. So we can have a header partial and a footer partial. If we need a header in home.php, all we need to do is simply &amp;ldquo;include&amp;rdquo; it. Let&amp;rsquo;s go ahead and do that. Create a header.php and footer.php file in the same folder as your other templates. It may be more efficient to create a folder for partials but we&amp;rsquo;ll just have the templates and partials together for now. In your header.php, add the following code (the snippet below can be gotten from home.php or profile.php):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;FaceClone&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;css/bootstrap.min.css&amp;#34;&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;css/style.css&amp;#34;&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- nav --&amp;gt;&lt;/span&gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;nav&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;navbar navbar-default&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container-fluid&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;navbar-header&amp;#34;&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;navbar-brand&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;index.html&amp;#34;&lt;/span&gt;&amp;gt;FaceClone&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nav navbar-nav navbar-right&amp;#34;&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;home.html&amp;#34;&lt;/span&gt;&amp;gt;Home&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;profile.html&amp;#34;&lt;/span&gt;&amp;gt;Profile&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&amp;gt;Logout&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;nav&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./nav --&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then in footer.php add:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- footer --&amp;gt;&lt;/span&gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;footer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container text-center&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nav nav-pills pull-right&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;FaceClone - Made by [your name here]&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;footer&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./footer --&amp;gt;&lt;/span&gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js/bootstrap.min.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js/script.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so &lt;code&gt;href=&amp;quot;home.html&amp;quot;&lt;/code&gt; becomes &lt;code&gt;href=&amp;quot;home.php&amp;quot;&lt;/code&gt; for example.
-We&amp;rsquo;ve just created 2 partials. We need to include them in all our template files. To do so, clear the header and footer code (which we&amp;rsquo;ve already moved to header.php and footer.php respectively) in our template files and add &lt;code&gt;&amp;lt;?php include &amp;quot;header.php&amp;quot;; ?&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;?php include &amp;quot;header.php&amp;quot;; ?&amp;gt;&lt;/code&gt; like so:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;header.php&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;! - main --&amp;gt;&lt;/span&gt;
-&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;main&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container&amp;#34;&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- page content here --&amp;gt;&lt;/span&gt;
-&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;main&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./main --&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;footer.php&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run PHP&amp;rsquo;s development server to to confirm everything works fine.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Open up a terminal and change directory to the project&amp;rsquo;s folder then run &lt;code&gt;php -S localhost:8080&lt;/code&gt; to start the server (refer to part 1 if you don&amp;rsquo;t remember how to run the app).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/faceclone-home.php.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;lets-write-a-dbschema&#34;&gt;Let&amp;rsquo;s write a DB schema&lt;/h1&gt;
-&lt;p&gt;We need to &amp;ldquo;architect&amp;rdquo; a schema for our database. There&amp;rsquo;s quite some data that needs to be stored. When a user makes a post, we need to store it so they (and other users) can view it [later]. We even need to store information about users like their usernames and passwords. There needs to be some structure. We must know before hand what data we want to store and how we want to store it. A schema is simply a representation of a database structure. Smooth and easy!&lt;/p&gt;
-&lt;p&gt;Here&amp;rsquo;s the schema I made for FaceClone:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/faceclone-schema.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;This schema is very basic. I should have specified the data types for each column. But don&amp;rsquo;t worry, we&amp;rsquo;ll choose data types when we transform this schema into a real database. The column names suggest the data that would be stored under them. The id columns allow us uniquely identify records in the database. If we want to get a post from the database, we need a unique feature that identifies it - the id. For the users table, we could use the username column to identify users because each user&amp;rsquo;s username must be unique but we&amp;rsquo;ll be using ids nonetheless.&lt;/p&gt;
-&lt;p&gt;The user_id and friend_id columns are foreign key columns. user_id represents a user in the users table. Every post, for example must belong to a user. Instead of adding fields like username, password, location etc to the posts table to represent the user who made a given post, we can simply add a reference (user_id) which represents a user&amp;rsquo;s id in users table. This is some form of normalization and in helps us avoid redundancy/duplicate data.&lt;/p&gt;
-&lt;h1 id=&#34;create-thedatabase&#34;&gt;Create the Database&lt;/h1&gt;
-&lt;p&gt;With a schema in sight, we should get started creating the database for FaceClone. Power up XAMMP to begin. When XAMPP is executed, a view like the one below greets you:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;XAMPP&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Start Apache and MySQL. We&amp;rsquo;re going to use a web app called PHP My Admin to create our database. We&amp;rsquo;ll serve PHP My Admin with Apache (a web server). We also need MySQL server running too.
-Once Apache and MySQL start running, go to your browser and visit http://localhost/phpmyadmin. You should be greeted by a page that looks like:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/phpmyadmin.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;PHP My Admin&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Click on the databases tab to create a new database. Let&amp;rsquo;s call our database faceclone. Once our database is created, we are taken to a screen where we can create tables. Type in the name of the table and the number of columns and click &amp;ldquo;Go&amp;rdquo;. Our posts table for instance would have 4 columns: id, content, user_id and created_at. Go ahead and create all the database tables like so:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-posts.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Create posts table&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; For &lt;em&gt;id&lt;/em&gt; columns, remember to make the index PRIMARY and tick the AI (auto increment) checkbox.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-users.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Create users table&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-friends.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Create friends table&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-friend-requests.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Create friend_requests table&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Done with that? Cool. Our database is up and ready!&lt;/p&gt;
-&lt;p&gt;That wraps it up for part 2!!!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-2 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-2/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

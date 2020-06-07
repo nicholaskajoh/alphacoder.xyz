@@ -3,27 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://alphacoder.xyz/database-denormalization/</loc>
-    <lastmod>2020-06-05T13:46:02+00:00</lastmod>
+    <loc>https://alphacoder.xyz/database-scaling-techniques/</loc>
+    <lastmod>2020-06-07T11:46:24+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://alphacoder.xyz/tag/databases/</loc>
-    <lastmod>2020-06-05T13:46:02+00:00</lastmod>
+    <lastmod>2020-06-07T11:46:24+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://alphacoder.xyz/blog/</loc>
-    <lastmod>2020-06-05T13:46:02+00:00</lastmod>
+    <lastmod>2020-06-07T11:46:24+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://alphacoder.xyz/</loc>
-    <lastmod>2020-06-05T13:46:02+00:00</lastmod>
+    <lastmod>2020-06-07T11:46:24+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://alphacoder.xyz/tags/</loc>
+    <lastmod>2020-06-07T11:46:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://alphacoder.xyz/database-denormalization/</loc>
     <lastmod>2020-06-05T13:46:02+00:00</lastmod>
   </url>
   

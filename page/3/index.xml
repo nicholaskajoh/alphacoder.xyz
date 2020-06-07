@@ -6,9 +6,60 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Understanding modern front-end development</title>
+        <link>https://alphacoder.xyz/understanding-modern-front-end-development/</link>
+        <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/understanding-modern-front-end-development/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/understanding-modern-front-end-development/ -&lt;p&gt;It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.&lt;/p&gt;
+&lt;p&gt;We’re going to discuss the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;package managers (npm)&lt;/li&gt;
+&lt;li&gt;transpilers (Babel)&lt;/li&gt;
+&lt;li&gt;module bundlers (Webpack)&lt;/li&gt;
+&lt;li&gt;task runners (Grunt)&lt;/li&gt;
+&lt;li&gt;CSS preprocessors (SASS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;package-managers&#34;&gt;Package Managers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*AagfZZ8bGOI4iTbLqewg6Q.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;npm logo (&lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;One important principle you’ll learn as a Sofware Developer is DRY (Don’t Repeat Yourself). Once you see yourself writing the same code in three or more places in a project, you should find a way to abstract that functionality into a reusable function, class or module.&lt;/p&gt;
+&lt;p&gt;Front-end projects have a lot in common in terms of UI components and logic so it might be an even better idea to abstract functionalities into reusable libraries, so that they may be shared across projects. A ton of libraries have been built to do all sorts of things from handling AJAX requests to manipulating dates and images. In order to cut down dev time and/or not reinvent the wheel, front-end developers use many such libraries in their projects — sometimes all too much.&lt;/p&gt;
+&lt;p&gt;It can be difficult to manage these libraries (or dependencies, as they’re commonly called) manually. Even if your project has only three dependencies, it may be hard to keep everything clean and dandy because these dependencies could have their own dependencies! This is where a package manager comes in. Package managers automate the process of installing, upgrading, configuring and removing packages (or dependencies or libraries) in your project.&lt;/p&gt;
+&lt;p&gt;npm (Node Package Manager) is a popular package manager used by front-end developers today. It is the default package manager for Node.js, an environment for running JavaScript outside of a browser. npm uses a file named &lt;em&gt;package.json&lt;/em&gt; to know the dependencies required by your project, making it easy for you and your team to run a single command that installs all the libraries you need to run your application. You can start learning how to use npm by reading &lt;a href=&#34;https://docs.npmjs.com/getting-started/what-is-npm&#34;&gt;What is npm?&lt;/a&gt; from the official docs.&lt;/p&gt;
+&lt;h1 id=&#34;transpilers&#34;&gt;Transpilers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*GH2R-pwLm2KcZjmEXc-O6Q.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;babel logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Lack of browser support for some of the newer features of JavaScript (&lt;a href=&#34;http://es6-features.org&#34;&gt;ES6&lt;/a&gt;) has been a major challenge for many front-end developers who want to use the latest and greatest to write better code and ship features faster. Developers have also desired features not available in the language (such as type annotations, generics, namespaces, interfaces etc found in &lt;a href=&#34;https://www.typescriptlang.org&#34;&gt;TypeScript&lt;/a&gt;) or just wanted syntactic sugar (like the Python-like &lt;a href=&#34;https://coffeescript.org&#34;&gt;CoffeeScript&lt;/a&gt;). Transpilers are used to solve these problems.&lt;/p&gt;
+&lt;p&gt;A transpiler (AKA source-to-source compiler) is a type of compiler that takes the source code of a program in one language and produces the equivalent source code in another language. This means I can write &lt;a href=&#34;https://softwareengineering.stackexchange.com/a/306847&#34;&gt;ES6 JavaScript&lt;/a&gt; and have it converted to ES5 so that it can run on all modern browsers. I can also choose to write TypeScript, CoffeeScript, ClojureScript or Dart code, taking advantage of features that make it faster and scalable to build large web apps.&lt;/p&gt;
+&lt;p&gt;Babel is a commonly used transpiler for converting ES6+ code into a backwards compatible version of JavaScript supported by current and older browsers. It is also used to accomplish specific tasks such as converting JSX in React.js code to JavaScript via plugins. You can try out and learn more about Babel from their official website: &lt;a href=&#34;https://babeljs.io&#34;&gt;babeljs.io&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;module-bundlers&#34;&gt;Module Bundlers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*aCVL0uOhdAJXkrPWwv06yw.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;webpack logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Web development has become increasing JavaScript-centric over the years — Single-page Applications (SPAs), Progressive Web Apps (PWAs) and such. As front-end apps were growing in complexity, it was imperative to develop tools that could package an application (code, assets) and its dependencies into light-weight and performant bundles that will be understood by browsers.&lt;/p&gt;
+&lt;p&gt;The main function of a module bundler is to package JavaScript files for use in a web browser, but bundlers are also capable of transforming and bundling other assets such as CSS files and images.&lt;/p&gt;
+&lt;p&gt;Webpack is arguably the most popular JavaScript bundler in the wild today. It has advanced features such as bundle splitting, source maps, hot module reloading and lazy loading. You can learn more about Webpack here: &lt;a href=&#34;https://webpack.js.org/concepts/&#34;&gt;https://webpack.js.org/concepts&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;task-runners&#34;&gt;Task Runners&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*qkmnWMz2Nr8FA72wK-ZLjA.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;grunt logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Task runners make life easier by doing what they do — run tasks! During development, front-end engineers find themselves repeating the same things (such as minification, compilation, unit-testing and linting) over and over again. The time used in performing these mundane tasks can be better spent doing more important things like squashing bugs and adding new features. Task runners help you automate these tasks so that you can run them quickly with one or a few commands.&lt;/p&gt;
+&lt;p&gt;Grunt is a popular task runner used in front-end apps. It uses a CLI to run custom tasks which can be defined in a file called &lt;em&gt;Gruntfile&lt;/em&gt;. You can get started with Grunt by reading &lt;a href=&#34;https://gruntjs.com/getting-started&#34;&gt;the documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;css-preprocessors&#34;&gt;CSS Preprocessors&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*iSV5npwzchT-UqNPLSxPvQ.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;sass logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;CSS preprocessors let you generate CSS from their own unique syntax. There are many CSS preprocessors available which provide features that don’t exist in pure CSS such as mixins, selector nesting, selector inheritance etc. These features make your CSS DRY, and help you write modular code, save time, create reusable components and maintain large projects fairly easily.&lt;/p&gt;
+&lt;p&gt;A popular option for a CSS processor is SASS, which stands for Syntactically Awesome Style Sheet. SASS supports variables, loops, mixins with arguments etc. You can learn more about SASS by reading &lt;a href=&#34;https://sass-lang.com/guide&#34;&gt;the official guide&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
+&lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
+- https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
     
     
@@ -776,141 +827,6 @@ urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
 &lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
 &lt;p&gt;Deploying the React-Django app is a story for another day. The process largely depends on your hosting environment and workflow. I made &lt;a href=&#34;https://alphacoder.xyz/deploy-react-django-app-on-heroku/&#34;&gt;a post on deploying it to Heroku&lt;/a&gt;.&lt;/p&gt;
 - https://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Naive Bayes</title>
-        <link>https://alphacoder.xyz/naive-bayes/</link>
-        <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/naive-bayes/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/naive-bayes/ -&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/nb-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Naive Bayes is a classifier just like &lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;. The Naive Bayes algorithm applies the popular &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes Theorem&lt;/a&gt; (used to calculate conditional probability) given by the formula:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/bayes-formula.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Bayes formula&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: &lt;a href=&#34;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&#34;&gt;https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Naive Bayes (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let’s consider the data we used in the last post on KNNs:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;height (ft)    weight (kg)    sex  
-6.3            50.2           Male  
-5.9            79.7           Female  
-5.1            61.4           Female  
-5.6            47.1           Male  
-5.1            59.8           Female
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In Naive Bayes, we calculate the probabilities of an input feature set being in each of the classes in the data and return the class with the highest probability as the predicted output.&lt;/p&gt;
-&lt;p&gt;Our goal with the data in the table above is to determine whether an individual is &lt;em&gt;Male&lt;/em&gt; or &lt;em&gt;Female&lt;/em&gt;. Given the height and weight of a person e.g &lt;code&gt;[height, weight] -&amp;gt; [5.8, 82.1]&lt;/code&gt;, a Naive Bayes classifier calculates the probabilities of the person being a Male and a Female e.g &lt;code&gt;[(“Male”, 7.92248128417e-103), (“Female”, 0.00355626444241)]&lt;/code&gt; then returns the class with the highest probability (in this example &lt;code&gt;“Female”&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;How do we find the probabilities for each class?&lt;/p&gt;
-&lt;p&gt;You guessed right! &lt;strong&gt;Bayes formula&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Let’s put the formula into context for better understanding:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/male-person-prob.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Probability that a person is Male&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Substitute &lt;em&gt;Female&lt;/em&gt; for &lt;em&gt;Male&lt;/em&gt; in the formula and you have the probability that a person is female.&lt;/p&gt;
-&lt;p&gt;Let’s explain terms in the equation briefly:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;P(Male | height &amp;amp; weight)&lt;/strong&gt; is the probability that a person is Male given their height and weight (better put: given all the features provided in the data). This is what we’re looking for.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;P(Male)&lt;/strong&gt; is the probability of selecting a Male person from the data.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;P(height | Male)&lt;/strong&gt; and &lt;strong&gt;P(weight | Male)&lt;/strong&gt; equate to &lt;strong&gt;P(B|A)&lt;/strong&gt; [from the first formula]. &lt;strong&gt;P(height | Male)&lt;/strong&gt; is the probability of getting the height of a person given that they are Male (same for the weight). Essentially we want to find the percentage of Males with the same height as the person we’re classifying. This not feasible with our data however because both height and weight are continuous. Besides, it would be very costly when we have a large amount of training data (we’d have to run through the data every time to count the number of people with same height and weight with the person being classified). Thankfully, we have the &lt;strong&gt;Probability Density Function (PDF)&lt;/strong&gt; to help us with this. We’ll use PDF to determine both &lt;strong&gt;P(height | Male)&lt;/strong&gt; and &lt;strong&gt;P(weight | Male)&lt;/strong&gt; in a bit.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;P(height &amp;amp; weight)&lt;/strong&gt; or better put &lt;strong&gt;P(all features)&lt;/strong&gt; is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Marginal_distribution&#34;&gt;marginal probability&lt;/a&gt;. For our classification, it’s not really useful to us because it’s the denominator for all class probabilities. We’re actually interested in finding the class with the highest probability and not the actually probability figure like 0.9 for instance. We might as well not use it since we’re dividing by it in every class probability calculation. It doesn’t change anything. We’ll still get the class with the highest probability.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;pclass&#34;&gt;P(Class)&lt;/h1&gt;
-&lt;p&gt;The probability of selecting a person from a given class is the simplest calculation to perform. From the data table, we can see that there are 5 samples. 2 are Male. Thus &lt;strong&gt;P(Male)&lt;/strong&gt; = 2/5. And 3 are Female. Thus &lt;strong&gt;P(Female)&lt;/strong&gt; = 3/5.&lt;/p&gt;
-&lt;h1 id=&#34;the-pdf&#34;&gt;The PDF&lt;/h1&gt;
-&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Probability_density_function&#34;&gt;PDF&lt;/a&gt; can be computed using the following formula:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/mlc-nb/pdf.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;The PDF&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Substitute Female with Male and/or weight with height to calculate other PDFs.&lt;/p&gt;
-&lt;p&gt;Using PDF, we assume:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Each feature is uncorrelated from the others (i.e height is independent of weight for instance).&lt;/li&gt;
-&lt;li&gt;The values of the features (i.e heights, weights) are &lt;a href=&#34;https://www.thoughtco.com/what-is-normal-distribution-3026707&#34;&gt;normally distributed&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These are assumptions and are not completely true most times for a given data set. As such, we’re being “naive” by assuming.&lt;/p&gt;
-&lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
-&lt;p&gt;First things first! The data.&lt;/p&gt;
-&lt;p&gt;For convenience, I’m using 3 arrays:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#f92672&#34;&gt;as&lt;/span&gt; np
-
-&lt;span style=&#34;color:#75715e&#34;&gt;# data  &lt;/span&gt;
-heights &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#ae81ff&#34;&gt;6.3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.9&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.6&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5.1&lt;/span&gt;])  
-weights &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#ae81ff&#34;&gt;50.2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;79.7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;61.4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;47.1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;59.8&lt;/span&gt;])  
-classes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt; , &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Female&amp;#34;&lt;/span&gt;])
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next, let’s find P(Class) for Male and Female:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;males_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
-females_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
-sample_size &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(classes)  
-&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; classes:  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;:  
-        males_count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:  
-        females_count &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;  
-p_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; males_count &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; sample_size  
-p_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; females_count &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; sample_size
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;pdfs&#34;&gt;PDFs&lt;/h1&gt;
-&lt;p&gt;We need to find the various means and variances required to compute the PDFs:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;heights_of_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
-weights_of_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
-heights_of_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []  
-weights_of_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
-
-&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(sample_size):  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; classes[i] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Male&amp;#34;&lt;/span&gt;:  
-        heights_of_males&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(heights[i])  
-        weights_of_males&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(weights[i])  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
-        heights_of_females&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(heights[i])  
-        weights_of_females&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(weights[i])
-
-mean_height_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(heights_of_males)  
-mean_weight_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(weights_of_males)  
-mean_height_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(heights_of_females)  
-mean_weight_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;mean(weights_of_females)  
-var_height_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(heights_of_males)  
-var_weight_males &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(weights_of_males)  
-var_height_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(heights_of_females)  
-var_weight_females &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;var(weights_of_females)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now to the PDF formula in code&amp;hellip;&lt;/p&gt;
-&lt;p&gt;Let’s define a function as we’ll use it severally:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;the_pdf&lt;/span&gt;(x, mean, variance):  
-    pd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sqrt(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pi &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; variance)) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;exp((&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;(x &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; mean)&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; variance))  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;predict&#34;&gt;Predict&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;5.8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;82.1&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;# [height, weight]&lt;/span&gt;
-
-p_height_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], mean_height_males, var_height_males)
-p_weight_male &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], mean_weight_males, var_weight_males)
-p_height_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], mean_height_females, var_height_females)
-p_weight_female &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; the_pdf(x[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], mean_weight_females, var_weight_females)
-
-
-&lt;span style=&#34;color:#75715e&#34;&gt;# Get class probabilities  &lt;/span&gt;
-p_male_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; p_male &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_height_male &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_weight_male  
-p_female_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; p_female &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_height_female &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; p_weight_female  
-&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P(Male | height &amp;amp; weight) =&amp;#34;&lt;/span&gt;, p_male_h_and_w)  
-&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P(Female | height &amp;amp; weight) =&amp;#34;&lt;/span&gt;, p_female_h_and_w)
-
-&lt;span style=&#34;color:#75715e&#34;&gt;# Return prediction  &lt;/span&gt;
-&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; p_male_h_and_w &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; p_female_h_and_w:  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;class = Male&amp;#34;&lt;/span&gt;)  
-&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:  
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;class = Female&amp;#34;&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Output:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;P(Male | height &amp;amp; weight) = 7.92248128417e-103  
-P(Female | height &amp;amp; weight) = 0.00355626444241  
-class = Female
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Putting everything together, we have:&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- https://alphacoder.xyz/naive-bayes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

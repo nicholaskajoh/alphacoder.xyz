@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
 	<atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Database scaling techniques</title>
+      <link>https://alphacoder.xyz/database-scaling-techniques/</link>
+      <pubDate>Sun, 07 Jun 2020 11:46:24 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/database-scaling-techniques/</guid>
+      <description>Over the years, I&amp;rsquo;ve had an usual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&amp;rsquo;m not exactly a fan of database administration but I&amp;rsquo;ve always had the anxiety that a design decision I&amp;rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources.</description>
+    </item>
     
     <item>
       <title>Database denormalization</title>

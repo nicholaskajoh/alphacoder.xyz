@@ -6,9 +6,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 05 Jun 2020 13:46:02 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Database scaling techniques</title>
+        <link>https://alphacoder.xyz/database-scaling-techniques/</link>
+        <pubDate>Sun, 07 Jun 2020 11:46:24 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/database-scaling-techniques/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/database-scaling-techniques/ -&lt;p&gt;Over the years, I&amp;rsquo;ve had an usual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&amp;rsquo;m not exactly a fan of database administration but I&amp;rsquo;ve always had the anxiety that a design decision I&amp;rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.&lt;/p&gt;
+&lt;p&gt;After lots of reading and a fair amount of practice on the job, I&amp;rsquo;ve learned some of the common techniques used to scale databases. I&amp;rsquo;ve organized them in a relatively increasing order of relevance as one&amp;rsquo;s database load grows.&lt;/p&gt;
+&lt;h1 id=&#34;query-optimization&#34;&gt;Query optimization&lt;/h1&gt;
+&lt;p&gt;This is the good old technique of finding poorly written queries or queries that could be improved upon and making them more efficient. To be able to write optimal queries, you need to have a good handle of the query language (e.g SQL), as well as the database engine (e.g MySQL or PostgreSQL). Simple tips like selecting specific fields as opposed to selecting all fields (&lt;code&gt;SELECT *&lt;/code&gt;) when not required can go a long way in giving your application the performance boost it needs.&lt;/p&gt;
+&lt;p&gt;Visual inspection of queries might not be sufficient as some queries only break when confronted with large amounts of data or heavy traffic. Application Performance Monitoring (APM) tools can be instrumental in finding these bottlenecks as they allow you view the performance metrics of all your queries and figure out which ones are degrading your database.&lt;/p&gt;
+&lt;h1 id=&#34;indexing&#34;&gt;Indexing&lt;/h1&gt;
+&lt;p&gt;Indexing in simple terms means organizing data in a way that makes it faster to retrieve. Relational databases allow you create indexes on one of more columns in your tables. This can result in huge performance gains with little or no effort and as such is highly recommended as a way to optimize your database. For the best results, &lt;a href=&#34;https://www.dbta.com/Columns/DBA-Corner/Top-10-Steps-to-Building-Useful-Database-Indexes-100498.aspx&#34;&gt;indexes should be based on the kind of queries being run against a given database&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;denormalization&#34;&gt;Denormalization&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ve discussed denormalization in reasonable detail &lt;a href=&#34;https://alphacoder.xyz/database-denormalization/&#34;&gt;in a previous article&lt;/a&gt; so I won&amp;rsquo;t say much more than the basic idea of what it entails. The goal of denormalization is to improve read performance by adding redundant copies of data to make for faster access using simpler queries. This is essentially indexing but done by a schema designer rather than a database engine, and it can be a great addition to indexes if carried out purposefully.&lt;/p&gt;
+&lt;h1 id=&#34;primary-replica-architecture&#34;&gt;Primary-replica architecture&lt;/h1&gt;
+&lt;p&gt;This involves &lt;a href=&#34;https://stackoverflow.com/a/11715598/6293466&#34;&gt;scaling a database horizontally&lt;/a&gt; by running two or more instances. One is designated the primary database and handles writes while the others are replica databases which handle reads. The database engine uses a replication protocol to keep all the instances in sync by copying the data from the primary database to the replicas. This setup comprises a database cluster. The pros of the architecture include traffic load balancing and automatic data backups which result in improved performance and reliability of a database.&lt;/p&gt;
+&lt;h1 id=&#34;multi-cluster-database&#34;&gt;Multi-cluster database&lt;/h1&gt;
+&lt;p&gt;A multi-cluster database takes the primary-replica architecture to the next level. In this technique, the database tables that make up an application are grouped by function and each group is designated a cluster of its own. For instance, all the tables concerned with billing might be put in one cluster while those concerned with a feature, say private messaging, might be put in another. Care must be taken while grouping tables to avoid a situation where one or more related tables have been split across database clusters, and expensive operations are required to obtain a piece of data needed in your application as a result.&lt;/p&gt;
+&lt;h1 id=&#34;sharding&#34;&gt;Sharding&lt;/h1&gt;
+&lt;p&gt;Sharding is the process of horizontally partitioning data into multiple databases. Instead of splitting a database by groups of tables as described earlier, a table&amp;rsquo;s rows are split across multiple instances. In order to save or retrieve a piece of data, certain &lt;a href=&#34;https://www.citusdata.com/blog/2017/08/28/five-data-models-for-sharding/&#34;&gt;models&lt;/a&gt;/&lt;a href=&#34;https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding#sharding-strategies&#34;&gt;algorithms&lt;/a&gt; are employed in determining the &lt;a href=&#34;https://en.wikipedia.org/wiki/Shard_(database_architecture)&#34;&gt;shard&lt;/a&gt; to use/where the data resides. This adds a fair amount of complexity to your database setup and your application as well. Operations that might otherwise be straightforward can become a challenge under this configuration. As such sharding is usually reserved for last and carried out by admins who have a solid grasp of the database engine they&amp;rsquo;re dealing with.&lt;/p&gt;
+- https://alphacoder.xyz/database-scaling-techniques/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
     
     
     
@@ -423,150 +449,6 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;p&gt;The most important part of the code is line 12, which gets the subdomain from the hostname (&lt;code&gt;window.location.hostname.split(&#39;.&#39;)[0]&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;In development, you can use &lt;code&gt;lvh.me&lt;/code&gt; (e.g &lt;code&gt;some-random-name.lvh.me:8080&lt;/code&gt;) to test your application instead of &lt;code&gt;127.0.0.1&lt;/code&gt;. &lt;code&gt;some-random-name.localhost&lt;/code&gt; also works on browsers I&amp;rsquo;ve tested.&lt;/p&gt;
 - https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
-        <link>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>
-        <pubDate>Mon, 04 Mar 2019 13:54:48 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ -&lt;p&gt;JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks —  functions which are executed when an operation has been completed.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;); }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
-&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/async-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with &lt;a href=&#34;http://callbackhell.com/&#34;&gt;callback hell&lt;/a&gt;. Callbacks can easily make code unreadable and difficult to reason about. Thankfully, we have Promises!&lt;/p&gt;
-&lt;p&gt;Promise objects represent the eventual completion or failure of an async operation. We can wrap a function that accepts a callback in a Promise and use the fulfillment handler &lt;code&gt;.then()&lt;/code&gt; to retrieve returned data and/or continue performing other operations.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;();
-    }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
-});
-&lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;
-    .&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
-    });
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/promise-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Better still we can now use Async/Await (ECMAScript 2017/ES8) —  synctactic sugar for Promises —  to make our JavaScript simpler and easier to read.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;);
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;();
-    }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/await-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;There&amp;rsquo;s a little problem though. It&amp;rsquo;s very easy to forget to handle Promise rejections, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we&amp;rsquo;re shown the &lt;code&gt;UnhandledPromiseRejectionWarning&lt;/code&gt; by Node.js.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;();
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/promise-rejection.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;We also get the warning if an error (e.g validation error) is thrown inside the Promise.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Summ just happen right now :(&amp;#39;&lt;/span&gt;);
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/throw-rejection.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;If you didn&amp;rsquo;t already notice from the warning, &lt;strong&gt;&amp;ldquo;Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code&amp;rdquo;&lt;/strong&gt;. This means not handling Promises properly can crash your app!&lt;/p&gt;
-&lt;p&gt;You can handle Promise rejections by using the failure handler &lt;code&gt;.catch()&lt;/code&gt; or a try/catch block.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;();
-});
-&lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;
-    .&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
-    })
-    .&lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;error: &amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-    });
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/dot-catch.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Summ just happen right now :(&amp;#39;&lt;/span&gt;);
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
-    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-    }
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/try-catch.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s not that simple though. Things become more interesting when you have a chain of Promises.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
-});
-
-&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;();
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
-    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-    }
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/double-promise.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;We still get the warning even though &lt;code&gt;promise2&lt;/code&gt; is wrapped in a try/catch. Wrapping a whole function with try/catch won&amp;rsquo;t cover all Promises!&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s obvious that proper exception handling is needed in &lt;code&gt;promise2&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
-});
-
-&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;().&lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;(); });
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
-    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-    }
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But you might not be able to anticipate where exception/error handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;process&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;unhandledRejection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you use error tracking software, this is a good place to notify your team about the error so that it can be fixed ASAP!&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;process&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;unhandledRejection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-    &lt;span style=&#34;color:#75715e&#34;&gt;// sendInTheCalvary(err);
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
-
-&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
-});
-
-&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
-    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;();
-});
-
-(&lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
-    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
-    }
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/handle-all-rejections.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     

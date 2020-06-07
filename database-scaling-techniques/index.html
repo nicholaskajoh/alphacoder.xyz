@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Dealing with code debt</title>
+<title>Database scaling techniques</title>
 
 <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
@@ -174,6 +174,129 @@ if (!doNotTrack) {
     <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#query-optimization" v-on:click="closeDrawer" id="query-optimization-nav">
+										 Query optimization
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#indexing" v-on:click="closeDrawer" id="indexing-nav">
+										 Indexing
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#denormalization" v-on:click="closeDrawer" id="denormalization-nav">
+										 Denormalization
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#primary-replica-architecture" v-on:click="closeDrawer" id="primary-replica-architecture-nav">
+										 Primary-replica architecture
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#multi-cluster-database" v-on:click="closeDrawer" id="multi-cluster-database-nav">
+										 Multi-cluster database
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#sharding" v-on:click="closeDrawer" id="sharding-nav">
+										 Sharding
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
     
     <div class="pagination">
@@ -255,6 +378,129 @@ if (!doNotTrack) {
             <div class="toc">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#query-optimization" v-on:click="closeDrawer" id="query-optimization-nav">
+										 Query optimization
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#indexing" v-on:click="closeDrawer" id="indexing-nav">
+										 Indexing
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#denormalization" v-on:click="closeDrawer" id="denormalization-nav">
+										 Denormalization
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#primary-replica-architecture" v-on:click="closeDrawer" id="primary-replica-architecture-nav">
+										 Primary-replica architecture
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#multi-cluster-database" v-on:click="closeDrawer" id="multi-cluster-database-nav">
+										 Multi-cluster database
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#sharding" v-on:click="closeDrawer" id="sharding-nav">
+										 Sharding
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
 </div>
             
         </div>
@@ -306,17 +552,23 @@ if (!doNotTrack) {
                 
             >
                 <div class="post-title" v-pre>
-                    Dealing with code debt
+                    Database scaling techniques
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2019-02-06
+                            2020-06-07
                         </time>
                         
 
                         
 
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/databases">Databases</a>
+                                &nbsp;
+                            
                         
                         
                     </div>
@@ -325,35 +577,25 @@ if (!doNotTrack) {
             
             <div class="post-body-wrapper">
                 <div class="post-body" v-pre>
-                    <p>Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&rsquo;s <del>human</del> developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.</p>
-<p>Code debt is not necessarily a bad thing though. As bestselling <em>Rich Dad, Poor Dad</em> author Robert Kiyosaki says, &ldquo;good debt makes you rich and bad debt makes you poor&rdquo;. It must however be kept at a minimum at all times. This can be achieved by avoiding debt as much as is within one&rsquo;s power and spending a good chunck of dev time paying off the debts already owed. A wise man once said &ldquo;a good developer always pays their code debts&rdquo;.</p>
-<p>When could we incur code debt i.e &ldquo;good&rdquo; debt? Writing elegant and future-proof code is not always possible as one may have limited time and/or experience in a given domain. For instance, it is not uncommon to find a lot of code debt in fast-paced environments like at startups trying to ship an MVP or find product-market fit. However, if the debts are not paid soon afterwards, a lot of damage can happen in future.</p>
-<p>Outlined below are some steps to take in dealing with code debt.</p>
-<ul>
-<li>
-<p><strong>Design first:</strong> Before writing the first line of code, make sure you have at least a conceptual idea about how the addition would fit in to what already exists to make it extensible or at least prevent it from being less flexible. Try to add as little as possible when making changes (less code generally means less debt). But also try to make things as generic as possible so that they can easily adapt to evolving requirements. To do this, an understanding of the system as a whole is vital. Make sure your team knows where the product is coming from, where it is in the present and where it&rsquo;s going to.</p>
-</li>
-<li>
-<p><strong>Enforce a coding style:</strong> A coding style makes your codebase more readable and consistent. It can prevent developers from writing spagetti code or introducing their own ideology of what &ldquo;good&rdquo; code should look like. The result is higher dev velocity, less arguments, and ultimately, less debt. Use a linter to enforce a coding style. You may choose to use a standard developed by others, customize it or develop your own. Add linting to your deployment pipeline so that only acceptable code gets checked in or goes to production.</p>
-</li>
-<li>
-<p><strong>Perform code review, always:</strong> Code reviews should be a core part of the software development process. Critiquing code helps catch bugs but more so, it provides a medium to question technical decisions that can lead to code debt. Devs are forced to think of the best way instead of the easy way because their work would be critiqued by their peers and may be rejected if not up to par.</p>
-</li>
-<li>
-<p><strong>Refactor regularly:</strong> The more code that is added on top of code that needs to be refactored, the more difficult it is to refactor the code. Eventually, after adding more and more code (most of which would likely be &ldquo;bad&rdquo; code), it becomes impossible or nearly impossible to refactor or maintain and a rewrite becomes inevitable (which is costly in time and money). After every release or sprint or dev cycle, make it a duty to refactor the codebase to make it more readable, extensible, scalable etc.</p>
-</li>
-<li>
-<p><strong>Make documentation a requirement:</strong> Documentation not only provides a reference for you and your team, it helps you establish a collective understanding of the system you&rsquo;re building (that is, how it is actually expected to work). It also provides an avenue to evaluate the current implementation against what the system is supposed to be, and it sparks up questions about assumptions and decisions made.</p>
-</li>
-<li>
-<p><strong>Automate testing:</strong> The most important thing for me in automated testing is regression. That is, re-running a suite of tests that set the requirements (both functional and non-functional) of the system to ensure nothing broke while a change was made. If done well, it ensures that no (or few) stones are left unturned. It also makes debugging easier and boosts developers&rsquo; confidence in the system which is super important.</p>
-</li>
-</ul>
-<p>Any reasonably complex codebase has some debt. Even simple ones do. The goal is to reduce this debt as much as possible and keep it that way as more code is added. This must be done proactively or else debt would compound to the point where continued development isn&rsquo;t feasible any longer. At this point, a rewrite may be the only logical solution. This can hurt a business and its development team badly.</p>
+                    <p>Over the years, I&rsquo;ve had an usual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&rsquo;m not exactly a fan of database administration but I&rsquo;ve always had the anxiety that a design decision I&rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.</p>
+<p>After lots of reading and a fair amount of practice on the job, I&rsquo;ve learned some of the common techniques used to scale databases. I&rsquo;ve organized them in a relatively increasing order of relevance as one&rsquo;s database load grows.</p>
+<h1 id="query-optimization">Query optimization</h1>
+<p>This is the good old technique of finding poorly written queries or queries that could be improved upon and making them more efficient. To be able to write optimal queries, you need to have a good handle of the query language (e.g SQL), as well as the database engine (e.g MySQL or PostgreSQL). Simple tips like selecting specific fields as opposed to selecting all fields (<code>SELECT *</code>) when not required can go a long way in giving your application the performance boost it needs.</p>
+<p>Visual inspection of queries might not be sufficient as some queries only break when confronted with large amounts of data or heavy traffic. Application Performance Monitoring (APM) tools can be instrumental in finding these bottlenecks as they allow you view the performance metrics of all your queries and figure out which ones are degrading your database.</p>
+<h1 id="indexing">Indexing</h1>
+<p>Indexing in simple terms means organizing data in a way that makes it faster to retrieve. Relational databases allow you create indexes on one of more columns in your tables. This can result in huge performance gains with little or no effort and as such is highly recommended as a way to optimize your database. For the best results, <a href="https://www.dbta.com/Columns/DBA-Corner/Top-10-Steps-to-Building-Useful-Database-Indexes-100498.aspx">indexes should be based on the kind of queries being run against a given database</a>.</p>
+<h1 id="denormalization">Denormalization</h1>
+<p>I&rsquo;ve discussed denormalization in reasonable detail <a href="/database-denormalization/">in a previous article</a> so I won&rsquo;t say much more than the basic idea of what it entails. The goal of denormalization is to improve read performance by adding redundant copies of data to make for faster access using simpler queries. This is essentially indexing but done by a schema designer rather than a database engine, and it can be a great addition to indexes if carried out purposefully.</p>
+<h1 id="primary-replica-architecture">Primary-replica architecture</h1>
+<p>This involves <a href="https://stackoverflow.com/a/11715598/6293466">scaling a database horizontally</a> by running two or more instances. One is designated the primary database and handles writes while the others are replica databases which handle reads. The database engine uses a replication protocol to keep all the instances in sync by copying the data from the primary database to the replicas. This setup comprises a database cluster. The pros of the architecture include traffic load balancing and automatic data backups which result in improved performance and reliability of a database.</p>
+<h1 id="multi-cluster-database">Multi-cluster database</h1>
+<p>A multi-cluster database takes the primary-replica architecture to the next level. In this technique, the database tables that make up an application are grouped by function and each group is designated a cluster of its own. For instance, all the tables concerned with billing might be put in one cluster while those concerned with a feature, say private messaging, might be put in another. Care must be taken while grouping tables to avoid a situation where one or more related tables have been split across database clusters, and expensive operations are required to obtain a piece of data needed in your application as a result.</p>
+<h1 id="sharding">Sharding</h1>
+<p>Sharding is the process of horizontally partitioning data into multiple databases. Instead of splitting a database by groups of tables as described earlier, a table&rsquo;s rows are split across multiple instances. In order to save or retrieve a piece of data, certain <a href="https://www.citusdata.com/blog/2017/08/28/five-data-models-for-sharding/">models</a>/<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding#sharding-strategies">algorithms</a> are employed in determining the <a href="https://en.wikipedia.org/wiki/Shard_(database_architecture)">shard</a> to use/where the data resides. This adds a fair amount of complexity to your database setup and your application as well. Operations that might otherwise be straightforward can become a challenge under this configuration. As such sharding is usually reserved for last and carried out by admins who have a solid grasp of the database engine they&rsquo;re dealing with.</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2019-02-06</p>
+		    <p style="color:#777;">Last modified on 2020-06-07</p>
                     
                 </div>
             </div>
@@ -362,14 +604,14 @@ if (!doNotTrack) {
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/">
-			Next<br>Adminer — a simple GUI client for any DB
+                <a class="newer-posts">
+			Next<br>No newer posts.
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://alphacoder.xyz/deploy-microservices-on-kubernetes/">
-			Previous<br>Deploy microservices on Kubernetes
+                <a class="older-posts" href="https://alphacoder.xyz/database-denormalization/">
+			Previous<br>Database denormalization
                 </a>
                 
             </nav>
