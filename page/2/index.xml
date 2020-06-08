@@ -581,24 +581,6 @@ kubectl apply -f viewer/viewer-service.yaml
     
     
         <item>
-        <title>A tip for working on side projects</title>
-        <link>https://alphacoder.xyz/side-project-tip/</link>
-        <pubDate>Sun, 16 Dec 2018 05:23:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/side-project-tip/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/side-project-tip/ -&lt;p&gt;Working on side projects is a great way to build a portfolio for freelance or full-time job opportunities, crystallize your knowledge of programming languages/tools and development workflows and, if you play your cards right, earn some cool cash by commercializing your projects. But if you’ve worked on a side project before, you’re probably all too familiar with the trend that is brainstorming and coming up with great ideas, starting the project, stopping along the way, abandoning the project forever, and moving on to the next one. I’ve had my fair share of this experience and a lot of projects in project graveyard have my name on it.&lt;/p&gt;
-&lt;p&gt;I’ve thought deeply about my inability to complete many projects I started. One important reason people like me abandon projects is because their scopes are too large. Personally, I think your ideas can be as big and wild as possible. But your project’s scope? Not so much. I find my sweet spot for working on and completing a side project to be 2–4 weeks. If my project takes longer than that, I’ll probably never finish it. This is what works for me. I feel most people abandon projects because they’re too large and they give up on being able to finish it or just lose interest.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Think small, build small&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In order to complete a project within a two-to-four-week timeline, I outline all the features of the project and select the most important one/ones which can be completed within that time. Even if you’re building the next Facebook, 4 weeks is enough time to crudely ship the core features that define your app. If this or a similar timeline is not enough (say you’re building an enterprise app that needs to have &lt;em&gt;x&lt;/em&gt; features for clients to buy in), you should consider working full time on the project and probably getting others to collaborate on it.&lt;/p&gt;
-&lt;p&gt;My recommendation when working on side projects is to think small and build small. Your software doesn’t have to solve world hunger or serve 1 million people to be useful or even successful. In fact, some of the more successful products today started out as side projects that aimed at simplifying a multi-step process for accomplishing a common task to a one-step one. Yes, it can be that simple!&lt;/p&gt;
-- https://alphacoder.xyz/side-project-tip/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
         <title>Check domain availability from your terminal</title>
         <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
         <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
@@ -683,6 +665,57 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;A Pull Request (PR) is a request to merge the changes from a branch in a fork to an upstream repository. A project maintainer may accept, reject or request changes to a PR before it’s merged.&lt;/p&gt;
 &lt;p&gt;You can learn more about this workflow with &lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow&#34;&gt;this tutorial from Atlassian.com&lt;/a&gt;.&lt;/p&gt;
 - https://alphacoder.xyz/git-workflows/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Understanding modern front-end development</title>
+        <link>https://alphacoder.xyz/understanding-modern-front-end-development/</link>
+        <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/understanding-modern-front-end-development/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/understanding-modern-front-end-development/ -&lt;p&gt;It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.&lt;/p&gt;
+&lt;p&gt;We’re going to discuss the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;package managers (npm)&lt;/li&gt;
+&lt;li&gt;transpilers (Babel)&lt;/li&gt;
+&lt;li&gt;module bundlers (Webpack)&lt;/li&gt;
+&lt;li&gt;task runners (Grunt)&lt;/li&gt;
+&lt;li&gt;CSS preprocessors (SASS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;package-managers&#34;&gt;Package Managers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*AagfZZ8bGOI4iTbLqewg6Q.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;npm logo (&lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;One important principle you’ll learn as a Sofware Developer is DRY (Don’t Repeat Yourself). Once you see yourself writing the same code in three or more places in a project, you should find a way to abstract that functionality into a reusable function, class or module.&lt;/p&gt;
+&lt;p&gt;Front-end projects have a lot in common in terms of UI components and logic so it might be an even better idea to abstract functionalities into reusable libraries, so that they may be shared across projects. A ton of libraries have been built to do all sorts of things from handling AJAX requests to manipulating dates and images. In order to cut down dev time and/or not reinvent the wheel, front-end developers use many such libraries in their projects — sometimes all too much.&lt;/p&gt;
+&lt;p&gt;It can be difficult to manage these libraries (or dependencies, as they’re commonly called) manually. Even if your project has only three dependencies, it may be hard to keep everything clean and dandy because these dependencies could have their own dependencies! This is where a package manager comes in. Package managers automate the process of installing, upgrading, configuring and removing packages (or dependencies or libraries) in your project.&lt;/p&gt;
+&lt;p&gt;npm (Node Package Manager) is a popular package manager used by front-end developers today. It is the default package manager for Node.js, an environment for running JavaScript outside of a browser. npm uses a file named &lt;em&gt;package.json&lt;/em&gt; to know the dependencies required by your project, making it easy for you and your team to run a single command that installs all the libraries you need to run your application. You can start learning how to use npm by reading &lt;a href=&#34;https://docs.npmjs.com/getting-started/what-is-npm&#34;&gt;What is npm?&lt;/a&gt; from the official docs.&lt;/p&gt;
+&lt;h1 id=&#34;transpilers&#34;&gt;Transpilers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*GH2R-pwLm2KcZjmEXc-O6Q.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;babel logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Lack of browser support for some of the newer features of JavaScript (&lt;a href=&#34;http://es6-features.org&#34;&gt;ES6&lt;/a&gt;) has been a major challenge for many front-end developers who want to use the latest and greatest to write better code and ship features faster. Developers have also desired features not available in the language (such as type annotations, generics, namespaces, interfaces etc found in &lt;a href=&#34;https://www.typescriptlang.org&#34;&gt;TypeScript&lt;/a&gt;) or just wanted syntactic sugar (like the Python-like &lt;a href=&#34;https://coffeescript.org&#34;&gt;CoffeeScript&lt;/a&gt;). Transpilers are used to solve these problems.&lt;/p&gt;
+&lt;p&gt;A transpiler (AKA source-to-source compiler) is a type of compiler that takes the source code of a program in one language and produces the equivalent source code in another language. This means I can write &lt;a href=&#34;https://softwareengineering.stackexchange.com/a/306847&#34;&gt;ES6 JavaScript&lt;/a&gt; and have it converted to ES5 so that it can run on all modern browsers. I can also choose to write TypeScript, CoffeeScript, ClojureScript or Dart code, taking advantage of features that make it faster and scalable to build large web apps.&lt;/p&gt;
+&lt;p&gt;Babel is a commonly used transpiler for converting ES6+ code into a backwards compatible version of JavaScript supported by current and older browsers. It is also used to accomplish specific tasks such as converting JSX in React.js code to JavaScript via plugins. You can try out and learn more about Babel from their official website: &lt;a href=&#34;https://babeljs.io&#34;&gt;babeljs.io&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;module-bundlers&#34;&gt;Module Bundlers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*aCVL0uOhdAJXkrPWwv06yw.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;webpack logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Web development has become increasing JavaScript-centric over the years — Single-page Applications (SPAs), Progressive Web Apps (PWAs) and such. As front-end apps were growing in complexity, it was imperative to develop tools that could package an application (code, assets) and its dependencies into light-weight and performant bundles that will be understood by browsers.&lt;/p&gt;
+&lt;p&gt;The main function of a module bundler is to package JavaScript files for use in a web browser, but bundlers are also capable of transforming and bundling other assets such as CSS files and images.&lt;/p&gt;
+&lt;p&gt;Webpack is arguably the most popular JavaScript bundler in the wild today. It has advanced features such as bundle splitting, source maps, hot module reloading and lazy loading. You can learn more about Webpack here: &lt;a href=&#34;https://webpack.js.org/concepts/&#34;&gt;https://webpack.js.org/concepts&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;task-runners&#34;&gt;Task Runners&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*qkmnWMz2Nr8FA72wK-ZLjA.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;grunt logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Task runners make life easier by doing what they do — run tasks! During development, front-end engineers find themselves repeating the same things (such as minification, compilation, unit-testing and linting) over and over again. The time used in performing these mundane tasks can be better spent doing more important things like squashing bugs and adding new features. Task runners help you automate these tasks so that you can run them quickly with one or a few commands.&lt;/p&gt;
+&lt;p&gt;Grunt is a popular task runner used in front-end apps. It uses a CLI to run custom tasks which can be defined in a file called &lt;em&gt;Gruntfile&lt;/em&gt;. You can get started with Grunt by reading &lt;a href=&#34;https://gruntjs.com/getting-started&#34;&gt;the documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;css-preprocessors&#34;&gt;CSS Preprocessors&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*iSV5npwzchT-UqNPLSxPvQ.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;sass logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;CSS preprocessors let you generate CSS from their own unique syntax. There are many CSS preprocessors available which provide features that don’t exist in pure CSS such as mixins, selector nesting, selector inheritance etc. These features make your CSS DRY, and help you write modular code, save time, create reusable components and maintain large projects fairly easily.&lt;/p&gt;
+&lt;p&gt;A popular option for a CSS processor is SASS, which stands for Syntactically Awesome Style Sheet. SASS supports variables, loops, mixins with arguments etc. You can learn more about SASS by reading &lt;a href=&#34;https://sass-lang.com/guide&#34;&gt;the official guide&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
+&lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
+- https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
         </item>
     
     
