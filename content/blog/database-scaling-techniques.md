@@ -6,7 +6,7 @@ draft: false
 tags: ["Databases"]
 ---
 
-Over the years, I've had an usual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I'm not exactly a fan of database administration but I've always had the anxiety that a design decision I'm making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.
+Over the years, I've had an unusual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I'm not exactly a fan of database administration but I've always had the anxiety that a design decision I'm making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.
 
 After lots of reading and a fair amount of practice on the job, I've learned some of the common techniques used to scale databases. I've organized them in a relatively increasing order of relevance as one's database load grows.
 
