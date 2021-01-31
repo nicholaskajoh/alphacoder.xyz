@@ -25,21 +25,13 @@ copyright = "Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights 
         name = "Blog"
         weight = 1
     [[menu.main]]
-        url = "https://courses.alphacoder.xyz"
-        name = "Courses"
+        url = "https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw"
+        name = "Videos"
         weight = 2
-    [[menu.main]]
-        url = "https://community.alphacoder.xyz"
-        name = "Community"
-        weight = 3
-    [[menu.main]]
-        url = "/musings/"
-        name = "Musings"
-        weight = 4
     [[menu.main]]
         url = "https://tinyletter.com/nicholaskajoh"
         name = "Newsletter"
-        weight = 5
+        weight = 3
 
     [[menu.footer]]
         url = "https://twitter.com/AlphaCoderXYZ"
@@ -66,7 +58,6 @@ canonifyURLs = true
 [permalinks]
     blog = "/:slug/"
     tags = "/tag/:slug/"
-    musings = "/:slug/"
 
 [params]
     favicon = "/images/alpha-coder-logo-v1-small.png"
