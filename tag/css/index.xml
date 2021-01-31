@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Nov 2017 20:07:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://alphacoder.xyz/tag/css/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 19 Nov 2017 20:07:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/css/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A responsive grid system with few lines of CSS</title>
       <link>https://alphacoder.xyz/responsive-grid-system/</link>

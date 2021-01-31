@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate>
-    
-	<atom:link href="https://alphacoder.xyz/tag/node.js/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 25 May 2020 23:33:11 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/node.js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>node_modules: The Node.js black hole</title>
       <link>https://alphacoder.xyz/node-modules/</link>

@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 06:29:54 +0100</lastBuildDate>
-    
-	<atom:link href="https://alphacoder.xyz/tag/docker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 01 Sep 2019 06:29:54 +0100</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to connect to a host&#39;s database from inside a Docker container</title>
       <link>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>

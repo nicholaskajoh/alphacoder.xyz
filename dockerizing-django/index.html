@@ -99,28 +99,8 @@ if (!doNotTrack) {
             
             
             
-            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
-                Courses
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
-                Community
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/musings/">
-                Musings
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                Videos
             </a>
             
         
@@ -317,28 +297,8 @@ if (!doNotTrack) {
                 
                 
                 
-                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
-                    Courses
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
-                    Community
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/musings/">
-                    Musings
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                    Videos
                 </a>
                 
             
@@ -563,29 +523,29 @@ if (!doNotTrack) {
 <p>Afterwards, it installs the packages in <em>requirements.txt</em>, then copies everything in the project root to <code>/www/</code> where the image would be executed from. <code>ENV PYTHONUNBUFFERED 1</code> causes all output to <code>stdout</code> to be flushed immediately, so that you can easily see what’s going on inside your Python app from a terminal.</p>
 <h2 id="docker-composeyml">docker-compose.yml</h2>
 <p>I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">web</span>:
-    <span style="color:#66d9ef">build</span>: .
-    <span style="color:#66d9ef">restart</span>: on-failure
-    <span style="color:#66d9ef">env_file</span>:
-      - ./.env
-    <span style="color:#66d9ef">command</span>: python manage.py runserver <span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">8000</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - .:/www
-    <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">web</span>:
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">.</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#66d9ef">on</span>-<span style="color:#ae81ff">failure</span>
+    <span style="color:#f92672">env_file</span>:
+      - <span style="color:#ae81ff">./.env</span>
+    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">python manage.py runserver 0.0.0.0:8000</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">.:/www</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
-    <span style="color:#66d9ef">depends_on</span>:
-      - db
-  <span style="color:#66d9ef">db</span>:
-    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;postgres:10.3-alpine&#34;</span>
-    <span style="color:#66d9ef">restart</span>: unless-stopped
-    <span style="color:#66d9ef">env_file</span>:
-      - ./.env
-    <span style="color:#66d9ef">ports</span>:
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">db</span>
+  <span style="color:#f92672">db</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#e6db74">&#34;postgres:10.3-alpine&#34;</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+    <span style="color:#f92672">env_file</span>:
+      - <span style="color:#ae81ff">./.env</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;5432:5432&#34;</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - ./postgres/data:/var/lib/postgresql/data
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./postgres/data:/var/lib/postgresql/data</span>
 </code></pre></div><p>There are two services in this Compose file — web and db. The web service builds the Django app using the <em>Dockerfile</em> in the previous section. A volume is created to map the project directory in the host to the one in the container (<code>- .:/www</code>) so that any changes made on the host are mirrored in the container. The <code>command</code> parameter uses Django’s dev server to run the app (<code>python manage.py runserver 0.0.0.0:8000</code>).</p>
 <p>The db service uses a PostgreSQL image and maps PostgreSQL’s data directory to <code>./postgres/data</code> in the host, so that DB data is persisted even if the container gets destroyed. This very PostgreSQL image (<a href="https://hub.docker.com/_/postgres/">the official postgreSQL image</a>) uses several environment variables to configure PostgreSQL, including <code>POSTGRES_USER</code>, <code>POSTGRES_PASSWORD</code> and <code>POSTGRES_DB</code>.</p>
 <pre><code># .env
@@ -602,26 +562,26 @@ POSTGRES_DB=mypgsqldb
 <h2 id="docker-composeprodyml">docker-compose.prod.yml</h2>
 <p>My production configs usually differ a bit from their development counterpart. I use Gunicorn to serve the Django app, and NGINX as a reverse proxy and static/media file server.</p>
 <p>This setup, while good for production, is not very convenient in development where the goal is often to <em>break things and move fast</em>. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my <em>docker-compose.prod.yml</em> file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">web</span>:
-    <span style="color:#66d9ef">build</span>: .
-    <span style="color:#66d9ef">restart</span>: on-failure
-    <span style="color:#66d9ef">env_file</span>:
-      - ./.env
-    <span style="color:#66d9ef">command</span>: gunicorn --bind <span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">8080</span> dockerizeddjango.wsgi
-    <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">web</span>:
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">.</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#66d9ef">on</span>-<span style="color:#ae81ff">failure</span>
+    <span style="color:#f92672">env_file</span>:
+      - <span style="color:#ae81ff">./.env</span>
+    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">gunicorn --bind 0.0.0.0:8080 dockerizeddjango.wsgi</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
-    <span style="color:#66d9ef">depends_on</span>:
-      - nginx
-  <span style="color:#66d9ef">nginx</span>:
-    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;nginx&#34;</span>
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">volumes</span>:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./staticfiles:/static
-      - ./mediafiles:/media
-    <span style="color:#66d9ef">ports</span>:
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">nginx</span>
+  <span style="color:#f92672">nginx</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#e6db74">&#34;nginx&#34;</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./nginx/conf.d:/etc/nginx/conf.d</span>
+      - <span style="color:#ae81ff">./staticfiles:/static</span>
+      - <span style="color:#ae81ff">./mediafiles:/media</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;80:80&#34;</span>
 </code></pre></div><p>The web service in the production Compose file looks identical to one in the development file, except for the <code>command</code> parameter (majorly). It uses <a href="http://gunicorn.org">Gunicorn</a> (<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver">which is more suitable</a>) to serve the application (<code>gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi</code>).</p>
 <p>There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps <code>/etc/nginx/conf.d</code> to the <code>./nginx/conf.d</code> folder on the host which contains <a href="https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf"><em>dockerizeddjango.conf</em></a>.</p>

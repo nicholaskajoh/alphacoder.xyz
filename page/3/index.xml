@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Software engineering with great finesse on Alpha Coder</title>
+    <title>I code, therefore I am on Alpha Coder</title>
     <link>https://alphacoder.xyz/</link>
-    <description>Recent content in Software engineering with great finesse on Alpha Coder</description>
+    <description>Recent content in I code, therefore I am on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
@@ -74,29 +74,29 @@
 &lt;p&gt;Afterwards, it installs the packages in &lt;em&gt;requirements.txt&lt;/em&gt;, then copies everything in the project root to &lt;code&gt;/www/&lt;/code&gt; where the image would be executed from. &lt;code&gt;ENV PYTHONUNBUFFERED 1&lt;/code&gt; causes all output to &lt;code&gt;stdout&lt;/code&gt; to be flushed immediately, so that you can easily see what’s going on inside your Python app from a terminal.&lt;/p&gt;
 &lt;h2 id=&#34;docker-composeyml&#34;&gt;docker-compose.yml&lt;/h2&gt;
 &lt;p&gt;I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#66d9ef&#34;&gt;services&lt;/span&gt;:
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;web&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: .
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: on-failure
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;env_file&lt;/span&gt;:
-      - ./.env
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;command&lt;/span&gt;: python manage.py runserver &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0.0.0&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8000&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - .:/www
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+  &lt;span style=&#34;color:#f92672&#34;&gt;web&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;on&lt;/span&gt;-&lt;span style=&#34;color:#ae81ff&#34;&gt;failure&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;env_file&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./.env&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;python manage.py runserver 0.0.0.0:8000&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;.:/www&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8000:8000&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;depends_on&lt;/span&gt;:
-      - db
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;db&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;postgres:10.3-alpine&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: unless-stopped
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;env_file&lt;/span&gt;:
-      - ./.env
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;db&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;db&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;postgres:10.3-alpine&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;unless-stopped&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;env_file&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./.env&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;5432:5432&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - ./postgres/data:/var/lib/postgresql/data
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./postgres/data:/var/lib/postgresql/data&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There are two services in this Compose file — web and db. The web service builds the Django app using the &lt;em&gt;Dockerfile&lt;/em&gt; in the previous section. A volume is created to map the project directory in the host to the one in the container (&lt;code&gt;- .:/www&lt;/code&gt;) so that any changes made on the host are mirrored in the container. The &lt;code&gt;command&lt;/code&gt; parameter uses Django’s dev server to run the app (&lt;code&gt;python manage.py runserver 0.0.0.0:8000&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;The db service uses a PostgreSQL image and maps PostgreSQL’s data directory to &lt;code&gt;./postgres/data&lt;/code&gt; in the host, so that DB data is persisted even if the container gets destroyed. This very PostgreSQL image (&lt;a href=&#34;https://hub.docker.com/_/postgres/&#34;&gt;the official postgreSQL image&lt;/a&gt;) uses several environment variables to configure PostgreSQL, including &lt;code&gt;POSTGRES_USER&lt;/code&gt;, &lt;code&gt;POSTGRES_PASSWORD&lt;/code&gt; and &lt;code&gt;POSTGRES_DB&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# .env
@@ -113,26 +113,26 @@ POSTGRES_DB=mypgsqldb
 &lt;h2 id=&#34;docker-composeprodyml&#34;&gt;docker-compose.prod.yml&lt;/h2&gt;
 &lt;p&gt;My production configs usually differ a bit from their development counterpart. I use Gunicorn to serve the Django app, and NGINX as a reverse proxy and static/media file server.&lt;/p&gt;
 &lt;p&gt;This setup, while good for production, is not very convenient in development where the goal is often to &lt;em&gt;break things and move fast&lt;/em&gt;. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my &lt;em&gt;docker-compose.prod.yml&lt;/em&gt; file.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#66d9ef&#34;&gt;services&lt;/span&gt;:
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;web&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: .
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: on-failure
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;env_file&lt;/span&gt;:
-      - ./.env
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;command&lt;/span&gt;: gunicorn --bind &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0.0.0&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt; dockerizeddjango.wsgi
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+  &lt;span style=&#34;color:#f92672&#34;&gt;web&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;on&lt;/span&gt;-&lt;span style=&#34;color:#ae81ff&#34;&gt;failure&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;env_file&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./.env&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gunicorn --bind 0.0.0.0:8080 dockerizeddjango.wsgi&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;depends_on&lt;/span&gt;:
-      - nginx
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;nginx&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;restart&lt;/span&gt;: always
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./staticfiles:/static
-      - ./mediafiles:/media
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;nginx&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;always&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./nginx/conf.d:/etc/nginx/conf.d&lt;/span&gt;
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./staticfiles:/static&lt;/span&gt;
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./mediafiles:/media&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The web service in the production Compose file looks identical to one in the development file, except for the &lt;code&gt;command&lt;/code&gt; parameter (majorly). It uses &lt;a href=&#34;http://gunicorn.org&#34;&gt;Gunicorn&lt;/a&gt; (&lt;a href=&#34;https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver&#34;&gt;which is more suitable&lt;/a&gt;) to serve the application (&lt;code&gt;gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps &lt;code&gt;/etc/nginx/conf.d&lt;/code&gt; to the &lt;code&gt;./nginx/conf.d&lt;/code&gt; folder on the host which contains &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf&#34;&gt;&lt;em&gt;dockerizeddjango.conf&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -295,37 +295,37 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /usr/share/nginx/html&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The docker compose file brings everything together under one roof. Here’s how it looks:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# docker-compose.yml&lt;/span&gt;
-&lt;span style=&#34;color:#66d9ef&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#66d9ef&#34;&gt;services&lt;/span&gt;:
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;traefik&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;image&lt;/span&gt;: traefik
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;command&lt;/span&gt;: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;ports&lt;/span&gt;:
+&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+  &lt;span style=&#34;color:#f92672&#34;&gt;traefik&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;traefik&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: --&lt;span style=&#34;color:#ae81ff&#34;&gt;web --docker --docker.domain=docker.localhost --logLevel=DEBUG&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;443:443&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/&lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;:/traefik.toml
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: ./app
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - ./app:/usr/share/nginx/html
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;/var/run/docker.sock:/var/run/docker.sock&lt;/span&gt;
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;/dev/null:/traefik.toml&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;./app&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./app:/usr/share/nginx/html&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=app-be&amp;#34;&lt;/span&gt;
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:app.localhost&amp;#34;&lt;/span&gt;
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;blog&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: ./blog
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - ./blog:/usr/share/nginx/html
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+  &lt;span style=&#34;color:#f92672&#34;&gt;blog&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;./blog&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./blog:/usr/share/nginx/html&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=blog-be&amp;#34;&lt;/span&gt;
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:blog.localhost&amp;#34;&lt;/span&gt;
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;website&lt;/span&gt;:
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;build&lt;/span&gt;: ./website
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;volumes&lt;/span&gt;:
-      - ./website:/usr/share/nginx/html
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+  &lt;span style=&#34;color:#f92672&#34;&gt;website&lt;/span&gt;:
+    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;./website&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./website:/usr/share/nginx/html&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=website-be&amp;#34;&lt;/span&gt;
       - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:localhost&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As can be seen, traefik itself is run in a container. The domain is set to localhost and the ports 80, 8080 and 443 are published. The web flag (&lt;code&gt;--web&lt;/code&gt;) under command parameter tells traefik to run its API dashboard which will be exposed on port 8080.&lt;/p&gt;

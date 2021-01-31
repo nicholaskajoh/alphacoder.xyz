@@ -99,28 +99,8 @@ if (!doNotTrack) {
             
             
             
-            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
-                Courses
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
-                Community
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/musings/">
-                Musings
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                Videos
             </a>
             
         
@@ -216,28 +196,8 @@ if (!doNotTrack) {
                 
                 
                 
-                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
-                    Courses
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
-                    Community
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/musings/">
-                    Musings
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                    Videos
                 </a>
                 
             
@@ -359,8 +319,8 @@ if (!doNotTrack) {
     }, <span style="color:#ae81ff">5000</span>);
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
-    <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
+    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
     <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;The last shall be the first!&#39;</span>);
 })();
 </code></pre></div><p><img src="/images/prm-rjctn/await-js.gif" alt=""></p>
@@ -369,8 +329,8 @@ if (!doNotTrack) {
     <span style="color:#a6e22e">reject</span>();
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
-    <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
+    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
 })();
 </code></pre></div><p><img src="/images/prm-rjctn/promise-rejection.gif" alt=""></p>
 <p>We also get the warning if an error (e.g validation error) is thrown inside the Promise.</p>
@@ -378,8 +338,8 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Summ just happen right now :(&#39;</span>);
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
-    <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
+    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
 })();
 </code></pre></div><p><img src="/images/prm-rjctn/throw-rejection.gif" alt=""></p>
 <p>If you didn&rsquo;t already notice from the warning, <strong>&ldquo;Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code&rdquo;</strong>. This means not handling Promises properly can crash your app!</p>
@@ -399,9 +359,9 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Summ just happen right now :(&#39;</span>);
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">try</span> {
-        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">slowAndSteady</span>;
     } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
         <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
     }
@@ -416,9 +376,9 @@ if (!doNotTrack) {
     <span style="color:#a6e22e">promise1</span>.<span style="color:#a6e22e">then</span>();
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">try</span> {
-        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promise2</span>;
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">promise2</span>;
     } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
         <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
     }
@@ -434,9 +394,9 @@ if (!doNotTrack) {
     <span style="color:#a6e22e">promise1</span>.<span style="color:#a6e22e">then</span>().<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>() { <span style="color:#a6e22e">reject</span>(); });
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">try</span> {
-        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promise2</span>;
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">promise2</span>;
     } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
         <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
     }
@@ -459,9 +419,9 @@ if (!doNotTrack) {
     <span style="color:#a6e22e">promise1</span>.<span style="color:#a6e22e">then</span>();
 });
 
-(<span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span>() {
+(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">try</span> {
-        <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">promise2</span>;
+        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">promise2</span>;
     } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
         <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
     }

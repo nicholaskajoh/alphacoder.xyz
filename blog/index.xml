@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
-    
-	<atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Database scaling techniques</title>
       <link>https://alphacoder.xyz/database-scaling-techniques/</link>
@@ -40,6 +36,16 @@ Well, it turns out that normalization comes at a performance cost for DB read op
       <description>As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen the memes). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.
 Turns out it has to do with 2 things:
  How npm (the Node package manager) resolves dependencies. How the Node.</description>
+    </item>
+    
+    <item>
+      <title>What level of abstraction should I play on?</title>
+      <link>https://alphacoder.xyz/levels-of-abstraction/</link>
+      <pubDate>Sun, 12 Apr 2020 18:17:48 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/levels-of-abstraction/</guid>
+      <description>&amp;ldquo;I built it from scratch!&amp;rdquo;
+A major sentiment among some of the developer circles I interacted with and was part of in my earlier days of coding was that you were a better &amp;ldquo;real&amp;rdquo; developer if you could build stuff &amp;ldquo;from scratch&amp;rdquo;. You&amp;rsquo;d often hear people scoff at building websites with WordPress, for example. &amp;ldquo;I built this site from scratch with raw HTML, CSS and JavaScript. No framework or CMS!&amp;rdquo; It was a thing of pride.</description>
     </item>
     
     <item>
@@ -142,6 +148,25 @@ Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platfor
     </item>
     
     <item>
+      <title>Hello Hugo!</title>
+      <link>https://alphacoder.xyz/hello-hugo/</link>
+      <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/hello-hugo/</guid>
+      <description>If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.</description>
+    </item>
+    
+    <item>
+      <title>From Medium to Ghost</title>
+      <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
+      <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
+      <description>Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at alphacoder.xyz. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.
+Why the move? I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.</description>
+    </item>
+    
+    <item>
       <title>Check domain availability from your terminal</title>
       <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
       <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
@@ -177,6 +202,17 @@ In this post, we’ll be discussing two popular Git workflows you should know 
       
       <guid>https://alphacoder.xyz/understanding-modern-front-end-development/</guid>
       <description>It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.</description>
+    </item>
+    
+    <item>
+      <title>How to land an internship at a great startup</title>
+      <link>https://alphacoder.xyz/land-great-startup-internship/</link>
+      <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/land-great-startup-internship/</guid>
+      <description>Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
+Here are some tips on how to land an internship at a great startup&amp;hellip;
+Do your homework I remember being caught off guard when asked about the company I was applying to by my interviewer.</description>
     </item>
     
     <item>

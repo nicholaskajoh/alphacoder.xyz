@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 Mar 2019 13:54:48 +0100</lastBuildDate>
-    
-	<atom:link href="https://alphacoder.xyz/tag/javascript/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 Mar 2019 13:54:48 +0100</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
       <link>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>

@@ -99,28 +99,8 @@ if (!doNotTrack) {
             
             
             
-            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
-                Courses
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
-                Community
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/musings/">
-                Musings
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                Videos
             </a>
             
         
@@ -301,28 +281,8 @@ if (!doNotTrack) {
                 
                 
                 
-                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
-                    Courses
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
-                    Community
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/musings/">
-                    Musings
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                    Videos
                 </a>
                 
             
@@ -554,23 +514,23 @@ if (!doNotTrack) {
 <span style="color:#a6e22e">shortid</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;shortid&#39;</span>);
 
 <span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
+    <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
         <span style="color:#66d9ef">try</span> {
-            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">Product</span>.<span style="color:#a6e22e">findOne</span>({ <span style="color:#a6e22e">ref</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">param</span>(<span style="color:#e6db74">&#39;ref&#39;</span>) });
+            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">Product</span>.<span style="color:#a6e22e">findOne</span>({ <span style="color:#a6e22e">ref</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">param</span>(<span style="color:#e6db74">&#39;ref&#39;</span>) });
             <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">product</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">notFound</span>();
             <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;product&#39;</span>, { <span style="color:#a6e22e">product</span> });
         } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
             <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
         }
     },
-    <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
+    <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
         <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
             <span style="color:#a6e22e">errors</span><span style="color:#f92672">:</span> {},
             <span style="color:#a6e22e">old</span><span style="color:#f92672">:</span> {},
         };
         <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;POST&#39;</span>) {
             <span style="color:#66d9ef">try</span> {
-                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">Product</span>.<span style="color:#a6e22e">create</span>({
+                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">Product</span>.<span style="color:#a6e22e">create</span>({
                     <span style="color:#a6e22e">ref</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">shortid</span>.<span style="color:#a6e22e">generate</span>(),
                     <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">name</span>,
                     <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> parseFloat(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">price</span>),

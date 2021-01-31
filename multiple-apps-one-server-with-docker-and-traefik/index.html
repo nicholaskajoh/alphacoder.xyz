@@ -99,28 +99,8 @@ if (!doNotTrack) {
             
             
             
-            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
-                Courses
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
-                Community
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/musings/">
-                Musings
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                Videos
             </a>
             
         
@@ -409,28 +389,8 @@ if (!doNotTrack) {
                 
                 
                 
-                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
-                    Courses
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
-                    Community
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/musings/">
-                    Musings
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                    Videos
                 </a>
                 
             
@@ -744,37 +704,37 @@ if (!doNotTrack) {
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>The docker compose file brings everything together under one roof. Here’s how it looks:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># docker-compose.yml</span>
-<span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">traefik</span>:
-    <span style="color:#66d9ef">image</span>: traefik
-    <span style="color:#66d9ef">command</span>: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-    <span style="color:#66d9ef">ports</span>:
+<span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">traefik</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">traefik</span>
+    <span style="color:#f92672">command</span>: --<span style="color:#ae81ff">web --docker --docker.domain=docker.localhost --logLevel=DEBUG</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;80:80&#34;</span>
       - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
       - <span style="color:#e6db74">&#34;443:443&#34;</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/<span style="color:#66d9ef">null</span>:/traefik.toml
-  <span style="color:#66d9ef">app</span>:
-    <span style="color:#66d9ef">build</span>: ./app
-    <span style="color:#66d9ef">volumes</span>:
-      - ./app:/usr/share/nginx/html
-    <span style="color:#66d9ef">labels</span>:
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock</span>
+      - <span style="color:#ae81ff">/dev/null:/traefik.toml</span>
+  <span style="color:#f92672">app</span>:
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./app</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./app:/usr/share/nginx/html</span>
+    <span style="color:#f92672">labels</span>:
       - <span style="color:#e6db74">&#34;traefik.backend=app-be&#34;</span>
       - <span style="color:#e6db74">&#34;traefik.frontend.rule=Host:app.localhost&#34;</span>
-  <span style="color:#66d9ef">blog</span>:
-    <span style="color:#66d9ef">build</span>: ./blog
-    <span style="color:#66d9ef">volumes</span>:
-      - ./blog:/usr/share/nginx/html
-    <span style="color:#66d9ef">labels</span>:
+  <span style="color:#f92672">blog</span>:
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./blog</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./blog:/usr/share/nginx/html</span>
+    <span style="color:#f92672">labels</span>:
       - <span style="color:#e6db74">&#34;traefik.backend=blog-be&#34;</span>
       - <span style="color:#e6db74">&#34;traefik.frontend.rule=Host:blog.localhost&#34;</span>
-  <span style="color:#66d9ef">website</span>:
-    <span style="color:#66d9ef">build</span>: ./website
-    <span style="color:#66d9ef">volumes</span>:
-      - ./website:/usr/share/nginx/html
-    <span style="color:#66d9ef">labels</span>:
+  <span style="color:#f92672">website</span>:
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./website</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./website:/usr/share/nginx/html</span>
+    <span style="color:#f92672">labels</span>:
       - <span style="color:#e6db74">&#34;traefik.backend=website-be&#34;</span>
       - <span style="color:#e6db74">&#34;traefik.frontend.rule=Host:localhost&#34;</span>
 </code></pre></div><p>As can be seen, traefik itself is run in a container. The domain is set to localhost and the ports 80, 8080 and 443 are published. The web flag (<code>--web</code>) under command parameter tells traefik to run its API dashboard which will be exposed on port 8080.</p>

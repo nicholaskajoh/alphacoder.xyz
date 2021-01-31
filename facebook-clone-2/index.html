@@ -99,28 +99,8 @@ if (!doNotTrack) {
             
             
             
-            <a class="a-block nav-link-item false" href="https://courses.alphacoder.xyz">
-                Courses
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="https://community.alphacoder.xyz">
-                Community
-            </a>
-            
-        
-            
-            
-            
-            
-            
-            <a class="a-block nav-link-item false" href="/musings/">
-                Musings
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                Videos
             </a>
             
         
@@ -377,28 +357,8 @@ if (!doNotTrack) {
                 
                 
                 
-                <a class="a-block drawer-menu-item false" href="https://courses.alphacoder.xyz">
-                    Courses
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="https://community.alphacoder.xyz">
-                    Community
-                </a>
-                
-            
-                
-                
-                
-                
-                
-                <a class="a-block drawer-menu-item false" href="/musings/">
-                    Musings
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/channel/UC1vg_0J9BGfahmc7flbiwJw">
+                    Videos
                 </a>
                 
             
@@ -670,25 +630,25 @@ if (!doNotTrack) {
 <p>PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. - http://php.net/manual/en/intro-whatis.php</p>
 </blockquote>
 <p>PHP is the most popular server-side programming language for the web and runs millions of websites. To write PHP, all we need to do is create a file with a <em>.php</em> file extension and add the php tags <code>&lt;?php</code> and <code>?&gt;</code>. <code>&lt;?php</code> is the opening tag and <code>?&gt;</code> the closing tag. We can write a Hello World PHP program like so:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-    &lt;<span style="color:#f92672">title</span>&gt;&lt;/<span style="color:#f92672">title</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-    <span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>; <span style="color:#75715e">?&gt;</span>
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
-</code></pre></div><p>In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, <code>&lt;?php</code> and <code>?&gt;</code> which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;!</span><span style="color:#a6e22e">DOCTYPE</span> <span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">head</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">title</span><span style="color:#f92672">&gt;&lt;/</span><span style="color:#a6e22e">title</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">head</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">body</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span> <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>; <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">&lt;/body&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;/html&gt;
+</span></code></pre></div><p>In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, <code>&lt;?php</code> and <code>?&gt;</code> which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
     <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>;
-<span style="color:#75715e">?&gt;</span>
-</code></pre></div><p>We may choose to omit the closing tag <code>?&gt;</code> in this case to have:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>We may choose to omit the closing tag <code>?&gt;</code> in this case to have:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
     <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Hello World&#34;</span>;
 </code></pre></div><p><code>echo</code> prints out Hello World as HTML text when the php file is served. We&rsquo;ll be learning PHP as we go about building FaceClone. Don&rsquo;t worry, PHP is pretty easy! 👍</p>
 <h1 id="mysql">MySQL</h1>
-<p>MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We&rsquo;ll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we&rsquo;ll create tables like <em>users</em> (to store information about our users) and <em>posts</em> (to store our users&rsquo; posts). Tables have columns. For a users table, we could have columns like <em>name</em>, <em>password</em>, <em>email</em> etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:</p>
+<p>MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We&rsquo;ll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we&rsquo;ll create tables like <em>users</em> (to store information about our users) and <em>posts</em> (to store our users' posts). Tables have columns. For a users table, we could have columns like <em>name</em>, <em>password</em>, <em>email</em> etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> posts
 </code></pre></div><p><code>SELECT</code> lets us read data from the database. <code>*</code> gets all the columns in the table posts. We could use <code>SELECT name, email FROM posts</code> if we don&rsquo;t want all the columns from the posts table. We&rsquo;ll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you&rsquo;ll want to write. Sweet!!!</p>
 <h1 id="back-to-business">Back to business&hellip;</h1>
@@ -731,14 +691,14 @@ if (!doNotTrack) {
 &lt;/<span style="color:#f92672">html</span>&gt;
 </code></pre></div><p>Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so <code>href=&quot;home.html&quot;</code> becomes <code>href=&quot;home.php&quot;</code> for example.
 We&rsquo;ve just created 2 partials. We need to include them in all our template files. To do so, clear the header and footer code (which we&rsquo;ve already moved to header.php and footer.php respectively) in our template files and add <code>&lt;?php include &quot;header.php&quot;; ?&gt;</code> and <code>&lt;?php include &quot;header.php&quot;; ?&gt;</code> like so:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">include</span> <span style="color:#e6db74">&#34;header.php&#34;</span> <span style="color:#75715e">?&gt;</span>
-<span style="color:#75715e">&lt;! - main --&gt;</span>
-&lt;<span style="color:#f92672">main</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
-<span style="color:#75715e">&lt;!-- page content here --&gt;</span>
-&lt;/<span style="color:#f92672">main</span>&gt;
-<span style="color:#75715e">&lt;!-- ./main --&gt;</span>
-<span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">include</span> <span style="color:#e6db74">&#34;footer.php&#34;</span> <span style="color:#75715e">?&gt;</span>
-</code></pre></div><p>Run PHP&rsquo;s development server to to confirm everything works fine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span> <span style="color:#66d9ef">include</span> <span style="color:#e6db74">&#34;header.php&#34;</span> <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">&lt;! - main --&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;main class=&#34;container&#34;&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;!-- page content here --&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;/main&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;!-- ./main --&gt;
+</span><span style="color:#960050;background-color:#1e0010">&lt;?php include &#34;footer.php&#34; ?&gt;
+</span></code></pre></div><p>Run PHP&rsquo;s development server to to confirm everything works fine.</p>
 <p><strong>NB:</strong> Open up a terminal and change directory to the project&rsquo;s folder then run <code>php -S localhost:8080</code> to start the server (refer to part 1 if you don&rsquo;t remember how to run the app).</p>
 <p><img src="/images/fbc2/faceclone-home.php.png" alt=""></p>
 <h1 id="lets-write-a-dbschema">Let&rsquo;s write a DB schema</h1>
