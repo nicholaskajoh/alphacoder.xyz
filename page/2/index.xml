@@ -5,7 +5,7 @@
     <description>Recent content in I code, therefore I am on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
     <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
@@ -151,7 +151,7 @@
     }
 })();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/handle-all-rejections.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -263,7 +263,7 @@ fields instead of the regular text input.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/textarea.png&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Now you can edit using a text area&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; To add a another plugin, all you need to do now is place the plugin source file in the &lt;em&gt;plugins&lt;/em&gt; directory and initialize it with the &lt;code&gt;new&lt;/code&gt; keyword in the &lt;code&gt;$plugins&lt;/code&gt; array (in &lt;em&gt;index.php&lt;/em&gt;) e.g &lt;code&gt;new SomeAwesomePlugin()&lt;/code&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -299,7 +299,7 @@ fields instead of the regular text input.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Any reasonably complex codebase has some debt. Even simple ones do. The goal is to reduce this debt as much as possible and keep it that way as more code is added. This must be done proactively or else debt would compound to the point where continued development isn&amp;rsquo;t feasible any longer. At this point, a rewrite may be the only logical solution. This can hurt a business and its development team badly.&lt;/p&gt;
-- https://alphacoder.xyz/dealing-with-code-debt/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/dealing-with-code-debt/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -517,7 +517,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;em&gt;UI of the Yoloo app&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/yoloo-sample-output.jpg&#34; alt=&#34;&#34;&gt;
 &lt;em&gt;Sample output image from Yoloo&lt;/em&gt;&lt;/p&gt;
-- https://alphacoder.xyz/deploy-microservices-on-kubernetes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/deploy-microservices-on-kubernetes/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -549,7 +549,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&amp;rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&amp;rsquo;t do 301 redirects. Apparently it&amp;rsquo;s against the law. I&amp;rsquo;m however hopeful that the blog will pick up soon.&lt;/p&gt;
 &lt;p&gt;The blog&amp;rsquo;s source is available on GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/alphacoder.xyz&#34;&gt;https://github.com/nicholaskajoh/alphacoder.xyz&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Okay. That&amp;rsquo;s it for now. Hopefully I don&amp;rsquo;t jump ship again.&lt;/p&gt;
-- https://alphacoder.xyz/hello-hugo/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/hello-hugo/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -575,7 +575,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;Maybe. I might be placing non-intrusive ads on the site sometime in the future in order to offset the costs of running the blog.&lt;/p&gt;
 &lt;h2 id=&#34;what-should-i-be-expecting-from-alpha-coder&#34;&gt;What should I be expecting from Alpha Coder?&lt;/h2&gt;
 &lt;p&gt;In 2019, I&amp;rsquo;m going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I&amp;rsquo;ll try my best. I&amp;rsquo;ll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I&amp;rsquo;ll also be doing long form posts. If you want me to write about something, please let me know on Twitter &lt;a href=&#34;https://twitter.com/nicholaskajoh&#34;&gt;@nicholaskajoh&lt;/a&gt; (DMs are open).&lt;/p&gt;
-- https://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -599,7 +599,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*_KfHQUBzwAQUiq0NaGFAeQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;If not, you’ll get something like this…&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*b2-XSsJ-M2Z_5lbPiv0qCw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -636,7 +636,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now push…&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ git push ec2server&lt;/code&gt;&lt;/pre&gt;
-- https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -664,7 +664,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;A fork is a server-side clone of a repository. You can fork any public repository on &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; and you’ll get a copy of it on your own account. You can make any changes you want to this fork. Forks need to be regularly synchronized with the upstream (official) repository so that they can have the latest changes.&lt;/p&gt;
 &lt;p&gt;A Pull Request (PR) is a request to merge the changes from a branch in a fork to an upstream repository. A project maintainer may accept, reject or request changes to a PR before it’s merged.&lt;/p&gt;
 &lt;p&gt;You can learn more about this workflow with &lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow&#34;&gt;this tutorial from Atlassian.com&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/git-workflows/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/git-workflows/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -715,7 +715,7 @@ kubectl apply -f viewer/viewer-service.yaml
 &lt;p&gt;A popular option for a CSS processor is SASS, which stands for Syntactically Awesome Style Sheet. SASS supports variables, loops, mixins with arguments etc. You can learn more about SASS by reading &lt;a href=&#34;https://sass-lang.com/guide&#34;&gt;the official guide&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
 &lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
-- https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

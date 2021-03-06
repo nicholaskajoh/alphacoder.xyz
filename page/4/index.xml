@@ -5,7 +5,7 @@
     <description>Recent content in I code, therefore I am on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
     <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
@@ -138,7 +138,7 @@ print(predict(x))
 &lt;p&gt;If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for all the code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- https://alphacoder.xyz/support-vector-machine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/support-vector-machine/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -227,7 +227,7 @@ print(predict(x))
 &lt;hr&gt;
 &lt;p&gt;A big thanks to you if you followed through to this point! 🎉🎉🎉&lt;/p&gt;
 &lt;p&gt;I wish you success in your software development endeavours. Keep building!!!&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-7/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-7/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -330,7 +330,7 @@ return prediction
 &lt;p&gt;I suggest you try out KNN with a couple popular data sets to get a feel of how powerful the algorithm is. There are many free KNN data sets online like &lt;a href=&#34;https://www.kaggle.com/styven/iris-dataset&#34;&gt;the Iris data set&lt;/a&gt; and the &lt;a href=&#34;https://www.kaggle.com/uciml/breast-cancer-wisconsin-data&#34;&gt;Breast Cancer Wisconsin (diagnostic) data set&lt;/a&gt;. You should totally check them out!&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for the complete KNN code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- https://alphacoder.xyz/k-nearest-neighbors/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/k-nearest-neighbors/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -429,7 +429,7 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;p&gt;The range of r2 is usually 0 to 1 so you can multiply it by 100 to get a percentage.&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the repo for the complete Linear Regression code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- https://alphacoder.xyz/linear-regression/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/linear-regression/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -457,7 +457,7 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can always add a few more lines for other neat functionalities. If you feel you’re doing too much, it may be time to throw in a library or something. If you feel Bootstrap or any other UI library is overkill, there are a ton of CSS grid libraries. I don’t want to name names, but Google is your friend. A search would yield a ton of interesting results.&lt;/p&gt;
 &lt;p&gt;Check out the repo for this tutorial: &lt;a href=&#34;https://github.com/nicholaskajoh/Simple-CSS-Grid&#34;&gt;https://github.com/nicholaskajoh/Simple-CSS-Grid&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also, you should totally read &lt;a href=&#34;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&#34;&gt;Chris Coyier’s complete guide to flexbox&lt;/a&gt;. If you have the time, go through &lt;a href=&#34;https://css-tricks.com/snippets/css/complete-guide-grid/&#34;&gt;Chris House’ complete guide to grid&lt;/a&gt; as well.&lt;/p&gt;
-- https://alphacoder.xyz/responsive-grid-system/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/responsive-grid-system/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -625,7 +625,7 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-6 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-6/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-6/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -715,7 +715,7 @@ The form…&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-5 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-5/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-5/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -882,7 +882,7 @@ function check_auth() {
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-4 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-4/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-4/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -1044,7 +1044,7 @@ The redirect_to method is a custom method. Add the definition to functions.php.&
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-3 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-3/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-3/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -1172,7 +1172,7 @@ Once Apache and MySQL start running, go to your browser and visit http://localho
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-2 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-2/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-2/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

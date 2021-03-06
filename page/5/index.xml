@@ -5,7 +5,7 @@
     <description>Recent content in I code, therefore I am on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
     <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
@@ -76,7 +76,7 @@ Unlike when we clicked index.html or the other html files to open them up in our
 &lt;p&gt;That&amp;rsquo;s all for part 1. Cool!!!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-1 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-1/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/facebook-clone-1/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -245,7 +245,7 @@ The &lt;code&gt;id&lt;/code&gt; attribute uniquely identifies an element. What i
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The JavaScript part of this post is very very brief and scratches just the surface. However, it exposes some of the functionality JavaScript provides. Hopefully, you have a rough sketch of what JavaScript is like. It&amp;rsquo;s not &amp;ldquo;that hard&amp;rdquo; and you can learn it. Here&amp;rsquo;s a great reference for JavaScript that teaches the basics: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics&#34;&gt;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics&lt;/a&gt;.
 If you came from my &lt;a href=&#34;https://alphacoder.xyz/tag/facebook-clone-series&#34;&gt;Facebook clone series&lt;/a&gt;, now is the time to &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;jump back&lt;/a&gt; and build something!&lt;/p&gt;
-- https://alphacoder.xyz/html-css-js/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/html-css-js/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -381,7 +381,7 @@ If you came from my &lt;a href=&#34;https://alphacoder.xyz/tag/facebook-clone-se
 &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;form&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Demo project: &lt;a href=&#34;https://github.com/nicholaskajoh/sails-form-validation&#34;&gt;https://github.com/nicholaskajoh/sails-form-validation&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
-- https://alphacoder.xyz/sailsjs-form-validation/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/sailsjs-form-validation/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -507,7 +507,7 @@ urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
     }(&lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt;));
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the &lt;code&gt;lazy_load_posts&lt;/code&gt; view. If a request is successful, the returned data is appended to the posts &lt;code&gt;div&lt;/code&gt; (&lt;code&gt;id=&amp;quot;posts&amp;quot;&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;All the code snippets in this tutorial can be found on &lt;a href=&#34;https://gist.github.com/nicholaskajoh/ae85bb836f2a6254244c847b962095d4&#34;&gt;this Github Gist&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/lazy-loading-with-django-and-jquery/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/lazy-loading-with-django-and-jquery/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

@@ -5,7 +5,7 @@
     <description>Recent content in I code, therefore I am on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
     <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
@@ -33,7 +33,7 @@
 &lt;p&gt;A multi-cluster database takes the primary-replica architecture to the next level. In this technique, the database tables that make up an application are grouped by function and each group is designated a cluster of its own. For instance, all the tables concerned with billing might be put in one cluster while those concerned with a feature, say private messaging, might be put in another. Care must be taken while grouping tables to avoid a situation where one or more related tables have been split across database clusters, and expensive operations are required to obtain a piece of data needed in your application as a result.&lt;/p&gt;
 &lt;h1 id=&#34;sharding&#34;&gt;Sharding&lt;/h1&gt;
 &lt;p&gt;Sharding is the process of horizontally partitioning data into multiple databases. Instead of splitting a database by groups of tables as described earlier, a table&amp;rsquo;s rows are split across multiple instances. In order to save or retrieve a piece of data, certain &lt;a href=&#34;https://www.citusdata.com/blog/2017/08/28/five-data-models-for-sharding/&#34;&gt;models&lt;/a&gt;/&lt;a href=&#34;https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding#sharding-strategies&#34;&gt;algorithms&lt;/a&gt; are employed in determining the &lt;a href=&#34;https://en.wikipedia.org/wiki/Shard_(database_architecture)&#34;&gt;shard&lt;/a&gt; to use/where the data resides. This adds a fair amount of complexity to your database setup and your application as well. Operations that might otherwise be straightforward can become a challenge under this configuration. As such sharding is usually reserved for last and carried out by admins who have a solid grasp of the database engine they&amp;rsquo;re dealing with.&lt;/p&gt;
-- https://alphacoder.xyz/database-scaling-techniques/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/database-scaling-techniques/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -58,7 +58,7 @@
 &lt;h1 id=&#34;create-columns-or-tables-for-frequently-used-aggregates&#34;&gt;Create columns or tables for frequently used aggregates&lt;/h1&gt;
 &lt;p&gt;Frequently used aggregates (for example the total amount made from orders this week or the number of times a coupon has been used) don&amp;rsquo;t have to be computed on the fly. You can pre-compute them and store the results in another table or a new column for faster retrieval. If these aggregates are likely to change in future, you can recompute them periodically or at the point when their inputs change.&lt;/p&gt;
 &lt;p&gt;It goes without saying that you should NOT denormalize until you encounter data retrieval issues. Like with most software engineering problems, there are tradeoffs! Also, denormalization is &lt;a href=&#34;https://alphacoder.xyz/database-scaling-techniques&#34;&gt;not the only way to optimize/scale databases&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/database-denormalization/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/database-denormalization/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -90,7 +90,7 @@
 &lt;h1 id=&#34;small-packages&#34;&gt;Small packages&lt;/h1&gt;
 &lt;p&gt;The Node.js community is &amp;ldquo;notorious&amp;rdquo; for building &lt;a href=&#34;https://www.npmjs.com/~sindresorhus&#34;&gt;very small packages&lt;/a&gt;. It&amp;rsquo;s also big on reusing as much code as possible. The end result is npm packages that can easily contain a dozen or more dependencies which in turn have their own dependencies. Take Knex for example. As at the time of writing this article, it has 17 direct dependencies — dev dependencies not included (&lt;code&gt;npm ls --only=prod --depth=0 | wc -l&lt;/code&gt;) — and a total of 257 dependencies (&lt;code&gt;npm ls --only=prod | wc -l&lt;/code&gt;). This means if you start and new Node project and run &lt;code&gt;npm install knex&lt;/code&gt;, you&amp;rsquo;d have 258 dependencies on your hands right off the bat!&lt;/p&gt;
 &lt;p&gt;One could argue that this pattern of building small packages and using lots of dependencies is fueled by npm&amp;rsquo;s dependency management strategy. If npm used the pip/RubyGems approach, Node.js developers would be wary of having many dependencies for fear of dependency hell. Perhaps there&amp;rsquo;s just one reason for the Node.js black hole. Having explored it, it seems pretty reasonable to me!&lt;/p&gt;
-- https://alphacoder.xyz/node-modules/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/node-modules/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -121,7 +121,7 @@
 &lt;p&gt;&lt;a href=&#34;https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/&#34;&gt;The law of leaky abstractions&lt;/a&gt; states &amp;ldquo;All non-trivial abstractions, to some degree, are leaky.&amp;rdquo; While the first criteria encourages opting for a high level of abstraction which makes it easier and faster to achieve an objective, this one advocates moving one or more levels lower when abstractions begin to leak.&lt;/p&gt;
 &lt;p&gt;If you find yourself writing a lot of CSS to override other CSS, perhaps it is time to drop Bootstrap and build your own UI component library, or pick another library with less abstraction. If you&amp;rsquo;re spending a lot of time hacking a framework because its APIs can no longer give you the functionality you need, you should probably start migrating away from it and building your own abstractions using language-native APIs.&lt;/p&gt;
 &lt;p&gt;An exemplification of the basic philosophy is this: &lt;em&gt;I don&amp;rsquo;t have to worry about the intricacies of paradigm X in language Y because there&amp;rsquo;s this nifty little library that exposes a streamlined API for achieving what I want. When my needs grow beyond what the library offers, I&amp;rsquo;ll begin to dig into the weeds of the paradigm. Right now, I&amp;rsquo;m more focused on delivering value with what I&amp;rsquo;m building than trying to understand every detail of some component I need to consume. When the abstraction begins to leak, I&amp;rsquo;ll cross that river.&lt;/em&gt;&lt;/p&gt;
-- https://alphacoder.xyz/levels-of-abstraction/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/levels-of-abstraction/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -201,7 +201,7 @@
 &lt;ul&gt;
 &lt;li&gt;Switching to an API gateway&amp;rsquo;s auth system from an existing application&amp;rsquo;s auth implementation can be difficult and time-consuming.&lt;/li&gt;
 &lt;/ul&gt;
-- https://alphacoder.xyz/microservices-architecture-authentication/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/microservices-architecture-authentication/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -226,7 +226,7 @@
 &lt;pre&gt;&lt;code&gt;DB_HOST=host.docker.internal
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &#39;/default/ {print $3}&#39;)
-&lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -270,7 +270,7 @@ docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
 &lt;li&gt;Elasticsearch: add &lt;code&gt;-v path/to/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
 &lt;li&gt;Kibana: add &lt;code&gt;-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
 &lt;/ul&gt;
-- https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -353,7 +353,7 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;p&gt;Counting was the easiest part! Vehicles are counted when they leave the frame or cross a line at an exit point of the frame. Using a counting line makes it easier to count vehicles moving in a certain direction.&lt;/p&gt;
 &lt;h1 id=&#34;contribute&#34;&gt;Contribute&lt;/h1&gt;
 &lt;p&gt;The VCS is free and open source software available &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;on GitHub&lt;/a&gt;. You can contribute to the project by taking it for a spin and reporting issues/bugs or working on parts of it that need improvement.&lt;/p&gt;
-- https://alphacoder.xyz/vehicle-counting/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/vehicle-counting/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -407,7 +407,7 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;p&gt;There&amp;rsquo;s a lot of hype around neural networks and deep learning because these tools have changed the game by making feats that seemed impossible just a couple years ago possible. They are used heavily in building state-of-the-art Computer Vision and Natural Language Processing (NLP) applications today.&lt;/p&gt;
 &lt;h1 id=&#34;ml-is-not-a-silver-bullet&#34;&gt;ML is not a silver bullet&lt;/h1&gt;
 &lt;p&gt;Analytical models, if they&amp;rsquo;re possible and feasible to arrive at, are better than machine learning because they produce answers and not predictions. ML is not a silver bullet like some may have you believe. There are problems machine learning methods excel in. There are others where analytical approaches are simpler and produce better results. Before employing ML, ask yourself: can this problem be solved analytically?&lt;/p&gt;
-- https://alphacoder.xyz/machine-learning-explained/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/machine-learning-explained/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -448,7 +448,7 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The most important part of the code is line 12, which gets the subdomain from the hostname (&lt;code&gt;window.location.hostname.split(&#39;.&#39;)[0]&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;In development, you can use &lt;code&gt;lvh.me&lt;/code&gt; (e.g &lt;code&gt;some-random-name.lvh.me:8080&lt;/code&gt;) to test your application instead of &lt;code&gt;127.0.0.1&lt;/code&gt;. &lt;code&gt;some-random-name.localhost&lt;/code&gt; also works on browsers I&amp;rsquo;ve tested.&lt;/p&gt;
-- https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

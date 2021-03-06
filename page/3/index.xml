@@ -5,7 +5,7 @@
     <description>Recent content in I code, therefore I am on Alpha Coder</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</copyright>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
     <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
@@ -36,7 +36,7 @@
 &lt;p&gt;I’ve found that a one-page CV with the headings: Summary, Experience, Projects, Skills, Education and Accomplishments does the trick. But I’m no CV expert. Do read &lt;a href=&#34;https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume/&#34;&gt;My Personal Formula for a Winning Resume&lt;/a&gt; by Laszlo Buck and watch &lt;a href=&#34;https://www.youtube.com/watch?v=zrXZBkYzuZo&#34;&gt;How to: Work at Google — Resume Tips&lt;/a&gt; for more insights.&lt;/p&gt;
 &lt;h2 id=&#34;dont-lie&#34;&gt;Don’t lie&lt;/h2&gt;
 &lt;p&gt;Don’t lie about your abilities! You’ll probably interview with a developer/designer who has years of experience working with a plethora of technologies. They can spot liars easily. Don’t try to wow them. Instead, tell them about your learning journey — where you want to go, how far you’ve come and how working with them would move you towards achieving your goals.&lt;/p&gt;
-- https://alphacoder.xyz/land-great-startup-internship/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/land-great-startup-internship/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -164,7 +164,7 @@ POSTGRES_DB=mypgsqldb
 &lt;p&gt;You can run migrations and create an admin user with the following commands:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker-compose -f docker-compose.prod.yml run web python manage.py migrate
 docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://alphacoder.xyz/dockerizing-django/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://alphacoder.xyz/dockerizing-django/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -260,7 +260,7 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;hr&gt;
 &lt;p&gt;The search results from &lt;em&gt;devsearch&lt;/em&gt; are abysmal (good thing I wasn’t hoping to build the next Google Search). However, I learnt a ton about search engines and search algorithms, and have already started exploring the areas most interesting to me. Most important, I understand a little better how search engines work! 🙌&lt;/p&gt;
 &lt;p&gt;You can find the source code for &lt;em&gt;devsearch&lt;/em&gt; on my GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/devsearch&#34;&gt;&lt;strong&gt;nicholaskajoh/devsearch&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/my-web-search-engine/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/my-web-search-engine/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -339,7 +339,7 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;NB:&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;I added SSL configs in&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/docker-compose.prod.yml&#34;&gt;&lt;em&gt;docker-compose.prod.yml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;for use in production.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;scaling-and-load-balancing&#34;&gt;Scaling and load balancing&lt;/h2&gt;
 &lt;p&gt;Traefik load balances multiple instances of a given service automatically. You can use the scale flag/parameter in docker compose to run multiple instances of your containers.&lt;/p&gt;
-- https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -403,7 +403,7 @@ docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic
 &lt;p&gt;We can choose an algorithm for the load balancer to use to route traffic to the droplets. There’s &lt;em&gt;Round Robin&lt;/em&gt; and &lt;em&gt;Least Connections&lt;/em&gt;. In Round Robin, the requests are routed in a circular order from one droplet to the next. On the other hand, Least Connections routes to the server with the least traffic.&lt;/p&gt;
 &lt;p&gt;There’s also health checks. You can set an endpoint e.g your app’s home page (http://0.0.0.0:80) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.&lt;/p&gt;
 &lt;p&gt;With Sticky sessions, you can glue a user to a particular server. If enabled, after a user’s first request, follow up requests would be routed to the same server.&lt;/p&gt;
-- https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -511,7 +511,7 @@ for i in range(max_iter):
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Check out the ML Chops repo for a class-based implementation and an example with real world data: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- https://alphacoder.xyz/k-means/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/k-means/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -612,7 +612,7 @@ cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;sp
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my-class&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;height&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;200&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;width&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100&amp;#34;&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Read about all the transformation parameters available here: &lt;a href=&#34;https://cloudinary.com/documentation/image_transformations&#34;&gt;https://cloudinary.com/documentation/image_transformations&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;That’s it!&lt;/p&gt;
-- https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -696,7 +696,7 @@ git push heroku master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After the build is done and your app has been released, visit &lt;em&gt;YOUR-APP-NAME.herokuapp.com&lt;/em&gt;. Neat!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Two libraries you might find really helpful when building your Django API are&lt;/em&gt; &lt;a href=&#34;http://www.django-rest-framework.org/&#34;&gt;&lt;em&gt;Django Rest Framework&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/ottoyiu/django-cors-headers/&#34;&gt;&lt;em&gt;Django CORS Headers&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. You should check them out!&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.&lt;/p&gt;
-- https://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -775,7 +775,7 @@ urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
 &lt;p&gt;Check out the code for this tutorial here: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
 &lt;p&gt;Deploying the React-Django app is a story for another day. The process largely depends on your hosting environment and workflow. I made &lt;a href=&#34;https://alphacoder.xyz/deploy-react-django-app-on-heroku/&#34;&gt;a post on deploying it to Heroku&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
@@ -910,7 +910,7 @@ class = Female
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for a more robust and efficient implementation: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/naive-bayes&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
-- https://alphacoder.xyz/naive-bayes/ - Copyright 2020 to ∞. Try Catch Finally Solutions Ltd. All rights reserved.</description>
+- https://alphacoder.xyz/naive-bayes/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
