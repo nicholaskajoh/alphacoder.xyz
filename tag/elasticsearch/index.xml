@@ -15,7 +15,7 @@
       
       <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
       <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
-Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
+Setup Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
     </item>
     
   </channel>

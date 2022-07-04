@@ -15,7 +15,7 @@
       
       <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
       <description>There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
+Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop). The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
     </item>
     
     <item>
@@ -25,7 +25,7 @@
       
       <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
       <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
-Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
+Setup Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platfor
       <guid>https://alphacoder.xyz/dockerizing-django/</guid>
       <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile FROMpython:3.6-alpineRUN apk --update add \  build-base \  postgresql \  postgresql-dev \  libpq \  # pillow dependencies jpeg-dev \  zlib-devRUN mkdir /wwwWORKDIR/wwwCOPY requirements.</description>
+Dockerfile FROM python:3.6-alpine RUN apk --update add \ build-base \ postgresql \ postgresql-dev \ libpq \ # pillow dependencies jpeg-dev \ zlib-dev RUN mkdir /www WORKDIR /www COPY requirements.</description>
     </item>
     
     <item>

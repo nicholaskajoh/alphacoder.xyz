@@ -16,7 +16,7 @@
       <guid>https://alphacoder.xyz/node-modules/</guid>
       <description>As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen the memes). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.
 Turns out it has to do with 2 things:
- How npm (the Node package manager) resolves dependencies. How the Node.</description>
+How npm (the Node package manager) resolves dependencies. How the Node.</description>
     </item>
     
     <item>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jul 2022 19:48:14 +0200</lastBuildDate><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The case for monorepos</title>
+      <link>https://alphacoder.xyz/monorepo-use-case/</link>
+      <pubDate>Mon, 04 Jul 2022 19:48:14 +0200</pubDate>
+      
+      <guid>https://alphacoder.xyz/monorepo-use-case/</guid>
+      <description>At a previous company, I worked as a Platform Engineer for the Packages team. A brand new team, our job was to abstract the building blocks of our systems into reusable components, and to create a pipeline for developing and releasing these components as packages for use by product engineers. There was a lot of duplication in our codebases and we were also slowly moving towards a microservices architecture, so our work was crucial in helping the engineering organization improve code quality and developer productivity.</description>
+    </item>
+    
     <item>
       <title>Database scaling techniques</title>
       <link>https://alphacoder.xyz/database-scaling-techniques/</link>
@@ -35,7 +44,7 @@ Well, it turns out that normalization comes at a performance cost for DB read op
       <guid>https://alphacoder.xyz/node-modules/</guid>
       <description>As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen the memes). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.
 Turns out it has to do with 2 things:
- How npm (the Node package manager) resolves dependencies. How the Node.</description>
+How npm (the Node package manager) resolves dependencies. How the Node.</description>
     </item>
     
     <item>
@@ -65,7 +74,7 @@ In this article, I outline the most common auth strategies I&amp;rsquo;ve come a
       
       <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
       <description>There are several ways to interact with a DB when developing using Docker:
- Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop).  The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
+Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop). The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
     </item>
     
     <item>
@@ -75,7 +84,7 @@ In this article, I outline the most common auth strategies I&amp;rsquo;ve come a
       
       <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
       <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
-Setup  Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
+Setup Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
     </item>
     
     <item>
@@ -182,7 +191,7 @@ Why the move? I started taking blogging more seriously sometime in early 2017. S
       
       <guid>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
       <description>AWS provides you with a .pem file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…
-1. Copy private key in PEM to .ssh folder $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2  2. Generate and save public key $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.</description>
+1. Copy private key in PEM to .ssh folder $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2 2. Generate and save public key $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.</description>
     </item>
     
     <item>
@@ -223,7 +232,7 @@ Do your homework I remember being caught off guard when asked about the company 
       <guid>https://alphacoder.xyz/dockerizing-django/</guid>
       <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
 TL;DR: Sample project You can check out the code on GitHub.
-Dockerfile FROMpython:3.6-alpineRUN apk --update add \  build-base \  postgresql \  postgresql-dev \  libpq \  # pillow dependencies jpeg-dev \  zlib-devRUN mkdir /wwwWORKDIR/wwwCOPY requirements.</description>
+Dockerfile FROM python:3.6-alpine RUN apk --update add \ build-base \ postgresql \ postgresql-dev \ libpq \ # pillow dependencies jpeg-dev \ zlib-dev RUN mkdir /www WORKDIR /www COPY requirements.</description>
     </item>
     
     <item>
@@ -264,7 +273,7 @@ One way to scale is by optimizing your code. That may involve removing unnecessa
       
       <guid>https://alphacoder.xyz/k-means/</guid>
       <description>We’ve been talking classification for a while now — from K Nearest Neighbors to Naive Bayes to Support Vector Machines. In this post, we’ll be looking at clustering using an algorithm called K Means. Let’s dive in&amp;hellip;
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article)  K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article) K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
     </item>
     
     <item>
@@ -285,7 +294,7 @@ Luckily, there are cloud platforms that take away the stress of all that, allowi
       <guid>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
       <description>This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
 TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
- We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
+We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
     </item>
     
     <item>
@@ -308,7 +317,7 @@ Here’s a simple setup for creating a React-Django project. With just a few twe
       <description>Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
 Bayes formula
 Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:</description>
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means Let’s consider the data we used in the last post on KNNs:</description>
     </item>
     
     <item>
@@ -318,7 +327,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
       
       <guid>https://alphacoder.xyz/support-vector-machine/</guid>
       <description>The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
     </item>
     
     <item>
@@ -327,7 +336,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support V
       <pubDate>Sat, 09 Dec 2017 09:07:25 +0100</pubDate>
       
       <guid>https://alphacoder.xyz/facebook-clone-7/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 (this article)  It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!</description>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 (this article) It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!</description>
     </item>
     
     <item>
@@ -366,7 +375,7 @@ Say you’re learning a new framework or testing out some code and you want to t
       <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
       
       <guid>https://alphacoder.xyz/facebook-clone-6/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 (this article) Build a Facebook clone from scratch with PHP — Part 7  Relationships are the point of social networks.</description>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 (this article) Build a Facebook clone from scratch with PHP — Part 7 Relationships are the point of social networks.</description>
     </item>
     
     <item>
@@ -375,7 +384,7 @@ Say you’re learning a new framework or testing out some code and you want to t
       <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
       
       <guid>https://alphacoder.xyz/facebook-clone-5/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Every Facebook user has a profile.</description>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 Every Facebook user has a profile.</description>
     </item>
     
     <item>
@@ -384,7 +393,7 @@ Say you’re learning a new framework or testing out some code and you want to t
       <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
       
       <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 (this article) Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Users are at the center of any application.</description>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 (this article) Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 Users are at the center of any application.</description>
     </item>
     
     <item>
@@ -393,7 +402,7 @@ Say you’re learning a new framework or testing out some code and you want to t
       <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
       
       <guid>https://alphacoder.xyz/facebook-clone-3/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 (this article) Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  Posts are the heart and soul of Facebook.</description>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 (this article) Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 Posts are the heart and soul of Facebook.</description>
     </item>
     
     <item>
@@ -402,7 +411,7 @@ Say you’re learning a new framework or testing out some code and you want to t
       <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
       
       <guid>https://alphacoder.xyz/facebook-clone-2/</guid>
-      <description>All parts  Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  A little about PHP and MySQL So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template.</description>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 A little about PHP and MySQL So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template.</description>
     </item>
     
     <item>
@@ -412,7 +421,7 @@ Say you’re learning a new framework or testing out some code and you want to t
       
       <guid>https://alphacoder.xyz/facebook-clone-1/</guid>
       <description>In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!
-All parts  Build a Facebook clone from scratch with PHP — Part 1 (this article) Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7  We&amp;rsquo;re making Facebook?</description>
+All parts Build a Facebook clone from scratch with PHP — Part 1 (this article) Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 We&amp;rsquo;re making Facebook?</description>
     </item>
     
     <item>
@@ -445,7 +454,7 @@ Data validation is a very essential part of any API/web app. Client-side validat
       <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
 Templates Create 2 templates, index.html and posts.html.
 index.html
-&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.js  window.CSRF_TOKEN = &amp;#34;{{ csrf_token }}&amp;#34;; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;My Blog Posts&amp;lt;/h2&amp;gt; &amp;lt;div id=&amp;#34;posts&amp;#34;&amp;gt;{% include &amp;#39;myapp/posts.</description>
+&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django // To be used for making AJAX requests in script.js window.CSRF_TOKEN = &amp;#34;{{ csrf_token }}&amp;#34;; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;My Blog Posts&amp;lt;/h2&amp;gt; &amp;lt;div id=&amp;#34;posts&amp;#34;&amp;gt;{% include &amp;#39;myapp/posts.</description>
     </item>
     
   </channel>

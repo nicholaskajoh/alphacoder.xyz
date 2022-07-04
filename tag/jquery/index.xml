@@ -17,7 +17,7 @@
       <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
 Templates Create 2 templates, index.html and posts.html.
 index.html
-&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django  // To be used for making AJAX requests in script.js  window.CSRF_TOKEN = &amp;#34;{{ csrf_token }}&amp;#34;; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;My Blog Posts&amp;lt;/h2&amp;gt; &amp;lt;div id=&amp;#34;posts&amp;#34;&amp;gt;{% include &amp;#39;myapp/posts.</description>
+&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django // To be used for making AJAX requests in script.js window.CSRF_TOKEN = &amp;#34;{{ csrf_token }}&amp;#34;; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;My Blog Posts&amp;lt;/h2&amp;gt; &amp;lt;div id=&amp;#34;posts&amp;#34;&amp;gt;{% include &amp;#39;myapp/posts.</description>
     </item>
     
   </channel>

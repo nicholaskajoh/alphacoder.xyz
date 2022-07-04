@@ -15,7 +15,7 @@
       
       <guid>https://alphacoder.xyz/k-means/</guid>
       <description>We’ve been talking classification for a while now — from K Nearest Neighbors to Naive Bayes to Support Vector Machines. In this post, we’ll be looking at clustering using an algorithm called K Means. Let’s dive in&amp;hellip;
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article)  K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article) K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support V
       <description>Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
 Bayes formula
 Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means  Let’s consider the data we used in the last post on KNNs:</description>
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means Let’s consider the data we used in the last post on KNNs:</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes (this art
       
       <guid>https://alphacoder.xyz/support-vector-machine/</guid>
       <description>The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
-The ML Chops series  Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means  Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
     </item>
     
     <item>

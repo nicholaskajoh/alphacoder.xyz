@@ -1,3 +1,4 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>I code, therefore I am on Alpha Coder</title>
@@ -6,9 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Jun 2020 11:46:24 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Jul 2022 19:48:14 +0200</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>The case for monorepos</title>
+        <link>https://alphacoder.xyz/monorepo-use-case/</link>
+        <pubDate>Mon, 04 Jul 2022 19:48:14 +0200</pubDate>
+        
+        <guid>https://alphacoder.xyz/monorepo-use-case/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/monorepo-use-case/ -&lt;p&gt;At a previous company, I worked as a Platform Engineer for the Packages team. A brand new team, our job was to abstract the building blocks of our systems into reusable components, and to create a pipeline for developing and releasing these components as packages for use by product engineers. There was a lot of duplication in our codebases and we were also slowly moving towards a microservices architecture, so our work was crucial in helping the engineering organization improve code quality and developer productivity.&lt;/p&gt;
+&lt;p&gt;I think we did a great job with what we built given the size of the team, the amount of time we had and how much freedom we had to modify/change existing systems and processes, but it wasn’t without issues. Weeks and months after leaving the team, I kept thinking about the initial design and how it could be improved. I think I’ve arrived at something better. Of course, it’s nothing new and some may find the trade-offs costlier than the benefits, but it’s quite fascinating to me because I was bewildered by and opposed to the idea when I first learned about it. I’m talking about monorepos.&lt;/p&gt;
+&lt;h1 id=&#34;what-we-built&#34;&gt;What we built&lt;/h1&gt;
+&lt;p&gt;Our stack was mainly JavaScript-based tech (TypeScript, Node.js and friends), so we were developing and releasing NPM packages. We used &lt;a href=&#34;https://github.com/semantic-release/semantic-release&#34;&gt;Semantic Release&lt;/a&gt; to automate the releases (versioning, release notes generation and publishing). We built a self-serve system to enable developers create new packages and update existing ones on their own. Creating a package involved setting up a GitHub repository with certain configs which connected it to the release pipeline. For existing packages, all a developer had to do was open a PR. Once merged, the changes would be cut into a new release and available in our private registry for installation/use.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# First time, add private registry to the package manager.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm login --scope&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;@test-company --registry&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://registry.testcompany.com
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Then install internal package(s).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm install @test-company/very-useful-package
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;the-challenges&#34;&gt;The challenges&lt;/h1&gt;
+&lt;p&gt;The challenges we faced were a result of the mismatch of the solution we implemented and our customers’ (i.e product developers’) needs. Our solution is a better fit for open source development where clear project scope and stability is king, as opposed to a fast-paced agile environment which prioritizes velocity and adaptability. Some of the issues we were confronted with are:&lt;/p&gt;
+&lt;h2 id=&#34;more-complex-dev-environment&#34;&gt;More complex dev environment&lt;/h2&gt;
+&lt;p&gt;Development is complex enough when you have to setup multiple repos and spin up multiple apps. Adding packages to the mix complicates things even more. Now you have to setup even more repos, work across multiple codebases, and update dependencies to deliver a single feature or fix a single bug. I did not realize how bad it was until I considered duplicating code from a package just to avoid having to update it and doing the whole release process dance.&lt;/p&gt;
+&lt;h2 id=&#34;long-review-cycles&#34;&gt;Long review cycles&lt;/h2&gt;
+&lt;p&gt;Multiple repos means multiple PRs for a single task. Multiple PRs means longer review cycles. We found, unsurprisingly, that developers who like to move fast don’t appreciate this very much.&lt;/p&gt;
+&lt;h2 id=&#34;versioning-hell&#34;&gt;Versioning hell&lt;/h2&gt;
+&lt;p&gt;The worst of the challenges was dealing with versioning. If you wanted to introduce a breaking change, you had 3 options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Don’t introduce a breaking change. Make your change backwards compatible by exposing some specialized function for your use case. This of course will increase complexity and ultimately defeat the goal of having clean abstractions that can be reused.&lt;/li&gt;
+&lt;li&gt;Release a new version and update all the dependent apps. This can be a lot of work and may be risky.&lt;/li&gt;
+&lt;li&gt;Release a new version just for your changes. Now you have to maintain multiple versions of a single package which is a pain.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;building-something-better&#34;&gt;Building something better&lt;/h1&gt;
+&lt;p&gt;The solution to these problems is a monorepo. How? Well, with all the code in one place, you don’t have to clone a new repo, or open multiple PRs, or deal with versioning (you’re always using the latest version). Large refactors to create better abstractions are also more tenable.&lt;/p&gt;
+&lt;p&gt;Of course, even if I recognized this at the time, there’s no way I could have convinced the engineering org or even my team to squash dozens of repos into one. The benefits of doing so just don’t justify the work involved—and the risks. Maybe at some point in the future it will and a monorepo would make sense.&lt;/p&gt;
+&lt;p&gt;The thing I’ve learned in thinking through these challenges is that context is key. It’s important to suss out the motivations for using a given system or tool before criticizing or adopting it. Often, until you’re in the problem space yourself, you never recognize or appreciate the reasons for going with certain approaches.&lt;/p&gt;
+- https://alphacoder.xyz/monorepo-use-case/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -223,9 +261,9 @@
 &lt;p&gt;Connecting to a host DB from a container via localhost doesn&amp;rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&amp;rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&amp;rsquo;s internal IP address.&lt;/p&gt;
 &lt;p&gt;You can point to your host&amp;rsquo;s DB by setting the following environment variable in your container for instance.&lt;/p&gt;
 &lt;p&gt;Docker for Mac/Windows:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;DB_HOST=host.docker.internal
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=host.docker.internal
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &#39;/default/ {print $3}&#39;)
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &amp;#39;/default/ {print $3}&amp;#39;)
 &lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
@@ -245,19 +283,19 @@
 &lt;li&gt;Pull the Docker image for Kibana: &lt;code&gt;docker pull docker.elastic.co/kibana/kibana:7.3.0&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;run&#34;&gt;Run&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker container stop es_dev &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker container rm es_dev
-docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --name es_dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9200:9200 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9300:9300 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;
-docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --link es_dev:elasticsearch &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.3.0 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first command stops the container named &lt;code&gt;es_dev&lt;/code&gt; (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named &lt;code&gt;es_dev&lt;/code&gt;, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (&lt;code&gt;es_dev&lt;/code&gt;) where the Elasticsearch cluster is running. The last two commands are run concurrently.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker container stop es_dev &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker container rm es_dev
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --name es_dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9200:9200 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9300:9300 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --link es_dev:elasticsearch &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.3.0 &amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first command stops the container named &lt;code&gt;es_dev&lt;/code&gt; (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named &lt;code&gt;es_dev&lt;/code&gt;, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (&lt;code&gt;es_dev&lt;/code&gt;) where the Elasticsearch cluster is running. The last two commands are run concurrently.&lt;/p&gt;
 &lt;p&gt;You can add these three commands to a shell file (e.g &lt;em&gt;elastic.sh&lt;/em&gt;) in order to run a single command to start Elasticsearch and Kibana i.e &lt;code&gt;chmod +x elastic.sh &amp;amp;&amp;amp; ./elastic.sh&lt;/code&gt; the first time and &lt;code&gt;./elastic.sh&lt;/code&gt; subsequently.&lt;/p&gt;
 &lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
 &lt;ul&gt;
@@ -382,7 +420,7 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;h1 id=&#34;what-are-ml-models&#34;&gt;What are ML models?&lt;/h1&gt;
 &lt;p&gt;A machine learning model is essentially a function which maps a set of inputs to a set of outputs. The inputs are features (e.g of a human being — height, weight etc) and the outputs are predictions (e.g sex — male or female).&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s take the following mathematical function for example:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;V = 4/3 * PI * r^3
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;V = 4/3 * PI * r^3
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is the formula for the volume of a sphere. The input is &lt;code&gt;r&lt;/code&gt; (the radius of the sphere) and the output is &lt;code&gt;V&lt;/code&gt; (the sphere&amp;rsquo;s volume). &lt;a href=&#34;https://en.wikipedia.org/wiki/Pi&#34;&gt;Pi&lt;/a&gt; is not an input since it&amp;rsquo;s constant (about 3.14), as is the literal value &lt;code&gt;4/3&lt;/code&gt;. The sphere volume formula was derived analytically using tools like calculus, geometry and trigonometry. Not all problems can be solved through such means. Some problems are not feasible or too complex to model in this way. It&amp;rsquo;s a lot easier to show computers the problem and/or answers and have them figure out an approximate model that solves it.&lt;/p&gt;
 &lt;h3 id=&#34;training&#34;&gt;Training&lt;/h3&gt;
 &lt;p&gt;Models are optimized or fine-tuned through a process known as training. Say you wanted to build your dog detector, like we considered in a previous section, by creating a machine learning model. At the point of initialization, the dog detector model is like a newborn baby. It doesn&amp;rsquo;t know anything and behaves rather randomly. During training, it&amp;rsquo;s shown a bunch of photos of dogs of different types, shapes and sizes, as well as photos of other objects so that it can make the right distinctions. At the end of training, you&amp;rsquo;d expect it to know how to detect dogs with a high level of accuracy.&lt;/p&gt;
@@ -408,47 +446,6 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;h1 id=&#34;ml-is-not-a-silver-bullet&#34;&gt;ML is not a silver bullet&lt;/h1&gt;
 &lt;p&gt;Analytical models, if they&amp;rsquo;re possible and feasible to arrive at, are better than machine learning because they produce answers and not predictions. ML is not a silver bullet like some may have you believe. There are problems machine learning methods excel in. There are others where analytical approaches are simpler and produce better results. Before employing ML, ask yourself: can this problem be solved analytically?&lt;/p&gt;
 - https://alphacoder.xyz/machine-learning-explained/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>How to configure wildcard subdomains</title>
-        <link>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
-        <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ -&lt;p&gt;Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as &lt;strong&gt;team-name.awesomeapp.com&lt;/strong&gt; or &lt;strong&gt;org-name.beta.awesomeapp.com&lt;/strong&gt;. These subdomains are variable, meaning that they are not predefined and can contain any valid &lt;a href=&#34;https://en.wikipedia.org/wiki/Domain_name&#34;&gt;domain name&lt;/a&gt; characters.&lt;/p&gt;
-&lt;p&gt;To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app&amp;rsquo;s url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization&amp;rsquo;s details for instance.&lt;/p&gt;
-&lt;p&gt;Here&amp;rsquo;s a sample application that displays avatars from &lt;a href=&#34;http://avatars.adorable.io&#34;&gt;Adorable Avatars&lt;/a&gt; based on the subdomain you use.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/wcsubd/demo.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Visit &lt;code&gt;some-random-name.wildcard-subdomains.alphacoder.xyz&lt;/code&gt; where &lt;code&gt;some-random-name&lt;/code&gt; can be anything you like and watch the avatars change!&lt;/p&gt;
-&lt;p&gt;To use wildcard subdomains, go to your domain registrar and create a &amp;ldquo;match all&amp;rdquo; CNAME record&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/wcsubd/dns-conf.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;If you want subdomains like &lt;code&gt;some-random-name.alphacoder.xyz&lt;/code&gt;, feel free to skip the &lt;code&gt;.wildcard-subdomains&lt;/code&gt; so that you have only &lt;code&gt;*&lt;/code&gt; in the host field.&lt;/p&gt;
-&lt;p&gt;The web page has just a few lines of code&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;title&amp;gt;Wildcard subdomains&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-
-  &amp;lt;h1 id=&amp;quot;subdomain&amp;quot;&amp;gt;&amp;lt;/h1&amp;gt;
-  &amp;lt;img id=&amp;quot;avatar&amp;quot;&amp;gt;
-
-  &amp;lt;script&amp;gt;
-    var subdomain = window.location.hostname.split(&#39;.&#39;)[0];
-    document.getElementById(&#39;subdomain&#39;).textContent = subdomain;
-    var avatarSrc = &#39;https://api.adorable.io/avatars/285/&#39; + subdomain + &#39;.png&#39;;
-    document.getElementById(&#39;avatar&#39;).src = avatarSrc;
-  &amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The most important part of the code is line 12, which gets the subdomain from the hostname (&lt;code&gt;window.location.hostname.split(&#39;.&#39;)[0]&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;In development, you can use &lt;code&gt;lvh.me&lt;/code&gt; (e.g &lt;code&gt;some-random-name.lvh.me:8080&lt;/code&gt;) to test your application instead of &lt;code&gt;127.0.0.1&lt;/code&gt;. &lt;code&gt;some-random-name.localhost&lt;/code&gt; also works on browsers I&amp;rsquo;ve tested.&lt;/p&gt;
-- https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
