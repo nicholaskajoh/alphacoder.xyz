@@ -7,9 +7,36 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>How to version REST APIs</title>
+        <link>https://alphacoder.xyz/rest-api-versioning/</link>
+        <pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/rest-api-versioning/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/rest-api-versioning/ -&lt;p&gt;Having worked at companies that sell API products in the last couple years, I’ve found myself contemplating—for hours on end in the shower—what the best way to version REST APIs is. You want simplicity and stability so that your API is easy for developers to integrate. But you also want to iterate on your product and add new features to improve your offering. Eventually, you’ll need to introduce breaking changes. Maybe you’re expanding the scope of an endpoint so you want to reorganize the parameters in the request payload, or a field in the response body needs to be removed for security or compliance reasons. To deal with these, you’ll need to introduce versioning in some form.&lt;/p&gt;
+&lt;p&gt;There are several ways to do API versioning. If you’ve integrated any 3rd-party APIs, you’re probably familiar with a few of them. You could put the version number in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the URL i.e &lt;code&gt;https://api.alphacoder.xyz/v1/posts&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;the accept header i.e &lt;code&gt;Accept: application/vnd.alphacoder.blog-v1+json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;a custom header i.e &lt;code&gt;Accept-Version: 1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rather than focusing on where to accept version numbers or what format they should be in (whatever you go with is fine as long as it’s consistent), your priority should be building a comprehensive versioning system around your API—or at least planning for one.&lt;/p&gt;
+&lt;p&gt;Your versioning system should:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Abstract versioning for new users:&lt;/strong&gt; By default, new users of your API should be on the latest version so there’s no need to bore them with versioning initially. A good way to do this is to peg them to the latest version when they sign up to use your API. They won’t have to worry about versions until that version gets deprecated/sun-set or they want a feature that is not available in the version they’re using.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use resource-level versioning:&lt;/strong&gt; That is, each resource should have it’s own version as opposed to using one version number for your entire API. With the right tooling e.g compatibility matrices, this should not be much of a problem. And for users consuming resources that seldom change, they won’t have to do anything in a long while.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Span all user contact surfaces:&lt;/strong&gt; So not just your API where a user can specify what version they want to use. On the user dashboards, they should be able to see a log of what resource versions they’re consuming and perhaps a nice graph of the data as well. They should also be able to see and change their default versions. On the documentation, they should be shown content specific to their default versions if applicable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Have a deprecation and sun-setting policy:&lt;/strong&gt; When you have a well-documented deprecation and sun-setting policy and you communicate it to your users in advance, it makes upgrades less of a hassle and keeps everyone mostly happy. It could be time-based e.g versions are supported for 2 years after release, deprecated in their 3rd year and then sun-set afterwards. If you don’t release a lot of new versions, you could instead support the last 3-5 versions versions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Track API version usage:&lt;/strong&gt; This will give you a good view of how your system is used so that you can make certain decisions such as extending the lifespan of a version or reaching out to specific users to encourage them to upgrade.&lt;/li&gt;
+&lt;/ul&gt;
+- https://alphacoder.xyz/rest-api-versioning/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -351,89 +378,6 @@
 &lt;li&gt;Kibana: add &lt;code&gt;-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
 &lt;/ul&gt;
 - https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>I built a video-based vehicle counting system — here&#39;s how</title>
-        <link>https://alphacoder.xyz/vehicle-counting/</link>
-        <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/vehicle-counting/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/vehicle-counting/ -&lt;p&gt;I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared &lt;a href=&#34;https://twitter.com/nicholaskajoh/status/1115016849840844805?s=20&#34;&gt;a demo on Twitter&lt;/a&gt; that went semi-viral!&lt;/p&gt;
-&lt;p&gt;In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; I built a video-based vehicle counting system using Python/OpenCV. You can find the &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;code on my GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/vehicle_counting.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;how-it-works&#34;&gt;How it works&lt;/h1&gt;
-&lt;p&gt;The vehicle counting system I built is made up of three main components: a detector, tracker and counter. The detector identifies vehicles in a given frame of video and returns a list of bounding boxes around the vehicles to the tracker. The tracker uses the bounding boxes to track the vehicles in subsequent frames. The detector is also used to update the trackers periodically to ensure that they are still tracking the vehicles correctly. The counter counts vehicles when they leave the frame or makes use of a counting line drawn across a road.&lt;/p&gt;
-&lt;h1 id=&#34;why-vehicle-counting&#34;&gt;Why vehicle counting?&lt;/h1&gt;
-&lt;p&gt;Computer Vision (CV) had been on my list of things to learn for a long time so I decided to use the opportunity of my final project to learn it. I actually wanted to build a turn-based or real-time strategy game that used a healthy dose of AI but I knew I wouldn&amp;rsquo;t have been able to complete it in time for my defence so I figured a CV project was the way to go as I&amp;rsquo;d very likely get to use Machine Learning (ML).&lt;/p&gt;
-&lt;p&gt;Computer Vision is an interdisciplinary field concerned with giving computers the ability to &amp;ldquo;see&amp;rdquo; or be able to understand the contents of digital images such as photos and videos. While vision is a trivial task for humans and animals, it&amp;rsquo;s currently quite difficult for machines. However, a lot of progress has been made in the field in the last few decades and new techniques and technologies to make CV faster and more accurate are actively being researched.&lt;/p&gt;
-&lt;p&gt;A vehicle counting system, as you might have already inferred, is a system that counts vehicles on the road. Why would you want to build one? Why would you want to count vehicles on the road? Here are some reasons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Traffic management and planning:&lt;/strong&gt; If you have a good sense of the volume of traffic moving along a given road or network of roads, you can better understand congestion and then manage and/or make plans to reduce/eliminate it. Vehicle count data is very useful to urban city planners and transport authorities.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Traffic control:&lt;/strong&gt; No one likes to be stuck behind a red light especially when the road is free. Vehicle counting systems can be integrated with traffic light control software to intelligiently direct vehicles based on the current traffic situation in real time.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Parking management:&lt;/strong&gt; A VCS can be installed at the entrance of a parking lot to monitor vehicles coming in and going out in order to determine whether there are slots available at any given time. It can also be used to ensure the number of vehicles in a given place (such as a hotel or events center) does not exceed its capacity by controlling Automatic Barrier Gates as opposed to issuing tags.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Advertising:&lt;/strong&gt; Billboard advertisers and their clients are interested in the volume of vehicular traffic along a road where they have ads or where they want to install a billboard because they can make estimates of the number of people who see their ads per time using the data.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;why-video&#34;&gt;Why video?&lt;/h1&gt;
-&lt;p&gt;There are a handful of ways to count vehicles on the road from manual counts to pneumatic tubes to piezoelectric sensors. Why was video used? Why is it preferred?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Sensor data (video footage) can be used to verify the system’s results which
-makes it easier and faster to evaluate and improve the system.&lt;/li&gt;
-&lt;li&gt;The footage can also be used for other purposes including surveillance,
-automatic plate number recognition, vehicle type detection and vehicle speed
-detection to name a few.&lt;/li&gt;
-&lt;li&gt;It is relatively cheaper to implement and scale as a permanent vehicle counting
-system compared to other systems.&lt;/li&gt;
-&lt;li&gt;It can track and count multiple vehicles moving in different directions across
-several lanes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;learning-opencv&#34;&gt;Learning OpenCV&lt;/h1&gt;
-&lt;p&gt;Since I&amp;rsquo;m proficient in Python, OpenCV was the logical tool to use. &lt;a href=&#34;https://opencv.org&#34;&gt;OpenCV&lt;/a&gt; is an
-open-source library made up of a collection of modules for performing real-time Computer
-Vision tasks. I used the YouTube tutorial series &lt;a href=&#34;https://www.youtube.com/playlist?list=PLQVvvaa0QuDdttJXlLtAJxJetJcqmqlQq&#34;&gt;OpenCV with Python for Image and Video Analysis&lt;/a&gt; by Harrison Kinsley of &lt;a href=&#34;https://pythonprogramming.net&#34;&gt;PythonProgramming.net&lt;/a&gt; to learn the basics. I was quickly able to learn how to load images and videos, overlay text, shapes or images on media, manipulate pixels on images as a pre-processing step or to produce a visual, perform background substraction to detect objects, run Haar Cascades for object detection etc.&lt;/p&gt;
-&lt;h1 id=&#34;components-of-the-vcs&#34;&gt;Components of the VCS&lt;/h1&gt;
-&lt;p&gt;I had little or no idea on how to build a VCS so I looked online for inspiration. I found a C++ project which used background subtraction and decided to port it to Python. This gave me to opportunity to go through every line of the code and understand it at a deeper level. I completed the port and tested it out on the traffic scenes I&amp;rsquo;d recorded. The results were very poor. I began thinking of better algorithms and techniques to use. I broke the problem down into three sub-problems: detection, tracking and counting.&lt;/p&gt;
-&lt;h2 id=&#34;detection&#34;&gt;Detection&lt;/h2&gt;
-&lt;p&gt;This is a crucial and probably the most important part of building a VCS. Detection is an aspect of CV and image processing concerned with identifying instances of objects of a certain class, like vehicles or people, in images and videos. Popular areas of interest in object detection include pedestrian detection and face detection. Object detection can be applied in solving hard problems in areas like image search and video surveillance. It is used widely in computer vision tasks including face detection, face recognition, and object tracking.&lt;/p&gt;
-&lt;p&gt;All object types have special attributes that help in classifying them. For instance, all faces are round. Object detection algorithms use these special attributes to identify
-objects in images and videos. I experimented with several object detection techniques, most notably background subtraction, Haar Cascades and YOLO.&lt;/p&gt;
-&lt;h3 id=&#34;background-subtraction&#34;&gt;Background subtraction&lt;/h3&gt;
-&lt;p&gt;The first detector I used to id vehicles was a background substractor. Background or image subtraction is the process of extracting the foreground of an image from its background. If you have a background image like a road without vehicles in it, you can subtract this image from another image of the same road (from the exact same view) which contains vehicles to detect those vehicles. The background pixels would cancel each other out and the objects in the foreground would pop out.&lt;/p&gt;
-&lt;p&gt;What if you don&amp;rsquo;t have a background image? You can achieve the same results if the objects you&amp;rsquo;re interested in detecting are in motion, the background is static and the camera is stationary. In this case, all you have to do is evaluate the difference between consecutive images i.e image 2 minus image 1, image 3 minus image 2, image 4 minus image 3 etc. This works because the pixels of moving objects constantly shift hence are not cancelled out like the background pixels and thus pop out as the foreground.&lt;/p&gt;
-&lt;p&gt;The images below show what background substraction looks like.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/frame.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/bgsub.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;While background substraction was easy to implement and super fast, I was unable to arrive at a suitable threshold for detecting vehicle blobs. Vehicles are not the only objects that move on/across the road. There are pedestrians, animals, people with carts or wheelbarrows, skateboarders etc. Also, objects change in size and shape as they move across the view due to perspective, and vehicles may be occluded by other vehicles in the scene and thus interpreted as one object.&lt;/p&gt;
-&lt;p&gt;I observed a lot of noise as well mainly due to the waving of trees and commercial activities going on in the background. While noise reduction techniques such as Gaussian Blur and selecting a Region of Interest (ROI) for detection helped, the overall performance of the detector was still underwhelming. After spending quite a while trying to tweak things in order to increase accuracy, I decided I needed another detector.&lt;/p&gt;
-&lt;h3 id=&#34;haar-cascades&#34;&gt;Haar Cascades&lt;/h3&gt;
-&lt;p&gt;Haar Cascades are object detection models based on the concept of &lt;a href=&#34;https://en.wikipedia.org/wiki/Haar-like_feature&#34;&gt;Haar-like features&lt;/a&gt; developed by Paul Viola and Michael Jones and published in their 2001 paper titled &lt;a href=&#34;https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf&#34;&gt;Rapid Object Detection using a Boosted Cascade of Simple Features&lt;/a&gt;. I tried out a car detector Haar Cascade I found online. It produced a lot of false positives which made counts erroneous. I considered creating my own model but it seemed like a Herculean task at the time. I decided to try deep learning instead.&lt;/p&gt;
-&lt;p&gt;I plan to create a custom Haar Cascade with data got from testing the VCS in the real world in the near future. Haar Cascades are generally a lot faster than deep learning object detection models so if I can get the model to be just as accurate or more accurate than the deep learning alternatives, it might be possible to run the VCS efficiently on devices like Raspberry Pis instead of depending on the cloud for processing power.&lt;/p&gt;
-&lt;p&gt;If you want to learn more about Haar Cascades, &lt;a href=&#34;https://www.youtube.com/watch?v=uEJ71VlUmMQ&#34;&gt;check out this video&lt;/a&gt; which explains how the technique works for face detection.&lt;/p&gt;
-&lt;h3 id=&#34;yolo&#34;&gt;YOLO&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://pjreddie.com/darknet/yolo/&#34;&gt;YOLO&lt;/a&gt; (You Only Look Once) is a popular deep learning model/architecture for object detection. I found out about it through &lt;a href=&#34;https://www.youtube.com/watch?v=Cgxsv1riJhI&#34;&gt;a TED talk given by one of its creators Joseph Redmon&lt;/a&gt; and wondered if I could use it in the VCS project. Fortunately, OpenCV provides a deep neural network module with which can be used to import and run YOLO models easily. I downloaded a model trained on the &lt;a href=&#34;http://cocodataset.org&#34;&gt;COCO dataset&lt;/a&gt; from the YOLO website and tried it out. The results were very good so I stuck with YOLO for detection. I&amp;rsquo;ve since added support for other deep learning models/libraries. It&amp;rsquo;s actually quite easy to modify the code to support a model of your choice.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/yolo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;If you want to learn more about YOLO, you should definitely take a look at these papers: &lt;a href=&#34;https://pjreddie.com/media/files/papers/yolo_1.pdf&#34;&gt;You Only Look Once:
-Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjreddie.com/media/files/papers/YOLOv3.pdf&#34;&gt;YOLOv3: An Incremental Improvement&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;tracking&#34;&gt;Tracking&lt;/h2&gt;
-&lt;p&gt;Tracking is the process of following the path or movements of an object with the purpose of finding it or observing its course. The uses of video tracking include augmented reality, surveillance and security, video compression and communication, video editing, human-computer interaction, traffic control and medical imaging.&lt;/p&gt;
-&lt;p&gt;The goal of tracking is to associate target objects in sequential frames of a video. This association can be very hard to accomplish when the objects are moving fast in relation to the frame rate of the video. Things get even more complicated when tracked objects change their orientation over time. In this scenario, video tracking systems normally use a motion model which details how the image of the target might look for several possible orientations of the object.&lt;/p&gt;
-&lt;h3 id=&#34;centroid-tracking&#34;&gt;Centroid tracking&lt;/h3&gt;
-&lt;p&gt;I first experimented with the centroid tracking algorithm since it was easy for me to implement. Centroid tracking works by associating the centroid of a bounding box around a detected object in one frame with a centroid in a subsequent frame based on some measure of proximity between them such as euclidean distance. Aside having to run detection on every frame which is computationally expensive, it was difficult for me to find a good threshold that reliably determines if two consecutive centroids belong to a single object or not. Among other things, the value for this threshold must consider the size of the object, and the frame rate and resolution of the video. After several failed attempts to tweak the algorithm to work well with my test videos, I started looking for alternatives.&lt;/p&gt;
-&lt;h3 id=&#34;opencv-tracking-algorithms-csrt-and-kcf&#34;&gt;OpenCV tracking algorithms (CSRT and KCF)&lt;/h3&gt;
-&lt;p&gt;In my search for better tracking algorithms, I found out that &lt;a href=&#34;https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/&#34;&gt;OpenCV has implementations of some state-of-the-art algorithms&lt;/a&gt; including BOOSTING, MIL, KCF, TLD, MEDIANFLOW, GOTURN, MOSSE and CSRT. I settled for CSRT (&lt;a href=&#34;https://pdfs.semanticscholar.org/b16a/583ee173f222c690242aaff7925838893fe8.pdf&#34;&gt;Discriminative Correlation Filter with Channel and Spatial Reliability&lt;/a&gt;) and KCF (&lt;a href=&#34;https://arxiv.org/pdf/1404.7584.pdf&#34;&gt;Kernelized Correlation Filters&lt;/a&gt;) because they gave the best results. CSRT, while more accurate, is computationally expensive. In traffic scenes where there are not a lot of vehicles on the road, KCF usually does better.&lt;/p&gt;
-&lt;p&gt;There was a challenge with CSRT AND KCF however. Vehicles, and thus their bounding boxes, change in size as they move across the frame of a video due to perspective but these trackers can&amp;rsquo;t adjust the size of their bounding boxes as they track an object. Eventually when an object is large or small enough, the algorithm becomes unable to find the object even though it&amp;rsquo;s still in frame. To solve this problem, the detector is periodically run to update the trackers with new bounding boxes. But before going for this approach, I experimented with Camshift.&lt;/p&gt;
-&lt;h3 id=&#34;camshift&#34;&gt;Camshift&lt;/h3&gt;
-&lt;p&gt;CAMshift (Continuously Adaptive Meanshift) is a tracking algorithm developed by Gary Bradski and described in his 1988 paper titled &lt;a href=&#34;http://opencv.jp/opencv-1.0.0_org/docs/papers/camshift.pdf&#34;&gt;Computer Vision Face Tracking for Use in a Perceptual User Interface&lt;/a&gt;. Unlike CSRT and KCF, it adapts a bounding box with the size and rotation of its target object. However, I observed a problem which made it unusable for the VCS. Camshift was having a hard time tracking vehicles because they were moving too fast for it. It performed pretty well when I tried to track slow-moving objects but was always left behind by fast-moving ones (e.g vehicles) shortly after the tracking began.&lt;/p&gt;
-&lt;h2 id=&#34;counting&#34;&gt;Counting&lt;/h2&gt;
-&lt;p&gt;Counting was the easiest part! Vehicles are counted when they leave the frame or cross a line at an exit point of the frame. Using a counting line makes it easier to count vehicles moving in a certain direction.&lt;/p&gt;
-&lt;h1 id=&#34;contribute&#34;&gt;Contribute&lt;/h1&gt;
-&lt;p&gt;The VCS is free and open source software available &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;on GitHub&lt;/a&gt;. You can contribute to the project by taking it for a spin and reporting issues/bugs or working on parts of it that need improvement.&lt;/p&gt;
-- https://alphacoder.xyz/vehicle-counting/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

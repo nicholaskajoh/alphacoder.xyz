@@ -7,9 +7,176 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 4</title>
+        <link>https://alphacoder.xyz/facebook-clone-4/</link>
+        <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-4/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 4 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Users are at the center of any application. It&amp;rsquo;s all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can&amp;rsquo;t be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we&amp;rsquo;re going to make all this possible, and some.&lt;/p&gt;
+&lt;h1 id=&#34;registration&#34;&gt;Registration&lt;/h1&gt;
+&lt;p&gt;We already have a registration form in our index.php template.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/register.php&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Username&amp;quot; required&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;location&amp;quot; placeholder=&amp;quot;Location&amp;quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot; required&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;btn btn-success&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;register&amp;quot; value=&amp;quot;Register&amp;quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When a user fills the registration form and submits, all we need to do is feed our database with the information.&lt;/p&gt;
+&lt;p&gt;Create a file called register.php in the php folder. This is where we would process registration submissions.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;INSERT INTO users (username, password, location) VALUES (?, ?, ?)&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;sss&#39;, $_POST[&#39;username&#39;], password_hash($_POST[&#39;password&#39;], PASSWORD_DEFAULT), $_POST[&#39;location&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/index.php?registered=true&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Like always, the code is easy to understand. After we call &lt;code&gt;db_connect()&lt;/code&gt; to help us establish a connection to the database, we build an SQL query, an insert query that, well, inserts (or creates) data in our DB.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve noticed, we&amp;rsquo;ve been using &amp;ldquo;prepared statements&amp;rdquo; to perform some SQL queries. There are couple other ways to perform operations [using PHP] on our DB (e.g the way we used to pull up post records in part 3). Prepared statements are however preferred/safer for operations that change/manipulate data because, BAD PEOPLE (the black hats) can attempt to mess us up using SQL Injection. There&amp;rsquo;s no time to talk about SQL Injection here but hey, Google is your friend. Anyways, let&amp;rsquo;s move on.&lt;/p&gt;
+&lt;p&gt;Another security concern is with passwords. It is bad practice to store &amp;ldquo;raw&amp;rdquo; passwords because if someone gets access to your DB, they can screw you and your users over. It&amp;rsquo;s safer to &amp;ldquo;hash&amp;rdquo; passwords. Hashing algorithms perform one-way transformations, turning one string to another string called a hash. There are a good number of hashing algorithms you can use for passwords e.g md5, sha1, bcrypt etc. Lucky for us, we don&amp;rsquo;t have to worry about these algorithms. PHP provides a hashing function we can use:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;password_hash(&#39;secret123&#39;, PASSWORD_DEFAULT);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Password hashes are usually a long string of &amp;ldquo;random&amp;rdquo; characters like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$2y$10$aClhvyCsqbPgx.SE7L43z.oZhBPNhqg3lOMJWPMC1KUT9UIeiR.Vi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the insert is done, we redirect the user to same index.php with some GET data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;example.com/index.php?registered=true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This data tells us the user has been registered, so we can alert the user as well and urge them to login. Somewhere atop index.php, we can have:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;?php if(isset($_GET[&#39;registered&#39;])): ?&amp;gt;
+&amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
+    &amp;lt;p&amp;gt;Account created successfully! Use your username and password to login.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;?php endif; ?&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;login&#34;&gt;Login&lt;/h1&gt;
+&lt;p&gt;Login is also straightforward. What we want to achieve is to create a way to identify users as they go from page to page in our application. We want to be able to know if the person [currently] using our app is &amp;ldquo;logged in&amp;rdquo;, but more importantly, who they are if they are logged in.&lt;/p&gt;
+&lt;p&gt;There are two things involved:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Authentication&lt;/strong&gt; - which asks &amp;ldquo;Who are you?&amp;rdquo; and &amp;ldquo;Are you really who you say you are?&amp;rdquo;. The former is asked through a login form where the user provides their username and password, while the latter is asked when the application checks to see if the credentials submitted match any existing records.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Authorization&lt;/strong&gt; - If a user is who they say they are, then we can give them access to resources (e.g pages) unavailable to people not registered to our app. We have to do some kind of check to see if a request coming to our server is from a &amp;ldquo;legit&amp;rdquo; user and then authorize/allow access to the page they requested.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We use &lt;em&gt;sessions&lt;/em&gt; to authorize requests. Like the name implies, a session grants access to an application&amp;rsquo;s resources for a period. For instance, after being authenticated by security at, say, a library (probably with a student or National ID), you can do whatever you like (read books, watch educational material, browse the internet etc) until you leave/the library is closed for the day. When you visit next time, you must be authenticated again. But while you&amp;rsquo;re in the library, nobody asks you to identify yourself before picking up a book or watching some educational video. It is believed that you have been &amp;ldquo;authenticated&amp;rdquo;, so to speak.&lt;/p&gt;
+&lt;p&gt;PHP provides us a superglobal called &lt;code&gt;$_SESSION&lt;/code&gt; - an array which contains session variables. The variables we store in &lt;code&gt;$_SESSION&lt;/code&gt; persist until the browser is closed. I don&amp;rsquo;t want to go into exactly how sessions work. Again, Google is your friend, so google.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a snippet of the login form:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/login.php&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Username&amp;quot; required&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot; required&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;login&amp;quot; value=&amp;quot;Login&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a file login.php in the php folder and add the following bit of code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;SELECT id, username, password FROM users WHERE username = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;s&#39;, $_POST[&#39;username&#39;]);
+    $statement-&amp;gt;execute();
+    $statement-&amp;gt;store_result();
+    $statement-&amp;gt;bind_result($id, $username, $password);
+    $statement-&amp;gt;fetch();
+    if ($statement-&amp;gt;execute()) {
+        if(password_verify($_POST[&#39;password&#39;], $password)) {
+        $_SESSION[&#39;user_id&#39;] = $id;
+        $_SESSION[&#39;user_username&#39;] = $username;
+        redirect_to(&amp;quot;/home.php&amp;quot;);
+        } else {
+        redirect_to(&amp;quot;/index.php?login_error=true&amp;quot;);
+        }
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As with the the code for registration, login.php is easy to digest. We establish a connection with our dear DB, then write a query to fetch a user with the supplied username. Next, we get the hashed password of the fetched user record and compare it to the password provided by the user to see if they match. PHP provides another slick function to do this called, as you could guess, &lt;code&gt;password_verify()&lt;/code&gt;. Once our user has been verified to have provided the correct details, we create 2 sessions. One to store the user&amp;rsquo;s id and the other the user&amp;rsquo;s username. Then we redirect them to home.php.&lt;/p&gt;
+&lt;p&gt;With the sessions in place, we can check any request coming to our server to know if it&amp;rsquo;s from an authenticated user or not, and who the user is if they&amp;rsquo;re authenticated. This is vital for our app cos we don&amp;rsquo;t want unregistered persons to access pages like home.php as well as to take actions like creating a post or making a friend request. Also, we want to be able to know [the user] who takes a given action. These sessions help us achieve just that.&lt;/p&gt;
+&lt;p&gt;But how?&lt;/p&gt;
+&lt;p&gt;For starters, let&amp;rsquo;s a write function that allows only authenticated users to access the home page. The unauthenticated are redirected to index.php.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function is_auth() {
+    return isset($_SESSION[&#39;user_id&#39;]);
+}
+
+function check_auth() {
+    if(!is_auth()) {
+        redirect_to(&amp;quot;/index.php?logged_in=false&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are two functions defined above. The first &lt;code&gt;is_auth()&lt;/code&gt; is a helper function for &lt;code&gt;check_auth()&lt;/code&gt;. It checks if a user has been authenticated using the &lt;code&gt;user_id&lt;/code&gt; session. &lt;code&gt;check_auth()&lt;/code&gt; is the main function here. It uses &lt;code&gt;is_auth()&lt;/code&gt; to check if a request is not authenticated and then redirects to index.php.&lt;/p&gt;
+&lt;p&gt;Now you can place &lt;code&gt;check_auth()&lt;/code&gt; atop all the pages you want restricted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; You need to place the function &lt;code&gt;session_start()&lt;/code&gt; at the beginning of every page where sessions would be used, for them to work. functions.php is a nice place to put this function cos it&amp;rsquo;s required at the start of all our pages.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    session_start();
+    function db_connect() {
+        ...
+    }
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;logout&#34;&gt;Logout&lt;/h1&gt;
+&lt;p&gt;Logout is freakishly easy. All we have to do is destroy the session, and PHP provides us a function to do just that.&lt;/p&gt;
+&lt;p&gt;Create a new file in the php folder called logout.php with the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    // destroy all sessions
+    session_destroy();
+    redirect_to(&amp;quot;/index.php&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;rsquo;s all! Hopefully, there&amp;rsquo;s nothing to explain here. Right?&lt;/p&gt;
+&lt;p&gt;Great!&lt;/p&gt;
+&lt;p&gt;Just create a logout link like so: &lt;code&gt;&amp;lt;a href=&amp;quot;php/logout.php&amp;quot;&amp;gt;Logout&amp;lt;/a&amp;gt;&lt;/code&gt; and you&amp;rsquo;re good.&lt;/p&gt;
+&lt;p&gt;At this point, we can call it a day. Phew!!!&lt;/p&gt;
+&lt;p&gt;Well done!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-4 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-4/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     

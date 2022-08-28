@@ -7,9 +7,93 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Deploy your React-Django app on Heroku</title>
+        <link>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
+        <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/deploy-react-django-app-on-heroku/ -&lt;p&gt;This is a follow up to my post on &lt;em&gt;&lt;a href=&#34;https://alphacoder.xyz/dead-simple-react-django-setup/&#34;&gt;setting up a React-Django web app&lt;/a&gt;&lt;/em&gt;. You can take a quick glance if you’ve not seen it yet.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR: The setup is deployed at&lt;/strong&gt; &lt;a href=&#34;http://react-django.herokuapp.com/&#34;&gt;&lt;strong&gt;http://react-django.herokuapp.com&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;(nothing much there actually) and the code at&lt;/strong&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/React-Django&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.&lt;/p&gt;
+&lt;h2 id=&#34;heroku-dashboard&#34;&gt;Heroku dashboard&lt;/h2&gt;
+&lt;p&gt;First things first. You need a Heroku account. Head over to &lt;a href=&#34;https://heroku.com&#34;&gt;Heroku.com&lt;/a&gt; and sign up/login, then go to your dashboard at &lt;a href=&#34;https://dashboard.heroku.com&#34;&gt;https://dashboard.heroku.com&lt;/a&gt; and create a new app.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/heroku-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;heroku-cli&#34;&gt;Heroku CLI&lt;/h2&gt;
+&lt;p&gt;There are a couple deploy methods to choose from on Heroku (visit the &lt;em&gt;deploy&lt;/em&gt; tab on the app page on the dashboard). Here, we’ll use the &lt;em&gt;Heroku Git&lt;/em&gt; method via the &lt;em&gt;Heroku CLI&lt;/em&gt;. You can use &lt;a href=&#34;https://devcenter.heroku.com/articles/heroku-cli&#34;&gt;this guide to learn how to set up Heroku CLI on your OS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now, let’s link our project to the Heroku app we created using the Heroku CLI and Git.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initialize a Git repository in the root folder of the project with &lt;code&gt;git init&lt;/code&gt; (you need to have Git installed on your computer).&lt;/li&gt;
+&lt;li&gt;Login with your Heroku account on the CLI using &lt;code&gt;heroku login&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add the Heroku remote via &lt;code&gt;heroku git:remote -a your-heroku-app&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/link-app-to-heroku.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I already initialized Git in the project prior to this.&lt;/p&gt;
+&lt;h2 id=&#34;heroku-buildpacks&#34;&gt;Heroku buildpacks&lt;/h2&gt;
+&lt;p&gt;The React app build process depends on NPM, so we need Node.js. We also need Python to run Django.&lt;/p&gt;
+&lt;p&gt;Heroku uses &lt;a href=&#34;https://devcenter.heroku.com/articles/buildpacks&#34;&gt;buildpacks&lt;/a&gt; to transform deployed code into slugs which can be executed by Dynos (server instances on Heroku). We’ll be needing two buildpacks. One for Node and another for Python.&lt;/p&gt;
+&lt;p&gt;Our app would run on a Python server, even though we’ll use Node/NPM to build/bundle the React frontend. So the Python buildpack will be the main one in our config. The main buildpack determines the process type of the Heroku app. You can &lt;a href=&#34;https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app&#34;&gt;read about multiple buildpacks&lt;/a&gt; to understand how they work.&lt;/p&gt;
+&lt;p&gt;You can add buildpacks via the Heroku CLI. Head back to your terminal and run the following to set/add the buildpacks we need.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;heroku buildpacks:set heroku/python
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now add the buildpack for Node.js.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;heroku buildpacks:add --index &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; heroku/nodejs
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see the buildpacks we’ve added by running &lt;code&gt;heroku buildpacks&lt;/code&gt;. The last buildpack on the list determines the process type of the app.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/buildpacks.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;packagejson&#34;&gt;package.json&lt;/h2&gt;
+&lt;p&gt;We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command &lt;code&gt;npm run build&lt;/code&gt; in the &lt;em&gt;postinstall&lt;/em&gt; hook.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/package-json.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;See postinstall under scripts&lt;/p&gt;
+&lt;p&gt;Notice that I specified Node and NPM versions in &lt;em&gt;engines&lt;/em&gt;. The buildpack will install these exact versions. It’s highly recommended you use the versions running on your PC to avoid errors from a version that might be incompatible with your code.&lt;/p&gt;
+&lt;h2 id=&#34;procfile&#34;&gt;Procfile&lt;/h2&gt;
+&lt;p&gt;Create a file called &lt;em&gt;&lt;a href=&#34;https://devcenter.heroku.com/articles/procfile&#34;&gt;Procfile&lt;/a&gt;&lt;/em&gt; (no file extension) in the project root and add the following code:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;release: python manage.py migrate
+web: gunicorn reactdjango.wsgi --log-file -
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Replace &lt;code&gt;reactdjango.wsgi&lt;/code&gt; with &lt;code&gt;YOUR-DJANGO-APP-NAME.wsgi&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;requirementstxt&#34;&gt;requirements.txt&lt;/h2&gt;
+&lt;p&gt;The Python buildpack, after installing Python looks for &lt;em&gt;requirements.txt&lt;/em&gt; to install the dependencies in it. Add the following to the requirements file, including all the other dependencies your Django app needs.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;django&amp;gt;=2.1.2
+gunicorn==19.7.1
+whitenoise==3.3.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;By the way, you can specify the Python version you want by adding it to a file named &lt;em&gt;runtime.txt&lt;/em&gt; in the project root.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;python-3.5.2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Configure whitenoise to serve static files by doing the following:&lt;/p&gt;
+&lt;p&gt;Add &lt;em&gt;static root&lt;/em&gt; and &lt;em&gt;static files storage&lt;/em&gt; in &lt;em&gt;settings.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;BASE_DIR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abspath(__file__)))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;STATIC_ROOT &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;staticfiles&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;STATICFILES_STORAGE &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;whitenoise.django.GzipManifestStaticFilesStorage&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Add whitenoise to your &lt;em&gt;wsgi.py&lt;/em&gt; file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.core.wsgi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; get_wsgi_application
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; whitenoise.django &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DjangoWhiteNoise
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;environ&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;setdefault(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DJANGO_SETTINGS_MODULE&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;reactdjango.settings&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;application &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; get_wsgi_application()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;application &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DjangoWhiteNoise(application)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;allowed-hosts&#34;&gt;Allowed hosts&lt;/h2&gt;
+&lt;p&gt;In your &lt;em&gt;settings.py&lt;/em&gt;, you need to add your Heroku domain to allowed hosts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ALLOWED_HOSTS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;react-django.herokuapp.com&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;127.0.0.1:8000&amp;#39;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB: I personally prefer to add allowed hosts using environment variables e.g with&lt;/strong&gt; &lt;a href=&#34;https://github.com/theskumar/python-dotenv&#34;&gt;&lt;strong&gt;python-dotenv&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;commit-push&#34;&gt;Commit, push&lt;/h2&gt;
+&lt;p&gt;It’s time to commit and push the changes. Phew!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;blah blah blah&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git push heroku master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After the build is done and your app has been released, visit &lt;em&gt;YOUR-APP-NAME.herokuapp.com&lt;/em&gt;. Neat!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Two libraries you might find really helpful when building your Django API are&lt;/em&gt; &lt;a href=&#34;http://www.django-rest-framework.org/&#34;&gt;&lt;em&gt;Django Rest Framework&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/ottoyiu/django-cors-headers/&#34;&gt;&lt;em&gt;Django CORS Headers&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. You should check them out!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.&lt;/p&gt;
+- https://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -931,173 +1015,6 @@ The form…&lt;/p&gt;
 &lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
 - https://alphacoder.xyz/facebook-clone-5/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Build a Facebook clone from scratch with PHP — Part 4</title>
-        <link>https://alphacoder.xyz/facebook-clone-4/</link>
-        <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-4/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 4 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Users are at the center of any application. It&amp;rsquo;s all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can&amp;rsquo;t be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we&amp;rsquo;re going to make all this possible, and some.&lt;/p&gt;
-&lt;h1 id=&#34;registration&#34;&gt;Registration&lt;/h1&gt;
-&lt;p&gt;We already have a registration form in our index.php template.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;...
-&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/register.php&amp;quot;&amp;gt;
-    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Username&amp;quot; required&amp;gt;
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;location&amp;quot; placeholder=&amp;quot;Location&amp;quot;&amp;gt;
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot; required&amp;gt;
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-        &amp;lt;input class=&amp;quot;btn btn-success&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;register&amp;quot; value=&amp;quot;Register&amp;quot;&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/form&amp;gt;
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When a user fills the registration form and submits, all we need to do is feed our database with the information.&lt;/p&gt;
-&lt;p&gt;Create a file called register.php in the php folder. This is where we would process registration submissions.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    db_connect();
-    $sql = &amp;quot;INSERT INTO users (username, password, location) VALUES (?, ?, ?)&amp;quot;;
-    $statement = $conn-&amp;gt;prepare($sql);
-    $statement-&amp;gt;bind_param(&#39;sss&#39;, $_POST[&#39;username&#39;], password_hash($_POST[&#39;password&#39;], PASSWORD_DEFAULT), $_POST[&#39;location&#39;]);
-    if ($statement-&amp;gt;execute()) {
-        redirect_to(&amp;quot;/index.php?registered=true&amp;quot;);
-    } else {
-        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Like always, the code is easy to understand. After we call &lt;code&gt;db_connect()&lt;/code&gt; to help us establish a connection to the database, we build an SQL query, an insert query that, well, inserts (or creates) data in our DB.&lt;/p&gt;
-&lt;p&gt;If you&amp;rsquo;ve noticed, we&amp;rsquo;ve been using &amp;ldquo;prepared statements&amp;rdquo; to perform some SQL queries. There are couple other ways to perform operations [using PHP] on our DB (e.g the way we used to pull up post records in part 3). Prepared statements are however preferred/safer for operations that change/manipulate data because, BAD PEOPLE (the black hats) can attempt to mess us up using SQL Injection. There&amp;rsquo;s no time to talk about SQL Injection here but hey, Google is your friend. Anyways, let&amp;rsquo;s move on.&lt;/p&gt;
-&lt;p&gt;Another security concern is with passwords. It is bad practice to store &amp;ldquo;raw&amp;rdquo; passwords because if someone gets access to your DB, they can screw you and your users over. It&amp;rsquo;s safer to &amp;ldquo;hash&amp;rdquo; passwords. Hashing algorithms perform one-way transformations, turning one string to another string called a hash. There are a good number of hashing algorithms you can use for passwords e.g md5, sha1, bcrypt etc. Lucky for us, we don&amp;rsquo;t have to worry about these algorithms. PHP provides a hashing function we can use:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;password_hash(&#39;secret123&#39;, PASSWORD_DEFAULT);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Password hashes are usually a long string of &amp;ldquo;random&amp;rdquo; characters like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$2y$10$aClhvyCsqbPgx.SE7L43z.oZhBPNhqg3lOMJWPMC1KUT9UIeiR.Vi
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Once the insert is done, we redirect the user to same index.php with some GET data.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;example.com/index.php?registered=true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This data tells us the user has been registered, so we can alert the user as well and urge them to login. Somewhere atop index.php, we can have:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;...
-&amp;lt;?php if(isset($_GET[&#39;registered&#39;])): ?&amp;gt;
-&amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
-    &amp;lt;p&amp;gt;Account created successfully! Use your username and password to login.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;?php endif; ?&amp;gt;
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;login&#34;&gt;Login&lt;/h1&gt;
-&lt;p&gt;Login is also straightforward. What we want to achieve is to create a way to identify users as they go from page to page in our application. We want to be able to know if the person [currently] using our app is &amp;ldquo;logged in&amp;rdquo;, but more importantly, who they are if they are logged in.&lt;/p&gt;
-&lt;p&gt;There are two things involved:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Authentication&lt;/strong&gt; - which asks &amp;ldquo;Who are you?&amp;rdquo; and &amp;ldquo;Are you really who you say you are?&amp;rdquo;. The former is asked through a login form where the user provides their username and password, while the latter is asked when the application checks to see if the credentials submitted match any existing records.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Authorization&lt;/strong&gt; - If a user is who they say they are, then we can give them access to resources (e.g pages) unavailable to people not registered to our app. We have to do some kind of check to see if a request coming to our server is from a &amp;ldquo;legit&amp;rdquo; user and then authorize/allow access to the page they requested.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;We use &lt;em&gt;sessions&lt;/em&gt; to authorize requests. Like the name implies, a session grants access to an application&amp;rsquo;s resources for a period. For instance, after being authenticated by security at, say, a library (probably with a student or National ID), you can do whatever you like (read books, watch educational material, browse the internet etc) until you leave/the library is closed for the day. When you visit next time, you must be authenticated again. But while you&amp;rsquo;re in the library, nobody asks you to identify yourself before picking up a book or watching some educational video. It is believed that you have been &amp;ldquo;authenticated&amp;rdquo;, so to speak.&lt;/p&gt;
-&lt;p&gt;PHP provides us a superglobal called &lt;code&gt;$_SESSION&lt;/code&gt; - an array which contains session variables. The variables we store in &lt;code&gt;$_SESSION&lt;/code&gt; persist until the browser is closed. I don&amp;rsquo;t want to go into exactly how sessions work. Again, Google is your friend, so google.&lt;/p&gt;
-&lt;p&gt;Here&amp;rsquo;s a snippet of the login form:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;...
-&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/login.php&amp;quot;&amp;gt;
-&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Username&amp;quot; required&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot; required&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
-    &amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;login&amp;quot; value=&amp;quot;Login&amp;quot;&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;/form&amp;gt;
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Create a file login.php in the php folder and add the following bit of code:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    db_connect();
-    $sql = &amp;quot;SELECT id, username, password FROM users WHERE username = ?&amp;quot;;
-    $statement = $conn-&amp;gt;prepare($sql);
-    $statement-&amp;gt;bind_param(&#39;s&#39;, $_POST[&#39;username&#39;]);
-    $statement-&amp;gt;execute();
-    $statement-&amp;gt;store_result();
-    $statement-&amp;gt;bind_result($id, $username, $password);
-    $statement-&amp;gt;fetch();
-    if ($statement-&amp;gt;execute()) {
-        if(password_verify($_POST[&#39;password&#39;], $password)) {
-        $_SESSION[&#39;user_id&#39;] = $id;
-        $_SESSION[&#39;user_username&#39;] = $username;
-        redirect_to(&amp;quot;/home.php&amp;quot;);
-        } else {
-        redirect_to(&amp;quot;/index.php?login_error=true&amp;quot;);
-        }
-    } else {
-        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As with the the code for registration, login.php is easy to digest. We establish a connection with our dear DB, then write a query to fetch a user with the supplied username. Next, we get the hashed password of the fetched user record and compare it to the password provided by the user to see if they match. PHP provides another slick function to do this called, as you could guess, &lt;code&gt;password_verify()&lt;/code&gt;. Once our user has been verified to have provided the correct details, we create 2 sessions. One to store the user&amp;rsquo;s id and the other the user&amp;rsquo;s username. Then we redirect them to home.php.&lt;/p&gt;
-&lt;p&gt;With the sessions in place, we can check any request coming to our server to know if it&amp;rsquo;s from an authenticated user or not, and who the user is if they&amp;rsquo;re authenticated. This is vital for our app cos we don&amp;rsquo;t want unregistered persons to access pages like home.php as well as to take actions like creating a post or making a friend request. Also, we want to be able to know [the user] who takes a given action. These sessions help us achieve just that.&lt;/p&gt;
-&lt;p&gt;But how?&lt;/p&gt;
-&lt;p&gt;For starters, let&amp;rsquo;s a write function that allows only authenticated users to access the home page. The unauthenticated are redirected to index.php.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function is_auth() {
-    return isset($_SESSION[&#39;user_id&#39;]);
-}
-
-function check_auth() {
-    if(!is_auth()) {
-        redirect_to(&amp;quot;/index.php?logged_in=false&amp;quot;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There are two functions defined above. The first &lt;code&gt;is_auth()&lt;/code&gt; is a helper function for &lt;code&gt;check_auth()&lt;/code&gt;. It checks if a user has been authenticated using the &lt;code&gt;user_id&lt;/code&gt; session. &lt;code&gt;check_auth()&lt;/code&gt; is the main function here. It uses &lt;code&gt;is_auth()&lt;/code&gt; to check if a request is not authenticated and then redirects to index.php.&lt;/p&gt;
-&lt;p&gt;Now you can place &lt;code&gt;check_auth()&lt;/code&gt; atop all the pages you want restricted.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; You need to place the function &lt;code&gt;session_start()&lt;/code&gt; at the beginning of every page where sessions would be used, for them to work. functions.php is a nice place to put this function cos it&amp;rsquo;s required at the start of all our pages.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    session_start();
-    function db_connect() {
-        ...
-    }
-    ...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;logout&#34;&gt;Logout&lt;/h1&gt;
-&lt;p&gt;Logout is freakishly easy. All we have to do is destroy the session, and PHP provides us a function to do just that.&lt;/p&gt;
-&lt;p&gt;Create a new file in the php folder called logout.php with the following code:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    // destroy all sessions
-    session_destroy();
-    redirect_to(&amp;quot;/index.php&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That&amp;rsquo;s all! Hopefully, there&amp;rsquo;s nothing to explain here. Right?&lt;/p&gt;
-&lt;p&gt;Great!&lt;/p&gt;
-&lt;p&gt;Just create a logout link like so: &lt;code&gt;&amp;lt;a href=&amp;quot;php/logout.php&amp;quot;&amp;gt;Logout&amp;lt;/a&amp;gt;&lt;/code&gt; and you&amp;rsquo;re good.&lt;/p&gt;
-&lt;p&gt;At this point, we can call it a day. Phew!!!&lt;/p&gt;
-&lt;p&gt;Well done!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-4 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-4/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

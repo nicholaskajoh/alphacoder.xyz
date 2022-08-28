@@ -7,9 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>How to Git push to an AWS EC2 remote using a PEM file</title>
+        <link>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+        <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ -&lt;p&gt;AWS provides you with a &lt;em&gt;.pem&lt;/em&gt; file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…&lt;/p&gt;
+&lt;h3 id=&#34;1-copy-private-key-in-pem-to-ssh-folder&#34;&gt;1. Copy private key in PEM to .ssh folder&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;$ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-generate-and-save-public-key&#34;&gt;2. Generate and save public key&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.ssh/id_rsa_ec2.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-add-private-key-to-ssh-agent&#34;&gt;3. Add private key to ssh-agent&lt;/h3&gt;
+&lt;p&gt;Start ssh-agent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ eval &amp;quot;$(ssh-agent -s)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then add your key to the agent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-add ~/.ssh/id_rsa_ec2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;At this point, you should be able to access your instance without the PEM file. Instead of:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh -i my-aws-ec2-instance.pem ec2-user@ec2-ip.compute-x.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Use:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh ec2-user@ec2-ip.compute-x.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-add-remote-and-push&#34;&gt;4. Add remote and push&lt;/h3&gt;
+&lt;p&gt;Change directory to your local Git repository and add the remote URL of your server&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git remote add ec2server ec2-user@ec2-ip.compute-1.amazonaws.com:/home/ec2-user/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now push…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git push ec2server&lt;/code&gt;&lt;/pre&gt;
+- https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -693,90 +730,6 @@ for i in range(max_iter):
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Read about all the transformation parameters available here: &lt;a href=&#34;https://cloudinary.com/documentation/image_transformations&#34;&gt;https://cloudinary.com/documentation/image_transformations&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;That’s it!&lt;/p&gt;
 - https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Deploy your React-Django app on Heroku</title>
-        <link>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
-        <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/deploy-react-django-app-on-heroku/ -&lt;p&gt;This is a follow up to my post on &lt;em&gt;&lt;a href=&#34;https://alphacoder.xyz/dead-simple-react-django-setup/&#34;&gt;setting up a React-Django web app&lt;/a&gt;&lt;/em&gt;. You can take a quick glance if you’ve not seen it yet.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TL;DR: The setup is deployed at&lt;/strong&gt; &lt;a href=&#34;http://react-django.herokuapp.com/&#34;&gt;&lt;strong&gt;http://react-django.herokuapp.com&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;(nothing much there actually) and the code at&lt;/strong&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/React-Django&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.&lt;/p&gt;
-&lt;h2 id=&#34;heroku-dashboard&#34;&gt;Heroku dashboard&lt;/h2&gt;
-&lt;p&gt;First things first. You need a Heroku account. Head over to &lt;a href=&#34;https://heroku.com&#34;&gt;Heroku.com&lt;/a&gt; and sign up/login, then go to your dashboard at &lt;a href=&#34;https://dashboard.heroku.com&#34;&gt;https://dashboard.heroku.com&lt;/a&gt; and create a new app.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/heroku-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;heroku-cli&#34;&gt;Heroku CLI&lt;/h2&gt;
-&lt;p&gt;There are a couple deploy methods to choose from on Heroku (visit the &lt;em&gt;deploy&lt;/em&gt; tab on the app page on the dashboard). Here, we’ll use the &lt;em&gt;Heroku Git&lt;/em&gt; method via the &lt;em&gt;Heroku CLI&lt;/em&gt;. You can use &lt;a href=&#34;https://devcenter.heroku.com/articles/heroku-cli&#34;&gt;this guide to learn how to set up Heroku CLI on your OS&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Now, let’s link our project to the Heroku app we created using the Heroku CLI and Git.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Initialize a Git repository in the root folder of the project with &lt;code&gt;git init&lt;/code&gt; (you need to have Git installed on your computer).&lt;/li&gt;
-&lt;li&gt;Login with your Heroku account on the CLI using &lt;code&gt;heroku login&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Add the Heroku remote via &lt;code&gt;heroku git:remote -a your-heroku-app&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/link-app-to-heroku.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I already initialized Git in the project prior to this.&lt;/p&gt;
-&lt;h2 id=&#34;heroku-buildpacks&#34;&gt;Heroku buildpacks&lt;/h2&gt;
-&lt;p&gt;The React app build process depends on NPM, so we need Node.js. We also need Python to run Django.&lt;/p&gt;
-&lt;p&gt;Heroku uses &lt;a href=&#34;https://devcenter.heroku.com/articles/buildpacks&#34;&gt;buildpacks&lt;/a&gt; to transform deployed code into slugs which can be executed by Dynos (server instances on Heroku). We’ll be needing two buildpacks. One for Node and another for Python.&lt;/p&gt;
-&lt;p&gt;Our app would run on a Python server, even though we’ll use Node/NPM to build/bundle the React frontend. So the Python buildpack will be the main one in our config. The main buildpack determines the process type of the Heroku app. You can &lt;a href=&#34;https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app&#34;&gt;read about multiple buildpacks&lt;/a&gt; to understand how they work.&lt;/p&gt;
-&lt;p&gt;You can add buildpacks via the Heroku CLI. Head back to your terminal and run the following to set/add the buildpacks we need.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;heroku buildpacks:set heroku/python
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now add the buildpack for Node.js.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;heroku buildpacks:add --index &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; heroku/nodejs
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see the buildpacks we’ve added by running &lt;code&gt;heroku buildpacks&lt;/code&gt;. The last buildpack on the list determines the process type of the app.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/buildpacks.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;packagejson&#34;&gt;package.json&lt;/h2&gt;
-&lt;p&gt;We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command &lt;code&gt;npm run build&lt;/code&gt; in the &lt;em&gt;postinstall&lt;/em&gt; hook.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dply-dj/package-json.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;See postinstall under scripts&lt;/p&gt;
-&lt;p&gt;Notice that I specified Node and NPM versions in &lt;em&gt;engines&lt;/em&gt;. The buildpack will install these exact versions. It’s highly recommended you use the versions running on your PC to avoid errors from a version that might be incompatible with your code.&lt;/p&gt;
-&lt;h2 id=&#34;procfile&#34;&gt;Procfile&lt;/h2&gt;
-&lt;p&gt;Create a file called &lt;em&gt;&lt;a href=&#34;https://devcenter.heroku.com/articles/procfile&#34;&gt;Procfile&lt;/a&gt;&lt;/em&gt; (no file extension) in the project root and add the following code:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;release: python manage.py migrate
-web: gunicorn reactdjango.wsgi --log-file -
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Replace &lt;code&gt;reactdjango.wsgi&lt;/code&gt; with &lt;code&gt;YOUR-DJANGO-APP-NAME.wsgi&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;requirementstxt&#34;&gt;requirements.txt&lt;/h2&gt;
-&lt;p&gt;The Python buildpack, after installing Python looks for &lt;em&gt;requirements.txt&lt;/em&gt; to install the dependencies in it. Add the following to the requirements file, including all the other dependencies your Django app needs.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;django&amp;gt;=2.1.2
-gunicorn==19.7.1
-whitenoise==3.3.1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;By the way, you can specify the Python version you want by adding it to a file named &lt;em&gt;runtime.txt&lt;/em&gt; in the project root.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;python-3.5.2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Configure whitenoise to serve static files by doing the following:&lt;/p&gt;
-&lt;p&gt;Add &lt;em&gt;static root&lt;/em&gt; and &lt;em&gt;static files storage&lt;/em&gt; in &lt;em&gt;settings.py&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;BASE_DIR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abspath(__file__)))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;STATIC_ROOT &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;staticfiles&amp;#39;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;STATICFILES_STORAGE &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;whitenoise.django.GzipManifestStaticFilesStorage&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Add whitenoise to your &lt;em&gt;wsgi.py&lt;/em&gt; file.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.core.wsgi
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; get_wsgi_application
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; whitenoise.django &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DjangoWhiteNoise
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;environ&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;setdefault(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DJANGO_SETTINGS_MODULE&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;reactdjango.settings&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;application &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; get_wsgi_application()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;application &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DjangoWhiteNoise(application)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;allowed-hosts&#34;&gt;Allowed hosts&lt;/h2&gt;
-&lt;p&gt;In your &lt;em&gt;settings.py&lt;/em&gt;, you need to add your Heroku domain to allowed hosts.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ALLOWED_HOSTS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;react-django.herokuapp.com&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;127.0.0.1:8000&amp;#39;&lt;/span&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB: I personally prefer to add allowed hosts using environment variables e.g with&lt;/strong&gt; &lt;a href=&#34;https://github.com/theskumar/python-dotenv&#34;&gt;&lt;strong&gt;python-dotenv&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;commit-push&#34;&gt;Commit, push&lt;/h2&gt;
-&lt;p&gt;It’s time to commit and push the changes. Phew!&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git add .
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;blah blah blah&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git push heroku master
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After the build is done and your app has been released, visit &lt;em&gt;YOUR-APP-NAME.herokuapp.com&lt;/em&gt;. Neat!&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Two libraries you might find really helpful when building your Django API are&lt;/em&gt; &lt;a href=&#34;http://www.django-rest-framework.org/&#34;&gt;&lt;em&gt;Django Rest Framework&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/ottoyiu/django-cors-headers/&#34;&gt;&lt;em&gt;Django CORS Headers&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. You should check them out!&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.&lt;/p&gt;
-- https://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

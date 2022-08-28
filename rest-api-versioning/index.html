@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Posts</title>
+<title>How to version REST APIs</title>
 
 
 
@@ -57,11 +57,15 @@
 
 
 
+  <script src="/js/toc.js"></script>
 
 
 
 
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
 
 
 
@@ -88,11 +92,9 @@
             
             
             
-                
             
             
-            
-            <a class="a-block nav-link-item active" href="/blog/">
+            <a class="a-block nav-link-item false" href="/blog/">
                 Blog
             </a>
             
@@ -159,6 +161,11 @@
 </div><div id="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -173,24 +180,6 @@
         </a>
         
         
-        
-            <div class="pagination-indicator">
-                <span style="text-align: center">
-                    5<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>5
-                </span>
-            </div>
-            
-            
-            <a class="pagination-action" href="/blog/page/4/">
-                <i class="material-icons pagination-action-icon">
-                    chevron_left
-                </i>
-            </a>
-            
-
-            
-        
-        
     </div>
 </div>
 <div class="single-column-drawer-container" id="drawer"
@@ -203,11 +192,9 @@
                 
                 
                 
-                    
                 
                 
-                
-                <a class="a-block drawer-menu-item active" href="/blog/">
+                <a class="a-block drawer-menu-item false" href="/blog/">
                     Blog
                 </a>
                 
@@ -242,6 +229,11 @@
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+</div>
             
         </div>
     </div>
@@ -282,205 +274,114 @@
                 <div id="streamContainer" class="stream-container">
 
     <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    How to version REST APIs
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2022-08-28
+                        </time>
+                        
+
+                        
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>Having worked at companies that sell API products in the last couple years, I’ve found myself contemplating—for hours on end in the shower—what the best way to version REST APIs is. You want simplicity and stability so that your API is easy for developers to integrate. But you also want to iterate on your product and add new features to improve your offering. Eventually, you’ll need to introduce breaking changes. Maybe you’re expanding the scope of an endpoint so you want to reorganize the parameters in the request payload, or a field in the response body needs to be removed for security or compliance reasons. To deal with these, you’ll need to introduce versioning in some form.</p>
+<p>There are several ways to do API versioning. If you’ve integrated any 3rd-party APIs, you’re probably familiar with a few of them. You could put the version number in:</p>
+<ul>
+<li>the URL i.e <code>https://api.alphacoder.xyz/v1/posts</code></li>
+<li>the accept header i.e <code>Accept: application/vnd.alphacoder.blog-v1+json</code></li>
+<li>a custom header i.e <code>Accept-Version: 1</code></li>
+</ul>
+<p>Rather than focusing on where to accept version numbers or what format they should be in (whatever you go with is fine as long as it’s consistent), your priority should be building a comprehensive versioning system around your API—or at least planning for one.</p>
+<p>Your versioning system should:</p>
+<ul>
+<li><strong>Abstract versioning for new users:</strong> By default, new users of your API should be on the latest version so there’s no need to bore them with versioning initially. A good way to do this is to peg them to the latest version when they sign up to use your API. They won’t have to worry about versions until that version gets deprecated/sun-set or they want a feature that is not available in the version they’re using.</li>
+<li><strong>Use resource-level versioning:</strong> That is, each resource should have it’s own version as opposed to using one version number for your entire API. With the right tooling e.g compatibility matrices, this should not be much of a problem. And for users consuming resources that seldom change, they won’t have to do anything in a long while.</li>
+<li><strong>Span all user contact surfaces:</strong> So not just your API where a user can specify what version they want to use. On the user dashboards, they should be able to see a log of what resource versions they’re consuming and perhaps a nice graph of the data as well. They should also be able to see and change their default versions. On the documentation, they should be shown content specific to their default versions if applicable.</li>
+<li><strong>Have a deprecation and sun-setting policy:</strong> When you have a well-documented deprecation and sun-setting policy and you communicate it to your users in advance, it makes upgrades less of a hassle and keeps everyone mostly happy. It could be time-based e.g versions are supported for 2 years after release, deprecated in their 3rd year and then sun-set afterwards. If you don’t release a lot of new versions, you could instead support the last 3-5 versions versions.</li>
+<li><strong>Track API version usage:</strong> This will give you a good view of how your system is used so that you can make certain decisions such as extending the lifespan of a version or reaching out to specific users to encourage them to upgrade.</li>
+</ul>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2022-08-28</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://alphacoder.xyz/web-app-scaling-techniques/">
+			Previous<br>Web app scaling techniques
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
         
-            <a class="a-block">
-                <div class="post-item-wrapper post-item-wrapper-no-hover">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title post-item-title-small year">
-                                2017
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/facebook-clone-4/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Build a Facebook clone from scratch with PHP — Part 4
-                            </div>
-                            <div class="post-item-meta">
-    2017-09-14
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/facebook-clone-3/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Build a Facebook clone from scratch with PHP — Part 3
-                            </div>
-                            <div class="post-item-meta">
-    2017-07-17
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/facebook-clone-2/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Build a Facebook clone from scratch with PHP — Part 2
-                            </div>
-                            <div class="post-item-meta">
-    2017-06-17
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/facebook-clone-1/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Build a Facebook clone from scratch with PHP — Part 1
-                            </div>
-                            <div class="post-item-meta">
-    2017-06-11
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/html-css-js/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                HTML, CSS and Javascript as fast as possible
-                            </div>
-                            <div class="post-item-meta">
-    2017-06-07
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/sailsjs-form-validation/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Server-side form validation from A to Z with Sails.js
-                            </div>
-                            <div class="post-item-meta">
-    2017-05-26
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/lazy-loading-with-django-and-jquery/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Lazy load your content with Django and jQuery
-                            </div>
-                            <div class="post-item-meta">
-    2017-02-26
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
+        this.page.url = 'https:\/\/alphacoder.xyz\/rest-api-versioning\/';  
         
+        
+        this.page.identifier = 'https:\/\/alphacoder.xyz\/rest-api-versioning\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
     </div>
 
 
-
                     </div>
-            </div>
-
-<div class="pagination">
-    
-    <a class="pagination-action" href="/blog/page/4/" style="opacity:1">
-    
-        <i class="material-icons pagination-action-icon">
-            chevron_left
-        </i>
-    </a>
-
-        <div class="pagination-indicator">
-            <span>5/5</span>
-        </div>
-
-        
-            <a class="pagination-action" style="opacity:0">
-        
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
-</div>
-
-
-<div id="single-column-footer">&copy;
+            </div><div id="single-column-footer">&copy;
     
     Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
     
