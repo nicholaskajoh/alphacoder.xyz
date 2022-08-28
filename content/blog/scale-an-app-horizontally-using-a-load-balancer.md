@@ -4,6 +4,7 @@ date = 2018-06-13T19:59:00.000Z
 draft = false
 slug = "scale-an-app-horizontally-using-a-load-balancer"
 title = "How to scale an app horizontally using a load balancer"
+tags = ["Scalability"]
 
 +++
 

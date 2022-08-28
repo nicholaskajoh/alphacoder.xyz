@@ -3,7 +3,7 @@ title: "Database scaling techniques"
 slug: "database-scaling-techniques"
 date: 2020-06-07T11:46:24.610Z
 draft: false
-tags: ["Databases"]
+tags: ["Scalability", "Databases"]
 ---
 
 Over the years, I've had an unusual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I'm not exactly a fan of database administration but I've always had the anxiety that a design decision I'm making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.
