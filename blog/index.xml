@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jul 2022 19:48:14 +0200</lastBuildDate><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web app scaling techniques</title>
+      <link>https://alphacoder.xyz/web-app-scaling-techniques/</link>
+      <pubDate>Sat, 27 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/web-app-scaling-techniques/</guid>
+      <description>Several moons ago, I wrote an article about techniques for scaling databases. Today, we’ll be looking at the app side of things. As with databases, you want to develop your application with scalability in mind so that when the time comes to increase capacity, the process is straightforward and seamless. Having a clear pathway for building a higher capacity and robust system also helps prevent over-engineering and premature optimization, so it’s important to have the steps and process for evolving your systems to handle large workloads.</description>
+    </item>
+    
     <item>
       <title>The case for monorepos</title>
       <link>https://alphacoder.xyz/monorepo-use-case/</link>

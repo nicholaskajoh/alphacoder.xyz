@@ -7,9 +7,171 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jul 2022 19:48:14 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 3</title>
+        <link>https://alphacoder.xyz/facebook-clone-3/</link>
+        <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-3/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-3/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 3 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Posts are the heart and soul of Facebook. In this part, we&amp;rsquo;ll be writing code that would allow us view, make and delete posts on FaceClone.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/faceclone-home.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;functionsphp&#34;&gt;Functions.php&lt;/h1&gt;
+&lt;p&gt;In the spirit of code reusability A.K.A writing DRY (&lt;a href=&#34;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&#34;&gt;Don&amp;rsquo;t Repeat Yourself&lt;/a&gt;) code, let&amp;rsquo;s create a functions.php file in the root of our project. We&amp;rsquo;ll use this file to write different bits of code — functions — which can be used across our app. Now include functions.php at the top of all app pages like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php require_once &amp;quot;functions.php&amp;quot;; ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;connect-todb&#34;&gt;Connect to DB&lt;/h1&gt;
+&lt;p&gt;To interact with a database e.g perform CRUD (Create, Read, Update, Delete) operations, we must connect to it. Connecting to MySQL with PHP is pretty easy. Create a function in functions.php called db_connect and add the following code like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    function db_connect() {
+        global $conn; // db connection variable
+        $db_server = &amp;quot;localhost&amp;quot;;
+        $username = &amp;quot;root&amp;quot;;
+        $password = &amp;quot;&amp;quot;;
+        $db_name = &amp;quot;faceclone&amp;quot;;
+        // create a connection
+        $conn = new mysqli($db_server, $username, $password, $db_name);
+        // check connection for errors
+        if ($conn-&amp;gt;connect_error) {
+            die(&amp;quot;Error: &amp;quot; . $conn-&amp;gt;connect_error);
+        }
+        // uncomment the line below to confirm a connection is established
+        // echo &#39;&amp;lt;h1 style=&amp;quot;color: green;&amp;quot;&amp;gt;Connected to DB!&amp;lt;/h1&amp;gt;&#39;;
+        // your can clear these comments afterwards
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can call this function in any page like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php require_once &amp;quot;functions.php&amp;quot;; ?&amp;gt;
+&amp;lt;?php include &amp;quot;header.php&amp;quot;; ?&amp;gt;
+&amp;lt;?php 
+    db_connect();
+?&amp;gt;
+&amp;lt;!-- main --&amp;gt;
+&amp;lt;main class=&amp;quot;container&amp;quot;&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/db-connect.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Connect FaceClone to the DB&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The above code is quite self-explanatory. We specify our database server name, username, password and the particular database we want to access. Then, we use the MySQLi extension to establish a connection to the database. There are other extensions and therefore ways to connect to a database. Also, we can choose to &lt;a href=&#34;https://www.w3schools.com/php/php_mysql_connect.asp&#34;&gt;write the code procedurally or using object-oriented programming&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ensure your MySQL server is running. You can start the server from XAMPP&amp;rsquo;s control panel.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;XAMPP control panel&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Now that we have a connection, let&amp;rsquo;s write code to get posts from the database. Wait! There&amp;rsquo;s no data in there, is there? Let&amp;rsquo;s quickly generate some data. Head over to PHP My Admin and have some fun.&lt;/p&gt;
+&lt;p&gt;Go to faceclone &amp;gt; posts &amp;gt; insert&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/create-dummy-data.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Add dummy data to your DB&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I set user_id to 0 cos we don&amp;rsquo;t have any users yet.&lt;/p&gt;
+&lt;h1 id=&#34;view-posts&#34;&gt;View posts&lt;/h1&gt;
+&lt;p&gt;Now, let&amp;rsquo;s get the posts from the DB to our home page. There&amp;rsquo;s already template code for posts with some static data. Using the template, we&amp;rsquo;ll have something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- post --&amp;gt;
+&amp;lt;?php 
+    $sql = &amp;quot;SELECT * FROM posts&amp;quot;;
+    $result = $conn-&amp;gt;query($sql);
+    if ($result-&amp;gt;num_rows &amp;gt; 0) {
+        while($post = $result-&amp;gt;fetch_assoc()) {
+?&amp;gt;
+            &amp;lt;div class=&amp;quot;panel panel-default&amp;quot;&amp;gt;
+            &amp;lt;div class=&amp;quot;panel-body&amp;quot;&amp;gt;
+                &amp;lt;p&amp;gt;&amp;lt;?php echo $post[&#39;content&#39;]; ?&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;div class=&amp;quot;panel-footer&amp;quot;&amp;gt;
+                &amp;lt;span&amp;gt;posted &amp;lt;?php echo $post[&#39;created_at&#39;]; ?&amp;gt; by nicholaskajoh&amp;lt;/span&amp;gt; 
+                &amp;lt;span class=&amp;quot;pull-right&amp;quot;&amp;gt;&amp;lt;a class=&amp;quot;text-danger&amp;quot; href=&amp;quot;php/delete-post.php?id=&amp;lt;?php echo $post[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;[delete]&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+&amp;lt;?php
+        }
+    } else {
+?&amp;gt;
+        &amp;lt;p class=&amp;quot;text-center&amp;quot;&amp;gt;No posts yet!&amp;lt;/p&amp;gt;
+&amp;lt;?php
+    }
+    $conn-&amp;gt;close();
+?&amp;gt;
+&amp;lt;!-- ./post --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nothing much here. First, we write an SQL query and execute it, then we get the results and display each post using a while loop. The query SELECT * FROM posts simply says &amp;ldquo;get all the records from the posts table&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The words (in the code) with &lt;code&gt;$&lt;/code&gt; before them are variable names (e.g &lt;code&gt;$result&lt;/code&gt;). We use the dollar sign to denote variable names in PHP.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re not done yet though. Wouldn&amp;rsquo;t it be better to display the more recent posts first? We can do that by adjusting our query a little bit.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT * FROM posts ORDER BY created_at DESC
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bingo!&lt;/p&gt;
+&lt;h1 id=&#34;make-posts&#34;&gt;Make posts&lt;/h1&gt;
+&lt;p&gt;We don&amp;rsquo;t expect users to use PHP MyAdmin to make posts on FaceClone, do we? It only seems logical that we allow users create posts in our app. Thanks to the template, we have a nifty little textbox on the home page.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This point in our journey looks like a good time to separate concerns. We could write the code that&amp;rsquo;ll create a new post in home.php, but this can lead to messy code as there may be too many moving parts, so to speak, in one file. Let&amp;rsquo;s avoid this by creating a new folder called php in the root of our project to store php files which aren&amp;rsquo;t pages. functions.php fits the description of a file that should be in the php folder. Let&amp;rsquo;s leave it where it is, though. I like to keep it in the root folder as it serves kind of like a general purpose.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create a new file in the php folder called create-post.php and add the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;INSERT INTO posts (content, user_id) VALUES (?, 0)&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;s&#39;, $_POST[&#39;content&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/home.php&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+    $conn-&amp;gt;close();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now edit the form in home.php by adding php/create-post.php as the value for the action attribute.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- post form --&amp;gt;
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/create-post.php&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;input-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;content&amp;quot; placeholder=&amp;quot;Make a post…&amp;quot;&amp;gt;
+    &amp;lt;span class=&amp;quot;input-group-btn&amp;quot;&amp;gt;
+    &amp;lt;button class=&amp;quot;btn btn-success&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;post&amp;quot;&amp;gt;Post&amp;lt;/button&amp;gt;
+    &amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;&amp;lt;hr&amp;gt;
+&amp;lt;!-- ./post form --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code to create a post is straightforward. We write a query and execute it. If it&amp;rsquo;s executed (meaning everything went well), we redirect to the home page where we can see the newly created post. Else, we throw an error.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$_POST&lt;/code&gt; is a superglobal. superglobals are variables that are always accessible regardless of scope i.e you can access them from any function, class or file without having to do anything. $_POST is an array that contains data sent in POST requests. When a user submits the form to create a post, we can access the content in &lt;code&gt;$_POST&lt;/code&gt; variable using &lt;code&gt;$_POST[&#39;content&#39;]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Ensure the default value for the created_at column of the posts table is set to &lt;code&gt;CURRENT_TIMESTAMP&lt;/code&gt;.
+The redirect_to method is a custom method. Add the definition to functions.php.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function redirect_to($url) {
+    header(&amp;quot;Location: &amp;quot; . $url);
+    exit();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;delete-posts&#34;&gt;Delete posts&lt;/h1&gt;
+&lt;p&gt;Create a new file in the php folder. Call it delete-post.php. Similar to create-post.php, we have:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;DELETE FROM posts WHERE id = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;i&#39;, $_GET[&#39;id&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/home.php&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+    $conn-&amp;gt;close();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now when we click the delete link for a post, it&amp;rsquo;s gone for good! 😊&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$_GET&lt;/code&gt; is another superglobal. As you might imagine, it contains data sent from GET requests.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it for part 3!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-3 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-3/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     

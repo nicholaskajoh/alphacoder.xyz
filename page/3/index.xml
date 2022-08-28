@@ -7,9 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jul 2022 19:48:14 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>2 Git workflows you should know</title>
+        <link>https://alphacoder.xyz/git-workflows/</link>
+        <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/git-workflows/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/git-workflows/ -&lt;p&gt;Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.&lt;/p&gt;
+&lt;p&gt;In this post, we’ll be discussing two popular Git workflows you should know — &lt;em&gt;Gitflow&lt;/em&gt; and the &lt;em&gt;Forking workflow&lt;/em&gt;. Let’s dig right in!&lt;/p&gt;
+&lt;h3 id=&#34;gitflow&#34;&gt;Gitflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*8-zDz1s5Atux_yNW_mXmfg@2x.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Gitflow workflow. Source: nvie.com&lt;/p&gt;
+&lt;p&gt;Developed and popularized by &lt;a href=&#34;https://nvie.com/about&#34;&gt;Vincent Driessen&lt;/a&gt;, the Gitflow workflow is a branching model built around release management. It involves the use of two main branches (&lt;em&gt;master&lt;/em&gt; and &lt;em&gt;develop&lt;/em&gt;) and three supporting branches (&lt;em&gt;feature&lt;/em&gt;, &lt;em&gt;release&lt;/em&gt; and &lt;em&gt;hotfix&lt;/em&gt;), with strict branch off and merge rules.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;master&lt;/em&gt; branch is the production/stable branch while the &lt;em&gt;develop&lt;/em&gt; branch reflects the latest changes to the software for the next release. A &lt;em&gt;feature&lt;/em&gt; branch is created when a new feature is to be added.&lt;/p&gt;
+&lt;p&gt;When all the features for the next release have been merged to &lt;em&gt;develop&lt;/em&gt; and it is ready to be released, a versioned &lt;em&gt;release&lt;/em&gt; branch is created off &lt;em&gt;develop&lt;/em&gt;. This branch does not take any new features — only bug fixes. When the &lt;em&gt;release&lt;/em&gt; branch is ready to be taken to production, it is merged into &lt;em&gt;master&lt;/em&gt; and tagged with the release version. It is also merged into &lt;em&gt;develop&lt;/em&gt; so that &lt;em&gt;develop&lt;/em&gt; is updated with the fixes.&lt;/p&gt;
+&lt;p&gt;If a bug is discovered in production, a &lt;em&gt;hotfix&lt;/em&gt; branch is created to fix it. This branch is merged into &lt;em&gt;master&lt;/em&gt; (and versioned), as well as into &lt;em&gt;develop&lt;/em&gt; or to &lt;em&gt;release&lt;/em&gt; (if one currently exists).&lt;/p&gt;
+&lt;p&gt;You can learn more about this workflow from Vincent himself in his article titled &lt;a href=&#34;https://nvie.com/posts/a-successful-git-branching-model/&#34;&gt;A Successful Git Branching Model&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;forking-workflow&#34;&gt;Forking workflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*J4Y-c1_DbbIviHLOa9spsQ.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Forking workflow&lt;/p&gt;
+&lt;p&gt;The Forking workflow is common in open source projects where anyone can contribute. Outside collaborators are not given write access to the official repository. They must first fork the repository, create a new branch, make the changes they want, then send a Pull Request to the official repository.&lt;/p&gt;
+&lt;p&gt;A fork is a server-side clone of a repository. You can fork any public repository on &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; and you’ll get a copy of it on your own account. You can make any changes you want to this fork. Forks need to be regularly synchronized with the upstream (official) repository so that they can have the latest changes.&lt;/p&gt;
+&lt;p&gt;A Pull Request (PR) is a request to merge the changes from a branch in a fork to an upstream repository. A project maintainer may accept, reject or request changes to a PR before it’s merged.&lt;/p&gt;
+&lt;p&gt;You can learn more about this workflow with &lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow&#34;&gt;this tutorial from Atlassian.com&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/git-workflows/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -749,85 +777,6 @@ whitenoise==3.3.1
 &lt;p&gt;&lt;em&gt;Two libraries you might find really helpful when building your Django API are&lt;/em&gt; &lt;a href=&#34;http://www.django-rest-framework.org/&#34;&gt;&lt;em&gt;Django Rest Framework&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/ottoyiu/django-cors-headers/&#34;&gt;&lt;em&gt;Django CORS Headers&lt;/em&gt;&lt;/a&gt;&lt;em&gt;. You should check them out!&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.&lt;/p&gt;
 - https://alphacoder.xyz/deploy-react-django-app-on-heroku/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Here’s a dead simple React-Django setup for your next project</title>
-        <link>https://alphacoder.xyz/dead-simple-react-django-setup/</link>
-        <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/dead-simple-react-django-setup/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/dead-simple-react-django-setup/ -&lt;p&gt;There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TL;DR: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.js and everything would work fine.&lt;/p&gt;
-&lt;h2 id=&#34;django&#34;&gt;Django&lt;/h2&gt;
-&lt;p&gt;Follow the steps below to setup Django:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Have Python and pip installed on your computer.&lt;/li&gt;
-&lt;li&gt;Install &lt;a href=&#34;http://virtualenvwrapper.readthedocs.io/en/latest/install.html&#34;&gt;virtualenv and virtualenvwrapper&lt;/a&gt; by running &lt;code&gt;pip install virtualenvwrapper&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Create a virtual environment for the project using &lt;code&gt;mkvirtualenv name-of-virtual-env&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;workon name-of-virtual-env&lt;/code&gt; to activate the virtual environment.&lt;/li&gt;
-&lt;li&gt;Install Django with &lt;code&gt;pip install django&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Start a django project by running &lt;code&gt;django-admin startproject nameOfProject&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Change directory to the project root and create a new app with &lt;code&gt;django-admin startapp mynewapp&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Add &lt;em&gt;mynewapp&lt;/em&gt; to installed apps in &lt;em&gt;settings.py&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Run app with &lt;code&gt;python manage.py runserver&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;See the &lt;a href=&#34;https://docs.djangoproject.com/en/dev/topics/install/&#34;&gt;official Django installation guide&lt;/a&gt; for more info.&lt;/p&gt;
-&lt;h2 id=&#34;react&#34;&gt;React&lt;/h2&gt;
-&lt;p&gt;We’ll be using &lt;a href=&#34;https://github.com/facebookincubator/create-react-app&#34;&gt;Create React App&lt;/a&gt; in this setup. Feel free to use your preferred method of/tool for setting up a React project.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Have Node.js and NPM installed.&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;npm install -g create-react-app&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Create a new app with &lt;code&gt;create-react-app name-of-project&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Copy/cut all the contents of the React app (in &lt;em&gt;name-of-project&lt;/em&gt; folder) and paste in the root of the Django project.**&lt;/li&gt;
-&lt;li&gt;Run app with &lt;code&gt;npm start&lt;/code&gt; from the project root.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;configure&#34;&gt;Configure&lt;/h2&gt;
-&lt;p&gt;If you followed all the instructions above, you should have both React and Django apps in one folder. See the starred step (**) under the &lt;em&gt;React&lt;/em&gt; heading. Good!&lt;/p&gt;
-&lt;p&gt;The React app is the SPA (Single Page App) while the Django app is the API. Let’s do some config, shall we?&lt;/p&gt;
-&lt;p&gt;The goal is to expose two sets of urls/routes. One for the SPA (e.g &lt;em&gt;example.com&lt;/em&gt;, &lt;em&gt;example.com/home&lt;/em&gt;, etc) and the other for the API (e.g &lt;em&gt;example.com/api/posts&lt;/em&gt;, &lt;em&gt;example.com/api/post/1&lt;/em&gt;, etc).&lt;/p&gt;
-&lt;p&gt;The React-Django app would be deployed on a Python web server, so we can easily achieve this using Django.&lt;/p&gt;
-&lt;h4 id=&#34;step-1-build&#34;&gt;Step 1: build&lt;/h4&gt;
-&lt;p&gt;Run &lt;code&gt;npm run build&lt;/code&gt;. This creates a folder named &lt;em&gt;build&lt;/em&gt; in the project root containing a production-ready version of the React app.&lt;/p&gt;
-&lt;h4 id=&#34;step-2-settingspy&#34;&gt;Step 2: settings.py&lt;/h4&gt;
-&lt;p&gt;Add the &lt;em&gt;build&lt;/em&gt; folder to template directories in &lt;em&gt;settings.py&lt;/em&gt; so that Django can load &lt;em&gt;/build/index.html&lt;/em&gt; as a template.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;BASE_DIR &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dirname(os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abspath(__file__)))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;TEMPLATES &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;DIRS&amp;#39;&lt;/span&gt;: [
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ],
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# ...&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Also add &lt;em&gt;build&lt;/em&gt; as a static files directory so that &lt;code&gt;collectstatic&lt;/code&gt; can copy the css and js files.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;STATICFILES_DIRS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;path&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(BASE_DIR, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;),
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;step-3-urlspy&#34;&gt;Step 3: urls.py&lt;/h4&gt;
-&lt;p&gt;Add pattern to return &lt;em&gt;/build/index.html&lt;/em&gt; in &lt;em&gt;urls.py&lt;/em&gt; as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.contrib &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; admin
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.urls &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; path, re_path
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.views.generic &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; TemplateView
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    path(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;admin/&amp;#39;&lt;/span&gt;, admin&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;site&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;urls),
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# path(&amp;#39;api/&amp;#39;, include(&amp;#39;mynewapp.urls&amp;#39;)),&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    re_path(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.*&amp;#39;&lt;/span&gt;, TemplateView&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;as_view(template_name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;)),
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run Django’s dev server (&lt;code&gt;python manage.py runserver&lt;/code&gt;) to test the app.&lt;/p&gt;
-&lt;h2 id=&#34;angular-vuejs-etc&#34;&gt;Angular, Vue.js, etc&lt;/h2&gt;
-&lt;p&gt;As you’ve seen with React, all you need to do is make a build available to Django, then configure Django to handle API requests and React to handle normal web page routes. You can use the same steps to setup Angular, Vue.js etc with Django.&lt;/p&gt;
-&lt;h2 id=&#34;repo&#34;&gt;Repo&lt;/h2&gt;
-&lt;p&gt;Check out the code for this tutorial here: &lt;a href=&#34;https://github.com/nicholaskajoh/React-Django&#34;&gt;https://github.com/nicholaskajoh/React-Django&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;deploy&#34;&gt;Deploy&lt;/h2&gt;
-&lt;p&gt;Deploying the React-Django app is a story for another day. The process largely depends on your hosting environment and workflow. I made &lt;a href=&#34;https://alphacoder.xyz/deploy-react-django-app-on-heroku/&#34;&gt;a post on deploying it to Heroku&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/dead-simple-react-django-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

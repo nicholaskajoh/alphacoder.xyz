@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>The case for monorepos</title>
+<title>Web app scaling techniques</title>
 
 
 
@@ -183,8 +183,8 @@
 						
 						
 							<li>
-								<a href="#what-we-built" onclick="onNavClick(`#what-we-built-nav`)" id="what-we-built-nav">
-									What we built
+								<a href="#get-a-bigger-server" onclick="onNavClick(`#get-a-bigger-server-nav`)" id="get-a-bigger-server-nav">
+									Get a bigger server
 								</a>
 							</li>
 						
@@ -201,32 +201,8 @@
 						
 						
 							<li>
-								<a href="#the-challenges" onclick="onNavClick(`#the-challenges-nav`)" id="the-challenges-nav">
-									The challenges
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-							
-								
-									<ul>
-								
-							
-						
-						
-							<li>
-								<a href="#more-complex-dev-environment" onclick="onNavClick(`#more-complex-dev-environment-nav`)" id="more-complex-dev-environment-nav">
-									More complex dev environment
+								<a href="#split-your-app-into-functional-components" onclick="onNavClick(`#split-your-app-into-functional-components-nav`)" id="split-your-app-into-functional-components-nav">
+									Split your app into functional components
 								</a>
 							</li>
 						
@@ -243,8 +219,8 @@
 						
 						
 							<li>
-								<a href="#long-review-cycles" onclick="onNavClick(`#long-review-cycles-nav`)" id="long-review-cycles-nav">
-									Long review cycles
+								<a href="#run-multiple-instances-of-your-app" onclick="onNavClick(`#run-multiple-instances-of-your-app-nav`)" id="run-multiple-instances-of-your-app-nav">
+									Run multiple instances of your app
 								</a>
 							</li>
 						
@@ -261,8 +237,8 @@
 						
 						
 							<li>
-								<a href="#versioning-hell" onclick="onNavClick(`#versioning-hell-nav`)" id="versioning-hell-nav">
-									Versioning hell
+								<a href="#load-balance-using-dns" onclick="onNavClick(`#load-balance-using-dns-nav`)" id="load-balance-using-dns-nav">
+									Load balance using DNS
 								</a>
 							</li>
 						
@@ -276,15 +252,11 @@
 						
 						
 						
-							
-								</ul>
-							
-						
 						
 						
 							<li>
-								<a href="#building-something-better" onclick="onNavClick(`#building-something-better-nav`)" id="building-something-better-nav">
-									Building something better
+								<a href="#use-anycast-networking" onclick="onNavClick(`#use-anycast-networking-nav`)" id="use-anycast-networking-nav">
+									Use anycast networking
 								</a>
 							</li>
 						
@@ -383,8 +355,8 @@
 						
 						
 							<li>
-								<a href="#what-we-built" onclick="onNavClick(`#what-we-built-nav`)" id="what-we-built-nav">
-									What we built
+								<a href="#get-a-bigger-server" onclick="onNavClick(`#get-a-bigger-server-nav`)" id="get-a-bigger-server-nav">
+									Get a bigger server
 								</a>
 							</li>
 						
@@ -401,32 +373,8 @@
 						
 						
 							<li>
-								<a href="#the-challenges" onclick="onNavClick(`#the-challenges-nav`)" id="the-challenges-nav">
-									The challenges
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-							
-								
-									<ul>
-								
-							
-						
-						
-							<li>
-								<a href="#more-complex-dev-environment" onclick="onNavClick(`#more-complex-dev-environment-nav`)" id="more-complex-dev-environment-nav">
-									More complex dev environment
+								<a href="#split-your-app-into-functional-components" onclick="onNavClick(`#split-your-app-into-functional-components-nav`)" id="split-your-app-into-functional-components-nav">
+									Split your app into functional components
 								</a>
 							</li>
 						
@@ -443,8 +391,8 @@
 						
 						
 							<li>
-								<a href="#long-review-cycles" onclick="onNavClick(`#long-review-cycles-nav`)" id="long-review-cycles-nav">
-									Long review cycles
+								<a href="#run-multiple-instances-of-your-app" onclick="onNavClick(`#run-multiple-instances-of-your-app-nav`)" id="run-multiple-instances-of-your-app-nav">
+									Run multiple instances of your app
 								</a>
 							</li>
 						
@@ -461,8 +409,8 @@
 						
 						
 							<li>
-								<a href="#versioning-hell" onclick="onNavClick(`#versioning-hell-nav`)" id="versioning-hell-nav">
-									Versioning hell
+								<a href="#load-balance-using-dns" onclick="onNavClick(`#load-balance-using-dns-nav`)" id="load-balance-using-dns-nav">
+									Load balance using DNS
 								</a>
 							</li>
 						
@@ -476,15 +424,11 @@
 						
 						
 						
-							
-								</ul>
-							
-						
 						
 						
 							<li>
-								<a href="#building-something-better" onclick="onNavClick(`#building-something-better-nav`)" id="building-something-better-nav">
-									Building something better
+								<a href="#use-anycast-networking" onclick="onNavClick(`#use-anycast-networking-nav`)" id="use-anycast-networking-nav">
+									Use anycast networking
 								</a>
 							</li>
 						
@@ -545,17 +489,23 @@
                 
             >
                 <div class="post-title" v-pre>
-                    The case for monorepos
+                    Web app scaling techniques
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2022-07-04
+                            2022-08-27
                         </time>
                         
 
                         
 
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/scalability">Scalability</a>
+                                &nbsp;
+                            
                         
                         
                     </div>
@@ -566,36 +516,41 @@
                 
                 <div class="post-body" v-pre>
                 
-                    <p>At a previous company, I worked as a Platform Engineer for the Packages team. A brand new team, our job was to abstract the building blocks of our systems into reusable components, and to create a pipeline for developing and releasing these components as packages for use by product engineers. There was a lot of duplication in our codebases and we were also slowly moving towards a microservices architecture, so our work was crucial in helping the engineering organization improve code quality and developer productivity.</p>
-<p>I think we did a great job with what we built given the size of the team, the amount of time we had and how much freedom we had to modify/change existing systems and processes, but it wasn’t without issues. Weeks and months after leaving the team, I kept thinking about the initial design and how it could be improved. I think I’ve arrived at something better. Of course, it’s nothing new and some may find the trade-offs costlier than the benefits, but it’s quite fascinating to me because I was bewildered by and opposed to the idea when I first learned about it. I’m talking about monorepos.</p>
-<h1 id="what-we-built">What we built</h1>
-<p>Our stack was mainly JavaScript-based tech (TypeScript, Node.js and friends), so we were developing and releasing NPM packages. We used <a href="https://github.com/semantic-release/semantic-release">Semantic Release</a> to automate the releases (versioning, release notes generation and publishing). We built a self-serve system to enable developers create new packages and update existing ones on their own. Creating a package involved setting up a GitHub repository with certain configs which connected it to the release pipeline. For existing packages, all a developer had to do was open a PR. Once merged, the changes would be cut into a new release and available in our private registry for installation/use.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># First time, add private registry to the package manager.</span>
-</span></span><span style="display:flex;"><span>npm login --scope<span style="color:#f92672">=</span>@test-company --registry<span style="color:#f92672">=</span>https://registry.testcompany.com
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then install internal package(s).</span>
-</span></span><span style="display:flex;"><span>npm install @test-company/very-useful-package
-</span></span></code></pre></div><h1 id="the-challenges">The challenges</h1>
-<p>The challenges we faced were a result of the mismatch of the solution we implemented and our customers’ (i.e product developers’) needs. Our solution is a better fit for open source development where clear project scope and stability is king, as opposed to a fast-paced agile environment which prioritizes velocity and adaptability. Some of the issues we were confronted with are:</p>
-<h2 id="more-complex-dev-environment">More complex dev environment</h2>
-<p>Development is complex enough when you have to setup multiple repos and spin up multiple apps. Adding packages to the mix complicates things even more. Now you have to setup even more repos, work across multiple codebases, and update dependencies to deliver a single feature or fix a single bug. I did not realize how bad it was until I considered duplicating code from a package just to avoid having to update it and doing the whole release process dance.</p>
-<h2 id="long-review-cycles">Long review cycles</h2>
-<p>Multiple repos means multiple PRs for a single task. Multiple PRs means longer review cycles. We found, unsurprisingly, that developers who like to move fast don’t appreciate this very much.</p>
-<h2 id="versioning-hell">Versioning hell</h2>
-<p>The worst of the challenges was dealing with versioning. If you wanted to introduce a breaking change, you had 3 options:</p>
+                    <p>Several moons ago, I wrote an article about <a href="/database-scaling-techniques/">techniques for scaling databases</a>. Today, we’ll be looking at the app side of things. As with databases, you want to develop your application with scalability in mind so that when the time comes to increase capacity, the process is straightforward and seamless. Having a clear pathway for building a higher capacity and robust system also helps prevent over-engineering and premature optimization, so it’s important to have the steps and process for evolving your systems to handle large workloads.</p>
+<p>Like the database article, I’ve organized the techniques in a relatively increasing order of relevance as one’s web app load grows.</p>
+<h1 id="get-a-bigger-server">Get a bigger server</h1>
+<p>It’s “engineer nature” to want to to engineer things, so most of us forget we could just <a href="/scale-an-app-horizontally-using-a-load-balancer/">scale vertically</a> i.e provision more resources on the server we’re currently using. If you use a cloud hosting service, this is as easy as clicking a few buttons and may not involve any downtime.</p>
+<p>Hardware has become faster and cheaper over the years and many server infrastructure providers offer beefy machines that can handle a lot of load (for example, you can rent an EC2 instance with 128 vCPUs, 4 TB of RAM, 4 TB of SSD storage and up to 25 Gbps network speed on AWS). If high availability is not a major concern for you (i.e you can tolerate some little downtime every now and then), consider all your options on the vertical side before going horizontal.</p>
+<p><img src="/images/web-app-scaling-techniques/get-thiccc-server.png" alt=""></p>
+<h1 id="split-your-app-into-functional-components">Split your app into functional components</h1>
+<p>You can break your app into functional components and spin up a server for each one. This will allow you increase capacity while preventing a resource-intensive component of your system from disrupting other components. Also, there are managed services for some of these components (such as AWS S3 for file storage), so you could offload some stuff to third parties and save time needed to develop and optimize them.</p>
+<p>Some components you could break your app into include:</p>
 <ul>
-<li>Don’t introduce a breaking change. Make your change backwards compatible by exposing some specialized function for your use case. This of course will increase complexity and ultimately defeat the goal of having clean abstractions that can be reused.</li>
-<li>Release a new version and update all the dependent apps. This can be a lot of work and may be risky.</li>
-<li>Release a new version just for your changes. Now you have to maintain multiple versions of a single package which is a pain.</li>
+<li>User interface</li>
+<li>API</li>
+<li>Database</li>
+<li>Cache</li>
+<li>File storage</li>
+<li>Queue</li>
 </ul>
-<h1 id="building-something-better">Building something better</h1>
-<p>The solution to these problems is a monorepo. How? Well, with all the code in one place, you don’t have to clone a new repo, or open multiple PRs, or deal with versioning (you’re always using the latest version). Large refactors to create better abstractions are also more tenable.</p>
-<p>Of course, even if I recognized this at the time, there’s no way I could have convinced the engineering org or even my team to squash dozens of repos into one. The benefits of doing so just don’t justify the work involved—and the risks. Maybe at some point in the future it will and a monorepo would make sense.</p>
-<p>The thing I’ve learned in thinking through these challenges is that context is key. It’s important to suss out the motivations for using a given system or tool before criticizing or adopting it. Often, until you’re in the problem space yourself, you never recognize or appreciate the reasons for going with certain approaches.</p>
+<p><img src="/images/web-app-scaling-techniques/split-app-into-comps.png" alt=""></p>
+<p>When splitting up your app, it’s important to consider the latency implications. Ideally, all the components should be in the same local network or region.</p>
+<h1 id="run-multiple-instances-of-your-app">Run multiple instances of your app</h1>
+<p>Eventually, a single server might not be able to handle your load requirements. More so, you might want your app to be highly available i.e if one or more servers are unhealthy or crash, your app should continue to work. In these cases, you’d want to scale horizontally i.e running your app on multiple machines and putting them behind a load balancer. A load balancer can spread the load evenly among the machines and stop routing traffic to a machine that is unhealthy.</p>
+<p><img src="/images/web-app-scaling-techniques/load-balancing.png" alt=""></p>
+<p>You could even go a step further and make your load balancing layer highly available by running multiple load balancers and glueing them together with a software like <a href="https://www.keepalived.org/">keepalived</a> which allows you automatically fail over if a server goes down.</p>
+<p><img src="/images/web-app-scaling-techniques/multiple-load-balancers.png" alt=""></p>
+<p>As with splitting your app into functional components, you should factor in the latency implications of putting your app behind a load balancer. Of course, the load balancers and app servers should be in the same location. Also, in order to run multiple instances of your app smoothly, the app should ideally be <a href="https://www.webopedia.com/definitions/stateless/">stateless</a>. So consider removing sessions, in-memory caching and the like.</p>
+<h1 id="load-balance-using-dns">Load balance using DNS</h1>
+<p>In addition to resolving domain names, a DNS can be used as a load balancer. You can create multiple A records and configure your authoritative DNS in a round robin fashion, or preferably use geolocation-based routing i.e users will be routed to the servers closest to them. On top of being able to handle more load, this setup allows you achieve global high availability (by running your app in multiple data centers across the globe), as well as enables you provide consistent and lower latencies in all the regions you operate.</p>
+<p><img src="/images/web-app-scaling-techniques/dns-load-balancing.png" alt=""></p>
+<h1 id="use-anycast-networking">Use anycast networking</h1>
+<p><a href="https://www.cloudflare.com/learning/cdn/glossary/anycast-network/">Anycast networking</a> lets you use the internet as your app’s load balancer by advertising a single IP from multiple locations or PoPs (Points of Presence). This means that users are routed to the servers closest to them (in terms of router hops). As with DNS load balancing, this facilitates global high availability and lower latencies but it can be <a href="https://labs.ripe.net/author/samir_jafferali/build-your-own-anycast-network-in-nine-steps/">difficult and time consuming to set up</a>. Also, it’s possible to <a href="https://engineering.linkedin.com/network-performance/tcp-over-ip-anycast-pipe-dream-or-reality">combine the two for better results</a>.</p>
+<p><img src="/images/web-app-scaling-techniques/anycast-networking.png" alt=""></p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2022-07-04</p>
+		    <p style="color:#777;">Last modified on 2022-08-27</p>
                     
                 </div>
             </div>
@@ -604,14 +559,14 @@
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://alphacoder.xyz/web-app-scaling-techniques/">
-			Next<br>Web app scaling techniques
+                <a class="newer-posts">
+			Next<br>No newer posts.
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://alphacoder.xyz/database-scaling-techniques/">
-			Previous<br>Database scaling techniques
+                <a class="older-posts" href="https://alphacoder.xyz/monorepo-use-case/">
+			Previous<br>The case for monorepos
                 </a>
                 
             </nav>
@@ -623,10 +578,10 @@
 
     var disqus_config = function () {
         
-        this.page.url = 'https:\/\/alphacoder.xyz\/monorepo-use-case\/';  
+        this.page.url = 'https:\/\/alphacoder.xyz\/web-app-scaling-techniques\/';  
         
         
-        this.page.identifier = 'https:\/\/alphacoder.xyz\/monorepo-use-case\/'; 
+        this.page.identifier = 'https:\/\/alphacoder.xyz\/web-app-scaling-techniques\/'; 
     };
     (function() {
         var d = document, s = d.createElement('script');

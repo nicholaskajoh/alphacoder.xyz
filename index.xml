@@ -7,9 +7,51 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jul 2022 19:48:14 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Web app scaling techniques</title>
+        <link>https://alphacoder.xyz/web-app-scaling-techniques/</link>
+        <pubDate>Sat, 27 Aug 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/web-app-scaling-techniques/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/web-app-scaling-techniques/ -&lt;p&gt;Several moons ago, I wrote an article about &lt;a href=&#34;https://alphacoder.xyz/database-scaling-techniques/&#34;&gt;techniques for scaling databases&lt;/a&gt;. Today, we’ll be looking at the app side of things. As with databases, you want to develop your application with scalability in mind so that when the time comes to increase capacity, the process is straightforward and seamless. Having a clear pathway for building a higher capacity and robust system also helps prevent over-engineering and premature optimization, so it’s important to have the steps and process for evolving your systems to handle large workloads.&lt;/p&gt;
+&lt;p&gt;Like the database article, I’ve organized the techniques in a relatively increasing order of relevance as one’s web app load grows.&lt;/p&gt;
+&lt;h1 id=&#34;get-a-bigger-server&#34;&gt;Get a bigger server&lt;/h1&gt;
+&lt;p&gt;It’s “engineer nature” to want to to engineer things, so most of us forget we could just &lt;a href=&#34;https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/&#34;&gt;scale vertically&lt;/a&gt; i.e provision more resources on the server we’re currently using. If you use a cloud hosting service, this is as easy as clicking a few buttons and may not involve any downtime.&lt;/p&gt;
+&lt;p&gt;Hardware has become faster and cheaper over the years and many server infrastructure providers offer beefy machines that can handle a lot of load (for example, you can rent an EC2 instance with 128 vCPUs, 4 TB of RAM, 4 TB of SSD storage and up to 25 Gbps network speed on AWS). If high availability is not a major concern for you (i.e you can tolerate some little downtime every now and then), consider all your options on the vertical side before going horizontal.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/web-app-scaling-techniques/get-thiccc-server.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;split-your-app-into-functional-components&#34;&gt;Split your app into functional components&lt;/h1&gt;
+&lt;p&gt;You can break your app into functional components and spin up a server for each one. This will allow you increase capacity while preventing a resource-intensive component of your system from disrupting other components. Also, there are managed services for some of these components (such as AWS S3 for file storage), so you could offload some stuff to third parties and save time needed to develop and optimize them.&lt;/p&gt;
+&lt;p&gt;Some components you could break your app into include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;User interface&lt;/li&gt;
+&lt;li&gt;API&lt;/li&gt;
+&lt;li&gt;Database&lt;/li&gt;
+&lt;li&gt;Cache&lt;/li&gt;
+&lt;li&gt;File storage&lt;/li&gt;
+&lt;li&gt;Queue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/web-app-scaling-techniques/split-app-into-comps.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When splitting up your app, it’s important to consider the latency implications. Ideally, all the components should be in the same local network or region.&lt;/p&gt;
+&lt;h1 id=&#34;run-multiple-instances-of-your-app&#34;&gt;Run multiple instances of your app&lt;/h1&gt;
+&lt;p&gt;Eventually, a single server might not be able to handle your load requirements. More so, you might want your app to be highly available i.e if one or more servers are unhealthy or crash, your app should continue to work. In these cases, you’d want to scale horizontally i.e running your app on multiple machines and putting them behind a load balancer. A load balancer can spread the load evenly among the machines and stop routing traffic to a machine that is unhealthy.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/web-app-scaling-techniques/load-balancing.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You could even go a step further and make your load balancing layer highly available by running multiple load balancers and glueing them together with a software like &lt;a href=&#34;https://www.keepalived.org/&#34;&gt;keepalived&lt;/a&gt; which allows you automatically fail over if a server goes down.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/web-app-scaling-techniques/multiple-load-balancers.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As with splitting your app into functional components, you should factor in the latency implications of putting your app behind a load balancer. Of course, the load balancers and app servers should be in the same location. Also, in order to run multiple instances of your app smoothly, the app should ideally be &lt;a href=&#34;https://www.webopedia.com/definitions/stateless/&#34;&gt;stateless&lt;/a&gt;. So consider removing sessions, in-memory caching and the like.&lt;/p&gt;
+&lt;h1 id=&#34;load-balance-using-dns&#34;&gt;Load balance using DNS&lt;/h1&gt;
+&lt;p&gt;In addition to resolving domain names, a DNS can be used as a load balancer. You can create multiple A records and configure your authoritative DNS in a round robin fashion, or preferably use geolocation-based routing i.e users will be routed to the servers closest to them. On top of being able to handle more load, this setup allows you achieve global high availability (by running your app in multiple data centers across the globe), as well as enables you provide consistent and lower latencies in all the regions you operate.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/web-app-scaling-techniques/dns-load-balancing.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;use-anycast-networking&#34;&gt;Use anycast networking&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cloudflare.com/learning/cdn/glossary/anycast-network/&#34;&gt;Anycast networking&lt;/a&gt; lets you use the internet as your app’s load balancer by advertising a single IP from multiple locations or PoPs (Points of Presence). This means that users are routed to the servers closest to them (in terms of router hops). As with DNS load balancing, this facilitates global high availability and lower latencies but it can be &lt;a href=&#34;https://labs.ripe.net/author/samir_jafferali/build-your-own-anycast-network-in-nine-steps/&#34;&gt;difficult and time consuming to set up&lt;/a&gt;. Also, it’s possible to &lt;a href=&#34;https://engineering.linkedin.com/network-performance/tcp-over-ip-anycast-pipe-dream-or-reality&#34;&gt;combine the two for better results&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/web-app-scaling-techniques/anycast-networking.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- https://alphacoder.xyz/web-app-scaling-techniques/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -392,60 +434,6 @@ Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjredd
 &lt;h1 id=&#34;contribute&#34;&gt;Contribute&lt;/h1&gt;
 &lt;p&gt;The VCS is free and open source software available &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;on GitHub&lt;/a&gt;. You can contribute to the project by taking it for a spin and reporting issues/bugs or working on parts of it that need improvement.&lt;/p&gt;
 - https://alphacoder.xyz/vehicle-counting/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Machine Learning explained</title>
-        <link>https://alphacoder.xyz/machine-learning-explained/</link>
-        <pubDate>Sat, 18 May 2019 15:22:12 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/machine-learning-explained/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/machine-learning-explained/ -&lt;p&gt;Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn&amp;rsquo;t actually understand what Machine Learning is. And without understanding — at least on a high level — it&amp;rsquo;s nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub. Even then, you might have a hard time getting them to work or customizing them to suit your needs.&lt;/p&gt;
-&lt;p&gt;In this article, I&amp;rsquo;ll be explaining what Machine Learning is with newbies in mind. I&amp;rsquo;ll also expatiate on some of the commonly used jargon in the space so that you can more easily find your way around ML material and improve your skills.&lt;/p&gt;
-&lt;h1 id=&#34;what-is-machine-learning&#34;&gt;What is Machine Learning?&lt;/h1&gt;
-&lt;p&gt;ML is an approach to building Artificial Intelligence (AI) systems which involves writing computer programs that &amp;ldquo;learn&amp;rdquo; from data. That is, they are not explicitly programmed to perform a specific task such as solving a quadratic equation or authenticating a user. Instead, they learn to solve a given problem by example.&lt;/p&gt;
-&lt;p&gt;AI is an aspect of computer science concerned with building intelligent machines or software. Intelligence is a rather vague concept (especially in today&amp;rsquo;s world of tech where just about everything is &amp;ldquo;smart&amp;rdquo;) so this definition is probably not sufficient.&lt;/p&gt;
-&lt;p&gt;In simple terms, intelligence in AI is the ability of computers to solve problems that are easier for humans or animals to do e.g driving a car or searching for food. There are several techniques used in AI today but our focus here is ML as you&amp;rsquo;d expect.&lt;/p&gt;
-&lt;p&gt;Say you wanted to write a program that can determine if a photo contains a dog or not. How would you go about it?&lt;/p&gt;
-&lt;p&gt;You could try to code features that may be used to identify a dog as well as what combinations of these features distinguish dogs from other animals (and objects). That&amp;rsquo;s a hard enough task. But you&amp;rsquo;ll also have to consider:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Position:&lt;/strong&gt; Is the dog sitting or standing or lying down or running? What part of the photo is the dog located?&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Size and orientation:&lt;/strong&gt; How large or small is the dog in comparison to the rest of the photo? Is the photo rotated?&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Occlusion:&lt;/strong&gt; Is any part of the dog covered by another object? What part? By how much?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let&amp;rsquo;s say you succeeded in creating the perfect dog detector. What happens when you want to detect ducks. Can you repurpose the dog detector to also detect ducks. Probably not, because you&amp;rsquo;ll be dealing with an almost completely new set of features and combinations.&lt;/p&gt;
-&lt;p&gt;Fortunately, ML excels in these sort of tasks because we can show an ML algorithm photos of dogs and have it figure out the necessary features and combinations, as well as consider position, size, orientation, and occlusion. More so, it can be repurposed to detect ducks, cats and indeed any other animal or object for that matter just by showing it relevant photos. We&amp;rsquo;ll find out a little bit about how this can be done as we proceed.&lt;/p&gt;
-&lt;h1 id=&#34;what-are-ml-models&#34;&gt;What are ML models?&lt;/h1&gt;
-&lt;p&gt;A machine learning model is essentially a function which maps a set of inputs to a set of outputs. The inputs are features (e.g of a human being — height, weight etc) and the outputs are predictions (e.g sex — male or female).&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s take the following mathematical function for example:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;V = 4/3 * PI * r^3
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is the formula for the volume of a sphere. The input is &lt;code&gt;r&lt;/code&gt; (the radius of the sphere) and the output is &lt;code&gt;V&lt;/code&gt; (the sphere&amp;rsquo;s volume). &lt;a href=&#34;https://en.wikipedia.org/wiki/Pi&#34;&gt;Pi&lt;/a&gt; is not an input since it&amp;rsquo;s constant (about 3.14), as is the literal value &lt;code&gt;4/3&lt;/code&gt;. The sphere volume formula was derived analytically using tools like calculus, geometry and trigonometry. Not all problems can be solved through such means. Some problems are not feasible or too complex to model in this way. It&amp;rsquo;s a lot easier to show computers the problem and/or answers and have them figure out an approximate model that solves it.&lt;/p&gt;
-&lt;h3 id=&#34;training&#34;&gt;Training&lt;/h3&gt;
-&lt;p&gt;Models are optimized or fine-tuned through a process known as training. Say you wanted to build your dog detector, like we considered in a previous section, by creating a machine learning model. At the point of initialization, the dog detector model is like a newborn baby. It doesn&amp;rsquo;t know anything and behaves rather randomly. During training, it&amp;rsquo;s shown a bunch of photos of dogs of different types, shapes and sizes, as well as photos of other objects so that it can make the right distinctions. At the end of training, you&amp;rsquo;d expect it to know how to detect dogs with a high level of accuracy.&lt;/p&gt;
-&lt;h3 id=&#34;datasets&#34;&gt;Datasets&lt;/h3&gt;
-&lt;p&gt;Data is the heart and soul of machine learning — it&amp;rsquo;s what &amp;ldquo;machines&amp;rdquo; use to &amp;ldquo;learn&amp;rdquo;. A dataset is a collection of data which can be used to train, test and validate machine learning models. The more varied and rich a dataset is, the better a model we can produce. Good data directly translates to a good model. As such, it&amp;rsquo;s important to know what good data for a given problem looks like and how to obtain it. Machine learning models, unlike humans need a lot of data to work well. Some models consume millions of records! Knowing where to source data as well as how to prepare it for training is an invaluable skill for any ML practitioner to hone.&lt;/p&gt;
-&lt;h3 id=&#34;testing&#34;&gt;Testing&lt;/h3&gt;
-&lt;p&gt;Testing is the process of evaluating a model to see how well it performs. It helps us know how well a model is doing and where it needs work, as well as benchmark it against other models. Datasets are usually divided into training and testing sets. Models are trained with one set, and tested and validated with others so that we can be sure that they&amp;rsquo;re actually learning instead of overfitting. If your math teacher brings the examples they gave in class in an exam, you don&amp;rsquo;t need to understand the calculations to pass. You can just cram your notes and ace the test without understanding a thing. This is bad because when faced with similar problems in an external exam or competition, you&amp;rsquo;ll likely perform poorly. The same goes for an overfitted model.&lt;/p&gt;
-&lt;p&gt;There are several metrics used in evaluating ML models. Some of the more popular ones include accuracy, confidence, &lt;a href=&#34;https://en.wikipedia.org/wiki/Confusion_matrix&#34;&gt;confusion matrices&lt;/a&gt;, &lt;a href=&#34;https://en.wikipedia.org/wiki/Mean_squared_error&#34;&gt;mean squared error&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/F1_score&#34;&gt;F1 score&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;types-of-ml&#34;&gt;Types of ML&lt;/h1&gt;
-&lt;p&gt;ML algorithms are generally classified into 3 main types. They are:&lt;/p&gt;
-&lt;h3 id=&#34;supervised-learning&#34;&gt;Supervised learning&lt;/h3&gt;
-&lt;p&gt;This is a type of machine learning which involves the use of labelled data. That is, we have a dataset containing input features (e.g the heights and weights of a number of people) and output labels (e.g their sex or age), and we want an ML algorithm to be able to make accurate predictions after learning from such data. Supervised learning is divided into classification and regression. Classification models output discrete values e.g &amp;ldquo;male&amp;rdquo; or &amp;ldquo;female&amp;rdquo;, or &amp;ldquo;red&amp;rdquo;, &amp;ldquo;blue&amp;rdquo;, or &amp;ldquo;green&amp;rdquo;, while regression models output continuous values such as a prediction for the price of a barrel of crude oil next year e.g $50.43.&lt;/p&gt;
-&lt;h3 id=&#34;unsupervised-learning&#34;&gt;Unsupervised learning&lt;/h3&gt;
-&lt;p&gt;Unsupervised learning involves the use of unlabelled data to build machine learning models. We basically give an algorithm data and let it figure out patterns in it. We might give an ML algorithm the weights, heights and other features of individuals in a school and it might group them into &amp;ldquo;healthy&amp;rdquo; or &amp;ldquo;sick&amp;rdquo;, or &amp;ldquo;plays football&amp;rdquo;, &amp;ldquo;plays basketball&amp;rdquo; or &amp;ldquo;plays volleyball&amp;rdquo;. This sort of clustering provides valuable insights that can find application in a number of areas such as recommendation and segmentation.&lt;/p&gt;
-&lt;h3 id=&#34;reinforcement-learning&#34;&gt;Reinforcement learning&lt;/h3&gt;
-&lt;p&gt;Reinforcement learning involves building goal-oriented models that learn through &amp;ldquo;rewards&amp;rdquo; and &amp;ldquo;punishment&amp;rdquo;. When an agent trained using reinforcement learning reaches a desired state, it is incentivized with a reward and if it reaches an undesired state, it is discouraged through punishment. This technique was used to build &lt;a href=&#34;https://deepmind.com/blog/alphago-zero-learning-scratch/&#34;&gt;AlphaGo Zero&lt;/a&gt;, an AI agent which was able to beat the world&amp;rsquo;s best &lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;Go&lt;/a&gt; players.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I have a blog series here on Alpha Coder called &lt;a href=&#34;https://alphacoder.xyz/tag/ml-chops-series&#34;&gt;ML Chops&lt;/a&gt;. It&amp;rsquo;s a set of tutorials on how some popular ML algorithms work and how to implement them from scratch using the Python programming language. You should check it out!&lt;/p&gt;
-&lt;h1 id=&#34;neural-networks-and-deep-learning&#34;&gt;Neural networks and deep learning&lt;/h1&gt;
-&lt;p&gt;If you follow tech and startup news, you&amp;rsquo;ve probably heard the words &amp;ldquo;neural networks&amp;rdquo; and &amp;ldquo;deep learning&amp;rdquo; being tossed all around. What are they? And why is there so much hype around them?&lt;/p&gt;
-&lt;p&gt;A neural network is a machine learning framework made up of a collection of connected nodes called neurons arranged in layers. A neuron receives input signals from one or more neurons behind it, performs one or more computations with them and transmits an output signal to the neurons in front of it. The nodes at the ends of the network are the input and output layers while the nodes inbetween form sets of hidden layers. Neural networks are loosely modelled after biological neural networks which allow living things perform very complex physical and chemical activities. If you want to learn more about neural networks, &lt;a href=&#34;https://www.youtube.com/watch?v=aircAruvnKk&#34;&gt;But what *is* a Neural Network?&lt;/a&gt; by &lt;em&gt;3Blue1Brown&lt;/em&gt; is one of the best resources out there to give you a comprehensive introduction.&lt;/p&gt;
-&lt;p&gt;Deep learning is the creation and training of neural networks that contain more than one hidden layer. A network with one hidden layer is a regular neural network and one with two or more hidden layers is a &amp;ldquo;deep&amp;rdquo; neural network. Deep neural networks usually perform better than regular ones because they can encode more information within the network. However, using deeper neural networks doesn&amp;rsquo;t necessarily translate to obtaining better results. There are other factors involved.&lt;/p&gt;
-&lt;p&gt;There&amp;rsquo;s a lot of hype around neural networks and deep learning because these tools have changed the game by making feats that seemed impossible just a couple years ago possible. They are used heavily in building state-of-the-art Computer Vision and Natural Language Processing (NLP) applications today.&lt;/p&gt;
-&lt;h1 id=&#34;ml-is-not-a-silver-bullet&#34;&gt;ML is not a silver bullet&lt;/h1&gt;
-&lt;p&gt;Analytical models, if they&amp;rsquo;re possible and feasible to arrive at, are better than machine learning because they produce answers and not predictions. ML is not a silver bullet like some may have you believe. There are problems machine learning methods excel in. There are others where analytical approaches are simpler and produce better results. Before employing ML, ask yourself: can this problem be solved analytically?&lt;/p&gt;
-- https://alphacoder.xyz/machine-learning-explained/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
