@@ -975,7 +975,7 @@ objects in images and videos. I experimented with several object detection techn
 <p>The images below show what background substraction looks like.</p>
 <p><img src="/images/vcs/frame.jpg" alt=""></p>
 <p><img src="/images/vcs/bgsub.jpg" alt=""></p>
-<!-- raw HTML omitted -->
+<p align="center">Source: OpenCV Docs</p>
 <p>While background substraction was easy to implement and super fast, I was unable to arrive at a suitable threshold for detecting vehicle blobs. Vehicles are not the only objects that move on/across the road. There are pedestrians, animals, people with carts or wheelbarrows, skateboarders etc. Also, objects change in size and shape as they move across the view due to perspective, and vehicles may be occluded by other vehicles in the scene and thus interpreted as one object.</p>
 <p>I observed a lot of noise as well mainly due to the waving of trees and commercial activities going on in the background. While noise reduction techniques such as Gaussian Blur and selecting a Region of Interest (ROI) for detection helped, the overall performance of the detector was still underwhelming. After spending quite a while trying to tweak things in order to increase accuracy, I decided I needed another detector.</p>
 <h3 id="haar-cascades">Haar Cascades</h3>
@@ -985,7 +985,7 @@ objects in images and videos. I experimented with several object detection techn
 <h3 id="yolo">YOLO</h3>
 <p><a href="https://pjreddie.com/darknet/yolo/">YOLO</a> (You Only Look Once) is a popular deep learning model/architecture for object detection. I found out about it through <a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">a TED talk given by one of its creators Joseph Redmon</a> and wondered if I could use it in the VCS project. Fortunately, OpenCV provides a deep neural network module with which can be used to import and run YOLO models easily. I downloaded a model trained on the <a href="http://cocodataset.org">COCO dataset</a> from the YOLO website and tried it out. The results were very good so I stuck with YOLO for detection. I&rsquo;ve since added support for other deep learning models/libraries. It&rsquo;s actually quite easy to modify the code to support a model of your choice.</p>
 <p><img src="/images/vcs/yolo.png" alt=""></p>
-<!-- raw HTML omitted -->
+<p align="center">Source: pjreddie.com</p>
 <p>If you want to learn more about YOLO, you should definitely take a look at these papers: <a href="https://pjreddie.com/media/files/papers/yolo_1.pdf">You Only Look Once:
 Unified, Real-Time Object Detection</a> and <a href="https://pjreddie.com/media/files/papers/YOLOv3.pdf">YOLOv3: An Incremental Improvement</a>.</p>
 <h2 id="tracking">Tracking</h2>

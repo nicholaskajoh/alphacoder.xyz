@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 27 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/scalability/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/scalability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A scalable data structure for your configuration database</title>
+      <link>https://alphacoder.xyz/config-db-data-structure/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/config-db-data-structure/</guid>
+      <description>Most software of reasonable complexity are configurable—that is, they allow you change their functionality through the use of flags/settings. While you could store configuration information in code or text files, for web apps, it’s more common to store them in databases. This allows you make changes to the configs at runtime i.e without having to restart or redeploy your app.
+In this article, I’ll be exploring the ways I thought about improving the config storage mechanism in a large enterprise system I worked on, which made use of thousands of configs.</description>
+    </item>
+    
     <item>
       <title>Web app scaling techniques</title>
       <link>https://alphacoder.xyz/web-app-scaling-techniques/</link>

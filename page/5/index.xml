@@ -7,9 +7,99 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 5</title>
+        <link>https://alphacoder.xyz/facebook-clone-5/</link>
+        <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-5/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-5/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 5 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Every Facebook user has a profile. Let&amp;rsquo;s create profile pages for FaceClone users!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc5/faceclone-profile.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;FaceClone profile page&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;but-before-iforget&#34;&gt;But before I forget&amp;hellip;&lt;/h1&gt;
+&lt;p&gt;Recall that we used id of &lt;em&gt;zero&lt;/em&gt; for the user_id fields in our posts table. That was because we didn&amp;rsquo;t have any users. Now that we do, let&amp;rsquo;s change things a bit.
+The query in create-post.php becomes&amp;hellip;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+$sql = &amp;quot;INSERT INTO posts (content, user_id) VALUES (?, ?)&amp;quot;;
+...
+$statement-&amp;gt;bind_param(&#39;si&#39;, $_POST[&#39;content&#39;], $_SESSION[&#39;user_id&#39;]);
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We simply change the user_id value to the user_id session which is created when a user logs in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Since registration now works in our application, you may delete the dummy user accounts and use the registration form for account/user creation.&lt;/p&gt;
+&lt;h1 id=&#34;so&#34;&gt;So&amp;hellip;&lt;/h1&gt;
+&lt;p&gt;Isn&amp;rsquo;t there just one profile page (i.e profile.php)? How do we create profile pages for &amp;ldquo;all&amp;rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user&amp;rsquo;s username as a parameter in the profile url and use it (the username) to pull the user&amp;rsquo;s data from the DB. E.g example.com/profile.php?username=nicholas.&lt;/p&gt;
+&lt;p&gt;Since the username is sent through a GET request, we can retrieve it with the &lt;code&gt;$_GET&lt;/code&gt; superglobal using &lt;code&gt;$_GET[&#39;username&#39;]&lt;/code&gt;. Let&amp;rsquo;s write some code:&lt;/p&gt;
+&lt;p&gt;Atop profile.php…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+$sql = &amp;quot;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&amp;quot;;
+$statement = $conn-&amp;gt;prepare($sql);
+$statement-&amp;gt;bind_param(&#39;s&#39;, $_GET[&#39;username&#39;]);
+$statement-&amp;gt;execute();
+$statement-&amp;gt;store_result();
+$statement-&amp;gt;bind_result($id, $username, $status, $profile_image_url, $location);
+$statement-&amp;gt;fetch();
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First, we get the username, then run a query to fetch a user using their username and that&amp;rsquo;s just about it. &lt;code&gt;$id&lt;/code&gt;, &lt;code&gt;$username&lt;/code&gt;, &lt;code&gt;$status&lt;/code&gt;, &lt;code&gt;$profile_image_url&lt;/code&gt; and &lt;code&gt;$location&lt;/code&gt; variables can now be echoed out where we need them in the page.&lt;/p&gt;
+&lt;h1 id=&#34;user-posts&#34;&gt;User posts&lt;/h1&gt;
+&lt;p&gt;Then again, we want to show only the posts belonging to the user whose profile is being displayed. Taking a cue from the home page which displays the posts of all users across FaceClone (part 3), we can create a new sql query:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$user_posts_sql = &amp;quot;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. &lt;code&gt;$id&lt;/code&gt; is the user&amp;rsquo;s id got from the query to fetch a user&amp;rsquo;s record.&lt;/p&gt;
+&lt;h1 id=&#34;edit-profile&#34;&gt;Edit profile&lt;/h1&gt;
+&lt;p&gt;Lastly, we need to allow users to make changes to their profiles. There&amp;rsquo;s a little form in profile.php we can use to update status and location. Let&amp;rsquo;s make it work!
+The form…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/edit-profile.php&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;status&amp;quot; placeholder=&amp;quot;Status&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;location&amp;quot; placeholder=&amp;quot;Location&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Save&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now create a file in the php folder called edit-profile.php with the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;UPDATE users SET status = ?, location = ? WHERE id = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;ssi&#39;, $_POST[&#39;status&#39;], $_POST[&#39;location&#39;], $_SESSION[&#39;user_id&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/profile.php?username={$_SESSION[&#39;user_username&#39;]}&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You&amp;rsquo;re probably used to the above snippet by now. We update the status and location of a user using the &lt;code&gt;UPDATE&lt;/code&gt; sql statement then redirect back to profile.php. Sweet!&lt;/p&gt;
+&lt;p&gt;*drops mic*&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-5 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-5/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     

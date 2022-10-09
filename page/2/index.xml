@@ -7,9 +7,53 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
+        <link>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
+        <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ -&lt;p&gt;Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.&lt;/p&gt;
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/install/&#34;&gt;Install Docker for your OS&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Pull the Docker image for Elasticsearch: &lt;code&gt;docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0&lt;/code&gt; (you can change &lt;strong&gt;7.3.0&lt;/strong&gt; to &lt;a href=&#34;https://www.docker.elastic.co/&#34;&gt;the latest or your preferred version&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Pull the Docker image for Kibana: &lt;code&gt;docker pull docker.elastic.co/kibana/kibana:7.3.0&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;run&#34;&gt;Run&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker container stop es_dev &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker container rm es_dev
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --name es_dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9200:9200 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9300:9300 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --link es_dev:elasticsearch &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.3.0 &amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first command stops the container named &lt;code&gt;es_dev&lt;/code&gt; (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named &lt;code&gt;es_dev&lt;/code&gt;, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (&lt;code&gt;es_dev&lt;/code&gt;) where the Elasticsearch cluster is running. The last two commands are run concurrently.&lt;/p&gt;
+&lt;p&gt;You can add these three commands to a shell file (e.g &lt;em&gt;elastic.sh&lt;/em&gt;) in order to run a single command to start Elasticsearch and Kibana i.e &lt;code&gt;chmod +x elastic.sh &amp;amp;&amp;amp; ./elastic.sh&lt;/code&gt; the first time and &lt;code&gt;./elastic.sh&lt;/code&gt; subsequently.&lt;/p&gt;
+&lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch: &lt;code&gt;curl http://127.0.0.1:9200/_cat/health&lt;/code&gt; (you should have a status of &lt;strong&gt;green&lt;/strong&gt; if everything went well).&lt;/li&gt;
+&lt;li&gt;Kibana: visit &lt;strong&gt;http://localhost:5601&lt;/strong&gt; (the Kibana dashboard should load up).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;configure&#34;&gt;Configure&lt;/h1&gt;
+&lt;p&gt;Elasticsearch and Kibana can be configured using YAML. You can create config files and point to them when starting the containers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch: add &lt;code&gt;-v path/to/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
+&lt;li&gt;Kibana: add &lt;code&gt;-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
+&lt;/ul&gt;
+- https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -64,7 +108,7 @@ objects in images and videos. I experimented with several object detection techn
 &lt;p&gt;The images below show what background substraction looks like.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/frame.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/bgsub.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p align=&#34;center&#34;&gt;Source: OpenCV Docs&lt;/p&gt;
 &lt;p&gt;While background substraction was easy to implement and super fast, I was unable to arrive at a suitable threshold for detecting vehicle blobs. Vehicles are not the only objects that move on/across the road. There are pedestrians, animals, people with carts or wheelbarrows, skateboarders etc. Also, objects change in size and shape as they move across the view due to perspective, and vehicles may be occluded by other vehicles in the scene and thus interpreted as one object.&lt;/p&gt;
 &lt;p&gt;I observed a lot of noise as well mainly due to the waving of trees and commercial activities going on in the background. While noise reduction techniques such as Gaussian Blur and selecting a Region of Interest (ROI) for detection helped, the overall performance of the detector was still underwhelming. After spending quite a while trying to tweak things in order to increase accuracy, I decided I needed another detector.&lt;/p&gt;
 &lt;h3 id=&#34;haar-cascades&#34;&gt;Haar Cascades&lt;/h3&gt;
@@ -74,7 +118,7 @@ objects in images and videos. I experimented with several object detection techn
 &lt;h3 id=&#34;yolo&#34;&gt;YOLO&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://pjreddie.com/darknet/yolo/&#34;&gt;YOLO&lt;/a&gt; (You Only Look Once) is a popular deep learning model/architecture for object detection. I found out about it through &lt;a href=&#34;https://www.youtube.com/watch?v=Cgxsv1riJhI&#34;&gt;a TED talk given by one of its creators Joseph Redmon&lt;/a&gt; and wondered if I could use it in the VCS project. Fortunately, OpenCV provides a deep neural network module with which can be used to import and run YOLO models easily. I downloaded a model trained on the &lt;a href=&#34;http://cocodataset.org&#34;&gt;COCO dataset&lt;/a&gt; from the YOLO website and tried it out. The results were very good so I stuck with YOLO for detection. I&amp;rsquo;ve since added support for other deep learning models/libraries. It&amp;rsquo;s actually quite easy to modify the code to support a model of your choice.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/yolo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p align=&#34;center&#34;&gt;Source: pjreddie.com&lt;/p&gt;
 &lt;p&gt;If you want to learn more about YOLO, you should definitely take a look at these papers: &lt;a href=&#34;https://pjreddie.com/media/files/papers/yolo_1.pdf&#34;&gt;You Only Look Once:
 Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjreddie.com/media/files/papers/YOLOv3.pdf&#34;&gt;YOLOv3: An Incremental Improvement&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;tracking&#34;&gt;Tracking&lt;/h2&gt;
@@ -755,30 +799,6 @@ REDIS_URL=redis://:password@127.0.0.1:6379
 &lt;h2 id=&#34;what-should-i-be-expecting-from-alpha-coder&#34;&gt;What should I be expecting from Alpha Coder?&lt;/h2&gt;
 &lt;p&gt;In 2019, I&amp;rsquo;m going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I&amp;rsquo;ll try my best. I&amp;rsquo;ll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I&amp;rsquo;ll also be doing long form posts. If you want me to write about something, please let me know on Twitter &lt;a href=&#34;https://twitter.com/nicholaskajoh&#34;&gt;@nicholaskajoh&lt;/a&gt; (DMs are open).&lt;/p&gt;
 - https://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Check domain availability from your terminal</title>
-        <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
-        <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/check-domain-availability-from-your-terminal/ -&lt;p&gt;I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been &lt;em&gt;legitly&lt;/em&gt; purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.&lt;/p&gt;
-&lt;p&gt;You can boycott registrars by doing a WHOIS lookup on the desired domain instead. If a match is found, info about the domain is displayed but if no match is found, you know the site is available. There are a couple of websites that provide this functionality, most notably &lt;a href=&#34;https://www.whois.com/&#34;&gt;https://www.whois.com&lt;/a&gt;. Alternatively, you can use the WHOIS CLI tool.&lt;/p&gt;
-&lt;p&gt;To install, run…&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo apt install whois
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;If you’re a Windows user, you can download the WHOIS CLI here:&lt;/em&gt; &lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&#34;&gt;&lt;em&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;To check for availability of a site, run &lt;code&gt;whois sitename.tld&lt;/code&gt;. E.g:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ whois example.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If it&amp;rsquo;s been registered, you’ll get a result like so…&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*_KfHQUBzwAQUiq0NaGFAeQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;If not, you’ll get something like this…&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*b2-XSsJ-M2Z_5lbPiv0qCw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-- https://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

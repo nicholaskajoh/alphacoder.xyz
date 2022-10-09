@@ -7,9 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Check domain availability from your terminal</title>
+        <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
+        <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/check-domain-availability-from-your-terminal/ -&lt;p&gt;I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been &lt;em&gt;legitly&lt;/em&gt; purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.&lt;/p&gt;
+&lt;p&gt;You can boycott registrars by doing a WHOIS lookup on the desired domain instead. If a match is found, info about the domain is displayed but if no match is found, you know the site is available. There are a couple of websites that provide this functionality, most notably &lt;a href=&#34;https://www.whois.com/&#34;&gt;https://www.whois.com&lt;/a&gt;. Alternatively, you can use the WHOIS CLI tool.&lt;/p&gt;
+&lt;p&gt;To install, run…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo apt install whois
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;If you’re a Windows user, you can download the WHOIS CLI here:&lt;/em&gt; &lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&#34;&gt;&lt;em&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To check for availability of a site, run &lt;code&gt;whois sitename.tld&lt;/code&gt;. E.g:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ whois example.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If it&amp;rsquo;s been registered, you’ll get a result like so…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*_KfHQUBzwAQUiq0NaGFAeQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If not, you’ll get something like this…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*b2-XSsJ-M2Z_5lbPiv0qCw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- https://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -624,112 +648,11 @@ for i in range(max_iter):
 &lt;h4 id=&#34;step-5&#34;&gt;Step 5&lt;/h4&gt;
 &lt;p&gt;Check if the change in any of the centroids is greater than 0.001%. If yes, then we’re not yet optimized.&lt;/p&gt;
 &lt;p&gt;Here’s the full code for your perusal. It includes some lines of matplotlib code to visualize the data.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;script src=&#34;https://gist.github.com/nicholaskajoh/a667e20925abfb5f8ad9bf748b5092fe.js&#34;&gt;&lt;/script&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Check out the ML Chops repo for a class-based implementation and an example with real world data: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
 - https://alphacoder.xyz/k-means/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Image upload with Django and Cloudinary</title>
-        <link>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
-        <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ -&lt;p&gt;Managing files/images can be a hassle. It can be a real pain to have to deal with uploads, storage, manipulation, administration and delivery of media content in every project you start/or are involved in.&lt;/p&gt;
-&lt;p&gt;Luckily, there are cloud platforms that take away the stress of all that, allowing you to ship faster and deliver your product(s) at scale. Cloudinary is one of such platforms. It tags itself as &lt;em&gt;the media management platform for web and mobile developers — an end-to-end solution for all your image and video needs&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Aside Cloudinary’s easy to use API, I was attracted by their very generous free plan. See for yourself at &lt;a href=&#34;https://cloudinary.com/pricing&#34;&gt;https://cloudinary.com/pricing&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Learn more about Cloudinary: &lt;a href=&#34;https://cloudinary.com/solutions&#34;&gt;https://cloudinary.com/solutions&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is a quick tutorial on how setup image upload with Django and Cloudinary. Let’s roll…&lt;/p&gt;
-&lt;h2 id=&#34;console&#34;&gt;Console&lt;/h2&gt;
-&lt;p&gt;Visit &lt;a href=&#34;https://cloudinary.com&#34;&gt;Cloudinary.com&lt;/a&gt; and create an account or login if you already have one. You’ll be provided a nice dashboard/console at &lt;a href=&#34;https://cloudinary.com/console&#34;&gt;https://cloudinary.com/console&lt;/a&gt;. There you’ll find your account details i.e cloud name, API key and secret.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*ZxPbpbatoeCyZzldXXoX2Q.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
-&lt;p&gt;Cloudinary has an open source &lt;a href=&#34;https://pypi.python.org/pypi/cloudinary&#34;&gt;integration library for Python/Django&lt;/a&gt;. Install it using pip.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ pip install cloudinary
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;settings&#34;&gt;Settings&lt;/h2&gt;
-&lt;p&gt;Go to your project’s &lt;em&gt;settings.py&lt;/em&gt; and make the following additions.&lt;/p&gt;
-&lt;p&gt;First import cloudinary.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cloudinary
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then add cloudinary to installed apps.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;INSTALLED_APPS &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cloudinary&amp;#39;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# other apps&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now add the configs from your console.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;config(
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cloud_name &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CLOUDINARY_CLOUD_NAME,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    api_key &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CLOUDINARY_API_KEY,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    api_secret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CLOUDINARY_API_SECRET
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Replace &lt;code&gt;CLOUDINARY_CLOUD_NAME&lt;/code&gt;, &lt;code&gt;CLOUDINARY_API_KEY&lt;/code&gt; and &lt;code&gt;CLOUDINARY_API_SECRET&lt;/code&gt; as appropriate (they should be in quotes e.g &lt;code&gt;cloud_name = &amp;quot;tchalla&amp;quot;&lt;/code&gt;).&lt;/p&gt;
-&lt;h2 id=&#34;models&#34;&gt;Models&lt;/h2&gt;
-&lt;p&gt;At any point and in any file in your Django project, you can easily make use of all the functions and classes the Cloudinary Python library provides. For instance, you can upload a file like so.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cloudinary.uploader
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;upload(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my_picture.jpg&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See &lt;a href=&#34;https://cloudinary.com/documentation/django_image_upload&#34;&gt;https://cloudinary.com/documentation/django_image_upload&lt;/a&gt; for more info on uploads.&lt;/p&gt;
-&lt;p&gt;However, you want to handle things the Django way as this would allow you utilize the rich APIs that Django ships with. By “the Django way”, I mean using models (in this case).&lt;/p&gt;
-&lt;p&gt;In Django, you can use ImageField or FileField in your model. Cloudinary provides CloudinaryField. Let’s create a Photo model using CloudinaryField in &lt;em&gt;models.py&lt;/em&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.db &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; models
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; cloudinary.models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; CloudinaryField
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Photo&lt;/span&gt;(models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Model):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    image &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CloudinaryField(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;image&amp;#39;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    caption &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CharField(max_length&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;, blank&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __str__(self):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;caption &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;caption &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;No caption&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Additionally, if you want to delete an image from Cloudinary when it’s model instance is deleted in your app (Django/Cloudinary doesn’t do this by default), you can add the following pre-delete signal after your model definition.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@receiver&lt;/span&gt;(pre_delete, sender&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Photo)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;photo_delete&lt;/span&gt;(sender, instance, &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;kwargs):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cloudinary&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;uploader&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;destroy(instance&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;image&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;public_id)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then add the following imports at the top of the file.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.db.models.signals &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pre_delete
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cloudinary
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;forms&#34;&gt;Forms&lt;/h2&gt;
-&lt;p&gt;Using ModelForm to create a form from the Photo model, we have:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.forms &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; ModelForm
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; .models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Photo
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PhotoForm&lt;/span&gt;(ModelForm):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Meta&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        model &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Photo
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        fields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;image&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;caption&amp;#39;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;views&#34;&gt;Views&lt;/h2&gt;
-&lt;p&gt;For the view of PhotoForm form, we could have:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.shortcuts &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; render, redirect
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; .forms &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; PhotoForm
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; .models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Photo
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add_photo&lt;/span&gt;(request):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;method &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;POST&amp;#34;&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        form &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; PhotoForm(request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;POST, request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;FILES)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; form&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;is_valid():
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            photo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Photo()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            photo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;caption &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;POST&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;caption&amp;#39;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            photo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;save()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; redirect(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/photo/&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; photo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;id)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        form &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; PhotoForm()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; render(request, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add-photo.html&amp;#39;&lt;/span&gt;, {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;form&amp;#39;&lt;/span&gt;: form})
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;template&#34;&gt;Template&lt;/h2&gt;
-&lt;p&gt;In the upload form template, you can simple do &lt;code&gt;{{ form }}&lt;/code&gt; or manually design the HTML form to your taste.&lt;/p&gt;
-&lt;h2 id=&#34;display&#34;&gt;Display&lt;/h2&gt;
-&lt;p&gt;Displaying images from Cloudinary in your app is super simple and straight forward. If we fetch a Photo model instance in a view using &lt;code&gt;photo = Photo.objects.get(id=1)&lt;/code&gt;, we can retrieve the image with &lt;code&gt;photo.image&lt;/code&gt; which returns a CloudinaryResource object. This object has properties such as public_id, url, size (bytes), format etc.&lt;/p&gt;
-&lt;p&gt;One way to display the image in a template after passing the photo object from the view is to use the url property.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ photo.image.url }}&amp;#34;&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is great and all but it won’t afford us the opportunity to use the many image transformation options Cloudinary provides. Fortunately, the Cloudinary library provides a template tag we can load up and use.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{% load cloudinary %}{% cloudinary photo.image.public_id className=&amp;#34;my-class&amp;#34; height=200 width=100 %}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This template tag allows you to not only specify any Cloudinary transformation parameter, but also to specify regular HTML image tag attributes (like &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;alt&lt;/code&gt;). For instance, we specified the class (className) &lt;code&gt;my-class&lt;/code&gt; in the snippet above. This actually generates an image tag. E.g&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my-class&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://res.cloudinary.com/demo/image/upload/h_200,w_100/sample.jpg&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;height&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;200&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;width&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100&amp;#34;&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Read about all the transformation parameters available here: &lt;a href=&#34;https://cloudinary.com/documentation/image_transformations&#34;&gt;https://cloudinary.com/documentation/image_transformations&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;That’s it!&lt;/p&gt;
-- https://alphacoder.xyz/image-upload-with-django-and-cloudinary/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

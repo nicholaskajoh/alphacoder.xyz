@@ -2,20 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://alphacoder.xyz/rest-api-versioning/</loc>
-    <lastmod>2022-08-28T00:00:00+00:00</lastmod>
+    <loc>https://alphacoder.xyz/config-db-data-structure/</loc>
+    <lastmod>2022-10-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://alphacoder.xyz/</loc>
-    <lastmod>2022-08-28T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://alphacoder.xyz/blog/</loc>
-    <lastmod>2022-08-28T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://alphacoder.xyz/tag/scalability/</loc>
-    <lastmod>2022-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://alphacoder.xyz/tags/</loc>
-    <lastmod>2022-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://alphacoder.xyz/rest-api-versioning/</loc>
+    <lastmod>2022-08-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://alphacoder.xyz/web-app-scaling-techniques/</loc>
     <lastmod>2022-08-27T00:00:00+00:00</lastmod>

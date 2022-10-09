@@ -7,9 +7,299 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 28 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>A scalable data structure for your configuration database</title>
+        <link>https://alphacoder.xyz/config-db-data-structure/</link>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/config-db-data-structure/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/config-db-data-structure/ -&lt;p&gt;Most software of reasonable complexity are configurable—that is, they allow you change their functionality through the use of flags/settings. While you could store configuration information in code or text files, for web apps, it’s more common to store them in databases. This allows you make changes to the configs at runtime i.e without having to restart or redeploy your app.&lt;/p&gt;
+&lt;p&gt;In this article, I’ll be exploring the ways I thought about improving the config storage mechanism in a large enterprise system I worked on, which made use of thousands of configs. The issues I identified were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Configs scattered across multiple tables/databases and in different formats, making it difficult to provide a centralized view of the system’s configuration state:&lt;/strong&gt; Want to know if feature X is enabled? Easy-peasy! You only need to check that these 5 rows in these 3 different tables have these specific values. And there’s a different mechanism for determining feature Y’s state. This was made worse by the fact that not everyone had access to all the databases where configurations were stored. The solution here is creating a standard format for storing your configs and storing them in a single location to make access, query and analysis easier.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of schemas for configs, leading to type errors:&lt;/strong&gt; One time, someone updated a config with invalid data which brought a business-critical part of the system to its knees. I also had my fair share of breaking production because of silly mistakes like typos. Having a schema to validate changes goes a long way in preventing human error like this.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of documentation on what each config does:&lt;/strong&gt; You had to read and understand the code to know how the configs worked. This takes time and is not feasible for non-coders (such as a non-technical product owner), who should be able to change the configs without the aid of a developer. While detailed documentation on how to use certain configs would be invaluable to your team, a simple description would do a lot of good.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of audit logging:&lt;/strong&gt; Not all config modifications were logged so it was sometimes hard to figure out issues resulting from problematic configurations by correlating the changes with incidents. An audit logging system with view of what changed, how it changed and why goes a long way in helping an incident response team troubleshoot and resolve production issues. They could for example, query for all the changes that were made leading to an incident, and pull in the config owners/changers to help out.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of access for developers/product owners:&lt;/strong&gt; As a developer, I should be able to make changes to a config I created—or at lease someone on my team should. Having to open a change request ticket kind of defeats the purpose because it might even be faster to make the change in code and get it deployed. Also, a decision maker (such as a product owner or operations staff) should not have to pull in a developer when they want to change something. If they are allowed to make a decision about whether or not something should be changed, they should also be able to click a button or invoke an API endpoint to do so. Because only admin users could make changes to the config databases, it was unnecessarily stressful and time-consuming to get things done.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of automation for config state changes:&lt;/strong&gt; While we had circuit breakers for temporarily switching off or diverting traffic from failing services, we lacked the ability to temporarily toggle the switches ourselves. It was very common for someone to forget to switch something back on that they switched off a while ago. For instance, an on-call engineer would forget to switch a service that experienced a down time back on when the issue had been resolved. Having a functionality that allows the engineer to say “turn off service X for Y hours”, for example, could solve this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;functional-configs&#34;&gt;Functional configs&lt;/h1&gt;
+&lt;p&gt;The big takeaway from all these issues is that one should centralize their system’s configurations and organize them by function rather than product, service or feature. Of course, there are downsides to centralization such as introducing a bottleneck and a single point of failure, but for a system such as this, it’s a good trade-off in my opinion. Instead of having a config row, table or database for each product, service or feature, you could break down your configs by the following functions:&lt;/p&gt;
+&lt;h2 id=&#34;feature-flags&#34;&gt;Feature flags&lt;/h2&gt;
+&lt;p&gt;A feature flag is a config used for releasing new changes. There’s always some risk involved in deploying new code. You can manage that risk by putting new changes behind a feature. If something goes wrong, you can turn off your feature to mitigate the incident and then look into it later, instead of scrambling to deploy a fix or revert the change. Also, instead of releasing a feature to all your users, you could limit it to a small subset as a way to pilot the feature, and then gradually increase the traffic as you gain confidence that things are working as expected.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s important to factor in granularity when designing feature flags i.e&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Binary flags:&lt;/strong&gt; feature is enabled if flag is true and disabled when false.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Key-based flags:&lt;/strong&gt; feature is only enabled for entities (such a users or merchants) whose keys (like user ID and merchant name) have been specified.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Percentage-based flags:&lt;/strong&gt; feature is only enabled for a specified percentage of invocations e.g 10% of traffic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You could create a &lt;code&gt;features&lt;/code&gt; table for your feature flags like so:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;feature_name&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:350px&#34;&gt;description&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;enabled&lt;/th&gt;
+&lt;th&gt;percentage&lt;/th&gt;
+&lt;th&gt;enabled_for_entities&lt;/th&gt;
+&lt;th&gt;entity_key&lt;/th&gt;
+&lt;th&gt;cache_for_secs&lt;/th&gt;
+&lt;th&gt;expires_at&lt;/th&gt;
+&lt;th&gt;created_at&lt;/th&gt;
+&lt;th&gt;updated_at&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:250px&#34;&gt;public (available to clients?)&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;deleted_at&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;GOD_CLASS_REFACTOR_SHADOW_MODE&lt;/td&gt;
+&lt;td&gt;The class that does everything and single-handedly runs this business has been broken down into 100+ smaller classes for readability and extensibility. We are running the new changes in shadow mode to ensure the outputs are correct. Enabling this flag will result in increased latency because we&amp;rsquo;ll be running both old and new code.&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;2023-01-01 17:06:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;SHOW_NEW_PRODUCT_PAGE&lt;/td&gt;
+&lt;td&gt;We’ve redesigned the product page using our fancy new design system. We want to pilot it with a few users to get feedback before rolling it out to everyone.&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;td&gt;[1, 2, 69, 419, 420]&lt;/td&gt;
+&lt;td&gt;users.id&lt;/td&gt;
+&lt;td&gt;180&lt;/td&gt;
+&lt;td&gt;2023-01-01 17:06:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;kill-switches&#34;&gt;Kill switches&lt;/h2&gt;
+&lt;p&gt;A kill switch is just like a feature flag but it is permanent and meant for turning off components of your system when things go wrong or when you&amp;rsquo;re doing some maintenance. Say you’re an e-commerce store on Black Friday experiencing much more traffic than anticipated. You can use a kill switch to turn off non-business-critical parts of your system (like product recommendations) so that the more important components (like checkout and payments) can breathe.&lt;/p&gt;
+&lt;p&gt;You could create a &lt;code&gt;switchboard&lt;/code&gt; table for your kill switches:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;switch_name&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:350px&#34;&gt;description&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;enabled&lt;/th&gt;
+&lt;th&gt;percentage&lt;/th&gt;
+&lt;th&gt;enabled_for_entities&lt;/th&gt;
+&lt;th&gt;entity_key&lt;/th&gt;
+&lt;th&gt;cache_for_secs&lt;/th&gt;
+&lt;th&gt;created_at&lt;/th&gt;
+&lt;th&gt;updated_at&lt;/th&gt;
+&lt;th&gt;deleted_at&lt;/th&gt;
+&lt;th&gt;public&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;PRODUCT_RECOMMENDATION_SERVICE&lt;/td&gt;
+&lt;td&gt;Recommendation system that suggests new products to users based on their purchase and browsing history.&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;69&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;td&gt;420&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;application-configs&#34;&gt;Application configs&lt;/h2&gt;
+&lt;p&gt;These are configurations for variables in your application that you might want or need to change at runtime e.g the default rate limit for an endpoint or the API URL for your payment service provider.&lt;/p&gt;
+&lt;p&gt;Say you need to send your users notifications via SMS, so you decide to build an SMS notification service for your product. Perhaps, there’s no one SMS provider that can send SMSes in all the countries you operate. More so, local providers offer better delivery rates and pricing. And you want to have backups should a provider experience a downtime. You have decided that the best solution would be to integrate multiple SMS providers. You could structure the configs for this application/service like this:&lt;/p&gt;
+&lt;p&gt;Table: &lt;code&gt;app_config_types&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:200px&#34;&gt;description&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;validator (JSON schema)&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:300px&#34;&gt;cardinality (max number of configs of a given type; -1 =&amp;gt; infinite)&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;cache_for_secs&lt;/th&gt;
+&lt;th&gt;created_at&lt;/th&gt;
+&lt;th&gt;updated_at&lt;/th&gt;
+&lt;th&gt;deleted_at&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SMS_PROVIDER&lt;/td&gt;
+&lt;td&gt;An SMS service provider.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/sms-provider.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;SMS Provider&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;An SMS provider.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;object&amp;quot;,&amp;quot;properties&amp;quot;:{&amp;quot;name&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;The name of the SMS provider.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;},&amp;quot;priority&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;Priority of the SMS provider. We will prefer providers with higher priority. A lower value means a higher priority.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;integer&amp;quot;,&amp;quot;minimum&amp;quot;:1},&amp;quot;available_countries&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;Countries supported by SMS provider.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;array&amp;quot;,&amp;quot;items&amp;quot;:{&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;,&amp;quot;minLength&amp;quot;:2,&amp;quot;maxLength&amp;quot;:2},&amp;quot;minItems&amp;quot;:1,&amp;quot;uniqueItems&amp;quot;:true},&amp;quot;api_url&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;SMS provider API URL.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;},&amp;quot;api_secret_alias&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;SMS provider API secret alias.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;}},&amp;quot;required&amp;quot;:[&amp;quot;name&amp;quot;,&amp;quot;priority&amp;quot;,&amp;quot;api_url&amp;quot;,&amp;quot;api_secret_alias&amp;quot;]}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;-1&lt;/td&gt;
+&lt;td&gt;120&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Table: &lt;code&gt;app_configs&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;config_name&lt;/th&gt;
+&lt;th&gt;type_id&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;value&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;created_at&lt;/th&gt;
+&lt;th&gt;updated_at&lt;/th&gt;
+&lt;th&gt;deleted_at&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;sms_bros&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;name&amp;quot;:&amp;quot;SMS Bros&amp;quot;,&amp;quot;priority&amp;quot;:1,&amp;quot;available_countries&amp;quot;:[&amp;quot;NL&amp;quot;,&amp;quot;NG&amp;quot;,&amp;quot;US&amp;quot;],&amp;quot;api_url&amp;quot;:&amp;quot;https://sms.bros.io/send&amp;quot;,&amp;quot;api_secret_alias&amp;quot;:&amp;quot;SMS_BROS_SMS_API_SECRET&amp;quot;}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;fatsms&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;name&amp;quot;:&amp;quot;Fat SMS&amp;quot;,&amp;quot;priority&amp;quot;:3,&amp;quot;available_countries&amp;quot;:[&amp;quot;NG&amp;quot;,&amp;quot;GH&amp;quot;],&amp;quot;api_url&amp;quot;:&amp;quot;https://fatsms.co/api/smses&amp;quot;,&amp;quot;api_secret_alias&amp;quot;:&amp;quot;FAT_SMS_API_SECRET&amp;quot;}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;account-configs&#34;&gt;Account configs&lt;/h2&gt;
+&lt;p&gt;These are just like app configs, but for accounts. Say your product has multiple pricing plans, each with its set of features. You could use account config tables to store data on what features each user has access to based on the plan they paid for.&lt;/p&gt;
+&lt;p&gt;Table: &lt;code&gt;account_config_props&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;prop_name&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:200px&#34;&gt;description&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;validator&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;default_value&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:300px&#34;&gt;account_configurable (can the account holder modify this config?)&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;cache_for_secs&lt;/th&gt;
+&lt;th&gt;created_at&lt;/th&gt;
+&lt;th&gt;updated_at&lt;/th&gt;
+&lt;th&gt;deleted_at&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;FEATURE_UNLIMITED_UPLOADS&lt;/td&gt;
+&lt;td&gt;Feature allowing users upload as many files as they want.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;300&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;FEATURE_UNLIMITED_COLLABORATORS&lt;/td&gt;
+&lt;td&gt;Feature allowing users permit as many other users as they want to view and edit their files.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;300&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;FEATURE_PLUGINS&lt;/td&gt;
+&lt;td&gt;Feature allowing users install plugins to customize their setup.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;300&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Table: &lt;code&gt;account_configs&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;prop_id&lt;/th&gt;
+&lt;th&gt;account_type&lt;/th&gt;
+&lt;th&gt;account_id&lt;/th&gt;
+&lt;th&gt;value&lt;/th&gt;
+&lt;th&gt;created_at&lt;/th&gt;
+&lt;th&gt;updated_at&lt;/th&gt;
+&lt;th&gt;deleted_at&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;69&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
+&lt;td&gt;69&lt;/td&gt;
+&lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;config-system-features&#34;&gt;Config system features&lt;/h1&gt;
+&lt;p&gt;Creating a scalable data structure for your configuration system is just one side of the coin. You also need to provide a feature set that makes the system operationally efficient.&lt;/p&gt;
+&lt;h2 id=&#34;access-control&#34;&gt;Access control&lt;/h2&gt;
+&lt;p&gt;Like I mentioned earlier, the people deciding what state your system should be in should also be able to make the changes necessary to achieve the desired state. Of course, at the same time, you need to have proper controls in place. Your config database is the control panel for your app, so you don’t want people who have no business interacting with it be able to gain access to it.&lt;/p&gt;
+&lt;h2 id=&#34;audit-logging&#34;&gt;Audit logging&lt;/h2&gt;
+&lt;p&gt;Since potentially lots of people would be making lots of changes to your config database, you want proper audit logging. The logs would be useful during incidents as described earlier, but also for security and documentation.&lt;/p&gt;
+&lt;h2 id=&#34;change-queue&#34;&gt;Change queue&lt;/h2&gt;
+&lt;p&gt;A change queue is basically a way to queue changes to the config database. Its purpose is automation. For example, if you wanted to turn off a service temporarily or release a new feature at a specific time, you could push that to the change queue and a job that consumes the queue would execute it so you don’t have do it manually.&lt;/p&gt;
+&lt;h2 id=&#34;tagging&#34;&gt;Tagging&lt;/h2&gt;
+&lt;p&gt;Another important feature is tagging. Since configs would be organized by function, you need a way to group your configs by product, service, feature or any other category you fancy. This is purely for the benefit of the people interacting with the configuration database. You could create a tag for your SMS notification system, for example, which would let one pull up all the configs related to this service.&lt;/p&gt;
+- https://alphacoder.xyz/config-db-data-structure/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
     
     
     
@@ -334,50 +624,6 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &amp;#39;/default/ {print $3}&amp;#39;)
 &lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
-        <link>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
-        <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ -&lt;p&gt;Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.&lt;/p&gt;
-&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/install/&#34;&gt;Install Docker for your OS&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Pull the Docker image for Elasticsearch: &lt;code&gt;docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0&lt;/code&gt; (you can change &lt;strong&gt;7.3.0&lt;/strong&gt; to &lt;a href=&#34;https://www.docker.elastic.co/&#34;&gt;the latest or your preferred version&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;Pull the Docker image for Kibana: &lt;code&gt;docker pull docker.elastic.co/kibana/kibana:7.3.0&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;run&#34;&gt;Run&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker container stop es_dev &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker container rm es_dev
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --name es_dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9200:9200 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9300:9300 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --link es_dev:elasticsearch &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.3.0 &amp;amp;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first command stops the container named &lt;code&gt;es_dev&lt;/code&gt; (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named &lt;code&gt;es_dev&lt;/code&gt;, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (&lt;code&gt;es_dev&lt;/code&gt;) where the Elasticsearch cluster is running. The last two commands are run concurrently.&lt;/p&gt;
-&lt;p&gt;You can add these three commands to a shell file (e.g &lt;em&gt;elastic.sh&lt;/em&gt;) in order to run a single command to start Elasticsearch and Kibana i.e &lt;code&gt;chmod +x elastic.sh &amp;amp;&amp;amp; ./elastic.sh&lt;/code&gt; the first time and &lt;code&gt;./elastic.sh&lt;/code&gt; subsequently.&lt;/p&gt;
-&lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Elasticsearch: &lt;code&gt;curl http://127.0.0.1:9200/_cat/health&lt;/code&gt; (you should have a status of &lt;strong&gt;green&lt;/strong&gt; if everything went well).&lt;/li&gt;
-&lt;li&gt;Kibana: visit &lt;strong&gt;http://localhost:5601&lt;/strong&gt; (the Kibana dashboard should load up).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;configure&#34;&gt;Configure&lt;/h1&gt;
-&lt;p&gt;Elasticsearch and Kibana can be configured using YAML. You can create config files and point to them when starting the containers.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Elasticsearch: add &lt;code&gt;-v path/to/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
-&lt;li&gt;Kibana: add &lt;code&gt;-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
-&lt;/ul&gt;
-- https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
