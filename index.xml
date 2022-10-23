@@ -7,7 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -131,7 +130,7 @@
 &lt;h2 id=&#34;application-configs&#34;&gt;Application configs&lt;/h2&gt;
 &lt;p&gt;These are configurations for variables in your application that you might want or need to change at runtime e.g the default rate limit for an endpoint or the API URL for your payment service provider.&lt;/p&gt;
 &lt;p&gt;Say you need to send your users notifications via SMS, so you decide to build an SMS notification service for your product. Perhaps, there’s no one SMS provider that can send SMSes in all the countries you operate. More so, local providers offer better delivery rates and pricing. And you want to have backups should a provider experience a downtime. You have decided that the best solution would be to integrate multiple SMS providers. You could structure the configs for this application/service like this:&lt;/p&gt;
-&lt;p&gt;Table: &lt;code&gt;app_config_types&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Table: &lt;code&gt;data_types&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -139,8 +138,9 @@
 &lt;th&gt;name&lt;/th&gt;
 &lt;th&gt;&lt;div style=&#34;width:200px&#34;&gt;description&lt;/div&gt;&lt;/th&gt;
 &lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;validator (JSON schema)&lt;/div&gt;&lt;/th&gt;
-&lt;th&gt;&lt;div style=&#34;width:300px&#34;&gt;cardinality (max number of configs of a given type; -1 =&amp;gt; infinite)&lt;/div&gt;&lt;/th&gt;
-&lt;th&gt;cache_for_secs&lt;/th&gt;
+&lt;th&gt;default_value&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:350px&#34;&gt;cardinality (max number of configs of a given type per table/account; -1 =&amp;gt; infinite)&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:300px&#34;&gt;account_configurable (can an account holder modify this config?)&lt;/div&gt;&lt;/th&gt;
 &lt;th&gt;created_at&lt;/th&gt;
 &lt;th&gt;updated_at&lt;/th&gt;
 &lt;th&gt;deleted_at&lt;/th&gt;
@@ -152,8 +152,9 @@
 &lt;td&gt;SMS_PROVIDER&lt;/td&gt;
 &lt;td&gt;An SMS service provider.&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/sms-provider.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;SMS Provider&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;An SMS provider.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;object&amp;quot;,&amp;quot;properties&amp;quot;:{&amp;quot;name&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;The name of the SMS provider.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;},&amp;quot;priority&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;Priority of the SMS provider. We will prefer providers with higher priority. A lower value means a higher priority.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;integer&amp;quot;,&amp;quot;minimum&amp;quot;:1},&amp;quot;available_countries&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;Countries supported by SMS provider.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;array&amp;quot;,&amp;quot;items&amp;quot;:{&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;,&amp;quot;minLength&amp;quot;:2,&amp;quot;maxLength&amp;quot;:2},&amp;quot;minItems&amp;quot;:1,&amp;quot;uniqueItems&amp;quot;:true},&amp;quot;api_url&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;SMS provider API URL.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;},&amp;quot;api_secret_alias&amp;quot;:{&amp;quot;description&amp;quot;:&amp;quot;SMS provider API secret alias.&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;string&amp;quot;}},&amp;quot;required&amp;quot;:[&amp;quot;name&amp;quot;,&amp;quot;priority&amp;quot;,&amp;quot;api_url&amp;quot;,&amp;quot;api_secret_alias&amp;quot;]}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
 &lt;td&gt;-1&lt;/td&gt;
-&lt;td&gt;120&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
 &lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
 &lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
 &lt;td&gt;NULL&lt;/td&gt;
@@ -165,8 +166,8 @@
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;id&lt;/th&gt;
-&lt;th&gt;config_name&lt;/th&gt;
-&lt;th&gt;type_id&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;data_type_id&lt;/th&gt;
 &lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;value&lt;/div&gt;&lt;/th&gt;
 &lt;th&gt;created_at&lt;/th&gt;
 &lt;th&gt;updated_at&lt;/th&gt;
@@ -196,17 +197,17 @@
 &lt;/table&gt;
 &lt;h2 id=&#34;account-configs&#34;&gt;Account configs&lt;/h2&gt;
 &lt;p&gt;These are just like app configs, but for accounts. Say your product has multiple pricing plans, each with its set of features. You could use account config tables to store data on what features each user has access to based on the plan they paid for.&lt;/p&gt;
-&lt;p&gt;Table: &lt;code&gt;account_config_props&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Table: &lt;code&gt;data_types&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;id&lt;/th&gt;
-&lt;th&gt;prop_name&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
 &lt;th&gt;&lt;div style=&#34;width:200px&#34;&gt;description&lt;/div&gt;&lt;/th&gt;
-&lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;validator&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:400px&#34;&gt;validator (JSON schema)&lt;/div&gt;&lt;/th&gt;
 &lt;th&gt;default_value&lt;/th&gt;
-&lt;th&gt;&lt;div style=&#34;width:300px&#34;&gt;account_configurable (can the account holder modify this config?)&lt;/div&gt;&lt;/th&gt;
-&lt;th&gt;cache_for_secs&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:350px&#34;&gt;cardinality (max number of configs of a given type per table/account; -1 =&amp;gt; infinite)&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div style=&#34;width:300px&#34;&gt;account_configurable (can an account holder modify this config?)&lt;/div&gt;&lt;/th&gt;
 &lt;th&gt;created_at&lt;/th&gt;
 &lt;th&gt;updated_at&lt;/th&gt;
 &lt;th&gt;deleted_at&lt;/th&gt;
@@ -214,37 +215,37 @@
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
 &lt;td&gt;FEATURE_UNLIMITED_UPLOADS&lt;/td&gt;
 &lt;td&gt;Feature allowing users upload as many files as they want.&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;true&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;300&lt;/td&gt;
-&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
-&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
-&lt;td&gt;NULL&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;FEATURE_UNLIMITED_COLLABORATORS&lt;/td&gt;
-&lt;td&gt;Feature allowing users permit as many other users as they want to view and edit their files.&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;300&lt;/td&gt;
 &lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
 &lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
 &lt;td&gt;NULL&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;FEATURE_UNLIMITED_COLLABORATORS&lt;/td&gt;
+&lt;td&gt;Feature allowing users permit as many other users as they want to view and edit their files.&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
+&lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
+&lt;td&gt;NULL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
 &lt;td&gt;FEATURE_PLUGINS&lt;/td&gt;
 &lt;td&gt;Feature allowing users install plugins to customize their setup.&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;{&amp;quot;$schema&amp;quot;:&amp;quot;https://json-schema.org/draft/2020-12/schema&amp;quot;,&amp;quot;$id&amp;quot;:&amp;quot;https://schemas.alphacoder.xyz/boolean.json&amp;quot;,&amp;quot;title&amp;quot;:&amp;quot;Boolean&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;boolean&amp;quot;}&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;300&lt;/td&gt;
 &lt;td&gt;2022-12-01 09:41:09&lt;/td&gt;
 &lt;td&gt;2022-12-01 09:42:09&lt;/td&gt;
 &lt;td&gt;NULL&lt;/td&gt;
@@ -256,7 +257,7 @@
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;id&lt;/th&gt;
-&lt;th&gt;prop_id&lt;/th&gt;
+&lt;th&gt;data_type_id&lt;/th&gt;
 &lt;th&gt;account_type&lt;/th&gt;
 &lt;th&gt;account_id&lt;/th&gt;
 &lt;th&gt;value&lt;/th&gt;
@@ -268,7 +269,7 @@
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
 &lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;69&lt;/td&gt;
 &lt;td&gt;true&lt;/td&gt;
@@ -278,7 +279,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
 &lt;td&gt;user&lt;/td&gt;
 &lt;td&gt;69&lt;/td&gt;
 &lt;td&gt;true&lt;/td&gt;

@@ -693,7 +693,7 @@
                 <div class="post-body" v-pre>
                 
                     <p>We’ve been talking <strong>classification</strong> for a while now — from <em>K Nearest Neighbors</em> to <em>Naive Bayes</em> to <em>Support Vector Machines</em>. In this post, we’ll be looking at <strong>clustering</strong> using an algorithm called <strong><em>K Means</em></strong>. Let’s dive in&hellip;</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*C2uxvEivKa4FQYimkl6OJA.jpeg" alt=""></p>
+<p><img src="/images/k-means/k-means-meme.jpeg" alt=""></p>
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
 <ul>
 <li><a href="/linear-regression">Linear Regression</a></li>
@@ -713,65 +713,61 @@
 </ol>
 <h3 id="code">Code</h3>
 <p>First things first, the data</p>
-<pre><code>import numpy as np
-
-data = np.array([  
-    [4, 3], [0, 0], [2, 4], [3, 4], [5, 4], [-2, 1], [-3, 0], [-3, -3], [8, 12], [11, 11], [9, 10]  
-])
-</code></pre>
-<p>Visually, the above data looks like this</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*qsdD6dP7zqBd-jQO2sg0pQ.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([  
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">11</span>], [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>]  
+</span></span><span style="display:flex;"><span>])
+</span></span></code></pre></div><p>Visually, the above data looks like this</p>
+<p><img src="/images/k-means/dataset-plot.png" alt=""></p>
 <p>From the graph you can easily see the data can be grouped into 3 clusters. Thus <code>K = 3</code>.</p>
-<pre><code>K = 3  
-tol = 0.001  
-max_iter = 25
-</code></pre>
-<p>Notice the variables <code>tol</code> and <code>max_ter</code>. <code>tol</code> stands for tolerance and represents a percentage (0.001%). As we said earlier, we know we’re optimized when there’s little or no change in the centroids. If the change is greater than 0.001%, we tolerate and keep iterating.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>K <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>  
+</span></span><span style="display:flex;"><span>tol <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>  
+</span></span><span style="display:flex;"><span>max_iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
+</span></span></code></pre></div><p>Notice the variables <code>tol</code> and <code>max_ter</code>. <code>tol</code> stands for tolerance and represents a percentage (0.001%). As we said earlier, we know we’re optimized when there’s little or no change in the centroids. If the change is greater than 0.001%, we tolerate and keep iterating.</p>
 <p>But we can’t keep iterating forever/for too long in the case where we can’t optimize further and the change remains greater than 0.001. So we set <code>max_iter</code>, the maximum number of iterations we’re willing to do.</p>
 <p>Next, let’s create the centroids. Their initial values would be the first K data points.</p>
-<pre><code>centroids = {}  
-for i in range(K):  
-    centroids[i] = data[i]
-</code></pre>
-<p>Now unto the meat of the algorithm which is the optimization</p>
-<pre><code>groups = {}  
-for i in range(max_iter):  
-    # step 1  
-    for j in range(K):  
-        groups[j] = []
-
-    # step 2  
-    for feature_set in data:  
-        # step 2.1  
-        distances = [np.linalg.norm(feature_set - centroids[centroid_key]) for centroid_key in centroids]
-
-        # step 2.2  
-        group = distances.index(min(distances))  
-        groups[group].append(feature_set)
-
-    # step 3  
-    old_centroids = dict(centroids)
-
-    # step 4  
-    for j in range(K):  
-        centroids[j] = np.average(groups[j], axis=0)
-
-    # step 5  
-    optimized = True  
-    for centroid_key in centroids:  
-        old_centroid = old_centroids[centroid_key]  
-        new_centroid = centroids[centroid_key]  
-        a = np.array(new_centroid - old_centroid)  
-        b = np.array(old_centroid)  
-        change = np.divide(a, b, out=np.zeros_like(a), where=b!=0)
-
-        if abs(np.sum(change * 100.0)) &gt; tol:  
-            optimized = False  
-            break  
-    if optimized:  
-        break
-</code></pre>
-<p>Let break things down step by step…</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>centroids <span style="color:#f92672">=</span> {}  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(K):  
+</span></span><span style="display:flex;"><span>    centroids[i] <span style="color:#f92672">=</span> data[i]
+</span></span></code></pre></div><p>Now unto the meat of the algorithm which is the optimization</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>groups <span style="color:#f92672">=</span> {}  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(max_iter):  
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 1  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(K):  
+</span></span><span style="display:flex;"><span>        groups[j] <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 2  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> feature_set <span style="color:#f92672">in</span> data:  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># step 2.1  </span>
+</span></span><span style="display:flex;"><span>        distances <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(feature_set <span style="color:#f92672">-</span> centroids[centroid_key]) <span style="color:#66d9ef">for</span> centroid_key <span style="color:#f92672">in</span> centroids]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># step 2.2  </span>
+</span></span><span style="display:flex;"><span>        group <span style="color:#f92672">=</span> distances<span style="color:#f92672">.</span>index(min(distances))  
+</span></span><span style="display:flex;"><span>        groups[group]<span style="color:#f92672">.</span>append(feature_set)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 3  </span>
+</span></span><span style="display:flex;"><span>    old_centroids <span style="color:#f92672">=</span> dict(centroids)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 4  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(K):  
+</span></span><span style="display:flex;"><span>        centroids[j] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>average(groups[j], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 5  </span>
+</span></span><span style="display:flex;"><span>    optimized <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> centroid_key <span style="color:#f92672">in</span> centroids:  
+</span></span><span style="display:flex;"><span>        old_centroid <span style="color:#f92672">=</span> old_centroids[centroid_key]  
+</span></span><span style="display:flex;"><span>        new_centroid <span style="color:#f92672">=</span> centroids[centroid_key]  
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(new_centroid <span style="color:#f92672">-</span> old_centroid)  
+</span></span><span style="display:flex;"><span>        b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(old_centroid)  
+</span></span><span style="display:flex;"><span>        change <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>divide(a, b, out<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>zeros_like(a), where<span style="color:#f92672">=</span>b<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> abs(np<span style="color:#f92672">.</span>sum(change <span style="color:#f92672">*</span> <span style="color:#ae81ff">100.0</span>)) <span style="color:#f92672">&gt;</span> tol:  
+</span></span><span style="display:flex;"><span>            optimized <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> optimized:  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><p>Let break things down step by step…</p>
 <h4 id="step-1">Step 1</h4>
 <p>Initialize the <code>groups</code> dictionary with K empty arrays. This ensures <code>groups</code> is empty at the start of each iteration.</p>
 <h4 id="step-21">Step 2.1</h4>
@@ -785,14 +781,68 @@ for i in range(max_iter):
 <h4 id="step-5">Step 5</h4>
 <p>Check if the change in any of the centroids is greater than 0.001%. If yes, then we’re not yet optimized.</p>
 <p>Here’s the full code for your perusal. It includes some lines of matplotlib code to visualize the data.</p>
-<script src="https://gist.github.com/nicholaskajoh/a667e20925abfb5f8ad9bf748b5092fe.js"></script>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>], [<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">11</span>], [<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>]
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>K <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>tol <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>
+</span></span><span style="display:flex;"><span>max_iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>centroids <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(K):
+</span></span><span style="display:flex;"><span>    centroids[i] <span style="color:#f92672">=</span> data[i]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>groups <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(max_iter):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(K):
+</span></span><span style="display:flex;"><span>        groups[j] <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> feature_set <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># step 2.1</span>
+</span></span><span style="display:flex;"><span>        distances <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(feature_set <span style="color:#f92672">-</span> centroids[centroid_key]) <span style="color:#66d9ef">for</span> centroid_key <span style="color:#f92672">in</span> centroids]
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># step 2.2</span>
+</span></span><span style="display:flex;"><span>        group <span style="color:#f92672">=</span> distances<span style="color:#f92672">.</span>index(min(distances))
+</span></span><span style="display:flex;"><span>        groups[group]<span style="color:#f92672">.</span>append(feature_set)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 3</span>
+</span></span><span style="display:flex;"><span>    old_centroids <span style="color:#f92672">=</span> dict(centroids)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(K):
+</span></span><span style="display:flex;"><span>        centroids[j] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>average(groups[j], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># step 5</span>
+</span></span><span style="display:flex;"><span>    optimized <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> centroid_key <span style="color:#f92672">in</span> centroids:
+</span></span><span style="display:flex;"><span>        old_centroid <span style="color:#f92672">=</span> old_centroids[centroid_key]
+</span></span><span style="display:flex;"><span>        new_centroid <span style="color:#f92672">=</span> centroids[centroid_key]
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(new_centroid <span style="color:#f92672">-</span> old_centroid)
+</span></span><span style="display:flex;"><span>        b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(old_centroid)
+</span></span><span style="display:flex;"><span>        change <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>divide(a, b, out<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>zeros_like(a), where<span style="color:#f92672">=</span>b<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> abs(np<span style="color:#f92672">.</span>sum(change <span style="color:#f92672">*</span> <span style="color:#ae81ff">100.0</span>)) <span style="color:#f92672">&gt;</span> tol:
+</span></span><span style="display:flex;"><span>            optimized <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> optimized:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># visualize with matplotlib</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter([i[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> groups[<span style="color:#ae81ff">0</span>]], [i[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> groups[<span style="color:#ae81ff">0</span>]])
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter([i[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> groups[<span style="color:#ae81ff">1</span>]], [i[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> groups[<span style="color:#ae81ff">1</span>]])
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter([i[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> groups[<span style="color:#ae81ff">2</span>]], [i[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> groups[<span style="color:#ae81ff">2</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter(centroids[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], centroids[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;*&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter(centroids[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>], centroids[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;*&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter(centroids[<span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">0</span>], centroids[<span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">1</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;*&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="/images/k-means/graph-of-clusters.png" alt=""></p>
 <p>Check out the ML Chops repo for a class-based implementation and an example with real world data: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means">https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means</a>.</p>
 <p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2018-05-01</p>
+		    <p style="color:#777;">Last modified on 2022-10-23</p>
                     
                 </div>
             </div>

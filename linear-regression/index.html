@@ -697,7 +697,7 @@
                 <div class="post-body" v-pre>
                 
                     <p>What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*otatqOkzhxFl4LXtkbDmhQ.jpeg" alt=""></p>
+<p><img src="/images/linear-regression/ml-meme.jpeg" alt=""></p>
 <p><strong>ML Chops</strong> is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself. We’ll be using the Python programming language.</p>
 <p>There’s a repo on my GitHub where all the code can be found. The url is: <a href="https://github.com/nicholaskajoh/ML_Chops">https://github.com/nicholaskajoh/ML_Chops</a>.</p>
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
@@ -709,16 +709,16 @@
 <li><a href="/k-means">K Means</a></li>
 </ul>
 <h1 id="machine-learning">Machine Learning</h1>
-<p>I’m assuming Machine Learning is not strange-ish to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.</p>
-<p>If all this sounds Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cKxRvEZd3Mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>I’m assuming the term Machine Learning is not strange to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.</p>
+<p>If all this sounds like Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/cKxRvEZd3Mw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>If you’re good at this point, then let’s talk Linear Regression.</p>
 <h1 id="linear-regression-lr">Linear Regression (LR)</h1>
 <p>Linear Regression is a simple model for predicting <a href="https://www.mathsisfun.com/definitions/continuous-data.html">continuous data</a>/real-valued outputs. It’s commonly used in subjects like physics, chemistry and math. I first came across it in secondary school practical physics when I had to predict outputs using data recorded during experiments. Sound familiar? 🙄</p>
 <p>Imagine you want to predict the price per barrel of crude oil in Nigeria for tomorrow, next week or next month. With data on the prices over the years or past months, you can make a fairly accurate forecast of what the price would be using LR. Keep in mind that we’re assuming the data is correlated (positively or negatively). If it’s not correlated, then LR is probably not a good fit. We’ll talk about other algorithms that can handle nonlinear data later on in the series. For now we need to use linear data else, our predictions would be really really bad. We don’t want bad! 😒</p>
 <p>The graph below may help you visualize linear data better…</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*iC2R89E_DBY5fSuQApTwhg.png" alt="">
-<em>Graph of linear data</em></p>
+<p><img src="/images/linear-regression/graph-of-linear-data.png" alt=""></p>
+<p><em>Graph of linear data</em></p>
 <p>The first thing you probably noticed is how somewhat scattered the data points are. There’s a pattern though, and it’s linear. As the value on the horizontal axis increases, the value on the vertical axis [generally] increases as well (positive correlation).</p>
 <h1 id="best-fitline">Best fit line</h1>
 <p>There’s a green line that passes through some of the points on the graph. It’s called the <strong>line of best fit</strong>. Ideally this line should pass through all the points. However there is some “error” in the data. This explains why there is some scatteredness in the plot.</p>
@@ -733,12 +733,12 @@
 <p>It turns out that there are formulas from which we can evaluate the slope, <em>m</em> and y intercept, <em>c.</em> Once we get the slope and y intercept, our model is ready!</p>
 <p>Mathematically, our LR model may look like this: <code>y = 2.1x + 1.4</code> where m = 2.1 and c = 1.4</p>
 <h1 id="slope">Slope</h1>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*vji1X_3xW3lZsXUY4Vf-cg.png" alt="">
-<em>slope formula</em></p>
+<p><img src="/images/linear-regression/slope.png" alt=""></p>
+<p><em>slope formula</em></p>
 <p><strong>NB:</strong> the <em>bar</em> symbol represents <strong>mean/average</strong>. E.g “X bar” is the mean of the Xs in the dataset.</p>
 <h1 id="intercept">Intercept</h1>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*MtVs1yxkMyl2MpK2Wystbg.png" alt="">
-<em>y intercept formula</em></p>
+<p><img src="/images/linear-regression/intercept.png" alt=""></p>
+<p><em>y intercept formula</em></p>
 <h1 id="simple-example">Simple example</h1>
 <p>Say we have the years 2001, 2002, 2003, &hellip;, 2010 and oil prices 43.1, 45.2, 43.7, 49.0, 50.5, 53.7, 53.0, 56.8, 57.2, 60.0. We could come up with a table like so:</p>
 <pre><code>x (yrs)   1    2    3    4    5    6    7    8    9    10
@@ -768,8 +768,8 @@ print(y)
 <p>There are several ways to calculate how accurate a LR model is. We’re going to talk about one of them called R-squared. It’s a statistical measure of how close the data are to the fitted regression line/best fit line. It is also known as the coefficient of determination. With R-squared, we’re simply asking: <em>how good is the best fit line?</em></p>
 <p>Of course, if the best fit line is not good enough, then it’s the data to blame (it’s the best fit line duh 😜). Regardless, it means the predictions made using the line would be less accurate.</p>
 <p>R-squared is given by the formula:</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*HTeayn8hGYQzICFcYc3OdA.png" alt="">
-<em>r squared</em></p>
+<p><img src="/images/linear-regression/r-squared.png" alt=""></p>
+<p><em>r squared</em></p>
 <p>SS stands for <em>Sum of Squared error of</em></p>
 <p>y hat line (y with the caret) is the <em>ys of the best fit line ( for each x)</em></p>
 <p>y bar is the <em>mean of the ys</em></p>
@@ -787,7 +787,7 @@ r2 = 1 - (SSy_hat / SSy_mean)
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2017-12-04</p>
+		    <p style="color:#777;">Last modified on 2022-10-23</p>
                     
                 </div>
             </div>

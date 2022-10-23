@@ -553,7 +553,7 @@
                 <div class="post-body" v-pre>
                 
                     <p>The Support Vector Machine (SVM) is a <a href="https://en.wikipedia.org/wiki/Supervised_learning">supervised learning</a> model used for classification and regression. In this tutorial, we’ll be using it for classification.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*36seqRE8giOL5saMNGKCig.jpeg" alt=""></p>
+<p><img src="/images/support-vector-machine/svm-meme.jpeg" alt=""></p>
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
 <ul>
 <li><a href="/linear-regression">Linear Regression</a></li>
@@ -564,30 +564,30 @@
 </ul>
 <p>Created by <a href="https://en.wikipedia.org/wiki/Vladimir_Vapnik">Vladimir Vapnik</a> in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data. This boundary is known as a <a href="https://en.wikipedia.org/wiki/Hyperplane">hyperplane</a> — the best separating hyperplane.</p>
 <p>Let’s take the points on the graph below for example:</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*2tviRinseZn7KMMCIPieVw.png" alt=""></p>
+<p><img src="/images/support-vector-machine/points-on-graph.png" alt=""></p>
 <p>What line best divides the red pluses and green minuses? Eye-balling the data points, I came up with this.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*YtZfClUNObb85VrKWKvz6g.png" alt=""></p>
+<p><img src="/images/support-vector-machine/best-fit-line.png" alt=""></p>
 <p>Any data point that falls on the right side of the boundary is classified as a <em>red plus</em> and any point that falls on the left side is classified as a <em>green minus</em>.</p>
 <p><strong>How do we arrive at the best separating hyperplane, mathematically?</strong></p>
 <p>Well, the equation of a hyperplane is given by <strong>wx + b = y</strong> where <em>w</em> is the normal vector to the hyperplane, <em>b</em> is a bias/shift and <em>x</em> is a vector the hyperplane passes through. <em>y</em> determines the position of the hyperplane.</p>
 <p>Take a look at the diagram below for better understanding:</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*3xsACXxhR4rZeXLTSAnfVQ.png" alt=""></p>
+<p><img src="/images/support-vector-machine/best-fit-line-equation.png" alt=""></p>
 <p>It turns out that y = 0 at the best separating hyperplane. Thus the equation of the best separating hyperplane is <strong>wx + b = 0</strong>.</p>
 <p>With this hyperplane, it shouldn’t be difficult to determine if an input vector (a feature set we desire to classify) is on one or the other side of it. To make a prediction, we’d return the sign of <strong>wx + b</strong>. A positive sign (+) represents one class and negative sign (-) represents the other.</p>
 <p>There’s just one problem. We need to find <em>w</em> and <em>b</em> when <em>y</em> = 0. Now there’s a new question to answer. <strong>How do we find w and b?</strong></p>
 <p>We’ll come to that in a bit.</p>
 <h1 id="what-are-supportvectors">What are Support Vectors?</h1>
 <p>In SVM, each sample in a data set is a vector. The area covered by the data points is a vector space.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*NWryt8J6zqRWpQ5QOmEWWg.png" alt=""></p>
+<p><img src="/images/support-vector-machine/vectors.png" alt=""></p>
 <p>A support vector is a vector in this vector space which determines the hyperplane that best separates the data. They are the closest points to the best separating hyperplane.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*J1D7tjrKTwBZEc8D__474g.png" alt=""></p>
+<p><img src="/images/support-vector-machine/support-vectors.png" alt=""></p>
 <p>If any of the support vectors change, the best separating hyperplane changes as well. You could say they “support” the best separating hyperplane.</p>
 <p>We can draw 2 hyperplanes both parallel to the best separating hyperplane that pass through the support vectors. The best separating hyperplane divides these hyperplanes into two equal parts/areas.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*EuCGXKeyCRJ_BAlm2t73tg.png" alt=""></p>
+<p><img src="/images/support-vector-machine/support-vector-hyperplanes.png" alt=""></p>
 <p>It turns out that these two hyperplanes are given by <strong>wx + b = -1</strong> and <strong>wx + b = 1</strong> as show in the graph above.</p>
 <h1 id="w-andb">w and b</h1>
 <p>The geometric distance between the hyperplanes enclosing the best separating hyperplane is <strong>2 / ||w||</strong> where <strong>||w||</strong> is the magnitude of <em>w</em>.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*Dm3swkj4iJHNofRzt6zzcQ.png" alt=""></p>
+<p><img src="/images/support-vector-machine/geometric-distance-between-sv-hyperplanes.png" alt=""></p>
 <p>This distance is maximum at the values of <em>w</em> and <em>b</em> which produce the best separating hyperplane. As such, our goal is to get a value of <em>w</em> and <em>b</em> that maximize <strong>2 / ||w||</strong>. Maximizing <strong>2 / ||w||</strong> equates to minimizing <strong>||w||</strong>, so we could as well do just that.</p>
 <p>For mathematical convenience, let’s minimize <strong>1/2 * ||w||²</strong> instead of <strong>||w||</strong>. Note that this doesn’t change anything. Minimizing <strong>||w||</strong> is minimizing <strong>1/2 * ||w||²</strong>.</p>
 <p>There’s a constraint to this minimization given by <strong>y(wx + b) &gt;= 1</strong>. This ensures that we don’t maximize the distance beyond the 2 hyperplanes that separate the 2 categories of data.</p>
@@ -597,85 +597,82 @@
 <p>We’ll be using Convex Optimization to solve this problem.</p>
 <h1 id="convex-optimization">Convex Optimization</h1>
 <p>I chose to use the <a href="http://cvxopt.org/">CVXOPT python library</a> for Convex Optimization because I didn’t want to delve into too much math. Feel free to explore Convex Optimization (the math and the code). Here’s a little explanation of convex optimization for the problem we’re solving — to get optimum values of <em>w</em> and <em>b</em>.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*W3MMVrG7QUc3USJyrp5kaw.png" alt=""></p>
+<p><img src="/images/support-vector-machine/convex-optimization.png" alt=""></p>
 <p>Suppose the optimum value for <em>w</em> and <em>b</em> is at X. We could move from A to C in a bid to get to X. B is the point where <strong>1/2 * ||w||²</strong> is minimum but it does not satisfy the constraint <strong>y(wx + b) &gt;= 1</strong> (in this example) so it’s not the optimum point.</p>
 <h1 id="code">Code</h1>
 <p>Data:</p>
-<pre><code>import numpy as np  
-import cvxopt  
-import cvxopt.solvers
-
-features = np.array([[5, 4], [5, -1], [3, 3], [7, 9], [6, 7], [7, 11]])  
-labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])
-</code></pre>
-<p>Train/fit using CVXOPT:</p>
-<pre><code>def fit(X, y):  
-  n_samples, n_features = X.shape
-
-  # Gram matrix
-  K = np.zeros((n_samples, n_samples))  
-  for i in range(n_samples):  
-    for j in range(n_samples):  
-      K[i,j] = np.dot(X[i], X[j])
-
-  P = cvxopt.matrix(np.outer(y,y) * K)  
-  q = cvxopt.matrix(np.ones(n_samples) * -1)  
-  A = cvxopt.matrix(y, (1, n_samples))  
-  b = cvxopt.matrix(0.0)  
-  G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))  
-  h = cvxopt.matrix(np.zeros(n_samples))
-
-  # solve QP problem
-  solution = cvxopt.solvers.qp(P, q, G, h, A, b)
-
-  # Lagrange multipliers
-  a = np.ravel(solution['x'])
-
-  # Support vectors have non zero lagrange multipliers
-  sv = a &gt; 1e-5  
-  ind = np.arange(len(a))[sv]  
-  a = a[sv]  
-  sv_ = X[sv]  
-  sv_y = y[sv]
-
-  # Intercept
-  b = 0  
-  for n in range(len(a)):  
-    b += sv_y[n]  
-    b -= np.sum(a * sv_y * K[ind[n], sv])  
-  b /= len(a)
-
-  # Weight vector
-  w = np.zeros(n_features)  
-  for n in range(len(a)):  
-    w += a[n] * sv_y[n] * sv_[n]
-
-  return w, b
-</code></pre>
-<p>Predict:</p>
-<pre><code>w, b = fit(features, labels)
-
-def predict(x):  
-  classification = np.sign(np.dot(x, w) + b)  
-  return classification
-
-# test  
-x = [3, 4]  
-print(predict(x))
-</code></pre>
-<h1 id="the-kerneltrick">The Kernel trick</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cvxopt  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cvxopt.solvers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>features <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>], [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">11</span>]])  
+</span></span><span style="display:flex;"><span>labels <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>])
+</span></span></code></pre></div><p>Train/fit using CVXOPT:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fit</span>(X, y):  
+</span></span><span style="display:flex;"><span>  n_samples, n_features <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Gram matrix</span>
+</span></span><span style="display:flex;"><span>  K <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((n_samples, n_samples))  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n_samples):  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(n_samples):  
+</span></span><span style="display:flex;"><span>      K[i,j] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(X[i], X[j])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  P <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>matrix(np<span style="color:#f92672">.</span>outer(y,y) <span style="color:#f92672">*</span> K)  
+</span></span><span style="display:flex;"><span>  q <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>matrix(np<span style="color:#f92672">.</span>ones(n_samples) <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>  A <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>matrix(y, (<span style="color:#ae81ff">1</span>, n_samples))  
+</span></span><span style="display:flex;"><span>  b <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>matrix(<span style="color:#ae81ff">0.0</span>)  
+</span></span><span style="display:flex;"><span>  G <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>matrix(np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n_samples) <span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))  
+</span></span><span style="display:flex;"><span>  h <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>matrix(np<span style="color:#f92672">.</span>zeros(n_samples))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># solve QP problem</span>
+</span></span><span style="display:flex;"><span>  solution <span style="color:#f92672">=</span> cvxopt<span style="color:#f92672">.</span>solvers<span style="color:#f92672">.</span>qp(P, q, G, h, A, b)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Lagrange multipliers</span>
+</span></span><span style="display:flex;"><span>  a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ravel(solution[<span style="color:#e6db74">&#39;x&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Support vectors have non zero lagrange multipliers</span>
+</span></span><span style="display:flex;"><span>  sv <span style="color:#f92672">=</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1e-5</span>  
+</span></span><span style="display:flex;"><span>  ind <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(len(a))[sv]  
+</span></span><span style="display:flex;"><span>  a <span style="color:#f92672">=</span> a[sv]  
+</span></span><span style="display:flex;"><span>  sv_ <span style="color:#f92672">=</span> X[sv]  
+</span></span><span style="display:flex;"><span>  sv_y <span style="color:#f92672">=</span> y[sv]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Intercept</span>
+</span></span><span style="display:flex;"><span>  b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(len(a)):  
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">+=</span> sv_y[n]  
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">-=</span> np<span style="color:#f92672">.</span>sum(a <span style="color:#f92672">*</span> sv_y <span style="color:#f92672">*</span> K[ind[n], sv])  
+</span></span><span style="display:flex;"><span>  b <span style="color:#f92672">/=</span> len(a)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Weight vector</span>
+</span></span><span style="display:flex;"><span>  w <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(n_features)  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(len(a)):  
+</span></span><span style="display:flex;"><span>    w <span style="color:#f92672">+=</span> a[n] <span style="color:#f92672">*</span> sv_y[n] <span style="color:#f92672">*</span> sv_[n]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> w, b
+</span></span></code></pre></div><p>Predict:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>w, b <span style="color:#f92672">=</span> fit(features, labels)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict</span>(x):  
+</span></span><span style="display:flex;"><span>  classification <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sign(np<span style="color:#f92672">.</span>dot(x, w) <span style="color:#f92672">+</span> b)  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> classification
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># test  </span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]  
+</span></span><span style="display:flex;"><span>print(predict(x))
+</span></span></code></pre></div><h1 id="the-kerneltrick">The Kernel trick</h1>
 <p>The data we’ve been dealing with is linearly separable i.e we can draw a straight line (speaking in 2D) that separates the data into 2 categories. What if we have a data set like this?</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*SGJF-6P3gQH5cHlarb7m6w.png" alt=""></p>
+<p><img src="/images/support-vector-machine/kernel-trick-2d.png" alt=""></p>
 <p>There’s no hyperplane that can separate this data.</p>
 <p>The kernel trick introduces a new dimension to the vector space. Adding a dimension to the data in the diagram above yields a 3D vector space. Can we separate the data now? Probably.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*aBJJ38sQ1yIZBGFNBzjZmA.png" alt=""></p>
+<p><img src="/images/support-vector-machine/kernel-trick-3d.png" alt=""></p>
 <p>If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!</p>
 <p>Don’t forget to check out the ML Chops repo for all the code: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine">https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine</a>.</p>
 <p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2017-12-26</p>
+		    <p style="color:#777;">Last modified on 2022-10-23</p>
                     
                 </div>
             </div>

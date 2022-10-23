@@ -661,7 +661,7 @@
                 <div class="post-body" v-pre>
                 
                     <p>K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a <strong>classifier</strong> as the experts would call it.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*eg_VDV5KPHZ-aIzbI11fwg.jpeg" alt=""></p>
+<p><img src="/images/k-nearest-neighbors/ml-meme.jpeg" alt=""></p>
 <p>Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though. What if computers could do that for us?</p>
 <p>Teaching computers to classify things has been very tedious until Machine Learning. While hard-coded rules may work for a given problem set, everything falls like a pack of cards when a few parameters are added/changed/removed. Worse, a solution becomes useless when a new problem arises. That’s bad for business. 😠</p>
 <h1 id="the-ml-chops-series">The ML Chops series</h1>
@@ -685,14 +685,14 @@
 <p>Also, more training data means a better classifier because there are more examples to “learn” from.</p>
 <h1 id="meet-knn">Meet KNN</h1>
 <p>K Nearest Neighbors is probably the easiest classification algorithm to understand. Take a look at the following graph:</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*hhHhEwuLhRMXQ6gSXEOqdg.png" alt="">
-<em>Graph of height vs weight (data is theoretical)</em></p>
+<p><img src="/images/k-nearest-neighbors/graph-of-weight-vs-height.png" alt=""></p>
+<p><em>Graph of height vs weight (data is theoretical)</em></p>
 <p>What would you classify <em>Blue Diamond 1</em> as? At a glance, it’s easy to predict/infer that <em>Blue Diamond 1</em> is most likely/is a <em>Female</em>. It seems logical to say that <em>Blue Diamond 1</em> is in the cluster of Females so it’s female. Fair enough.</p>
 <p>What of <em>Blue Diamond 2</em>? Not so fast! While it seems likely <em>Female</em>, one could argue it’s <em>Male</em>. Hmm… Eye-balling won’t cut it.</p>
 <p><em>KNN provides us a pretty solid way to predict which class Blue Diamond 2 belongs to.</em></p>
 <p>K Nearest Neighbors outputs a class membership of a feature set by a majority vote of its closest neighbors. In other words, we can find the persons closest to <em>Blue Diamond 2</em> then cast a vote. If majority are <em>Male</em>, then we say <em>Blue Diamond 2</em> is <em>Male</em>, else we say it’s <em>Female</em>.</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*KVn_DG3XvlEiizLesA0rHQ.png" alt="">
-<em>KNN visualization</em></p>
+<p><img src="/images/k-nearest-neighbors/knn-viz.png" alt=""></p>
+<p><em>KNN visualization</em></p>
 <p>Looking at the circled area, we can easily see from the graph (above) that there are 5 persons closest to <em>Blue Diamond 2</em>. 3 <em>Red Squares</em> and 2 <em>Green Circles</em>. KNN says <em>Blue Diamond 2</em> is Male since males are the majority of the closest neighbors.</p>
 <p>The <em>k</em> in KNN represents the number of neighbors being considered. In the case of classifying <em>Blue Diamond 2</em>, it’s 5. <em>k</em> directly affects our prediction so we must use a “good” value. Take into account your data, specifically the number of classes and the sample size of the training set when choosing k.</p>
 <p>In the person classification example we’ve been looking at, we have 2 classes (Male and Female), so k = 2 (or a multiple of 2) is a bad idea right off the bat.</p>
@@ -726,7 +726,7 @@ data = {&quot;male&quot;: [[6.3, 50.2], [5.6, 47.1]],
 <p>Now that’s some chunk of code!</p>
 <p>First things first! We loop through each training sample, calculating the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> between it and the input set.</p>
 <p>The euclidean distance between two points on a cartesian plane is given by:</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*j8gq_zqgxLfkbDMCFVDJvg.png" alt=""></p>
+<p><img src="/images/k-nearest-neighbors/euclidean-distance.png" alt=""></p>
 <p>Sound familiar?</p>
 <p>In the code, we used numpy’s euclidean distance function <code>np.linalg.norm()</code> for simplicity and efficiency.</p>
 <p>Next, we append the distance along with the class/group of the set (<code>[euclidean distance, group]</code> -&gt; <code>[12.092364, “male”]</code>) to <code>distances</code> list.</p>
@@ -755,7 +755,7 @@ return prediction
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2017-12-09</p>
+		    <p style="color:#777;">Last modified on 2022-10-23</p>
                     
                 </div>
             </div>

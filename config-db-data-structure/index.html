@@ -840,7 +840,7 @@
 <h2 id="application-configs">Application configs</h2>
 <p>These are configurations for variables in your application that you might want or need to change at runtime e.g the default rate limit for an endpoint or the API URL for your payment service provider.</p>
 <p>Say you need to send your users notifications via SMS, so you decide to build an SMS notification service for your product. Perhaps, there’s no one SMS provider that can send SMSes in all the countries you operate. More so, local providers offer better delivery rates and pricing. And you want to have backups should a provider experience a downtime. You have decided that the best solution would be to integrate multiple SMS providers. You could structure the configs for this application/service like this:</p>
-<p>Table: <code>app_config_types</code></p>
+<p>Table: <code>data_types</code></p>
 <table>
 <thead>
 <tr>
@@ -848,8 +848,9 @@
 <th>name</th>
 <th><div style="width:200px">description</div></th>
 <th><div style="width:400px">validator (JSON schema)</div></th>
-<th><div style="width:300px">cardinality (max number of configs of a given type; -1 =&gt; infinite)</div></th>
-<th>cache_for_secs</th>
+<th>default_value</th>
+<th><div style="width:350px">cardinality (max number of configs of a given type per table/account; -1 =&gt; infinite)</div></th>
+<th><div style="width:300px">account_configurable (can an account holder modify this config?)</div></th>
 <th>created_at</th>
 <th>updated_at</th>
 <th>deleted_at</th>
@@ -861,8 +862,9 @@
 <td>SMS_PROVIDER</td>
 <td>An SMS service provider.</td>
 <td><code>{&quot;$schema&quot;:&quot;https://json-schema.org/draft/2020-12/schema&quot;,&quot;$id&quot;:&quot;https://schemas.alphacoder.xyz/sms-provider.json&quot;,&quot;title&quot;:&quot;SMS Provider&quot;,&quot;description&quot;:&quot;An SMS provider.&quot;,&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;name&quot;:{&quot;description&quot;:&quot;The name of the SMS provider.&quot;,&quot;type&quot;:&quot;string&quot;},&quot;priority&quot;:{&quot;description&quot;:&quot;Priority of the SMS provider. We will prefer providers with higher priority. A lower value means a higher priority.&quot;,&quot;type&quot;:&quot;integer&quot;,&quot;minimum&quot;:1},&quot;available_countries&quot;:{&quot;description&quot;:&quot;Countries supported by SMS provider.&quot;,&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;,&quot;minLength&quot;:2,&quot;maxLength&quot;:2},&quot;minItems&quot;:1,&quot;uniqueItems&quot;:true},&quot;api_url&quot;:{&quot;description&quot;:&quot;SMS provider API URL.&quot;,&quot;type&quot;:&quot;string&quot;},&quot;api_secret_alias&quot;:{&quot;description&quot;:&quot;SMS provider API secret alias.&quot;,&quot;type&quot;:&quot;string&quot;}},&quot;required&quot;:[&quot;name&quot;,&quot;priority&quot;,&quot;api_url&quot;,&quot;api_secret_alias&quot;]}</code></td>
+<td>NULL</td>
 <td>-1</td>
-<td>120</td>
+<td>false</td>
 <td>2022-12-01 09:41:09</td>
 <td>2022-12-01 09:42:09</td>
 <td>NULL</td>
@@ -874,8 +876,8 @@
 <thead>
 <tr>
 <th>id</th>
-<th>config_name</th>
-<th>type_id</th>
+<th>name</th>
+<th>data_type_id</th>
 <th><div style="width:400px">value</div></th>
 <th>created_at</th>
 <th>updated_at</th>
@@ -905,17 +907,17 @@
 </table>
 <h2 id="account-configs">Account configs</h2>
 <p>These are just like app configs, but for accounts. Say your product has multiple pricing plans, each with its set of features. You could use account config tables to store data on what features each user has access to based on the plan they paid for.</p>
-<p>Table: <code>account_config_props</code></p>
+<p>Table: <code>data_types</code></p>
 <table>
 <thead>
 <tr>
 <th>id</th>
-<th>prop_name</th>
+<th>name</th>
 <th><div style="width:200px">description</div></th>
-<th><div style="width:400px">validator</div></th>
+<th><div style="width:400px">validator (JSON schema)</div></th>
 <th>default_value</th>
-<th><div style="width:300px">account_configurable (can the account holder modify this config?)</div></th>
-<th>cache_for_secs</th>
+<th><div style="width:350px">cardinality (max number of configs of a given type per table/account; -1 =&gt; infinite)</div></th>
+<th><div style="width:300px">account_configurable (can an account holder modify this config?)</div></th>
 <th>created_at</th>
 <th>updated_at</th>
 <th>deleted_at</th>
@@ -923,37 +925,37 @@
 </thead>
 <tbody>
 <tr>
-<td>1</td>
+<td>2</td>
 <td>FEATURE_UNLIMITED_UPLOADS</td>
 <td>Feature allowing users upload as many files as they want.</td>
 <td><code>{&quot;$schema&quot;:&quot;https://json-schema.org/draft/2020-12/schema&quot;,&quot;$id&quot;:&quot;https://schemas.alphacoder.xyz/boolean.json&quot;,&quot;title&quot;:&quot;Boolean&quot;,&quot;type&quot;:&quot;boolean&quot;}</code></td>
 <td>true</td>
+<td>1</td>
 <td>false</td>
-<td>300</td>
-<td>2022-12-01 09:41:09</td>
-<td>2022-12-01 09:42:09</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td>2</td>
-<td>FEATURE_UNLIMITED_COLLABORATORS</td>
-<td>Feature allowing users permit as many other users as they want to view and edit their files.</td>
-<td><code>{&quot;$schema&quot;:&quot;https://json-schema.org/draft/2020-12/schema&quot;,&quot;$id&quot;:&quot;https://schemas.alphacoder.xyz/boolean.json&quot;,&quot;title&quot;:&quot;Boolean&quot;,&quot;type&quot;:&quot;boolean&quot;}</code></td>
-<td>false</td>
-<td>false</td>
-<td>300</td>
 <td>2022-12-01 09:41:09</td>
 <td>2022-12-01 09:42:09</td>
 <td>NULL</td>
 </tr>
 <tr>
 <td>3</td>
+<td>FEATURE_UNLIMITED_COLLABORATORS</td>
+<td>Feature allowing users permit as many other users as they want to view and edit their files.</td>
+<td><code>{&quot;$schema&quot;:&quot;https://json-schema.org/draft/2020-12/schema&quot;,&quot;$id&quot;:&quot;https://schemas.alphacoder.xyz/boolean.json&quot;,&quot;title&quot;:&quot;Boolean&quot;,&quot;type&quot;:&quot;boolean&quot;}</code></td>
+<td>false</td>
+<td>1</td>
+<td>false</td>
+<td>2022-12-01 09:41:09</td>
+<td>2022-12-01 09:42:09</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>4</td>
 <td>FEATURE_PLUGINS</td>
 <td>Feature allowing users install plugins to customize their setup.</td>
 <td><code>{&quot;$schema&quot;:&quot;https://json-schema.org/draft/2020-12/schema&quot;,&quot;$id&quot;:&quot;https://schemas.alphacoder.xyz/boolean.json&quot;,&quot;title&quot;:&quot;Boolean&quot;,&quot;type&quot;:&quot;boolean&quot;}</code></td>
 <td>false</td>
+<td>1</td>
 <td>false</td>
-<td>300</td>
 <td>2022-12-01 09:41:09</td>
 <td>2022-12-01 09:42:09</td>
 <td>NULL</td>
@@ -965,7 +967,7 @@
 <thead>
 <tr>
 <th>id</th>
-<th>prop_id</th>
+<th>data_type_id</th>
 <th>account_type</th>
 <th>account_id</th>
 <th>value</th>
@@ -977,7 +979,7 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>1</td>
+<td>2</td>
 <td>user</td>
 <td>69</td>
 <td>true</td>
@@ -987,7 +989,7 @@
 </tr>
 <tr>
 <td>2</td>
-<td>2</td>
+<td>3</td>
 <td>user</td>
 <td>69</td>
 <td>true</td>
@@ -1010,7 +1012,7 @@
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2022-10-09</p>
+		    <p style="color:#777;">Last modified on 2022-10-23</p>
                     
                 </div>
             </div>

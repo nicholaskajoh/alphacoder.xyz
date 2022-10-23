@@ -7,7 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -26,7 +25,7 @@
 &lt;p&gt;This is a quick tutorial on how setup image upload with Django and Cloudinary. Let’s roll…&lt;/p&gt;
 &lt;h2 id=&#34;console&#34;&gt;Console&lt;/h2&gt;
 &lt;p&gt;Visit &lt;a href=&#34;https://cloudinary.com&#34;&gt;Cloudinary.com&lt;/a&gt; and create an account or login if you already have one. You’ll be provided a nice dashboard/console at &lt;a href=&#34;https://cloudinary.com/console&#34;&gt;https://cloudinary.com/console&lt;/a&gt;. There you’ll find your account details i.e cloud name, API key and secret.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/1000/1*ZxPbpbatoeCyZzldXXoX2Q.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/image-upload-with-django-and-cloudinary/cloudinary-console.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
 &lt;p&gt;Cloudinary has an open source &lt;a href=&#34;https://pypi.python.org/pypi/cloudinary&#34;&gt;integration library for Python/Django&lt;/a&gt;. Install it using pip.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ pip install cloudinary
@@ -419,7 +418,7 @@ class = Female
         
         <guid>https://alphacoder.xyz/support-vector-machine/</guid>
         <description>Alpha Coder https://alphacoder.xyz/support-vector-machine/ -&lt;p&gt;The Support Vector Machine (SVM) is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supervised_learning&#34;&gt;supervised learning&lt;/a&gt; model used for classification and regression. In this tutorial, we’ll be using it for classification.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*36seqRE8giOL5saMNGKCig.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/svm-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
@@ -430,30 +429,30 @@ class = Female
 &lt;/ul&gt;
 &lt;p&gt;Created by &lt;a href=&#34;https://en.wikipedia.org/wiki/Vladimir_Vapnik&#34;&gt;Vladimir Vapnik&lt;/a&gt; in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data. This boundary is known as a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperplane&#34;&gt;hyperplane&lt;/a&gt; — the best separating hyperplane.&lt;/p&gt;
 &lt;p&gt;Let’s take the points on the graph below for example:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*2tviRinseZn7KMMCIPieVw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/points-on-graph.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;What line best divides the red pluses and green minuses? Eye-balling the data points, I came up with this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*YtZfClUNObb85VrKWKvz6g.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/best-fit-line.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Any data point that falls on the right side of the boundary is classified as a &lt;em&gt;red plus&lt;/em&gt; and any point that falls on the left side is classified as a &lt;em&gt;green minus&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;How do we arrive at the best separating hyperplane, mathematically?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Well, the equation of a hyperplane is given by &lt;strong&gt;wx + b = y&lt;/strong&gt; where &lt;em&gt;w&lt;/em&gt; is the normal vector to the hyperplane, &lt;em&gt;b&lt;/em&gt; is a bias/shift and &lt;em&gt;x&lt;/em&gt; is a vector the hyperplane passes through. &lt;em&gt;y&lt;/em&gt; determines the position of the hyperplane.&lt;/p&gt;
 &lt;p&gt;Take a look at the diagram below for better understanding:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*3xsACXxhR4rZeXLTSAnfVQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/best-fit-line-equation.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It turns out that y = 0 at the best separating hyperplane. Thus the equation of the best separating hyperplane is &lt;strong&gt;wx + b = 0&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;With this hyperplane, it shouldn’t be difficult to determine if an input vector (a feature set we desire to classify) is on one or the other side of it. To make a prediction, we’d return the sign of &lt;strong&gt;wx + b&lt;/strong&gt;. A positive sign (+) represents one class and negative sign (-) represents the other.&lt;/p&gt;
 &lt;p&gt;There’s just one problem. We need to find &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; when &lt;em&gt;y&lt;/em&gt; = 0. Now there’s a new question to answer. &lt;strong&gt;How do we find w and b?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;We’ll come to that in a bit.&lt;/p&gt;
 &lt;h1 id=&#34;what-are-supportvectors&#34;&gt;What are Support Vectors?&lt;/h1&gt;
 &lt;p&gt;In SVM, each sample in a data set is a vector. The area covered by the data points is a vector space.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*NWryt8J6zqRWpQ5QOmEWWg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/vectors.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A support vector is a vector in this vector space which determines the hyperplane that best separates the data. They are the closest points to the best separating hyperplane.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*J1D7tjrKTwBZEc8D__474g.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/support-vectors.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;If any of the support vectors change, the best separating hyperplane changes as well. You could say they “support” the best separating hyperplane.&lt;/p&gt;
 &lt;p&gt;We can draw 2 hyperplanes both parallel to the best separating hyperplane that pass through the support vectors. The best separating hyperplane divides these hyperplanes into two equal parts/areas.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*EuCGXKeyCRJ_BAlm2t73tg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/support-vector-hyperplanes.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It turns out that these two hyperplanes are given by &lt;strong&gt;wx + b = -1&lt;/strong&gt; and &lt;strong&gt;wx + b = 1&lt;/strong&gt; as show in the graph above.&lt;/p&gt;
 &lt;h1 id=&#34;w-andb&#34;&gt;w and b&lt;/h1&gt;
 &lt;p&gt;The geometric distance between the hyperplanes enclosing the best separating hyperplane is &lt;strong&gt;2 / ||w||&lt;/strong&gt; where &lt;strong&gt;||w||&lt;/strong&gt; is the magnitude of &lt;em&gt;w&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*Dm3swkj4iJHNofRzt6zzcQ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/geometric-distance-between-sv-hyperplanes.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This distance is maximum at the values of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; which produce the best separating hyperplane. As such, our goal is to get a value of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; that maximize &lt;strong&gt;2 / ||w||&lt;/strong&gt;. Maximizing &lt;strong&gt;2 / ||w||&lt;/strong&gt; equates to minimizing &lt;strong&gt;||w||&lt;/strong&gt;, so we could as well do just that.&lt;/p&gt;
 &lt;p&gt;For mathematical convenience, let’s minimize &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; instead of &lt;strong&gt;||w||&lt;/strong&gt;. Note that this doesn’t change anything. Minimizing &lt;strong&gt;||w||&lt;/strong&gt; is minimizing &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;There’s a constraint to this minimization given by &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt;. This ensures that we don’t maximize the distance beyond the 2 hyperplanes that separate the 2 categories of data.&lt;/p&gt;
@@ -463,78 +462,75 @@ class = Female
 &lt;p&gt;We’ll be using Convex Optimization to solve this problem.&lt;/p&gt;
 &lt;h1 id=&#34;convex-optimization&#34;&gt;Convex Optimization&lt;/h1&gt;
 &lt;p&gt;I chose to use the &lt;a href=&#34;http://cvxopt.org/&#34;&gt;CVXOPT python library&lt;/a&gt; for Convex Optimization because I didn’t want to delve into too much math. Feel free to explore Convex Optimization (the math and the code). Here’s a little explanation of convex optimization for the problem we’re solving — to get optimum values of &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*W3MMVrG7QUc3USJyrp5kaw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/convex-optimization.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Suppose the optimum value for &lt;em&gt;w&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt; is at X. We could move from A to C in a bid to get to X. B is the point where &lt;strong&gt;1/2 * ||w||²&lt;/strong&gt; is minimum but it does not satisfy the constraint &lt;strong&gt;y(wx + b) &amp;gt;= 1&lt;/strong&gt; (in this example) so it’s not the optimum point.&lt;/p&gt;
 &lt;h1 id=&#34;code&#34;&gt;Code&lt;/h1&gt;
 &lt;p&gt;Data:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import numpy as np  
-import cvxopt  
-import cvxopt.solvers
-
-features = np.array([[5, 4], [5, -1], [3, 3], [7, 9], [6, 7], [7, 11]])  
-labels = np.array([-1.0, -1.0, -1.0, 1.0, 1.0, 1.0])
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Train/fit using CVXOPT:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;def fit(X, y):  
-  n_samples, n_features = X.shape
-
-  # Gram matrix
-  K = np.zeros((n_samples, n_samples))  
-  for i in range(n_samples):  
-    for j in range(n_samples):  
-      K[i,j] = np.dot(X[i], X[j])
-
-  P = cvxopt.matrix(np.outer(y,y) * K)  
-  q = cvxopt.matrix(np.ones(n_samples) * -1)  
-  A = cvxopt.matrix(y, (1, n_samples))  
-  b = cvxopt.matrix(0.0)  
-  G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))  
-  h = cvxopt.matrix(np.zeros(n_samples))
-
-  # solve QP problem
-  solution = cvxopt.solvers.qp(P, q, G, h, A, b)
-
-  # Lagrange multipliers
-  a = np.ravel(solution[&#39;x&#39;])
-
-  # Support vectors have non zero lagrange multipliers
-  sv = a &amp;gt; 1e-5  
-  ind = np.arange(len(a))[sv]  
-  a = a[sv]  
-  sv_ = X[sv]  
-  sv_y = y[sv]
-
-  # Intercept
-  b = 0  
-  for n in range(len(a)):  
-    b += sv_y[n]  
-    b -= np.sum(a * sv_y * K[ind[n], sv])  
-  b /= len(a)
-
-  # Weight vector
-  w = np.zeros(n_features)  
-  for n in range(len(a)):  
-    w += a[n] * sv_y[n] * sv_[n]
-
-  return w, b
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Predict:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;w, b = fit(features, labels)
-
-def predict(x):  
-  classification = np.sign(np.dot(x, w) + b)  
-  return classification
-
-# test  
-x = [3, 4]  
-print(predict(x))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;the-kerneltrick&#34;&gt;The Kernel trick&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; np  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cvxopt  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; cvxopt.solvers
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;features &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;]])  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;labels &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1.0&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Train/fit using CVXOPT:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fit&lt;/span&gt;(X, y):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  n_samples, n_features &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; X&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Gram matrix&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  K &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros((n_samples, n_samples))  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n_samples):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n_samples):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      K[i,j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dot(X[i], X[j])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  P &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;matrix(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;outer(y,y) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; K)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  q &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;matrix(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ones(n_samples) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  A &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;matrix(y, (&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, n_samples))  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;matrix(&lt;span style=&#34;color:#ae81ff&#34;&gt;0.0&lt;/span&gt;)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  G &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;matrix(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;diag(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ones(n_samples) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  h &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;matrix(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros(n_samples))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# solve QP problem&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  solution &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cvxopt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;solvers&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;qp(P, q, G, h, A, b)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Lagrange multipliers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ravel(solution[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;x&amp;#39;&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Support vectors have non zero lagrange multipliers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  sv &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1e-5&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ind &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arange(len(a))[sv]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a[sv]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  sv_ &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; X[sv]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  sv_y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; y[sv]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Intercept&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(a)):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    b &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; sv_y[n]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    b &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sum(a &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; sv_y &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; K[ind[n], sv])  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  b &lt;span style=&#34;color:#f92672&#34;&gt;/=&lt;/span&gt; len(a)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Weight vector&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros(n_features)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(a)):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    w &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; a[n] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; sv_y[n] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; sv_[n]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; w, b
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Predict:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;w, b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fit(features, labels)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;predict&lt;/span&gt;(x):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  classification &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sign(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dot(x, w) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; b)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; classification
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# test  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(predict(x))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;the-kerneltrick&#34;&gt;The Kernel trick&lt;/h1&gt;
 &lt;p&gt;The data we’ve been dealing with is linearly separable i.e we can draw a straight line (speaking in 2D) that separates the data into 2 categories. What if we have a data set like this?&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*SGJF-6P3gQH5cHlarb7m6w.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/kernel-trick-2d.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;There’s no hyperplane that can separate this data.&lt;/p&gt;
 &lt;p&gt;The kernel trick introduces a new dimension to the vector space. Adding a dimension to the data in the diagram above yields a 3D vector space. Can we separate the data now? Probably.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*aBJJ38sQ1yIZBGFNBzjZmA.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/support-vector-machine/kernel-trick-3d.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;If we can’t we could add more dimensions until we can. That’s beyond the scope of this tutorial so we won’t go any further. Do read about kernels in SVM though. There’s some pretty interesting stuff to explore!&lt;/p&gt;
 &lt;p&gt;Don’t forget to check out the ML Chops repo for all the code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/support-vector-machine&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
@@ -639,7 +635,7 @@ print(predict(x))
         
         <guid>https://alphacoder.xyz/k-nearest-neighbors/</guid>
         <description>Alpha Coder https://alphacoder.xyz/k-nearest-neighbors/ -&lt;p&gt;K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a &lt;strong&gt;classifier&lt;/strong&gt; as the experts would call it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*eg_VDV5KPHZ-aIzbI11fwg.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-nearest-neighbors/ml-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though. What if computers could do that for us?&lt;/p&gt;
 &lt;p&gt;Teaching computers to classify things has been very tedious until Machine Learning. While hard-coded rules may work for a given problem set, everything falls like a pack of cards when a few parameters are added/changed/removed. Worse, a solution becomes useless when a new problem arises. That’s bad for business. 😠&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
@@ -663,14 +659,14 @@ print(predict(x))
 &lt;p&gt;Also, more training data means a better classifier because there are more examples to “learn” from.&lt;/p&gt;
 &lt;h1 id=&#34;meet-knn&#34;&gt;Meet KNN&lt;/h1&gt;
 &lt;p&gt;K Nearest Neighbors is probably the easiest classification algorithm to understand. Take a look at the following graph:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*hhHhEwuLhRMXQ6gSXEOqdg.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Graph of height vs weight (data is theoretical)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-nearest-neighbors/graph-of-weight-vs-height.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Graph of height vs weight (data is theoretical)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;What would you classify &lt;em&gt;Blue Diamond 1&lt;/em&gt; as? At a glance, it’s easy to predict/infer that &lt;em&gt;Blue Diamond 1&lt;/em&gt; is most likely/is a &lt;em&gt;Female&lt;/em&gt;. It seems logical to say that &lt;em&gt;Blue Diamond 1&lt;/em&gt; is in the cluster of Females so it’s female. Fair enough.&lt;/p&gt;
 &lt;p&gt;What of &lt;em&gt;Blue Diamond 2&lt;/em&gt;? Not so fast! While it seems likely &lt;em&gt;Female&lt;/em&gt;, one could argue it’s &lt;em&gt;Male&lt;/em&gt;. Hmm… Eye-balling won’t cut it.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;KNN provides us a pretty solid way to predict which class Blue Diamond 2 belongs to.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;K Nearest Neighbors outputs a class membership of a feature set by a majority vote of its closest neighbors. In other words, we can find the persons closest to &lt;em&gt;Blue Diamond 2&lt;/em&gt; then cast a vote. If majority are &lt;em&gt;Male&lt;/em&gt;, then we say &lt;em&gt;Blue Diamond 2&lt;/em&gt; is &lt;em&gt;Male&lt;/em&gt;, else we say it’s &lt;em&gt;Female&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*KVn_DG3XvlEiizLesA0rHQ.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;KNN visualization&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-nearest-neighbors/knn-viz.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;KNN visualization&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Looking at the circled area, we can easily see from the graph (above) that there are 5 persons closest to &lt;em&gt;Blue Diamond 2&lt;/em&gt;. 3 &lt;em&gt;Red Squares&lt;/em&gt; and 2 &lt;em&gt;Green Circles&lt;/em&gt;. KNN says &lt;em&gt;Blue Diamond 2&lt;/em&gt; is Male since males are the majority of the closest neighbors.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;k&lt;/em&gt; in KNN represents the number of neighbors being considered. In the case of classifying &lt;em&gt;Blue Diamond 2&lt;/em&gt;, it’s 5. &lt;em&gt;k&lt;/em&gt; directly affects our prediction so we must use a “good” value. Take into account your data, specifically the number of classes and the sample size of the training set when choosing k.&lt;/p&gt;
 &lt;p&gt;In the person classification example we’ve been looking at, we have 2 classes (Male and Female), so k = 2 (or a multiple of 2) is a bad idea right off the bat.&lt;/p&gt;
@@ -704,7 +700,7 @@ data = {&amp;quot;male&amp;quot;: [[6.3, 50.2], [5.6, 47.1]],
 &lt;p&gt;Now that’s some chunk of code!&lt;/p&gt;
 &lt;p&gt;First things first! We loop through each training sample, calculating the &lt;a href=&#34;https://en.wikipedia.org/wiki/Euclidean_distance&#34;&gt;Euclidean distance&lt;/a&gt; between it and the input set.&lt;/p&gt;
 &lt;p&gt;The euclidean distance between two points on a cartesian plane is given by:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*j8gq_zqgxLfkbDMCFVDJvg.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-nearest-neighbors/euclidean-distance.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Sound familiar?&lt;/p&gt;
 &lt;p&gt;In the code, we used numpy’s euclidean distance function &lt;code&gt;np.linalg.norm()&lt;/code&gt; for simplicity and efficiency.&lt;/p&gt;
 &lt;p&gt;Next, we append the distance along with the class/group of the set (&lt;code&gt;[euclidean distance, group]&lt;/code&gt; -&amp;gt; &lt;code&gt;[12.092364, “male”]&lt;/code&gt;) to &lt;code&gt;distances&lt;/code&gt; list.&lt;/p&gt;
@@ -742,7 +738,7 @@ return prediction
         
         <guid>https://alphacoder.xyz/linear-regression/</guid>
         <description>Alpha Coder https://alphacoder.xyz/linear-regression/ -&lt;p&gt;What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*otatqOkzhxFl4LXtkbDmhQ.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/linear-regression/ml-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ML Chops&lt;/strong&gt; is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself. We’ll be using the Python programming language.&lt;/p&gt;
 &lt;p&gt;There’s a repo on my GitHub where all the code can be found. The url is: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops&#34;&gt;https://github.com/nicholaskajoh/ML_Chops&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
@@ -754,16 +750,16 @@ return prediction
 &lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-means&#34;&gt;K Means&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;machine-learning&#34;&gt;Machine Learning&lt;/h1&gt;
-&lt;p&gt;I’m assuming Machine Learning is not strange-ish to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.&lt;/p&gt;
-&lt;p&gt;If all this sounds Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.&lt;/p&gt;
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/cKxRvEZd3Mw&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;I’m assuming the term Machine Learning is not strange to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.&lt;/p&gt;
+&lt;p&gt;If all this sounds like Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.&lt;/p&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube-nocookie.com/embed/cKxRvEZd3Mw&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;If you’re good at this point, then let’s talk Linear Regression.&lt;/p&gt;
 &lt;h1 id=&#34;linear-regression-lr&#34;&gt;Linear Regression (LR)&lt;/h1&gt;
 &lt;p&gt;Linear Regression is a simple model for predicting &lt;a href=&#34;https://www.mathsisfun.com/definitions/continuous-data.html&#34;&gt;continuous data&lt;/a&gt;/real-valued outputs. It’s commonly used in subjects like physics, chemistry and math. I first came across it in secondary school practical physics when I had to predict outputs using data recorded during experiments. Sound familiar? 🙄&lt;/p&gt;
 &lt;p&gt;Imagine you want to predict the price per barrel of crude oil in Nigeria for tomorrow, next week or next month. With data on the prices over the years or past months, you can make a fairly accurate forecast of what the price would be using LR. Keep in mind that we’re assuming the data is correlated (positively or negatively). If it’s not correlated, then LR is probably not a good fit. We’ll talk about other algorithms that can handle nonlinear data later on in the series. For now we need to use linear data else, our predictions would be really really bad. We don’t want bad! 😒&lt;/p&gt;
 &lt;p&gt;The graph below may help you visualize linear data better…&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*iC2R89E_DBY5fSuQApTwhg.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Graph of linear data&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/linear-regression/graph-of-linear-data.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Graph of linear data&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The first thing you probably noticed is how somewhat scattered the data points are. There’s a pattern though, and it’s linear. As the value on the horizontal axis increases, the value on the vertical axis [generally] increases as well (positive correlation).&lt;/p&gt;
 &lt;h1 id=&#34;best-fitline&#34;&gt;Best fit line&lt;/h1&gt;
 &lt;p&gt;There’s a green line that passes through some of the points on the graph. It’s called the &lt;strong&gt;line of best fit&lt;/strong&gt;. Ideally this line should pass through all the points. However there is some “error” in the data. This explains why there is some scatteredness in the plot.&lt;/p&gt;
@@ -778,12 +774,12 @@ return prediction
 &lt;p&gt;It turns out that there are formulas from which we can evaluate the slope, &lt;em&gt;m&lt;/em&gt; and y intercept, &lt;em&gt;c.&lt;/em&gt; Once we get the slope and y intercept, our model is ready!&lt;/p&gt;
 &lt;p&gt;Mathematically, our LR model may look like this: &lt;code&gt;y = 2.1x + 1.4&lt;/code&gt; where m = 2.1 and c = 1.4&lt;/p&gt;
 &lt;h1 id=&#34;slope&#34;&gt;Slope&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*vji1X_3xW3lZsXUY4Vf-cg.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;slope formula&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/linear-regression/slope.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;slope formula&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; the &lt;em&gt;bar&lt;/em&gt; symbol represents &lt;strong&gt;mean/average&lt;/strong&gt;. E.g “X bar” is the mean of the Xs in the dataset.&lt;/p&gt;
 &lt;h1 id=&#34;intercept&#34;&gt;Intercept&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*MtVs1yxkMyl2MpK2Wystbg.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;y intercept formula&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/linear-regression/intercept.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;y intercept formula&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;simple-example&#34;&gt;Simple example&lt;/h1&gt;
 &lt;p&gt;Say we have the years 2001, 2002, 2003, &amp;hellip;, 2010 and oil prices 43.1, 45.2, 43.7, 49.0, 50.5, 53.7, 53.0, 56.8, 57.2, 60.0. We could come up with a table like so:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;x (yrs)   1    2    3    4    5    6    7    8    9    10
@@ -813,8 +809,8 @@ print(y)
 &lt;p&gt;There are several ways to calculate how accurate a LR model is. We’re going to talk about one of them called R-squared. It’s a statistical measure of how close the data are to the fitted regression line/best fit line. It is also known as the coefficient of determination. With R-squared, we’re simply asking: &lt;em&gt;how good is the best fit line?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Of course, if the best fit line is not good enough, then it’s the data to blame (it’s the best fit line duh 😜). Regardless, it means the predictions made using the line would be less accurate.&lt;/p&gt;
 &lt;p&gt;R-squared is given by the formula:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*HTeayn8hGYQzICFcYc3OdA.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;r squared&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/linear-regression/r-squared.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;r squared&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;SS stands for &lt;em&gt;Sum of Squared error of&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;y hat line (y with the caret) is the &lt;em&gt;ys of the best fit line ( for each x)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;y bar is the &lt;em&gt;mean of the ys&lt;/em&gt;&lt;/p&gt;
