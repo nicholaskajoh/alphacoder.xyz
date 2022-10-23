@@ -54,15 +54,15 @@ These are configurations for variables in your application that you might want o
 
 Say you need to send your users notifications via SMS, so you decide to build an SMS notification service for your product. Perhaps, there’s no one SMS provider that can send SMSes in all the countries you operate. More so, local providers offer better delivery rates and pricing. And you want to have backups should a provider experience a downtime. You have decided that the best solution would be to integrate multiple SMS providers. You could structure the configs for this application/service like this:
 
-Table: `app_config_types`
+Table: `data_types`
 
-| id | name | <div style="width:200px">description</div> | <div style="width:400px">validator (JSON schema)</div> | <div style="width:300px">cardinality (max number of configs of a given type; -1 => infinite)</div> | cache_for_secs | created_at | updated_at | deleted_at |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | SMS_PROVIDER | An SMS service provider. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/sms-provider.json","title":"SMS Provider","description":"An SMS provider.","type":"object","properties":{"name":{"description":"The name of the SMS provider.","type":"string"},"priority":{"description":"Priority of the SMS provider. We will prefer providers with higher priority. A lower value means a higher priority.","type":"integer","minimum":1},"available_countries":{"description":"Countries supported by SMS provider.","type":"array","items":{"type":"string","minLength":2,"maxLength":2},"minItems":1,"uniqueItems":true},"api_url":{"description":"SMS provider API URL.","type":"string"},"api_secret_alias":{"description":"SMS provider API secret alias.","type":"string"}},"required":["name","priority","api_url","api_secret_alias"]}` | -1 | 120 | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
+| id | name | <div style="width:200px">description</div> | <div style="width:400px">validator (JSON schema)</div> | default_value | <div style="width:350px">cardinality (max number of configs of a given type per table/account; -1 => infinite)</div> | <div style="width:300px">account_configurable (can an account holder modify this config?)</div> | created_at | updated_at | deleted_at |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | SMS_PROVIDER | An SMS service provider. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/sms-provider.json","title":"SMS Provider","description":"An SMS provider.","type":"object","properties":{"name":{"description":"The name of the SMS provider.","type":"string"},"priority":{"description":"Priority of the SMS provider. We will prefer providers with higher priority. A lower value means a higher priority.","type":"integer","minimum":1},"available_countries":{"description":"Countries supported by SMS provider.","type":"array","items":{"type":"string","minLength":2,"maxLength":2},"minItems":1,"uniqueItems":true},"api_url":{"description":"SMS provider API URL.","type":"string"},"api_secret_alias":{"description":"SMS provider API secret alias.","type":"string"}},"required":["name","priority","api_url","api_secret_alias"]}` | NULL | -1 | false | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
 
 Table: `app_configs`
 
-| id | config_name | type_id | <div style="width:400px">value</div> | created_at | updated_at | deleted_at |
+| id | name | data_type_id | <div style="width:400px">value</div> | created_at | updated_at | deleted_at |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | sms_bros | 1 | `{"name":"SMS Bros","priority":1,"available_countries":["NL","NG","US"],"api_url":"https://sms.bros.io/send","api_secret_alias":"SMS_BROS_SMS_API_SECRET"}` | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
 | 2 | fatsms | 1 | `{"name":"Fat SMS","priority":3,"available_countries":["NG","GH"],"api_url":"https://fatsms.co/api/smses","api_secret_alias":"FAT_SMS_API_SECRET"}` | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
@@ -71,20 +71,20 @@ Table: `app_configs`
 
 These are just like app configs, but for accounts. Say your product has multiple pricing plans, each with its set of features. You could use account config tables to store data on what features each user has access to based on the plan they paid for.
 
-Table: `account_config_props`
+Table: `data_types`
 
-| id | prop_name | <div style="width:200px">description</div> | <div style="width:400px">validator</div> | default_value | <div style="width:300px">account_configurable (can the account holder modify this config?)</div> | cache_for_secs | created_at | updated_at | deleted_at |
+| id | name | <div style="width:200px">description</div> | <div style="width:400px">validator (JSON schema)</div> | default_value | <div style="width:350px">cardinality (max number of configs of a given type per table/account; -1 => infinite)</div> | <div style="width:300px">account_configurable (can an account holder modify this config?)</div> | created_at | updated_at | deleted_at |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | FEATURE_UNLIMITED_UPLOADS | Feature allowing users upload as many files as they want. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/boolean.json","title":"Boolean","type":"boolean"}` | true | false | 300 | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
-| 2 | FEATURE_UNLIMITED_COLLABORATORS | Feature allowing users permit as many other users as they want to view and edit their files. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/boolean.json","title":"Boolean","type":"boolean"}` | false | false | 300 | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
-| 3 | FEATURE_PLUGINS | Feature allowing users install plugins to customize their setup. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/boolean.json","title":"Boolean","type":"boolean"}` | false | false | 300 | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
+| 2 | FEATURE_UNLIMITED_UPLOADS | Feature allowing users upload as many files as they want. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/boolean.json","title":"Boolean","type":"boolean"}` | true | 1 | false | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
+| 3 | FEATURE_UNLIMITED_COLLABORATORS | Feature allowing users permit as many other users as they want to view and edit their files. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/boolean.json","title":"Boolean","type":"boolean"}` | false | 1 | false | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
+| 4 | FEATURE_PLUGINS | Feature allowing users install plugins to customize their setup. | `{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://schemas.alphacoder.xyz/boolean.json","title":"Boolean","type":"boolean"}` | false | 1 | false | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
 
 Table: `account_configs`
 
-| id | prop_id | account_type | account_id | value | created_at | updated_at | deleted_at |
+| id | data_type_id | account_type | account_id | value | created_at | updated_at | deleted_at |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 1 | user | 69 | true | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
-| 2 | 2 | user | 69 | true | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
+| 1 | 2 | user | 69 | true | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
+| 2 | 3 | user | 69 | true | 2022-12-01 09:41:09 | 2022-12-01 09:42:09 | NULL |
 
 # Config system features
 
