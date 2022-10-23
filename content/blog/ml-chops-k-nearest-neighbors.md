@@ -8,7 +8,7 @@ draft: false
 
 K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a **classifier** as the experts would call it.
 
-![](https://cdn-images-1.medium.com/max/800/1*eg_VDV5KPHZ-aIzbI11fwg.jpeg)
+![](/images/k-nearest-neighbors/ml-meme.jpeg)
 
 Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though. What if computers could do that for us?
 
@@ -40,7 +40,8 @@ Also, more training data means a better classifier because there are more exampl
 
 K Nearest Neighbors is probably the easiest classification algorithm to understand. Take a look at the following graph:
 
-![](https://cdn-images-1.medium.com/max/800/1*hhHhEwuLhRMXQ6gSXEOqdg.png)
+![](/images/k-nearest-neighbors/graph-of-weight-vs-height.png)
+
 _Graph of height vs weight (data is theoretical)_
 
 What would you classify _Blue Diamond 1_ as? At a glance, it’s easy to predict/infer that _Blue Diamond 1_ is most likely/is a _Female_. It seems logical to say that _Blue Diamond 1_ is in the cluster of Females so it’s female. Fair enough.
@@ -51,7 +52,8 @@ _KNN provides us a pretty solid way to predict which class Blue Diamond 2 belong
 
 K Nearest Neighbors outputs a class membership of a feature set by a majority vote of its closest neighbors. In other words, we can find the persons closest to _Blue Diamond 2_ then cast a vote. If majority are _Male_, then we say _Blue Diamond 2_ is _Male_, else we say it’s _Female_.
 
-![](https://cdn-images-1.medium.com/max/800/1*KVn_DG3XvlEiizLesA0rHQ.png)
+![](/images/k-nearest-neighbors/knn-viz.png)
+
 _KNN visualization_
 
 Looking at the circled area, we can easily see from the graph (above) that there are 5 persons closest to _Blue Diamond 2_. 3 _Red Squares_ and 2 _Green Circles_. KNN says _Blue Diamond 2_ is Male since males are the majority of the closest neighbors.
@@ -100,7 +102,7 @@ First things first! We loop through each training sample, calculating the [Eucli
 
 The euclidean distance between two points on a cartesian plane is given by:
 
-![](https://cdn-images-1.medium.com/max/800/1*j8gq_zqgxLfkbDMCFVDJvg.png)
+![](/images/k-nearest-neighbors/euclidean-distance.png)
 
 Sound familiar?
 

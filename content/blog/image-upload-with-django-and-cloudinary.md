@@ -24,7 +24,7 @@ Console
 
 Visit [Cloudinary.com](https://cloudinary.com) and create an account or login if you already have one. You’ll be provided a nice dashboard/console at [https://cloudinary.com/console](https://cloudinary.com/console). There you’ll find your account details i.e cloud name, API key and secret.
 
-![](https://cdn-images-1.medium.com/max/1000/1*ZxPbpbatoeCyZzldXXoX2Q.png)
+![](/images/image-upload-with-django-and-cloudinary/cloudinary-console.png)
 
 Install
 -------

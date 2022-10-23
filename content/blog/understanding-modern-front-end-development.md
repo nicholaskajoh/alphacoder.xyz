@@ -20,7 +20,8 @@ We’re going to discuss the following:
 
 # Package Managers
 
-![](https://cdn-images-1.medium.com/max/800/1*AagfZZ8bGOI4iTbLqewg6Q.png)
+![](/images/understanding-modern-front-end-development/npm-logo.png)
+
 _npm logo ([https://www.npmjs.com](https://www.npmjs.com/))_
 
 One important principle you’ll learn as a Sofware Developer is DRY (Don’t Repeat Yourself). Once you see yourself writing the same code in three or more places in a project, you should find a way to abstract that functionality into a reusable function, class or module.
@@ -33,7 +34,8 @@ npm (Node Package Manager) is a popular package manager used by front-end develo
 
 # Transpilers
 
-![](https://cdn-images-1.medium.com/max/800/1*GH2R-pwLm2KcZjmEXc-O6Q.jpeg)
+![](/images/understanding-modern-front-end-development/babel-logo.jpeg)
+
 _babel logo_
 
 Lack of browser support for some of the newer features of JavaScript ([ES6](http://es6-features.org)) has been a major challenge for many front-end developers who want to use the latest and greatest to write better code and ship features faster. Developers have also desired features not available in the language (such as type annotations, generics, namespaces, interfaces etc found in [TypeScript](https://www.typescriptlang.org)) or just wanted syntactic sugar (like the Python-like [CoffeeScript](https://coffeescript.org)). Transpilers are used to solve these problems.
@@ -44,7 +46,8 @@ Babel is a commonly used transpiler for converting ES6+ code into a backwards co
 
 # Module Bundlers
 
-![](https://cdn-images-1.medium.com/max/800/1*aCVL0uOhdAJXkrPWwv06yw.png)
+![](/images/understanding-modern-front-end-development/webpack-logo.png)
+
 _webpack logo_
 
 Web development has become increasing JavaScript-centric over the years — Single-page Applications (SPAs), Progressive Web Apps (PWAs) and such. As front-end apps were growing in complexity, it was imperative to develop tools that could package an application (code, assets) and its dependencies into light-weight and performant bundles that will be understood by browsers.
@@ -55,7 +58,8 @@ Webpack is arguably the most popular JavaScript bundler in the wild today. It ha
 
 # Task Runners
 
-![](https://cdn-images-1.medium.com/max/800/1*qkmnWMz2Nr8FA72wK-ZLjA.png)
+![](/images/understanding-modern-front-end-development/grunt-logo.png)
+
 _grunt logo_
 
 Task runners make life easier by doing what they do — run tasks! During development, front-end engineers find themselves repeating the same things (such as minification, compilation, unit-testing and linting) over and over again. The time used in performing these mundane tasks can be better spent doing more important things like squashing bugs and adding new features. Task runners help you automate these tasks so that you can run them quickly with one or a few commands.
@@ -64,7 +68,8 @@ Grunt is a popular task runner used in front-end apps. It uses a CLI to run cust
 
 # CSS Preprocessors
 
-![](https://cdn-images-1.medium.com/max/800/1*iSV5npwzchT-UqNPLSxPvQ.png)
+![](/images/understanding-modern-front-end-development/sass-logo.png)
+
 _sass logo_
 
 CSS preprocessors let you generate CSS from their own unique syntax. There are many CSS preprocessors available which provide features that don’t exist in pure CSS such as mixins, selector nesting, selector inheritance etc. These features make your CSS DRY, and help you write modular code, save time, create reusable components and maintain large projects fairly easily.

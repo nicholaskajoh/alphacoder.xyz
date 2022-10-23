@@ -2,10 +2,9 @@
 author = "Nicholas Kajoh"
 date = 2018-11-22T07:21:00.000Z
 draft = false
-image = "/content/images/2018/12/brina-blum-156977-unsplash-sm.jpg"
 slug = "git-workflows"
 tags = ["Git"]
-title = "2 Git workflows you should know"
+title = "Two Git workflows you should know"
 
 +++
 
@@ -16,9 +15,9 @@ In this post, we’ll be discussing two popular Git workflows you should know 
 
 ### Gitflow
 
-![](https://cdn-images-1.medium.com/max/800/1*8-zDz1s5Atux_yNW_mXmfg@2x.png)
+![](/images/git-workflows/gitflow.png)
 
-Gitflow workflow. Source: nvie.com
+_Gitflow workflow. Source: nvie.com_
 
 Developed and popularized by [Vincent Driessen](https://nvie.com/about), the Gitflow workflow is a branching model built around release management. It involves the use of two main branches (_master_ and _develop_) and three supporting branches (_feature_, _release_ and _hotfix_), with strict branch off and merge rules.
 
@@ -32,9 +31,9 @@ You can learn more about this workflow from Vincent himself in his article title
 
 ### Forking workflow
 
-![](https://cdn-images-1.medium.com/max/1000/1*J4Y-c1_DbbIviHLOa9spsQ.jpeg)
+![](/images/git-workflows/forking-workflow.jpeg)
 
-Forking workflow
+_Forking workflow_
 
 The Forking workflow is common in open source projects where anyone can contribute. Outside collaborators are not given write access to the official repository. They must first fork the repository, create a new branch, make the changes they want, then send a Pull Request to the official repository.
 

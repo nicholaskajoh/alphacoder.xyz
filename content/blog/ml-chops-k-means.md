@@ -8,7 +8,7 @@ draft: false
 
 We’ve been talking **classification** for a while now — from _K Nearest Neighbors_ to _Naive Bayes_ to _Support Vector Machines_. In this post, we’ll be looking at **clustering** using an algorithm called **_K Means_**. Let’s dive in...
 
-![](https://cdn-images-1.medium.com/max/800/1*C2uxvEivKa4FQYimkl6OJA.jpeg)
+![](/images/k-means/k-means-meme.jpeg)
 
 # The ML Chops series
 - [Linear Regression](/linear-regression)
@@ -32,21 +32,25 @@ K Means is an unsupervised learning algorithm that tries to cluster data into a 
 
 First things first, the data
 
-    import numpy as np
+```python
+import numpy as np
 
-    data = np.array([  
-        [4, 3], [0, 0], [2, 4], [3, 4], [5, 4], [-2, 1], [-3, 0], [-3, -3], [8, 12], [11, 11], [9, 10]  
-    ])
+data = np.array([  
+    [4, 3], [0, 0], [2, 4], [3, 4], [5, 4], [-2, 1], [-3, 0], [-3, -3], [8, 12], [11, 11], [9, 10]  
+])
+```
 
 Visually, the above data looks like this
 
-![](https://cdn-images-1.medium.com/max/800/1*qsdD6dP7zqBd-jQO2sg0pQ.png)
+![](/images/k-means/dataset-plot.png)
 
 From the graph you can easily see the data can be grouped into 3 clusters. Thus `K = 3`.
 
-    K = 3  
-    tol = 0.001  
-    max_iter = 25
+```python
+K = 3  
+tol = 0.001  
+max_iter = 25
+```
 
 Notice the variables `tol` and `max_ter`. `tol` stands for tolerance and represents a percentage (0.001%). As we said earlier, we know we’re optimized when there’s little or no change in the centroids. If the change is greater than 0.001%, we tolerate and keep iterating.
 
@@ -54,48 +58,52 @@ But we can’t keep iterating forever/for too long in the case where we can’t 
 
 Next, let’s create the centroids. Their initial values would be the first K data points.
 
-    centroids = {}  
-    for i in range(K):  
-        centroids[i] = data[i]
+```python
+centroids = {}  
+for i in range(K):  
+    centroids[i] = data[i]
+```
 
 Now unto the meat of the algorithm which is the optimization
 
-    groups = {}  
-    for i in range(max_iter):  
-        # step 1  
-        for j in range(K):  
-            groups[j] = []
+```python
+groups = {}  
+for i in range(max_iter):  
+    # step 1  
+    for j in range(K):  
+        groups[j] = []
 
-        # step 2  
-        for feature_set in data:  
-            # step 2.1  
-            distances = [np.linalg.norm(feature_set - centroids[centroid_key]) for centroid_key in centroids]
+    # step 2  
+    for feature_set in data:  
+        # step 2.1  
+        distances = [np.linalg.norm(feature_set - centroids[centroid_key]) for centroid_key in centroids]
 
-            # step 2.2  
-            group = distances.index(min(distances))  
-            groups[group].append(feature_set)
+        # step 2.2  
+        group = distances.index(min(distances))  
+        groups[group].append(feature_set)
 
-        # step 3  
-        old_centroids = dict(centroids)
+    # step 3  
+    old_centroids = dict(centroids)
 
-        # step 4  
-        for j in range(K):  
-            centroids[j] = np.average(groups[j], axis=0)
+    # step 4  
+    for j in range(K):  
+        centroids[j] = np.average(groups[j], axis=0)
 
-        # step 5  
-        optimized = True  
-        for centroid_key in centroids:  
-            old_centroid = old_centroids[centroid_key]  
-            new_centroid = centroids[centroid_key]  
-            a = np.array(new_centroid - old_centroid)  
-            b = np.array(old_centroid)  
-            change = np.divide(a, b, out=np.zeros_like(a), where=b!=0)
+    # step 5  
+    optimized = True  
+    for centroid_key in centroids:  
+        old_centroid = old_centroids[centroid_key]  
+        new_centroid = centroids[centroid_key]  
+        a = np.array(new_centroid - old_centroid)  
+        b = np.array(old_centroid)  
+        change = np.divide(a, b, out=np.zeros_like(a), where=b!=0)
 
-            if abs(np.sum(change * 100.0)) > tol:  
-                optimized = False  
-                break  
-        if optimized:  
-            break
+        if abs(np.sum(change * 100.0)) > tol:  
+            optimized = False  
+            break  
+    if optimized:  
+        break
+```
 
 Let break things down step by step…
 
@@ -125,9 +133,65 @@ Check if the change in any of the centroids is greater than 0.001%. If yes, then
 
 Here’s the full code for your perusal. It includes some lines of matplotlib code to visualize the data.
 
-<script src="https://gist.github.com/nicholaskajoh/a667e20925abfb5f8ad9bf748b5092fe.js"></script>
+```python
+import numpy as np
+import matplotlib.pyplot as plt
 
-![](https://cdn-images-1.medium.com/max/800/1*xOImz1NtPQd8NrG5Y0AHWQ.png)
+data = np.array([
+    [4, 3], [0, 0], [2, 4], [3, 4], [5, 4], [-2, 1], [-3, 0], [-3, -3], [8, 12], [11, 11], [9, 10]
+])
+
+K = 3
+tol = 0.001
+max_iter = 25
+
+centroids = {}
+for i in range(K):
+    centroids[i] = data[i]
+
+groups = {}
+for i in range(max_iter):
+    # step 1
+    for j in range(K):
+        groups[j] = []
+    # step 2
+    for feature_set in data:
+        # step 2.1
+        distances = [np.linalg.norm(feature_set - centroids[centroid_key]) for centroid_key in centroids]
+        # step 2.2
+        group = distances.index(min(distances))
+        groups[group].append(feature_set)
+    # step 3
+    old_centroids = dict(centroids)
+    # step 4
+    for j in range(K):
+        centroids[j] = np.average(groups[j], axis=0)
+    # step 5
+    optimized = True
+    for centroid_key in centroids:
+        old_centroid = old_centroids[centroid_key]
+        new_centroid = centroids[centroid_key]
+        a = np.array(new_centroid - old_centroid)
+        b = np.array(old_centroid)
+        change = np.divide(a, b, out=np.zeros_like(a), where=b!=0)
+        if abs(np.sum(change * 100.0)) > tol:
+            optimized = False
+            break
+    if optimized:
+        break
+
+# visualize with matplotlib
+plt.scatter([i[0] for i in groups[0]], [i[1] for i in groups[0]])
+plt.scatter([i[0] for i in groups[1]], [i[1] for i in groups[1]])
+plt.scatter([i[0] for i in groups[2]], [i[1] for i in groups[2]])
+
+plt.scatter(centroids[0][0], centroids[0][1], color='r', marker='*')
+plt.scatter(centroids[1][0], centroids[1][1], color='r', marker='*')
+plt.scatter(centroids[2][0], centroids[2][1], color='r', marker='*')
+plt.show()
+```
+
+![](/images/k-means/graph-of-clusters.png)
 
 Check out the ML Chops repo for a class-based implementation and an example with real world data: [https://github.com/nicholaskajoh/ML\_Chops/tree/master/k-means](https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means).
 

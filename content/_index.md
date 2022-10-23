@@ -5,4 +5,4 @@ featured_image = "/images/hero.jpg"
 
 A software engineering blog by [Nicholas Kajoh](https://terna.dev).
 
-For inquiries, shoot me an email at __support (at) alphacoder (dot) xyz__.
+Got questions? Shoot me an email: __support (at) alphacoder (dot) xyz__.

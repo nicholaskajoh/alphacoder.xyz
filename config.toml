@@ -13,6 +13,8 @@ paginatePath = "page"
 # Copyright
 copyright = "Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved."
 
+enableGitInfo = true
+
 # Taxonomies
 [taxonomies]
     tag = "tags"

@@ -8,7 +8,7 @@ draft: false
 
 What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
 
-![](https://cdn-images-1.medium.com/max/800/1*otatqOkzhxFl4LXtkbDmhQ.jpeg)
+![](/images/linear-regression/ml-meme.jpeg)
 
 **ML Chops** is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself. We’ll be using the Python programming language.
 
@@ -24,11 +24,11 @@ There’s a repo on my GitHub where all the code can be found. The url is: [http
 
 # Machine Learning
 
-I’m assuming Machine Learning is not strange-ish to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.
+I’m assuming the term Machine Learning is not strange to you. You may not really know how to implement or use Machine Learning algorithms, but you probably have some intuition about how it all works. You essentially “train” an algorithm/a model with data and then it’s able to make predictions, a lot of times very accurately.
 
-If all this sounds Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.
+If all this sounds like Mandarin, you should probably watch Josh Gordon’s explanation of what Machine Learning is.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cKxRvEZd3Mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/cKxRvEZd3Mw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 If you’re good at this point, then let’s talk Linear Regression.
 
@@ -40,7 +40,8 @@ Imagine you want to predict the price per barrel of crude oil in Nigeria for tom
 
 The graph below may help you visualize linear data better…
 
-![](https://cdn-images-1.medium.com/max/800/1*iC2R89E_DBY5fSuQApTwhg.png)
+![](/images/linear-regression/graph-of-linear-data.png)
+
 _Graph of linear data_
 
 The first thing you probably noticed is how somewhat scattered the data points are. There’s a pattern though, and it’s linear. As the value on the horizontal axis increases, the value on the vertical axis \[generally\] increases as well (positive correlation).
@@ -71,14 +72,16 @@ Mathematically, our LR model may look like this: `y = 2.1x + 1.4` where m = 2.1 
 
 # Slope
 
-![](https://cdn-images-1.medium.com/max/800/1*vji1X_3xW3lZsXUY4Vf-cg.png)
+![](/images/linear-regression/slope.png)
+
 _slope formula_
 
 **NB:** the _bar_ symbol represents **mean/average**. E.g “X bar” is the mean of the Xs in the dataset.
 
 # Intercept
 
-![](https://cdn-images-1.medium.com/max/800/1*MtVs1yxkMyl2MpK2Wystbg.png)
+![](/images/linear-regression/intercept.png)
+
 _y intercept formula_
 
 # Simple example
@@ -121,7 +124,8 @@ Of course, if the best fit line is not good enough, then it’s the data to blam
 
 R-squared is given by the formula:
 
-![](https://cdn-images-1.medium.com/max/800/1*HTeayn8hGYQzICFcYc3OdA.png)
+![](/images/linear-regression/r-squared.png)
+
 _r squared_
 
 SS stands for _Sum of Squared error of_
