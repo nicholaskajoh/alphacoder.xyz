@@ -13,6 +13,164 @@
     
     
         <item>
+        <title>K Means</title>
+        <link>https://alphacoder.xyz/k-means/</link>
+        <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/k-means/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/k-means/ -&lt;p&gt;We’ve been talking &lt;strong&gt;classification&lt;/strong&gt; for a while now — from &lt;em&gt;K Nearest Neighbors&lt;/em&gt; to &lt;em&gt;Naive Bayes&lt;/em&gt; to &lt;em&gt;Support Vector Machines&lt;/em&gt;. In this post, we’ll be looking at &lt;strong&gt;clustering&lt;/strong&gt; using an algorithm called &lt;strong&gt;&lt;em&gt;K Means&lt;/em&gt;&lt;/strong&gt;. Let’s dive in&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-means/k-means-meme.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;the-ml-chops-series&#34;&gt;The ML Chops series&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/linear-regression&#34;&gt;Linear Regression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/k-nearest-neighbors&#34;&gt;K Nearest Neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/naive-bayes&#34;&gt;Naive Bayes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/support-vector-machine&#34;&gt;Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;K Means (this article)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, &lt;em&gt;K&lt;/em&gt; based on feature similarity. The algorithm works iteratively to assign each data point to one of &lt;em&gt;K&lt;/em&gt; groups. Each group is identified by a centroid (the center point of the group) and data points are grouped with the centroid they’re closest to. The centroids are determined during training through optimization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NB:&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;Unsupervised learning involves training an algorithm with unclassified or unlabeled data. It’s up to the algorithm to figure out a pattern in the data and, in the case of clustering, group similar data points together.&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;how-itworks&#34;&gt;How it works&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;First, we select the number of groups/clusters, K we want. To figure out what value of K to use, you can visualize the data to see how many groups it can be separated into. This is not always possible because the data can be in more than 3 dimensions. In such a case, you need to have an expectation from your data. Maybe you’re trying to separate good oranges from bad ones. In this case, K = 2.&lt;/li&gt;
+&lt;li&gt;Next, we create K centroids. The easiest way to do this is to use the first K feature sets from our data or just do a random selection.&lt;/li&gt;
+&lt;li&gt;These centroids are not optimized. The training process involves moving the centroids until they’re at the center of each group, at which point we can quite correctly determine what group a given data point should be in (the centroid to which it’s closest). With our starting centroids, we iterate through the data grouping each point to the centroid it’s closest to. Afterwards, we change the centroids by taking the &lt;strong&gt;mean&lt;/strong&gt; of all the data points in each group.&lt;/li&gt;
+&lt;li&gt;This process continues repetitively until we notice the centroids are not changing much or at all. This means we’re optimized!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
+&lt;p&gt;First things first, the data&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; np
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    [&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visually, the above data looks like this&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-means/dataset-plot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;From the graph you can easily see the data can be grouped into 3 clusters. Thus &lt;code&gt;K = 3&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;K &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tol &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.001&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;max_iter &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Notice the variables &lt;code&gt;tol&lt;/code&gt; and &lt;code&gt;max_ter&lt;/code&gt;. &lt;code&gt;tol&lt;/code&gt; stands for tolerance and represents a percentage (0.001%). As we said earlier, we know we’re optimized when there’s little or no change in the centroids. If the change is greater than 0.001%, we tolerate and keep iterating.&lt;/p&gt;
+&lt;p&gt;But we can’t keep iterating forever/for too long in the case where we can’t optimize further and the change remains greater than 0.001. So we set &lt;code&gt;max_iter&lt;/code&gt;, the maximum number of iterations we’re willing to do.&lt;/p&gt;
+&lt;p&gt;Next, let’s create the centroids. Their initial values would be the first K data points.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;centroids &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(K):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    centroids[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data[i]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now unto the meat of the algorithm which is the optimization&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;groups &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(max_iter):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 1  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(K):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        groups[j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 2  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; feature_set &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; data:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# step 2.1  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        distances &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;linalg&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;norm(feature_set &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; centroids[centroid_key]) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; centroid_key &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; centroids]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# step 2.2  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        group &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; distances&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;index(min(distances))  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        groups[group]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(feature_set)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 3  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    old_centroids &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dict(centroids)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 4  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(K):  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        centroids[j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;average(groups[j], axis&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 5  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    optimized &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; centroid_key &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; centroids:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        old_centroid &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; old_centroids[centroid_key]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        new_centroid &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; centroids[centroid_key]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array(new_centroid &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; old_centroid)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array(old_centroid)  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        change &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;divide(a, b, out&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros_like(a), where&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; abs(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sum(change &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100.0&lt;/span&gt;)) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; tol:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            optimized &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; optimized:  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let break things down step by step…&lt;/p&gt;
+&lt;h4 id=&#34;step-1&#34;&gt;Step 1&lt;/h4&gt;
+&lt;p&gt;Initialize the &lt;code&gt;groups&lt;/code&gt; dictionary with K empty arrays. This ensures &lt;code&gt;groups&lt;/code&gt; is empty at the start of each iteration.&lt;/p&gt;
+&lt;h4 id=&#34;step-21&#34;&gt;Step 2.1&lt;/h4&gt;
+&lt;p&gt;Iterate through the data, calculating the euclidean distance of a given feature set from all the centroids.&lt;/p&gt;
+&lt;h4 id=&#34;step-22&#34;&gt;Step 2.2&lt;/h4&gt;
+&lt;p&gt;The feature set is added to the group of the centroid it’s closest to.&lt;/p&gt;
+&lt;h4 id=&#34;step-3&#34;&gt;Step 3&lt;/h4&gt;
+&lt;p&gt;Store the current centroids in &lt;code&gt;old_centroids&lt;/code&gt;. The centroids are going to change soon. But we need the old centroids to see how much has changed since the last iteration.&lt;/p&gt;
+&lt;h4 id=&#34;step-4&#34;&gt;Step 4&lt;/h4&gt;
+&lt;p&gt;Calculate the new centroids by taking the average of all the feature sets in each centroid group.&lt;/p&gt;
+&lt;h4 id=&#34;step-5&#34;&gt;Step 5&lt;/h4&gt;
+&lt;p&gt;Check if the change in any of the centroids is greater than 0.001%. If yes, then we’re not yet optimized.&lt;/p&gt;
+&lt;p&gt;Here’s the full code for your perusal. It includes some lines of matplotlib code to visualize the data.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; np
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; plt
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array([
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    [&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;], [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;], [&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;K &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tol &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.001&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;max_iter &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;centroids &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(K):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    centroids[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data[i]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;groups &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(max_iter):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(K):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        groups[j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; feature_set &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; data:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# step 2.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        distances &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;linalg&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;norm(feature_set &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; centroids[centroid_key]) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; centroid_key &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; centroids]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# step 2.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        group &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; distances&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;index(min(distances))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        groups[group]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(feature_set)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    old_centroids &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dict(centroids)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(K):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        centroids[j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;average(groups[j], axis&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# step 5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    optimized &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; centroid_key &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; centroids:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        old_centroid &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; old_centroids[centroid_key]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        new_centroid &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; centroids[centroid_key]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array(new_centroid &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; old_centroid)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;array(old_centroid)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        change &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;divide(a, b, out&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zeros_like(a), where&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; abs(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sum(change &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100.0&lt;/span&gt;)) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; tol:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            optimized &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; optimized:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# visualize with matplotlib&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;scatter([i[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; groups[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]], [i[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; groups[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;scatter([i[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; groups[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]], [i[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; groups[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;scatter([i[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; groups[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]], [i[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; groups[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;scatter(centroids[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], centroids[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], color&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;, marker&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;scatter(centroids[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], centroids[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], color&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;, marker&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;scatter(centroids[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], centroids[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;], color&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;, marker&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;plt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;show()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/k-means/graph-of-clusters.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Check out the ML Chops repo for a class-based implementation and an example with real world data: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/k-means&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
+- https://alphacoder.xyz/k-means/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
         <title>Image upload with Django and Cloudinary</title>
         <link>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
         <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
@@ -854,174 +1012,6 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;p&gt;Check out the repo for this tutorial: &lt;a href=&#34;https://github.com/nicholaskajoh/Simple-CSS-Grid&#34;&gt;https://github.com/nicholaskajoh/Simple-CSS-Grid&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also, you should totally read &lt;a href=&#34;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&#34;&gt;Chris Coyier’s complete guide to flexbox&lt;/a&gt;. If you have the time, go through &lt;a href=&#34;https://css-tricks.com/snippets/css/complete-guide-grid/&#34;&gt;Chris House’ complete guide to grid&lt;/a&gt; as well.&lt;/p&gt;
 - https://alphacoder.xyz/responsive-grid-system/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Build a Facebook clone from scratch with PHP — Part 6</title>
-        <link>https://alphacoder.xyz/facebook-clone-6/</link>
-        <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/facebook-clone-6/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-6/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 6 (this article)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &amp;ldquo;friend&amp;rdquo; model of relationships (I&amp;rsquo;m your friend; you&amp;rsquo;re my friend). There are other models like the popular &amp;ldquo;following-follower&amp;rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we&amp;rsquo;ll explore a very basic approach. Also, we won&amp;rsquo;t be exploiting the relationship model we&amp;rsquo;ll be creating in the workings of our application. Again, it&amp;rsquo;s to keep things simple.&lt;/p&gt;
-&lt;h1 id=&#34;friend-relationships&#34;&gt;Friend relationships&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;I&amp;rsquo;m your friend and you&amp;rsquo;re my friend&lt;/em&gt;. That&amp;rsquo;s the idea for the friend relationship model. It starts by making a friend request. The user at the receiving end may choose to accept or decline the request. If they accept, the user who made the request is added to their friends&amp;rsquo; list and vice versa [or so] thus a relationship exists between the two of them. If a request is declined, nothing happens, basically.&lt;/p&gt;
-&lt;p&gt;Without further ado, let&amp;rsquo;s implement something of that sort for FaceClone.&lt;/p&gt;
-&lt;h1 id=&#34;list-users&#34;&gt;List users&lt;/h1&gt;
-&lt;p&gt;We want to provide a list of FaceClone users to a user so that they can add any of them as friends. The right sidebar of the home.php template has an &amp;ldquo;add friend&amp;rdquo; panel. Let&amp;rsquo;s use it. All we need do is list out all our users.&lt;/p&gt;
-&lt;p&gt;In the &amp;ldquo;add friend&amp;rdquo; section, we&amp;rsquo;ll have…&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;h4&amp;gt;add friend&amp;lt;/h4&amp;gt;
-&amp;lt;?php
-    $sql = &amp;quot;SELECT id, username, (SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION[&#39;user_id&#39;]}) AS is_friend FROM users WHERE id != {$_SESSION[&#39;user_id&#39;]} HAVING is_friend = 0&amp;quot;;
-    $result = $conn-&amp;gt;query($sql);
-
-    if ($result-&amp;gt;num_rows &amp;gt; 0) {
-        ?&amp;gt;&amp;lt;ul&amp;gt;&amp;lt;?php
-    
-        while($fc_user = $result-&amp;gt;fetch_assoc()) {
-            ?&amp;gt;&amp;lt;li&amp;gt;
-                &amp;lt;a href=&amp;quot;profile.php?username=&amp;lt;?php echo $fc_user[&#39;username&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
-                    &amp;lt;?php echo $fc_user[&#39;username&#39;]; ?&amp;gt;
-                &amp;lt;/a&amp;gt; 
-                &amp;lt;a href=&amp;quot;php/add-friend.php?uid=&amp;lt;?php echo $fc_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;[add]&amp;lt;/a&amp;gt;
-            &amp;lt;/li&amp;gt;&amp;lt;?php
-        }
-    
-        ?&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;?php
-    } else {
-        ?&amp;gt;&amp;lt;p class=&amp;quot;text-center&amp;quot;&amp;gt;No users to add!&amp;lt;/p&amp;gt;&amp;lt;?php
-    }
-?&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now that&amp;rsquo;s some code! Let&amp;rsquo;s break it down bit by bit. We want to list FaceClone users. That&amp;rsquo;s the goal. So why do we have a long and &amp;ldquo;complex&amp;rdquo; SQL query? Can&amp;rsquo;t we just use &lt;code&gt;SELECT * FROM users&lt;/code&gt;? We can. But it&amp;rsquo;s not that simple. There are 2 constraints we need to set. First, users that are already friends with the current user (who is looking to get new friends) shouldn&amp;rsquo;t be displayed on the list. That makes sense right? Secondly, the current user shouldn&amp;rsquo;t be on the list. You shouldn&amp;rsquo;t be able to friend yourself, should you? There are other constraints that can be added to make things more fluid as well as &amp;ldquo;waterproof&amp;rdquo;, but considering them would just make things more complicated so we&amp;rsquo;ll just leave things as they are.&lt;/p&gt;
-&lt;p&gt;To achieve the first constraint, we added a column to the users table results called &lt;code&gt;is_friend&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;(SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION[&#39;user_id&#39;]}) AS is_friend
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This column would contain a 0 or 1 for each user record. 0 means not a friend of the current user while 1 means [already] a friend. Using the &lt;code&gt;HAVING&lt;/code&gt; keyword, we exclude records with &lt;code&gt;is_friend&lt;/code&gt; value of 1. That is&amp;hellip;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;HAVING is_friend = 0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The second constraint is achieved using the &lt;code&gt;WHERE&lt;/code&gt; clause to exclude the current user from the list thus:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;WHERE id != {$_SESSION[&#39;user_id&#39;]}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;send-a-friendrequest&#34;&gt;Send a friend request&lt;/h1&gt;
-&lt;p&gt;In the users list, there&amp;rsquo;s an add friend link beside each username.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;a href=&amp;quot;php/add-friend.php?uid=&amp;lt;?php echo $fc_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;[add]&amp;lt;/a&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The links lead to a GET endpoint &lt;code&gt;php/add-friend.php?uid=&lt;/code&gt;. Go ahead, as always and create a file in the php folder called add-friend.php with the following code&amp;hellip;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    db_connect();
-    $sql = &amp;quot;INSERT INTO friend_requests (user_id, friend_id) VALUES (?, ?)&amp;quot;;
-    $statement = $conn-&amp;gt;prepare($sql);
-    $statement-&amp;gt;bind_param(&#39;ii&#39;, $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;]);
-    if ($statement-&amp;gt;execute()) {
-        redirect_to(&amp;quot;/home.php?request_sent=true&amp;quot;);
-    } else {
-        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;With a supplied user id in the GET request, we can create a new friend request. The user to whom the request is being made is the friend so their id is stored in &lt;code&gt;friend_id&lt;/code&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;acceptdecline-friendrequests&#34;&gt;Accept/decline friend requests&lt;/h1&gt;
-&lt;p&gt;The user who is requested should be able to see who requested them and choose whether to accept or decline. The left sidebar in home.php provides such a facility. With a little padding, we could arrive at something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;h4&amp;gt;friend requests&amp;lt;/h4&amp;gt;
-&amp;lt;?php
-    $sql = &amp;quot;SELECT * FROM friend_requests WHERE friend_id = {$_SESSION[&#39;user_id&#39;]}&amp;quot;;
-    $result = $conn-&amp;gt;query($sql);
-
-    if ($result-&amp;gt;num_rows &amp;gt; 0) {
-        ?&amp;gt;&amp;lt;ul&amp;gt;&amp;lt;?php
-
-        while($f_request = $result-&amp;gt;fetch_assoc()) {
-            ?&amp;gt;&amp;lt;li&amp;gt;&amp;lt;?php
-                
-            $u_sql = &amp;quot;SELECT * FROM users WHERE id = {$f_request[&#39;user_id&#39;]} LIMIT 1&amp;quot;;
-            $u_result = $conn-&amp;gt;query($u_sql);
-            $fr_user = $u_result-&amp;gt;fetch_assoc();
-            
-            ?&amp;gt;&amp;lt;a href=&amp;quot;profile.php?username=&amp;lt;?php echo $fr_user[&#39;username&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
-                &amp;lt;?php echo $fr_user[&#39;username&#39;]; ?&amp;gt;
-            &amp;lt;/a&amp;gt; 
-                
-            &amp;lt;a class=&amp;quot;text-success&amp;quot; href=&amp;quot;php/accept-request.php?uid=&amp;lt;?php echo $fr_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
-                [accept]
-            &amp;lt;/a&amp;gt; 
-                
-            &amp;lt;a class=&amp;quot;text-danger&amp;quot; href=&amp;quot;php/remove-request.php?uid=&amp;lt;?php echo $fr_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
-                [decline]
-            &amp;lt;/a&amp;gt;
-
-            &amp;lt;/li&amp;gt;&amp;lt;?php
-        }
-
-        ?&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;?php
-    } else {
-        ?&amp;gt;&amp;lt;p class=&amp;quot;text-center&amp;quot;&amp;gt;No friend requests!&amp;lt;/p&amp;gt;&amp;lt;?php
-    }
-?&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the snippet above, there are two sets of queries. The first pulls out all the friend requests to the current user. The second fetches data (of the requesting user) for each friend request.&lt;/p&gt;
-&lt;p&gt;There are two links beside each user&amp;rsquo;s username. One to accept and the other to decline. They both lead to different end points. The former to &lt;code&gt;php/accept-request.php?uid=&lt;/code&gt; and the latter to &lt;code&gt;php/remove-request.php?uid=&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Remove request:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    db_connect();
-    $sql = &amp;quot;DELETE FROM friend_requests WHERE user_id = ?&amp;quot;;
-    $statement = $conn-&amp;gt;prepare($sql);
-    $statement-&amp;gt;bind_param(&#39;i&#39;, $_GET[&#39;uid&#39;]);
-    if ($statement-&amp;gt;execute()) {
-        redirect_to(&amp;quot;/profile.php?username=&amp;quot; . $_SESSION[&#39;user_username&#39;]);
-    } else {
-        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Accept request:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    db_connect();
-    // add users to friends table
-    $statement = $conn-&amp;gt;prepare(&amp;quot;INSERT INTO friends (user_id, friend_id) VALUES (?, ?), (?, ?)&amp;quot;);
-    $statement-&amp;gt;bind_param(&#39;iiii&#39;, $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;], $_GET[&#39;uid&#39;], $_SESSION[&#39;user_id&#39;]);
-    // remove friend request
-    if ($statement-&amp;gt;execute()) {
-        redirect_to(&amp;quot;/php/remove-request.php?uid=&amp;quot; . $_GET[&#39;uid&#39;]);
-    } else {
-        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Friendship is two-sided. I am your and you are my friend. As such, in accept-request.php we insert two records. In one, the current user is the friend and in the other the requesting user is the friend. While it seems like unnecessary duplication, it proves easier to manage. Also notice we use remove-request.php in accept-request.php to delete a friend request once two users have been added as friends.&lt;/p&gt;
-&lt;h1 id=&#34;unfriend-user&#34;&gt;Unfriend user&lt;/h1&gt;
-&lt;p&gt;Unfriending is as simple as removing the records in the friends table that connects two users.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php
-    require_once &amp;quot;../functions.php&amp;quot;;
-    db_connect();
-    $sql = &amp;quot;DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)&amp;quot;;
-    $statement = $conn-&amp;gt;prepare($sql);
-    $statement-&amp;gt;bind_param(&#39;iiii&#39;, $_GET[&#39;uid&#39;], $_SESSION[&#39;user_id&#39;], $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;]);
-    if ($statement-&amp;gt;execute()) {
-        redirect_to(&amp;quot;/profile.php?username=&amp;quot; . $_SESSION[&#39;user_username&#39;]);
-    } else {
-        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Viola! We&amp;rsquo;ve built friend relationships into FaceClone!&lt;/p&gt;
-&lt;p&gt;Again, we&amp;rsquo;re not exploiting the relationships we just created, to keep things simple. But it&amp;rsquo;s pretty straightforward to do so. For example, instead of displaying all FaceClone posts on a user&amp;rsquo;s feed, we could display only posts from their friends. We could also make some of a user&amp;rsquo;s profile information only available to their friends. If we had a chat feature, we could allow only friends chat with each other. As a social network grows, this would make more sense. So if you&amp;rsquo;re working on your social network app after this series (I totally encourage it), keep in mind what the relationships you create would imply.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There&amp;rsquo;s always something to add to make it easier, faster and/or better to use.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;We&amp;rsquo;ll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-6 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
-- https://alphacoder.xyz/facebook-clone-6/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

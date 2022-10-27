@@ -13,6 +13,29 @@
     
     
         <item>
+        <title>What is readable code?</title>
+        <link>https://alphacoder.xyz/what-is-readable-code/</link>
+        <pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/what-is-readable-code/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/what-is-readable-code/ -&lt;blockquote&gt;
+&lt;p&gt;Any code that I didn’t write or wrote more than 6 months ago is unreadable! — you, probably&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Everyone writes readable code, and yet everyone complains about all the unreadable code they have to deal with on a daily. Of course, readability is subjective. But when developers say a certain piece of code is unreadable, they usually mean it requires high cognitive load to comprehend. So it makes sense that your code is usually readable to you regardless of how it looks because you wrote, and thus already understand it. Fortunately, there are simple things you can do when writing code to make it more readable to others—especially that poor soul who’d have to maintain your code 2 years from now.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Comment:&lt;/strong&gt; This might seem obvious, but adding comments to your code is a very effective way to make it readable. Make sure your comment answers “why?” not “how?” Your code is the how.
+In addition to code comments, it also helps to write descriptive messages when committing code to your version control system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test:&lt;/strong&gt; An automated test is essentially a documentation of what a developer expects from their code. It can make it easier to understand a piece of code. And unlike comments, it’s less likely for a test to go stale because it’s usually run every time a change is made and will fail if its assertions are not met.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Format:&lt;/strong&gt; Consistent formatting makes code much easier on the eyes and thus faster to understand. Whatever code style you go for (i.e the case for variable names, type of indentation etc), make sure it’s consistent across your code base. You can enforce this using a linter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Decompress:&lt;/strong&gt; Clever one-liners are nice and all, but they are difficult to unpack mentally as well as debug (with breakpoints). Same thing with nested function invocations i.e &lt;code&gt;a(b(c(d())))&lt;/code&gt;. If someone has to stare at a line of code you wrote for more than 5 seconds trying to understand what it does, you’re probably doing too much in that line.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Contextualize:&lt;/strong&gt; Your variable names should describe the data they reference and your function/method/class names should describe what they do and/or return. Also, avoid abbreviations and acronyms unless they’re well know or properly documented. It’s better to err on the side of verbosity. &lt;code&gt;batchSize&lt;/code&gt; is better than &lt;code&gt;i&lt;/code&gt; and &lt;code&gt;transfer_account()&lt;/code&gt; is better than &lt;code&gt;tfr_acc()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+- https://alphacoder.xyz/what-is-readable-code/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
         <title>A scalable data structure for your configuration database</title>
         <link>https://alphacoder.xyz/config-db-data-structure/</link>
         <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
@@ -600,31 +623,6 @@
 &lt;li&gt;Switching to an API gateway&amp;rsquo;s auth system from an existing application&amp;rsquo;s auth implementation can be difficult and time-consuming.&lt;/li&gt;
 &lt;/ul&gt;
 - https://alphacoder.xyz/microservices-architecture-authentication/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>How to connect to a host&#39;s database from inside a Docker container</title>
-        <link>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
-        <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
-        
-        <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/connect-to-host-database-from-docker-container/ -&lt;p&gt;There are several ways to interact with a DB when developing using Docker:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Connect to an online DB instance.&lt;/li&gt;
-&lt;li&gt;Connect to a local DB running in another container.&lt;/li&gt;
-&lt;li&gt;Connect to a local DB running on a host machine (e.g your laptop).&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.&lt;/p&gt;
-&lt;p&gt;While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don&amp;rsquo;t want to have to mount a volume on the host in order to persist your data or run an additional container.&lt;/p&gt;
-&lt;p&gt;Connecting to a host DB from a container via localhost doesn&amp;rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&amp;rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&amp;rsquo;s internal IP address.&lt;/p&gt;
-&lt;p&gt;You can point to your host&amp;rsquo;s DB by setting the following environment variable in your container for instance.&lt;/p&gt;
-&lt;p&gt;Docker for Mac/Windows:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=host.docker.internal
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &amp;#39;/default/ {print $3}&amp;#39;)
-&lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

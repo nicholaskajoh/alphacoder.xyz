@@ -8,6 +8,16 @@
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>What is readable code?</title>
+      <link>https://alphacoder.xyz/what-is-readable-code/</link>
+      <pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/what-is-readable-code/</guid>
+      <description>Any code that I didn’t write or wrote more than 6 months ago is unreadable! — you, probably
+Everyone writes readable code, and yet everyone complains about all the unreadable code they have to deal with on a daily. Of course, readability is subjective. But when developers say a certain piece of code is unreadable, they usually mean it requires high cognitive load to comprehend. So it makes sense that your code is usually readable to you regardless of how it looks because you wrote, and thus already understand it.</description>
+    </item>
+    
+    <item>
       <title>A scalable data structure for your configuration database</title>
       <link>https://alphacoder.xyz/config-db-data-structure/</link>
       <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>

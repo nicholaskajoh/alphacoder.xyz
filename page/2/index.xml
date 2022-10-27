@@ -13,6 +13,31 @@
     
     
         <item>
+        <title>How to connect to a host&#39;s database from inside a Docker container</title>
+        <link>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
+        <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/connect-to-host-database-from-docker-container/ -&lt;p&gt;There are several ways to interact with a DB when developing using Docker:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Connect to an online DB instance.&lt;/li&gt;
+&lt;li&gt;Connect to a local DB running in another container.&lt;/li&gt;
+&lt;li&gt;Connect to a local DB running on a host machine (e.g your laptop).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.&lt;/p&gt;
+&lt;p&gt;While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don&amp;rsquo;t want to have to mount a volume on the host in order to persist your data or run an additional container.&lt;/p&gt;
+&lt;p&gt;Connecting to a host DB from a container via localhost doesn&amp;rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&amp;rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&amp;rsquo;s internal IP address.&lt;/p&gt;
+&lt;p&gt;You can point to your host&amp;rsquo;s DB by setting the following environment variable in your container for instance.&lt;/p&gt;
+&lt;p&gt;Docker for Mac/Windows:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=host.docker.internal
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &amp;#39;/default/ {print $3}&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
         <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
         <link>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
         <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
@@ -772,32 +797,6 @@ REDIS_URL=redis://:password@127.0.0.1:6379
 &lt;p&gt;The blog&amp;rsquo;s source is available on GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/alphacoder.xyz&#34;&gt;https://github.com/nicholaskajoh/alphacoder.xyz&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Okay. That&amp;rsquo;s it for now. Hopefully I don&amp;rsquo;t jump ship again.&lt;/p&gt;
 - https://alphacoder.xyz/hello-hugo/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>From Medium to Ghost</title>
-        <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
-        <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/from-medium-to-ghost/ -&lt;p&gt;Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.&lt;/p&gt;
-&lt;h2 id=&#34;why-the-move&#34;&gt;Why the move?&lt;/h2&gt;
-&lt;p&gt;I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.5k from 15 articles in 2017. I&amp;rsquo;d wanted to take things up a notch with proper branding (colors, custom domain etc) to make it easier to sell myself as a Software Engineer and Teacher, for quite a while. In September, I created a Medium publication after deciding that self-hosting a blog would be too much work. I didn&amp;rsquo;t quite like the publication thingy, but it was really easy to setup so I went with it; up until the point when I wanted to use a custom domain. Medium does not allow that anymore. Annoyed, I started to look for alternatives. I chose Ghost.&lt;/p&gt;
-&lt;h2 id=&#34;why-ghost&#34;&gt;Why Ghost?&lt;/h2&gt;
-&lt;p&gt;I was going to use WordPress but I decided to give Ghost a try, and I&amp;rsquo;m liking what I&amp;rsquo;m seeing so far (smooth-ish installation, clean UI etc). I was also kinda drawn by the fact that it&amp;rsquo;s built with NodeJS/JavaScript. Plus, I heard &lt;a href=&#34;https://ghost.org/vs/wordpress/&#34;&gt;it&amp;rsquo;s a lot faster&lt;/a&gt;, so&amp;hellip; you know—the faster the better.&lt;/p&gt;
-&lt;h2 id=&#34;how-are-you-migrating&#34;&gt;How are you migrating?&lt;/h2&gt;
-&lt;p&gt;All future articles will be publish here on &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. I&amp;rsquo;ll be moving older posts over manually and gradually since &lt;a href=&#34;https://medium.com/secjuice/secjuice-is-abandoning-medium-why-medium-doesnt-deserve-our-publication-2a772ac64e46&#34;&gt;Medium makes it very difficult for users to export their content to other platforms&lt;/a&gt;. Also, it&amp;rsquo;s not possible to do 301 redirects from Medium to Ghost for migrated posts, so I won&amp;rsquo;t be deleting the original articles. I&amp;rsquo;ll link from the posts on Medium to the new blog. The Medium posts (basically title plus link to this blog) will remain until I notice little or no traffic from Medium. I may decide to delete the publication then.&lt;/p&gt;
-&lt;h2 id=&#34;what-will-you-miss-from-medium&#34;&gt;What will you miss from Medium?&lt;/h2&gt;
-&lt;p&gt;Little if anything. I used to think Medium was the major source of traffic on my posts. It turns out it&amp;rsquo;s about the least source, especially in my most trafficked articles. For instance, my top post this year had 37k views. 28k of that was from Google.com. Only 6% was from Medium. If I continue writing posts that help solve peoples&amp;rsquo; problem, I believe I&amp;rsquo;ll get good traffic.&lt;/p&gt;
-&lt;h2 id=&#34;spec-sheet&#34;&gt;Spec sheet?&lt;/h2&gt;
-&lt;p&gt;So the blog uses &lt;a href=&#34;https://ghost.org&#34;&gt;Ghost&lt;/a&gt; as you already know. The Ghost installation currently runs on a $5-per-month Ubuntu server &lt;a href=&#34;https://www.vultr.com&#34;&gt;on Vultr&lt;/a&gt;. This should be okay for now. As the blog grows, I&amp;rsquo;ll increase the server capacity accordingly.&lt;/p&gt;
-&lt;h2 id=&#34;ads-on-the-blog&#34;&gt;Ads on the blog?&lt;/h2&gt;
-&lt;p&gt;Maybe. I might be placing non-intrusive ads on the site sometime in the future in order to offset the costs of running the blog.&lt;/p&gt;
-&lt;h2 id=&#34;what-should-i-be-expecting-from-alpha-coder&#34;&gt;What should I be expecting from Alpha Coder?&lt;/h2&gt;
-&lt;p&gt;In 2019, I&amp;rsquo;m going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I&amp;rsquo;ll try my best. I&amp;rsquo;ll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I&amp;rsquo;ll also be doing long form posts. If you want me to write about something, please let me know on Twitter &lt;a href=&#34;https://twitter.com/nicholaskajoh&#34;&gt;@nicholaskajoh&lt;/a&gt; (DMs are open).&lt;/p&gt;
-- https://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
