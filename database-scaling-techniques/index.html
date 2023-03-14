@@ -255,8 +255,8 @@
 						
 						
 							<li>
-								<a href="#multi-cluster-database" onclick="onNavClick(`#multi-cluster-database-nav`)" id="multi-cluster-database-nav">
-									Multi-cluster database
+								<a href="#federation" onclick="onNavClick(`#federation-nav`)" id="federation-nav">
+									Federation
 								</a>
 							</li>
 						
@@ -445,8 +445,8 @@
 						
 						
 							<li>
-								<a href="#multi-cluster-database" onclick="onNavClick(`#multi-cluster-database-nav`)" id="multi-cluster-database-nav">
-									Multi-cluster database
+								<a href="#federation" onclick="onNavClick(`#federation-nav`)" id="federation-nav">
+									Federation
 								</a>
 							</li>
 						
@@ -556,7 +556,7 @@
                 <div class="post-body" v-pre>
                 
                     <p>Over the years, I&rsquo;ve had an unusual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&rsquo;m not exactly a fan of database administration but I&rsquo;ve always had the anxiety that a design decision I&rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.</p>
-<p>After lots of reading and a fair amount of practice on the job, I&rsquo;ve learned some of the common techniques used to scale databases. I&rsquo;ve organized them in a relatively increasing order of relevance as one&rsquo;s database load grows.</p>
+<p>After lots of reading and a fair amount of practice on the job, I&rsquo;ve learned some of the common techniques used to scale relational databases. I&rsquo;ve organized them in a relatively increasing order of relevance as one&rsquo;s database load grows.</p>
 <h1 id="query-optimization">Query optimization</h1>
 <p>This is the good old technique of finding poorly written queries or queries that could be improved upon and making them more efficient. To be able to write optimal queries, you need to have a good handle of the query language (e.g SQL), as well as the database engine (e.g MySQL or PostgreSQL). Simple tips like selecting specific fields as opposed to selecting all fields (<code>SELECT *</code>) when not required can go a long way in giving your application the performance boost it needs.</p>
 <p>Visual inspection of queries might not be sufficient as some queries only break when confronted with large amounts of data or heavy traffic. Application Performance Monitoring (APM) tools can be instrumental in finding these bottlenecks as they allow you view the performance metrics of all your queries and figure out which ones are degrading your database.</p>
@@ -566,14 +566,14 @@
 <p>I&rsquo;ve discussed denormalization in reasonable detail <a href="/database-denormalization/">in a previous article</a> so I won&rsquo;t say much more than the basic idea of what it entails. The goal of denormalization is to improve read performance by adding redundant copies of data to make for faster access using simpler queries. This is essentially indexing but done by a schema designer rather than a database engine, and it can be a great addition to indexes if carried out purposefully.</p>
 <h1 id="primary-replica-architecture">Primary-replica architecture</h1>
 <p>This involves <a href="https://stackoverflow.com/a/11715598/6293466">scaling a database horizontally</a> by running two or more instances. One is designated the primary database and handles writes while the others are replica databases which handle reads. The database engine uses a replication protocol to keep all the instances in sync by copying the data from the primary database to the replicas. This setup comprises a database cluster. The pros of the architecture include traffic load balancing and automatic data backups which result in improved performance and reliability of a database.</p>
-<h1 id="multi-cluster-database">Multi-cluster database</h1>
-<p>A multi-cluster database takes the primary-replica architecture to the next level. In this technique, the database tables that make up an application are grouped by function and each group is designated a cluster of its own. For instance, all the tables concerned with billing might be put in one cluster while those concerned with a feature, say private messaging, might be put in another. Care must be taken while grouping tables to avoid a situation where one or more related tables have been split across database clusters, and expensive operations are required to obtain a piece of data needed in your application as a result.</p>
+<h1 id="federation">Federation</h1>
+<p>In this technique, the database tables that make up an application are grouped by feature/function, and each group is designated a server or cluster of its own. For instance, all the tables concerned with billing might be put on one server while those concerned with identity and access management might be put on another. Care must be taken while grouping tables to avoid a situation where one or more related tables have been split across database servers, and expensive operations are required to obtain a piece of data needed in your application as a result.</p>
 <h1 id="sharding">Sharding</h1>
 <p>Sharding is the process of horizontally partitioning data into multiple databases. Instead of splitting a database by groups of tables as described earlier, a table&rsquo;s rows are split across multiple instances. In order to save or retrieve a piece of data, certain <a href="https://www.citusdata.com/blog/2017/08/28/five-data-models-for-sharding/">models</a>/<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding#sharding-strategies">algorithms</a> are employed in determining the <a href="https://en.wikipedia.org/wiki/Shard_(database_architecture)">shard</a> to use/where the data resides. This adds a fair amount of complexity to your database setup and your application as well. Operations that might otherwise be straightforward can become a challenge under this configuration. As such sharding is usually reserved for last and carried out by admins who have a solid grasp of the database engine they&rsquo;re dealing with.</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2022-08-28</p>
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
                     
                 </div>
             </div>
