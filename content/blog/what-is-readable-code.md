@@ -3,6 +3,7 @@ title: "What is readable code?"
 date: 2022-10-27
 draft: false
 slug: "what-is-readable-code"
+tags: ["Code Quality"]
 ---
 
 > Any code that I didn’t write or wrote more than 6 months ago is unreadable! — you, probably

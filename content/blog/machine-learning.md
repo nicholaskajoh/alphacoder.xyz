@@ -3,6 +3,7 @@ title: "Machine Learning explained"
 slug: "machine-learning-explained"
 date: 2019-05-18T15:22:12.457Z
 draft: false
+tags: ["Machine Learning"]
 ---
 
 Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn't actually understand what Machine Learning is. And without understanding — at least on a high level — it's nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub. Even then, you might have a hard time getting them to work or customizing them to suit your needs.

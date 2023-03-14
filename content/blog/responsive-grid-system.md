@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2017-11-19T20:07:00.000Z
 draft = false
 slug = "responsive-grid-system"
-tags = ["CSS"]
+tags = ["Web Development"]
 title = "A responsive grid system with few lines of CSS"
 
 +++

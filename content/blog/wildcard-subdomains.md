@@ -3,6 +3,7 @@ title: "How to configure wildcard subdomains"
 slug: "how-to-configure-wildcard-subdomains"
 date: 2019-04-02T04:08:11.467Z
 draft: false
+tags: ["Web Development", "Domain Name System"]
 ---
 
 Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as __team-name.awesomeapp.com__ or __org-name.beta.awesomeapp.com__. These subdomains are variable, meaning that they are not predefined and can contain any valid [domain name](https://en.wikipedia.org/wiki/Domain_name) characters.

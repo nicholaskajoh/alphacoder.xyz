@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2018-08-15T12:54:00.000Z
 draft = false
 slug = "dockerizing-django"
-tags = ["Docker","Django"]
+tags = ["Web Development", "Containerization", "Python"]
 title = "Dockerizing Django in development and production"
 +++
 

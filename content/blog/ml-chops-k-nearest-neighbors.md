@@ -2,7 +2,7 @@
 title: "K Nearest Neighbors"
 slug: "k-nearest-neighbors"
 date: 2017-12-09T08:44:05+01:00
-tags: ["ML Chops Series"]
+tags: ["ML Chops Series", "Machine Learning"]
 draft: false
 ---
 

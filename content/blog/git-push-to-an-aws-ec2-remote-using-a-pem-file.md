@@ -2,9 +2,8 @@
 author = "Nicholas Kajoh"
 date = 2018-12-02T13:13:00.000Z
 draft = false
-image = "/content/images/2018/12/rodrigo-kugnharski-788908-unsplash-sm.jpg"
 slug = "git-push-to-an-aws-ec2-remote-using-a-pem-file"
-tags = ["Git","AWS"]
+tags = ["Source Control", "Cloud Computing"]
 title = "How to Git push to an AWS EC2 remote using a PEM file"
 
 +++

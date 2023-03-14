@@ -3,6 +3,7 @@ title: "The case for monorepos"
 date: 2022-07-04T19:48:14+02:00
 draft: false
 slug: "monorepo-use-case"
+tags: ["Source Control"]
 ---
 
 At a previous company, I worked as a Platform Engineer for the Packages team. A brand new team, our job was to abstract the building blocks of our systems into reusable components, and to create a pipeline for developing and releasing these components as packages for use by product engineers. There was a lot of duplication in our codebases and we were also slowly moving towards a microservices architecture, so our work was crucial in helping the engineering organization improve code quality and developer productivity.

@@ -3,7 +3,7 @@ title: "HTML, CSS and Javascript as fast as possible"
 slug: "html-css-js"
 date: 2017-06-07T21:48:21+01:00
 draft: false
-tags: ["HTML", "CSS", "JavaScript"]
+tags: ["Web Development"]
 ---
 
 This post is a prequel to a series of posts on [building a Facebook clone with PHP from scratch](/facebook-clone-1) authored by yours truly. It's intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.

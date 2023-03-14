@@ -3,6 +3,7 @@ title: "Dealing with code debt"
 slug: "dealing-with-code-debt"
 date: 2019-02-06T19:40:38.172Z
 draft: false
+tags: ["Code Quality"]
 ---
 
 Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It's ~~human~~ developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.

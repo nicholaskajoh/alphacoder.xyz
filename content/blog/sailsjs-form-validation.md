@@ -3,6 +3,7 @@ title: "Server-side form validation from A to Z with Sails.js"
 slug: "sailsjs-form-validation"
 date: 2017-05-26T23:06:50+01:00
 draft: false
+tags: ["Web Development", "JavaScript", "Node.js"]
 ---
 
 __NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.__

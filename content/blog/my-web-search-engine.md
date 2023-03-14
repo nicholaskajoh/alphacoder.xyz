@@ -4,6 +4,7 @@ date = 2018-07-26T14:16:00.000Z
 draft = false
 slug = "my-web-search-engine"
 title = "I built my own web search engine — here’s how"
+tags = ["Search", "Side Projects"]
 
 +++
 

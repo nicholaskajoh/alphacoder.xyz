@@ -8,6 +8,7 @@ title = "From Medium to Ghost"
 showCustomAds = false
 showPrevAndNextPosts = false
 showComments = false
+tags = ["News"]
 +++
 
 

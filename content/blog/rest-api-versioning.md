@@ -3,6 +3,7 @@ title: "How to version REST APIs"
 date: 2022-08-28
 draft: false
 slug: "rest-api-versioning"
+tags: ["System Design"]
 ---
 
 Having worked at companies that sell API products in the last couple years, I’ve found myself contemplating—for hours on end in the shower—what the best way to version REST APIs is. You want simplicity and stability so that your API is easy for developers to integrate. But you also want to iterate on your product and add new features to improve your offering. Eventually, you’ll need to introduce breaking changes. Maybe you’re expanding the scope of an endpoint so you want to reorganize the parameters in the request payload, or a field in the response body needs to be removed for security or compliance reasons. To deal with these, you’ll need to introduce versioning in some form.

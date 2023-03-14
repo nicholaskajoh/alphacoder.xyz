@@ -3,7 +3,7 @@ title: "A scalable data structure for your configuration database"
 date: 2022-10-09
 draft: false
 slug: "config-db-data-structure"
-tags: ["Scalability"]
+tags: ["Scalability", "System Design"]
 ---
 
 Most software of reasonable complexity are configurable—that is, they allow you change their functionality through the use of flags/settings. While you could store configuration information in code or text files, for web apps, it’s more common to store them in databases. This allows you make changes to the configs at runtime i.e without having to restart or redeploy your app.

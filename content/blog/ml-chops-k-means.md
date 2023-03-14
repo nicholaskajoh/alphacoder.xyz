@@ -2,7 +2,7 @@
 title: "K Means"
 slug: "k-means"
 date: 2018-05-01T08:44:05+01:00
-tags: ["ML Chops Series"]
+tags: ["ML Chops Series", "Machine Learning"]
 draft: false
 ---
 

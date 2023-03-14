@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2018-01-11T14:39:00.000Z
 draft = false
 slug = "dead-simple-react-django-setup"
-tags = ["React","Django"]
+tags = ["JavaScript", "Python", "Web Development"]
 title = "Here’s a dead simple React-Django setup for your next project"
 +++
 

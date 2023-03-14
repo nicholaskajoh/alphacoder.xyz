@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2018-06-28T17:41:00.000Z
 draft = false
 slug = "multiple-apps-one-server-with-docker-and-traefik"
-tags = ["Docker","Traefik"]
+tags = ["Containerization", "Web Development"]
 title = "How to run multiple apps on one server using Docker and Traefik"
 
 +++

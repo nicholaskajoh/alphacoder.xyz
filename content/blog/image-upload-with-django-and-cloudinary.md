@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2018-02-18T08:50:00.000Z
 draft = false
 slug = "image-upload-with-django-and-cloudinary"
-tags = ["Django"]
+tags = ["Python", "Cloud Computing"]
 title = "Image upload with Django and Cloudinary"
 
 +++

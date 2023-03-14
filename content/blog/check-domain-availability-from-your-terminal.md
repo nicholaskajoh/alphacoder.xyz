@@ -4,6 +4,7 @@ date = 2018-12-10T20:46:00.000Z
 draft = false
 slug = "check-domain-availability-from-your-terminal"
 title = "Check domain availability from your terminal"
+tags = ["Web Development", "Domain Name System"]
 
 +++
 

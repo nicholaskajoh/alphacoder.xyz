@@ -3,7 +3,7 @@ title: "Web app scaling techniques"
 date: 2022-08-27
 draft: false
 slug: "web-app-scaling-techniques"
-tags: ["Scalability"]
+tags: ["Scalability", "Web Development"]
 ---
 
 Several moons ago, I wrote an article about [techniques for scaling databases](/database-scaling-techniques/). Today, we’ll be looking at the app side of things. As with databases, you want to develop your application with scalability in mind so that when the time comes to increase capacity, the process is straightforward and seamless. Having a clear pathway for building a higher capacity and robust system also helps prevent over-engineering and premature optimization, so it’s important to have the steps and process for evolving your systems to handle large workloads.

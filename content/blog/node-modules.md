@@ -3,7 +3,7 @@ title: "node_modules: The Node.js black hole"
 slug: "node-modules"
 date: 2020-05-25T23:33:11.565Z
 draft: false
-tags: ["Node.js"]
+tags: ["JavaScript", "Node.js"]
 ---
 
 As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you've probably aready seen [the memes](https://www.reddit.com/r/ProgrammerHumor/comments/6s0wov/heaviest_objects_in_the_universe/)). But have you ever asked WHY? I hadn't, up until recently, after which I did some goofing around on the interwebs out of curiosity.

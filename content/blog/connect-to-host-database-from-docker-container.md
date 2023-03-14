@@ -3,7 +3,7 @@ title: "How to connect to a host's database from inside a Docker container"
 slug: "connect-to-host-database-from-docker-container"
 date: 2019-09-01T06:29:54+01:00
 draft: false
-tags: ["Docker"]
+tags: ["Containerization", "Databases"]
 ---
 
 There are several ways to interact with a DB when developing using Docker:

@@ -2,7 +2,7 @@
 title: "Linear Regression"
 slug: "linear-regression"
 date: 2017-12-04T08:44:05+01:00
-tags: ["ML Chops Series"]
+tags: ["ML Chops Series", "Machine Learning"]
 draft: false
 ---
 

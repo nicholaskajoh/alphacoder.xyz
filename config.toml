@@ -27,13 +27,17 @@ enableGitInfo = true
         name = "Blog"
         weight = 1
     [[menu.main]]
-        url = "/tags/"
-        name = "Tags"
+        url = "/tag/side-projects/"
+        name = "Side Projects"
         weight = 2
     [[menu.main]]
         url = "https://www.youtube.com/@alphacoderblog"
         name = "Videos"
         weight = 3
+    [[menu.main]]
+        url = "/tags/"
+        name = "Tags"
+        weight = 4
 
     [[menu.footer]]
         url = "https://twitter.com/AlphaCoderXYZ"

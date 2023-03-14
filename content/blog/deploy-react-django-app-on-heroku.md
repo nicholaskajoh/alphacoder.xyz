@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2018-01-30T11:52:00.000Z
 draft = false
 slug = "deploy-react-django-app-on-heroku"
-tags = ["React","Django","Heroku"]
+tags = ["Web Development", "JavaScript", "Python", "Software Deployment"]
 title = "Deploy your React-Django app on Heroku"
 +++
 

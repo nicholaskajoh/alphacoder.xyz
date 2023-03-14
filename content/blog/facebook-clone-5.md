@@ -3,7 +3,7 @@ title: "Build a Facebook clone from scratch with PHP — Part 5"
 slug: "facebook-clone-5"
 date: 2017-09-20T09:07:20+01:00
 draft: false
-tags: ["Facebook Clone Series"]
+tags: ["Facebook Clone Series", "Web Development"]
 ---
 
 # All parts

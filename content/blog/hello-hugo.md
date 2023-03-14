@@ -6,6 +6,7 @@ draft: false
 showCustomAds: false
 showPrevAndNextPosts: false
 showComments: false
+tags: ["News"]
 ---
 
 If you haven't yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration [from a Medium.com publication to a self-hosted Ghost installation on Vultr](/from-medium-to-ghost). Shortly after, I decided to ditch [Ghost](http://ghost.org) (a Node.js CMS) for [Hugo](http://gohugo.io) (a static site generator built with Go). I also changed the blog's design in the process. In this post, I'll share my experience using Ghost and explain why I moved again.

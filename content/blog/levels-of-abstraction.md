@@ -3,6 +3,7 @@ title: "What level of abstraction should I play on?"
 slug: "levels-of-abstraction"
 date: 2020-04-12T18:17:48.796Z
 draft: false
+tags: ["System Design"]
 ---
 
 "I built it from scratch!"

@@ -4,6 +4,7 @@ date = 2018-11-09T13:06:00.000Z
 draft = false
 slug = "understanding-modern-front-end-development"
 title = "Understanding modern front-end development"
+tags = ["Web Development"]
 
 +++
 

@@ -3,6 +3,7 @@ title: "I built a video-based vehicle counting system — here's how"
 slug: "vehicle-counting"
 date: 2019-07-12T00:30:43.615Z
 draft: false
+tags: ["Computer Vision", "Machine Learning", "Side Projects"]
 ---
 
 I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared [a demo on Twitter](https://twitter.com/nicholaskajoh/status/1115016849840844805?s=20) that went semi-viral!

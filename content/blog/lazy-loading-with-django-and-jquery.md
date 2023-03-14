@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2017-02-26T05:43:00.000Z
 draft = false
 slug = "lazy-loading-with-django-and-jquery"
-tags = ["Django","jQuery"]
+tags = ["Web Development", "Python", "JavaScript"]
 title = "Lazy load your content with Django and jQuery"
 
 +++

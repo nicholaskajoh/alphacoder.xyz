@@ -3,7 +3,7 @@ title: "Authentication strategies in microservices architecture"
 slug: "microservices-architecture-authentication"
 date: 2019-09-29T17:37:55.581Z
 draft: false
-tags: ["Microservices"]
+tags: ["System Design"]
 ---
 
 When moving from monolith to microservices or considering microservices for a greenfield project, it's important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.

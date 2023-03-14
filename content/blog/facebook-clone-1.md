@@ -3,7 +3,7 @@ title: "Build a Facebook clone from scratch with PHP — Part 1"
 slug: "facebook-clone-1"
 date: 2017-06-11T01:22:37+01:00
 draft: false
-tags: ["Facebook Clone Series"]
+tags: ["Facebook Clone Series", "Web Development"]
 ---
 
 In this post through a couple others that would follow, we're going to be building our own Facebook (oh yeah!). Brace yourself. It's going to be one hell of an exciting ride!

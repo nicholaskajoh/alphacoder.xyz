@@ -3,7 +3,7 @@ author = "Nicholas Kajoh"
 date = 2018-11-22T07:21:00.000Z
 draft = false
 slug = "git-workflows"
-tags = ["Git"]
+tags = ["Source Control"]
 title = "Two Git workflows you should know"
 
 +++
