@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 23 Sep 2017 09:07:23 +0100</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/facebook-clone-series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Dec 2017 09:07:25 +0100</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/facebook-clone-series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 7</title>
+      <link>https://alphacoder.xyz/facebook-clone-7/</link>
+      <pubDate>Sat, 09 Dec 2017 09:07:25 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-7/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 (this article) It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!</description>
+    </item>
+    
     <item>
       <title>Build a Facebook clone from scratch with PHP — Part 6</title>
       <link>https://alphacoder.xyz/facebook-clone-6/</link>

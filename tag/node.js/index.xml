@@ -29,5 +29,16 @@ How npm (the Node package manager) resolves dependencies. How the Node.</descrip
 setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;); If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
     </item>
     
+    <item>
+      <title>Server-side form validation from A to Z with Sails.js</title>
+      <link>https://alphacoder.xyz/sailsjs-form-validation/</link>
+      <pubDate>Fri, 26 May 2017 23:06:50 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/sailsjs-form-validation/</guid>
+      <description>NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.
+TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
+Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &amp;ldquo;in real-time&amp;rdquo; as they try to feed your backend with much needed data, but that&amp;rsquo;s not enough.</description>
+    </item>
+    
   </channel>
 </rss>

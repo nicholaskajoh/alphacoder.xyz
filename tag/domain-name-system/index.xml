@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Domain Name System on Alpha Coder</title>
+    <link>https://alphacoder.xyz/tag/domain-name-system/</link>
+    <description>Recent content in Domain Name System on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 02 Apr 2019 04:08:11 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/domain-name-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to configure wildcard subdomains</title>
+      <link>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
+      <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
+      <description>Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as team-name.awesomeapp.com or org-name.beta.awesomeapp.com. These subdomains are variable, meaning that they are not predefined and can contain any valid domain name characters.
+To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application.</description>
+    </item>
+    
+    <item>
+      <title>Check domain availability from your terminal</title>
+      <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
+      <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
+      <description>I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been legitly purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing.</description>
+    </item>
+    
+  </channel>
+</rss>

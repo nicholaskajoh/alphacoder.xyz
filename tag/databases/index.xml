@@ -28,6 +28,16 @@ Well, it turns out that normalization comes at a performance cost for DB read op
     </item>
     
     <item>
+      <title>How to connect to a host&#39;s database from inside a Docker container</title>
+      <link>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
+      <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
+      <description>There are several ways to interact with a DB when developing using Docker:
+Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop). The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
+    </item>
+    
+    <item>
       <title>Adminer — a simple GUI client for any DB</title>
       <link>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
       <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
