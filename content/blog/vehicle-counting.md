@@ -1,5 +1,5 @@
 ---
-title: "I built a video-based vehicle counting system — here's how"
+title: "I built a video-based vehicle counting system—here's how"
 slug: "vehicle-counting"
 date: 2019-07-12T00:30:43.615Z
 draft: false
