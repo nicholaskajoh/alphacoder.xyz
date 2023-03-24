@@ -13,6 +13,38 @@
     
     
         <item>
+        <title>Hello Hugo!</title>
+        <link>https://alphacoder.xyz/hello-hugo/</link>
+        <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/hello-hugo/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/hello-hugo/ -&lt;p&gt;If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration &lt;a href=&#34;https://alphacoder.xyz/from-medium-to-ghost&#34;&gt;from a Medium.com publication to a self-hosted Ghost installation on Vultr&lt;/a&gt;. Shortly after, I decided to ditch &lt;a href=&#34;http://ghost.org&#34;&gt;Ghost&lt;/a&gt; (a Node.js CMS) for &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.&lt;/p&gt;
+&lt;p&gt;Ghost is a great CMS. It&amp;rsquo;s simple, it&amp;rsquo;s clean and a joy to use. The story editor is very similar to Medium&amp;rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Theme customization and update:&lt;/strong&gt; I needed a quick way to make changes to my blog&amp;rsquo;s theme and a way to update it periodically without clearing out all my customizations. I couldn&amp;rsquo;t find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog&amp;rsquo;s server to push changes, but I never got to do it. I manually edited the theme&amp;rsquo;s files on the server with nano as a temporary fix for quick customizations which is less than ideal.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Backup:&lt;/strong&gt; I wanted automatic backups for my posts. I couldn&amp;rsquo;t find a clean way to do periodic backups automatically. Ghost&amp;rsquo;s data export doesn&amp;rsquo;t include images, so if I wanted to backup all my data, I&amp;rsquo;d have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn&amp;rsquo;t find a ready-made solution for that.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Offline writing and editing:&lt;/strong&gt; Inspiration to write can come at any time whether you&amp;rsquo;re connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cost:&lt;/strong&gt; While the cost of self-hosting my Ghost blog was affordable, I figured I&amp;rsquo;d need to pay more once I started getting more traffic. But beyond that, I don&amp;rsquo;t see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&amp;rsquo;s repository so it&amp;rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/nicholaskajoh/simple-hugo-theme&#34;&gt;new blog theme&lt;/a&gt; is inspired by &lt;a href=&#34;http://bettermotherfuckingwebsite.com&#34;&gt;http://bettermotherfuckingwebsite.com&lt;/a&gt;. I wanted something clean, accessible and performant — something that doesn&amp;rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.&lt;/p&gt;
+&lt;p&gt;I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&amp;rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&amp;rsquo;t do 301 redirects. Apparently it&amp;rsquo;s against the law. I&amp;rsquo;m however hopeful that the blog will pick up soon.&lt;/p&gt;
+&lt;p&gt;The blog&amp;rsquo;s source is available on GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/alphacoder.xyz&#34;&gt;https://github.com/nicholaskajoh/alphacoder.xyz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Okay. That&amp;rsquo;s it for now. Hopefully I don&amp;rsquo;t jump ship again.&lt;/p&gt;
+- https://alphacoder.xyz/hello-hugo/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
         <title>From Medium to Ghost</title>
         <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
         <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
@@ -506,70 +538,6 @@ POSTGRES_DB=mypgsqldb
 &lt;h2 id=&#34;scaling-and-load-balancing&#34;&gt;Scaling and load balancing&lt;/h2&gt;
 &lt;p&gt;Traefik load balances multiple instances of a given service automatically. You can use the scale flag/parameter in docker compose to run multiple instances of your containers.&lt;/p&gt;
 - https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>How to scale an app horizontally using a load balancer</title>
-        <link>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
-        <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ -&lt;p&gt;As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.&lt;/p&gt;
-&lt;p&gt;One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.&lt;/p&gt;
-&lt;p&gt;There are mainly two ways to go about it — juice up a single server or run your app on multiple servers.&lt;/p&gt;
-&lt;p&gt;The former is called &lt;strong&gt;vertical scaling&lt;/strong&gt; and involves adding more memory, compute and/or storage to your server. This is very easy to accomplish if you run your app on a PaaS or IaaS platform. However, there’s only so much RAM/CPU/SSD etc you can get on one machine. Also, running high-end hardware is usually very expensive.&lt;/p&gt;
-&lt;p&gt;The latter approach is called &lt;strong&gt;horizontal scaling&lt;/strong&gt;. It involves running your application on multiple servers and sharing traffic/load among them. Using this approach has some advantages. For one, you can scale infinitely. You just add more servers. Also, your app becomes &lt;em&gt;highly available&lt;/em&gt; because if one server crashes/goes offline, you have other servers to handle incoming requests and/or other workloads.&lt;/p&gt;
-&lt;p&gt;Horizontal scaling works by placing a &lt;strong&gt;load balancer&lt;/strong&gt; in front of your app servers. A load balancer is also a server. Its primary job is to distribute traffic among other servers.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/load-balancer-diagram.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Horizontal scaling (A, B, C and D represent your app servers)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Most cloud providers have one-click-setup load balancers you can use if you run your app in their infrastructure. You may also choose to create your own load balancer using open source software like Nginx, HAProxy, Traefik etc.&lt;/p&gt;
-&lt;p&gt;In this tutorial, we’re going to scale an app horizontally on DigitalOcean using their cloud load balancer. Let’s do this!&lt;/p&gt;
-&lt;h2 id=&#34;the-hits-app&#34;&gt;The hits app&lt;/h2&gt;
-&lt;p&gt;The app we’ll be scaling in this tutorial is called &lt;strong&gt;&lt;em&gt;hits&lt;/em&gt;&lt;/strong&gt;. It’s a simple Flask (Python) app that displays page hits. It counts every page load as a hit, and stores and caches the count in a PostgreSQL and Redis database respectively.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;hits&lt;/em&gt; source code: &lt;a href=&#34;https://github.com/nicholaskajoh/hits&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/hits&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The &lt;em&gt;hits&lt;/em&gt; app is containerized using Docker for easy development and deployment. Knowledge of Python/Flask or Docker is not required to follow through in this tutorial. There are simple instructions provided in the README of the source code to run the app both locally and online.&lt;/p&gt;
-&lt;h2 id=&#34;digitalocean&#34;&gt;DigitalOcean&lt;/h2&gt;
-&lt;p&gt;DigitalOcean is a popular cloud computing platform loved for its simplicity and pocket-friendly pricing. We’ll be using their VMs/servers (which they call Droplets) to run the &lt;em&gt;hits&lt;/em&gt; app.&lt;/p&gt;
-&lt;p&gt;You’ll need to create an account on &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;digitalocean.com&lt;/a&gt; to get started. Droplets start at $5 per month but coupons abound. You can use my referral link and get $10 free: &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;https://m.do.co/c/e38dd092b1ad&lt;/a&gt;. More coupons here: &lt;a href=&#34;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&#34;&gt;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;droplets&#34;&gt;Droplets&lt;/h2&gt;
-&lt;p&gt;Once you’ve signed up, verified your account and redeemed/purchased credits, head over to &lt;a href=&#34;https://cloud.digitalocean.com&#34;&gt;https://cloud.digitalocean.com&lt;/a&gt; and create a new droplet.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/droplets.jpeg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;My droplets are already up 😉&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;You can choose the configs you want if you know your way around provisioning servers. If you don’t, you may use the options shown in the screenshot below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/create-droplet.jpeg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Create a droplet&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;When your servers are up, you’ll need to connect to them via SSH. It’s advisable to generate an SSH key for your computer (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&lt;/a&gt;). Alternatively, you can use username and password to login to your droplets.&lt;/p&gt;
-&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
-&lt;p&gt;Here are the steps (in summary) to setup &lt;em&gt;hits&lt;/em&gt; on your droplet. You may &lt;a href=&#34;https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340&#34;&gt;use &lt;em&gt;tmux&lt;/em&gt;&lt;/a&gt; to perform the steps simultaneously on multiple servers.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;SSH into the droplet as root (user) using &lt;code&gt;ssh root@DROPLET_IP_ADDRESS&lt;/code&gt;. Windows users may need an SSH client like PuTTY (&lt;a href=&#34;https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/&#34;&gt;https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;Create a non-root user and login as that user (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Clone the &lt;em&gt;hits&lt;/em&gt; repo into your server with &lt;code&gt;git clone [https://github.com/nicholaskajoh/hits.git](https://github.com/nicholaskajoh/hits.git.)&lt;/code&gt;&lt;a href=&#34;https://github.com/nicholaskajoh/hits.git.&#34;&gt;.&lt;/a&gt; DigitalOcean droplets come with Git pre-installed so you don’t need to install it. PS: You can clone the project anywhere you like. I cloned mine in /var/www. You can do the same with this command: &lt;code&gt;sudo mkdir /var/www &amp;amp;&amp;amp; sudo chown ${USER}: /var/www &amp;amp;&amp;amp; sudo chmod u+w /var/www &amp;amp;&amp;amp; cd /var/www &amp;amp;&amp;amp; git clone [https://github.com/nicholaskajoh/hits.git](https://github.com/nicholaskajoh/hits.git.)&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Create a &lt;em&gt;.env&lt;/em&gt; file in the project root. You can either copy &lt;em&gt;.env.example&lt;/em&gt; to &lt;em&gt;.env&lt;/em&gt; and make edits or create the file from scratch then add the environment variables. Use nano to edit/create the file: &lt;code&gt;sudo nano .env&lt;/code&gt;. My &lt;em&gt;.env&lt;/em&gt; own file is shown in a screenshot below. I used a managed database service for both PostgreSQL (&lt;a href=&#34;https://www.elephantsql.com/&#34;&gt;ElephantSQL&lt;/a&gt;) and Redis (&lt;a href=&#34;https://redislabs.com/&#34;&gt;Redis Labs&lt;/a&gt;). Make the &lt;code&gt;INSTANCE_ID&lt;/code&gt; environment variable unique for each droplet.&lt;/li&gt;
-&lt;li&gt;Install Docker and Docker Compose (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&lt;/a&gt;, &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&lt;/a&gt;). You can test your installations by running &lt;code&gt;docker --version&lt;/code&gt; and &lt;code&gt;docker-compose --version&lt;/code&gt;. Ensure the docker service is running: &lt;code&gt;sudo systemctl status docker&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Build and run the &lt;em&gt;hits&lt;/em&gt; application: &lt;code&gt;docker-compose -f docker-compose.prod.yml up --build -d&lt;/code&gt; (you should be in the root directory of the project (/www/var/hits). Now when you visit, your droplet’s IP address, you should be greeted by the &lt;em&gt;hits&lt;/em&gt; app.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/hits-app.jpeg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;The hits app 🙌&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/hits-env.png&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;load-balancer&#34;&gt;Load balancer&lt;/h2&gt;
-&lt;p&gt;Once all your servers are up and running, create a new load balancer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/create-load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Once your load balancer is up, add your droplets to it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/add-droplets-to-lb.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Now you can visit your load balancer’s IP address. The APP INSTANCE shows what instance of the application (droplet) a request was routed to.&lt;/p&gt;
-&lt;p&gt;Let’s go into the settings of the load balancer for a bit…&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/lb-settings.jpeg&#34; alt=&#34;&#34;&gt;
-&lt;em&gt;Load balancer settings&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;So DigitalOcean gives us options to customize our load balancer.&lt;/p&gt;
-&lt;p&gt;We can choose an algorithm for the load balancer to use to route traffic to the droplets. There’s &lt;em&gt;Round Robin&lt;/em&gt; and &lt;em&gt;Least Connections&lt;/em&gt;. In Round Robin, the requests are routed in a circular order from one droplet to the next. On the other hand, Least Connections routes to the server with the least traffic.&lt;/p&gt;
-&lt;p&gt;There’s also health checks. You can set an endpoint e.g your app’s home page (http://0.0.0.0:80) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.&lt;/p&gt;
-&lt;p&gt;With Sticky sessions, you can glue a user to a particular server. If enabled, after a user’s first request, follow up requests would be routed to the same server.&lt;/p&gt;
-- https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

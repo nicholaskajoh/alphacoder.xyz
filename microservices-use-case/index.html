@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html><head>
+<title>The case for microservices architecture</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/plausible.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+<link rel="stylesheet" href="https://alphacoder.xyz/scss/journal.min.e3bbe8a4e9def42361d46a08558b2ceeb666c944d881cbcfa75a3435be6afa74.css" integrity="sha256-47vopOne9CNh1GoIVYss7rZmyUTYgcvPp1o0Nb5q&#43;nQ=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://alphacoder.xyz/scss/dark-mode.min.16749f4d04ce998e04ecf1c45f01d051b413e9693378f8834e15973538e1d735.css" integrity="sha256-FnSfTQTOmY4E7PHEXwHQUbQT6WkzePiDThWXNTjh1zU=" media="screen">
+
+
+<script src="/vendor/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2");
+</script>
+
+
+
+
+
+
+  <script src="/js/toc.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#why-microservices" onclick="onNavClick(`#why-microservices-nav`)" id="why-microservices-nav">
+									Why microservices?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#the-faux-benefits" onclick="onNavClick(`#the-faux-benefits-nav`)" id="the-faux-benefits-nav">
+									The faux benefits
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#from-monolith-to-distributed-monolith" onclick="onNavClick(`#from-monolith-to-distributed-monolith-nav`)" id="from-monolith-to-distributed-monolith-nav">
+									From monolith to distributed monolith
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#how-to-get-microservices-right" onclick="onNavClick(`#how-to-get-microservices-right-nav`)" id="how-to-get-microservices-right-nav">
+									How to get microservices right
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#is-it-for-me" onclick="onNavClick(`#is-it-for-me-nav`)" id="is-it-for-me-nav">
+									Is it for me?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#why-microservices" onclick="onNavClick(`#why-microservices-nav`)" id="why-microservices-nav">
+									Why microservices?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#the-faux-benefits" onclick="onNavClick(`#the-faux-benefits-nav`)" id="the-faux-benefits-nav">
+									The faux benefits
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#from-monolith-to-distributed-monolith" onclick="onNavClick(`#from-monolith-to-distributed-monolith-nav`)" id="from-monolith-to-distributed-monolith-nav">
+									From monolith to distributed monolith
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#how-to-get-microservices-right" onclick="onNavClick(`#how-to-get-microservices-right-nav`)" id="how-to-get-microservices-right-nav">
+									How to get microservices right
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#is-it-for-me" onclick="onNavClick(`#is-it-for-me-nav`)" id="is-it-for-me-nav">
+									Is it for me?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    The case for microservices architecture
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2023-03-24
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/system-design">System Design</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>The buzz seems to have died down now, but a few years ago, microservices architecture seemed to be all the rage. Everyone and their mom seemed to be transitioning from monolith to microservices or building their software from the get go using this architecture. At some point, it appeared to be a contest on the number of microservices you were running in production, judging by the blog posts and conference talks at least.</p>
+<p>Like the hangover after a crazy night out, we seem to have realized <a href="https://www.youtube.com/watch?v=kb-m2fasdDY">it&rsquo;s not all fun and games</a>. As with most software engineering solutions, there are tradeoffs. And knowing those tradeoffs puts you in a better position to choose the right tool for the job—rather than using something because some big/successful company is using it or because it&rsquo;s &ldquo;cool&rdquo;.</p>
+<h1 id="why-microservices">Why microservices?</h1>
+<p>It bothered me a little bit that I didn.t really get the use case for microservices. Why would someone complicate their system by making it distributed? What do you get in return for this complexity? Scalability? Higher availability? But you can already achieve these with a monolith, no? It didn&rsquo;t make much sense to me.</p>
+<p>It would take several years to get it. The revelation that made it all make sense was finding out that microservices architecture is not a technology solution. It&rsquo;s a people one!</p>
+<p>This might seem very obvious, but software is built by people. To be able to build software (especially a large and complicated one) quickly and efficiently, you need to organize people in a way that makes communication fast (or unnecessary), and empower them to own the piece of the software pie they are responsible for and its lifecycle. This is why we have team topologies built around self-organization and cross-functionality.</p>
+<p>Microservices architecture exist so that teams can fully own the products and features they&rsquo;re responsible for. This means being able to change and release code whenever they want. The idea is that decentralized decision-making is the better way to organize a large group of people towards achieving a common goal.</p>
+<p>This might sound counter-intuitive, but when you think about it, it makes a lot of sense. Communication becomes a bottleneck the larger an organization grows. So if you centralize decision-making, your speed of execution would be as fast (or rather, as slow) as it takes information to permeate the organization, not to talk of the various ways things can be misunderstood and misinterpreted.</p>
+<p>Beyond that, local decision-making is usually better because executors are typically subject-matter experts. A chef should be the one deciding what ingredients to buy and when to buy them, not a restaurant CEO or manager. He probably knows more about foodstuff than they do. In the same vein, you should be able to decide how to change your code, and when/how often to deploy it, not the head of engineering or operations team. You know more about the code than they do, because you probably wrote it and/or work on it everyday.</p>
+<h1 id="the-faux-benefits">The faux benefits</h1>
+<p>When people justify their use of microservices, they tend to mention its supposed pros. It turns out that most of them are faux benefits. Yes, you get these benefits by using microservices, but they are not worth the complexity you get in return in my opinion. More importantly, they can be achieved without the use of this architecture.</p>
+<ul>
+<li>
+<p><strong>Scalability:</strong> Microservices architecture can make your system scalable (a result of distributing load across multiple services), but <a href="/web-app-scaling-techniques/">there are easier ways to achieve scalability</a>, such as load balancing.</p>
+</li>
+<li>
+<p><strong>Encapsulation:</strong> Each microservice is a container exposing an interface (such as a REST API) through which it may be consumed. This hides its implementation details, making it easier to understand, reuse and modify. The microservice &ldquo;container&rdquo; also lends itself well to network-level isolation e.g external vs internal services, which improves security. But like with scalability, there are several other cheaper ways to encapsulate the various components of your system e.g modules/packages, OOP, functions/subroutines, firewall rules etc. You don&rsquo;t need microservices for this!</p>
+</li>
+<li>
+<p><strong>Flexibility:</strong> Microservices architecture lets you use the best tool for the job. For example, you could use a language with high runtime performance for parts of your system where you want very low latencies. Or use the best database or queuing system for the specific problem you want to solve. In practice, this kind of flexibility causes more problems than it solves. It requires lots of time and money to support some of these technologies, so you want as much standardization as possible. Standardization also makes it easier for developers to move around and collaborate with/learn from each other.</p>
+</li>
+</ul>
+<h1 id="from-monolith-to-distributed-monolith">From monolith to distributed monolith</h1>
+<p>In a bid to adopt microservices, many an organization end up building distributed monoliths, which give you all the disadvantages of microservices architecture without any of the benefits. If teams can&rsquo;t deploy their code independently, or have to coordinate with other teams to do so, you have a distributed monolith on your hands. If your team topology doesn&rsquo;t allow autonomy, you have a bottleneck upstream. Microservices won&rsquo;t give you better pace. In fact, you&rsquo;d literally be adding latency to your system.</p>
+<h1 id="how-to-get-microservices-right">How to get microservices right</h1>
+<p>To make microservices architecture work, you need to figure out a couple things on the technology and people side.</p>
+<ul>
+<li>
+<p><strong>Trust:</strong> If you&rsquo;re going to be letting people push to production at will, you want to be able to trust them to do the right thing. So you want competent and experienced engineers. This means your hiring/onboarding pipelines and engineering culture must be on point.</p>
+</li>
+<li>
+<p><strong>Autonomous teams:</strong> You need teams that are small, independent and mission-driven to get the best out of the microservices architecture. These are usually teams tasked with delivering a certain product or set of features to the customer. Microservices won&rsquo;t make a difference if you have large teams, do top-down decision-making or organize around business functions rather than business goals.</p>
+</li>
+<li>
+<p><strong>Self-service platforms:</strong> For teams to be autonomous, they need to depend as little as possible on other teams. This means providing a comprehensive self-service platform for developing and operating their software. If you are practicing &ldquo;request-driven development&rdquo; (i.e teams always need help from other teams to get stuff done), you are not ready.</p>
+</li>
+<li>
+<p><strong>One service per team:</strong> The term &ldquo;microservices&rdquo; is a bit of a misnomer. It doesn&rsquo;t mean your services need to be micro i.e as small as possible. The goal is not to have as many services as possible. A rule of thumb is one service per team. If you have chosen the right team topology, this would usually mean one service per product/feature. One service housing multiple products/features is also fine, unless you have a team working on two or more unrelated features—in which case you have the wrong team setup. Going with multiple services per team is not worth the increase in development and operational complexity, in my opinion. If a team gets split up, their service should be split as well so that the resulting teams maintain their autonomy. If two teams get merged, it&rsquo;s probably not worth merging their services into one. But if the development resources are available to do so and you don&rsquo;t envision a split in future, go for it!</p>
+</li>
+<li>
+<p><strong>Observability tooling:</strong> Monitoring the state of your system is important. It becomes even more important when adopting microservices because of the higher reliance on inter-process communication. You need to provide a standardized observability stack that allows you collect and analyze metrics, logs and traces across all the services you&rsquo;re running, in real time. It also helps to provide discovery tools for developers so they can know what services are running where, and how their service is interacting with the rest of the system.</p>
+</li>
+<li>
+<p><strong>Development tooling:</strong> You need solid development tools and processes to tame the complexity of microservices. Without this, it&rsquo;s going to be a mess! Here are some tools/processes you might want to consider:</p>
+<ul>
+<li><strong>Monorepo:</strong> To <a href="/monorepo-use-case/">eliminate versioning</a> and simplify cross-cutting changes.</li>
+<li><strong>Build automation:</strong> To build/test as much or little of your system as you need.</li>
+<li><strong>Containerization:</strong> To simplify development and deployment by packaging your code and all its dependencies together.</li>
+<li><strong>Remote development environment:</strong> Because your developers might not be able to run the entire system on their computer.</li>
+</ul>
+</li>
+</ul>
+<h1 id="is-it-for-me">Is it for me?</h1>
+<p>Here&rsquo;s some questions that can help you out:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Has shipping code become the bottleneck preventing you from delivering value to your customers as quickly as you&rsquo;d like?</li>
+<li><input disabled="" type="checkbox"> Have you explored all other avenues to increase your velocity and it&rsquo;s still not enough?</li>
+<li><input disabled="" type="checkbox"> Do you have all the ingredients needed to get microservices right? (see previous section)</li>
+</ul>
+<p>If you check all the boxes, microservices architecture could be the right choice for your organization. If not, maybe you should pass/wait a little bit more.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-24</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://alphacoder.xyz/what-is-readable-code/">
+			Previous<br>What is readable code?
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/microservices-use-case\/';  
+        
+        
+        this.page.identifier = 'https:\/\/alphacoder.xyz\/microservices-use-case\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script>
+    </body>
+</html>

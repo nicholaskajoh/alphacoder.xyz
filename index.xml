@@ -13,6 +13,77 @@
     
     
         <item>
+        <title>The case for microservices architecture</title>
+        <link>https://alphacoder.xyz/microservices-use-case/</link>
+        <pubDate>Fri, 24 Mar 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/microservices-use-case/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/microservices-use-case/ -&lt;p&gt;The buzz seems to have died down now, but a few years ago, microservices architecture seemed to be all the rage. Everyone and their mom seemed to be transitioning from monolith to microservices or building their software from the get go using this architecture. At some point, it appeared to be a contest on the number of microservices you were running in production, judging by the blog posts and conference talks at least.&lt;/p&gt;
+&lt;p&gt;Like the hangover after a crazy night out, we seem to have realized &lt;a href=&#34;https://www.youtube.com/watch?v=kb-m2fasdDY&#34;&gt;it&amp;rsquo;s not all fun and games&lt;/a&gt;. As with most software engineering solutions, there are tradeoffs. And knowing those tradeoffs puts you in a better position to choose the right tool for the job—rather than using something because some big/successful company is using it or because it&amp;rsquo;s &amp;ldquo;cool&amp;rdquo;.&lt;/p&gt;
+&lt;h1 id=&#34;why-microservices&#34;&gt;Why microservices?&lt;/h1&gt;
+&lt;p&gt;It bothered me a little bit that I didn.t really get the use case for microservices. Why would someone complicate their system by making it distributed? What do you get in return for this complexity? Scalability? Higher availability? But you can already achieve these with a monolith, no? It didn&amp;rsquo;t make much sense to me.&lt;/p&gt;
+&lt;p&gt;It would take several years to get it. The revelation that made it all make sense was finding out that microservices architecture is not a technology solution. It&amp;rsquo;s a people one!&lt;/p&gt;
+&lt;p&gt;This might seem very obvious, but software is built by people. To be able to build software (especially a large and complicated one) quickly and efficiently, you need to organize people in a way that makes communication fast (or unnecessary), and empower them to own the piece of the software pie they are responsible for and its lifecycle. This is why we have team topologies built around self-organization and cross-functionality.&lt;/p&gt;
+&lt;p&gt;Microservices architecture exist so that teams can fully own the products and features they&amp;rsquo;re responsible for. This means being able to change and release code whenever they want. The idea is that decentralized decision-making is the better way to organize a large group of people towards achieving a common goal.&lt;/p&gt;
+&lt;p&gt;This might sound counter-intuitive, but when you think about it, it makes a lot of sense. Communication becomes a bottleneck the larger an organization grows. So if you centralize decision-making, your speed of execution would be as fast (or rather, as slow) as it takes information to permeate the organization, not to talk of the various ways things can be misunderstood and misinterpreted.&lt;/p&gt;
+&lt;p&gt;Beyond that, local decision-making is usually better because executors are typically subject-matter experts. A chef should be the one deciding what ingredients to buy and when to buy them, not a restaurant CEO or manager. He probably knows more about foodstuff than they do. In the same vein, you should be able to decide how to change your code, and when/how often to deploy it, not the head of engineering or operations team. You know more about the code than they do, because you probably wrote it and/or work on it everyday.&lt;/p&gt;
+&lt;h1 id=&#34;the-faux-benefits&#34;&gt;The faux benefits&lt;/h1&gt;
+&lt;p&gt;When people justify their use of microservices, they tend to mention its supposed pros. It turns out that most of them are faux benefits. Yes, you get these benefits by using microservices, but they are not worth the complexity you get in return in my opinion. More importantly, they can be achieved without the use of this architecture.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Scalability:&lt;/strong&gt; Microservices architecture can make your system scalable (a result of distributing load across multiple services), but &lt;a href=&#34;https://alphacoder.xyz/web-app-scaling-techniques/&#34;&gt;there are easier ways to achieve scalability&lt;/a&gt;, such as load balancing.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Encapsulation:&lt;/strong&gt; Each microservice is a container exposing an interface (such as a REST API) through which it may be consumed. This hides its implementation details, making it easier to understand, reuse and modify. The microservice &amp;ldquo;container&amp;rdquo; also lends itself well to network-level isolation e.g external vs internal services, which improves security. But like with scalability, there are several other cheaper ways to encapsulate the various components of your system e.g modules/packages, OOP, functions/subroutines, firewall rules etc. You don&amp;rsquo;t need microservices for this!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flexibility:&lt;/strong&gt; Microservices architecture lets you use the best tool for the job. For example, you could use a language with high runtime performance for parts of your system where you want very low latencies. Or use the best database or queuing system for the specific problem you want to solve. In practice, this kind of flexibility causes more problems than it solves. It requires lots of time and money to support some of these technologies, so you want as much standardization as possible. Standardization also makes it easier for developers to move around and collaborate with/learn from each other.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;from-monolith-to-distributed-monolith&#34;&gt;From monolith to distributed monolith&lt;/h1&gt;
+&lt;p&gt;In a bid to adopt microservices, many an organization end up building distributed monoliths, which give you all the disadvantages of microservices architecture without any of the benefits. If teams can&amp;rsquo;t deploy their code independently, or have to coordinate with other teams to do so, you have a distributed monolith on your hands. If your team topology doesn&amp;rsquo;t allow autonomy, you have a bottleneck upstream. Microservices won&amp;rsquo;t give you better pace. In fact, you&amp;rsquo;d literally be adding latency to your system.&lt;/p&gt;
+&lt;h1 id=&#34;how-to-get-microservices-right&#34;&gt;How to get microservices right&lt;/h1&gt;
+&lt;p&gt;To make microservices architecture work, you need to figure out a couple things on the technology and people side.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trust:&lt;/strong&gt; If you&amp;rsquo;re going to be letting people push to production at will, you want to be able to trust them to do the right thing. So you want competent and experienced engineers. This means your hiring/onboarding pipelines and engineering culture must be on point.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Autonomous teams:&lt;/strong&gt; You need teams that are small, independent and mission-driven to get the best out of the microservices architecture. These are usually teams tasked with delivering a certain product or set of features to the customer. Microservices won&amp;rsquo;t make a difference if you have large teams, do top-down decision-making or organize around business functions rather than business goals.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Self-service platforms:&lt;/strong&gt; For teams to be autonomous, they need to depend as little as possible on other teams. This means providing a comprehensive self-service platform for developing and operating their software. If you are practicing &amp;ldquo;request-driven development&amp;rdquo; (i.e teams always need help from other teams to get stuff done), you are not ready.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;One service per team:&lt;/strong&gt; The term &amp;ldquo;microservices&amp;rdquo; is a bit of a misnomer. It doesn&amp;rsquo;t mean your services need to be micro i.e as small as possible. The goal is not to have as many services as possible. A rule of thumb is one service per team. If you have chosen the right team topology, this would usually mean one service per product/feature. One service housing multiple products/features is also fine, unless you have a team working on two or more unrelated features—in which case you have the wrong team setup. Going with multiple services per team is not worth the increase in development and operational complexity, in my opinion. If a team gets split up, their service should be split as well so that the resulting teams maintain their autonomy. If two teams get merged, it&amp;rsquo;s probably not worth merging their services into one. But if the development resources are available to do so and you don&amp;rsquo;t envision a split in future, go for it!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Observability tooling:&lt;/strong&gt; Monitoring the state of your system is important. It becomes even more important when adopting microservices because of the higher reliance on inter-process communication. You need to provide a standardized observability stack that allows you collect and analyze metrics, logs and traces across all the services you&amp;rsquo;re running, in real time. It also helps to provide discovery tools for developers so they can know what services are running where, and how their service is interacting with the rest of the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Development tooling:&lt;/strong&gt; You need solid development tools and processes to tame the complexity of microservices. Without this, it&amp;rsquo;s going to be a mess! Here are some tools/processes you might want to consider:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Monorepo:&lt;/strong&gt; To &lt;a href=&#34;https://alphacoder.xyz/monorepo-use-case/&#34;&gt;eliminate versioning&lt;/a&gt; and simplify cross-cutting changes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build automation:&lt;/strong&gt; To build/test as much or little of your system as you need.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Containerization:&lt;/strong&gt; To simplify development and deployment by packaging your code and all its dependencies together.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Remote development environment:&lt;/strong&gt; Because your developers might not be able to run the entire system on their computer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;is-it-for-me&#34;&gt;Is it for me?&lt;/h1&gt;
+&lt;p&gt;Here&amp;rsquo;s some questions that can help you out:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Has shipping code become the bottleneck preventing you from delivering value to your customers as quickly as you&amp;rsquo;d like?&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Have you explored all other avenues to increase your velocity and it&amp;rsquo;s still not enough?&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Do you have all the ingredients needed to get microservices right? (see previous section)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you check all the boxes, microservices architecture could be the right choice for your organization. If not, maybe you should pass/wait a little bit more.&lt;/p&gt;
+- https://alphacoder.xyz/microservices-use-case/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
         <title>What is readable code?</title>
         <link>https://alphacoder.xyz/what-is-readable-code/</link>
         <pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate>
@@ -543,86 +614,6 @@ In addition to code comments, it also helps to write descriptive messages when c
 &lt;p&gt;If you find yourself writing a lot of CSS to override other CSS, perhaps it is time to drop Bootstrap and build your own UI component library, or pick another library with less abstraction. If you&amp;rsquo;re spending a lot of time hacking a framework because its APIs can no longer give you the functionality you need, you should probably start migrating away from it and building your own abstractions using language-native APIs.&lt;/p&gt;
 &lt;p&gt;An exemplification of the basic philosophy is this: &lt;em&gt;I don&amp;rsquo;t have to worry about the intricacies of paradigm X in language Y because there&amp;rsquo;s this nifty little library that exposes a streamlined API for achieving what I want. When my needs grow beyond what the library offers, I&amp;rsquo;ll begin to dig into the weeds of the paradigm. Right now, I&amp;rsquo;m more focused on delivering value with what I&amp;rsquo;m building than trying to understand every detail of some component I need to consume. When the abstraction begins to leak, I&amp;rsquo;ll cross that river.&lt;/em&gt;&lt;/p&gt;
 - https://alphacoder.xyz/levels-of-abstraction/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Authentication strategies in microservices architecture</title>
-        <link>https://alphacoder.xyz/microservices-architecture-authentication/</link>
-        <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/microservices-architecture-authentication/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/microservices-architecture-authentication/ -&lt;p&gt;When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.&lt;/p&gt;
-&lt;p&gt;In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.&lt;/p&gt;
-&lt;h1 id=&#34;auth-service&#34;&gt;Auth service&lt;/h1&gt;
-&lt;p&gt;In this strategy, a microservice is created for the purpose of authentication. This service is contacted by downstream services required to authenticate client requests before processing them.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/auth-svc.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It&amp;rsquo;s easy to implement and reason about, especially when transitioning from a monolith. The auth service is essentially a utility other services reach out to for their authentication needs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;It introduces a single point of failure. If the auth service is down, the whole application (or most of it) is down.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Increased latency. The time taken to make a request to and get a response from the auth service can hurt the average response time of a microservices application negatively.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;jwt-verification-per-service&#34;&gt;JWT verification per service&lt;/h1&gt;
-&lt;p&gt;This approach is an extension of the previous strategy and is intended to reduce dependence on the auth service. Authentication primarily involves issuing and verifying tokens. JWT (&lt;a href=&#34;https://jwt.io&#34;&gt;JSON Web Tokens&lt;/a&gt;) can be used to verify tokens without having to hit a database or other persistent storage. This means each service can verify requests on their own. Token issuing is done in the auth service, while verification is handled in every service where it&amp;rsquo;s required. A client library is usually used to share this verification functionality with all the services that need to perform authentication.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/jwt-verifier.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;There&amp;rsquo;s no single point of failure, auth-wise. The authentication service is only used for issuing tokens. All other services can handle token verification on their own.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;It&amp;rsquo;s easy to create a client library for token verification which can be shared by all the services that require auth (assuming a single tech stack is used across board).&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;JWT can&amp;rsquo;t be invalidated on-demand. While this is not a problem for some types of applications, it&amp;rsquo;s a deal breaker for others e.g an enterprise app where an admin might want to disable or delete a user or a finance app where a user might want to sign out from one or more devices remotely.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Making a change to the verification logic (e.g adding a new permission) requires updating all dependent services. This might be a Herculean task if a large number of services are involved.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;token-blacklist-cache&#34;&gt;Token blacklist cache&lt;/h1&gt;
-&lt;p&gt;To compensate for the shortcomings of JWT, a cache can be used to store tokens that need to be invalidated. This means that every service must contact a shared cache to check if a token has been blacklisted after successfully verifying it, before proceeding to execute any auth-protected code.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/token-blacklist-cache.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;JWTs can be invalidated on-demand through blacklisting.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This strategy is not feasible in a system where each service has its own datastore.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;If multiple services are allowed to write to the cache, they might erroneously modify token blacklist data, causing problems that might be difficult to detect and fix.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The shared cache introduces a single point of failure to the system.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;api-gateway-auth&#34;&gt;API gateway auth&lt;/h1&gt;
-&lt;p&gt;Most, if not all, microservices applications use an API gateway. An API gateway is the entry point where client requests go to before being sent to the appropriate API/edge services. The main function of a gateway is routing requests but they can be used for other purposes such as analytics, rate-limiting, data transformation, logging, health monitoring, caching and as you might have already guessed, authentication.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/api-gateway-auth.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Pros:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Separation of concerns. Services can communicate freely with each other and do what they need to do as authentication has already been handled downstream by the gateway.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Switching to an API gateway&amp;rsquo;s auth system from an existing application&amp;rsquo;s auth implementation can be difficult and time-consuming.&lt;/li&gt;
-&lt;/ul&gt;
-- https://alphacoder.xyz/microservices-architecture-authentication/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     

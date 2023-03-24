@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The case for microservices architecture</title>
+      <link>https://alphacoder.xyz/microservices-use-case/</link>
+      <pubDate>Fri, 24 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/microservices-use-case/</guid>
+      <description>The buzz seems to have died down now, but a few years ago, microservices architecture seemed to be all the rage. Everyone and their mom seemed to be transitioning from monolith to microservices or building their software from the get go using this architecture. At some point, it appeared to be a contest on the number of microservices you were running in production, judging by the blog posts and conference talks at least.</description>
+    </item>
+    
     <item>
       <title>A scalable data structure for your configuration database</title>
       <link>https://alphacoder.xyz/config-db-data-structure/</link>

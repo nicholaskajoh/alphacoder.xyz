@@ -13,6 +13,70 @@
     
     
         <item>
+        <title>How to scale an app horizontally using a load balancer</title>
+        <link>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
+        <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ -&lt;p&gt;As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.&lt;/p&gt;
+&lt;p&gt;One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.&lt;/p&gt;
+&lt;p&gt;There are mainly two ways to go about it — juice up a single server or run your app on multiple servers.&lt;/p&gt;
+&lt;p&gt;The former is called &lt;strong&gt;vertical scaling&lt;/strong&gt; and involves adding more memory, compute and/or storage to your server. This is very easy to accomplish if you run your app on a PaaS or IaaS platform. However, there’s only so much RAM/CPU/SSD etc you can get on one machine. Also, running high-end hardware is usually very expensive.&lt;/p&gt;
+&lt;p&gt;The latter approach is called &lt;strong&gt;horizontal scaling&lt;/strong&gt;. It involves running your application on multiple servers and sharing traffic/load among them. Using this approach has some advantages. For one, you can scale infinitely. You just add more servers. Also, your app becomes &lt;em&gt;highly available&lt;/em&gt; because if one server crashes/goes offline, you have other servers to handle incoming requests and/or other workloads.&lt;/p&gt;
+&lt;p&gt;Horizontal scaling works by placing a &lt;strong&gt;load balancer&lt;/strong&gt; in front of your app servers. A load balancer is also a server. Its primary job is to distribute traffic among other servers.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/load-balancer-diagram.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Horizontal scaling (A, B, C and D represent your app servers)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Most cloud providers have one-click-setup load balancers you can use if you run your app in their infrastructure. You may also choose to create your own load balancer using open source software like Nginx, HAProxy, Traefik etc.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we’re going to scale an app horizontally on DigitalOcean using their cloud load balancer. Let’s do this!&lt;/p&gt;
+&lt;h2 id=&#34;the-hits-app&#34;&gt;The hits app&lt;/h2&gt;
+&lt;p&gt;The app we’ll be scaling in this tutorial is called &lt;strong&gt;&lt;em&gt;hits&lt;/em&gt;&lt;/strong&gt;. It’s a simple Flask (Python) app that displays page hits. It counts every page load as a hit, and stores and caches the count in a PostgreSQL and Redis database respectively.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;hits&lt;/em&gt; source code: &lt;a href=&#34;https://github.com/nicholaskajoh/hits&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/hits&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;hits&lt;/em&gt; app is containerized using Docker for easy development and deployment. Knowledge of Python/Flask or Docker is not required to follow through in this tutorial. There are simple instructions provided in the README of the source code to run the app both locally and online.&lt;/p&gt;
+&lt;h2 id=&#34;digitalocean&#34;&gt;DigitalOcean&lt;/h2&gt;
+&lt;p&gt;DigitalOcean is a popular cloud computing platform loved for its simplicity and pocket-friendly pricing. We’ll be using their VMs/servers (which they call Droplets) to run the &lt;em&gt;hits&lt;/em&gt; app.&lt;/p&gt;
+&lt;p&gt;You’ll need to create an account on &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;digitalocean.com&lt;/a&gt; to get started. Droplets start at $5 per month but coupons abound. You can use my referral link and get $10 free: &lt;a href=&#34;https://m.do.co/c/e38dd092b1ad&#34;&gt;https://m.do.co/c/e38dd092b1ad&lt;/a&gt;. More coupons here: &lt;a href=&#34;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&#34;&gt;https://gist.github.com/dexbyte/fb13e994ad180ce86c654cae1ce7d14f&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;droplets&#34;&gt;Droplets&lt;/h2&gt;
+&lt;p&gt;Once you’ve signed up, verified your account and redeemed/purchased credits, head over to &lt;a href=&#34;https://cloud.digitalocean.com&#34;&gt;https://cloud.digitalocean.com&lt;/a&gt; and create a new droplet.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/droplets.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;My droplets are already up 😉&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;You can choose the configs you want if you know your way around provisioning servers. If you don’t, you may use the options shown in the screenshot below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/create-droplet.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create a droplet&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When your servers are up, you’ll need to connect to them via SSH. It’s advisable to generate an SSH key for your computer (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604&lt;/a&gt;). Alternatively, you can use username and password to login to your droplets.&lt;/p&gt;
+&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+&lt;p&gt;Here are the steps (in summary) to setup &lt;em&gt;hits&lt;/em&gt; on your droplet. You may &lt;a href=&#34;https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340&#34;&gt;use &lt;em&gt;tmux&lt;/em&gt;&lt;/a&gt; to perform the steps simultaneously on multiple servers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SSH into the droplet as root (user) using &lt;code&gt;ssh root@DROPLET_IP_ADDRESS&lt;/code&gt;. Windows users may need an SSH client like PuTTY (&lt;a href=&#34;https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/&#34;&gt;https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Create a non-root user and login as that user (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Clone the &lt;em&gt;hits&lt;/em&gt; repo into your server with &lt;code&gt;git clone [https://github.com/nicholaskajoh/hits.git](https://github.com/nicholaskajoh/hits.git.)&lt;/code&gt;&lt;a href=&#34;https://github.com/nicholaskajoh/hits.git.&#34;&gt;.&lt;/a&gt; DigitalOcean droplets come with Git pre-installed so you don’t need to install it. PS: You can clone the project anywhere you like. I cloned mine in /var/www. You can do the same with this command: &lt;code&gt;sudo mkdir /var/www &amp;amp;&amp;amp; sudo chown ${USER}: /var/www &amp;amp;&amp;amp; sudo chmod u+w /var/www &amp;amp;&amp;amp; cd /var/www &amp;amp;&amp;amp; git clone [https://github.com/nicholaskajoh/hits.git](https://github.com/nicholaskajoh/hits.git.)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create a &lt;em&gt;.env&lt;/em&gt; file in the project root. You can either copy &lt;em&gt;.env.example&lt;/em&gt; to &lt;em&gt;.env&lt;/em&gt; and make edits or create the file from scratch then add the environment variables. Use nano to edit/create the file: &lt;code&gt;sudo nano .env&lt;/code&gt;. My &lt;em&gt;.env&lt;/em&gt; own file is shown in a screenshot below. I used a managed database service for both PostgreSQL (&lt;a href=&#34;https://www.elephantsql.com/&#34;&gt;ElephantSQL&lt;/a&gt;) and Redis (&lt;a href=&#34;https://redislabs.com/&#34;&gt;Redis Labs&lt;/a&gt;). Make the &lt;code&gt;INSTANCE_ID&lt;/code&gt; environment variable unique for each droplet.&lt;/li&gt;
+&lt;li&gt;Install Docker and Docker Compose (&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&lt;/a&gt;, &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&#34;&gt;https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04&lt;/a&gt;). You can test your installations by running &lt;code&gt;docker --version&lt;/code&gt; and &lt;code&gt;docker-compose --version&lt;/code&gt;. Ensure the docker service is running: &lt;code&gt;sudo systemctl status docker&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Build and run the &lt;em&gt;hits&lt;/em&gt; application: &lt;code&gt;docker-compose -f docker-compose.prod.yml up --build -d&lt;/code&gt; (you should be in the root directory of the project (/www/var/hits). Now when you visit, your droplet’s IP address, you should be greeted by the &lt;em&gt;hits&lt;/em&gt; app.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/hits-app.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;The hits app 🙌&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/hits-env.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;My .env file for hits app in production (if you’re reading this, the postgres and redis dbs have already been destroyed 👀)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;load-balancer&#34;&gt;Load balancer&lt;/h2&gt;
+&lt;p&gt;Once all your servers are up and running, create a new load balancer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/create-load-balancer.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once your load balancer is up, add your droplets to it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/add-droplets-to-lb.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now you can visit your load balancer’s IP address. The APP INSTANCE shows what instance of the application (droplet) a request was routed to.&lt;/p&gt;
+&lt;p&gt;Let’s go into the settings of the load balancer for a bit…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ld-blncr/lb-settings.jpeg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Load balancer settings&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;So DigitalOcean gives us options to customize our load balancer.&lt;/p&gt;
+&lt;p&gt;We can choose an algorithm for the load balancer to use to route traffic to the droplets. There’s &lt;em&gt;Round Robin&lt;/em&gt; and &lt;em&gt;Least Connections&lt;/em&gt;. In Round Robin, the requests are routed in a circular order from one droplet to the next. On the other hand, Least Connections routes to the server with the least traffic.&lt;/p&gt;
+&lt;p&gt;There’s also health checks. You can set an endpoint e.g your app’s home page (http://0.0.0.0:80) for the load balancer to test and see if the server is running. If the server crashes or is offline, the load balancer would know and not send traffic to the server until it’s back up.&lt;/p&gt;
+&lt;p&gt;With Sticky sessions, you can glue a user to a particular server. If enabled, after a user’s first request, follow up requests would be routed to the same server.&lt;/p&gt;
+- https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
         <title>K Means</title>
         <link>https://alphacoder.xyz/k-means/</link>
         <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
@@ -984,34 +1048,6 @@ r2 = 1 - (SSy_hat / SSy_mean)
 &lt;p&gt;Don’t forget to check out the repo for the complete Linear Regression code: &lt;a href=&#34;https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression&#34;&gt;https://github.com/nicholaskajoh/ML_Chops/tree/master/linear-regression&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍&lt;/p&gt;
 - https://alphacoder.xyz/linear-regression/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
-        </item>
-    
-    
-    
-        <item>
-        <title>A responsive grid system with few lines of CSS</title>
-        <link>https://alphacoder.xyz/responsive-grid-system/</link>
-        <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
-        
-        <guid>https://alphacoder.xyz/responsive-grid-system/</guid>
-        <description>Alpha Coder https://alphacoder.xyz/responsive-grid-system/ -&lt;p&gt;How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need &lt;em&gt;something light&lt;/em&gt;!&lt;/p&gt;
-&lt;p&gt;Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?&lt;/p&gt;
-&lt;p&gt;While adding Bootstrap may sound easier, you might be faced with the nightmare that is overriding classes. Nobody loves overriding the classes they don’t want/need, plus you’re now distracted from what you really want to accomplish. Besides, you don’t lose anything by learning how to write a grid system. In fact, it makes you understand and appreciate CSS libraries and better.&lt;/p&gt;
-&lt;p&gt;There was this school project I had to work on. It was pretty basic, but I needed a grid system. I had already decided to build it from the ground up with only vanilla, so Bootstrap or Materialize was not an option. I had to learn how to write my own grid system. It turns out that it’s not difficult at all. In fact, I wrote a grid system with a few lines of CSS code.&lt;/p&gt;
-&lt;p&gt;It’s important to note that there are several ways of building a grid system; each with its own quirks. It’s easy to forget that CSS 1.0 wasn’t made with grid in mind as the webosphere is now littered with millions of sites using layouts of all shapes and sizes.&lt;/p&gt;
-&lt;p&gt;Devs cooked up various workarounds and hacks. They used &lt;strong&gt;tables&lt;/strong&gt; to create grids back in the day. More recently, they used &lt;strong&gt;floats&lt;/strong&gt;. Float grids sufficed until they didn’t. They are still in use today. However, &lt;strong&gt;flexbox&lt;/strong&gt; has replaced float grid systems on many sites online. Flexbox was made to solve the grid problem. Nevertheless, flexbox has it’s own limitations. The new kid on the block, &lt;strong&gt;grid layout&lt;/strong&gt;, was created to handle more complex systems that web apps of today demand.&lt;/p&gt;
-&lt;p&gt;I used flexbox to create a simple grid system. Flexbox is great! It&amp;rsquo;s supported in major browsers and is easy to implement.&lt;/p&gt;
-&lt;script src=&#34;https://gist.github.com/nicholaskajoh/35702b2e0791c4329e80cde9d0d3e9ba.js&#34;&gt;&lt;/script&gt;
-&lt;p&gt;I don’t want get into the intricacies of flexbox. I’ll be reinventing the wheel by doing that. Instead I’ll point you to a resource that helped me wrap my head around it. Nonetheless, from the code, it’s relatively easy to figure out how everything kinda works. It’s basically some flexbox code and media queries for 3 view ports — mobile, tablet and desktop.&lt;/p&gt;
-&lt;p&gt;Just add the following simple markup and you’re good to go.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;section&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;article&lt;/span&gt;&amp;gt;Content&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;article&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;aside&lt;/span&gt;&amp;gt;Sidebar&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;aside&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;section&lt;/span&gt;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can always add a few more lines for other neat functionalities. If you feel you’re doing too much, it may be time to throw in a library or something. If you feel Bootstrap or any other UI library is overkill, there are a ton of CSS grid libraries. I don’t want to name names, but Google is your friend. A search would yield a ton of interesting results.&lt;/p&gt;
-&lt;p&gt;Check out the repo for this tutorial: &lt;a href=&#34;https://github.com/nicholaskajoh/Simple-CSS-Grid&#34;&gt;https://github.com/nicholaskajoh/Simple-CSS-Grid&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Also, you should totally read &lt;a href=&#34;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&#34;&gt;Chris Coyier’s complete guide to flexbox&lt;/a&gt;. If you have the time, go through &lt;a href=&#34;https://css-tricks.com/snippets/css/complete-guide-grid/&#34;&gt;Chris House’ complete guide to grid&lt;/a&gt; as well.&lt;/p&gt;
-- https://alphacoder.xyz/responsive-grid-system/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
         </item>
     
     
