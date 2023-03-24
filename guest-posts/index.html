@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
+<title>Guest Posts</title>
 
 
 
@@ -102,9 +102,11 @@
             
             
             
+                
             
             
-            <a class="a-block nav-link-item false" href="/guest-posts/">
+            
+            <a class="a-block nav-link-item active" href="/guest-posts/">
                 Guest Posts
             </a>
             
@@ -174,91 +176,6 @@
     <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
 
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- OUTLINE -</center>
-		
-		
-		<ul>
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#setup" onclick="onNavClick(`#setup-nav`)" id="setup-nav">
-									Setup
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#run" onclick="onNavClick(`#run-nav`)" id="run-nav">
-									Run
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#test" onclick="onNavClick(`#test-nav`)" id="test-nav">
-									Test
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#configure" onclick="onNavClick(`#configure-nav`)" id="configure-nav">
-									Configure
-								</a>
-							</li>
-						
-						
-					
-				
-			
-		</ul>
-	</div>
-
 </div>
     
     <div class="pagination">
@@ -297,9 +214,11 @@
                 
                 
                 
+                    
                 
                 
-                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                
+                <a class="a-block drawer-menu-item active" href="/guest-posts/">
                     Guest Posts
                 </a>
                 
@@ -337,91 +256,6 @@
             
             <div class="toc">
 
-
-	<div class="toc-content">
-	
-		
-		
-		
-		<center>- OUTLINE -</center>
-		
-		
-		<ul>
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#setup" onclick="onNavClick(`#setup-nav`)" id="setup-nav">
-									Setup
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#run" onclick="onNavClick(`#run-nav`)" id="run-nav">
-									Run
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#test" onclick="onNavClick(`#test-nav`)" id="test-nav">
-									Test
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#configure" onclick="onNavClick(`#configure-nav`)" id="configure-nav">
-									Configure
-								</a>
-							</li>
-						
-						
-					
-				
-			
-		</ul>
-	</div>
 
 </div>
             
@@ -473,26 +307,13 @@
                 
             >
                 <div class="post-title" v-pre>
-                    Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development
+                    Guest Posts
                     
                     <div class="post-meta">
                         
-                        <time itemprop="datePublished">
-                            2019-09-01
-                        </time>
-                        
 
                         
 
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tag/search">Search</a>
-                                &nbsp;
-                            
-                                <a href="/tag/containerization">Containerization</a>
-                                &nbsp;
-                            
                         
                         
                     </div>
@@ -503,43 +324,13 @@
                 
                 <div class="post-body" v-pre>
                 
-                    <p>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp; Kibana? Here&rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.</p>
-<h1 id="setup">Setup</h1>
-<ul>
-<li><a href="https://docs.docker.com/install/">Install Docker for your OS</a>.</li>
-<li>Pull the Docker image for Elasticsearch: <code>docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0</code> (you can change <strong>7.3.0</strong> to <a href="https://www.docker.elastic.co/">the latest or your preferred version</a>).</li>
-<li>Pull the Docker image for Kibana: <code>docker pull docker.elastic.co/kibana/kibana:7.3.0</code>.</li>
-</ul>
-<h1 id="run">Run</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker container stop es_dev <span style="color:#f92672">&amp;&amp;</span> docker container rm es_dev
-</span></span><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --name es_dev <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -p 9200:9200 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -p 9300:9300 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -e <span style="color:#e6db74">&#34;discovery.type=single-node&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;<span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>
-</span></span><span style="display:flex;"><span>docker run <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --link es_dev:elasticsearch <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -p 5601:5601 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    docker.elastic.co/kibana/kibana:7.3.0 &amp;
-</span></span></code></pre></div><p>The first command stops the container named <code>es_dev</code> (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named <code>es_dev</code>, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (<code>es_dev</code>) where the Elasticsearch cluster is running. The last two commands are run concurrently.</p>
-<p>You can add these three commands to a shell file (e.g <em>elastic.sh</em>) in order to run a single command to start Elasticsearch and Kibana i.e <code>chmod +x elastic.sh &amp;&amp; ./elastic.sh</code> the first time and <code>./elastic.sh</code> subsequently.</p>
-<h1 id="test">Test</h1>
-<ul>
-<li>Elasticsearch: <code>curl http://127.0.0.1:9200/_cat/health</code> (you should have a status of <strong>green</strong> if everything went well).</li>
-<li>Kibana: visit <strong>http://localhost:5601</strong> (the Kibana dashboard should load up).</li>
-</ul>
-<h1 id="configure">Configure</h1>
-<p>Elasticsearch and Kibana can be configured using YAML. You can create config files and point to them when starting the containers.</p>
-<ul>
-<li>Elasticsearch: add <code>-v path/to/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml</code> to <code>docker run</code> command.</li>
-<li>Kibana: add <code>-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml</code> to <code>docker run</code> command.</li>
+                    <ul>
+<li><a href="https://paystack.com/blog/engineering-design/music">How we built it: Paystack Music</a> [The Paystack Blog]</li>
 </ul>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2023-03-14</p>
+		    <p style="color:#777;">Last modified on 2023-03-24</p>
                     
                 </div>
             </div>
@@ -548,14 +339,14 @@
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://alphacoder.xyz/connect-to-host-database-from-docker-container/">
-			Next<br>How to connect to a host&#39;s database from inside a Docker container
+                <a class="newer-posts" href="https://alphacoder.xyz/lazy-loading-with-django-and-jquery/">
+			Next<br>Lazy load your content with Django and jQuery
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://alphacoder.xyz/vehicle-counting/">
-			Previous<br>I built a video-based vehicle counting system—here&#39;s how
+                <a class="older-posts">
+			Previous<br>No older posts.
                 </a>
                 
             </nav>
@@ -567,10 +358,10 @@
 
     var disqus_config = function () {
         
-        this.page.url = 'https:\/\/alphacoder.xyz\/elasticsearch-kibana-docker-development-setup\/';  
+        this.page.url = 'https:\/\/alphacoder.xyz\/guest-posts\/';  
         
         
-        this.page.identifier = 'https:\/\/alphacoder.xyz\/elasticsearch-kibana-docker-development-setup\/'; 
+        this.page.identifier = 'https:\/\/alphacoder.xyz\/guest-posts\/'; 
     };
     (function() {
         var d = document, s = d.createElement('script');

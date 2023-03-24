@@ -1,0 +1,17 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>I code, therefore I am on Alpha Coder</title>
+    <link>https://alphacoder.xyz/</link>
+    <description>Recent content in I code, therefore I am on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    
+  </channel>
+</rss> 
