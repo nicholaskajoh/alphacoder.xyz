@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html><head>
+<title>Build a Facebook clone from scratch with PHP — Part 5</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#all-parts" class="nav-all-parts">
+									All parts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#but-before-iforget" class="nav-but-before-iforget">
+									But before I forget…
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#so" class="nav-so">
+									So…
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#user-posts" class="nav-user-posts">
+									User posts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#edit-profile" class="nav-edit-profile">
+									Edit profile
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Build a Facebook clone from scratch with PHP — Part 5
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2017-09-20
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/facebook-clone-series">Facebook Clone Series</a>
+                                &nbsp;
+                            
+                                <a href="/tag/web-development">Web Development</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="all-parts">All parts</h1>
+<ul>
+<li><a href="/facebook-clone-1">Build a Facebook clone from scratch with PHP — Part 1</a></li>
+<li><a href="/facebook-clone-2">Build a Facebook clone from scratch with PHP — Part 2</a></li>
+<li><a href="/facebook-clone-3">Build a Facebook clone from scratch with PHP — Part 3</a></li>
+<li><a href="/facebook-clone-4">Build a Facebook clone from scratch with PHP — Part 4</a></li>
+<li>Build a Facebook clone from scratch with PHP — Part 5 (this article)</li>
+<li><a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a></li>
+<li><a href="/facebook-clone-7">Build a Facebook clone from scratch with PHP — Part 7</a></li>
+</ul>
+<p>Every Facebook user has a profile. Let&rsquo;s create profile pages for FaceClone users!</p>
+<p><img src="/images/fbc5/faceclone-profile.png" alt="">
+<em>FaceClone profile page</em></p>
+<h1 id="but-before-iforget">But before I forget&hellip;</h1>
+<p>Recall that we used id of <em>zero</em> for the user_id fields in our posts table. That was because we didn&rsquo;t have any users. Now that we do, let&rsquo;s change things a bit.
+The query in create-post.php becomes&hellip;</p>
+<pre><code>...
+$sql = &quot;INSERT INTO posts (content, user_id) VALUES (?, ?)&quot;;
+...
+$statement-&gt;bind_param('si', $_POST['content'], $_SESSION['user_id']);
+...
+</code></pre>
+<p>We simply change the user_id value to the user_id session which is created when a user logs in.</p>
+<p><strong>NB:</strong> Since registration now works in our application, you may delete the dummy user accounts and use the registration form for account/user creation.</p>
+<h1 id="so">So&hellip;</h1>
+<p>Isn&rsquo;t there just one profile page (i.e profile.php)? How do we create profile pages for &ldquo;all&rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user&rsquo;s username as a parameter in the profile url and use it (the username) to pull the user&rsquo;s data from the DB. E.g example.com/profile.php?username=nicholas.</p>
+<p>Since the username is sent through a GET request, we can retrieve it with the <code>$_GET</code> superglobal using <code>$_GET['username']</code>. Let&rsquo;s write some code:</p>
+<p>Atop profile.php…</p>
+<pre><code>...
+$sql = &quot;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&quot;;
+$statement = $conn-&gt;prepare($sql);
+$statement-&gt;bind_param('s', $_GET['username']);
+$statement-&gt;execute();
+$statement-&gt;store_result();
+$statement-&gt;bind_result($id, $username, $status, $profile_image_url, $location);
+$statement-&gt;fetch();
+...
+</code></pre>
+<p>First, we get the username, then run a query to fetch a user using their username and that&rsquo;s just about it. <code>$id</code>, <code>$username</code>, <code>$status</code>, <code>$profile_image_url</code> and <code>$location</code> variables can now be echoed out where we need them in the page.</p>
+<h1 id="user-posts">User posts</h1>
+<p>Then again, we want to show only the posts belonging to the user whose profile is being displayed. Taking a cue from the home page which displays the posts of all users across FaceClone (part 3), we can create a new sql query:</p>
+<pre><code>$user_posts_sql = &quot;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&quot;;
+</code></pre>
+<p>In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. <code>$id</code> is the user&rsquo;s id got from the query to fetch a user&rsquo;s record.</p>
+<h1 id="edit-profile">Edit profile</h1>
+<p>Lastly, we need to allow users to make changes to their profiles. There&rsquo;s a little form in profile.php we can use to update status and location. Let&rsquo;s make it work!
+The form…</p>
+<pre><code>...
+&lt;form method=&quot;post&quot; action=&quot;php/edit-profile.php&quot;&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; name=&quot;status&quot; placeholder=&quot;Status&quot; value=&quot;&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input class=&quot;form-control&quot; type=&quot;text&quot; name=&quot;location&quot; placeholder=&quot;Location&quot; value=&quot;&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input class=&quot;btn btn-primary&quot; type=&quot;submit&quot; value=&quot;Save&quot;&gt;
+&lt;/div&gt;
+&lt;/form&gt;
+...
+</code></pre>
+<p>Now create a file in the php folder called edit-profile.php with the following code:</p>
+<pre><code>&lt;?php
+    require_once &quot;../functions.php&quot;;
+    db_connect();
+    $sql = &quot;UPDATE users SET status = ?, location = ? WHERE id = ?&quot;;
+    $statement = $conn-&gt;prepare($sql);
+    $statement-&gt;bind_param('ssi', $_POST['status'], $_POST['location'], $_SESSION['user_id']);
+    if ($statement-&gt;execute()) {
+        redirect_to(&quot;/profile.php?username={$_SESSION['user_username']}&quot;);
+    } else {
+        echo &quot;Error: &quot; . $conn-&gt;error;
+    }
+</code></pre>
+<p>You&rsquo;re probably used to the above snippet by now. We update the status and location of a user using the <code>UPDATE</code> sql statement then redirect back to profile.php. Sweet!</p>
+<p>*drops mic*</p>
+<p><strong>The final code for this part is contained in my <a href="https://github.com/nicholaskajoh/faceclone">FaceClone repo</a>. Visit the link and click on the part-5 folder to see progress made so far.</strong></p>
+<p>Next: <a href="/facebook-clone-6">Build a Facebook clone from scratch with PHP — Part 6</a>.</p>
+<p>Previous: <a href="/facebook-clone-4">Build a Facebook clone from scratch with PHP — Part 4</a>.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/facebook-clone-6/">
+			Next<br>Build a Facebook clone from scratch with PHP — Part 6
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/facebook-clone-4/">
+			Previous<br>Build a Facebook clone from scratch with PHP — Part 4
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/facebook-clone-5\/';  
+        
+        
+        this.page.identifier = '\/facebook-clone-5\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#all-parts" class="nav-all-parts">
+									All parts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#but-before-iforget" class="nav-but-before-iforget">
+									But before I forget…
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#so" class="nav-so">
+									So…
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#user-posts" class="nav-user-posts">
+									User posts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#edit-profile" class="nav-edit-profile">
+									Edit profile
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

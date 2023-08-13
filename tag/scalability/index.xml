@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scalability on Alpha Coder</title>
+    <link>https://alphacoder.xyz/tag/scalability/</link>
+    <description>Recent content in Scalability on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/scalability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A scalable data structure for your configuration database</title>
+      <link>https://alphacoder.xyz/config-db-data-structure/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/config-db-data-structure/</guid>
+      <description>Most software of reasonable complexity are configurable—that is, they allow you change their functionality through the use of flags/settings. While you could store configuration information in code or text files, for web apps, it’s more common to store them in databases. This allows you make changes to the configs at runtime i.e without having to restart or redeploy your app.
+In this article, I’ll be exploring the ways I thought about improving the config storage mechanism in a large enterprise system I worked on, which made use of thousands of configs.</description>
+    </item>
+    
+    <item>
+      <title>Web app scaling techniques</title>
+      <link>https://alphacoder.xyz/web-app-scaling-techniques/</link>
+      <pubDate>Sat, 27 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/web-app-scaling-techniques/</guid>
+      <description>Several moons ago, I wrote an article about techniques for scaling databases. Today, we’ll be looking at the app side of things. As with databases, you want to develop your application with scalability in mind so that when the time comes to increase capacity, the process is straightforward and seamless. Having a clear pathway for building a higher capacity and robust system also helps prevent over-engineering and premature optimization, so it’s important to have the steps and process for evolving your systems to handle large workloads.</description>
+    </item>
+    
+    <item>
+      <title>Database scaling techniques</title>
+      <link>https://alphacoder.xyz/database-scaling-techniques/</link>
+      <pubDate>Sun, 07 Jun 2020 11:46:24 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/database-scaling-techniques/</guid>
+      <description>Over the years, I&amp;rsquo;ve had an unusual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&amp;rsquo;m not exactly a fan of database administration but I&amp;rsquo;ve always had the anxiety that a design decision I&amp;rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources.</description>
+    </item>
+    
+    <item>
+      <title>How to scale an app horizontally using a load balancer</title>
+      <link>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
+      <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
+      <description>As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.
+One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.</description>
+    </item>
+    
+  </channel>
+</rss>

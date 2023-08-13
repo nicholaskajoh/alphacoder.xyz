@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html><head>
+<title>How to connect to a host&#39;s database from inside a Docker container</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    How to connect to a host&#39;s database from inside a Docker container
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2019-09-01
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/containerization">Containerization</a>
+                                &nbsp;
+                            
+                                <a href="/tag/databases">Databases</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>There are several ways to interact with a DB when developing using Docker:</p>
+<ol>
+<li>Connect to an online DB instance.</li>
+<li>Connect to a local DB running in another container.</li>
+<li>Connect to a local DB running on a host machine (e.g your laptop).</li>
+</ol>
+<p>The first option can be easy and fast to setup i.e if you&rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&rsquo;t be able to develop without an internet connection.</p>
+<p>While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don&rsquo;t want to have to mount a volume on the host in order to persist your data or run an additional container.</p>
+<p>Connecting to a host DB from a container via localhost doesn&rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&rsquo;s internal IP address.</p>
+<p>You can point to your host&rsquo;s DB by setting the following environment variable in your container for instance.</p>
+<p>Docker for Mac/Windows:</p>
+<pre tabindex="0"><code>DB_HOST=host.docker.internal
+</code></pre><p>Linux:</p>
+<pre tabindex="0"><code>DB_HOST=$(ip route show default | awk &#39;/default/ {print $3}&#39;)
+</code></pre>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/microservices-architecture-authentication/">
+			Next<br>Authentication strategies in microservices architecture
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/elasticsearch-kibana-docker-development-setup/">
+			Previous<br>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/connect-to-host-database-from-docker-container\/';  
+        
+        
+        this.page.identifier = '\/connect-to-host-database-from-docker-container\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

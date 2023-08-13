@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html><head>
+<title>Database scaling techniques</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#query-optimization" class="nav-query-optimization">
+									Query optimization
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#indexing" class="nav-indexing">
+									Indexing
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#denormalization" class="nav-denormalization">
+									Denormalization
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#primary-replica-architecture" class="nav-primary-replica-architecture">
+									Primary-replica architecture
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#federation" class="nav-federation">
+									Federation
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#sharding" class="nav-sharding">
+									Sharding
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Database scaling techniques
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-06-07
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/scalability">Scalability</a>
+                                &nbsp;
+                            
+                                <a href="/tag/databases">Databases</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>Over the years, I&rsquo;ve had an unusual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&rsquo;m not exactly a fan of database administration but I&rsquo;ve always had the anxiety that a design decision I&rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources. However, I wanted to know the progression that will lead me to such a point so that I can plan with foresight.</p>
+<p>After lots of reading and a fair amount of practice on the job, I&rsquo;ve learned some of the common techniques used to scale relational databases. I&rsquo;ve organized them in a relatively increasing order of relevance as one&rsquo;s database load grows.</p>
+<h1 id="query-optimization">Query optimization</h1>
+<p>This is the good old technique of finding poorly written queries or queries that could be improved upon and making them more efficient. To be able to write optimal queries, you need to have a good handle of the query language (e.g SQL), as well as the database engine (e.g MySQL or PostgreSQL). Simple tips like selecting specific fields as opposed to selecting all fields (<code>SELECT *</code>) when not required can go a long way in giving your application the performance boost it needs.</p>
+<p>Visual inspection of queries might not be sufficient as some queries only break when confronted with large amounts of data or heavy traffic. Application Performance Monitoring (APM) tools can be instrumental in finding these bottlenecks as they allow you view the performance metrics of all your queries and figure out which ones are degrading your database.</p>
+<h1 id="indexing">Indexing</h1>
+<p>Indexing in simple terms means organizing data in a way that makes it faster to retrieve. Relational databases allow you create indexes on one of more columns in your tables. This can result in huge performance gains with little or no effort and as such is highly recommended as a way to optimize your database. For the best results, <a href="https://www.dbta.com/Columns/DBA-Corner/Top-10-Steps-to-Building-Useful-Database-Indexes-100498.aspx">indexes should be based on the kind of queries being run against a given database</a>.</p>
+<h1 id="denormalization">Denormalization</h1>
+<p>I&rsquo;ve discussed denormalization in reasonable detail <a href="/database-denormalization/">in a previous article</a> so I won&rsquo;t say much more than the basic idea of what it entails. The goal of denormalization is to improve read performance by adding redundant copies of data to make for faster access using simpler queries. This is essentially indexing but done by a schema designer rather than a database engine, and it can be a great addition to indexes if carried out purposefully.</p>
+<h1 id="primary-replica-architecture">Primary-replica architecture</h1>
+<p>This involves <a href="https://stackoverflow.com/a/11715598/6293466">scaling a database horizontally</a> by running two or more instances. One is designated the primary database and handles writes while the others are replica databases which handle reads. The database engine uses a replication protocol to keep all the instances in sync by copying the data from the primary database to the replicas. This setup comprises a database cluster. The pros of the architecture include traffic load balancing and automatic data backups which result in improved performance and reliability of a database.</p>
+<h1 id="federation">Federation</h1>
+<p>In this technique, the database tables that make up an application are grouped by feature/function, and each group is designated a server or cluster of its own. For instance, all the tables concerned with billing might be put on one server while those concerned with identity and access management might be put on another. Care must be taken while grouping tables to avoid a situation where one or more related tables have been split across database servers, and expensive operations are required to obtain a piece of data needed in your application as a result.</p>
+<h1 id="sharding">Sharding</h1>
+<p>Sharding is the process of horizontally partitioning data into multiple databases. Instead of splitting a database by groups of tables as described earlier, a table&rsquo;s rows are split across multiple instances. In order to save or retrieve a piece of data, certain <a href="https://www.citusdata.com/blog/2017/08/28/five-data-models-for-sharding/">models</a>/<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding#sharding-strategies">algorithms</a> are employed in determining the <a href="https://en.wikipedia.org/wiki/Shard_(database_architecture)">shard</a> to use/where the data resides. This adds a fair amount of complexity to your database setup and your application as well. Operations that might otherwise be straightforward can become a challenge under this configuration. As such sharding is usually reserved for last and carried out by admins who have a solid grasp of the database engine they&rsquo;re dealing with.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/monorepo-use-case/">
+			Next<br>The case for monorepos
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/database-denormalization/">
+			Previous<br>Database denormalization
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/database-scaling-techniques\/';  
+        
+        
+        this.page.identifier = '\/database-scaling-techniques\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#query-optimization" class="nav-query-optimization">
+									Query optimization
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#indexing" class="nav-indexing">
+									Indexing
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#denormalization" class="nav-denormalization">
+									Denormalization
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#primary-replica-architecture" class="nav-primary-replica-architecture">
+									Primary-replica architecture
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#federation" class="nav-federation">
+									Federation
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#sharding" class="nav-sharding">
+									Sharding
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

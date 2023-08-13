@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer Vision on Alpha Coder</title>
+    <link>https://alphacoder.xyz/tag/computer-vision/</link>
+    <description>Recent content in Computer Vision on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 12 Jul 2019 00:30:43 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/computer-vision/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I built a video-based vehicle counting system—here&#39;s how</title>
+      <link>https://alphacoder.xyz/vehicle-counting/</link>
+      <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/vehicle-counting/</guid>
+      <description>I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared a demo on Twitter that went semi-viral!
+In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!
+TL;DR: I built a video-based vehicle counting system using Python/OpenCV.</description>
+    </item>
+    
+  </channel>
+</rss>

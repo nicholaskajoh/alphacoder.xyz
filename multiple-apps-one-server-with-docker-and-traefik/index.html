@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html><head>
+<title>How to run multiple apps on one server using Docker and Traefik</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#use-case" class="nav-use-case">
+									Use case
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#docker" class="nav-docker">
+									Docker
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#traefik" class="nav-traefik">
+									Traefik
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#docker-compose" class="nav-docker-compose">
+									Docker Compose
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#project-setup" class="nav-project-setup">
+									Project setup
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#traefik-dashboard" class="nav-traefik-dashboard">
+									Traefik dashboard
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ssl" class="nav-ssl">
+									SSL
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#scaling-and-load-balancing" class="nav-scaling-and-load-balancing">
+									Scaling and load balancing
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    How to run multiple apps on one server using Docker and Traefik
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2018-06-28
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/containerization">Containerization</a>
+                                &nbsp;
+                            
+                                <a href="/tag/web-development">Web Development</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.</p>
+<h2 id="use-case">Use case</h2>
+<p>Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end). You can even run two different websites (example1.com and example2.com) if you want.</p>
+<h2 id="docker">Docker</h2>
+<p>Docker is the most widely used containerization software today. It allows you bundle code with it’s config and dependencies, making it easy and seamless to deploy your apps on any machine (or several machines). It also helps in development by providing a consistent environment for collaborators on a project. More info here: <a href="https://docs.docker.com/">https://docs.docker.com</a>.</p>
+<h2 id="traefik">Traefik</h2>
+<p>Traefik is a HTTP reverse proxy and load balancer that integrates with Docker, Swarm, Kubernetes among other orchestration tools. You can learn more here: <a href="https://docs.traefik.io/">https://docs.traefik.io</a>.</p>
+<h2 id="docker-compose">Docker Compose</h2>
+<p>We’ll be using Docker via Docker Compose. Docker Compose makes it easy to run multi-container Docker applications. You can configure all your containers in one file and run them at once with a single command. Read more here: <a href="https://docs.docker.com/compose/">https://docs.docker.com/compose</a>.</p>
+<h2 id="project-setup">Project setup</h2>
+<p>The 3 apps we’ll be running are a website (static site), a blog and a SaaS app (dasboard-ish). For the sake of demonstration, I just downloaded HTML templates online 👀. So I have a <em>landing page template</em>, <em>blog template</em> and <em>dashboard template</em>. They’ll all be served with Ngnix 😉.</p>
+<p><img src="/images/dckr-trfk/website.png" alt="">
+<em>website</em></p>
+<p><img src="/images/dckr-trfk/blog.png" alt="">
+<em>blog</em></p>
+<p><img src="/images/dckr-trfk/app.png" alt="">
+<em>SaaS app</em></p>
+<p>Here’s the project repo: <a href="https://github.com/nicholaskajoh/jack"><strong>https://github.com/nicholaskajoh/jack</strong></a>.</p>
+<p>Each app is put in it’s own folder, with its own <em>Dockerfile</em>. The Dockerfiles are identical since we’re basically just serving static files in all the apps.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>The docker compose file brings everything together under one roof. Here’s how it looks:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">traefik</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">traefik</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: --<span style="color:#ae81ff">web --docker --docker.domain=docker.localhost --logLevel=DEBUG</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;443:443&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/dev/null:/traefik.toml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">app</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./app:/usr/share/nginx/html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;traefik.backend=app-be&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;traefik.frontend.rule=Host:app.localhost&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">blog</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./blog</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./blog:/usr/share/nginx/html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;traefik.backend=blog-be&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;traefik.frontend.rule=Host:blog.localhost&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">website</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">./website</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./website:/usr/share/nginx/html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;traefik.backend=website-be&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;traefik.frontend.rule=Host:localhost&#34;</span>
+</span></span></code></pre></div><p>As can be seen, traefik itself is run in a container. The domain is set to localhost and the ports 80, 8080 and 443 are published. The web flag (<code>--web</code>) under command parameter tells traefik to run its API dashboard which will be exposed on port 8080.</p>
+<p>Traefik can be configured using a <a href="https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml"><em>traefik.toml</em></a> file. It can also pick configs from service labels. As such, we specified the <code>traefik.backend</code> and <code>traefik.frontend.rule</code> configs using labels. <code>traefik.backend</code> specifies the service to handle requests from <code>traefik.frontend.rule</code>. So if we go to <em>app.localhost</em>, we will be served content from the app service. Same with <em>localhost</em> and website, and <em>blog.localhost</em> and blog.</p>
+<p><strong>Try it out:</strong> clone <a href="https://github.com/nicholaskajoh/jack">Jack</a>, run <code>docker-compose up</code> and visit <em>localhost</em>, <em>app.localhost</em> and <em>blog.localhost</em>.</p>
+<h2 id="traefik-dashboard">Traefik dashboard</h2>
+<p><img src="/images/dckr-trfk/traefik-dashboard.png" alt=""></p>
+<p>The Traefik dashboard displays useful information including the available front-ends and back-ends, and the health of the containers. You can password protect the dashboard so only authorized persons can access it.</p>
+<h2 id="ssl">SSL</h2>
+<p>Traefik can handle SSL for you automatically. This guide (<a href="https://docs.traefik.io/https/acme/">https://docs.traefik.io/https/acme/</a>) explains the configuration process using Let’s Encrypt.</p>
+<p><strong><em>NB:</em></strong> <em>I added SSL configs in</em> <a href="https://github.com/nicholaskajoh/jack/blob/master/docker-compose.prod.yml"><em>docker-compose.prod.yml</em></a> <em>and</em> <a href="https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml"><em>traefik.toml</em></a> <em>for use in production.</em></p>
+<h2 id="scaling-and-load-balancing">Scaling and load balancing</h2>
+<p>Traefik load balances multiple instances of a given service automatically. You can use the scale flag/parameter in docker compose to run multiple instances of your containers.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/my-web-search-engine/">
+			Next<br>I built my own web search engine—here&#39;s how
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/scale-an-app-horizontally-using-a-load-balancer/">
+			Previous<br>How to scale an app horizontally using a load balancer
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/multiple-apps-one-server-with-docker-and-traefik\/';  
+        
+        
+        this.page.identifier = '\/multiple-apps-one-server-with-docker-and-traefik\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#use-case" class="nav-use-case">
+									Use case
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#docker" class="nav-docker">
+									Docker
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#traefik" class="nav-traefik">
+									Traefik
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#docker-compose" class="nav-docker-compose">
+									Docker Compose
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#project-setup" class="nav-project-setup">
+									Project setup
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#traefik-dashboard" class="nav-traefik-dashboard">
+									Traefik dashboard
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ssl" class="nav-ssl">
+									SSL
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#scaling-and-load-balancing" class="nav-scaling-and-load-balancing">
+									Scaling and load balancing
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

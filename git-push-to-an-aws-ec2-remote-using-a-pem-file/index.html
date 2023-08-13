@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html><head>
+<title>How to Git push to an AWS EC2 remote using a PEM file</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-copy-private-key-in-pem-to-ssh-folder" class="nav-1-copy-private-key-in-pem-to-ssh-folder">
+									1. Copy private key in PEM to .ssh folder
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-generate-and-save-public-key" class="nav-2-generate-and-save-public-key">
+									2. Generate and save public key
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-add-private-key-to-ssh-agent" class="nav-3-add-private-key-to-ssh-agent">
+									3. Add private key to ssh-agent
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4-add-remote-and-push" class="nav-4-add-remote-and-push">
+									4. Add remote and push
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    How to Git push to an AWS EC2 remote using a PEM file
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2018-12-02
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/source-control">Source Control</a>
+                                &nbsp;
+                            
+                                <a href="/tag/cloud-computing">Cloud Computing</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>AWS provides you with a <em>.pem</em> file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…</p>
+<h3 id="1-copy-private-key-in-pem-to-ssh-folder">1. Copy private key in PEM to .ssh folder</h3>
+<pre><code>$ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2
+</code></pre>
+<h3 id="2-generate-and-save-public-key">2. Generate and save public key</h3>
+<pre><code>$ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &gt; ~/.ssh/id_rsa_ec2.pub
+</code></pre>
+<h3 id="3-add-private-key-to-ssh-agent">3. Add private key to ssh-agent</h3>
+<p>Start ssh-agent</p>
+<pre><code>$ eval &quot;$(ssh-agent -s)&quot;
+</code></pre>
+<p>Then add your key to the agent</p>
+<pre><code>$ ssh-add ~/.ssh/id_rsa_ec2
+</code></pre>
+<p><em>At this point, you should be able to access your instance without the PEM file. Instead of:</em></p>
+<pre><code>$ ssh -i my-aws-ec2-instance.pem ec2-user@ec2-ip.compute-x.amazonaws.com
+</code></pre>
+<p><em>Use:</em></p>
+<pre><code>$ ssh ec2-user@ec2-ip.compute-x.amazonaws.com
+</code></pre>
+<h3 id="4-add-remote-and-push">4. Add remote and push</h3>
+<p>Change directory to your local Git repository and add the remote URL of your server</p>
+<pre><code>$ git remote add ec2server ec2-user@ec2-ip.compute-1.amazonaws.com:/home/ec2-user/repo.git
+</code></pre>
+<p>Now push…</p>
+<pre><code>$ git push ec2server</code></pre>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/check-domain-availability-from-your-terminal/">
+			Next<br>Check domain availability from your terminal
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/git-workflows/">
+			Previous<br>Two Git workflows you should know
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/git-push-to-an-aws-ec2-remote-using-a-pem-file\/';  
+        
+        
+        this.page.identifier = '\/git-push-to-an-aws-ec2-remote-using-a-pem-file\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-copy-private-key-in-pem-to-ssh-folder" class="nav-1-copy-private-key-in-pem-to-ssh-folder">
+									1. Copy private key in PEM to .ssh folder
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-generate-and-save-public-key" class="nav-2-generate-and-save-public-key">
+									2. Generate and save public key
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-add-private-key-to-ssh-agent" class="nav-3-add-private-key-to-ssh-agent">
+									3. Add private key to ssh-agent
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4-add-remote-and-push" class="nav-4-add-remote-and-push">
+									4. Add remote and push
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Alpha Coder</title>
+    <link>https://alphacoder.xyz/blog/</link>
+    <description>Recent content in Posts on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright><atom:link href="https://alphacoder.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The case for microservices architecture</title>
+      <link>https://alphacoder.xyz/microservices-use-case/</link>
+      <pubDate>Fri, 24 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/microservices-use-case/</guid>
+      <description>The buzz seems to have died down now, but a few years ago, microservices architecture seemed to be all the rage. Everyone and their mom seemed to be transitioning from monolith to microservices or building their software from the get go using this architecture. At some point, it appeared to be a contest on the number of microservices you were running in production, judging by the blog posts and conference talks at least.</description>
+    </item>
+    
+    <item>
+      <title>What is readable code?</title>
+      <link>https://alphacoder.xyz/what-is-readable-code/</link>
+      <pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/what-is-readable-code/</guid>
+      <description>Any code that I didn’t write or wrote more than 6 months ago is unreadable! — you, probably
+Everyone writes readable code, and yet everyone complains about all the unreadable code they have to deal with on a daily. Of course, readability is subjective. But when developers say a certain piece of code is unreadable, they usually mean it requires high cognitive load to comprehend. So it makes sense that your code is usually readable to you regardless of how it looks because you wrote, and thus already understand it.</description>
+    </item>
+    
+    <item>
+      <title>A scalable data structure for your configuration database</title>
+      <link>https://alphacoder.xyz/config-db-data-structure/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/config-db-data-structure/</guid>
+      <description>Most software of reasonable complexity are configurable—that is, they allow you change their functionality through the use of flags/settings. While you could store configuration information in code or text files, for web apps, it’s more common to store them in databases. This allows you make changes to the configs at runtime i.e without having to restart or redeploy your app.
+In this article, I’ll be exploring the ways I thought about improving the config storage mechanism in a large enterprise system I worked on, which made use of thousands of configs.</description>
+    </item>
+    
+    <item>
+      <title>How to version REST APIs</title>
+      <link>https://alphacoder.xyz/rest-api-versioning/</link>
+      <pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/rest-api-versioning/</guid>
+      <description>Having worked at companies that sell API products in the last couple years, I’ve found myself contemplating—for hours on end in the shower—what the best way to version REST APIs is. You want simplicity and stability so that your API is easy for developers to integrate. But you also want to iterate on your product and add new features to improve your offering. Eventually, you’ll need to introduce breaking changes. Maybe you’re expanding the scope of an endpoint so you want to reorganize the parameters in the request payload, or a field in the response body needs to be removed for security or compliance reasons.</description>
+    </item>
+    
+    <item>
+      <title>Web app scaling techniques</title>
+      <link>https://alphacoder.xyz/web-app-scaling-techniques/</link>
+      <pubDate>Sat, 27 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/web-app-scaling-techniques/</guid>
+      <description>Several moons ago, I wrote an article about techniques for scaling databases. Today, we’ll be looking at the app side of things. As with databases, you want to develop your application with scalability in mind so that when the time comes to increase capacity, the process is straightforward and seamless. Having a clear pathway for building a higher capacity and robust system also helps prevent over-engineering and premature optimization, so it’s important to have the steps and process for evolving your systems to handle large workloads.</description>
+    </item>
+    
+    <item>
+      <title>The case for monorepos</title>
+      <link>https://alphacoder.xyz/monorepo-use-case/</link>
+      <pubDate>Mon, 04 Jul 2022 19:48:14 +0200</pubDate>
+      
+      <guid>https://alphacoder.xyz/monorepo-use-case/</guid>
+      <description>At a previous company, I worked as a Platform Engineer for the Packages team. A brand new team, our job was to abstract the building blocks of our systems into reusable components, and to create a pipeline for developing and releasing these components as packages for use by product engineers. There was a lot of duplication in our codebases and we were also slowly moving towards a microservices architecture, so our work was crucial in helping the engineering organization improve code quality and developer productivity.</description>
+    </item>
+    
+    <item>
+      <title>Database scaling techniques</title>
+      <link>https://alphacoder.xyz/database-scaling-techniques/</link>
+      <pubDate>Sun, 07 Jun 2020 11:46:24 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/database-scaling-techniques/</guid>
+      <description>Over the years, I&amp;rsquo;ve had an unusual interest in techniques for scaling databases to meet high demands in terms of performance and reliability. I&amp;rsquo;m not exactly a fan of database administration but I&amp;rsquo;ve always had the anxiety that a design decision I&amp;rsquo;m making now will come back to haunt me in future. I quickly learned that trying to setup a system that can handle, say, a million users when one has only a thousand is a waste of time and resources.</description>
+    </item>
+    
+    <item>
+      <title>Database denormalization</title>
+      <link>https://alphacoder.xyz/database-denormalization/</link>
+      <pubDate>Fri, 05 Jun 2020 13:46:02 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/database-denormalization/</guid>
+      <description>Normalization is a vital part of database schema design. The goal is to structure a relational database so as to reduce redundancy and improve the integrity of data. Given this understanding, denormalization sounds rather counter-intuitive. Why would one want to make a database &amp;ldquo;less normalized&amp;rdquo;?
+Well, it turns out that normalization comes at a performance cost for DB read operations. This is just fine for regular applications. However, read-heavy apps start to break at scale under this setup due to resource-intensive SQL queries involving joins, subqueries and the like.</description>
+    </item>
+    
+    <item>
+      <title>node_modules: The Node.js black hole</title>
+      <link>https://alphacoder.xyz/node-modules/</link>
+      <pubDate>Mon, 25 May 2020 23:33:11 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/node-modules/</guid>
+      <description>As a Node.js developer, you know just how large (in terms of number of files and directory size) node_modules can be (you&amp;rsquo;ve probably aready seen the memes). But have you ever asked WHY? I hadn&amp;rsquo;t, up until recently, after which I did some goofing around on the interwebs out of curiosity.
+Turns out it has to do with 2 things:
+How npm (the Node package manager) resolves dependencies. How the Node.</description>
+    </item>
+    
+    <item>
+      <title>What level of abstraction should I play on?</title>
+      <link>https://alphacoder.xyz/levels-of-abstraction/</link>
+      <pubDate>Sun, 12 Apr 2020 18:17:48 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/levels-of-abstraction/</guid>
+      <description>&amp;ldquo;I built it from scratch!&amp;rdquo;
+A major sentiment among some of the developer circles I interacted with and was part of in my earlier days of coding was that you were a better &amp;ldquo;real&amp;rdquo; developer if you could build stuff &amp;ldquo;from scratch&amp;rdquo;. You&amp;rsquo;d often hear people scoff at building websites with WordPress, for example. &amp;ldquo;I built this site from scratch with raw HTML, CSS and JavaScript. No framework or CMS!&amp;rdquo; It was a thing of pride.</description>
+    </item>
+    
+    <item>
+      <title>Authentication strategies in microservices architecture</title>
+      <link>https://alphacoder.xyz/microservices-architecture-authentication/</link>
+      <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/microservices-architecture-authentication/</guid>
+      <description>When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.
+In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.</description>
+    </item>
+    
+    <item>
+      <title>How to connect to a host&#39;s database from inside a Docker container</title>
+      <link>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
+      <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
+      <description>There are several ways to interact with a DB when developing using Docker:
+Connect to an online DB instance. Connect to a local DB running in another container. Connect to a local DB running on a host machine (e.g your laptop). The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.</description>
+    </item>
+    
+    <item>
+      <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
+      <link>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
+      <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
+      <description>Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.
+Setup Install Docker for your OS. Pull the Docker image for Elasticsearch: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0 (you can change 7.3.0 to the latest or your preferred version). Pull the Docker image for Kibana: docker pull docker.</description>
+    </item>
+    
+    <item>
+      <title>I built a video-based vehicle counting system—here&#39;s how</title>
+      <link>https://alphacoder.xyz/vehicle-counting/</link>
+      <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/vehicle-counting/</guid>
+      <description>I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared a demo on Twitter that went semi-viral!
+In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!
+TL;DR: I built a video-based vehicle counting system using Python/OpenCV.</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning explained</title>
+      <link>https://alphacoder.xyz/machine-learning-explained/</link>
+      <pubDate>Sat, 18 May 2019 15:22:12 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/machine-learning-explained/</guid>
+      <description>Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn&amp;rsquo;t actually understand what Machine Learning is. And without understanding — at least on a high level — it&amp;rsquo;s nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub.</description>
+    </item>
+    
+    <item>
+      <title>How to configure wildcard subdomains</title>
+      <link>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
+      <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
+      <description>Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as team-name.awesomeapp.com or org-name.beta.awesomeapp.com. These subdomains are variable, meaning that they are not predefined and can contain any valid domain name characters.
+To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application.</description>
+    </item>
+    
+    <item>
+      <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
+      <link>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>
+      <pubDate>Mon, 04 Mar 2019 13:54:48 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
+      <description>JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks — functions which are executed when an operation has been completed.
+setTimeout(function() { console.log(&amp;#39;Slow and steady wins the race.&amp;#39;); }, 5000); console.log(&amp;#39;The last shall be the first!&amp;#39;); If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with callback hell. Callbacks can easily make code unreadable and difficult to reason about.</description>
+    </item>
+    
+    <item>
+      <title>Adminer — a simple GUI client for any DB</title>
+      <link>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
+      <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
+      <description>In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called Adminer. Adminer is a is a full-featured database management tool built with PHP.
+Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks.</description>
+    </item>
+    
+    <item>
+      <title>Dealing with code debt</title>
+      <link>https://alphacoder.xyz/dealing-with-code-debt/</link>
+      <pubDate>Wed, 06 Feb 2019 19:40:38 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/dealing-with-code-debt/</guid>
+      <description>Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s human developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.</description>
+    </item>
+    
+    <item>
+      <title>Deploy microservices on Kubernetes</title>
+      <link>https://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
+      <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
+      <description>Kubernetes (AKA k8s) has gained widespread adoption in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. Pinterest uses a suite of over 1000 microservices to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.
+Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Hello Hugo!</title>
+      <link>https://alphacoder.xyz/hello-hugo/</link>
+      <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/hello-hugo/</guid>
+      <description>If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.</description>
+    </item>
+    
+    <item>
+      <title>From Medium to Ghost</title>
+      <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
+      <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
+      <description>Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at alphacoder.xyz. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.
+Why the move? I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.</description>
+    </item>
+    
+    <item>
+      <title>Check domain availability from your terminal</title>
+      <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
+      <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
+      <description>I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been legitly purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing.</description>
+    </item>
+    
+    <item>
+      <title>How to Git push to an AWS EC2 remote using a PEM file</title>
+      <link>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+      <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+      <description>AWS provides you with a .pem file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…
+1. Copy private key in PEM to .ssh folder $ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2 2. Generate and save public key $ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.</description>
+    </item>
+    
+    <item>
+      <title>Two Git workflows you should know</title>
+      <link>https://alphacoder.xyz/git-workflows/</link>
+      <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/git-workflows/</guid>
+      <description>Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.
+In this post, we’ll be discussing two popular Git workflows you should know — Gitflow and the Forking workflow. Let’s dig right in!</description>
+    </item>
+    
+    <item>
+      <title>Understanding modern front-end development</title>
+      <link>https://alphacoder.xyz/understanding-modern-front-end-development/</link>
+      <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/understanding-modern-front-end-development/</guid>
+      <description>It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.</description>
+    </item>
+    
+    <item>
+      <title>How to land an internship at a great startup</title>
+      <link>https://alphacoder.xyz/land-great-startup-internship/</link>
+      <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/land-great-startup-internship/</guid>
+      <description>Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.
+Here are some tips on how to land an internship at a great startup&amp;hellip;
+Do your homework I remember being caught off guard when asked about the company I was applying to by my interviewer.</description>
+    </item>
+    
+    <item>
+      <title>Dockerizing Django in development and production</title>
+      <link>https://alphacoder.xyz/dockerizing-django/</link>
+      <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/dockerizing-django/</guid>
+      <description>Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.
+TL;DR: Sample project You can check out the code on GitHub.
+Dockerfile FROM python:3.6-alpine RUN apk --update add \ build-base \ postgresql \ postgresql-dev \ libpq \ # pillow dependencies jpeg-dev \ zlib-dev RUN mkdir /www WORKDIR /www COPY requirements.</description>
+    </item>
+    
+    <item>
+      <title>I built my own web search engine—here&#39;s how</title>
+      <link>https://alphacoder.xyz/my-web-search-engine/</link>
+      <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/my-web-search-engine/</guid>
+      <description>I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
+About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
+The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place.</description>
+    </item>
+    
+    <item>
+      <title>How to run multiple apps on one server using Docker and Traefik</title>
+      <link>https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
+      <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
+      <description>Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.
+Use case Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end).</description>
+    </item>
+    
+    <item>
+      <title>How to scale an app horizontally using a load balancer</title>
+      <link>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</link>
+      <pubDate>Wed, 13 Jun 2018 19:59:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/scale-an-app-horizontally-using-a-load-balancer/</guid>
+      <description>As your app grows (by getting more traffic, users, data etc), the need to increase its capacity or scale arises.
+One way to scale is by optimizing your code. That may involve removing unnecessary code, using better algorithms or even using a faster programming language. While it’s important to optimize the code in your app, there’s only so much the machine in which your app runs can do. The next logical step is to increase your server capacity.</description>
+    </item>
+    
+    <item>
+      <title>K Means</title>
+      <link>https://alphacoder.xyz/k-means/</link>
+      <pubDate>Tue, 01 May 2018 08:44:05 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/k-means/</guid>
+      <description>We’ve been talking classification for a while now — from K Nearest Neighbors to Naive Bayes to Support Vector Machines. In this post, we’ll be looking at clustering using an algorithm called K Means. Let’s dive in&amp;hellip;
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine K Means (this article) K Means is an unsupervised learning algorithm that tries to cluster data into a specified number of groups, K based on feature similarity.</description>
+    </item>
+    
+    <item>
+      <title>Image upload with Django and Cloudinary</title>
+      <link>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</link>
+      <pubDate>Sun, 18 Feb 2018 08:50:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/image-upload-with-django-and-cloudinary/</guid>
+      <description>Managing files/images can be a hassle. It can be a real pain to have to deal with uploads, storage, manipulation, administration and delivery of media content in every project you start/or are involved in.
+Luckily, there are cloud platforms that take away the stress of all that, allowing you to ship faster and deliver your product(s) at scale. Cloudinary is one of such platforms. It tags itself as the media management platform for web and mobile developers — an end-to-end solution for all your image and video needs.</description>
+    </item>
+    
+    <item>
+      <title>Deploy your React-Django app on Heroku</title>
+      <link>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</link>
+      <pubDate>Tue, 30 Jan 2018 11:52:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/deploy-react-django-app-on-heroku/</guid>
+      <description>This is a follow up to my post on setting up a React-Django web app. You can take a quick glance if you’ve not seen it yet.
+TL;DR: The setup is deployed at http://react-django.herokuapp.com (nothing much there actually) and the code at https://github.com/nicholaskajoh/React-Django.
+We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</description>
+    </item>
+    
+    <item>
+      <title>Here’s a dead simple React-Django setup for your next project</title>
+      <link>https://alphacoder.xyz/dead-simple-react-django-setup/</link>
+      <pubDate>Thu, 11 Jan 2018 14:39:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/dead-simple-react-django-setup/</guid>
+      <description>There are several reasons why you might not want to have separate code bases for the front and back end of your app. For one, the project becomes more portable since it can live in one repository/folder. Then again, everything can be deployed on just one server.
+TL;DR: https://github.com/nicholaskajoh/React-Django.
+Here’s a simple setup for creating a React-Django project. With just a few tweaks, you can swap out React for Angular or Vue.</description>
+    </item>
+    
+    <item>
+      <title>Naive Bayes</title>
+      <link>https://alphacoder.xyz/naive-bayes/</link>
+      <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/naive-bayes/</guid>
+      <description>Naive Bayes is a classifier just like K Nearest Neighbors. The Naive Bayes algorithm applies the popular Bayes Theorem (used to calculate conditional probability) given by the formula:
+Bayes formula
+Here’s a great explanation to read if you’ve not come across/don’t understand the theorem yet: https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem.
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes (this article) Support Vector Machine K Means Let’s consider the data we used in the last post on KNNs:</description>
+    </item>
+    
+    <item>
+      <title>Support Vector Machine</title>
+      <link>https://alphacoder.xyz/support-vector-machine/</link>
+      <pubDate>Tue, 26 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/support-vector-machine/</guid>
+      <description>The Support Vector Machine (SVM) is a supervised learning model used for classification and regression. In this tutorial, we’ll be using it for classification.
+The ML Chops series Linear Regression K Nearest Neighbors Naive Bayes Support Vector Machine (this article) K Means Created by Vladimir Vapnik in the 1960s, the SVM is one of most popular machine learning classifiers. Given a set of training samples, each marked as belonging to one or the other of two categories, the goal of SVM is to find the best splitting boundary between the data.</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 7</title>
+      <link>https://alphacoder.xyz/facebook-clone-7/</link>
+      <pubDate>Sat, 09 Dec 2017 09:07:25 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-7/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 (this article) It&amp;rsquo;s time to deploy FaceClone and invite friends to test it out!</description>
+    </item>
+    
+    <item>
+      <title>K Nearest Neighbors</title>
+      <link>https://alphacoder.xyz/k-nearest-neighbors/</link>
+      <pubDate>Sat, 09 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/k-nearest-neighbors/</guid>
+      <description>K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a classifier as the experts would call it.
+Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though.</description>
+    </item>
+    
+    <item>
+      <title>Linear Regression</title>
+      <link>https://alphacoder.xyz/linear-regression/</link>
+      <pubDate>Mon, 04 Dec 2017 08:44:05 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/linear-regression/</guid>
+      <description>What better way to learn than to do? I decided to implement from scratch some Machine Learning algorithms I’m learning as a way to better understand and internalize them. The algorithms include Linear Regression, K Nearest Neighbors, Support Vector Machine, Naive Bayes, K Means and Neural Networks.
+ML Chops is a series meant to explain the inner workings of these algorithms so you can get a pretty good grasp of how they work as well as know how to implement them yourself.</description>
+    </item>
+    
+    <item>
+      <title>A responsive grid system with few lines of CSS</title>
+      <link>https://alphacoder.xyz/responsive-grid-system/</link>
+      <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/responsive-grid-system/</guid>
+      <description>How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need something light!
+Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 6</title>
+      <link>https://alphacoder.xyz/facebook-clone-6/</link>
+      <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-6/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 (this article) Build a Facebook clone from scratch with PHP — Part 7 Relationships are the point of social networks.</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 5</title>
+      <link>https://alphacoder.xyz/facebook-clone-5/</link>
+      <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-5/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 (this article) Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 Every Facebook user has a profile.</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 4</title>
+      <link>https://alphacoder.xyz/facebook-clone-4/</link>
+      <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 (this article) Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 Users are at the center of any application.</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 3</title>
+      <link>https://alphacoder.xyz/facebook-clone-3/</link>
+      <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-3/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 (this article) Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 Posts are the heart and soul of Facebook.</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 2</title>
+      <link>https://alphacoder.xyz/facebook-clone-2/</link>
+      <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-2/</guid>
+      <description>All parts Build a Facebook clone from scratch with PHP — Part 1 Build a Facebook clone from scratch with PHP — Part 2 (this article) Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 A little about PHP and MySQL So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template.</description>
+    </item>
+    
+    <item>
+      <title>Build a Facebook clone from scratch with PHP — Part 1</title>
+      <link>https://alphacoder.xyz/facebook-clone-1/</link>
+      <pubDate>Sun, 11 Jun 2017 01:22:37 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/facebook-clone-1/</guid>
+      <description>In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!
+All parts Build a Facebook clone from scratch with PHP — Part 1 (this article) Build a Facebook clone from scratch with PHP — Part 2 Build a Facebook clone from scratch with PHP — Part 3 Build a Facebook clone from scratch with PHP — Part 4 Build a Facebook clone from scratch with PHP — Part 5 Build a Facebook clone from scratch with PHP — Part 6 Build a Facebook clone from scratch with PHP — Part 7 We&amp;rsquo;re making Facebook?</description>
+    </item>
+    
+    <item>
+      <title>HTML, CSS and Javascript as fast as possible</title>
+      <link>https://alphacoder.xyz/html-css-js/</link>
+      <pubDate>Wed, 07 Jun 2017 21:48:21 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/html-css-js/</guid>
+      <description>This post is a prequel to a series of posts on building a Facebook clone with PHP from scratch authored by yours truly. It&amp;rsquo;s intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.
+HTML, CSS and Javascript are front-end languages i.e they run on the client (your user&amp;rsquo;s device/browser). HTML is a templating language. CSS helps you style HTML and Javascript is &amp;ldquo;an object-oriented computer programming language commonly used to create interactive effects within web browsers.</description>
+    </item>
+    
+    <item>
+      <title>Server-side form validation from A to Z with Sails.js</title>
+      <link>https://alphacoder.xyz/sailsjs-form-validation/</link>
+      <pubDate>Fri, 26 May 2017 23:06:50 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/sailsjs-form-validation/</guid>
+      <description>NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.
+TL;DR: https://github.com/nicholaskajoh/sails-form-validation.
+Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &amp;ldquo;in real-time&amp;rdquo; as they try to feed your backend with much needed data, but that&amp;rsquo;s not enough.</description>
+    </item>
+    
+    <item>
+      <title>Lazy load your content with Django and jQuery</title>
+      <link>https://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
+      <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
+      <description>Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.
+Templates Create 2 templates, index.html and posts.html.
+index.html
+&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // A CSRF token is required when making post requests in Django // To be used for making AJAX requests in script.js window.CSRF_TOKEN = &amp;#34;{{ csrf_token }}&amp;#34;; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;My Blog Posts&amp;lt;/h2&amp;gt; &amp;lt;div id=&amp;#34;posts&amp;#34;&amp;gt;{% include &amp;#39;myapp/posts.</description>
+    </item>
+    
+  </channel>
+</rss>

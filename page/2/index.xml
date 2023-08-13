@@ -1,0 +1,852 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>I code, therefore I am on Alpha Coder</title>
+    <link>https://alphacoder.xyz/</link>
+    <description>Recent content in I code, therefore I am on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Authentication strategies in microservices architecture</title>
+        <link>https://alphacoder.xyz/microservices-architecture-authentication/</link>
+        <pubDate>Sun, 29 Sep 2019 17:37:55 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/microservices-architecture-authentication/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/microservices-architecture-authentication/ -&lt;p&gt;When moving from monolith to microservices or considering microservices for a greenfield project, it&amp;rsquo;s important to evaluate the authentication strategies available to you to find the one most suitable for your system, as authentication is an integral part of how most applications are interacted with.&lt;/p&gt;
+&lt;p&gt;In this article, I outline the most common auth strategies I&amp;rsquo;ve come across working with microservices, describing how they work and identifying their pros and cons.&lt;/p&gt;
+&lt;h1 id=&#34;auth-service&#34;&gt;Auth service&lt;/h1&gt;
+&lt;p&gt;In this strategy, a microservice is created for the purpose of authentication. This service is contacted by downstream services required to authenticate client requests before processing them.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/auth-svc.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s easy to implement and reason about, especially when transitioning from a monolith. The auth service is essentially a utility other services reach out to for their authentication needs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It introduces a single point of failure. If the auth service is down, the whole application (or most of it) is down.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Increased latency. The time taken to make a request to and get a response from the auth service can hurt the average response time of a microservices application negatively.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;jwt-verification-per-service&#34;&gt;JWT verification per service&lt;/h1&gt;
+&lt;p&gt;This approach is an extension of the previous strategy and is intended to reduce dependence on the auth service. Authentication primarily involves issuing and verifying tokens. JWT (&lt;a href=&#34;https://jwt.io&#34;&gt;JSON Web Tokens&lt;/a&gt;) can be used to verify tokens without having to hit a database or other persistent storage. This means each service can verify requests on their own. Token issuing is done in the auth service, while verification is handled in every service where it&amp;rsquo;s required. A client library is usually used to share this verification functionality with all the services that need to perform authentication.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/jwt-verifier.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;There&amp;rsquo;s no single point of failure, auth-wise. The authentication service is only used for issuing tokens. All other services can handle token verification on their own.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It&amp;rsquo;s easy to create a client library for token verification which can be shared by all the services that require auth (assuming a single tech stack is used across board).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;JWT can&amp;rsquo;t be invalidated on-demand. While this is not a problem for some types of applications, it&amp;rsquo;s a deal breaker for others e.g an enterprise app where an admin might want to disable or delete a user or a finance app where a user might want to sign out from one or more devices remotely.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making a change to the verification logic (e.g adding a new permission) requires updating all dependent services. This might be a Herculean task if a large number of services are involved.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;token-blacklist-cache&#34;&gt;Token blacklist cache&lt;/h1&gt;
+&lt;p&gt;To compensate for the shortcomings of JWT, a cache can be used to store tokens that need to be invalidated. This means that every service must contact a shared cache to check if a token has been blacklisted after successfully verifying it, before proceeding to execute any auth-protected code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/token-blacklist-cache.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JWTs can be invalidated on-demand through blacklisting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This strategy is not feasible in a system where each service has its own datastore.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If multiple services are allowed to write to the cache, they might erroneously modify token blacklist data, causing problems that might be difficult to detect and fix.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The shared cache introduces a single point of failure to the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;api-gateway-auth&#34;&gt;API gateway auth&lt;/h1&gt;
+&lt;p&gt;Most, if not all, microservices applications use an API gateway. An API gateway is the entry point where client requests go to before being sent to the appropriate API/edge services. The main function of a gateway is routing requests but they can be used for other purposes such as analytics, rate-limiting, data transformation, logging, health monitoring, caching and as you might have already guessed, authentication.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/msvc-auth/api-gateway-auth.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Pros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Separation of concerns. Services can communicate freely with each other and do what they need to do as authentication has already been handled downstream by the gateway.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Switching to an API gateway&amp;rsquo;s auth system from an existing application&amp;rsquo;s auth implementation can be difficult and time-consuming.&lt;/li&gt;
+&lt;/ul&gt;
+- https://alphacoder.xyz/microservices-architecture-authentication/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to connect to a host&#39;s database from inside a Docker container</title>
+        <link>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</link>
+        <pubDate>Sun, 01 Sep 2019 06:29:54 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/connect-to-host-database-from-docker-container/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/connect-to-host-database-from-docker-container/ -&lt;p&gt;There are several ways to interact with a DB when developing using Docker:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Connect to an online DB instance.&lt;/li&gt;
+&lt;li&gt;Connect to a local DB running in another container.&lt;/li&gt;
+&lt;li&gt;Connect to a local DB running on a host machine (e.g your laptop).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first option can be easy and fast to setup i.e if you&amp;rsquo;re using a managed DB service. But these conveniences come at a monetary cost. Plus, you won&amp;rsquo;t be able to develop without an internet connection.&lt;/p&gt;
+&lt;p&gt;While the second and third options are similar in the sense that the DB runs locally, using a DB running on the host might be a more convenient option if you have that already setup, or if you don&amp;rsquo;t want to have to mount a volume on the host in order to persist your data or run an additional container.&lt;/p&gt;
+&lt;p&gt;Connecting to a host DB from a container via localhost doesn&amp;rsquo;t work because both container and host have their own localhosts. When you try to connect to localhost, it fails because no DB instance is running in the container&amp;rsquo;s localhost as you might imagine. You need to go outside the container by using your computer&amp;rsquo;s internal IP address.&lt;/p&gt;
+&lt;p&gt;You can point to your host&amp;rsquo;s DB by setting the following environment variable in your container for instance.&lt;/p&gt;
+&lt;p&gt;Docker for Mac/Windows:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=host.docker.internal
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Linux:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;DB_HOST=$(ip route show default | awk &amp;#39;/default/ {print $3}&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;- https://alphacoder.xyz/connect-to-host-database-from-docker-container/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Here&#39;s a quick Elasticsearch-Kibana setup via Docker for development</title>
+        <link>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</link>
+        <pubDate>Sun, 01 Sep 2019 06:18:43 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ -&lt;p&gt;Are you new to the Elastic stack or configuring a new machine and need an easy way to setup, and a single command to run Elasticsearch &amp;amp; Kibana? Here&amp;rsquo;s a quick Elasticsearch-Kibana setup using Docker for your dev environment.&lt;/p&gt;
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/install/&#34;&gt;Install Docker for your OS&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Pull the Docker image for Elasticsearch: &lt;code&gt;docker pull docker.elastic.co/elasticsearch/elasticsearch:7.3.0&lt;/code&gt; (you can change &lt;strong&gt;7.3.0&lt;/strong&gt; to &lt;a href=&#34;https://www.docker.elastic.co/&#34;&gt;the latest or your preferred version&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Pull the Docker image for Kibana: &lt;code&gt;docker pull docker.elastic.co/kibana/kibana:7.3.0&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;run&#34;&gt;Run&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker container stop es_dev &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker container rm es_dev
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --name es_dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9200:9200 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 9300:9300 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/elasticsearch/elasticsearch:7.3.0 &amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    --link es_dev:elasticsearch &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.3.0 &amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first command stops the container named &lt;code&gt;es_dev&lt;/code&gt; (arbitrary) if one exists and removes it. The second command starts a single-node Elasticsearch cluster inside a docker container named &lt;code&gt;es_dev&lt;/code&gt;, and exposes it on ports 9200 and 9300. The third and last command starts Kibana on port 5601 and links it to the container (&lt;code&gt;es_dev&lt;/code&gt;) where the Elasticsearch cluster is running. The last two commands are run concurrently.&lt;/p&gt;
+&lt;p&gt;You can add these three commands to a shell file (e.g &lt;em&gt;elastic.sh&lt;/em&gt;) in order to run a single command to start Elasticsearch and Kibana i.e &lt;code&gt;chmod +x elastic.sh &amp;amp;&amp;amp; ./elastic.sh&lt;/code&gt; the first time and &lt;code&gt;./elastic.sh&lt;/code&gt; subsequently.&lt;/p&gt;
+&lt;h1 id=&#34;test&#34;&gt;Test&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch: &lt;code&gt;curl http://127.0.0.1:9200/_cat/health&lt;/code&gt; (you should have a status of &lt;strong&gt;green&lt;/strong&gt; if everything went well).&lt;/li&gt;
+&lt;li&gt;Kibana: visit &lt;strong&gt;http://localhost:5601&lt;/strong&gt; (the Kibana dashboard should load up).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;configure&#34;&gt;Configure&lt;/h1&gt;
+&lt;p&gt;Elasticsearch and Kibana can be configured using YAML. You can create config files and point to them when starting the containers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch: add &lt;code&gt;-v path/to/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
+&lt;li&gt;Kibana: add &lt;code&gt;-v path/to/kibana.yml:/usr/share/kibana/config/kibana.yml&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt; command.&lt;/li&gt;
+&lt;/ul&gt;
+- https://alphacoder.xyz/elasticsearch-kibana-docker-development-setup/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>I built a video-based vehicle counting system—here&#39;s how</title>
+        <link>https://alphacoder.xyz/vehicle-counting/</link>
+        <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/vehicle-counting/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/vehicle-counting/ -&lt;p&gt;I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared &lt;a href=&#34;https://twitter.com/nicholaskajoh/status/1115016849840844805?s=20&#34;&gt;a demo on Twitter&lt;/a&gt; that went semi-viral!&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; I built a video-based vehicle counting system using Python/OpenCV. You can find the &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;code on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/vehicle_counting.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;how-it-works&#34;&gt;How it works&lt;/h1&gt;
+&lt;p&gt;The vehicle counting system I built is made up of three main components: a detector, tracker and counter. The detector identifies vehicles in a given frame of video and returns a list of bounding boxes around the vehicles to the tracker. The tracker uses the bounding boxes to track the vehicles in subsequent frames. The detector is also used to update the trackers periodically to ensure that they are still tracking the vehicles correctly. The counter counts vehicles when they leave the frame or makes use of a counting line drawn across a road.&lt;/p&gt;
+&lt;h1 id=&#34;why-vehicle-counting&#34;&gt;Why vehicle counting?&lt;/h1&gt;
+&lt;p&gt;Computer Vision (CV) had been on my list of things to learn for a long time so I decided to use the opportunity of my final project to learn it. I actually wanted to build a turn-based or real-time strategy game that used a healthy dose of AI but I knew I wouldn&amp;rsquo;t have been able to complete it in time for my defence so I figured a CV project was the way to go as I&amp;rsquo;d very likely get to use Machine Learning (ML).&lt;/p&gt;
+&lt;p&gt;Computer Vision is an interdisciplinary field concerned with giving computers the ability to &amp;ldquo;see&amp;rdquo; or be able to understand the contents of digital images such as photos and videos. While vision is a trivial task for humans and animals, it&amp;rsquo;s currently quite difficult for machines. However, a lot of progress has been made in the field in the last few decades and new techniques and technologies to make CV faster and more accurate are actively being researched.&lt;/p&gt;
+&lt;p&gt;A vehicle counting system, as you might have already inferred, is a system that counts vehicles on the road. Why would you want to build one? Why would you want to count vehicles on the road? Here are some reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Traffic management and planning:&lt;/strong&gt; If you have a good sense of the volume of traffic moving along a given road or network of roads, you can better understand congestion and then manage and/or make plans to reduce/eliminate it. Vehicle count data is very useful to urban city planners and transport authorities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Traffic control:&lt;/strong&gt; No one likes to be stuck behind a red light especially when the road is free. Vehicle counting systems can be integrated with traffic light control software to intelligiently direct vehicles based on the current traffic situation in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parking management:&lt;/strong&gt; A VCS can be installed at the entrance of a parking lot to monitor vehicles coming in and going out in order to determine whether there are slots available at any given time. It can also be used to ensure the number of vehicles in a given place (such as a hotel or events center) does not exceed its capacity by controlling Automatic Barrier Gates as opposed to issuing tags.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advertising:&lt;/strong&gt; Billboard advertisers and their clients are interested in the volume of vehicular traffic along a road where they have ads or where they want to install a billboard because they can make estimates of the number of people who see their ads per time using the data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;why-video&#34;&gt;Why video?&lt;/h1&gt;
+&lt;p&gt;There are a handful of ways to count vehicles on the road from manual counts to pneumatic tubes to piezoelectric sensors. Why was video used? Why is it preferred?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sensor data (video footage) can be used to verify the system’s results which
+makes it easier and faster to evaluate and improve the system.&lt;/li&gt;
+&lt;li&gt;The footage can also be used for other purposes including surveillance,
+automatic plate number recognition, vehicle type detection and vehicle speed
+detection to name a few.&lt;/li&gt;
+&lt;li&gt;It is relatively cheaper to implement and scale as a permanent vehicle counting
+system compared to other systems.&lt;/li&gt;
+&lt;li&gt;It can track and count multiple vehicles moving in different directions across
+several lanes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;learning-opencv&#34;&gt;Learning OpenCV&lt;/h1&gt;
+&lt;p&gt;Since I&amp;rsquo;m proficient in Python, OpenCV was the logical tool to use. &lt;a href=&#34;https://opencv.org&#34;&gt;OpenCV&lt;/a&gt; is an
+open-source library made up of a collection of modules for performing real-time Computer
+Vision tasks. I used the YouTube tutorial series &lt;a href=&#34;https://www.youtube.com/playlist?list=PLQVvvaa0QuDdttJXlLtAJxJetJcqmqlQq&#34;&gt;OpenCV with Python for Image and Video Analysis&lt;/a&gt; by Harrison Kinsley of &lt;a href=&#34;https://pythonprogramming.net&#34;&gt;PythonProgramming.net&lt;/a&gt; to learn the basics. I was quickly able to learn how to load images and videos, overlay text, shapes or images on media, manipulate pixels on images as a pre-processing step or to produce a visual, perform background substraction to detect objects, run Haar Cascades for object detection etc.&lt;/p&gt;
+&lt;h1 id=&#34;components-of-the-vcs&#34;&gt;Components of the VCS&lt;/h1&gt;
+&lt;p&gt;I had little or no idea on how to build a VCS so I looked online for inspiration. I found a C++ project which used background subtraction and decided to port it to Python. This gave me to opportunity to go through every line of the code and understand it at a deeper level. I completed the port and tested it out on the traffic scenes I&amp;rsquo;d recorded. The results were very poor. I began thinking of better algorithms and techniques to use. I broke the problem down into three sub-problems: detection, tracking and counting.&lt;/p&gt;
+&lt;h2 id=&#34;detection&#34;&gt;Detection&lt;/h2&gt;
+&lt;p&gt;This is a crucial and probably the most important part of building a VCS. Detection is an aspect of CV and image processing concerned with identifying instances of objects of a certain class, like vehicles or people, in images and videos. Popular areas of interest in object detection include pedestrian detection and face detection. Object detection can be applied in solving hard problems in areas like image search and video surveillance. It is used widely in computer vision tasks including face detection, face recognition, and object tracking.&lt;/p&gt;
+&lt;p&gt;All object types have special attributes that help in classifying them. For instance, all faces are round. Object detection algorithms use these special attributes to identify
+objects in images and videos. I experimented with several object detection techniques, most notably background subtraction, Haar Cascades and YOLO.&lt;/p&gt;
+&lt;h3 id=&#34;background-subtraction&#34;&gt;Background subtraction&lt;/h3&gt;
+&lt;p&gt;The first detector I used to id vehicles was a background substractor. Background or image subtraction is the process of extracting the foreground of an image from its background. If you have a background image like a road without vehicles in it, you can subtract this image from another image of the same road (from the exact same view) which contains vehicles to detect those vehicles. The background pixels would cancel each other out and the objects in the foreground would pop out.&lt;/p&gt;
+&lt;p&gt;What if you don&amp;rsquo;t have a background image? You can achieve the same results if the objects you&amp;rsquo;re interested in detecting are in motion, the background is static and the camera is stationary. In this case, all you have to do is evaluate the difference between consecutive images i.e image 2 minus image 1, image 3 minus image 2, image 4 minus image 3 etc. This works because the pixels of moving objects constantly shift hence are not cancelled out like the background pixels and thus pop out as the foreground.&lt;/p&gt;
+&lt;p&gt;The images below show what background substraction looks like.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/frame.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/bgsub.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p align=&#34;center&#34;&gt;Source: OpenCV Docs&lt;/p&gt;
+&lt;p&gt;While background substraction was easy to implement and super fast, I was unable to arrive at a suitable threshold for detecting vehicle blobs. Vehicles are not the only objects that move on/across the road. There are pedestrians, animals, people with carts or wheelbarrows, skateboarders etc. Also, objects change in size and shape as they move across the view due to perspective, and vehicles may be occluded by other vehicles in the scene and thus interpreted as one object.&lt;/p&gt;
+&lt;p&gt;I observed a lot of noise as well mainly due to the waving of trees and commercial activities going on in the background. While noise reduction techniques such as Gaussian Blur and selecting a Region of Interest (ROI) for detection helped, the overall performance of the detector was still underwhelming. After spending quite a while trying to tweak things in order to increase accuracy, I decided I needed another detector.&lt;/p&gt;
+&lt;h3 id=&#34;haar-cascades&#34;&gt;Haar Cascades&lt;/h3&gt;
+&lt;p&gt;Haar Cascades are object detection models based on the concept of &lt;a href=&#34;https://en.wikipedia.org/wiki/Haar-like_feature&#34;&gt;Haar-like features&lt;/a&gt; developed by Paul Viola and Michael Jones and published in their 2001 paper titled &lt;a href=&#34;https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf&#34;&gt;Rapid Object Detection using a Boosted Cascade of Simple Features&lt;/a&gt;. I tried out a car detector Haar Cascade I found online. It produced a lot of false positives which made counts erroneous. I considered creating my own model but it seemed like a Herculean task at the time. I decided to try deep learning instead.&lt;/p&gt;
+&lt;p&gt;I plan to create a custom Haar Cascade with data got from testing the VCS in the real world in the near future. Haar Cascades are generally a lot faster than deep learning object detection models so if I can get the model to be just as accurate or more accurate than the deep learning alternatives, it might be possible to run the VCS efficiently on devices like Raspberry Pis instead of depending on the cloud for processing power.&lt;/p&gt;
+&lt;p&gt;If you want to learn more about Haar Cascades, &lt;a href=&#34;https://www.youtube.com/watch?v=uEJ71VlUmMQ&#34;&gt;check out this video&lt;/a&gt; which explains how the technique works for face detection.&lt;/p&gt;
+&lt;h3 id=&#34;yolo&#34;&gt;YOLO&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://pjreddie.com/darknet/yolo/&#34;&gt;YOLO&lt;/a&gt; (You Only Look Once) is a popular deep learning model/architecture for object detection. I found out about it through &lt;a href=&#34;https://www.youtube.com/watch?v=Cgxsv1riJhI&#34;&gt;a TED talk given by one of its creators Joseph Redmon&lt;/a&gt; and wondered if I could use it in the VCS project. Fortunately, OpenCV provides a deep neural network module with which can be used to import and run YOLO models easily. I downloaded a model trained on the &lt;a href=&#34;http://cocodataset.org&#34;&gt;COCO dataset&lt;/a&gt; from the YOLO website and tried it out. The results were very good so I stuck with YOLO for detection. I&amp;rsquo;ve since added support for other deep learning models/libraries. It&amp;rsquo;s actually quite easy to modify the code to support a model of your choice.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/vcs/yolo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p align=&#34;center&#34;&gt;Source: pjreddie.com&lt;/p&gt;
+&lt;p&gt;If you want to learn more about YOLO, you should definitely take a look at these papers: &lt;a href=&#34;https://pjreddie.com/media/files/papers/yolo_1.pdf&#34;&gt;You Only Look Once:
+Unified, Real-Time Object Detection&lt;/a&gt; and &lt;a href=&#34;https://pjreddie.com/media/files/papers/YOLOv3.pdf&#34;&gt;YOLOv3: An Incremental Improvement&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;tracking&#34;&gt;Tracking&lt;/h2&gt;
+&lt;p&gt;Tracking is the process of following the path or movements of an object with the purpose of finding it or observing its course. The uses of video tracking include augmented reality, surveillance and security, video compression and communication, video editing, human-computer interaction, traffic control and medical imaging.&lt;/p&gt;
+&lt;p&gt;The goal of tracking is to associate target objects in sequential frames of a video. This association can be very hard to accomplish when the objects are moving fast in relation to the frame rate of the video. Things get even more complicated when tracked objects change their orientation over time. In this scenario, video tracking systems normally use a motion model which details how the image of the target might look for several possible orientations of the object.&lt;/p&gt;
+&lt;h3 id=&#34;centroid-tracking&#34;&gt;Centroid tracking&lt;/h3&gt;
+&lt;p&gt;I first experimented with the centroid tracking algorithm since it was easy for me to implement. Centroid tracking works by associating the centroid of a bounding box around a detected object in one frame with a centroid in a subsequent frame based on some measure of proximity between them such as euclidean distance. Aside having to run detection on every frame which is computationally expensive, it was difficult for me to find a good threshold that reliably determines if two consecutive centroids belong to a single object or not. Among other things, the value for this threshold must consider the size of the object, and the frame rate and resolution of the video. After several failed attempts to tweak the algorithm to work well with my test videos, I started looking for alternatives.&lt;/p&gt;
+&lt;h3 id=&#34;opencv-tracking-algorithms-csrt-and-kcf&#34;&gt;OpenCV tracking algorithms (CSRT and KCF)&lt;/h3&gt;
+&lt;p&gt;In my search for better tracking algorithms, I found out that &lt;a href=&#34;https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/&#34;&gt;OpenCV has implementations of some state-of-the-art algorithms&lt;/a&gt; including BOOSTING, MIL, KCF, TLD, MEDIANFLOW, GOTURN, MOSSE and CSRT. I settled for CSRT (&lt;a href=&#34;https://pdfs.semanticscholar.org/b16a/583ee173f222c690242aaff7925838893fe8.pdf&#34;&gt;Discriminative Correlation Filter with Channel and Spatial Reliability&lt;/a&gt;) and KCF (&lt;a href=&#34;https://arxiv.org/pdf/1404.7584.pdf&#34;&gt;Kernelized Correlation Filters&lt;/a&gt;) because they gave the best results. CSRT, while more accurate, is computationally expensive. In traffic scenes where there are not a lot of vehicles on the road, KCF usually does better.&lt;/p&gt;
+&lt;p&gt;There was a challenge with CSRT AND KCF however. Vehicles, and thus their bounding boxes, change in size as they move across the frame of a video due to perspective but these trackers can&amp;rsquo;t adjust the size of their bounding boxes as they track an object. Eventually when an object is large or small enough, the algorithm becomes unable to find the object even though it&amp;rsquo;s still in frame. To solve this problem, the detector is periodically run to update the trackers with new bounding boxes. But before going for this approach, I experimented with Camshift.&lt;/p&gt;
+&lt;h3 id=&#34;camshift&#34;&gt;Camshift&lt;/h3&gt;
+&lt;p&gt;CAMshift (Continuously Adaptive Meanshift) is a tracking algorithm developed by Gary Bradski and described in his 1988 paper titled &lt;a href=&#34;http://opencv.jp/opencv-1.0.0_org/docs/papers/camshift.pdf&#34;&gt;Computer Vision Face Tracking for Use in a Perceptual User Interface&lt;/a&gt;. Unlike CSRT and KCF, it adapts a bounding box with the size and rotation of its target object. However, I observed a problem which made it unusable for the VCS. Camshift was having a hard time tracking vehicles because they were moving too fast for it. It performed pretty well when I tried to track slow-moving objects but was always left behind by fast-moving ones (e.g vehicles) shortly after the tracking began.&lt;/p&gt;
+&lt;h2 id=&#34;counting&#34;&gt;Counting&lt;/h2&gt;
+&lt;p&gt;Counting was the easiest part! Vehicles are counted when they leave the frame or cross a line at an exit point of the frame. Using a counting line makes it easier to count vehicles moving in a certain direction.&lt;/p&gt;
+&lt;h1 id=&#34;contribute&#34;&gt;Contribute&lt;/h1&gt;
+&lt;p&gt;The VCS is free and open source software available &lt;a href=&#34;https://github.com/nicholaskajoh/Vehicle-Counting&#34;&gt;on GitHub&lt;/a&gt;. You can contribute to the project by taking it for a spin and reporting issues/bugs or working on parts of it that need improvement.&lt;/p&gt;
+- https://alphacoder.xyz/vehicle-counting/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Machine Learning explained</title>
+        <link>https://alphacoder.xyz/machine-learning-explained/</link>
+        <pubDate>Sat, 18 May 2019 15:22:12 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/machine-learning-explained/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/machine-learning-explained/ -&lt;p&gt;Over the past couple of weeks, I got to interact with quite a number of people who wanted to build AI (Artificial Intelligience) projects using Machine Learning (ML). There was one recurring problem I noticed in my discussions with them — they didn&amp;rsquo;t actually understand what Machine Learning is. And without understanding — at least on a high level — it&amp;rsquo;s nearly impossible to develop anything worth while. Except of course you intend to download AI projects off GitHub. Even then, you might have a hard time getting them to work or customizing them to suit your needs.&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll be explaining what Machine Learning is with newbies in mind. I&amp;rsquo;ll also expatiate on some of the commonly used jargon in the space so that you can more easily find your way around ML material and improve your skills.&lt;/p&gt;
+&lt;h1 id=&#34;what-is-machine-learning&#34;&gt;What is Machine Learning?&lt;/h1&gt;
+&lt;p&gt;ML is an approach to building Artificial Intelligence (AI) systems which involves writing computer programs that &amp;ldquo;learn&amp;rdquo; from data. That is, they are not explicitly programmed to perform a specific task such as solving a quadratic equation or authenticating a user. Instead, they learn to solve a given problem by example.&lt;/p&gt;
+&lt;p&gt;AI is an aspect of computer science concerned with building intelligent machines or software. Intelligence is a rather vague concept (especially in today&amp;rsquo;s world of tech where just about everything is &amp;ldquo;smart&amp;rdquo;) so this definition is probably not sufficient.&lt;/p&gt;
+&lt;p&gt;In simple terms, intelligence in AI is the ability of computers to solve problems that are easier for humans or animals to do e.g driving a car or searching for food. There are several techniques used in AI today but our focus here is ML as you&amp;rsquo;d expect.&lt;/p&gt;
+&lt;p&gt;Say you wanted to write a program that can determine if a photo contains a dog or not. How would you go about it?&lt;/p&gt;
+&lt;p&gt;You could try to code features that may be used to identify a dog as well as what combinations of these features distinguish dogs from other animals (and objects). That&amp;rsquo;s a hard enough task. But you&amp;rsquo;ll also have to consider:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Position:&lt;/strong&gt; Is the dog sitting or standing or lying down or running? What part of the photo is the dog located?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Size and orientation:&lt;/strong&gt; How large or small is the dog in comparison to the rest of the photo? Is the photo rotated?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Occlusion:&lt;/strong&gt; Is any part of the dog covered by another object? What part? By how much?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s say you succeeded in creating the perfect dog detector. What happens when you want to detect ducks. Can you repurpose the dog detector to also detect ducks. Probably not, because you&amp;rsquo;ll be dealing with an almost completely new set of features and combinations.&lt;/p&gt;
+&lt;p&gt;Fortunately, ML excels in these sort of tasks because we can show an ML algorithm photos of dogs and have it figure out the necessary features and combinations, as well as consider position, size, orientation, and occlusion. More so, it can be repurposed to detect ducks, cats and indeed any other animal or object for that matter just by showing it relevant photos. We&amp;rsquo;ll find out a little bit about how this can be done as we proceed.&lt;/p&gt;
+&lt;h1 id=&#34;what-are-ml-models&#34;&gt;What are ML models?&lt;/h1&gt;
+&lt;p&gt;A machine learning model is essentially a function which maps a set of inputs to a set of outputs. The inputs are features (e.g of a human being — height, weight etc) and the outputs are predictions (e.g sex — male or female).&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take the following mathematical function for example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;V = 4/3 * PI * r^3
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is the formula for the volume of a sphere. The input is &lt;code&gt;r&lt;/code&gt; (the radius of the sphere) and the output is &lt;code&gt;V&lt;/code&gt; (the sphere&amp;rsquo;s volume). &lt;a href=&#34;https://en.wikipedia.org/wiki/Pi&#34;&gt;Pi&lt;/a&gt; is not an input since it&amp;rsquo;s constant (about 3.14), as is the literal value &lt;code&gt;4/3&lt;/code&gt;. The sphere volume formula was derived analytically using tools like calculus, geometry and trigonometry. Not all problems can be solved through such means. Some problems are not feasible or too complex to model in this way. It&amp;rsquo;s a lot easier to show computers the problem and/or answers and have them figure out an approximate model that solves it.&lt;/p&gt;
+&lt;h3 id=&#34;training&#34;&gt;Training&lt;/h3&gt;
+&lt;p&gt;Models are optimized or fine-tuned through a process known as training. Say you wanted to build your dog detector, like we considered in a previous section, by creating a machine learning model. At the point of initialization, the dog detector model is like a newborn baby. It doesn&amp;rsquo;t know anything and behaves rather randomly. During training, it&amp;rsquo;s shown a bunch of photos of dogs of different types, shapes and sizes, as well as photos of other objects so that it can make the right distinctions. At the end of training, you&amp;rsquo;d expect it to know how to detect dogs with a high level of accuracy.&lt;/p&gt;
+&lt;h3 id=&#34;datasets&#34;&gt;Datasets&lt;/h3&gt;
+&lt;p&gt;Data is the heart and soul of machine learning — it&amp;rsquo;s what &amp;ldquo;machines&amp;rdquo; use to &amp;ldquo;learn&amp;rdquo;. A dataset is a collection of data which can be used to train, test and validate machine learning models. The more varied and rich a dataset is, the better a model we can produce. Good data directly translates to a good model. As such, it&amp;rsquo;s important to know what good data for a given problem looks like and how to obtain it. Machine learning models, unlike humans need a lot of data to work well. Some models consume millions of records! Knowing where to source data as well as how to prepare it for training is an invaluable skill for any ML practitioner to hone.&lt;/p&gt;
+&lt;h3 id=&#34;testing&#34;&gt;Testing&lt;/h3&gt;
+&lt;p&gt;Testing is the process of evaluating a model to see how well it performs. It helps us know how well a model is doing and where it needs work, as well as benchmark it against other models. Datasets are usually divided into training and testing sets. Models are trained with one set, and tested and validated with others so that we can be sure that they&amp;rsquo;re actually learning instead of overfitting. If your math teacher brings the examples they gave in class in an exam, you don&amp;rsquo;t need to understand the calculations to pass. You can just cram your notes and ace the test without understanding a thing. This is bad because when faced with similar problems in an external exam or competition, you&amp;rsquo;ll likely perform poorly. The same goes for an overfitted model.&lt;/p&gt;
+&lt;p&gt;There are several metrics used in evaluating ML models. Some of the more popular ones include accuracy, confidence, &lt;a href=&#34;https://en.wikipedia.org/wiki/Confusion_matrix&#34;&gt;confusion matrices&lt;/a&gt;, &lt;a href=&#34;https://en.wikipedia.org/wiki/Mean_squared_error&#34;&gt;mean squared error&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/F1_score&#34;&gt;F1 score&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;types-of-ml&#34;&gt;Types of ML&lt;/h1&gt;
+&lt;p&gt;ML algorithms are generally classified into 3 main types. They are:&lt;/p&gt;
+&lt;h3 id=&#34;supervised-learning&#34;&gt;Supervised learning&lt;/h3&gt;
+&lt;p&gt;This is a type of machine learning which involves the use of labelled data. That is, we have a dataset containing input features (e.g the heights and weights of a number of people) and output labels (e.g their sex or age), and we want an ML algorithm to be able to make accurate predictions after learning from such data. Supervised learning is divided into classification and regression. Classification models output discrete values e.g &amp;ldquo;male&amp;rdquo; or &amp;ldquo;female&amp;rdquo;, or &amp;ldquo;red&amp;rdquo;, &amp;ldquo;blue&amp;rdquo;, or &amp;ldquo;green&amp;rdquo;, while regression models output continuous values such as a prediction for the price of a barrel of crude oil next year e.g $50.43.&lt;/p&gt;
+&lt;h3 id=&#34;unsupervised-learning&#34;&gt;Unsupervised learning&lt;/h3&gt;
+&lt;p&gt;Unsupervised learning involves the use of unlabelled data to build machine learning models. We basically give an algorithm data and let it figure out patterns in it. We might give an ML algorithm the weights, heights and other features of individuals in a school and it might group them into &amp;ldquo;healthy&amp;rdquo; or &amp;ldquo;sick&amp;rdquo;, or &amp;ldquo;plays football&amp;rdquo;, &amp;ldquo;plays basketball&amp;rdquo; or &amp;ldquo;plays volleyball&amp;rdquo;. This sort of clustering provides valuable insights that can find application in a number of areas such as recommendation and segmentation.&lt;/p&gt;
+&lt;h3 id=&#34;reinforcement-learning&#34;&gt;Reinforcement learning&lt;/h3&gt;
+&lt;p&gt;Reinforcement learning involves building goal-oriented models that learn through &amp;ldquo;rewards&amp;rdquo; and &amp;ldquo;punishment&amp;rdquo;. When an agent trained using reinforcement learning reaches a desired state, it is incentivized with a reward and if it reaches an undesired state, it is discouraged through punishment. This technique was used to build &lt;a href=&#34;https://deepmind.com/blog/alphago-zero-learning-scratch/&#34;&gt;AlphaGo Zero&lt;/a&gt;, an AI agent which was able to beat the world&amp;rsquo;s best &lt;a href=&#34;https://en.wikipedia.org/wiki/Go_(game)&#34;&gt;Go&lt;/a&gt; players.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I have a blog series here on Alpha Coder called &lt;a href=&#34;https://alphacoder.xyz/tag/ml-chops-series&#34;&gt;ML Chops&lt;/a&gt;. It&amp;rsquo;s a set of tutorials on how some popular ML algorithms work and how to implement them from scratch using the Python programming language. You should check it out!&lt;/p&gt;
+&lt;h1 id=&#34;neural-networks-and-deep-learning&#34;&gt;Neural networks and deep learning&lt;/h1&gt;
+&lt;p&gt;If you follow tech and startup news, you&amp;rsquo;ve probably heard the words &amp;ldquo;neural networks&amp;rdquo; and &amp;ldquo;deep learning&amp;rdquo; being tossed all around. What are they? And why is there so much hype around them?&lt;/p&gt;
+&lt;p&gt;A neural network is a machine learning framework made up of a collection of connected nodes called neurons arranged in layers. A neuron receives input signals from one or more neurons behind it, performs one or more computations with them and transmits an output signal to the neurons in front of it. The nodes at the ends of the network are the input and output layers while the nodes inbetween form sets of hidden layers. Neural networks are loosely modelled after biological neural networks which allow living things perform very complex physical and chemical activities. If you want to learn more about neural networks, &lt;a href=&#34;https://www.youtube.com/watch?v=aircAruvnKk&#34;&gt;But what *is* a Neural Network?&lt;/a&gt; by &lt;em&gt;3Blue1Brown&lt;/em&gt; is one of the best resources out there to give you a comprehensive introduction.&lt;/p&gt;
+&lt;p&gt;Deep learning is the creation and training of neural networks that contain more than one hidden layer. A network with one hidden layer is a regular neural network and one with two or more hidden layers is a &amp;ldquo;deep&amp;rdquo; neural network. Deep neural networks usually perform better than regular ones because they can encode more information within the network. However, using deeper neural networks doesn&amp;rsquo;t necessarily translate to obtaining better results. There are other factors involved.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a lot of hype around neural networks and deep learning because these tools have changed the game by making feats that seemed impossible just a couple years ago possible. They are used heavily in building state-of-the-art Computer Vision and Natural Language Processing (NLP) applications today.&lt;/p&gt;
+&lt;h1 id=&#34;ml-is-not-a-silver-bullet&#34;&gt;ML is not a silver bullet&lt;/h1&gt;
+&lt;p&gt;Analytical models, if they&amp;rsquo;re possible and feasible to arrive at, are better than machine learning because they produce answers and not predictions. ML is not a silver bullet like some may have you believe. There are problems machine learning methods excel in. There are others where analytical approaches are simpler and produce better results. Before employing ML, ask yourself: can this problem be solved analytically?&lt;/p&gt;
+- https://alphacoder.xyz/machine-learning-explained/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to configure wildcard subdomains</title>
+        <link>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</link>
+        <pubDate>Tue, 02 Apr 2019 04:08:11 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/how-to-configure-wildcard-subdomains/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ -&lt;p&gt;Some web apps, especially those for the enterprise, give every organization, team or user their own subdomain such as &lt;strong&gt;team-name.awesomeapp.com&lt;/strong&gt; or &lt;strong&gt;org-name.beta.awesomeapp.com&lt;/strong&gt;. These subdomains are variable, meaning that they are not predefined and can contain any valid &lt;a href=&#34;https://en.wikipedia.org/wiki/Domain_name&#34;&gt;domain name&lt;/a&gt; characters.&lt;/p&gt;
+&lt;p&gt;To configure wildcard subdomains, all you need to do is add a &amp;ldquo;match all&amp;rdquo; CNAME record for your domain. The way a given subdomain is handled is totally up to your application. All web browsers and servers provide a medium for accessing a web app&amp;rsquo;s url for a given request, so you can fetch the subdomain and proceed with your business logic. Often, the subdomain would be a unique id for something e.g an organization, so your can use it to get the organization&amp;rsquo;s details for instance.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a sample application that displays avatars from &lt;a href=&#34;http://avatars.adorable.io&#34;&gt;Adorable Avatars&lt;/a&gt; based on the subdomain you use.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/wcsubd/demo.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Visit &lt;code&gt;some-random-name.wildcard-subdomains.alphacoder.xyz&lt;/code&gt; where &lt;code&gt;some-random-name&lt;/code&gt; can be anything you like and watch the avatars change!&lt;/p&gt;
+&lt;p&gt;To use wildcard subdomains, go to your domain registrar and create a &amp;ldquo;match all&amp;rdquo; CNAME record&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/wcsubd/dns-conf.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If you want subdomains like &lt;code&gt;some-random-name.alphacoder.xyz&lt;/code&gt;, feel free to skip the &lt;code&gt;.wildcard-subdomains&lt;/code&gt; so that you have only &lt;code&gt;*&lt;/code&gt; in the host field.&lt;/p&gt;
+&lt;p&gt;The web page has just a few lines of code&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+  &amp;lt;title&amp;gt;Wildcard subdomains&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+
+  &amp;lt;h1 id=&amp;quot;subdomain&amp;quot;&amp;gt;&amp;lt;/h1&amp;gt;
+  &amp;lt;img id=&amp;quot;avatar&amp;quot;&amp;gt;
+
+  &amp;lt;script&amp;gt;
+    var subdomain = window.location.hostname.split(&#39;.&#39;)[0];
+    document.getElementById(&#39;subdomain&#39;).textContent = subdomain;
+    var avatarSrc = &#39;https://api.adorable.io/avatars/285/&#39; + subdomain + &#39;.png&#39;;
+    document.getElementById(&#39;avatar&#39;).src = avatarSrc;
+  &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The most important part of the code is line 12, which gets the subdomain from the hostname (&lt;code&gt;window.location.hostname.split(&#39;.&#39;)[0]&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;In development, you can use &lt;code&gt;lvh.me&lt;/code&gt; (e.g &lt;code&gt;some-random-name.lvh.me:8080&lt;/code&gt;) to test your application instead of &lt;code&gt;127.0.0.1&lt;/code&gt;. &lt;code&gt;some-random-name.localhost&lt;/code&gt; also works on browsers I&amp;rsquo;ve tested.&lt;/p&gt;
+- https://alphacoder.xyz/how-to-configure-wildcard-subdomains/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Fixing UnhandledPromiseRejectionWarning in Node.js</title>
+        <link>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</link>
+        <pubDate>Mon, 04 Mar 2019 13:54:48 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ -&lt;p&gt;JavaScript exhibits asynchronous behaviour for operations that are not completed immediately e.g a HTTP request or timer. These operations accept callbacks —  functions which are executed when an operation has been completed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;); }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/async-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve written JavaScript for a while, you&amp;rsquo;re probably familiar with &lt;a href=&#34;http://callbackhell.com/&#34;&gt;callback hell&lt;/a&gt;. Callbacks can easily make code unreadable and difficult to reason about. Thankfully, we have Promises!&lt;/p&gt;
+&lt;p&gt;Promise objects represent the eventual completion or failure of an async operation. We can wrap a function that accepts a callback in a Promise and use the fulfillment handler &lt;code&gt;.then()&lt;/code&gt; to retrieve returned data and/or continue performing other operations.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/promise-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Better still we can now use Async/Await (ECMAScript 2017/ES8) —  synctactic sugar for Promises —  to make our JavaScript simpler and easier to read.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Slow and steady wins the race.&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }, &lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/await-js.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a little problem though. It&amp;rsquo;s very easy to forget to handle Promise rejections, and this can lead to hard-to-debug issues. If we fail to handle a Promise rejection, we&amp;rsquo;re shown the &lt;code&gt;UnhandledPromiseRejectionWarning&lt;/code&gt; by Node.js.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/promise-rejection.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We also get the warning if an error (e.g validation error) is thrown inside the Promise.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Summ just happen right now :(&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/throw-rejection.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If you didn&amp;rsquo;t already notice from the warning, &lt;strong&gt;&amp;ldquo;Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code&amp;rdquo;&lt;/strong&gt;. This means not handling Promises properly can crash your app!&lt;/p&gt;
+&lt;p&gt;You can handle Promise rejections by using the failure handler &lt;code&gt;.catch()&lt;/code&gt; or a try/catch block.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;The last shall be the first!&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;error: &amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    });
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/dot-catch.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Summ just happen right now :(&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;slowAndSteady&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/try-catch.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s not that simple though. Things become more interesting when you have a chain of Promises.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/double-promise.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We still get the warning even though &lt;code&gt;promise2&lt;/code&gt; is wrapped in a try/catch. Wrapping a whole function with try/catch won&amp;rsquo;t cover all Promises!&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s obvious that proper exception handling is needed in &lt;code&gt;promise2&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;().&lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() { &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;(); });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But you might not be able to anticipate where exception/error handling may be needed especially when working with third party libraries. You can use the following code to catch all unhandled Promise rejections.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;process&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;unhandledRejection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you use error tracking software, this is a good place to notify your team about the error so that it can be fixed ASAP!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;process&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;unhandledRejection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// sendInTheCalvary(err);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Error(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Promise 1 has tanked.&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Promise(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;resolve&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;reject&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;promise1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;then&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;promise2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/prm-rjctn/handle-all-rejections.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- https://alphacoder.xyz/nodejs-unhandled-promise-rejection-warning/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Adminer — a simple GUI client for any DB</title>
+        <link>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</link>
+        <pubDate>Mon, 04 Mar 2019 06:39:01 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ -&lt;p&gt;In my search for a good database GUI client for PostgreSQL, I came across a light-weight and elegant GUI client called &lt;a href=&#34;https://www.adminer.org&#34;&gt;Adminer&lt;/a&gt;. Adminer is a is a full-featured database management tool built with PHP.&lt;/p&gt;
+&lt;p&gt;Before Adminer, I used pgAdmin III. I hoped it&amp;rsquo;d be similar to PHPMyAdmin but it wasn&amp;rsquo;t nearly as good in terms of the user interface and functionality. I found it difficult to navigate and had to write queries to perform even basic tasks. Coming from PHPMyAdmin, this was a no no for me.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d used PHPMyAdmin (via XAMPP) for MySQL but decided to skip XAMPP when I moved from Windows to Ubuntu/Linux a few years ago. So I started using MySQL Workbench. I was also using MongoDB Compass (and Studio 3T briefly) for MongDB.&lt;/p&gt;
+&lt;p&gt;Now I use Adminer for all my DBs. I actively work with MySQL, PostgreSQL and MongoDB so this is really cool. So far, I&amp;rsquo;ve had zero issues with Adminer. It&amp;rsquo;s fast, simple and gets out of the way when I need to get stuff done.&lt;/p&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll show you how to setup Adminer on your machine.&lt;/p&gt;
+&lt;h3 id=&#34;install-php-for-your-os&#34;&gt;Install PHP for your OS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jeffgeerling.com/blog/2018/installing-php-7-and-composer-on-windows-10&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-php-7-on-ubuntu/&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; After installation, add the PHP CLI to your path if it&amp;rsquo;s not already added. You can test this by running &lt;code&gt;php --version&lt;/code&gt;. You should get a similar result to the one shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ php --version
+PHP 7.2.15-0ubuntu0.18.04.1 (cli) (built: Feb  8 2019 14:54:22) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.2.15-0ubuntu0.18.04.1, Copyright (c) 1999-2018, by Zend Technologies
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;install-a-db-server-optional&#34;&gt;Install a DB server (optional)&lt;/h3&gt;
+&lt;p&gt;Adminer currently supports MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, SimpleDB, Elasticsearch and MongoDB. If you want to use any of these databases locally, you need to install them on your machine.&lt;/p&gt;
+&lt;p&gt;You can also connect to a DB server on a remote machine (e.g a DigitalOcean VPS) or a managed DB service (e.g AWS RDS). In this case, you don&amp;rsquo;t need to install the DB server on your computer.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll be demonstrating with MySQL here. If you want to follow along, you can install MySQL for your OS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html&#34;&gt;Installation instructions for Windows&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tecadmin.net/install-mysql-macos/&#34;&gt;Installation instructions for Mac&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04&#34;&gt;Installation instructions for Ubuntu/Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;install-db-extensions-for-php-optional&#34;&gt;Install DB extensions for PHP (optional)&lt;/h3&gt;
+&lt;p&gt;If you installed a DB server (the previous step), you might need to &lt;a href=&#34;http://php.net/manual/en/refs.database.php&#34;&gt;install the PHP extension for it&lt;/a&gt; and/or update your PHP config file.&lt;/p&gt;
+&lt;h3 id=&#34;download-and-setup-adminer&#34;&gt;Download and setup Adminer&lt;/h3&gt;
+&lt;p&gt;Adminer is just one PHP file! You can &lt;a href=&#34;https://www.adminer.org/#download&#34;&gt;download it from the Adminer website&lt;/a&gt;. The latest version at the time of writing this tutorial is &lt;a href=&#34;https://github.com/vrana/adminer/releases/download/v4.7.1/adminer-4.7.1.php&#34;&gt;4.7.1&lt;/a&gt;. When you download the PHP file, you can put it anywhere you want. Mine is in a directory named &lt;em&gt;adminer&lt;/em&gt; (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and is renamed to &lt;em&gt;adminer.php&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Start up a terminal and change directory to the folder containing Adminer. In my case, it&amp;rsquo;s &lt;code&gt;~/dev/adminer&lt;/code&gt;. Now run PHP&amp;rsquo;s development server on a port of your choice.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~/dev/adminer$ php -S localhost:8080
+PHP 7.2.15-0ubuntu0.18.04.1 Development Server started at Mon Mar  4 04:41:07 2019
+Listening on http://localhost:8080
+Document root is /home/nicholas/dev/adminer
+Press Ctrl-C to quit.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Visit localhost on your browser (&lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;). You should be greeted by the screen below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/adminer-login.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now login to your DB. Mine is MySQL.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/mysql-dbs.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Ensure your DB server is running. If you get an error like &amp;ldquo;None of the supported PHP extensions (MySQLi, MySQL, PDO_MySQL) are available&amp;rdquo; when trying to login, it means you didn&amp;rsquo;t install and/or configure the DB extension for PHP properly.&lt;/p&gt;
+&lt;h3 id=&#34;extend-adminer-with-plugins&#34;&gt;Extend Adminer with plugins&lt;/h3&gt;
+&lt;p&gt;If you need more features on Adminer, you can use plugins. There are &lt;a href=&#34;https://www.adminer.org/en/plugins/&#34;&gt;a ton of plugins already available&lt;/a&gt; and you can create yours if you want.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s install one of the  plugins: &lt;em&gt;edit-textarea&lt;/em&gt;. It uses &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt; for &lt;em&gt;char&lt;/em&gt; and &lt;em&gt;varchar&lt;/em&gt;
+fields instead of the regular text input.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/text-input.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;char and varchar fields are edited in a text input by default&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a plugins directory in your &lt;em&gt;adminer&lt;/em&gt; directory (e.g &lt;code&gt;~/dev/adminer/plugins&lt;/code&gt;) and &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php&#34;&gt;add this &lt;em&gt;plugin.php&lt;/em&gt; file&lt;/a&gt; in it. &lt;em&gt;plugin.php&lt;/em&gt; is required to use plugins with Adminer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create an &lt;em&gt;index.php&lt;/em&gt; file in your &lt;em&gt;adminer&lt;/em&gt; directory (i.e &lt;code&gt;~/dev/adminer&lt;/code&gt;) and add the following code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;?php
+  function adminer_object() {
+      // required to run any plugin
+      include_once &amp;quot;./plugins/plugin.php&amp;quot;;
+
+      // autoloader
+      foreach (glob(&amp;quot;plugins/*.php&amp;quot;) as $filename) {
+          include_once &amp;quot;./$filename&amp;quot;;
+      }
+
+      $plugins = array(
+          // specify enabled plugins here
+      );
+
+      /* It is possible to combine customization and plugins:
+      class AdminerCustomization extends AdminerPlugin {
+      }
+      return new AdminerCustomization($plugins);
+      */
+
+      return new AdminerPlugin($plugins);
+  }
+
+  // include original Adminer or Adminer Editor
+  include &amp;quot;./adminer.php&amp;quot;;
+  ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add &lt;a href=&#34;https://raw.githubusercontent.com/vrana/adminer/master/plugins/edit-textarea.php&#34;&gt;the &lt;em&gt;edit-textarea&lt;/em&gt; plugin source file (&lt;em&gt;edit-textarea.php&lt;/em&gt;)&lt;/a&gt; to your plugins directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the plugin in &lt;em&gt;index.php&lt;/em&gt; by adding &lt;code&gt;new AdminerEditTextarea()&lt;/code&gt; in the &lt;code&gt;$plugins&lt;/code&gt; array.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  $plugins = array(
+      // specify enabled plugins here
+      new AdminerEditTextarea(),
+  );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visit &lt;em&gt;localhost:8080&lt;/em&gt; (NOT &lt;em&gt;localhost:8080/adminer.php&lt;/em&gt;) in your browser, login and check it out!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/admnr/textarea.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Now you can edit using a text area&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; To add a another plugin, all you need to do now is place the plugin source file in the &lt;em&gt;plugins&lt;/em&gt; directory and initialize it with the &lt;code&gt;new&lt;/code&gt; keyword in the &lt;code&gt;$plugins&lt;/code&gt; array (in &lt;em&gt;index.php&lt;/em&gt;) e.g &lt;code&gt;new SomeAwesomePlugin()&lt;/code&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/adminer-a-simple-gui-client-for-any-db/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Dealing with code debt</title>
+        <link>https://alphacoder.xyz/dealing-with-code-debt/</link>
+        <pubDate>Wed, 06 Feb 2019 19:40:38 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/dealing-with-code-debt/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/dealing-with-code-debt/ -&lt;p&gt;Code debt (or technical debt) is the amount of extra work that needs to be done due to choosing the easy way now instead of a better way that would take more time to complete. It&amp;rsquo;s &lt;del&gt;human&lt;/del&gt; developer nature to always follow the path of least resistance e.g write spagetti code or fail to think things through before coding. As such dealing with code debt must be given priority by individuals and teams that want to build good software in a cost and time effective manner.&lt;/p&gt;
+&lt;p&gt;Code debt is not necessarily a bad thing though. As bestselling &lt;em&gt;Rich Dad, Poor Dad&lt;/em&gt; author Robert Kiyosaki says, &amp;ldquo;good debt makes you rich and bad debt makes you poor&amp;rdquo;. It must however be kept at a minimum at all times. This can be achieved by avoiding debt as much as is within one&amp;rsquo;s power and spending a good chunck of dev time paying off the debts already owed. A wise man once said &amp;ldquo;a good developer always pays their code debts&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;When could we incur code debt i.e &amp;ldquo;good&amp;rdquo; debt? Writing elegant and future-proof code is not always possible as one may have limited time and/or experience in a given domain. For instance, it is not uncommon to find a lot of code debt in fast-paced environments like at startups trying to ship an MVP or find product-market fit. However, if the debts are not paid soon afterwards, a lot of damage can happen in future.&lt;/p&gt;
+&lt;p&gt;Outlined below are some steps to take in dealing with code debt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Design first:&lt;/strong&gt; Before writing the first line of code, make sure you have at least a conceptual idea about how the addition would fit in to what already exists to make it extensible or at least prevent it from being less flexible. Try to add as little as possible when making changes (less code generally means less debt). But also try to make things as generic as possible so that they can easily adapt to evolving requirements. To do this, an understanding of the system as a whole is vital. Make sure your team knows where the product is coming from, where it is in the present and where it&amp;rsquo;s going to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Enforce a coding style:&lt;/strong&gt; A coding style makes your codebase more readable and consistent. It can prevent developers from writing spagetti code or introducing their own ideology of what &amp;ldquo;good&amp;rdquo; code should look like. The result is higher dev velocity, less arguments, and ultimately, less debt. Use a linter to enforce a coding style. You may choose to use a standard developed by others, customize it or develop your own. Add linting to your deployment pipeline so that only acceptable code gets checked in or goes to production.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Perform code review, always:&lt;/strong&gt; Code reviews should be a core part of the software development process. Critiquing code helps catch bugs but more so, it provides a medium to question technical decisions that can lead to code debt. Devs are forced to think of the best way instead of the easy way because their work would be critiqued by their peers and may be rejected if not up to par.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Refactor regularly:&lt;/strong&gt; The more code that is added on top of code that needs to be refactored, the more difficult it is to refactor the code. Eventually, after adding more and more code (most of which would likely be &amp;ldquo;bad&amp;rdquo; code), it becomes impossible or nearly impossible to refactor or maintain and a rewrite becomes inevitable (which is costly in time and money). After every release or sprint or dev cycle, make it a duty to refactor the codebase to make it more readable, extensible, scalable etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Make documentation a requirement:&lt;/strong&gt; Documentation not only provides a reference for you and your team, it helps you establish a collective understanding of the system you&amp;rsquo;re building (that is, how it is actually expected to work). It also provides an avenue to evaluate the current implementation against what the system is supposed to be, and it sparks up questions about assumptions and decisions made.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Automate testing:&lt;/strong&gt; The most important thing for me in automated testing is regression. That is, re-running a suite of tests that set the requirements (both functional and non-functional) of the system to ensure nothing broke while a change was made. If done well, it ensures that no (or few) stones are left unturned. It also makes debugging easier and boosts developers&amp;rsquo; confidence in the system which is super important.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Any reasonably complex codebase has some debt. Even simple ones do. The goal is to reduce this debt as much as possible and keep it that way as more code is added. This must be done proactively or else debt would compound to the point where continued development isn&amp;rsquo;t feasible any longer. At this point, a rewrite may be the only logical solution. This can hurt a business and its development team badly.&lt;/p&gt;
+- https://alphacoder.xyz/dealing-with-code-debt/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Deploy microservices on Kubernetes</title>
+        <link>https://alphacoder.xyz/deploy-microservices-on-kubernetes/</link>
+        <pubDate>Fri, 01 Feb 2019 16:44:09 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/deploy-microservices-on-kubernetes/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/deploy-microservices-on-kubernetes/ -&lt;p&gt;Kubernetes (AKA k8s) has gained &lt;a href=&#34;https://kubernetes.io/case-studies/&#34;&gt;widespread adoption&lt;/a&gt; in recent years as a platform for microservices due to its ability to seamlessly automate app deployment at scale. &lt;a href=&#34;http://pinterest.com&#34;&gt;Pinterest&lt;/a&gt; uses &lt;a href=&#34;https://www.cncf.io/case-study-pinterest/&#34;&gt;a suite of over 1000 microservices&lt;/a&gt; to power their &amp;ldquo;discovery engine&amp;rdquo;. Imagine having to configure and manage servers to run these services manually. It&amp;rsquo;s an Engineer&amp;rsquo;s nightmare to say the least.&lt;/p&gt;
+&lt;p&gt;Kubernetes bills itself as &amp;ldquo;a portable, extensible open-source platform for managing containerized workloads and services&amp;rdquo;. In simple terms, Kubernetes helps to automate the deployment and management of containerized applications. This means we can package an app (code, dependencies and config) &lt;a href=&#34;https://www.docker.com/resources/what-container&#34;&gt;in a container&lt;/a&gt; and hand it over to Kubernetes to deploy and scale without worrying about our infrastructure. Under the hood, Kubernetes decides where to run what, monitors the systems and fixes things if something goes wrong.&lt;/p&gt;
+&lt;h1 id=&#34;microservice-architecture&#34;&gt;Microservice architecture&lt;/h1&gt;
+&lt;p&gt;I particularly like &lt;a href=&#34;https://martinfowler.com/microservices/&#34;&gt;James Lewis&amp;rsquo; and Martin Fowler&amp;rsquo;s definition of microservices&lt;/a&gt; as it points out why Kubernetes is such a good solution for the architecture. &amp;ldquo;The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by &lt;strong&gt;fully automated deployment machinery&lt;/strong&gt;. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies&amp;rdquo;. Kubernetes is in fact a &amp;ldquo;fully automated deployment machine&amp;rdquo; that provides a powerful abstraction layer atop server infrastructure.&lt;/p&gt;
+&lt;h1 id=&#34;common-kubernetes-terms&#34;&gt;Common Kubernetes terms&lt;/h1&gt;
+&lt;p&gt;Below are some common terms associated with Kubernetes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Node:&lt;/strong&gt; A node is a single machine in a Kubernetes cluster. It can be a virtual or physical machine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cluster:&lt;/strong&gt; A cluster consists of at least one master machine and multiple worker machines called nodes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pod:&lt;/strong&gt; A pod is the basic unit of computing in Kubernetes. Containers are not run directly. Instead, they are wrapped in a pod.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deployment:&lt;/strong&gt; A deployment is used to manage a pod or set of pods. Pods are typically not created or managed directly. Deployments can automatically spin up any number of pods. If a pod dies, a deployment can automatically recreate it as well.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service:&lt;/strong&gt; Pods are mortal. Consumers should however not be burdened with figuring out what pods are available and how to access them. Services keep track of all available pods of a certain type and provide a way to access them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;yoloo&#34;&gt;Yoloo&lt;/h1&gt;
+&lt;p&gt;In this tutorial, we&amp;rsquo;ll be deploying a simple microservices app called Yoloo on &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/&#34;&gt;Google Kubernetes Engine (GKE)&lt;/a&gt;, a managed Kubernetes service on Google Cloud Platform. Yoloo uses a pre-trained YOLO (&lt;a href=&#34;https://www.youtube.com/watch?v=Cgxsv1riJhI&#34;&gt;You Only Look Once&lt;/a&gt;) model to detect common objects such as bottles and humans in an image. It comprises two microservices, &lt;em&gt;detector&lt;/em&gt; and &lt;em&gt;viewer&lt;/em&gt;. The detector service is a Python/Flask app which takes an image and passes it through the YOLO model to identify the objects in it. The viewer service is a PHP app that acts as a front-end by providing a User Interface for uploading and viewing the images. The app is built to use two external, managed services: Cloudinary for image hosting and Redis for data storage. The source code is available &lt;a href=&#34;https://github.com/nicholaskajoh/microservices&#34;&gt;on my GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nicholaskajoh/microservices/archive/master.zip&#34;&gt;Download&lt;/a&gt; or clone the project with Git: &lt;code&gt;git clone https://github.com/nicholaskajoh/microservices.git&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Detector service Dockerfile.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; python:3.6-stretch&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 8080&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; mkdir /www&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /www&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; requirements.txt /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; pip install -r requirements.txt&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; PYTHONUNBUFFERED &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CMD&lt;/span&gt; gunicorn --bind 0.0.0.0:8080 wsgi&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Viewer service Dockerfile.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; php:7.2-apache&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 80&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /var/www/html/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Download the YOLO weights in the detector directory.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd detector/ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; wget https://pjreddie.com/media/files/yolov3.weights
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Change directory to &lt;code&gt;viewer/&lt;/code&gt; and install the PHP dependencies. You need to have &lt;a href=&#34;https://www.apachefriends.org/index.html&#34;&gt;PHP&lt;/a&gt; and &lt;a href=&#34;https://getcomposer.org&#34;&gt;Composer&lt;/a&gt; installed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;composer install
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;google-cloud-platform-gcp&#34;&gt;Google Cloud Platform (GCP)&lt;/h1&gt;
+&lt;p&gt;Visit &lt;a href=&#34;https://console.cloud.google.com/home/dashboard&#34;&gt;https://console.cloud.google.com/home/dashboard&lt;/a&gt; and create a new project. You need to have a Google account.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Google offers &lt;a href=&#34;https://cloud.google.com/free/&#34;&gt;a tier with $300 free credit&lt;/a&gt; (for 1 year) to use any GCP product you want.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/new-project-gcp.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create a new project on Google Cloud Platform&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Make sure you &lt;a href=&#34;https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_new_project&#34;&gt;enable billing&lt;/a&gt; for your project.&lt;/p&gt;
+&lt;p&gt;Go to the &lt;a href=&#34;https://console.cloud.google.com/kubernetes&#34;&gt;Kubernetes section&lt;/a&gt; of GCP and create a new &lt;em&gt;standard&lt;/em&gt; cluster. GKE uses VM instances on Google Compute Engine as nodes in the cluster.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/new-cluster-gke.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create a new k8s cluster&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;google-container-registry-gcr&#34;&gt;Google Container Registry (GCR)&lt;/h1&gt;
+&lt;p&gt;Kubernetes uses container images to launch pods. Images need to be stored in a registry where they can be pulled from. GCP provides a registry, the &lt;a href=&#34;https://cloud.google.com/container-registry/&#34;&gt;Google Container Registry&lt;/a&gt;, which can be used to store Docker images. Let&amp;rsquo;s build the images for the detector and viewer services and push them to GCR.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href=&#34;https://cloud.google.com/sdk/install&#34;&gt;Google Cloud SDK&lt;/a&gt; for your OS.&lt;/li&gt;
+&lt;li&gt;Login: &lt;code&gt;gcloud auth login&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Configure docker to use the &lt;code&gt;gcloud&lt;/code&gt; CLI as a credential helper: &lt;code&gt;gcloud auth configure-docker&lt;/code&gt;. You only need to do this once.&lt;/li&gt;
+&lt;li&gt;Build the docker images for the microservices: &lt;code&gt;docker build -t detector-svc detector/&lt;/code&gt; and &lt;code&gt;docker build -t viewer-svc viewer/&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Tag the images with their registry names: &lt;code&gt;docker tag detector-svc gcr.io/{PROJECT_ID}/detector-svc&lt;/code&gt; and &lt;code&gt;docker tag viewer-svc gcr.io/{PROJECT_ID}/viewer-svc&lt;/code&gt;. &lt;code&gt;PROJECT_ID&lt;/code&gt; is your GCP console project ID.&lt;/li&gt;
+&lt;li&gt;Push the docker images to GCR: &lt;code&gt;docker push gcr.io/{PROJECT_ID}/detector-svc&lt;/code&gt; and &lt;code&gt;docker push gcr.io/{PROJECT_ID}/viewer-svc&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;deployments&#34;&gt;Deployments&lt;/h1&gt;
+&lt;p&gt;The detector and viewer services contain deployment files, &lt;code&gt;detector-deployment.yaml&lt;/code&gt; and &lt;code&gt;viewer-deployment.yaml&lt;/code&gt; respectively, which tell k8s what workloads we want to run.&lt;/p&gt;
+&lt;p&gt;Detector service deployment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;extensions/v1beta1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Deployment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;detector-svc-deployment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;spec&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;replicas&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;minReadySeconds&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;15&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;strategy&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;RollingUpdate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;rollingUpdate&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;maxUnavailable&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;maxSurge&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;detector-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;spec&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;containers&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        - &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gcr.io/{PROJECT_ID}/detector-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;imagePullPolicy&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Always&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;detector-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            - &lt;span style=&#34;color:#f92672&#34;&gt;containerPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;envFrom&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            - &lt;span style=&#34;color:#f92672&#34;&gt;secretRef&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;detector-svc-secrets&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this deployment, we want to run 3 copies (&lt;code&gt;replicas: 3&lt;/code&gt;) of the detector service (&lt;code&gt;- image: gcr.io/{PROJECT_ID}/detector-svc&lt;/code&gt;) for availability and scalability. We label the pods (&lt;code&gt;app: detector-svc&lt;/code&gt;) so that they can easily be referenced as a group. We alse choose rolling updates (&lt;code&gt;type: RollingUpdate&lt;/code&gt;) as our redeployment strategy. Rolling update means we can update the app without experiencing any downtime. In other words, k8s gradually replaces pods in the deployment so that the application is always available to consumers or clients even when an update is taking place.&lt;/p&gt;
+&lt;p&gt;Viewer service deployment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;extensions/v1beta1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Deployment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;viewer-svc-deployment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;spec&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;replicas&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;minReadySeconds&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;15&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;strategy&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Recreate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;viewer-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;spec&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;containers&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        - &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gcr.io/{PROJECT_ID}/viewer-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;imagePullPolicy&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Always&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;viewer-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            - &lt;span style=&#34;color:#f92672&#34;&gt;containerPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#f92672&#34;&gt;envFrom&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            - &lt;span style=&#34;color:#f92672&#34;&gt;secretRef&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;viewer-svc-secrets&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We choose a different redeployment strategy (&lt;code&gt;type: Recreate&lt;/code&gt;) in the viewer service. This strategy destroys existing pods and recreates them with the updated image. Also, we&amp;rsquo;re going with 2 replicas here.&lt;/p&gt;
+&lt;p&gt;Notice &lt;code&gt;envFrom&lt;/code&gt; under &lt;code&gt;containers&lt;/code&gt; in both deployments? We&amp;rsquo;ll be loading our environment variables from a k8s Secret which we&amp;rsquo;ll create soon.&lt;/p&gt;
+&lt;h1 id=&#34;services&#34;&gt;Services&lt;/h1&gt;
+&lt;p&gt;The k8s services (not to be confused with microservices) in detector and viewer, &lt;code&gt;detector-service.yaml&lt;/code&gt; and &lt;code&gt;viewer-service.yaml&lt;/code&gt;, share traffic among a set of replicas and provide an interface for other applications to access them. The detector service uses the ClusterIP k8s service which exposes the app on a cluster-internal IP. This means detector is only reachable from within the cluster. The viewer service uses the LoadBalancer service which exposes it externally to the outside world.&lt;/p&gt;
+&lt;p&gt;Detector k8s service.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;v1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;detector-service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;spec&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;ClusterIP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;port&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;protocol&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;TCP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;targetPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;selector&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;detector-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Viewer k8s service.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;v1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;viewer-service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;spec&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;LoadBalancer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;port&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;protocol&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;TCP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;targetPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;selector&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;viewer-svc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; we use the labels (&lt;code&gt;app: detector-svc&lt;/code&gt; and &lt;code&gt;app: viewer-svc&lt;/code&gt;) to select the group of pods created by the detector and viewer deployments, and make both services available on port 80.&lt;/p&gt;
+&lt;h1 id=&#34;cloudinary-and-redis&#34;&gt;Cloudinary and Redis&lt;/h1&gt;
+&lt;p&gt;As mentioned earlier, Yoloo depends on Cloudinary and Redis. Cloudinary is a cloud-based image/video hosting service and Redis is an in-memory key-value database.&lt;/p&gt;
+&lt;p&gt;Create an account &lt;a href=&#34;https://cloudinary.com&#34;&gt;on Cloudinary&lt;/a&gt; and &lt;a href=&#34;https://redislabs.com&#34;&gt;on Redis Labs&lt;/a&gt; (a free managed Redis hosting service).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/cloudinary-console.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Cloudinary console&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/redislabs-config.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Redis Labs configuration&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create &lt;em&gt;.env&lt;/em&gt; files from the example env files in both services (&lt;em&gt;.env.example&lt;/em&gt;) and populate them with your Cloudinary and Redis credentials.&lt;/p&gt;
+&lt;p&gt;Detector service .env&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FLASK_APP=detector.py
+FLASK_ENV=production
+CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Viewer service .env&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;CLOUDINARY_CLOUD_NAME=somethingawesome
+CLOUDINARY_API_KEY=0123456789876543210
+CLOUDINARY_API_SECRET=formyappseyesonly
+DETECTOR_SVC_URL=http://detector-service
+REDIS_URL=redis://:password@127.0.0.1:6379
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notice the url in &lt;code&gt;DETECTOR_SVC_URL&lt;/code&gt;? Kubernetes creates DNS records within the cluster, mapping service names to their IP addresses. So we can use &lt;code&gt;http://detector-service&lt;/code&gt; and not have to worry about what IP a service actually uses.&lt;/p&gt;
+&lt;h1 id=&#34;kubectl&#34;&gt;kubectl&lt;/h1&gt;
+&lt;p&gt;kubectl is a CLI tool for running commands against Kubernetes clusters. To get Kubernetes to run our microservices, we need to apply our deployments and services on the cluster. Outlined below are the steps involved.&lt;/p&gt;
+&lt;p&gt;Install &lt;code&gt;kubectl&lt;/code&gt; CLI &lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/install-kubectl/&#34;&gt;for your OS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Set your Yoloo GCP project as default on the &lt;code&gt;gcloud&lt;/code&gt; CLI.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcloud config set project &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;PROJECT_ID&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Set the default compute zone or region of your cluster. You can find this in the cluster details page on your GCP dashboard.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcloud config set compute/zone &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;COMPUTE_ZONE&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;or&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcloud config set compute/region &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;COMPUTE_REGION&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Generate a &lt;code&gt;kubeconfig&lt;/code&gt; entry to run &lt;code&gt;kubectl&lt;/code&gt; commands against a your GCP cluster.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gcloud container clusters get-credentials &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;CLUSTER_NAME&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; if you use minikube, you can use the following command to switch back to your local cluster.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl config use-context minikube
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create k8s Secrets from the .env files in both services.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create secret generic detector-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;detector/.env
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;viewer/.env
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can use the following commands to update the secrets.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create secret generic detector-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;detector/.env --dry-run -o yaml | kubectl apply -f -
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl create secret generic viewer-svc-secrets --from-env-file&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;viewer/.env --dry-run -o yaml | kubectl apply -f -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit your GKE cluster dashboard on GCP and check the &lt;em&gt;Configuration&lt;/em&gt; section. You should see the detector and viewer service secrets.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/gke-config.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;GKE cluster Config showing detector and viewer service secrets&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; If you want to view the secrets on your k8s cluster (e.g when debugging), you can install the &lt;code&gt;jq&lt;/code&gt; utility (&lt;a href=&#34;https://stedolan.github.io/jq/&#34;&gt;https://stedolan.github.io/jq/&lt;/a&gt;) and run the following where &lt;code&gt;my-secrets&lt;/code&gt; is the name of your k8s secret.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl get secret my-secrets -o json | jq &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;.data | map_values(@base64d)&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the deployments.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f detector/detector-deployment.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f viewer/viewer-deployment.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Check the &lt;em&gt;Workloads&lt;/em&gt; section of the dashboard. You should see the detector and viewer service deployments.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/gke-workloads.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;GKE cluster Workloads showing the microservice deployments&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create the services.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f detector/detector-service.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kubectl apply -f viewer/viewer-service.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The detector and viewer k8s services can be found in the &lt;em&gt;Services&lt;/em&gt; section of the dashboard.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/gke-services.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;GKE cluster Services showing the k8s services for Yoloo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To visit the application, go to the viewer service page on the dashboard and locate the &lt;em&gt;External endpoints&lt;/em&gt; IP address.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/viewer-svc-external-ip.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Viewer service external IP address&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/yoloo-app-ui.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;UI of the Yoloo app&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/ms-k8s/yoloo-sample-output.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Sample output image from Yoloo&lt;/em&gt;&lt;/p&gt;
+- https://alphacoder.xyz/deploy-microservices-on-kubernetes/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

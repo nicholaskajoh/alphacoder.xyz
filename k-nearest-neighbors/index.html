@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html><head>
+<title>K Nearest Neighbors</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#the-ml-chops-series" class="nav-the-ml-chops-series">
+									The ML Chops series
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#supervised-learning" class="nav-supervised-learning">
+									Supervised learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#meet-knn" class="nav-meet-knn">
+									Meet KNN
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#code" class="nav-code">
+									Code
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#predict" class="nav-predict">
+									Predict
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#accuracy" class="nav-accuracy">
+									Accuracy
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#confidence" class="nav-confidence">
+									Confidence
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#perf" class="nav-perf">
+									Perf
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#data-sets" class="nav-data-sets">
+									Data sets
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    K Nearest Neighbors
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2017-12-09
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/ml-chops-series">ML Chops Series</a>
+                                &nbsp;
+                            
+                                <a href="/tag/machine-learning">Machine Learning</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>K Nearest Neighbors (KNN) is a Machine Learning algorithm for classification — a <strong>classifier</strong> as the experts would call it.</p>
+<p><img src="/images/k-nearest-neighbors/ml-meme.jpeg" alt=""></p>
+<p>Classification is a very fundamental and important activity we perform as humans. We’ve grouped animals, plants, stars, humans, music etc to help us understand them and their relationships better, among other things. Often, we need to classify a thing as part of one of several groups. This crucial activity gets boring to do though. What if computers could do that for us?</p>
+<p>Teaching computers to classify things has been very tedious until Machine Learning. While hard-coded rules may work for a given problem set, everything falls like a pack of cards when a few parameters are added/changed/removed. Worse, a solution becomes useless when a new problem arises. That’s bad for business. 😠</p>
+<h1 id="the-ml-chops-series">The ML Chops series</h1>
+<ul>
+<li><a href="/linear-regression">Linear Regression</a></li>
+<li>K Nearest Neighbors (this article)</li>
+<li><a href="/naive-bayes">Naive Bayes</a></li>
+<li><a href="/support-vector-machine">Support Vector Machine</a></li>
+<li><a href="/k-means">K Means</a></li>
+</ul>
+<h1 id="supervised-learning">Supervised learning</h1>
+<p>KNN is a supervised learning algorithm. Supervised learning algorithms infer from labelled training data. Say we want to determine whether a person is male or female, the following samples may be useful:</p>
+<pre><code>height (ft)    weight (kg)    sex  
+6.3            50.2           Male  
+5.9            79.7           Female  
+5.1            61.4           Female  
+5.6            47.1           Male  
+5.1            59.8           Female
+</code></pre>
+<p>Each row of training data (sample) represents a person. The <em>sex</em> column shows the labels while the <em>height</em> and <em>weight</em> columns show the features for each person. Good features translate to better classifiers. Height and weight are probably not the best features to train a classifier that determines the sex of a human being, but they are far better than Hair style or Eye color, for instance. Voice is a very good feature (I think).</p>
+<p>Also, more training data means a better classifier because there are more examples to “learn” from.</p>
+<h1 id="meet-knn">Meet KNN</h1>
+<p>K Nearest Neighbors is probably the easiest classification algorithm to understand. Take a look at the following graph:</p>
+<p><img src="/images/k-nearest-neighbors/graph-of-weight-vs-height.png" alt=""></p>
+<p><em>Graph of height vs weight (data is theoretical)</em></p>
+<p>What would you classify <em>Blue Diamond 1</em> as? At a glance, it’s easy to predict/infer that <em>Blue Diamond 1</em> is most likely/is a <em>Female</em>. It seems logical to say that <em>Blue Diamond 1</em> is in the cluster of Females so it’s female. Fair enough.</p>
+<p>What of <em>Blue Diamond 2</em>? Not so fast! While it seems likely <em>Female</em>, one could argue it’s <em>Male</em>. Hmm… Eye-balling won’t cut it.</p>
+<p><em>KNN provides us a pretty solid way to predict which class Blue Diamond 2 belongs to.</em></p>
+<p>K Nearest Neighbors outputs a class membership of a feature set by a majority vote of its closest neighbors. In other words, we can find the persons closest to <em>Blue Diamond 2</em> then cast a vote. If majority are <em>Male</em>, then we say <em>Blue Diamond 2</em> is <em>Male</em>, else we say it’s <em>Female</em>.</p>
+<p><img src="/images/k-nearest-neighbors/knn-viz.png" alt=""></p>
+<p><em>KNN visualization</em></p>
+<p>Looking at the circled area, we can easily see from the graph (above) that there are 5 persons closest to <em>Blue Diamond 2</em>. 3 <em>Red Squares</em> and 2 <em>Green Circles</em>. KNN says <em>Blue Diamond 2</em> is Male since males are the majority of the closest neighbors.</p>
+<p>The <em>k</em> in KNN represents the number of neighbors being considered. In the case of classifying <em>Blue Diamond 2</em>, it’s 5. <em>k</em> directly affects our prediction so we must use a “good” value. Take into account your data, specifically the number of classes and the sample size of the training set when choosing k.</p>
+<p>In the person classification example we’ve been looking at, we have 2 classes (Male and Female), so k = 2 (or a multiple of 2) is a bad idea right off the bat.</p>
+<p>k = 1? Nah. You can’t have an election with just one candidate, can you?</p>
+<p>k = 3? Yep. Works for me! Since there are only 3 slots, we’ll never have a tie between Male and Female. Also, 3 is a reasonable number of samples to consider for the person classification problem we’re dealing with (the way I see it).</p>
+<p>A “small” value of <em>k</em> means that noise will have a higher influence on the result. A “large” value of <em>k</em> defeats the basic philosophy behind the KNN algorithm. There’s no rule for choosing k. It’s best to try out different values and see what works best.</p>
+<h1 id="code">Code</h1>
+<p>Let’s use the data from that table 👆 above…</p>
+<pre><code>import numpy as np  
+from collections import Counter
+
+data = {&quot;male&quot;: [[6.3, 50.2], [5.6, 47.1]],  
+        &quot;female&quot;: [[5.9, 79.7], [5.1, 61.4], [5.1, 59.8]]}
+</code></pre>
+<p><strong>NB:</strong> You need <a href="https://pypi.python.org/pypi/numpy">Numpy</a> installed on your computer.</p>
+<p>Next, let’s write a predict function. This function takes in the input feature set (Python list) we want to classify e.g <code>[6.0, 52.1]</code> -&gt; <code>[height, weight]</code>, as well as the value of k, and returns a class (<code>Male</code> or <code>Female</code>).</p>
+<pre><code>def predict(input_feature_set, k):  
+  distances = []
+
+  for group in data:  
+    for training_feature_set in data[group]:  
+      euclidean_distance = np.linalg.norm(np.array(input_feature_set) - np.array(training_feature_set))  
+      distances.append([euclidean_distance, group])
+
+  nearest = sorted(distances)[:k]  
+  votes = [d[1] for d in nearest]   
+  prediction = Counter(votes).most_common(1)[0][0]
+
+  return prediction
+</code></pre>
+<p>Now that’s some chunk of code!</p>
+<p>First things first! We loop through each training sample, calculating the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> between it and the input set.</p>
+<p>The euclidean distance between two points on a cartesian plane is given by:</p>
+<p><img src="/images/k-nearest-neighbors/euclidean-distance.png" alt=""></p>
+<p>Sound familiar?</p>
+<p>In the code, we used numpy’s euclidean distance function <code>np.linalg.norm()</code> for simplicity and efficiency.</p>
+<p>Next, we append the distance along with the class/group of the set (<code>[euclidean distance, group]</code> -&gt; <code>[12.092364, “male”]</code>) to <code>distances</code> list.</p>
+<p>Afterwards, we sort <code>distances</code> in ascending order of magnitude and select the first <em>k</em> elements using <code>sorted(distances)[:k]</code>.</p>
+<p>Then we dispose the distances with the new <code>votes</code> variable using <code>[d[1] for d in nearest]</code>. We don’t need the numbers anymore, only the nearest classes/groups e.g <code>[“male”, “female”, “male”]</code>.</p>
+<p>Finally, we count the occurrences of each class in <code>votes</code> and return the class with the highest occurrence.</p>
+<pre><code>prediction = Counter(votes).most_common(1)[0][0]
+
+return prediction
+</code></pre>
+<h1 id="predict">Predict</h1>
+<pre><code>print(predict([6.0, 52.1], 3))
+</code></pre>
+<h1 id="accuracy">Accuracy</h1>
+<p>To find out how accurate a KNN classifier is, we can divide a given data set into training and testing data, then run the test data through the predict function, noting if the classifier got the class right or wrong. This can be used to calculate accuracy, like so:</p>
+<pre><code>accuracy = correct_predictions / test_sample_size * 100
+</code></pre>
+<h1 id="confidence">Confidence</h1>
+<p>Confidence is, well how &ldquo;confident&rdquo; a KNN classifier is about a prediction. If we have k to be 3 and the nearest neighbors for a person classifier are female, male and female, we can say we’re <code>2/3 * 100</code> percent confident that the person is female. Likewise, if the nearest neighbors are all male, we can say we’re 100% confident that the person is a male.</p>
+<h1 id="perf">Perf</h1>
+<p>While KNN produces good classifiers, it takes a lot of time to predict outputs for large data sets. This is because euclidean distance must be calculated for all training samples in order to find the “nearest” samples in the data.</p>
+<h1 id="data-sets">Data sets</h1>
+<p>I suggest you try out KNN with a couple popular data sets to get a feel of how powerful the algorithm is. There are many free KNN data sets online like <a href="https://www.kaggle.com/styven/iris-dataset">the Iris data set</a> and the <a href="https://www.kaggle.com/uciml/breast-cancer-wisconsin-data">Breast Cancer Wisconsin (diagnostic) data set</a>. You should totally check them out!</p>
+<p>Don’t forget to check out the ML Chops repo for the complete KNN code: <a href="https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors">https://github.com/nicholaskajoh/ML_Chops/tree/master/k-nearest-neighbors</a>.</p>
+<p>If you have any questions, concerns or suggestions, don’t hesitate to comment! 👍</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/facebook-clone-7/">
+			Next<br>Build a Facebook clone from scratch with PHP — Part 7
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/linear-regression/">
+			Previous<br>Linear Regression
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/k-nearest-neighbors\/';  
+        
+        
+        this.page.identifier = '\/k-nearest-neighbors\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#the-ml-chops-series" class="nav-the-ml-chops-series">
+									The ML Chops series
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#supervised-learning" class="nav-supervised-learning">
+									Supervised learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#meet-knn" class="nav-meet-knn">
+									Meet KNN
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#code" class="nav-code">
+									Code
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#predict" class="nav-predict">
+									Predict
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#accuracy" class="nav-accuracy">
+									Accuracy
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#confidence" class="nav-confidence">
+									Confidence
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#perf" class="nav-perf">
+									Perf
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#data-sets" class="nav-data-sets">
+									Data sets
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

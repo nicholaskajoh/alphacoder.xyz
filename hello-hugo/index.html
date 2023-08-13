@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html><head>
+<title>Hello Hugo!</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Hello Hugo!
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2019-01-31
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/news">News</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>If you haven&rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration <a href="/from-medium-to-ghost">from a Medium.com publication to a self-hosted Ghost installation on Vultr</a>. Shortly after, I decided to ditch <a href="http://ghost.org">Ghost</a> (a Node.js CMS) for <a href="http://gohugo.io">Hugo</a> (a static site generator built with Go). I also changed the blog&rsquo;s design in the process. In this post, I&rsquo;ll share my experience using Ghost and explain why I moved again.</p>
+<p>Ghost is a great CMS. It&rsquo;s simple, it&rsquo;s clean and a joy to use. The story editor is very similar to Medium&rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.</p>
+<ul>
+<li>
+<p><strong>Theme customization and update:</strong> I needed a quick way to make changes to my blog&rsquo;s theme and a way to update it periodically without clearing out all my customizations. I couldn&rsquo;t find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog&rsquo;s server to push changes, but I never got to do it. I manually edited the theme&rsquo;s files on the server with nano as a temporary fix for quick customizations which is less than ideal.</p>
+</li>
+<li>
+<p><strong>Backup:</strong> I wanted automatic backups for my posts. I couldn&rsquo;t find a clean way to do periodic backups automatically. Ghost&rsquo;s data export doesn&rsquo;t include images, so if I wanted to backup all my data, I&rsquo;d have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn&rsquo;t find a ready-made solution for that.</p>
+</li>
+<li>
+<p><strong>Offline writing and editing:</strong> Inspiration to write can come at any time whether you&rsquo;re connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.</p>
+</li>
+<li>
+<p><strong>Cost:</strong> While the cost of self-hosting my Ghost blog was affordable, I figured I&rsquo;d need to pay more once I started getting more traffic. But beyond that, I don&rsquo;t see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.</p>
+</li>
+</ul>
+<p>Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&rsquo;s repository so it&rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.</p>
+<p>The <a href="https://github.com/nicholaskajoh/simple-hugo-theme">new blog theme</a> is inspired by <a href="http://bettermotherfuckingwebsite.com">http://bettermotherfuckingwebsite.com</a>. I wanted something clean, accessible and performant — something that doesn&rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.</p>
+<p>I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&rsquo;t do 301 redirects. Apparently it&rsquo;s against the law. I&rsquo;m however hopeful that the blog will pick up soon.</p>
+<p>The blog&rsquo;s source is available on GitHub: <a href="https://github.com/nicholaskajoh/alphacoder.xyz">https://github.com/nicholaskajoh/alphacoder.xyz</a>.</p>
+<p>Okay. That&rsquo;s it for now. Hopefully I don&rsquo;t jump ship again.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/deploy-microservices-on-kubernetes/">
+			Next<br>Deploy microservices on Kubernetes
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/from-medium-to-ghost/">
+			Previous<br>From Medium to Ghost
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/hello-hugo\/';  
+        
+        
+        this.page.identifier = '\/hello-hugo\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

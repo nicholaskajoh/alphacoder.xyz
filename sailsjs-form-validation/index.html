@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html><head>
+<title>Server-side form validation from A to Z with Sails.js</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#model" class="nav-model">
+									Model
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#validation-messages" class="nav-validation-messages">
+									Validation Messages
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#controller" class="nav-controller">
+									Controller
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#view" class="nav-view">
+									View
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Server-side form validation from A to Z with Sails.js
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2017-05-26
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/web-development">Web Development</a>
+                                &nbsp;
+                            
+                                <a href="/tag/javascript">JavaScript</a>
+                                &nbsp;
+                            
+                                <a href="/tag/node.js">Node.js</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p><strong>NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.</strong></p>
+<p><strong>TL;DR:</strong> <a href="https://github.com/nicholaskajoh/sails-form-validation">https://github.com/nicholaskajoh/sails-form-validation</a>.</p>
+<p>Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &ldquo;in real-time&rdquo; as they try to feed your backend with much needed data, but that&rsquo;s not enough. HTML, CSS and Javascript validation can be messed with. You need to validate on your server too.</p>
+<p>I couldn&rsquo;t find a tutorial that deals in full with the whole process of form validation in Sails.js so I decided to write one. Mind you, I&rsquo;m open to contributions on how best to do it so if you know something, post a comment.</p>
+<h1 id="model">Model</h1>
+<p>Validation in Sails happens at model level. The attributes in a model contain rules that define what data should be stored in the database table/collection it represents. Say we have a model Product, we could write validation rules like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/* my-sails-app/api/models/Product.js */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tableName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;products&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// primitive
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">ref</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;string&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">unique</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;string&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;float&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;string&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">in</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;black&#34;</span>, <span style="color:#e6db74">&#34;yellow&#34;</span>],
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// associations
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ...
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>We can easily identify the rules from the above code sample. The constraints used include <code>type</code>, <code>unique</code>, <code>in</code> and <code>required</code>. For the full list of validation rules, head over to <a href="https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations">the Sails docs</a>.</p>
+<h1 id="validation-messages">Validation Messages</h1>
+<p>When users submit invalid data, we need to provide them useful error messages so they can make the necessary corrections. We can define custom error messages for the validation rules we set for a given attribute. Sails doesn&rsquo;t support custom error messages out of the box but there&rsquo;s a nifty little library for that. It&rsquo;s called <a href="https://github.com/lykmapipo/sails-hook-validation">sails-hook-validation</a> and can be installed in your app by running <code>npm install sails-hook-validation --save</code>.</p>
+<p>With this, we can define fine error messages instead of the very generic error messages Sails provides. It&rsquo;s annoyingly easy to add validation messages:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/* my-sails-app/api/models/Product.js */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tableName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;products&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">validationMessages</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Who adds a product without a name? SMH.&#34;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Seriously? Wanna donate this product or what?&#34;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">in</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Only black and yellow labels are allowed bro!&#34;</span>,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="controller">Controller</h1>
+<p>Let&rsquo;s create a controller that serves as well as processes our form. Here&rsquo;s a snippet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/* my-sails-app/api/controllers/ProductController.js */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">shortid</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;shortid&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">Product</span>.<span style="color:#a6e22e">findOne</span>({ <span style="color:#a6e22e">ref</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">param</span>(<span style="color:#e6db74">&#39;ref&#39;</span>) });
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">product</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">notFound</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;product&#39;</span>, { <span style="color:#a6e22e">product</span> });
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">errors</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">old</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;POST&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">Product</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">ref</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">shortid</span>.<span style="color:#a6e22e">generate</span>(),
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">name</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> parseFloat(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">price</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">label</span>,
+</span></span><span style="display:flex;"><span>                });
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">redirect</span>(<span style="color:#e6db74">`product/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">product</span>.<span style="color:#a6e22e">ref</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">invalidAttributes</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">errors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Errors</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">old</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">view</span>(<span style="color:#e6db74">&#39;add-product-form&#39;</span>, <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>The <code>ProductController</code> is where most of the good stuff happens. Let&rsquo;s break things down piece by piece to get a grasp of what&rsquo;s going on. But before we do that, consider how our routes file may look:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/* my-sails-app/config/routes.js */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span>.<span style="color:#a6e22e">routes</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;GET /product/:ref&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ProductController.show&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;/products/add&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ProductController.add&#39;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>You could also use the <a href="http://sailsjs.com/documentation/concepts/blueprints">Sails Blueprints thingy</a>. Not a fan of it though.</p>
+<p>Now back to the controller. There are 2 functions in <code>ProductController</code>. The first <code>show()</code> displays a product given its reference <code>ref</code>. If the reference is not found, a 404 page is returned.</p>
+<p>The second method <code>add()</code> does 2 things. If it receives a GET request, it returns a form users can add products with. If it receives a POST request (i.e the form is being submitted), it attempts to create a new product and redirect to the product&rsquo;s page. If this fails (meaning there&rsquo;s a validation error), the form is returned with validation errors (<code>data.errors</code>) and the data previously submitted (<code>data.old</code>). We populate the form with <code>data.old</code> so that users don&rsquo;t have to retype everything if they submit an invalid form.</p>
+<h1 id="view">View</h1>
+<p>Now to our form view. Here you go:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- my-sails-app/views/add-product-form.ejs --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- name --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% if(errors.name) { %&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-danger&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% errors.name.forEach(err =&gt; { %&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= err.message %&gt;&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% }); %&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">label</span>&gt;Name&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;% if(old.name) { %&gt;&lt;%= old.name %&gt;&lt;% } %&gt;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- ./name --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div><p>The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.</p>
+<p><strong>Demo project: <a href="https://github.com/nicholaskajoh/sails-form-validation">https://github.com/nicholaskajoh/sails-form-validation</a>.</strong></p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/html-css-js/">
+			Next<br>HTML, CSS and Javascript as fast as possible
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/lazy-loading-with-django-and-jquery/">
+			Previous<br>Lazy load your content with Django and jQuery
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/sailsjs-form-validation\/';  
+        
+        
+        this.page.identifier = '\/sailsjs-form-validation\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#model" class="nav-model">
+									Model
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#validation-messages" class="nav-validation-messages">
+									Validation Messages
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#controller" class="nav-controller">
+									Controller
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#view" class="nav-view">
+									View
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

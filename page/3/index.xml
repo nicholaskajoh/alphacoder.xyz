@@ -1,0 +1,545 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>I code, therefore I am on Alpha Coder</title>
+    <link>https://alphacoder.xyz/</link>
+    <description>Recent content in I code, therefore I am on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Hello Hugo!</title>
+        <link>https://alphacoder.xyz/hello-hugo/</link>
+        <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/hello-hugo/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/hello-hugo/ -&lt;p&gt;If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration &lt;a href=&#34;https://alphacoder.xyz/from-medium-to-ghost&#34;&gt;from a Medium.com publication to a self-hosted Ghost installation on Vultr&lt;/a&gt;. Shortly after, I decided to ditch &lt;a href=&#34;http://ghost.org&#34;&gt;Ghost&lt;/a&gt; (a Node.js CMS) for &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.&lt;/p&gt;
+&lt;p&gt;Ghost is a great CMS. It&amp;rsquo;s simple, it&amp;rsquo;s clean and a joy to use. The story editor is very similar to Medium&amp;rsquo;s so I immediately felt at home using it. There were however a few concerns I had about using Ghost.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Theme customization and update:&lt;/strong&gt; I needed a quick way to make changes to my blog&amp;rsquo;s theme and a way to update it periodically without clearing out all my customizations. I couldn&amp;rsquo;t find a simple and convenient way to do so. I thought about creating a fork of the theme which I can customize, then setting up a Git hook on my blog&amp;rsquo;s server to push changes, but I never got to do it. I manually edited the theme&amp;rsquo;s files on the server with nano as a temporary fix for quick customizations which is less than ideal.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Backup:&lt;/strong&gt; I wanted automatic backups for my posts. I couldn&amp;rsquo;t find a clean way to do periodic backups automatically. Ghost&amp;rsquo;s data export doesn&amp;rsquo;t include images, so if I wanted to backup all my data, I&amp;rsquo;d have had to manage images separately. The ideal solution for me would be a backup system that saves a copy of my data and images on Dropbox or Google Drive every 2 weeks. I couldn&amp;rsquo;t find a ready-made solution for that.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Offline writing and editing:&lt;/strong&gt; Inspiration to write can come at any time whether you&amp;rsquo;re connected to the internet or not. I wanted to be able to write and edit my posts offline. This is not possible on Ghost as far as I know, except you maintain an offline copy of your posts which has its issues.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cost:&lt;/strong&gt; While the cost of self-hosting my Ghost blog was affordable, I figured I&amp;rsquo;d need to pay more once I started getting more traffic. But beyond that, I don&amp;rsquo;t see any reason to pay for something when you can get an alternative for free. Except of course the alternative is not as good.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hugo ticks all these boxes and more for me. My current theme is a Git submodule in the blog&amp;rsquo;s repository so it&amp;rsquo;s really easy to customize and update. Git is my backup system. My posts are versioned automatically and backed up on GitHub. I write and edit posts from the comfort of VS Code, my text editor of choice. And with just a single command, I can publish my blog to GitHub pages which is totally free and scales well.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/nicholaskajoh/simple-hugo-theme&#34;&gt;new blog theme&lt;/a&gt; is inspired by &lt;a href=&#34;http://bettermotherfuckingwebsite.com&#34;&gt;http://bettermotherfuckingwebsite.com&lt;/a&gt;. I wanted something clean, accessible and performant — something that doesn&amp;rsquo;t get in the way of readers. I also wanted something I could build upon should I need to, instead of fight in order to customize.&lt;/p&gt;
+&lt;p&gt;I mentioned in the article on my Medium-to-Ghost migration that most of my traffic was coming from Google search and so I felt confident leaving Medium. I didn&amp;rsquo;t consider the SEO implications of jumping from one domain to another. It really hit hard! More so, during the migration, Medium suspended my account for linking from my posts there to the new blog. I did that because I couldn&amp;rsquo;t do 301 redirects. Apparently it&amp;rsquo;s against the law. I&amp;rsquo;m however hopeful that the blog will pick up soon.&lt;/p&gt;
+&lt;p&gt;The blog&amp;rsquo;s source is available on GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/alphacoder.xyz&#34;&gt;https://github.com/nicholaskajoh/alphacoder.xyz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Okay. That&amp;rsquo;s it for now. Hopefully I don&amp;rsquo;t jump ship again.&lt;/p&gt;
+- https://alphacoder.xyz/hello-hugo/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>From Medium to Ghost</title>
+        <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
+        <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/from-medium-to-ghost/ -&lt;p&gt;Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.&lt;/p&gt;
+&lt;h2 id=&#34;why-the-move&#34;&gt;Why the move?&lt;/h2&gt;
+&lt;p&gt;I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.5k from 15 articles in 2017. I&amp;rsquo;d wanted to take things up a notch with proper branding (colors, custom domain etc) to make it easier to sell myself as a Software Engineer and Teacher, for quite a while. In September, I created a Medium publication after deciding that self-hosting a blog would be too much work. I didn&amp;rsquo;t quite like the publication thingy, but it was really easy to setup so I went with it; up until the point when I wanted to use a custom domain. Medium does not allow that anymore. Annoyed, I started to look for alternatives. I chose Ghost.&lt;/p&gt;
+&lt;h2 id=&#34;why-ghost&#34;&gt;Why Ghost?&lt;/h2&gt;
+&lt;p&gt;I was going to use WordPress but I decided to give Ghost a try, and I&amp;rsquo;m liking what I&amp;rsquo;m seeing so far (smooth-ish installation, clean UI etc). I was also kinda drawn by the fact that it&amp;rsquo;s built with NodeJS/JavaScript. Plus, I heard &lt;a href=&#34;https://ghost.org/vs/wordpress/&#34;&gt;it&amp;rsquo;s a lot faster&lt;/a&gt;, so&amp;hellip; you know—the faster the better.&lt;/p&gt;
+&lt;h2 id=&#34;how-are-you-migrating&#34;&gt;How are you migrating?&lt;/h2&gt;
+&lt;p&gt;All future articles will be publish here on &lt;a href=&#34;https://alphacoder.xyz&#34;&gt;alphacoder.xyz&lt;/a&gt;. I&amp;rsquo;ll be moving older posts over manually and gradually since &lt;a href=&#34;https://medium.com/secjuice/secjuice-is-abandoning-medium-why-medium-doesnt-deserve-our-publication-2a772ac64e46&#34;&gt;Medium makes it very difficult for users to export their content to other platforms&lt;/a&gt;. Also, it&amp;rsquo;s not possible to do 301 redirects from Medium to Ghost for migrated posts, so I won&amp;rsquo;t be deleting the original articles. I&amp;rsquo;ll link from the posts on Medium to the new blog. The Medium posts (basically title plus link to this blog) will remain until I notice little or no traffic from Medium. I may decide to delete the publication then.&lt;/p&gt;
+&lt;h2 id=&#34;what-will-you-miss-from-medium&#34;&gt;What will you miss from Medium?&lt;/h2&gt;
+&lt;p&gt;Little if anything. I used to think Medium was the major source of traffic on my posts. It turns out it&amp;rsquo;s about the least source, especially in my most trafficked articles. For instance, my top post this year had 37k views. 28k of that was from Google.com. Only 6% was from Medium. If I continue writing posts that help solve peoples&amp;rsquo; problem, I believe I&amp;rsquo;ll get good traffic.&lt;/p&gt;
+&lt;h2 id=&#34;spec-sheet&#34;&gt;Spec sheet?&lt;/h2&gt;
+&lt;p&gt;So the blog uses &lt;a href=&#34;https://ghost.org&#34;&gt;Ghost&lt;/a&gt; as you already know. The Ghost installation currently runs on a $5-per-month Ubuntu server &lt;a href=&#34;https://www.vultr.com&#34;&gt;on Vultr&lt;/a&gt;. This should be okay for now. As the blog grows, I&amp;rsquo;ll increase the server capacity accordingly.&lt;/p&gt;
+&lt;h2 id=&#34;ads-on-the-blog&#34;&gt;Ads on the blog?&lt;/h2&gt;
+&lt;p&gt;Maybe. I might be placing non-intrusive ads on the site sometime in the future in order to offset the costs of running the blog.&lt;/p&gt;
+&lt;h2 id=&#34;what-should-i-be-expecting-from-alpha-coder&#34;&gt;What should I be expecting from Alpha Coder?&lt;/h2&gt;
+&lt;p&gt;In 2019, I&amp;rsquo;m going to be writing more frequently and consistently. I hope to write an article bi-weekly. This might not be possible at the beginning of the year because of school work, but I&amp;rsquo;ll try my best. I&amp;rsquo;ll also double down on the quality of my articles, so expect great content. Most of my posts will be brief how-to guides, but I&amp;rsquo;ll also be doing long form posts. If you want me to write about something, please let me know on Twitter &lt;a href=&#34;https://twitter.com/nicholaskajoh&#34;&gt;@nicholaskajoh&lt;/a&gt; (DMs are open).&lt;/p&gt;
+- https://alphacoder.xyz/from-medium-to-ghost/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Check domain availability from your terminal</title>
+        <link>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</link>
+        <pubDate>Mon, 10 Dec 2018 20:46:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/check-domain-availability-from-your-terminal/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/check-domain-availability-from-your-terminal/ -&lt;p&gt;I have a theory — that domain registrars share your search queries with resellers. Countless times I’ve had the bad experience of searching for a domain to see its availability then finding out a day/a few days later that it has been bought or made premium. Sure, it’s very possible that it may have been legitly purchased by someone else. But I’ve been in a couple forums where people have complained about the same thing. Also, sometimes the registrar you searched at tells you it has been bought or you have to pay a premium for it but another registrar which you haven’t searched with tells you it’s available and you’re actually able to buy it.&lt;/p&gt;
+&lt;p&gt;You can boycott registrars by doing a WHOIS lookup on the desired domain instead. If a match is found, info about the domain is displayed but if no match is found, you know the site is available. There are a couple of websites that provide this functionality, most notably &lt;a href=&#34;https://www.whois.com/&#34;&gt;https://www.whois.com&lt;/a&gt;. Alternatively, you can use the WHOIS CLI tool.&lt;/p&gt;
+&lt;p&gt;To install, run…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo apt install whois
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;If you’re a Windows user, you can download the WHOIS CLI here:&lt;/em&gt; &lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&#34;&gt;&lt;em&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/whois&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To check for availability of a site, run &lt;code&gt;whois sitename.tld&lt;/code&gt;. E.g:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ whois example.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If it&amp;rsquo;s been registered, you’ll get a result like so…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/check-domain-availability-from-your-terminal/whois-match.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If not, you’ll get something like this…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/check-domain-availability-from-your-terminal/whois-no-match.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+- https://alphacoder.xyz/check-domain-availability-from-your-terminal/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to Git push to an AWS EC2 remote using a PEM file</title>
+        <link>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</link>
+        <pubDate>Sun, 02 Dec 2018 13:13:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ -&lt;p&gt;AWS provides you with a &lt;em&gt;.pem&lt;/em&gt; file when creating an EC2 instance. You can use this file to generate SSH keys for accessing your server without the need for the PEM, as well as push to a remote Git repository on the server. Here’s how…&lt;/p&gt;
+&lt;h3 id=&#34;1-copy-private-key-in-pem-to-ssh-folder&#34;&gt;1. Copy private key in PEM to .ssh folder&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;$ cp /path/to/my-aws-ec2-instance.pem ~/.ssh/id_rsa_ec2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-generate-and-save-public-key&#34;&gt;2. Generate and save public key&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-keygen -y -f /path/to/my-aws-ec2-instance.pem &amp;gt; ~/.ssh/id_rsa_ec2.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-add-private-key-to-ssh-agent&#34;&gt;3. Add private key to ssh-agent&lt;/h3&gt;
+&lt;p&gt;Start ssh-agent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ eval &amp;quot;$(ssh-agent -s)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then add your key to the agent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-add ~/.ssh/id_rsa_ec2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;At this point, you should be able to access your instance without the PEM file. Instead of:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh -i my-aws-ec2-instance.pem ec2-user@ec2-ip.compute-x.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Use:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh ec2-user@ec2-ip.compute-x.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-add-remote-and-push&#34;&gt;4. Add remote and push&lt;/h3&gt;
+&lt;p&gt;Change directory to your local Git repository and add the remote URL of your server&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git remote add ec2server ec2-user@ec2-ip.compute-1.amazonaws.com:/home/ec2-user/repo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now push…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git push ec2server&lt;/code&gt;&lt;/pre&gt;
+- https://alphacoder.xyz/git-push-to-an-aws-ec2-remote-using-a-pem-file/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Two Git workflows you should know</title>
+        <link>https://alphacoder.xyz/git-workflows/</link>
+        <pubDate>Thu, 22 Nov 2018 07:21:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/git-workflows/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/git-workflows/ -&lt;p&gt;Git is ubiquitous and pretty much standard for many Software Developers nowadays as far as Version Control Systems (VCS) are concerned. There are quite a number of ways developers work using Git. The workflows individuals/teams choose usually depend on factors like project type, project size, team size, dev tools integration etc.&lt;/p&gt;
+&lt;p&gt;In this post, we’ll be discussing two popular Git workflows you should know — &lt;em&gt;Gitflow&lt;/em&gt; and the &lt;em&gt;Forking workflow&lt;/em&gt;. Let’s dig right in!&lt;/p&gt;
+&lt;h3 id=&#34;gitflow&#34;&gt;Gitflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/git-workflows/gitflow.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Gitflow workflow. Source: nvie.com&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Developed and popularized by &lt;a href=&#34;https://nvie.com/about&#34;&gt;Vincent Driessen&lt;/a&gt;, the Gitflow workflow is a branching model built around release management. It involves the use of two main branches (&lt;em&gt;master&lt;/em&gt; and &lt;em&gt;develop&lt;/em&gt;) and three supporting branches (&lt;em&gt;feature&lt;/em&gt;, &lt;em&gt;release&lt;/em&gt; and &lt;em&gt;hotfix&lt;/em&gt;), with strict branch off and merge rules.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;master&lt;/em&gt; branch is the production/stable branch while the &lt;em&gt;develop&lt;/em&gt; branch reflects the latest changes to the software for the next release. A &lt;em&gt;feature&lt;/em&gt; branch is created when a new feature is to be added.&lt;/p&gt;
+&lt;p&gt;When all the features for the next release have been merged to &lt;em&gt;develop&lt;/em&gt; and it is ready to be released, a versioned &lt;em&gt;release&lt;/em&gt; branch is created off &lt;em&gt;develop&lt;/em&gt;. This branch does not take any new features — only bug fixes. When the &lt;em&gt;release&lt;/em&gt; branch is ready to be taken to production, it is merged into &lt;em&gt;master&lt;/em&gt; and tagged with the release version. It is also merged into &lt;em&gt;develop&lt;/em&gt; so that &lt;em&gt;develop&lt;/em&gt; is updated with the fixes.&lt;/p&gt;
+&lt;p&gt;If a bug is discovered in production, a &lt;em&gt;hotfix&lt;/em&gt; branch is created to fix it. This branch is merged into &lt;em&gt;master&lt;/em&gt; (and versioned), as well as into &lt;em&gt;develop&lt;/em&gt; or to &lt;em&gt;release&lt;/em&gt; (if one currently exists).&lt;/p&gt;
+&lt;p&gt;You can learn more about this workflow from Vincent himself in his article titled &lt;a href=&#34;https://nvie.com/posts/a-successful-git-branching-model/&#34;&gt;A Successful Git Branching Model&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;forking-workflow&#34;&gt;Forking workflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/git-workflows/forking-workflow.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Forking workflow&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The Forking workflow is common in open source projects where anyone can contribute. Outside collaborators are not given write access to the official repository. They must first fork the repository, create a new branch, make the changes they want, then send a Pull Request to the official repository.&lt;/p&gt;
+&lt;p&gt;A fork is a server-side clone of a repository. You can fork any public repository on &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; and you’ll get a copy of it on your own account. You can make any changes you want to this fork. Forks need to be regularly synchronized with the upstream (official) repository so that they can have the latest changes.&lt;/p&gt;
+&lt;p&gt;A Pull Request (PR) is a request to merge the changes from a branch in a fork to an upstream repository. A project maintainer may accept, reject or request changes to a PR before it’s merged.&lt;/p&gt;
+&lt;p&gt;You can learn more about this workflow with &lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow&#34;&gt;this tutorial from Atlassian.com&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/git-workflows/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Understanding modern front-end development</title>
+        <link>https://alphacoder.xyz/understanding-modern-front-end-development/</link>
+        <pubDate>Fri, 09 Nov 2018 13:06:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/understanding-modern-front-end-development/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/understanding-modern-front-end-development/ -&lt;p&gt;It can be overwhelming especially for newbies, to work with modern front-end tools as development processes have increased in complexity over the years. As a mostly back-end web developer, I’ve had my share of confusion and frustration trying to wrap my head around how things work. This article hopes to give you a big picture/bird’s eye view of how some of the more common tools used by front-end developers today fit together and the problems they solve/are trying to solve.&lt;/p&gt;
+&lt;p&gt;We’re going to discuss the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;package managers (npm)&lt;/li&gt;
+&lt;li&gt;transpilers (Babel)&lt;/li&gt;
+&lt;li&gt;module bundlers (Webpack)&lt;/li&gt;
+&lt;li&gt;task runners (Grunt)&lt;/li&gt;
+&lt;li&gt;CSS preprocessors (SASS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;package-managers&#34;&gt;Package Managers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/understanding-modern-front-end-development/npm-logo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;npm logo (&lt;a href=&#34;https://www.npmjs.com/&#34;&gt;https://www.npmjs.com&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;One important principle you’ll learn as a Sofware Developer is DRY (Don’t Repeat Yourself). Once you see yourself writing the same code in three or more places in a project, you should find a way to abstract that functionality into a reusable function, class or module.&lt;/p&gt;
+&lt;p&gt;Front-end projects have a lot in common in terms of UI components and logic so it might be an even better idea to abstract functionalities into reusable libraries, so that they may be shared across projects. A ton of libraries have been built to do all sorts of things from handling AJAX requests to manipulating dates and images. In order to cut down dev time and/or not reinvent the wheel, front-end developers use many such libraries in their projects — sometimes all too much.&lt;/p&gt;
+&lt;p&gt;It can be difficult to manage these libraries (or dependencies, as they’re commonly called) manually. Even if your project has only three dependencies, it may be hard to keep everything clean and dandy because these dependencies could have their own dependencies! This is where a package manager comes in. Package managers automate the process of installing, upgrading, configuring and removing packages (or dependencies or libraries) in your project.&lt;/p&gt;
+&lt;p&gt;npm (Node Package Manager) is a popular package manager used by front-end developers today. It is the default package manager for Node.js, an environment for running JavaScript outside of a browser. npm uses a file named &lt;em&gt;package.json&lt;/em&gt; to know the dependencies required by your project, making it easy for you and your team to run a single command that installs all the libraries you need to run your application. You can start learning how to use npm by reading &lt;a href=&#34;https://docs.npmjs.com/getting-started/what-is-npm&#34;&gt;What is npm?&lt;/a&gt; from the official docs.&lt;/p&gt;
+&lt;h1 id=&#34;transpilers&#34;&gt;Transpilers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/understanding-modern-front-end-development/babel-logo.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;babel logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Lack of browser support for some of the newer features of JavaScript (&lt;a href=&#34;http://es6-features.org&#34;&gt;ES6&lt;/a&gt;) has been a major challenge for many front-end developers who want to use the latest and greatest to write better code and ship features faster. Developers have also desired features not available in the language (such as type annotations, generics, namespaces, interfaces etc found in &lt;a href=&#34;https://www.typescriptlang.org&#34;&gt;TypeScript&lt;/a&gt;) or just wanted syntactic sugar (like the Python-like &lt;a href=&#34;https://coffeescript.org&#34;&gt;CoffeeScript&lt;/a&gt;). Transpilers are used to solve these problems.&lt;/p&gt;
+&lt;p&gt;A transpiler (AKA source-to-source compiler) is a type of compiler that takes the source code of a program in one language and produces the equivalent source code in another language. This means I can write &lt;a href=&#34;https://softwareengineering.stackexchange.com/a/306847&#34;&gt;ES6 JavaScript&lt;/a&gt; and have it converted to ES5 so that it can run on all modern browsers. I can also choose to write TypeScript, CoffeeScript, ClojureScript or Dart code, taking advantage of features that make it faster and scalable to build large web apps.&lt;/p&gt;
+&lt;p&gt;Babel is a commonly used transpiler for converting ES6+ code into a backwards compatible version of JavaScript supported by current and older browsers. It is also used to accomplish specific tasks such as converting JSX in React.js code to JavaScript via plugins. You can try out and learn more about Babel from their official website: &lt;a href=&#34;https://babeljs.io&#34;&gt;babeljs.io&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;module-bundlers&#34;&gt;Module Bundlers&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/understanding-modern-front-end-development/webpack-logo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;webpack logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Web development has become increasing JavaScript-centric over the years — Single-page Applications (SPAs), Progressive Web Apps (PWAs) and such. As front-end apps were growing in complexity, it was imperative to develop tools that could package an application (code, assets) and its dependencies into light-weight and performant bundles that will be understood by browsers.&lt;/p&gt;
+&lt;p&gt;The main function of a module bundler is to package JavaScript files for use in a web browser, but bundlers are also capable of transforming and bundling other assets such as CSS files and images.&lt;/p&gt;
+&lt;p&gt;Webpack is arguably the most popular JavaScript bundler in the wild today. It has advanced features such as bundle splitting, source maps, hot module reloading and lazy loading. You can learn more about Webpack here: &lt;a href=&#34;https://webpack.js.org/concepts/&#34;&gt;https://webpack.js.org/concepts&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;task-runners&#34;&gt;Task Runners&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/understanding-modern-front-end-development/grunt-logo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;grunt logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Task runners make life easier by doing what they do — run tasks! During development, front-end engineers find themselves repeating the same things (such as minification, compilation, unit-testing and linting) over and over again. The time used in performing these mundane tasks can be better spent doing more important things like squashing bugs and adding new features. Task runners help you automate these tasks so that you can run them quickly with one or a few commands.&lt;/p&gt;
+&lt;p&gt;Grunt is a popular task runner used in front-end apps. It uses a CLI to run custom tasks which can be defined in a file called &lt;em&gt;Gruntfile&lt;/em&gt;. You can get started with Grunt by reading &lt;a href=&#34;https://gruntjs.com/getting-started&#34;&gt;the documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;css-preprocessors&#34;&gt;CSS Preprocessors&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/understanding-modern-front-end-development/sass-logo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;sass logo&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;CSS preprocessors let you generate CSS from their own unique syntax. There are many CSS preprocessors available which provide features that don’t exist in pure CSS such as mixins, selector nesting, selector inheritance etc. These features make your CSS DRY, and help you write modular code, save time, create reusable components and maintain large projects fairly easily.&lt;/p&gt;
+&lt;p&gt;A popular option for a CSS processor is SASS, which stands for Syntactically Awesome Style Sheet. SASS supports variables, loops, mixins with arguments etc. You can learn more about SASS by reading &lt;a href=&#34;https://sass-lang.com/guide&#34;&gt;the official guide&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;frameworks-and-boilerplates&#34;&gt;Frameworks and Boilerplates?&lt;/h1&gt;
+&lt;p&gt;Frameworks and boilerplates combine several front-end dev tools (some of which we discussed in this article) to provide a starting point for developing web applications. Instead of setting up and configuring all these tools every time you want to start a new project, you can just pull up a framework or boilerplate that already has everything up and ready to go.&lt;/p&gt;
+- https://alphacoder.xyz/understanding-modern-front-end-development/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to land an internship at a great startup</title>
+        <link>https://alphacoder.xyz/land-great-startup-internship/</link>
+        <pubDate>Sun, 30 Sep 2018 07:45:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/land-great-startup-internship/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/land-great-startup-internship/ -&lt;p&gt;Doing an internship at a reputable company is one of the best ways to kick-start your career in tech. You’ll get to learn from top-notch developers/designers and work on ambitious and exciting projects/products. Plus if you do well, you’ll likely be given a full-time offer which is pretty neat.&lt;/p&gt;
+&lt;p&gt;Here are some tips on how to land an internship at a great startup&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;do-your-homework&#34;&gt;Do your homework&lt;/h2&gt;
+&lt;p&gt;I remember being caught off guard when asked about the company I was applying to by my interviewer. I knew very little about the them. Great startups want folks who know and care about their vision and products.&lt;/p&gt;
+&lt;p&gt;Make a list of all the startups you’re interested in applying to and do your research. Google is your friend. Visit their websites, read their blogs, follow their activities on social media and checkout the latest news about them. If possible, do same for influential individuals at the companies. In addition to being able to answer questions about the company when asked, you’ll be able to learn about their products, tech stack, culture etc and know for sure if you’d like to be part of what they do.&lt;/p&gt;
+&lt;h2 id=&#34;dont-go-through-the-front-door&#34;&gt;Don’t go through the front door&lt;/h2&gt;
+&lt;p&gt;Going through the front door means applying to a company directly e.g from a job ad or sending them an email. Many startups don’t have formal internship programs. As such, its hard to find good internship job ads on/offline. Also, from personal experience sending tons of emails, I’ve found that a good number of companies don’t respond. The ones that do usually say something along the lines of “sorry, we’re not recruiting interns at this time” (really annoying).&lt;/p&gt;
+&lt;p&gt;There was this company that said they didn’t take interns at the time but I knew people who were interning there. In fact, I asked someone who was interning there how he got in and he told me he “just got a call”. What was the interview process like? “I wasn’t interviewed”. Who called you? He refused to tell me. He definitely knew a top dog at the company. For sure.&lt;/p&gt;
+&lt;p&gt;The best way to go is through the “back door”. If you can get a referral from an employee at a company or make friends with the folks in upper management, you’ll most likely get yourself a job. There are several avenues to connect with people — meetups, developer communities, Twitter, friends of friends etc. When you try to connect with people, don’t beg or ask for favors. Get them interested in you and/or your work, then register your interest in their company and opportunities for internship.&lt;/p&gt;
+&lt;p&gt;It’s hard to socialize and network, especially if you’re introverted like me. Getting people interested in you is not the easiest thing in the world but if you do a good job, you likely get yourself an interview or even an offer.&lt;/p&gt;
+&lt;h2 id=&#34;work-on-personal-projects&#34;&gt;Work on personal projects&lt;/h2&gt;
+&lt;p&gt;If you’re looking for an internship, you probably have little or no work experience, and experience is a very important factor used by employers to rate one’s skill. You can make up by working on personal projects. Personal projects help you develop yourself, and give you something to talk about at interviews and other situations where you might want to sell yourself.&lt;/p&gt;
+&lt;p&gt;When working on projects, aim for quality and not quantity. The number of apps you’ve built is not nearly as important as what the apps do, how you built them and how much impact they’ve made. You don’t have to work on something big and complex. You just need something interesting and thoughtful.&lt;/p&gt;
+&lt;h2 id=&#34;write-a-solid-cv&#34;&gt;Write a solid CV&lt;/h2&gt;
+&lt;p&gt;Most of the people (e.g CEOs, developers and recruiters) who I’ve chatted with about internship opportunities at their company have asked me to send them my CV. It’s important to have a solid CV handy during your job search.&lt;/p&gt;
+&lt;p&gt;I’ve found that a one-page CV with the headings: Summary, Experience, Projects, Skills, Education and Accomplishments does the trick. But I’m no CV expert. Do read &lt;a href=&#34;https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume/&#34;&gt;My Personal Formula for a Winning Resume&lt;/a&gt; by Laszlo Buck and watch &lt;a href=&#34;https://www.youtube.com/watch?v=zrXZBkYzuZo&#34;&gt;How to: Work at Google — Resume Tips&lt;/a&gt; for more insights.&lt;/p&gt;
+&lt;h2 id=&#34;dont-lie&#34;&gt;Don’t lie&lt;/h2&gt;
+&lt;p&gt;Don’t lie about your abilities! You’ll probably interview with a developer/designer who has years of experience working with a plethora of technologies. They can spot liars easily. Don’t try to wow them. Instead, tell them about your learning journey — where you want to go, how far you’ve come and how working with them would move you towards achieving your goals.&lt;/p&gt;
+- https://alphacoder.xyz/land-great-startup-internship/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Dockerizing Django in development and production</title>
+        <link>https://alphacoder.xyz/dockerizing-django/</link>
+        <pubDate>Wed, 15 Aug 2018 12:54:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/dockerizing-django/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/dockerizing-django/ -&lt;p&gt;Setting up Docker can sometimes be confusing. There are many little pieces that need to come together for everything to work as expected. Outlined in this post is a simple Docker setup you can use for your Django projects in development and production environments.&lt;/p&gt;
+&lt;h2 id=&#34;tldr-sample-project&#34;&gt;TL;DR: Sample project&lt;/h2&gt;
+&lt;p&gt;You can &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django&#34;&gt;check out the code&lt;/a&gt; on GitHub.&lt;/p&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; python:3.6-alpine&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apk --update add &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    build-base &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    postgresql &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    postgresql-dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    libpq &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# pillow dependencies&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;    jpeg-dev &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    zlib-dev&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; mkdir /www&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /www&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; requirements.txt /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; pip install -r requirements.txt&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; PYTHONUNBUFFERED &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /www/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This &lt;strong&gt;Dockerfile&lt;/strong&gt; is pretty straightforward. It starts from a Python-Alpine base image, then installs the dependencies that Django needs, notably &lt;code&gt;postgresql&lt;/code&gt; and &lt;code&gt;postgresql-dev&lt;/code&gt;. This Django project is setup to use PostgreSQL. If you want to use another database engine like MySQL or MongoDB, you need to install the required adapters/dependencies. Also, if you’re dealing with images (ImageField), you need to install &lt;code&gt;jpeg-dev&lt;/code&gt; and &lt;code&gt;zlib-dev&lt;/code&gt; as well (see &lt;a href=&#34;https://pillow.readthedocs.io/en/latest/installation.html#building-from-source&#34;&gt;Pillow dependencies&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Afterwards, it installs the packages in &lt;em&gt;requirements.txt&lt;/em&gt;, then copies everything in the project root to &lt;code&gt;/www/&lt;/code&gt; where the image would be executed from. &lt;code&gt;ENV PYTHONUNBUFFERED 1&lt;/code&gt; causes all output to &lt;code&gt;stdout&lt;/code&gt; to be flushed immediately, so that you can easily see what’s going on inside your Python app from a terminal.&lt;/p&gt;
+&lt;h2 id=&#34;docker-composeyml&#34;&gt;docker-compose.yml&lt;/h2&gt;
+&lt;p&gt;I almost always use Docker Compose with Docker. With Compose, you can run multiple containers at once, and you don’t have to memorize long Docker commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;web&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;on&lt;/span&gt;-&lt;span style=&#34;color:#ae81ff&#34;&gt;failure&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;env_file&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./.env&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;python manage.py runserver 0.0.0.0:8000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;.:/www&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8000:8000&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;db&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;db&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;postgres:10.3-alpine&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;unless-stopped&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;env_file&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./.env&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;5432:5432&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./postgres/data:/var/lib/postgresql/data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There are two services in this Compose file — web and db. The web service builds the Django app using the &lt;em&gt;Dockerfile&lt;/em&gt; in the previous section. A volume is created to map the project directory in the host to the one in the container (&lt;code&gt;- .:/www&lt;/code&gt;) so that any changes made on the host are mirrored in the container. The &lt;code&gt;command&lt;/code&gt; parameter uses Django’s dev server to run the app (&lt;code&gt;python manage.py runserver 0.0.0.0:8000&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;The db service uses a PostgreSQL image and maps PostgreSQL’s data directory to &lt;code&gt;./postgres/data&lt;/code&gt; in the host, so that DB data is persisted even if the container gets destroyed. This very PostgreSQL image (&lt;a href=&#34;https://hub.docker.com/_/postgres/&#34;&gt;the official postgreSQL image&lt;/a&gt;) uses several environment variables to configure PostgreSQL, including &lt;code&gt;POSTGRES_USER&lt;/code&gt;, &lt;code&gt;POSTGRES_PASSWORD&lt;/code&gt; and &lt;code&gt;POSTGRES_DB&lt;/code&gt;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# .env
+DEBUG=1
+ALLOWED_HOSTS=*
+SECRET_KEY=secret123
+
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=secret123
+POSTGRES_DB=mypgsqldb
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The above variables are made available to the services using the &lt;code&gt;env_file&lt;/code&gt; parameter. The postgres variables are used by both the web and db service (see &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L56&#34;&gt;the settings.py file in the sample project&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;docker-composeprodyml&#34;&gt;docker-compose.prod.yml&lt;/h2&gt;
+&lt;p&gt;My production configs usually differ a bit from their development counterpart. I use Gunicorn to serve the Django app, and NGINX as a reverse proxy and static/media file server.&lt;/p&gt;
+&lt;p&gt;This setup, while good for production, is not very convenient in development where the goal is often to &lt;em&gt;break things and move fast&lt;/em&gt;. Sometimes, I decide to use a managed database service so there’s no need for a Dockerized database server. All these are reflected in my &lt;em&gt;docker-compose.prod.yml&lt;/em&gt; file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;web&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;on&lt;/span&gt;-&lt;span style=&#34;color:#ae81ff&#34;&gt;failure&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;env_file&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./.env&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gunicorn --bind 0.0.0.0:8080 dockerizeddjango.wsgi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;nginx&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;always&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./nginx/conf.d:/etc/nginx/conf.d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./staticfiles:/static&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./mediafiles:/media&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The web service in the production Compose file looks identical to one in the development file, except for the &lt;code&gt;command&lt;/code&gt; parameter (majorly). It uses &lt;a href=&#34;http://gunicorn.org&#34;&gt;Gunicorn&lt;/a&gt; (&lt;a href=&#34;https://docs.djangoproject.com/en/dev/ref/django-admin/#runserver&#34;&gt;which is more suitable&lt;/a&gt;) to serve the application (&lt;code&gt;gunicorn — bind 0.0.0.0:8080 dockerizeddjango.wsgi&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;There’s also an NGINX service. Notice the volume definitions in this service. The first volume maps &lt;code&gt;/etc/nginx/conf.d&lt;/code&gt; to the &lt;code&gt;./nginx/conf.d&lt;/code&gt; folder on the host which contains &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/master/nginx/conf.d/dockerizeddjango.conf&#34;&gt;&lt;em&gt;dockerizeddjango.conf&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# dockerizeddjango.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;server&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;listen&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;server_name&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;localhost&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# serve static files
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/static/&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/static/&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# serve media files
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/media/&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/media/&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# pass requests for dynamic content to gunicorn
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_pass&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;http://web:8080&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a very basic Nginx config file. It’s also pretty self-explanatory. It passes requests with &lt;code&gt;/static&lt;/code&gt; (e.g &lt;em&gt;example.com/static/virus.js&lt;/em&gt;) and &lt;code&gt;/media&lt;/code&gt; (e.g &lt;em&gt;example.com/media/anonymous.jpg&lt;/em&gt;) to the &lt;code&gt;/static&lt;/code&gt; and &lt;code&gt;/media&lt;/code&gt; directories on the web container respectively. These directories are mapped to the &lt;code&gt;/staticfiles&lt;/code&gt; and &lt;code&gt;/mediafiles&lt;/code&gt; directories on the host where &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L98&#34;&gt;staticfiles are collected&lt;/a&gt; and &lt;a href=&#34;https://github.com/nicholaskajoh/dockerized-django/blob/24c452851f3e01e41cbf146c88a7976f089b53fd/dockerizeddjango/settings.py#L104&#34;&gt;media files uploaded&lt;/a&gt;. Other requests are proxied to Gunicorn.&lt;/p&gt;
+&lt;p&gt;Did you observe the use of service names in some files? e.g &lt;code&gt;POSTGRES_HOST=db&lt;/code&gt; and &lt;code&gt;proxy_pass http://web:8080;&lt;/code&gt;. &lt;strong&gt;db&lt;/strong&gt; and &lt;strong&gt;web&lt;/strong&gt; resolve to the IP addresses of their containers. This is handled by Docker Compose so that we don’t have to worry about what the IP address of a container is or hardcode IP addresses that might change later.&lt;/p&gt;
+&lt;p&gt;Use the following command to run the Compose file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker-compose -f docker-compose.prod.yml up --build -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;-f&lt;/code&gt; parameter specifies the production Compose file, &lt;em&gt;docker-compose.prod.yml&lt;/em&gt; (Docker Compose defaults to &lt;em&gt;docker-compose.yml&lt;/em&gt;). &lt;code&gt;--build&lt;/code&gt; tells Compose to rebuild the images each time the command is run, and the &lt;code&gt;-d&lt;/code&gt; flag runs the containers in detached mode so that they keep running in the background even when your terminal is closed.&lt;/p&gt;
+&lt;p&gt;You can run migrations and create an admin user with the following commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker-compose -f docker-compose.prod.yml run web python manage.py migrate
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker-compose -f docker-compose.prod.yml run web python manage.py collectstatic --noinput
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://alphacoder.xyz/dockerizing-django/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>I built my own web search engine—here&#39;s how</title>
+        <link>https://alphacoder.xyz/my-web-search-engine/</link>
+        <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/my-web-search-engine/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/my-web-search-engine/ -&lt;p&gt;I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!&lt;/p&gt;
+&lt;h2 id=&#34;about-my-search-engine-devsearch&#34;&gt;About my search engine, devsearch&lt;/h2&gt;
+&lt;p&gt;It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.&lt;/p&gt;
+&lt;p&gt;The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place. It would take tons of servers to crawl a meaningful portion of the web in good time. I didn’t have the time or the servers. I decided to focus on tech/software development content (hence the name &lt;em&gt;devsearch&lt;/em&gt;) and to deal only with textual data.&lt;/p&gt;
+&lt;p&gt;The next step was to decide on the features to implement. The core functionalities of a search engine are crawling, indexing and searching. But there are a ton of other features that make the search engines we use today so good. Features like autocomplete, auto-correct, &lt;a href=&#34;https://en.wikipedia.org/wiki/Stemming&#34;&gt;stemming&lt;/a&gt;, semantic analysis, contextual search (search history, location, season etc), featured snippets, spam detection, knowledge graph etc.&lt;/p&gt;
+&lt;p&gt;The features I chose to build were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Crawling&lt;/li&gt;
+&lt;li&gt;Indexing&lt;/li&gt;
+&lt;li&gt;Searching (sorting results using TFIDF and PageRank)&lt;/li&gt;
+&lt;li&gt;Autocomplete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;stack&#34;&gt;Stack&lt;/h2&gt;
+&lt;p&gt;Python was my language of choice. I also used some HTML, CSS and JavaScript. My stack:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flask (micro framework for Python)&lt;/li&gt;
+&lt;li&gt;Scrapy (crawling framework for Python)&lt;/li&gt;
+&lt;li&gt;LXML (for processing XML and HTML in Python)&lt;/li&gt;
+&lt;li&gt;MongoEngine (object document mapper for MongoDB)&lt;/li&gt;
+&lt;li&gt;Bootstrap 4 (CSS library for UI components)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;crawling-web-pages-with-scrapy&#34;&gt;Crawling web pages with Scrapy&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://scrapy.org/&#34;&gt;Scrapy&lt;/a&gt; is a free and open source web crawling framework. With Scrapy, you can create &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_crawler&#34;&gt;a &lt;em&gt;spider&lt;/em&gt;&lt;/a&gt;, give it a bunch of urls to crawl and tell it what to do with the pages it fetches. You can even tell the spider to crawl the links it finds on the pages it crawls, allowing it to discover new pages.&lt;/p&gt;
+&lt;p&gt;I took a very lazy approach to parsing the scrapped pages. I used LXML to extract only the text from the HTML response. Say there’s a HTML page like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;How Google Search Works&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Crawling and indexing&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Search algorithms&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Useful responses&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The output would be:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;How Google Search Works Crawling and indexing As we speak, Google is using web crawlers to organize information from webpages and other publicly available content in the Search index. Search algorithms Google ranking systems sort through hundreds of billions of webpages in the Search index to give you useful and relevant results in a fraction of a second. Useful responses With more content and in a wider variety on the Internet than ever before, Google makes sure to offer you search results in a range of rich formats to help you find the information you’re looking for quickly.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;NB: You lose a lot of important data by doing this but it simplifies things a lot&lt;/em&gt; 😊&lt;/p&gt;
+&lt;p&gt;I also extract all the links in each page (necessary for PageRank).&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Page (How Google Search Works):
+    url: https://example.com/google-search
+    content: How Google Search Works
+        links:
+            - Link (Google Search)
+            - Link (Search Engines Wiki)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;There’s a list of allowed domains in the configs (&lt;code&gt;SPIDER_ALLOWED_DOMAINS&lt;/code&gt;) which helps to fence the spider. It only crawls pages from the websites in that list.&lt;/p&gt;
+&lt;p&gt;The spider crawls periodically via a cronjob which runs the custom flask command &lt;code&gt;flask crawl&lt;/code&gt;. A &lt;code&gt;--recrawl&lt;/code&gt; option can be added to the command to tell the spider whether to crawl new pages or crawl pages it has crawled before in order to update them.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ flask crawl --recrawl True
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A list of urls to crawl (called Crawl List) is maintained in the DB. There needs to be at least one url in the list for the spider to start crawling. As it crawls, it updates the list with new urls and marks the ones it has crawled.&lt;/p&gt;
+&lt;h2 id=&#34;indexing&#34;&gt;Indexing&lt;/h2&gt;
+&lt;p&gt;Indexes help us find things quicker e.g the Table of Contents or Glossary in a book. If we wanted to index a website’s SQL DB, we could create an index table similar to this:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;id title   description    keywords       page
+------------------------------------------------
+1  G.O.A.T Greatest of... messi, ronaldo /p/goat
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index&#34;&gt;&lt;em&gt;forward index&lt;/em&gt;&lt;/a&gt;. It’s very similar to a Table of Contents (which usually has chapter titles, descriptions and page numbers). Instead of writing expensive and complex queries, you can simply lookup the index table and return matching records. However, as the records in the index increase, lookup becomes slower and slower.&lt;/p&gt;
+&lt;p&gt;There is another type of index which makes searching much faster. It’s the &lt;a href=&#34;https://en.wikipedia.org/wiki/Inverted_index&#34;&gt;&lt;em&gt;inverted index&lt;/em&gt;&lt;/a&gt;. This is the opposite of the forward index. Instead of having a list of pages and the keywords they contain, we have a list of keywords and the pages they are contained in. This is quite similar to a glossary.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;id word     pages
+--------------------------------------------------------
+1  greatest /p/goat /u/messi /u/ronaldo /t/football
+2  of       /p/goat
+3  all      /p/goat /home
+4  time     /p/goat /fixtures
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The trade-off with the inverted index is &lt;em&gt;higher disk comsumption for faster lookup speed&lt;/em&gt;. I used an inverted index for &lt;em&gt;devsearch&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;tfidf-and-pagerank&#34;&gt;TFIDF and PageRank&lt;/h2&gt;
+&lt;p&gt;Modern search engines consider many factors when ranking search results. Common factors include TFIDF, PageRank, words position, freshness, page loading speed, CTR and mobile-friendliness.&lt;/p&gt;
+&lt;p&gt;Google says they consider &lt;a href=&#34;https://backlinko.com/google-ranking-factors&#34;&gt;over 200 factors&lt;/a&gt;. Each factor has a weight that signifies its importance in the ranking process. Google keeps all this information secret to prevent people (AKA black hat SEOs) from gaming the system. They also &lt;a href=&#34;https://moz.com/google-algorithm-change&#34;&gt;change things pretty frequently&lt;/a&gt; in order to improve search results.&lt;/p&gt;
+&lt;p&gt;I chose TFIDF and PageRank for my search engine. TFIDF stands for &lt;em&gt;term frequency–inverse document frequency&lt;/em&gt;. It is a numerical statistic that is intended to reflect how important a word is to a document in a collection. The idea is that if a word appears frequently in a document, then the document is probably about that word. In this article for instance, the words ‘search’ and ‘engine’ appear frequently. So we can assume it at least has something to do with search engines, and that if someone were to search for ‘search engine’ this article would be more relevant to them than another article that mentions it once or twice. There are words that usually appear frequently in documents though e.g &lt;a href=&#34;https://en.wikipedia.org/wiki/Stop_words&#34;&gt;stop words&lt;/a&gt; like ‘a’, ‘and’, ‘the’ etc. We can offset these words and give more weight to words that occur less frequently in the whole collection but more frequently in a given document. The formula for TFIDF can be found in &lt;a href=&#34;https://en.wikipedia.org/wiki/Tf%E2%80%93idf&#34;&gt;this article on Wikipedia&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Developed by Larry Page and Sergey Brin, &lt;a href=&#34;https://en.wikipedia.org/wiki/PageRank&#34;&gt;PageRank&lt;/a&gt; is the most notable algorithm used in Google Search. PageRank works by counting the number [and quality] of links to a page to determine a rough estimate of how important the website is. The underlying assumption is that more important websites are likely to receive more links from other websites. I used &lt;a href=&#34;https://en.wikipedia.org/wiki/PageRank#Simplified_algorithm&#34;&gt;the simplified version of the algorithm&lt;/a&gt; for &lt;em&gt;devsearch&lt;/em&gt;. All pages start with an initial PageRank of 1 / N (where N = total number of pages in DB) and then “&lt;a href=&#34;https://www.woorank.com/en/edu/seo-guides/link-juice&#34;&gt;link juice&lt;/a&gt;” begins to flow until all pages are ranked.&lt;/p&gt;
+&lt;p&gt;I combined the TFIDF and PageRank values to produce a score which is used to rank results.&lt;/p&gt;
+&lt;h2 id=&#34;searching-and-autocomplete&#34;&gt;Searching and autocomplete&lt;/h2&gt;
+&lt;p&gt;When a user types in a query into &lt;em&gt;devsearch&lt;/em&gt;, the query is divided into a list of words. The index collection (MongoDB) is filtered for records that have any of those words. Each index record has a score which is precomputed using the formula:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;score &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (tfidf &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; max(tfidf) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.7&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (pagerank &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; max(pagerank) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;TFIDF represents 70% of the score and PageRank represents the remaining 30.&lt;/p&gt;
+&lt;p&gt;An aggregate score is computed for each distinct page. So if the search query is &lt;em&gt;‘rick and morty’&lt;/em&gt;, a page that contains all the words would have an aggregate score of: &lt;code&gt;total_score = score(&#39;rick&#39;) + score(&#39;and&#39;) + score(&#39;morty&#39;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The records are sorted in descending order of &lt;code&gt;total_score&lt;/code&gt; and then paginated.&lt;/p&gt;
+&lt;p&gt;Autocomplete for the search box is very very basic. I didn’t want to get AJAX involved, so I just queried the DB for a list of the top 200 searches on the search view and passed them to a JavaScript function which uses sub-string matching to determine whether a query should be shown or not when a user is typing their query. 😉&lt;/p&gt;
+&lt;h2 id=&#34;deploying-the-search-engine&#34;&gt;Deploying the search engine&lt;/h2&gt;
+&lt;p&gt;I used Docker (and Docker Compose) to containerize &lt;em&gt;devsearch&lt;/em&gt; and run it on a DigitalOcean Debian machine. The MongoDB server is also containerized. The production Docker Compose file uses Nginx as a reverse proxy for the Gunicorn server running the Flask app. Nginx also serves the static files.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The search results from &lt;em&gt;devsearch&lt;/em&gt; are abysmal (good thing I wasn’t hoping to build the next Google Search). However, I learnt a ton about search engines and search algorithms, and have already started exploring the areas most interesting to me. Most important, I understand a little better how search engines work! 🙌&lt;/p&gt;
+&lt;p&gt;You can find the source code for &lt;em&gt;devsearch&lt;/em&gt; on my GitHub: &lt;a href=&#34;https://github.com/nicholaskajoh/devsearch&#34;&gt;&lt;strong&gt;nicholaskajoh/devsearch&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/my-web-search-engine/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>How to run multiple apps on one server using Docker and Traefik</title>
+        <link>https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</link>
+        <pubDate>Thu, 28 Jun 2018 17:41:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ -&lt;p&gt;Running multiple apps on a single machine has never been easier! In this tutorial, I’ll show you how to run 3 apps on one server using Docker and Traefik.&lt;/p&gt;
+&lt;h2 id=&#34;use-case&#34;&gt;Use case&lt;/h2&gt;
+&lt;p&gt;Say you’re low on cash and can only rent one server, you can run your website, blog and SaaS app on the same machine (what we’ll do in this tutorial). Or you can run an API (back-end) and SPA (front-end). You can even run two different websites (example1.com and example2.com) if you want.&lt;/p&gt;
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+&lt;p&gt;Docker is the most widely used containerization software today. It allows you bundle code with it’s config and dependencies, making it easy and seamless to deploy your apps on any machine (or several machines). It also helps in development by providing a consistent environment for collaborators on a project. More info here: &lt;a href=&#34;https://docs.docker.com/&#34;&gt;https://docs.docker.com&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;traefik&#34;&gt;Traefik&lt;/h2&gt;
+&lt;p&gt;Traefik is a HTTP reverse proxy and load balancer that integrates with Docker, Swarm, Kubernetes among other orchestration tools. You can learn more here: &lt;a href=&#34;https://docs.traefik.io/&#34;&gt;https://docs.traefik.io&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h2&gt;
+&lt;p&gt;We’ll be using Docker via Docker Compose. Docker Compose makes it easy to run multi-container Docker applications. You can configure all your containers in one file and run them at once with a single command. Read more here: &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;https://docs.docker.com/compose&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;project-setup&#34;&gt;Project setup&lt;/h2&gt;
+&lt;p&gt;The 3 apps we’ll be running are a website (static site), a blog and a SaaS app (dasboard-ish). For the sake of demonstration, I just downloaded HTML templates online 👀. So I have a &lt;em&gt;landing page template&lt;/em&gt;, &lt;em&gt;blog template&lt;/em&gt; and &lt;em&gt;dashboard template&lt;/em&gt;. They’ll all be served with Ngnix 😉.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/website.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;website&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/blog.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;blog&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/app.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;SaaS app&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here’s the project repo: &lt;a href=&#34;https://github.com/nicholaskajoh/jack&#34;&gt;&lt;strong&gt;https://github.com/nicholaskajoh/jack&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Each app is put in it’s own folder, with its own &lt;em&gt;Dockerfile&lt;/em&gt;. The Dockerfiles are identical since we’re basically just serving static files in all the apps.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Dockerfile&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; nginx:alpine&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . /usr/share/nginx/html&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The docker compose file brings everything together under one roof. Here’s how it looks:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# docker-compose.yml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;traefik&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;traefik&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;command&lt;/span&gt;: --&lt;span style=&#34;color:#ae81ff&#34;&gt;web --docker --docker.domain=docker.localhost --logLevel=DEBUG&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8080:8080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;443:443&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;/var/run/docker.sock:/var/run/docker.sock&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;/dev/null:/traefik.toml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;./app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./app:/usr/share/nginx/html&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=app-be&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:app.localhost&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;blog&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;./blog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./blog:/usr/share/nginx/html&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=blog-be&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:blog.localhost&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;website&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;./website&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;./website:/usr/share/nginx/html&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;labels&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.backend=website-be&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;traefik.frontend.rule=Host:localhost&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As can be seen, traefik itself is run in a container. The domain is set to localhost and the ports 80, 8080 and 443 are published. The web flag (&lt;code&gt;--web&lt;/code&gt;) under command parameter tells traefik to run its API dashboard which will be exposed on port 8080.&lt;/p&gt;
+&lt;p&gt;Traefik can be configured using a &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; file. It can also pick configs from service labels. As such, we specified the &lt;code&gt;traefik.backend&lt;/code&gt; and &lt;code&gt;traefik.frontend.rule&lt;/code&gt; configs using labels. &lt;code&gt;traefik.backend&lt;/code&gt; specifies the service to handle requests from &lt;code&gt;traefik.frontend.rule&lt;/code&gt;. So if we go to &lt;em&gt;app.localhost&lt;/em&gt;, we will be served content from the app service. Same with &lt;em&gt;localhost&lt;/em&gt; and website, and &lt;em&gt;blog.localhost&lt;/em&gt; and blog.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Try it out:&lt;/strong&gt; clone &lt;a href=&#34;https://github.com/nicholaskajoh/jack&#34;&gt;Jack&lt;/a&gt;, run &lt;code&gt;docker-compose up&lt;/code&gt; and visit &lt;em&gt;localhost&lt;/em&gt;, &lt;em&gt;app.localhost&lt;/em&gt; and &lt;em&gt;blog.localhost&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;traefik-dashboard&#34;&gt;Traefik dashboard&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/dckr-trfk/traefik-dashboard.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The Traefik dashboard displays useful information including the available front-ends and back-ends, and the health of the containers. You can password protect the dashboard so only authorized persons can access it.&lt;/p&gt;
+&lt;h2 id=&#34;ssl&#34;&gt;SSL&lt;/h2&gt;
+&lt;p&gt;Traefik can handle SSL for you automatically. This guide (&lt;a href=&#34;https://docs.traefik.io/https/acme/&#34;&gt;https://docs.traefik.io/https/acme/&lt;/a&gt;) explains the configuration process using Let’s Encrypt.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NB:&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;I added SSL configs in&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/docker-compose.prod.yml&#34;&gt;&lt;em&gt;docker-compose.prod.yml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;and&lt;/em&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/jack/blob/master/traefik/traefik.toml&#34;&gt;&lt;em&gt;traefik.toml&lt;/em&gt;&lt;/a&gt; &lt;em&gt;for use in production.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scaling-and-load-balancing&#34;&gt;Scaling and load balancing&lt;/h2&gt;
+&lt;p&gt;Traefik load balances multiple instances of a given service automatically. You can use the scale flag/parameter in docker compose to run multiple instances of your containers.&lt;/p&gt;
+- https://alphacoder.xyz/multiple-apps-one-server-with-docker-and-traefik/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>News on Alpha Coder</title>
+    <link>https://alphacoder.xyz/tag/news/</link>
+    <description>Recent content in News on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 31 Jan 2019 09:30:21 +0100</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello Hugo!</title>
+      <link>https://alphacoder.xyz/hello-hugo/</link>
+      <pubDate>Thu, 31 Jan 2019 09:30:21 +0100</pubDate>
+      
+      <guid>https://alphacoder.xyz/hello-hugo/</guid>
+      <description>If you haven&amp;rsquo;t yet noticed, Alpha Coder is wearing a new look! In December of 2018, I wrote about my migration from a Medium.com publication to a self-hosted Ghost installation on Vultr. Shortly after, I decided to ditch Ghost (a Node.js CMS) for Hugo (a static site generator built with Go). I also changed the blog&amp;rsquo;s design in the process. In this post, I&amp;rsquo;ll share my experience using Ghost and explain why I moved again.</description>
+    </item>
+    
+    <item>
+      <title>From Medium to Ghost</title>
+      <link>https://alphacoder.xyz/from-medium-to-ghost/</link>
+      <pubDate>Tue, 25 Dec 2018 13:26:45 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/from-medium-to-ghost/</guid>
+      <description>Hi everyone! I&amp;rsquo;m happy to announce that I&amp;rsquo;ll be migrating my blog Alpha Coder from Medium.com to Ghost (self-hosted) at alphacoder.xyz. In this post, I&amp;rsquo;ll be explaining why and how I&amp;rsquo;m migrating, and what to expect from me and the blog going forward.
+Why the move? I started taking blogging more seriously sometime in early 2017. Since then, I&amp;rsquo;ve been amazed by how far my writing has gone and the opportunities it has brought me (jobs, freelance gigs, speaking invites etc)—this year I had about 100k views from 30+ articles, up from 6.</description>
+    </item>
+    
+  </channel>
+</rss>

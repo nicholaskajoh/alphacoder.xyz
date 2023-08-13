@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html><head>
+<title>Deploy your React-Django app on Heroku</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#heroku-dashboard" class="nav-heroku-dashboard">
+									Heroku dashboard
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#heroku-cli" class="nav-heroku-cli">
+									Heroku CLI
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#heroku-buildpacks" class="nav-heroku-buildpacks">
+									Heroku buildpacks
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#packagejson" class="nav-packagejson">
+									package.json
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#procfile" class="nav-procfile">
+									Procfile
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#requirementstxt" class="nav-requirementstxt">
+									requirements.txt
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#allowed-hosts" class="nav-allowed-hosts">
+									Allowed hosts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#commit-push" class="nav-commit-push">
+									Commit, push
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    Deploy your React-Django app on Heroku
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2018-01-30
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/web-development">Web Development</a>
+                                &nbsp;
+                            
+                                <a href="/tag/javascript">JavaScript</a>
+                                &nbsp;
+                            
+                                <a href="/tag/python">Python</a>
+                                &nbsp;
+                            
+                                <a href="/tag/software-deployment">Software Deployment</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>This is a follow up to my post on <em><a href="/dead-simple-react-django-setup/">setting up a React-Django web app</a></em>. You can take a quick glance if you’ve not seen it yet.</p>
+<p><strong>TL;DR: The setup is deployed at</strong> <a href="http://react-django.herokuapp.com/"><strong>http://react-django.herokuapp.com</strong></a> <strong>(nothing much there actually) and the code at</strong> <a href="https://github.com/nicholaskajoh/React-Django"><strong>https://github.com/nicholaskajoh/React-Django</strong></a><strong>.</strong></p>
+<hr>
+<p>We’re going to be deploying the app we setup in the previous post on Heroku. Heroku is a popular cloud hosting platform (PaaS) and offers a generous free tier which we’ll be using.</p>
+<h2 id="heroku-dashboard">Heroku dashboard</h2>
+<p>First things first. You need a Heroku account. Head over to <a href="https://heroku.com">Heroku.com</a> and sign up/login, then go to your dashboard at <a href="https://dashboard.heroku.com">https://dashboard.heroku.com</a> and create a new app.</p>
+<p><img src="/images/dply-dj/heroku-dashboard.png" alt=""></p>
+<h2 id="heroku-cli">Heroku CLI</h2>
+<p>There are a couple deploy methods to choose from on Heroku (visit the <em>deploy</em> tab on the app page on the dashboard). Here, we’ll use the <em>Heroku Git</em> method via the <em>Heroku CLI</em>. You can use <a href="https://devcenter.heroku.com/articles/heroku-cli">this guide to learn how to set up Heroku CLI on your OS</a>.</p>
+<p>Now, let’s link our project to the Heroku app we created using the Heroku CLI and Git.</p>
+<ul>
+<li>Initialize a Git repository in the root folder of the project with <code>git init</code> (you need to have Git installed on your computer).</li>
+<li>Login with your Heroku account on the CLI using <code>heroku login</code>.</li>
+<li>Add the Heroku remote via <code>heroku git:remote -a your-heroku-app</code>.</li>
+</ul>
+<p><img src="/images/dply-dj/link-app-to-heroku.png" alt=""></p>
+<p>I already initialized Git in the project prior to this.</p>
+<h2 id="heroku-buildpacks">Heroku buildpacks</h2>
+<p>The React app build process depends on NPM, so we need Node.js. We also need Python to run Django.</p>
+<p>Heroku uses <a href="https://devcenter.heroku.com/articles/buildpacks">buildpacks</a> to transform deployed code into slugs which can be executed by Dynos (server instances on Heroku). We’ll be needing two buildpacks. One for Node and another for Python.</p>
+<p>Our app would run on a Python server, even though we’ll use Node/NPM to build/bundle the React frontend. So the Python buildpack will be the main one in our config. The main buildpack determines the process type of the Heroku app. You can <a href="https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app">read about multiple buildpacks</a> to understand how they work.</p>
+<p>You can add buildpacks via the Heroku CLI. Head back to your terminal and run the following to set/add the buildpacks we need.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>heroku buildpacks:set heroku/python
+</span></span></code></pre></div><p>Now add the buildpack for Node.js.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>heroku buildpacks:add --index <span style="color:#ae81ff">1</span> heroku/nodejs
+</span></span></code></pre></div><p>We can see the buildpacks we’ve added by running <code>heroku buildpacks</code>. The last buildpack on the list determines the process type of the app.</p>
+<p><img src="/images/dply-dj/buildpacks.png" alt=""></p>
+<h2 id="packagejson">package.json</h2>
+<p>We need to tell the Node.js buildpack to build the React app after it has installed Node and NPM. We can do this by adding the build command <code>npm run build</code> in the <em>postinstall</em> hook.</p>
+<p><img src="/images/dply-dj/package-json.png" alt=""></p>
+<p>See postinstall under scripts</p>
+<p>Notice that I specified Node and NPM versions in <em>engines</em>. The buildpack will install these exact versions. It’s highly recommended you use the versions running on your PC to avoid errors from a version that might be incompatible with your code.</p>
+<h2 id="procfile">Procfile</h2>
+<p>Create a file called <em><a href="https://devcenter.heroku.com/articles/procfile">Procfile</a></em> (no file extension) in the project root and add the following code:</p>
+<pre tabindex="0"><code>release: python manage.py migrate
+web: gunicorn reactdjango.wsgi --log-file -
+</code></pre><p>Replace <code>reactdjango.wsgi</code> with <code>YOUR-DJANGO-APP-NAME.wsgi</code>.</p>
+<h2 id="requirementstxt">requirements.txt</h2>
+<p>The Python buildpack, after installing Python looks for <em>requirements.txt</em> to install the dependencies in it. Add the following to the requirements file, including all the other dependencies your Django app needs.</p>
+<pre tabindex="0"><code>django&gt;=2.1.2
+gunicorn==19.7.1
+whitenoise==3.3.1
+</code></pre><p><strong>PS: Whitenoise helps to serve static files and Gunicorn is the HTTP server we’ll be using.</strong></p>
+<p>By the way, you can specify the Python version you want by adding it to a file named <em>runtime.txt</em> in the project root.</p>
+<pre tabindex="0"><code>python-3.5.2
+</code></pre><p>Configure whitenoise to serve static files by doing the following:</p>
+<p>Add <em>static root</em> and <em>static files storage</em> in <em>settings.py</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>BASE_DIR <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>STATIC_ROOT <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(BASE_DIR, <span style="color:#e6db74">&#39;staticfiles&#39;</span>)
+</span></span><span style="display:flex;"><span>STATICFILES_STORAGE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;whitenoise.django.GzipManifestStaticFilesStorage&#39;</span>
+</span></span></code></pre></div><p>Add whitenoise to your <em>wsgi.py</em> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> django.core.wsgi
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> get_wsgi_application
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> whitenoise.django <span style="color:#f92672">import</span> DjangoWhiteNoise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>setdefault(<span style="color:#e6db74">&#34;DJANGO_SETTINGS_MODULE&#34;</span>, <span style="color:#e6db74">&#34;reactdjango.settings&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>application <span style="color:#f92672">=</span> get_wsgi_application()
+</span></span><span style="display:flex;"><span>application <span style="color:#f92672">=</span> DjangoWhiteNoise(application)
+</span></span></code></pre></div><h2 id="allowed-hosts">Allowed hosts</h2>
+<p>In your <em>settings.py</em>, you need to add your Heroku domain to allowed hosts.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>ALLOWED_HOSTS <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;react-django.herokuapp.com&#39;</span>, <span style="color:#e6db74">&#39;127.0.0.1:8000&#39;</span>]
+</span></span></code></pre></div><p><strong>NB: I personally prefer to add allowed hosts using environment variables e.g with</strong> <a href="https://github.com/theskumar/python-dotenv"><strong>python-dotenv</strong></a><strong>.</strong></p>
+<h2 id="commit-push">Commit, push</h2>
+<p>It’s time to commit and push the changes. Phew!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;blah blah blah&#34;</span>
+</span></span><span style="display:flex;"><span>git push heroku master
+</span></span></code></pre></div><p>After the build is done and your app has been released, visit <em>YOUR-APP-NAME.herokuapp.com</em>. Neat!</p>
+<p><em>Two libraries you might find really helpful when building your Django API are</em> <a href="http://www.django-rest-framework.org/"><em>Django Rest Framework</em></a> <em>and</em> <a href="https://github.com/ottoyiu/django-cors-headers/"><em>Django CORS Headers</em></a><em>. You should check them out!</em></p>
+<p>If you had any issues deploying please share in the comments. A lot of times, things don’t work the first time.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/image-upload-with-django-and-cloudinary/">
+			Next<br>Image upload with Django and Cloudinary
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/dead-simple-react-django-setup/">
+			Previous<br>Here’s a dead simple React-Django setup for your next project
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/deploy-react-django-app-on-heroku\/';  
+        
+        
+        this.page.identifier = '\/deploy-react-django-app-on-heroku\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#heroku-dashboard" class="nav-heroku-dashboard">
+									Heroku dashboard
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#heroku-cli" class="nav-heroku-cli">
+									Heroku CLI
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#heroku-buildpacks" class="nav-heroku-buildpacks">
+									Heroku buildpacks
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#packagejson" class="nav-packagejson">
+									package.json
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#procfile" class="nav-procfile">
+									Procfile
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#requirementstxt" class="nav-requirementstxt">
+									requirements.txt
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#allowed-hosts" class="nav-allowed-hosts">
+									Allowed hosts
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#commit-push" class="nav-commit-push">
+									Commit, push
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

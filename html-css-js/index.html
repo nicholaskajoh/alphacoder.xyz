@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html><head>
+<title>HTML, CSS and Javascript as fast as possible</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script defer data-domain="alphacoder.xyz" src="https://analytics.terna.io/js/script.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+
+  
+
+
+
+
+<link rel="icon" href="https://alphacoder.xyz/images/alpha-coder-logo-v1-small.png">
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.78d0127801e7a16fa1ce55c8169f92685c03320b7896dce14570efdd194b0f81.css" integrity="sha256-eNASeAHnoW&#43;hzlXIFp&#43;SaFwDMgt4ltzhRXDv3RlLD4E=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons|Exo+2">
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue-disqus@3/dist/vue-disqus.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/blog/">
+                    Blog
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/guest-posts/">
+                    Guest Posts
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tag/side-projects/">
+                    Side Projects
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="https://www.youtube.com/@alphacoderblog">
+                    Videos
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#html" class="nav-html">
+									HTML
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#tags-elements" class="nav-tags-elements">
+									Tags, elements
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#attributes" class="nav-attributes">
+									Attributes
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#image-tag" class="nav-image-tag">
+									Image tag
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#form-fieldtag" class="nav-form-fieldtag">
+									Form field tag
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#css" class="nav-css">
+									CSS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#how-itworks" class="nav-how-itworks">
+									How it works
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#styling-yourhtml" class="nav-styling-yourhtml">
+									Styling your HTML
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#javascript" class="nav-javascript">
+									JavaScript
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#variables" class="nav-variables">
+									Variables
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#data-types" class="nav-data-types">
+									Data types
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#operators" class="nav-operators">
+									Operators
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#conditionals" class="nav-conditionals">
+									Conditionals
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#functions" class="nav-functions">
+									Functions
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#events" class="nav-events">
+									Events
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://alphacoder.xyz/">
+            Alpha Coder
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://alphacoder.xyz/">
+        <div class="single-column-header-title">Alpha Coder</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title" v-pre>
+                    HTML, CSS and Javascript as fast as possible
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2017-06-07
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tag/web-development">Web Development</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>This post is a prequel to a series of posts on <a href="/facebook-clone-1">building a Facebook clone with PHP from scratch</a> authored by yours truly. It&rsquo;s intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.</p>
+<p>HTML, CSS and Javascript are front-end languages i.e they run on the client (your user&rsquo;s device/browser). HTML is a templating language. CSS helps you style HTML and Javascript is &ldquo;an object-oriented computer programming language commonly used to create interactive effects within web browsers.&rdquo; Javascript in short, brings life to your web application.</p>
+<p>This post is meant to brush you up on the very basics. I don&rsquo;t expect you to start writing HTML, CSS and Javascript code after following through with this post. My aim is to demystify these languages. When you start the Facebook clone series, I don&rsquo;t want you running away from code snippets written in these languages.
+Also, if you&rsquo;re new to these languages, I expect that you push further to more detailed resources. There are a ton of free courses to help you. A Google search is a good start!
+With that, let&rsquo;s begin&hellip;</p>
+<h1 id="html">HTML</h1>
+<p>HTML stands for Hypertext Markup Language, but you probably already knew that. A html document is a file that contains html code. Create a file called index.html, open it in a text editor of your choice (e.g Notepad) and type the following code (don&rsquo;t copy paste please):</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;My first HTML code!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Save the file and open it with a browser. When you do, you should see &ldquo;My first HTML code!&rdquo; on the page. Congrats! But before we celebrate, let&rsquo;s understand what&rsquo;s going on in the above code.</p>
+<h2 id="tags-elements">Tags, elements</h2>
+<p><code>&lt;html&gt;&lt;/html&gt;</code>, <code>&lt;head&gt;&lt;/head&gt;</code>, <code>&lt;p&gt;&lt;/p&gt;</code> and all the others enclosed in <code>&lt;</code> and <code>&gt;</code> or <code>&lt;/</code> are called tags or elements. Tags/elements are the building blocks of html. The tags like <code>&lt;this&gt;</code> are called opening tags and the ones like <code>&lt;/this&gt;</code> are called closing tags. Not all elements have closing tags. We&rsquo;ll use such tags in a jiffy.
+The visible part of a html document is enclosed between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code> so let&rsquo;s focus on that in this post. But html totally gives itself away. <code>&lt;title&gt;&lt;/title&gt;</code> for instance suggests that the title of something should be contained between its tags. Let&rsquo;s go ahead and write something between the title tags like so:</p>
+<pre><code>&lt;title&gt;Great page!&lt;/title&gt;
+</code></pre>
+<p>Save your index.html file again and refresh the page in your browser. Did you notice any change on the tabs bar? HTML is that simple!</p>
+<h2 id="attributes">Attributes</h2>
+<p>Tags have attributes. Attributes are those properties we add to &ldquo;customize&rdquo; or add more functionality to elements. Each html element has a set of attributes which you can specify. In fact, you can even create your own attributes. But let&rsquo;s not go there just yet.</p>
+<pre><code>&lt;a href=&quot;https://www.example.com&quot;&gt;click here&lt;/a&gt;
+</code></pre>
+<p>Add this bit of code within the body tag. Save and refresh your browser.</p>
+<p>The <code>a</code> tag is how you create links in html. <code>href</code> is an attribute that specifies where the link would take a user if they clicked on it. In this case, it&rsquo;s <code>www.example.com</code>. We&rsquo;ll see more attributes as we move on. Let&rsquo;s learn a couple more tags!</p>
+<h2 id="image-tag">Image tag</h2>
+<p>To add an image to a html page, we use the image tag:</p>
+<pre><code>&lt;img src=&quot;me.png&quot;&gt;
+</code></pre>
+<p><code>src</code> is an attribute for the img tag which specifies the location of the image to display. Place an image in the same folder as your index.html file and display it on your page using the img tag. Make sure the source (i.e src) in your tag corresponds to the image filename and extension e.g my-pic.jpg.
+<code>img</code> is an example of an element that has just an opening tag and no closing tag.
+We can add more attributes to better customize our image:</p>
+<pre><code>&lt;img src=&quot;me.png&quot; width=&quot;50&quot; height=&quot;100&quot;&gt;
+</code></pre>
+<p>Experiment a bit with with these numbers would you!</p>
+<h2 id="form-fieldtag">Form field tag</h2>
+<p>The last html element we&rsquo;ll look at before we wrap this up is the form field tag. It&rsquo;s pretty easy:</p>
+<pre><code>&lt;input type=&quot;text&quot; name=&quot;title&quot;&gt;
+</code></pre>
+<p>Form inputs are very handy when we want to get information from users. But we can also populate an input with data ourselves:</p>
+<pre><code>&lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;HTML is good right?&quot;&gt;
+</code></pre>
+<p>In summary, html is all about elements/tags and their attributes. Really simple stuff.
+There are a ton of html tags and attributes. Now you know the basics, go learn all the other html elements. Here&rsquo;s a list of all html elements and their attributes.</p>
+<p><strong>NB:</strong> I recommend <a href="https://code.visualstudio.com/download">VS Code</a> if you don&rsquo;t yet have a proper text editor/IDE. VS Code includes support for syntax highlighting and intelligent code completion which makes it easier and faster to write code.</p>
+<h1 id="css">CSS</h1>
+<p>CSS stands for Cascading Style Sheets. You probably didn&rsquo;t know that (lol). It is a language that &ldquo;describes the style of a HTML document&rdquo;. It specifies how html elements should be displayed.</p>
+<h2 id="how-itworks">How it works</h2>
+<p>There a ton of CSS properties to style an html element/a set of html elements. To apply a given style, you type the property name and value like so:</p>
+<pre><code>property-name: value;
+</code></pre>
+<p>For instance, if we want to change to color of content enclosed in some html tag, we could do something like:</p>
+<pre><code>color: red;
+</code></pre>
+<h2 id="styling-yourhtml">Styling your HTML</h2>
+<p>There are 3 major ways of adding CSS to HTML code:</p>
+<ol>
+<li>Adding inline CSS to HTML tags</li>
+<li>Embedding CSS into the HTML</li>
+<li>Linking to a separate CSS file.</li>
+</ol>
+<p>The easiest way to add css to html is inline through the use of the style attribute. Let&rsquo;s go back to our index.html file and add the style attribute to the a tag like so:</p>
+<pre><code>&lt;a style=&quot;color: red;&quot; href=&quot;https://www.example.com&quot;&gt;click here&lt;/a&gt;
+</code></pre>
+<p>This is inline CSS. Save and open index.html in your browser to see the changes.</p>
+<p>We can also embed css in html with the use of the <code>style</code> html tag:</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+a {
+    color: lightgreen;
+}
+&lt;/style&gt;
+</code></pre>
+<p>In the above code, I enclosed the <code>color</code> property I defined in curly braces. The <code>a</code> before the first brace is called a selector. It tells the browser that this style should only affect <code>a</code> tags. Thus all <code>a</code> elements I create in index.html will be lightgreen. Add another <code>a</code> tag and see what happens.</p>
+<p>What if we want only the click me link to be lightgreen? Well, I could add an <code>id</code> attribute to it and change the css to fit like this:</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+#clickHereLink {
+    color: lightgreen;
+}
+&lt;/style&gt;
+&lt;a id=&quot;clickHereLink&quot; href=&quot;https://www.example.com&quot;&gt;click here&lt;/a&gt;
+</code></pre>
+<p>Notice the hash (<code>#</code>) in the code? That&rsquo;s how we write a selector that refers to <code>id</code> attributes in css.
+The <code>id</code> attribute uniquely identifies an element. What if we wanted only a bunch of a tags to be lightgreen? Two or more elements can&rsquo;t have same id. What do we do? The class attribute to the rescue! Just add a class to the elements you want affected like so:</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+.green-link {
+    color: lightgreen;
+}
+&lt;/style&gt;
+&lt;a class=&quot;green-link&quot; href=&quot;https://www.example.com&quot;&gt;click here&lt;/a&gt;
+&lt;a class=&quot;green-link&quot; href=&quot;https://instagram.com&quot;&gt;I love Instagram&lt;/a&gt;
+&lt;a href=&quot;https://krak.lol&quot;&gt;I love Krak.lol too!&lt;/a&gt;
+</code></pre>
+<p>Notice the dot (<code>.</code>) before the class name green-link? That&rsquo;s how we write a selector that refers to a class in css.</p>
+<p>The last major way of adding css to html is linking to a separate css file. Here we &ldquo;import&rdquo; css from an external file to our html file. Create a file called styles.css in the same folder as your index.html file and type the following code in it.</p>
+<pre><code>body {
+    font-family: Arial;
+    font-size: 20px;
+}
+</code></pre>
+<p>Now, add the bit of code that follows immediately under the title element in your html code:</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;
+</code></pre>
+<p>Save all and refresh. You should see some changes.</p>
+<p>So ya, that&rsquo;s css in brief. There are a couple other things to learn before you can say &ldquo;I know CSS&rdquo;. But this is a great start! Check out these links to find all css selectors and properties. Here: <a href="https://www.w3schools.com/cssref/">https://www.w3schools.com/cssref/</a> and here: <a href="https://www.w3schools.com/cssref/css_selectors.asp">https://www.w3schools.com/cssref/css_selectors.asp</a>.</p>
+<h1 id="javascript">JavaScript</h1>
+<p>JavaScript or js for short is a programming language that adds interactivity to your website. It&rsquo;s one of the most popular programming languages today and it&rsquo;s use goes beyond just the web. Let&rsquo;s learn JavaScript!</p>
+<h2 id="variables">Variables</h2>
+<p>Variables are containers to store values in. To create a variable in js, you use the var keyword:</p>
+<pre><code>var myNumber = 5;
+</code></pre>
+<h2 id="data-types">Data types</h2>
+<p>Variables have different data types. They include:</p>
+<p><strong>Number</strong> e.g <code>var n = 1;</code></p>
+<p><strong>String</strong> e.g <code>var myName = &quot;Nicholas&quot;;</code></p>
+<p><strong>Boolean</strong> e.g <code>var iLoveYou = true;</code></p>
+<p><strong>Array</strong> e.g <code>var booksOfTheBible = ['John', 'Genesis', 'Daniel', 'Exodos', 'Amos'];</code></p>
+<p><strong>Object</strong> e.g <code>var father = {name: &quot;The Rock&quot;, age: 42, isGood: true};</code></p>
+<p><strong>NB:</strong> Notice the semicolon at the end of each statement? Think of it as the full stop we have in written English.</p>
+<p>Also, don&rsquo;t worry so much about these data types. I&rsquo;ll leave a reference at the end of this post that&rsquo;ll help you understand them better.</p>
+<h2 id="operators">Operators</h2>
+<p>Operators are mathematical symbols which produce results based on 2 values/variables. They include:</p>
+<p><strong>add/concatenation</strong> e.g <code>n + 1;</code>, <code>'Hello '+'World';</code></p>
+<p><strong>subtract, multiply, divide</strong> e.g <code>3 - 2;</code>, <code>num1 * num2;</code>, <code>45 / n;</code></p>
+<p><strong>assignment</strong> e.g <code>n = 7;</code>, <code>name = &quot;Nick&quot;;</code></p>
+<p><strong>identity (boolean)</strong> e.g <code>4 === 3;</code> (is 4 equal to 3?)</p>
+<p><strong>negation (boolean)</strong> e.g <code>4 !== 3;</code> or <code>!(4 === 3);</code> (is 4 not equal to 3?)</p>
+<p>Here are a couple more operators to explore: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators</a>.</p>
+<h2 id="conditionals">Conditionals</h2>
+<p>Conditionals are control structures that allow you test if an expression is true or not.</p>
+<pre><code>if(5 === 1) {
+  console.log(&quot;No&quot;);
+} else {
+  console.log(&quot;Yey&quot;);
+}
+</code></pre>
+<h2 id="functions">Functions</h2>
+<p>Functions allow us group bits of code into reusable components. Here&rsquo;s how to write one:</p>
+<pre><code>function doSomethingDifficult(){
+  return &quot;I have done the impossible!&quot;;
+}
+</code></pre>
+<p>We can call the function like so:</p>
+<pre><code>var difficultStuff = doSomethingDifficult();
+</code></pre>
+<h2 id="events">Events</h2>
+<p>Events listen for when things happen in your web application e.g a button click or a scroll. Say we want to do something when any part of our web page is clicked, we can write the following code:</p>
+<pre><code>document.querySelector('body').onClick = function() {
+  // do something e.g alert
+  alert(&quot;I just did something!&quot;);
+};
+</code></pre>
+<p>The JavaScript part of this post is very very brief and scratches just the surface. However, it exposes some of the functionality JavaScript provides. Hopefully, you have a rough sketch of what JavaScript is like. It&rsquo;s not &ldquo;that hard&rdquo; and you can learn it. Here&rsquo;s a great reference for JavaScript that teaches the basics: <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics">https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics</a>.
+If you came from my <a href="/tag/facebook-clone-series">Facebook clone series</a>, now is the time to <a href="/facebook-clone-1">jump back</a> and build something!</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2023-03-14</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/facebook-clone-1/">
+			Next<br>Build a Facebook clone from scratch with PHP — Part 1
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/sailsjs-form-validation/">
+			Previous<br>Server-side form validation from A to Z with Sails.js
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+<div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+        this.page.url = 'https:\/\/alphacoder.xyz\/html-css-js\/';  
+        
+        
+        this.page.identifier = '\/html-css-js\/'; 
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alphacoderxyz.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript> Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow"> comments powered by Disqus.  </a> </noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://alphacoder.xyz/">
+    
+        <div class="nav-title">
+            Alpha Coder
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/blog/">
+                Blog
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/guest-posts/">
+                Guest Posts
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tag/side-projects/">
+                Side Projects
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="https://www.youtube.com/@alphacoderblog">
+                Videos
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://twitter.com/AlphaCoderXYZ">
+    Twitter
+</a>
+<br>
+
+<a href="mailto:support@alphacoder.xyz">
+    Email
+</a>
+<br>
+
+<a href="/blog/index.xml">
+    RSS
+</a>
+<br>
+
+
+        &copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- OUTLINE -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#html" class="nav-html">
+									HTML
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#tags-elements" class="nav-tags-elements">
+									Tags, elements
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#attributes" class="nav-attributes">
+									Attributes
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#image-tag" class="nav-image-tag">
+									Image tag
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#form-fieldtag" class="nav-form-fieldtag">
+									Form field tag
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#css" class="nav-css">
+									CSS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#how-itworks" class="nav-how-itworks">
+									How it works
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#styling-yourhtml" class="nav-styling-yourhtml">
+									Styling your HTML
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#javascript" class="nav-javascript">
+									JavaScript
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#variables" class="nav-variables">
+									Variables
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#data-types" class="nav-data-types">
+									Data types
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#operators" class="nav-operators">
+									Operators
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#conditionals" class="nav-conditionals">
+									Conditionals
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#functions" class="nav-functions">
+									Functions
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#events" class="nav-events">
+									Events
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div><div id="single-column-footer">&copy;
+    
+    Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.
+    
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

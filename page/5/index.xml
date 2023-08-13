@@ -1,0 +1,1258 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>I code, therefore I am on Alpha Coder</title>
+    <link>https://alphacoder.xyz/</link>
+    <description>Recent content in I code, therefore I am on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    
+        <atom:link href="https://alphacoder.xyz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>A responsive grid system with few lines of CSS</title>
+        <link>https://alphacoder.xyz/responsive-grid-system/</link>
+        <pubDate>Sun, 19 Nov 2017 20:07:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/responsive-grid-system/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/responsive-grid-system/ -&lt;p&gt;How many times have you added Bootstrap to your project just for its grid system? Probably not enough times to think about learning how to create your own grid system. However, there are times when you need &lt;em&gt;something light&lt;/em&gt;!&lt;/p&gt;
+&lt;p&gt;Say you’re learning a new framework or testing out some code and you want to throw in some grid love so that things look a little organized on the page. Would you rather include the heavyweight champ that is Bootstrap, or scribble a few lines of grid code?&lt;/p&gt;
+&lt;p&gt;While adding Bootstrap may sound easier, you might be faced with the nightmare that is overriding classes. Nobody loves overriding the classes they don’t want/need, plus you’re now distracted from what you really want to accomplish. Besides, you don’t lose anything by learning how to write a grid system. In fact, it makes you understand and appreciate CSS libraries and better.&lt;/p&gt;
+&lt;p&gt;There was this school project I had to work on. It was pretty basic, but I needed a grid system. I had already decided to build it from the ground up with only vanilla, so Bootstrap or Materialize was not an option. I had to learn how to write my own grid system. It turns out that it’s not difficult at all. In fact, I wrote a grid system with a few lines of CSS code.&lt;/p&gt;
+&lt;p&gt;It’s important to note that there are several ways of building a grid system; each with its own quirks. It’s easy to forget that CSS 1.0 wasn’t made with grid in mind as the webosphere is now littered with millions of sites using layouts of all shapes and sizes.&lt;/p&gt;
+&lt;p&gt;Devs cooked up various workarounds and hacks. They used &lt;strong&gt;tables&lt;/strong&gt; to create grids back in the day. More recently, they used &lt;strong&gt;floats&lt;/strong&gt;. Float grids sufficed until they didn’t. They are still in use today. However, &lt;strong&gt;flexbox&lt;/strong&gt; has replaced float grid systems on many sites online. Flexbox was made to solve the grid problem. Nevertheless, flexbox has it’s own limitations. The new kid on the block, &lt;strong&gt;grid layout&lt;/strong&gt;, was created to handle more complex systems that web apps of today demand.&lt;/p&gt;
+&lt;p&gt;I used flexbox to create a simple grid system. Flexbox is great! It&amp;rsquo;s supported in major browsers and is easy to implement.&lt;/p&gt;
+&lt;script src=&#34;https://gist.github.com/nicholaskajoh/35702b2e0791c4329e80cde9d0d3e9ba.js&#34;&gt;&lt;/script&gt;
+&lt;p&gt;I don’t want get into the intricacies of flexbox. I’ll be reinventing the wheel by doing that. Instead I’ll point you to a resource that helped me wrap my head around it. Nonetheless, from the code, it’s relatively easy to figure out how everything kinda works. It’s basically some flexbox code and media queries for 3 view ports — mobile, tablet and desktop.&lt;/p&gt;
+&lt;p&gt;Just add the following simple markup and you’re good to go.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;section&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;article&lt;/span&gt;&amp;gt;Content&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;article&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;aside&lt;/span&gt;&amp;gt;Sidebar&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;aside&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;section&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can always add a few more lines for other neat functionalities. If you feel you’re doing too much, it may be time to throw in a library or something. If you feel Bootstrap or any other UI library is overkill, there are a ton of CSS grid libraries. I don’t want to name names, but Google is your friend. A search would yield a ton of interesting results.&lt;/p&gt;
+&lt;p&gt;Check out the repo for this tutorial: &lt;a href=&#34;https://github.com/nicholaskajoh/Simple-CSS-Grid&#34;&gt;https://github.com/nicholaskajoh/Simple-CSS-Grid&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also, you should totally read &lt;a href=&#34;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&#34;&gt;Chris Coyier’s complete guide to flexbox&lt;/a&gt;. If you have the time, go through &lt;a href=&#34;https://css-tricks.com/snippets/css/complete-guide-grid/&#34;&gt;Chris House’ complete guide to grid&lt;/a&gt; as well.&lt;/p&gt;
+- https://alphacoder.xyz/responsive-grid-system/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 6</title>
+        <link>https://alphacoder.xyz/facebook-clone-6/</link>
+        <pubDate>Sat, 23 Sep 2017 09:07:23 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-6/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-6/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 6 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Relationships are the point of social networks. For real! Social networks like Facebook enable us connect with different people far and near and to share in their life and experiences. Facebook uses the &amp;ldquo;friend&amp;rdquo; model of relationships (I&amp;rsquo;m your friend; you&amp;rsquo;re my friend). There are other models like the popular &amp;ldquo;following-follower&amp;rdquo; model. Implementing relationships can easily get complex. We want to keep things simple though so we&amp;rsquo;ll explore a very basic approach. Also, we won&amp;rsquo;t be exploiting the relationship model we&amp;rsquo;ll be creating in the workings of our application. Again, it&amp;rsquo;s to keep things simple.&lt;/p&gt;
+&lt;h1 id=&#34;friend-relationships&#34;&gt;Friend relationships&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;I&amp;rsquo;m your friend and you&amp;rsquo;re my friend&lt;/em&gt;. That&amp;rsquo;s the idea for the friend relationship model. It starts by making a friend request. The user at the receiving end may choose to accept or decline the request. If they accept, the user who made the request is added to their friends&amp;rsquo; list and vice versa [or so] thus a relationship exists between the two of them. If a request is declined, nothing happens, basically.&lt;/p&gt;
+&lt;p&gt;Without further ado, let&amp;rsquo;s implement something of that sort for FaceClone.&lt;/p&gt;
+&lt;h1 id=&#34;list-users&#34;&gt;List users&lt;/h1&gt;
+&lt;p&gt;We want to provide a list of FaceClone users to a user so that they can add any of them as friends. The right sidebar of the home.php template has an &amp;ldquo;add friend&amp;rdquo; panel. Let&amp;rsquo;s use it. All we need do is list out all our users.&lt;/p&gt;
+&lt;p&gt;In the &amp;ldquo;add friend&amp;rdquo; section, we&amp;rsquo;ll have…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;h4&amp;gt;add friend&amp;lt;/h4&amp;gt;
+&amp;lt;?php
+    $sql = &amp;quot;SELECT id, username, (SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION[&#39;user_id&#39;]}) AS is_friend FROM users WHERE id != {$_SESSION[&#39;user_id&#39;]} HAVING is_friend = 0&amp;quot;;
+    $result = $conn-&amp;gt;query($sql);
+
+    if ($result-&amp;gt;num_rows &amp;gt; 0) {
+        ?&amp;gt;&amp;lt;ul&amp;gt;&amp;lt;?php
+    
+        while($fc_user = $result-&amp;gt;fetch_assoc()) {
+            ?&amp;gt;&amp;lt;li&amp;gt;
+                &amp;lt;a href=&amp;quot;profile.php?username=&amp;lt;?php echo $fc_user[&#39;username&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
+                    &amp;lt;?php echo $fc_user[&#39;username&#39;]; ?&amp;gt;
+                &amp;lt;/a&amp;gt; 
+                &amp;lt;a href=&amp;quot;php/add-friend.php?uid=&amp;lt;?php echo $fc_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;[add]&amp;lt;/a&amp;gt;
+            &amp;lt;/li&amp;gt;&amp;lt;?php
+        }
+    
+        ?&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;?php
+    } else {
+        ?&amp;gt;&amp;lt;p class=&amp;quot;text-center&amp;quot;&amp;gt;No users to add!&amp;lt;/p&amp;gt;&amp;lt;?php
+    }
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that&amp;rsquo;s some code! Let&amp;rsquo;s break it down bit by bit. We want to list FaceClone users. That&amp;rsquo;s the goal. So why do we have a long and &amp;ldquo;complex&amp;rdquo; SQL query? Can&amp;rsquo;t we just use &lt;code&gt;SELECT * FROM users&lt;/code&gt;? We can. But it&amp;rsquo;s not that simple. There are 2 constraints we need to set. First, users that are already friends with the current user (who is looking to get new friends) shouldn&amp;rsquo;t be displayed on the list. That makes sense right? Secondly, the current user shouldn&amp;rsquo;t be on the list. You shouldn&amp;rsquo;t be able to friend yourself, should you? There are other constraints that can be added to make things more fluid as well as &amp;ldquo;waterproof&amp;rdquo;, but considering them would just make things more complicated so we&amp;rsquo;ll just leave things as they are.&lt;/p&gt;
+&lt;p&gt;To achieve the first constraint, we added a column to the users table results called &lt;code&gt;is_friend&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(SELECT COUNT(*) FROM friends WHERE friends.user_id = users.id AND friends.friend_id = {$_SESSION[&#39;user_id&#39;]}) AS is_friend
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This column would contain a 0 or 1 for each user record. 0 means not a friend of the current user while 1 means [already] a friend. Using the &lt;code&gt;HAVING&lt;/code&gt; keyword, we exclude records with &lt;code&gt;is_friend&lt;/code&gt; value of 1. That is&amp;hellip;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HAVING is_friend = 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The second constraint is achieved using the &lt;code&gt;WHERE&lt;/code&gt; clause to exclude the current user from the list thus:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;WHERE id != {$_SESSION[&#39;user_id&#39;]}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;send-a-friendrequest&#34;&gt;Send a friend request&lt;/h1&gt;
+&lt;p&gt;In the users list, there&amp;rsquo;s an add friend link beside each username.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a href=&amp;quot;php/add-friend.php?uid=&amp;lt;?php echo $fc_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;[add]&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The links lead to a GET endpoint &lt;code&gt;php/add-friend.php?uid=&lt;/code&gt;. Go ahead, as always and create a file in the php folder called add-friend.php with the following code&amp;hellip;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;INSERT INTO friend_requests (user_id, friend_id) VALUES (?, ?)&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;ii&#39;, $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/home.php?request_sent=true&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With a supplied user id in the GET request, we can create a new friend request. The user to whom the request is being made is the friend so their id is stored in &lt;code&gt;friend_id&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;acceptdecline-friendrequests&#34;&gt;Accept/decline friend requests&lt;/h1&gt;
+&lt;p&gt;The user who is requested should be able to see who requested them and choose whether to accept or decline. The left sidebar in home.php provides such a facility. With a little padding, we could arrive at something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;h4&amp;gt;friend requests&amp;lt;/h4&amp;gt;
+&amp;lt;?php
+    $sql = &amp;quot;SELECT * FROM friend_requests WHERE friend_id = {$_SESSION[&#39;user_id&#39;]}&amp;quot;;
+    $result = $conn-&amp;gt;query($sql);
+
+    if ($result-&amp;gt;num_rows &amp;gt; 0) {
+        ?&amp;gt;&amp;lt;ul&amp;gt;&amp;lt;?php
+
+        while($f_request = $result-&amp;gt;fetch_assoc()) {
+            ?&amp;gt;&amp;lt;li&amp;gt;&amp;lt;?php
+                
+            $u_sql = &amp;quot;SELECT * FROM users WHERE id = {$f_request[&#39;user_id&#39;]} LIMIT 1&amp;quot;;
+            $u_result = $conn-&amp;gt;query($u_sql);
+            $fr_user = $u_result-&amp;gt;fetch_assoc();
+            
+            ?&amp;gt;&amp;lt;a href=&amp;quot;profile.php?username=&amp;lt;?php echo $fr_user[&#39;username&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
+                &amp;lt;?php echo $fr_user[&#39;username&#39;]; ?&amp;gt;
+            &amp;lt;/a&amp;gt; 
+                
+            &amp;lt;a class=&amp;quot;text-success&amp;quot; href=&amp;quot;php/accept-request.php?uid=&amp;lt;?php echo $fr_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
+                [accept]
+            &amp;lt;/a&amp;gt; 
+                
+            &amp;lt;a class=&amp;quot;text-danger&amp;quot; href=&amp;quot;php/remove-request.php?uid=&amp;lt;?php echo $fr_user[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;
+                [decline]
+            &amp;lt;/a&amp;gt;
+
+            &amp;lt;/li&amp;gt;&amp;lt;?php
+        }
+
+        ?&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;?php
+    } else {
+        ?&amp;gt;&amp;lt;p class=&amp;quot;text-center&amp;quot;&amp;gt;No friend requests!&amp;lt;/p&amp;gt;&amp;lt;?php
+    }
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the snippet above, there are two sets of queries. The first pulls out all the friend requests to the current user. The second fetches data (of the requesting user) for each friend request.&lt;/p&gt;
+&lt;p&gt;There are two links beside each user&amp;rsquo;s username. One to accept and the other to decline. They both lead to different end points. The former to &lt;code&gt;php/accept-request.php?uid=&lt;/code&gt; and the latter to &lt;code&gt;php/remove-request.php?uid=&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Remove request:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;DELETE FROM friend_requests WHERE user_id = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;i&#39;, $_GET[&#39;uid&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/profile.php?username=&amp;quot; . $_SESSION[&#39;user_username&#39;]);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Accept request:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    // add users to friends table
+    $statement = $conn-&amp;gt;prepare(&amp;quot;INSERT INTO friends (user_id, friend_id) VALUES (?, ?), (?, ?)&amp;quot;);
+    $statement-&amp;gt;bind_param(&#39;iiii&#39;, $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;], $_GET[&#39;uid&#39;], $_SESSION[&#39;user_id&#39;]);
+    // remove friend request
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/php/remove-request.php?uid=&amp;quot; . $_GET[&#39;uid&#39;]);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Friendship is two-sided. I am your and you are my friend. As such, in accept-request.php we insert two records. In one, the current user is the friend and in the other the requesting user is the friend. While it seems like unnecessary duplication, it proves easier to manage. Also notice we use remove-request.php in accept-request.php to delete a friend request once two users have been added as friends.&lt;/p&gt;
+&lt;h1 id=&#34;unfriend-user&#34;&gt;Unfriend user&lt;/h1&gt;
+&lt;p&gt;Unfriending is as simple as removing the records in the friends table that connects two users.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;iiii&#39;, $_GET[&#39;uid&#39;], $_SESSION[&#39;user_id&#39;], $_SESSION[&#39;user_id&#39;], $_GET[&#39;uid&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/profile.php?username=&amp;quot; . $_SESSION[&#39;user_username&#39;]);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Viola! We&amp;rsquo;ve built friend relationships into FaceClone!&lt;/p&gt;
+&lt;p&gt;Again, we&amp;rsquo;re not exploiting the relationships we just created, to keep things simple. But it&amp;rsquo;s pretty straightforward to do so. For example, instead of displaying all FaceClone posts on a user&amp;rsquo;s feed, we could display only posts from their friends. We could also make some of a user&amp;rsquo;s profile information only available to their friends. If we had a chat feature, we could allow only friends chat with each other. As a social network grows, this would make more sense. So if you&amp;rsquo;re working on your social network app after this series (I totally encourage it), keep in mind what the relationships you create would imply.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;At this point, I must say we are done; at least at the most basic level. So congrats for following through!!! Building a social networking app, especially one like Facebook, is a never-ending journey. There&amp;rsquo;s always something to add to make it easier, faster and/or better to use.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll be deploying the FaceClone web app online for anyone to use in the next and last part of this series. Be sure to read it!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-6 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-6/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 5</title>
+        <link>https://alphacoder.xyz/facebook-clone-5/</link>
+        <pubDate>Wed, 20 Sep 2017 09:07:20 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-5/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-5/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 5 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Every Facebook user has a profile. Let&amp;rsquo;s create profile pages for FaceClone users!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc5/faceclone-profile.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;FaceClone profile page&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;but-before-iforget&#34;&gt;But before I forget&amp;hellip;&lt;/h1&gt;
+&lt;p&gt;Recall that we used id of &lt;em&gt;zero&lt;/em&gt; for the user_id fields in our posts table. That was because we didn&amp;rsquo;t have any users. Now that we do, let&amp;rsquo;s change things a bit.
+The query in create-post.php becomes&amp;hellip;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+$sql = &amp;quot;INSERT INTO posts (content, user_id) VALUES (?, ?)&amp;quot;;
+...
+$statement-&amp;gt;bind_param(&#39;si&#39;, $_POST[&#39;content&#39;], $_SESSION[&#39;user_id&#39;]);
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We simply change the user_id value to the user_id session which is created when a user logs in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Since registration now works in our application, you may delete the dummy user accounts and use the registration form for account/user creation.&lt;/p&gt;
+&lt;h1 id=&#34;so&#34;&gt;So&amp;hellip;&lt;/h1&gt;
+&lt;p&gt;Isn&amp;rsquo;t there just one profile page (i.e profile.php)? How do we create profile pages for &amp;ldquo;all&amp;rdquo; our users? Well, we can make profile.php dynamic like we did with home.php. In essence, we would have one page, but different data depending on a given user. There are many ways to achieve this. Our approach in this part is simple though. We simply provide a user&amp;rsquo;s username as a parameter in the profile url and use it (the username) to pull the user&amp;rsquo;s data from the DB. E.g example.com/profile.php?username=nicholas.&lt;/p&gt;
+&lt;p&gt;Since the username is sent through a GET request, we can retrieve it with the &lt;code&gt;$_GET&lt;/code&gt; superglobal using &lt;code&gt;$_GET[&#39;username&#39;]&lt;/code&gt;. Let&amp;rsquo;s write some code:&lt;/p&gt;
+&lt;p&gt;Atop profile.php…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+$sql = &amp;quot;SELECT id, username, status, profile_image_url, location FROM users WHERE username = ?&amp;quot;;
+$statement = $conn-&amp;gt;prepare($sql);
+$statement-&amp;gt;bind_param(&#39;s&#39;, $_GET[&#39;username&#39;]);
+$statement-&amp;gt;execute();
+$statement-&amp;gt;store_result();
+$statement-&amp;gt;bind_result($id, $username, $status, $profile_image_url, $location);
+$statement-&amp;gt;fetch();
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First, we get the username, then run a query to fetch a user using their username and that&amp;rsquo;s just about it. &lt;code&gt;$id&lt;/code&gt;, &lt;code&gt;$username&lt;/code&gt;, &lt;code&gt;$status&lt;/code&gt;, &lt;code&gt;$profile_image_url&lt;/code&gt; and &lt;code&gt;$location&lt;/code&gt; variables can now be echoed out where we need them in the page.&lt;/p&gt;
+&lt;h1 id=&#34;user-posts&#34;&gt;User posts&lt;/h1&gt;
+&lt;p&gt;Then again, we want to show only the posts belonging to the user whose profile is being displayed. Taking a cue from the home page which displays the posts of all users across FaceClone (part 3), we can create a new sql query:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$user_posts_sql = &amp;quot;SELECT * FROM posts WHERE user_id = {$id} ORDER BY created_at DESC&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the query above, we use the where clause to limit the posts to the ones belonging to the profile owner. &lt;code&gt;$id&lt;/code&gt; is the user&amp;rsquo;s id got from the query to fetch a user&amp;rsquo;s record.&lt;/p&gt;
+&lt;h1 id=&#34;edit-profile&#34;&gt;Edit profile&lt;/h1&gt;
+&lt;p&gt;Lastly, we need to allow users to make changes to their profiles. There&amp;rsquo;s a little form in profile.php we can use to update status and location. Let&amp;rsquo;s make it work!
+The form…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/edit-profile.php&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;status&amp;quot; placeholder=&amp;quot;Status&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;location&amp;quot; placeholder=&amp;quot;Location&amp;quot; value=&amp;quot;&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; value=&amp;quot;Save&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now create a file in the php folder called edit-profile.php with the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;UPDATE users SET status = ?, location = ? WHERE id = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;ssi&#39;, $_POST[&#39;status&#39;], $_POST[&#39;location&#39;], $_SESSION[&#39;user_id&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/profile.php?username={$_SESSION[&#39;user_username&#39;]}&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You&amp;rsquo;re probably used to the above snippet by now. We update the status and location of a user using the &lt;code&gt;UPDATE&lt;/code&gt; sql statement then redirect back to profile.php. Sweet!&lt;/p&gt;
+&lt;p&gt;*drops mic*&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;FaceClone repo&lt;/a&gt;. Visit the link and click on the part-5 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-5/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 4</title>
+        <link>https://alphacoder.xyz/facebook-clone-4/</link>
+        <pubDate>Thu, 14 Sep 2017 09:07:14 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-4/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-4/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 4 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Users are at the center of any application. It&amp;rsquo;s all about the user, right? Unlike other types of web apps (e.g blogs), our users must be identifiable. They can&amp;rsquo;t be anonymous. They need to have accounts on our platform. And to get accounts, they have to register. After registration, they must login to their accounts. In this part, we&amp;rsquo;re going to make all this possible, and some.&lt;/p&gt;
+&lt;h1 id=&#34;registration&#34;&gt;Registration&lt;/h1&gt;
+&lt;p&gt;We already have a registration form in our index.php template.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/register.php&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Username&amp;quot; required&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;location&amp;quot; placeholder=&amp;quot;Location&amp;quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot; required&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+        &amp;lt;input class=&amp;quot;btn btn-success&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;register&amp;quot; value=&amp;quot;Register&amp;quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When a user fills the registration form and submits, all we need to do is feed our database with the information.&lt;/p&gt;
+&lt;p&gt;Create a file called register.php in the php folder. This is where we would process registration submissions.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;INSERT INTO users (username, password, location) VALUES (?, ?, ?)&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;sss&#39;, $_POST[&#39;username&#39;], password_hash($_POST[&#39;password&#39;], PASSWORD_DEFAULT), $_POST[&#39;location&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/index.php?registered=true&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Like always, the code is easy to understand. After we call &lt;code&gt;db_connect()&lt;/code&gt; to help us establish a connection to the database, we build an SQL query, an insert query that, well, inserts (or creates) data in our DB.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve noticed, we&amp;rsquo;ve been using &amp;ldquo;prepared statements&amp;rdquo; to perform some SQL queries. There are couple other ways to perform operations [using PHP] on our DB (e.g the way we used to pull up post records in part 3). Prepared statements are however preferred/safer for operations that change/manipulate data because, BAD PEOPLE (the black hats) can attempt to mess us up using SQL Injection. There&amp;rsquo;s no time to talk about SQL Injection here but hey, Google is your friend. Anyways, let&amp;rsquo;s move on.&lt;/p&gt;
+&lt;p&gt;Another security concern is with passwords. It is bad practice to store &amp;ldquo;raw&amp;rdquo; passwords because if someone gets access to your DB, they can screw you and your users over. It&amp;rsquo;s safer to &amp;ldquo;hash&amp;rdquo; passwords. Hashing algorithms perform one-way transformations, turning one string to another string called a hash. There are a good number of hashing algorithms you can use for passwords e.g md5, sha1, bcrypt etc. Lucky for us, we don&amp;rsquo;t have to worry about these algorithms. PHP provides a hashing function we can use:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;password_hash(&#39;secret123&#39;, PASSWORD_DEFAULT);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Password hashes are usually a long string of &amp;ldquo;random&amp;rdquo; characters like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$2y$10$aClhvyCsqbPgx.SE7L43z.oZhBPNhqg3lOMJWPMC1KUT9UIeiR.Vi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the insert is done, we redirect the user to same index.php with some GET data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;example.com/index.php?registered=true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This data tells us the user has been registered, so we can alert the user as well and urge them to login. Somewhere atop index.php, we can have:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;?php if(isset($_GET[&#39;registered&#39;])): ?&amp;gt;
+&amp;lt;div class=&amp;quot;alert alert-success&amp;quot;&amp;gt;
+    &amp;lt;p&amp;gt;Account created successfully! Use your username and password to login.&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;?php endif; ?&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;login&#34;&gt;Login&lt;/h1&gt;
+&lt;p&gt;Login is also straightforward. What we want to achieve is to create a way to identify users as they go from page to page in our application. We want to be able to know if the person [currently] using our app is &amp;ldquo;logged in&amp;rdquo;, but more importantly, who they are if they are logged in.&lt;/p&gt;
+&lt;p&gt;There are two things involved:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Authentication&lt;/strong&gt; - which asks &amp;ldquo;Who are you?&amp;rdquo; and &amp;ldquo;Are you really who you say you are?&amp;rdquo;. The former is asked through a login form where the user provides their username and password, while the latter is asked when the application checks to see if the credentials submitted match any existing records.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Authorization&lt;/strong&gt; - If a user is who they say they are, then we can give them access to resources (e.g pages) unavailable to people not registered to our app. We have to do some kind of check to see if a request coming to our server is from a &amp;ldquo;legit&amp;rdquo; user and then authorize/allow access to the page they requested.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We use &lt;em&gt;sessions&lt;/em&gt; to authorize requests. Like the name implies, a session grants access to an application&amp;rsquo;s resources for a period. For instance, after being authenticated by security at, say, a library (probably with a student or National ID), you can do whatever you like (read books, watch educational material, browse the internet etc) until you leave/the library is closed for the day. When you visit next time, you must be authenticated again. But while you&amp;rsquo;re in the library, nobody asks you to identify yourself before picking up a book or watching some educational video. It is believed that you have been &amp;ldquo;authenticated&amp;rdquo;, so to speak.&lt;/p&gt;
+&lt;p&gt;PHP provides us a superglobal called &lt;code&gt;$_SESSION&lt;/code&gt; - an array which contains session variables. The variables we store in &lt;code&gt;$_SESSION&lt;/code&gt; persist until the browser is closed. I don&amp;rsquo;t want to go into exactly how sessions work. Again, Google is your friend, so google.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a snippet of the login form:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/login.php&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot; placeholder=&amp;quot;Username&amp;quot; required&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;password&amp;quot; name=&amp;quot;password&amp;quot; placeholder=&amp;quot;Password&amp;quot; required&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;btn btn-primary&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;login&amp;quot; value=&amp;quot;Login&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a file login.php in the php folder and add the following bit of code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;SELECT id, username, password FROM users WHERE username = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;s&#39;, $_POST[&#39;username&#39;]);
+    $statement-&amp;gt;execute();
+    $statement-&amp;gt;store_result();
+    $statement-&amp;gt;bind_result($id, $username, $password);
+    $statement-&amp;gt;fetch();
+    if ($statement-&amp;gt;execute()) {
+        if(password_verify($_POST[&#39;password&#39;], $password)) {
+        $_SESSION[&#39;user_id&#39;] = $id;
+        $_SESSION[&#39;user_username&#39;] = $username;
+        redirect_to(&amp;quot;/home.php&amp;quot;);
+        } else {
+        redirect_to(&amp;quot;/index.php?login_error=true&amp;quot;);
+        }
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As with the the code for registration, login.php is easy to digest. We establish a connection with our dear DB, then write a query to fetch a user with the supplied username. Next, we get the hashed password of the fetched user record and compare it to the password provided by the user to see if they match. PHP provides another slick function to do this called, as you could guess, &lt;code&gt;password_verify()&lt;/code&gt;. Once our user has been verified to have provided the correct details, we create 2 sessions. One to store the user&amp;rsquo;s id and the other the user&amp;rsquo;s username. Then we redirect them to home.php.&lt;/p&gt;
+&lt;p&gt;With the sessions in place, we can check any request coming to our server to know if it&amp;rsquo;s from an authenticated user or not, and who the user is if they&amp;rsquo;re authenticated. This is vital for our app cos we don&amp;rsquo;t want unregistered persons to access pages like home.php as well as to take actions like creating a post or making a friend request. Also, we want to be able to know [the user] who takes a given action. These sessions help us achieve just that.&lt;/p&gt;
+&lt;p&gt;But how?&lt;/p&gt;
+&lt;p&gt;For starters, let&amp;rsquo;s a write function that allows only authenticated users to access the home page. The unauthenticated are redirected to index.php.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function is_auth() {
+    return isset($_SESSION[&#39;user_id&#39;]);
+}
+
+function check_auth() {
+    if(!is_auth()) {
+        redirect_to(&amp;quot;/index.php?logged_in=false&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are two functions defined above. The first &lt;code&gt;is_auth()&lt;/code&gt; is a helper function for &lt;code&gt;check_auth()&lt;/code&gt;. It checks if a user has been authenticated using the &lt;code&gt;user_id&lt;/code&gt; session. &lt;code&gt;check_auth()&lt;/code&gt; is the main function here. It uses &lt;code&gt;is_auth()&lt;/code&gt; to check if a request is not authenticated and then redirects to index.php.&lt;/p&gt;
+&lt;p&gt;Now you can place &lt;code&gt;check_auth()&lt;/code&gt; atop all the pages you want restricted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; You need to place the function &lt;code&gt;session_start()&lt;/code&gt; at the beginning of every page where sessions would be used, for them to work. functions.php is a nice place to put this function cos it&amp;rsquo;s required at the start of all our pages.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    session_start();
+    function db_connect() {
+        ...
+    }
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;logout&#34;&gt;Logout&lt;/h1&gt;
+&lt;p&gt;Logout is freakishly easy. All we have to do is destroy the session, and PHP provides us a function to do just that.&lt;/p&gt;
+&lt;p&gt;Create a new file in the php folder called logout.php with the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    // destroy all sessions
+    session_destroy();
+    redirect_to(&amp;quot;/index.php&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;rsquo;s all! Hopefully, there&amp;rsquo;s nothing to explain here. Right?&lt;/p&gt;
+&lt;p&gt;Great!&lt;/p&gt;
+&lt;p&gt;Just create a logout link like so: &lt;code&gt;&amp;lt;a href=&amp;quot;php/logout.php&amp;quot;&amp;gt;Logout&amp;lt;/a&amp;gt;&lt;/code&gt; and you&amp;rsquo;re good.&lt;/p&gt;
+&lt;p&gt;At this point, we can call it a day. Phew!!!&lt;/p&gt;
+&lt;p&gt;Well done!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-4 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-4/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 3</title>
+        <link>https://alphacoder.xyz/facebook-clone-3/</link>
+        <pubDate>Mon, 17 Jul 2017 08:35:09 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-3/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-3/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 3 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Posts are the heart and soul of Facebook. In this part, we&amp;rsquo;ll be writing code that would allow us view, make and delete posts on FaceClone.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/faceclone-home.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;functionsphp&#34;&gt;Functions.php&lt;/h1&gt;
+&lt;p&gt;In the spirit of code reusability A.K.A writing DRY (&lt;a href=&#34;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&#34;&gt;Don&amp;rsquo;t Repeat Yourself&lt;/a&gt;) code, let&amp;rsquo;s create a functions.php file in the root of our project. We&amp;rsquo;ll use this file to write different bits of code — functions — which can be used across our app. Now include functions.php at the top of all app pages like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php require_once &amp;quot;functions.php&amp;quot;; ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;connect-todb&#34;&gt;Connect to DB&lt;/h1&gt;
+&lt;p&gt;To interact with a database e.g perform CRUD (Create, Read, Update, Delete) operations, we must connect to it. Connecting to MySQL with PHP is pretty easy. Create a function in functions.php called db_connect and add the following code like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    function db_connect() {
+        global $conn; // db connection variable
+        $db_server = &amp;quot;localhost&amp;quot;;
+        $username = &amp;quot;root&amp;quot;;
+        $password = &amp;quot;&amp;quot;;
+        $db_name = &amp;quot;faceclone&amp;quot;;
+        // create a connection
+        $conn = new mysqli($db_server, $username, $password, $db_name);
+        // check connection for errors
+        if ($conn-&amp;gt;connect_error) {
+            die(&amp;quot;Error: &amp;quot; . $conn-&amp;gt;connect_error);
+        }
+        // uncomment the line below to confirm a connection is established
+        // echo &#39;&amp;lt;h1 style=&amp;quot;color: green;&amp;quot;&amp;gt;Connected to DB!&amp;lt;/h1&amp;gt;&#39;;
+        // your can clear these comments afterwards
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can call this function in any page like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php require_once &amp;quot;functions.php&amp;quot;; ?&amp;gt;
+&amp;lt;?php include &amp;quot;header.php&amp;quot;; ?&amp;gt;
+&amp;lt;?php 
+    db_connect();
+?&amp;gt;
+&amp;lt;!-- main --&amp;gt;
+&amp;lt;main class=&amp;quot;container&amp;quot;&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/db-connect.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Connect FaceClone to the DB&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The above code is quite self-explanatory. We specify our database server name, username, password and the particular database we want to access. Then, we use the MySQLi extension to establish a connection to the database. There are other extensions and therefore ways to connect to a database. Also, we can choose to &lt;a href=&#34;https://www.w3schools.com/php/php_mysql_connect.asp&#34;&gt;write the code procedurally or using object-oriented programming&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ensure your MySQL server is running. You can start the server from XAMPP&amp;rsquo;s control panel.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;XAMPP control panel&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Now that we have a connection, let&amp;rsquo;s write code to get posts from the database. Wait! There&amp;rsquo;s no data in there, is there? Let&amp;rsquo;s quickly generate some data. Head over to PHP My Admin and have some fun.&lt;/p&gt;
+&lt;p&gt;Go to faceclone &amp;gt; posts &amp;gt; insert&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc3/create-dummy-data.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Add dummy data to your DB&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I set user_id to 0 cos we don&amp;rsquo;t have any users yet.&lt;/p&gt;
+&lt;h1 id=&#34;view-posts&#34;&gt;View posts&lt;/h1&gt;
+&lt;p&gt;Now, let&amp;rsquo;s get the posts from the DB to our home page. There&amp;rsquo;s already template code for posts with some static data. Using the template, we&amp;rsquo;ll have something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- post --&amp;gt;
+&amp;lt;?php 
+    $sql = &amp;quot;SELECT * FROM posts&amp;quot;;
+    $result = $conn-&amp;gt;query($sql);
+    if ($result-&amp;gt;num_rows &amp;gt; 0) {
+        while($post = $result-&amp;gt;fetch_assoc()) {
+?&amp;gt;
+            &amp;lt;div class=&amp;quot;panel panel-default&amp;quot;&amp;gt;
+            &amp;lt;div class=&amp;quot;panel-body&amp;quot;&amp;gt;
+                &amp;lt;p&amp;gt;&amp;lt;?php echo $post[&#39;content&#39;]; ?&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;div class=&amp;quot;panel-footer&amp;quot;&amp;gt;
+                &amp;lt;span&amp;gt;posted &amp;lt;?php echo $post[&#39;created_at&#39;]; ?&amp;gt; by nicholaskajoh&amp;lt;/span&amp;gt; 
+                &amp;lt;span class=&amp;quot;pull-right&amp;quot;&amp;gt;&amp;lt;a class=&amp;quot;text-danger&amp;quot; href=&amp;quot;php/delete-post.php?id=&amp;lt;?php echo $post[&#39;id&#39;]; ?&amp;gt;&amp;quot;&amp;gt;[delete]&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+&amp;lt;?php
+        }
+    } else {
+?&amp;gt;
+        &amp;lt;p class=&amp;quot;text-center&amp;quot;&amp;gt;No posts yet!&amp;lt;/p&amp;gt;
+&amp;lt;?php
+    }
+    $conn-&amp;gt;close();
+?&amp;gt;
+&amp;lt;!-- ./post --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nothing much here. First, we write an SQL query and execute it, then we get the results and display each post using a while loop. The query SELECT * FROM posts simply says &amp;ldquo;get all the records from the posts table&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The words (in the code) with &lt;code&gt;$&lt;/code&gt; before them are variable names (e.g &lt;code&gt;$result&lt;/code&gt;). We use the dollar sign to denote variable names in PHP.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re not done yet though. Wouldn&amp;rsquo;t it be better to display the more recent posts first? We can do that by adjusting our query a little bit.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT * FROM posts ORDER BY created_at DESC
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bingo!&lt;/p&gt;
+&lt;h1 id=&#34;make-posts&#34;&gt;Make posts&lt;/h1&gt;
+&lt;p&gt;We don&amp;rsquo;t expect users to use PHP MyAdmin to make posts on FaceClone, do we? It only seems logical that we allow users create posts in our app. Thanks to the template, we have a nifty little textbox on the home page.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This point in our journey looks like a good time to separate concerns. We could write the code that&amp;rsquo;ll create a new post in home.php, but this can lead to messy code as there may be too many moving parts, so to speak, in one file. Let&amp;rsquo;s avoid this by creating a new folder called php in the root of our project to store php files which aren&amp;rsquo;t pages. functions.php fits the description of a file that should be in the php folder. Let&amp;rsquo;s leave it where it is, though. I like to keep it in the root folder as it serves kind of like a general purpose.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create a new file in the php folder called create-post.php and add the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;INSERT INTO posts (content, user_id) VALUES (?, 0)&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;s&#39;, $_POST[&#39;content&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/home.php&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+    $conn-&amp;gt;close();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now edit the form in home.php by adding php/create-post.php as the value for the action attribute.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- post form --&amp;gt;
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;php/create-post.php&amp;quot;&amp;gt;
+&amp;lt;div class=&amp;quot;input-group&amp;quot;&amp;gt;
+    &amp;lt;input class=&amp;quot;form-control&amp;quot; type=&amp;quot;text&amp;quot; name=&amp;quot;content&amp;quot; placeholder=&amp;quot;Make a post…&amp;quot;&amp;gt;
+    &amp;lt;span class=&amp;quot;input-group-btn&amp;quot;&amp;gt;
+    &amp;lt;button class=&amp;quot;btn btn-success&amp;quot; type=&amp;quot;submit&amp;quot; name=&amp;quot;post&amp;quot;&amp;gt;Post&amp;lt;/button&amp;gt;
+    &amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;&amp;lt;hr&amp;gt;
+&amp;lt;!-- ./post form --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code to create a post is straightforward. We write a query and execute it. If it&amp;rsquo;s executed (meaning everything went well), we redirect to the home page where we can see the newly created post. Else, we throw an error.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$_POST&lt;/code&gt; is a superglobal. superglobals are variables that are always accessible regardless of scope i.e you can access them from any function, class or file without having to do anything. $_POST is an array that contains data sent in POST requests. When a user submits the form to create a post, we can access the content in &lt;code&gt;$_POST&lt;/code&gt; variable using &lt;code&gt;$_POST[&#39;content&#39;]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Ensure the default value for the created_at column of the posts table is set to &lt;code&gt;CURRENT_TIMESTAMP&lt;/code&gt;.
+The redirect_to method is a custom method. Add the definition to functions.php.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function redirect_to($url) {
+    header(&amp;quot;Location: &amp;quot; . $url);
+    exit();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;delete-posts&#34;&gt;Delete posts&lt;/h1&gt;
+&lt;p&gt;Create a new file in the php folder. Call it delete-post.php. Similar to create-post.php, we have:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    require_once &amp;quot;../functions.php&amp;quot;;
+    db_connect();
+    $sql = &amp;quot;DELETE FROM posts WHERE id = ?&amp;quot;;
+    $statement = $conn-&amp;gt;prepare($sql);
+    $statement-&amp;gt;bind_param(&#39;i&#39;, $_GET[&#39;id&#39;]);
+    if ($statement-&amp;gt;execute()) {
+        redirect_to(&amp;quot;/home.php&amp;quot;);
+    } else {
+        echo &amp;quot;Error: &amp;quot; . $conn-&amp;gt;error;
+    }
+    $conn-&amp;gt;close();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now when we click the delete link for a post, it&amp;rsquo;s gone for good! 😊&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$_GET&lt;/code&gt; is another superglobal. As you might imagine, it contains data sent from GET requests.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it for part 3!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-3 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-3/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 2</title>
+        <link>https://alphacoder.xyz/facebook-clone-2/</link>
+        <pubDate>Sat, 17 Jun 2017 05:53:39 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-2/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-2/ -&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 2 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;a-little-about-php-andmysql&#34;&gt;A little about PHP and MySQL&lt;/h1&gt;
+&lt;p&gt;So in part 1, we didn&amp;rsquo;t get to talk about PHP as we should have because we were all about the FaceClone template. We also didn&amp;rsquo;t get to talk about MySQL, the database we&amp;rsquo;ll be using. Let&amp;rsquo;s quickly get to know a little about PHP and MySQL.&lt;/p&gt;
+&lt;h1 id=&#34;php&#34;&gt;PHP&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML. - http://php.net/manual/en/intro-whatis.php&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PHP is the most popular server-side programming language for the web and runs millions of websites. To write PHP, all we need to do is create a file with a &lt;em&gt;.php&lt;/em&gt; file extension and add the php tags &lt;code&gt;&amp;lt;?php&lt;/code&gt; and &lt;code&gt;?&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;?php&lt;/code&gt; is the opening tag and &lt;code&gt;?&amp;gt;&lt;/code&gt; the closing tag. We can write a Hello World PHP program like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;DOCTYPE&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;html&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;html&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;head&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;title&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;title&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;head&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;/body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;/html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the above example, the PHP code is embedded in HTML. When PHP parses a file, it looks for opening and closing tags, &lt;code&gt;&amp;lt;?php&lt;/code&gt; and &lt;code&gt;?&amp;gt;&lt;/code&gt; which tell it to start and stop interpreting the code between them. We could decide to write PHP-only code too:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We may choose to omit the closing tag &lt;code&gt;?&amp;gt;&lt;/code&gt; in this case to have:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;echo&lt;/code&gt; prints out Hello World as HTML text when the php file is served. We&amp;rsquo;ll be learning PHP as we go about building FaceClone. Don&amp;rsquo;t worry, PHP is pretty easy! 👍&lt;/p&gt;
+&lt;h1 id=&#34;mysql&#34;&gt;MySQL&lt;/h1&gt;
+&lt;p&gt;MySQL is the fastest growing open-source relational database management system. It is a popular database of choice for use in web apps and is currently used by many large websites like Facebook and Twitter. It makes use of SQL, a language for managing data in relational databases. SQL is an abbreviation which stands for Structured Query Language. We&amp;rsquo;ll be writing SQL queries along side PHP. SQL databases contain tables. Think of a table as an Excel spreadsheet. For our app, we&amp;rsquo;ll create tables like &lt;em&gt;users&lt;/em&gt; (to store information about our users) and &lt;em&gt;posts&lt;/em&gt; (to store our users&amp;rsquo; posts). Tables have columns. For a users table, we could have columns like &lt;em&gt;name&lt;/em&gt;, &lt;em&gt;password&lt;/em&gt;, &lt;em&gt;email&lt;/em&gt; etc. Then each row of the users table could contain details about a user under each column heading. Say we want to get all the posts made by FaceClone users, we could write a query like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;SELECT&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; posts
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;SELECT&lt;/code&gt; lets us read data from the database. &lt;code&gt;*&lt;/code&gt; gets all the columns in the table posts. We could use &lt;code&gt;SELECT name, email FROM posts&lt;/code&gt; if we don&amp;rsquo;t want all the columns from the posts table. We&amp;rsquo;ll be dealing with more SQL queries as we build FaceClone. SQL is easy as well, plus there are a ton of query snippets online for most queries you&amp;rsquo;ll want to write. Sweet!!!&lt;/p&gt;
+&lt;h1 id=&#34;back-to-business&#34;&gt;Back to business&amp;hellip;&lt;/h1&gt;
+&lt;p&gt;When we changed our template files from .html to .php, we broke our navigation links. Let&amp;rsquo;s go ahead and fix that. We just need to change the href attributes of those links to .php. Or not. We have 3 templates and need to make each change 3 times. That&amp;rsquo;s not much of a problem since there are only 3 templates. What if there were 10, 15, 20? It doesn&amp;rsquo;t make sense to make the same change x times. The navigation bar is a component we use in all of our templates. Why don&amp;rsquo;t we make it reusable?&lt;/p&gt;
+&lt;h1 id=&#34;partials&#34;&gt;Partials&lt;/h1&gt;
+&lt;p&gt;We can achieve reusability by creating partials. Partials are files that contain different components of our app. So we can have a header partial and a footer partial. If we need a header in home.php, all we need to do is simply &amp;ldquo;include&amp;rdquo; it. Let&amp;rsquo;s go ahead and do that. Create a header.php and footer.php file in the same folder as your other templates. It may be more efficient to create a folder for partials but we&amp;rsquo;ll just have the templates and partials together for now. In your header.php, add the following code (the snippet below can be gotten from home.php or profile.php):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;FaceClone&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;css/bootstrap.min.css&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;css/style.css&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- nav --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;nav&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;navbar navbar-default&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container-fluid&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;navbar-header&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;navbar-brand&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;index.html&amp;#34;&lt;/span&gt;&amp;gt;FaceClone&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nav navbar-nav navbar-right&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;home.html&amp;#34;&lt;/span&gt;&amp;gt;Home&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;profile.html&amp;#34;&lt;/span&gt;&amp;gt;Profile&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&amp;gt;Logout&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;nav&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./nav --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then in footer.php add:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- footer --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;footer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container text-center&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nav nav-pills pull-right&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;FaceClone - Made by [your name here]&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;li&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;footer&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./footer --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js/bootstrap.min.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js/script.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now instead of making a change in 3 places, we can make just one change in header.php. Change the nav link hrefs to .php so &lt;code&gt;href=&amp;quot;home.html&amp;quot;&lt;/code&gt; becomes &lt;code&gt;href=&amp;quot;home.php&amp;quot;&lt;/code&gt; for example.
+We&amp;rsquo;ve just created 2 partials. We need to include them in all our template files. To do so, clear the header and footer code (which we&amp;rsquo;ve already moved to header.php and footer.php respectively) in our template files and add &lt;code&gt;&amp;lt;?php include &amp;quot;header.php&amp;quot;; ?&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;?php include &amp;quot;header.php&amp;quot;; ?&amp;gt;&lt;/code&gt; like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;header.php&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;! - main --&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;main class=&amp;#34;container&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;!-- page content here --&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;/main&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;!-- ./main --&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;?php include &amp;#34;footer.php&amp;#34; ?&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run PHP&amp;rsquo;s development server to to confirm everything works fine.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Open up a terminal and change directory to the project&amp;rsquo;s folder then run &lt;code&gt;php -S localhost:8080&lt;/code&gt; to start the server (refer to part 1 if you don&amp;rsquo;t remember how to run the app).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/faceclone-home.php.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;lets-write-a-dbschema&#34;&gt;Let&amp;rsquo;s write a DB schema&lt;/h1&gt;
+&lt;p&gt;We need to &amp;ldquo;architect&amp;rdquo; a schema for our database. There&amp;rsquo;s quite some data that needs to be stored. When a user makes a post, we need to store it so they (and other users) can view it [later]. We even need to store information about users like their usernames and passwords. There needs to be some structure. We must know before hand what data we want to store and how we want to store it. A schema is simply a representation of a database structure. Smooth and easy!&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the schema I made for FaceClone:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/faceclone-schema.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This schema is very basic. I should have specified the data types for each column. But don&amp;rsquo;t worry, we&amp;rsquo;ll choose data types when we transform this schema into a real database. The column names suggest the data that would be stored under them. The id columns allow us uniquely identify records in the database. If we want to get a post from the database, we need a unique feature that identifies it - the id. For the users table, we could use the username column to identify users because each user&amp;rsquo;s username must be unique but we&amp;rsquo;ll be using ids nonetheless.&lt;/p&gt;
+&lt;p&gt;The user_id and friend_id columns are foreign key columns. user_id represents a user in the users table. Every post, for example must belong to a user. Instead of adding fields like username, password, location etc to the posts table to represent the user who made a given post, we can simply add a reference (user_id) which represents a user&amp;rsquo;s id in users table. This is some form of normalization and in helps us avoid redundancy/duplicate data.&lt;/p&gt;
+&lt;h1 id=&#34;create-thedatabase&#34;&gt;Create the Database&lt;/h1&gt;
+&lt;p&gt;With a schema in sight, we should get started creating the database for FaceClone. Power up XAMMP to begin. When XAMPP is executed, a view like the one below greets you:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/xampp-control-panel.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;XAMPP&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Start Apache and MySQL. We&amp;rsquo;re going to use a web app called PHP My Admin to create our database. We&amp;rsquo;ll serve PHP My Admin with Apache (a web server). We also need MySQL server running too.
+Once Apache and MySQL start running, go to your browser and visit http://localhost/phpmyadmin. You should be greeted by a page that looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/phpmyadmin.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;PHP My Admin&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Click on the databases tab to create a new database. Let&amp;rsquo;s call our database faceclone. Once our database is created, we are taken to a screen where we can create tables. Type in the name of the table and the number of columns and click &amp;ldquo;Go&amp;rdquo;. Our posts table for instance would have 4 columns: id, content, user_id and created_at. Go ahead and create all the database tables like so:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-posts.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create posts table&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; For &lt;em&gt;id&lt;/em&gt; columns, remember to make the index PRIMARY and tick the AI (auto increment) checkbox.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-users.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create users table&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-friends.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create friends table&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc2/create-friend-requests.png&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Create friend_requests table&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Done with that? Cool. Our database is up and ready!&lt;/p&gt;
+&lt;p&gt;That wraps it up for part 2!!!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-2 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Previous: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;Build a Facebook clone from scratch with PHP — Part 1&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-2/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Build a Facebook clone from scratch with PHP — Part 1</title>
+        <link>https://alphacoder.xyz/facebook-clone-1/</link>
+        <pubDate>Sun, 11 Jun 2017 01:22:37 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/facebook-clone-1/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/facebook-clone-1/ -&lt;p&gt;In this post through a couple others that would follow, we&amp;rsquo;re going to be building our own Facebook (oh yeah!). Brace yourself. It&amp;rsquo;s going to be one hell of an exciting ride!&lt;/p&gt;
+&lt;h1 id=&#34;all-parts&#34;&gt;All parts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Build a Facebook clone from scratch with PHP — Part 1 (this article)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-3&#34;&gt;Build a Facebook clone from scratch with PHP — Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-4&#34;&gt;Build a Facebook clone from scratch with PHP — Part 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-5&#34;&gt;Build a Facebook clone from scratch with PHP — Part 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-6&#34;&gt;Build a Facebook clone from scratch with PHP — Part 6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alphacoder.xyz/facebook-clone-7&#34;&gt;Build a Facebook clone from scratch with PHP — Part 7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;were-making-facebook-wow&#34;&gt;We&amp;rsquo;re making Facebook? Wow!&lt;/h1&gt;
+&lt;p&gt;Facebook is the largest social network platform in the world. I mean, it&amp;rsquo;s crazy! An application that serves ~2 billion people? Insane! Facebook over the years has become more and more complex, adding new and exciting features as the days go by.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d like to, at this rather early juncture, outline what we&amp;rsquo;ll be building.&lt;/p&gt;
+&lt;p&gt;Facebook is big. There are photos, groups, messaging, pages, videos, live videos, stories, VR and more. That&amp;rsquo;s a lot. What we&amp;rsquo;ll be building here is good ol&amp;rsquo; Facebook of 2004 — probably less. We want to focus on the initial core features of Facebook — posts, profiles, timelines, friend relationships and login/registration. Awesome!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/faceclone-screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;is-it-forme&#34;&gt;Is it for me?&lt;/h1&gt;
+&lt;p&gt;If you have at least a basic understanding of programming concepts and front end web development (i.e HTML, CSS, Javascript) this series is for you. If you have little/zero knowledge of front end web development, you can check out this post I wrote: &lt;a href=&#34;https://alphacoder.xyz/html-css-js&#34;&gt;HTML, CSS and Javascript as fast as possible&lt;/a&gt;. If it doesn&amp;rsquo;t help, you&amp;rsquo;ll need to pick up some more elaborate course/tutorial to get up to speed. It&amp;rsquo;s vital you have some general knowledge of computer programming though to get the best from the series.&lt;/p&gt;
+&lt;h1 id=&#34;what-youll-beneeding&#34;&gt;What you&amp;rsquo;ll be needing&lt;/h1&gt;
+&lt;p&gt;All you&amp;rsquo;ll be needing is a PC/Mac and 3 apps you can download for free online:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;VS Code (text editor)&lt;/li&gt;
+&lt;li&gt;XAMPP (PHP interpreter, PHP development server and MySQL server)&lt;/li&gt;
+&lt;li&gt;Filezilla (FTP client)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;VS Code is a flexible light-weight text editor. We&amp;rsquo;ll be using it to write our code.&lt;/p&gt;
+&lt;p&gt;XAMPP (pronounced &amp;ldquo;zamp&amp;rdquo;) is a suite of tools that&amp;rsquo;ll help us develop &lt;em&gt;FaceClone&lt;/em&gt; (yeah, that&amp;rsquo;s the name of the Facebook clone we&amp;rsquo;ll be building). XAMPP is an acronym that stands for Cross-Platform (X), Apache (A), MariaDB (M), PHP (P) and Perl (P). We&amp;rsquo;ll be using the PHP interpreter, the PHP development server and MySQL from XAMPP. You can read more about XAMPP here.&lt;/p&gt;
+&lt;p&gt;Filezilla is an FTP client. FTP stands for File Transfer Protocol. We&amp;rsquo;ll be deploying our Facebook clone app. Filezilla is going to enable us upload our code to an online server.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; If you have issues setting up any of these apps, please let me know in the comments. I&amp;rsquo;m ready to help where I can.&lt;/p&gt;
+&lt;h1 id=&#34;the-htmltemplate&#34;&gt;The HTML template&lt;/h1&gt;
+&lt;p&gt;I built a HTML template for the project. I figured it&amp;rsquo;ll be better to focus on PHP and MySQL than HTML, CSS and Javascript. Besides, using a ready-made template would enable us work faster which is what we want, right?
+Here&amp;rsquo;s the repo for the template: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone-html-template&#34;&gt;https://github.com/nicholaskajoh/faceclone-html-template&lt;/a&gt;. Click on the green &amp;ldquo;clone or download&amp;rdquo; button, then &amp;ldquo;download ZIP&amp;rdquo; to get the template. Unzip it to any location of your choice.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s quickly observe the structure of the template folder:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/template-folder-structure.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Folder structure for the template (ignore the .git folder)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The folder structure should be similar to the screenshot above. The .gitignore and README.md files are repo files and are not needed here so we can delete them.&lt;/p&gt;
+&lt;p&gt;The css folder contain css files for styling our web app. There are several &amp;ldquo;bootstrap&amp;rdquo; files and a style.css file. &lt;a href=&#34;https://getbootstrap.com&#34;&gt;Bootstrap&lt;/a&gt; is a HTML, CSS and Javascript framework that helps us built beautiful and responsive UIs quickly. I used Bootstrap for the template. In the style.css file, I specified a couple of styles to customize Bootstrap.&lt;/p&gt;
+&lt;p&gt;The fonts folder contains the gyphicons fonts which Bootstrap uses for its icons.&lt;/p&gt;
+&lt;p&gt;The js folder contains javascript files as you would expect. There&amp;rsquo;s bootstrap.js, bootstrap.min.js and npm.js from Bootstrap and script.js where we can define custom javascript code.&lt;/p&gt;
+&lt;p&gt;There are 3 main html files: home.html, index.html and profile.html. The names of these files suggest what they contain. Go ahead and open these files with a browser. The index file contains a login and register form where our users can &amp;ldquo;login or register&amp;rdquo;. The home page contains a logged-in user&amp;rsquo;s feed as well as a couple other things and the profile page contains information about a user. The template.html file is an empty template file. You can use it to build other page templates if you want to add another other feature to your version of FaceClone!&lt;/p&gt;
+&lt;p&gt;Try opening these template files in VS Code to see the code. Compare the code with what you see in the browser and try to make sense of it. Don&amp;rsquo;t fret if you don&amp;rsquo;t understand any or all of it. We&amp;rsquo;re going to do justice to the code in later parts.&lt;/p&gt;
+&lt;h1 id=&#34;serving-ourtemplate&#34;&gt;Serving our template&lt;/h1&gt;
+&lt;p&gt;With XAMPP installed, we have access to PHP&amp;rsquo;s development server from a terminal. Browsers can interpret/run HTML, CSS and Javascript code. They however cannot run PHP code. PHP is a server-side language. This means it runs on a server. When a request is made to the server by a browser (e.g when you try to visit &lt;a href=&#34;https://www.facebook.com&#34;&gt;www.facebook.com&lt;/a&gt;), PHP executes and produces HTML code which is returned by the server to the browser.&lt;/p&gt;
+&lt;p&gt;Open up a terminal window in the root folder of the project (i.e the folder displayed in the screenshot above). You can Google how to open up a terminal in your OS if you don&amp;rsquo;t know how to. Type the following and hit enter:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;php -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should get a result similar to the screenshot below (i.e the version of PHP you have installed):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/php-version.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;A terminal window&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you get a weird message like &amp;ldquo;invalid command&amp;rdquo; or something, your XAMPP is probably not properly installed. Post a comment on this article if you have any issues installing any of the apps we&amp;rsquo;ll be using.&lt;/p&gt;
+&lt;p&gt;Now type in &lt;code&gt;php -S localhost:8080&lt;/code&gt; and hit enter. This command starts up the PHP development server on port 8080. Visit http://localhost:8080 on your browser. Our FaceClone template is opened up!
+Unlike when we clicked index.html or the other html files to open them up in our browser, the page that is displayed was &amp;ldquo;served&amp;rdquo; by a server. This means we can run PHP code in them. Great!&lt;/p&gt;
+&lt;p&gt;But we actually can&amp;rsquo;t! Not yet. We have to change those files from html to php so that our server knows that they contain PHP and must be &amp;ldquo;pre-processed&amp;rdquo; before they are served. So go ahead and change home.html to home.php and so on for the other html files. Now we should have a folder structure similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://alphacoder.xyz/images/fbc1/template-to-php.jpg&#34; alt=&#34;&#34;&gt;
+&lt;em&gt;Your folder structure should look like this (ignore the .gitkeep file)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all for part 1. Cool!!!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final code for this part is contained in my FaceClone repo here: &lt;a href=&#34;https://github.com/nicholaskajoh/faceclone&#34;&gt;https://github.com/nicholaskajoh/faceclone&lt;/a&gt;. Visit the link and click on the part-1 folder to see progress made so far.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Next: &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-2&#34;&gt;Build a Facebook clone from scratch with PHP — Part 2&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/facebook-clone-1/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>HTML, CSS and Javascript as fast as possible</title>
+        <link>https://alphacoder.xyz/html-css-js/</link>
+        <pubDate>Wed, 07 Jun 2017 21:48:21 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/html-css-js/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/html-css-js/ -&lt;p&gt;This post is a prequel to a series of posts on &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;building a Facebook clone with PHP from scratch&lt;/a&gt; authored by yours truly. It&amp;rsquo;s intended to give you an overview of HTML, CSS and Javascript if you have little/zero knowledge of any or all of them.&lt;/p&gt;
+&lt;p&gt;HTML, CSS and Javascript are front-end languages i.e they run on the client (your user&amp;rsquo;s device/browser). HTML is a templating language. CSS helps you style HTML and Javascript is &amp;ldquo;an object-oriented computer programming language commonly used to create interactive effects within web browsers.&amp;rdquo; Javascript in short, brings life to your web application.&lt;/p&gt;
+&lt;p&gt;This post is meant to brush you up on the very basics. I don&amp;rsquo;t expect you to start writing HTML, CSS and Javascript code after following through with this post. My aim is to demystify these languages. When you start the Facebook clone series, I don&amp;rsquo;t want you running away from code snippets written in these languages.
+Also, if you&amp;rsquo;re new to these languages, I expect that you push further to more detailed resources. There are a ton of free courses to help you. A Google search is a good start!
+With that, let&amp;rsquo;s begin&amp;hellip;&lt;/p&gt;
+&lt;h1 id=&#34;html&#34;&gt;HTML&lt;/h1&gt;
+&lt;p&gt;HTML stands for Hypertext Markup Language, but you probably already knew that. A html document is a file that contains html code. Create a file called index.html, open it in a text editor of your choice (e.g Notepad) and type the following code (don&amp;rsquo;t copy paste please):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;p&amp;gt;My first HTML code!&amp;lt;/p&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save the file and open it with a browser. When you do, you should see &amp;ldquo;My first HTML code!&amp;rdquo; on the page. Congrats! But before we celebrate, let&amp;rsquo;s understand what&amp;rsquo;s going on in the above code.&lt;/p&gt;
+&lt;h2 id=&#34;tags-elements&#34;&gt;Tags, elements&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; and all the others enclosed in &lt;code&gt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;/&lt;/code&gt; are called tags or elements. Tags/elements are the building blocks of html. The tags like &lt;code&gt;&amp;lt;this&amp;gt;&lt;/code&gt; are called opening tags and the ones like &lt;code&gt;&amp;lt;/this&amp;gt;&lt;/code&gt; are called closing tags. Not all elements have closing tags. We&amp;rsquo;ll use such tags in a jiffy.
+The visible part of a html document is enclosed between &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt; so let&amp;rsquo;s focus on that in this post. But html totally gives itself away. &lt;code&gt;&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;&lt;/code&gt; for instance suggests that the title of something should be contained between its tags. Let&amp;rsquo;s go ahead and write something between the title tags like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;title&amp;gt;Great page!&amp;lt;/title&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save your index.html file again and refresh the page in your browser. Did you notice any change on the tabs bar? HTML is that simple!&lt;/p&gt;
+&lt;h2 id=&#34;attributes&#34;&gt;Attributes&lt;/h2&gt;
+&lt;p&gt;Tags have attributes. Attributes are those properties we add to &amp;ldquo;customize&amp;rdquo; or add more functionality to elements. Each html element has a set of attributes which you can specify. In fact, you can even create your own attributes. But let&amp;rsquo;s not go there just yet.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Add this bit of code within the body tag. Save and refresh your browser.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;a&lt;/code&gt; tag is how you create links in html. &lt;code&gt;href&lt;/code&gt; is an attribute that specifies where the link would take a user if they clicked on it. In this case, it&amp;rsquo;s &lt;code&gt;www.example.com&lt;/code&gt;. We&amp;rsquo;ll see more attributes as we move on. Let&amp;rsquo;s learn a couple more tags!&lt;/p&gt;
+&lt;h2 id=&#34;image-tag&#34;&gt;Image tag&lt;/h2&gt;
+&lt;p&gt;To add an image to a html page, we use the image tag:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;me.png&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;src&lt;/code&gt; is an attribute for the img tag which specifies the location of the image to display. Place an image in the same folder as your index.html file and display it on your page using the img tag. Make sure the source (i.e src) in your tag corresponds to the image filename and extension e.g my-pic.jpg.
+&lt;code&gt;img&lt;/code&gt; is an example of an element that has just an opening tag and no closing tag.
+We can add more attributes to better customize our image:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;me.png&amp;quot; width=&amp;quot;50&amp;quot; height=&amp;quot;100&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Experiment a bit with with these numbers would you!&lt;/p&gt;
+&lt;h2 id=&#34;form-fieldtag&#34;&gt;Form field tag&lt;/h2&gt;
+&lt;p&gt;The last html element we&amp;rsquo;ll look at before we wrap this up is the form field tag. It&amp;rsquo;s pretty easy:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;title&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Form inputs are very handy when we want to get information from users. But we can also populate an input with data ourselves:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;title&amp;quot; value=&amp;quot;HTML is good right?&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In summary, html is all about elements/tags and their attributes. Really simple stuff.
+There are a ton of html tags and attributes. Now you know the basics, go learn all the other html elements. Here&amp;rsquo;s a list of all html elements and their attributes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; I recommend &lt;a href=&#34;https://code.visualstudio.com/download&#34;&gt;VS Code&lt;/a&gt; if you don&amp;rsquo;t yet have a proper text editor/IDE. VS Code includes support for syntax highlighting and intelligent code completion which makes it easier and faster to write code.&lt;/p&gt;
+&lt;h1 id=&#34;css&#34;&gt;CSS&lt;/h1&gt;
+&lt;p&gt;CSS stands for Cascading Style Sheets. You probably didn&amp;rsquo;t know that (lol). It is a language that &amp;ldquo;describes the style of a HTML document&amp;rdquo;. It specifies how html elements should be displayed.&lt;/p&gt;
+&lt;h2 id=&#34;how-itworks&#34;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;There a ton of CSS properties to style an html element/a set of html elements. To apply a given style, you type the property name and value like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;property-name: value;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For instance, if we want to change to color of content enclosed in some html tag, we could do something like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color: red;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;styling-yourhtml&#34;&gt;Styling your HTML&lt;/h2&gt;
+&lt;p&gt;There are 3 major ways of adding CSS to HTML code:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Adding inline CSS to HTML tags&lt;/li&gt;
+&lt;li&gt;Embedding CSS into the HTML&lt;/li&gt;
+&lt;li&gt;Linking to a separate CSS file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The easiest way to add css to html is inline through the use of the style attribute. Let&amp;rsquo;s go back to our index.html file and add the style attribute to the a tag like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;a style=&amp;quot;color: red;&amp;quot; href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is inline CSS. Save and open index.html in your browser to see the changes.&lt;/p&gt;
+&lt;p&gt;We can also embed css in html with the use of the &lt;code&gt;style&lt;/code&gt; html tag:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+a {
+    color: lightgreen;
+}
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the above code, I enclosed the &lt;code&gt;color&lt;/code&gt; property I defined in curly braces. The &lt;code&gt;a&lt;/code&gt; before the first brace is called a selector. It tells the browser that this style should only affect &lt;code&gt;a&lt;/code&gt; tags. Thus all &lt;code&gt;a&lt;/code&gt; elements I create in index.html will be lightgreen. Add another &lt;code&gt;a&lt;/code&gt; tag and see what happens.&lt;/p&gt;
+&lt;p&gt;What if we want only the click me link to be lightgreen? Well, I could add an &lt;code&gt;id&lt;/code&gt; attribute to it and change the css to fit like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+#clickHereLink {
+    color: lightgreen;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;a id=&amp;quot;clickHereLink&amp;quot; href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice the hash (&lt;code&gt;#&lt;/code&gt;) in the code? That&amp;rsquo;s how we write a selector that refers to &lt;code&gt;id&lt;/code&gt; attributes in css.
+The &lt;code&gt;id&lt;/code&gt; attribute uniquely identifies an element. What if we wanted only a bunch of a tags to be lightgreen? Two or more elements can&amp;rsquo;t have same id. What do we do? The class attribute to the rescue! Just add a class to the elements you want affected like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.green-link {
+    color: lightgreen;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;a class=&amp;quot;green-link&amp;quot; href=&amp;quot;https://www.example.com&amp;quot;&amp;gt;click here&amp;lt;/a&amp;gt;
+&amp;lt;a class=&amp;quot;green-link&amp;quot; href=&amp;quot;https://instagram.com&amp;quot;&amp;gt;I love Instagram&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;https://krak.lol&amp;quot;&amp;gt;I love Krak.lol too!&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice the dot (&lt;code&gt;.&lt;/code&gt;) before the class name green-link? That&amp;rsquo;s how we write a selector that refers to a class in css.&lt;/p&gt;
+&lt;p&gt;The last major way of adding css to html is linking to a separate css file. Here we &amp;ldquo;import&amp;rdquo; css from an external file to our html file. Create a file called styles.css in the same folder as your index.html file and type the following code in it.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;body {
+    font-family: Arial;
+    font-size: 20px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, add the bit of code that follows immediately under the title element in your html code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot; href=&amp;quot;styles.css&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save all and refresh. You should see some changes.&lt;/p&gt;
+&lt;p&gt;So ya, that&amp;rsquo;s css in brief. There are a couple other things to learn before you can say &amp;ldquo;I know CSS&amp;rdquo;. But this is a great start! Check out these links to find all css selectors and properties. Here: &lt;a href=&#34;https://www.w3schools.com/cssref/&#34;&gt;https://www.w3schools.com/cssref/&lt;/a&gt; and here: &lt;a href=&#34;https://www.w3schools.com/cssref/css_selectors.asp&#34;&gt;https://www.w3schools.com/cssref/css_selectors.asp&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;javascript&#34;&gt;JavaScript&lt;/h1&gt;
+&lt;p&gt;JavaScript or js for short is a programming language that adds interactivity to your website. It&amp;rsquo;s one of the most popular programming languages today and it&amp;rsquo;s use goes beyond just the web. Let&amp;rsquo;s learn JavaScript!&lt;/p&gt;
+&lt;h2 id=&#34;variables&#34;&gt;Variables&lt;/h2&gt;
+&lt;p&gt;Variables are containers to store values in. To create a variable in js, you use the var keyword:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var myNumber = 5;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;data-types&#34;&gt;Data types&lt;/h2&gt;
+&lt;p&gt;Variables have different data types. They include:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Number&lt;/strong&gt; e.g &lt;code&gt;var n = 1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;String&lt;/strong&gt; e.g &lt;code&gt;var myName = &amp;quot;Nicholas&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Boolean&lt;/strong&gt; e.g &lt;code&gt;var iLoveYou = true;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Array&lt;/strong&gt; e.g &lt;code&gt;var booksOfTheBible = [&#39;John&#39;, &#39;Genesis&#39;, &#39;Daniel&#39;, &#39;Exodos&#39;, &#39;Amos&#39;];&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Object&lt;/strong&gt; e.g &lt;code&gt;var father = {name: &amp;quot;The Rock&amp;quot;, age: 42, isGood: true};&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; Notice the semicolon at the end of each statement? Think of it as the full stop we have in written English.&lt;/p&gt;
+&lt;p&gt;Also, don&amp;rsquo;t worry so much about these data types. I&amp;rsquo;ll leave a reference at the end of this post that&amp;rsquo;ll help you understand them better.&lt;/p&gt;
+&lt;h2 id=&#34;operators&#34;&gt;Operators&lt;/h2&gt;
+&lt;p&gt;Operators are mathematical symbols which produce results based on 2 values/variables. They include:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;add/concatenation&lt;/strong&gt; e.g &lt;code&gt;n + 1;&lt;/code&gt;, &lt;code&gt;&#39;Hello &#39;+&#39;World&#39;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;subtract, multiply, divide&lt;/strong&gt; e.g &lt;code&gt;3 - 2;&lt;/code&gt;, &lt;code&gt;num1 * num2;&lt;/code&gt;, &lt;code&gt;45 / n;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;assignment&lt;/strong&gt; e.g &lt;code&gt;n = 7;&lt;/code&gt;, &lt;code&gt;name = &amp;quot;Nick&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;identity (boolean)&lt;/strong&gt; e.g &lt;code&gt;4 === 3;&lt;/code&gt; (is 4 equal to 3?)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;negation (boolean)&lt;/strong&gt; e.g &lt;code&gt;4 !== 3;&lt;/code&gt; or &lt;code&gt;!(4 === 3);&lt;/code&gt; (is 4 not equal to 3?)&lt;/p&gt;
+&lt;p&gt;Here are a couple more operators to explore: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators&#34;&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;conditionals&#34;&gt;Conditionals&lt;/h2&gt;
+&lt;p&gt;Conditionals are control structures that allow you test if an expression is true or not.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if(5 === 1) {
+  console.log(&amp;quot;No&amp;quot;);
+} else {
+  console.log(&amp;quot;Yey&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;functions&#34;&gt;Functions&lt;/h2&gt;
+&lt;p&gt;Functions allow us group bits of code into reusable components. Here&amp;rsquo;s how to write one:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function doSomethingDifficult(){
+  return &amp;quot;I have done the impossible!&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can call the function like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var difficultStuff = doSomethingDifficult();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;events&#34;&gt;Events&lt;/h2&gt;
+&lt;p&gt;Events listen for when things happen in your web application e.g a button click or a scroll. Say we want to do something when any part of our web page is clicked, we can write the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;document.querySelector(&#39;body&#39;).onClick = function() {
+  // do something e.g alert
+  alert(&amp;quot;I just did something!&amp;quot;);
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The JavaScript part of this post is very very brief and scratches just the surface. However, it exposes some of the functionality JavaScript provides. Hopefully, you have a rough sketch of what JavaScript is like. It&amp;rsquo;s not &amp;ldquo;that hard&amp;rdquo; and you can learn it. Here&amp;rsquo;s a great reference for JavaScript that teaches the basics: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics&#34;&gt;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics&lt;/a&gt;.
+If you came from my &lt;a href=&#34;https://alphacoder.xyz/tag/facebook-clone-series&#34;&gt;Facebook clone series&lt;/a&gt;, now is the time to &lt;a href=&#34;https://alphacoder.xyz/facebook-clone-1&#34;&gt;jump back&lt;/a&gt; and build something!&lt;/p&gt;
+- https://alphacoder.xyz/html-css-js/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Server-side form validation from A to Z with Sails.js</title>
+        <link>https://alphacoder.xyz/sailsjs-form-validation/</link>
+        <pubDate>Fri, 26 May 2017 23:06:50 +0100</pubDate>
+        
+        <guid>https://alphacoder.xyz/sailsjs-form-validation/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/sailsjs-form-validation/ -&lt;p&gt;&lt;strong&gt;NB: This tutorial is meant for version 0.12 of Sails.js. Version 1 introduced many breaking changes, including a rewrite of the error handling mechanism, so the code in this tutorial will not work with it.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;a href=&#34;https://github.com/nicholaskajoh/sails-form-validation&#34;&gt;https://github.com/nicholaskajoh/sails-form-validation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Data validation is a very essential part of any API/web app. Client-side validation is meant to guide a user &amp;ldquo;in real-time&amp;rdquo; as they try to feed your backend with much needed data, but that&amp;rsquo;s not enough. HTML, CSS and Javascript validation can be messed with. You need to validate on your server too.&lt;/p&gt;
+&lt;p&gt;I couldn&amp;rsquo;t find a tutorial that deals in full with the whole process of form validation in Sails.js so I decided to write one. Mind you, I&amp;rsquo;m open to contributions on how best to do it so if you know something, post a comment.&lt;/p&gt;
+&lt;h1 id=&#34;model&#34;&gt;Model&lt;/h1&gt;
+&lt;p&gt;Validation in Sails happens at model level. The attributes in a model contain rules that define what data should be stored in the database table/collection it represents. Say we have a model Product, we could write validation rules like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/api/models/Product.js */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;tableName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;products&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;attributes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// primitive
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;unique&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;float&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;yellow&amp;#34;&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// associations
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can easily identify the rules from the above code sample. The constraints used include &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;unique&lt;/code&gt;, &lt;code&gt;in&lt;/code&gt; and &lt;code&gt;required&lt;/code&gt;. For the full list of validation rules, head over to &lt;a href=&#34;https://0.12.sailsjs.com/documentation/concepts/models-and-orm/validations&#34;&gt;the Sails docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;validation-messages&#34;&gt;Validation Messages&lt;/h1&gt;
+&lt;p&gt;When users submit invalid data, we need to provide them useful error messages so they can make the necessary corrections. We can define custom error messages for the validation rules we set for a given attribute. Sails doesn&amp;rsquo;t support custom error messages out of the box but there&amp;rsquo;s a nifty little library for that. It&amp;rsquo;s called &lt;a href=&#34;https://github.com/lykmapipo/sails-hook-validation&#34;&gt;sails-hook-validation&lt;/a&gt; and can be installed in your app by running &lt;code&gt;npm install sails-hook-validation --save&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;With this, we can define fine error messages instead of the very generic error messages Sails provides. It&amp;rsquo;s annoyingly easy to add validation messages:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/api/models/Product.js */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;tableName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;products&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;attributes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;validationMessages&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Who adds a product without a name? SMH.&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;required&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Seriously? Wanna donate this product or what?&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Only black and yellow labels are allowed bro!&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;controller&#34;&gt;Controller&lt;/h1&gt;
+&lt;p&gt;Let&amp;rsquo;s create a controller that serves as well as processes our form. Here&amp;rsquo;s a snippet:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/api/controllers/ProductController.js */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;shortid&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;shortid&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;show&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Product&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;findOne&lt;/span&gt;({ &lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;param&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ref&amp;#39;&lt;/span&gt;) });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;notFound&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;product&amp;#39;&lt;/span&gt;, { &lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt; });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;errors&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;method&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Product&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;({
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;shortid&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;generate&lt;/span&gt;(),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; parseFloat(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;label&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;redirect&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;`product/&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;product&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            } &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;invalidAttributes&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;errors&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Errors&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;res&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add-product-form&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;ProductController&lt;/code&gt; is where most of the good stuff happens. Let&amp;rsquo;s break things down piece by piece to get a grasp of what&amp;rsquo;s going on. But before we do that, consider how our routes file may look:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* my-sails-app/config/routes.js */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;routes&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;GET /product/:ref&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ProductController.show&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/products/add&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ProductController.add&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You could also use the &lt;a href=&#34;http://sailsjs.com/documentation/concepts/blueprints&#34;&gt;Sails Blueprints thingy&lt;/a&gt;. Not a fan of it though.&lt;/p&gt;
+&lt;p&gt;Now back to the controller. There are 2 functions in &lt;code&gt;ProductController&lt;/code&gt;. The first &lt;code&gt;show()&lt;/code&gt; displays a product given its reference &lt;code&gt;ref&lt;/code&gt;. If the reference is not found, a 404 page is returned.&lt;/p&gt;
+&lt;p&gt;The second method &lt;code&gt;add()&lt;/code&gt; does 2 things. If it receives a GET request, it returns a form users can add products with. If it receives a POST request (i.e the form is being submitted), it attempts to create a new product and redirect to the product&amp;rsquo;s page. If this fails (meaning there&amp;rsquo;s a validation error), the form is returned with validation errors (&lt;code&gt;data.errors&lt;/code&gt;) and the data previously submitted (&lt;code&gt;data.old&lt;/code&gt;). We populate the form with &lt;code&gt;data.old&lt;/code&gt; so that users don&amp;rsquo;t have to retype everything if they submit an invalid form.&lt;/p&gt;
+&lt;h1 id=&#34;view&#34;&gt;View&lt;/h1&gt;
+&lt;p&gt;Now to our form view. Here you go:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- my-sails-app/views/add-product-form.ejs --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;method&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;post&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- name --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-group&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% if(errors.name) { %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;alert alert-danger&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% errors.name.forEach(err =&amp;gt; { %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;%= err.message %&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% }); %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;lt;&lt;/span&gt;% } %&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;label&lt;/span&gt;&amp;gt;Name&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;label&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;form-control&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;% if(old.name) { %&amp;gt;&amp;lt;%= old.name %&amp;gt;&amp;lt;% } %&amp;gt;&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ./name --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;form&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The form view just shows the name input. You can apply this bit to all the other inputs. The most important part to us is the error message part. If there are any errors for the name input, we loop through and display them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Demo project: &lt;a href=&#34;https://github.com/nicholaskajoh/sails-form-validation&#34;&gt;https://github.com/nicholaskajoh/sails-form-validation&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+- https://alphacoder.xyz/sailsjs-form-validation/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Lazy load your content with Django and jQuery</title>
+        <link>https://alphacoder.xyz/lazy-loading-with-django-and-jquery/</link>
+        <pubDate>Sun, 26 Feb 2017 05:43:00 +0000</pubDate>
+        
+        <guid>https://alphacoder.xyz/lazy-loading-with-django-and-jquery/</guid>
+        <description>Alpha Coder https://alphacoder.xyz/lazy-loading-with-django-and-jquery/ -&lt;p&gt;Outlined in this tutorial is a simple way to lazy load content using Django’s built-in pagination and the jQuery library. The code samples shown below are for paginating posts in a blog application.&lt;/p&gt;
+&lt;h2 id=&#34;templates&#34;&gt;Templates&lt;/h2&gt;
+&lt;p&gt;Create 2 templates, &lt;em&gt;index.html&lt;/em&gt; and &lt;em&gt;posts.html&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;index.html&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// A CSRF token is required when making post requests in Django
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;// To be used for making AJAX requests in script.js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      window.&lt;span style=&#34;color:#a6e22e&#34;&gt;CSRF_TOKEN&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ csrf_token }}&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h2&lt;/span&gt;&amp;gt;My Blog Posts&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h2&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;posts&amp;#34;&lt;/span&gt;&amp;gt;{% include &amp;#39;myapp/posts.html&amp;#39; %}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lazyLoadLink&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;javascript:void(0);&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;data-page&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt;&amp;gt;Load More Posts&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;posts.html&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{% for post in posts %}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h4&lt;/span&gt;&amp;gt;{{ post.title }}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h4&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;{{ post.content }}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{% endfor %}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;urls-views-model&#34;&gt;Urls, Views, Model&lt;/h2&gt;
+&lt;p&gt;Create/update &lt;em&gt;urls.py&lt;/em&gt; and &lt;em&gt;views.py&lt;/em&gt; as follows.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;urls.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; myapp &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; views
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;urlpatterns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    url(&lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;^$&amp;#39;&lt;/span&gt;, views&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;index, name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;index&amp;#39;&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    url(&lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;^lazy_load_posts/$&amp;#39;&lt;/span&gt;, views&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;lazy_load_posts, name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lazy_load_posts&amp;#39;&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;views.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.shortcuts &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; render
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; myapp.models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Post
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.template &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; loader
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.core.paginator &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Paginator, EmptyPage, PageNotAnInteger
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.http &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; JsonResponse
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;(request):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Post&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;objects&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;all()[:&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; render(request, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp/index.html&amp;#39;&lt;/span&gt;, {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;: posts})
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;lazy_load_posts&lt;/span&gt;(request):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    page &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; request&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;POST&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Post&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;objects&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;all()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# use Django&amp;#39;s pagination&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# https://docs.djangoproject.com/en/dev/topics/pagination/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    results_per_page &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    paginator &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Paginator(posts, results_per_page)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;page(page)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; PageNotAnInteger:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;page(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; EmptyPage:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        posts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;page(paginator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;num_pages)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# build a html posts list with the paginated posts&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    posts_html &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; loader&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render_to_string(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;myapp/posts.html&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;: posts}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# package output data and return it as a JSON object&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    output_data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;posts_html&amp;#39;&lt;/span&gt;: posts_html,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;has_next&amp;#39;&lt;/span&gt;: posts&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;has_next()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; JsonResponse(output_data)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a post model.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;models.py&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; __future__ &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; unicode_literals
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; django.db &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; models
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Post&lt;/span&gt;(models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Model):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CharField()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    content &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; models&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;TextField()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;index&lt;/code&gt; function in &lt;em&gt;views.py&lt;/em&gt; renders the &lt;em&gt;index.html&lt;/em&gt; page. It retrieves and sends a list of post objects (the first page) to the template. The &lt;code&gt;lazy_load_posts&lt;/code&gt; function is called when the “Load More Posts” link is clicked. It retrieves the next page of posts using the &lt;code&gt;Paginator&lt;/code&gt; class and generates a html string using the &lt;em&gt;posts.html&lt;/em&gt; template.&lt;/p&gt;
+&lt;p&gt;The paginator object provides a &lt;em&gt;has_next&lt;/em&gt; method which checks if there’s another page to load. If there is, the page &lt;code&gt;data-&lt;/code&gt; attribute of the anchor tag in &lt;em&gt;index.html&lt;/em&gt; is incremented by 1 so that when “Load More Posts” is clicked again, it loads the next page.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;script.js&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#lazyLoadLink&amp;#39;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;on&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ajax&lt;/span&gt;({
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;post&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;url&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/lazy_load_posts/&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;csrfmiddlewaretoken&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; window.&lt;span style=&#34;color:#a6e22e&#34;&gt;CSRF_TOKEN&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// from index.html
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// if there are still more pages to load,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// add 1 to the &amp;#34;Load More Posts&amp;#34; link&amp;#39;s page data attribute
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// else hide the link
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;has_next&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;page&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#a6e22e&#34;&gt;link&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;hide&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// append html to the posts div
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#div&amp;#39;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;append&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;posts_html&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;xhr&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;status&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;error&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// shit happens friends!
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      });
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }(&lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The snippet above listens for click events on the “Load More Posts” link and sends AJAX requests to the &lt;code&gt;lazy_load_posts&lt;/code&gt; view. If a request is successful, the returned data is appended to the posts &lt;code&gt;div&lt;/code&gt; (&lt;code&gt;id=&amp;quot;posts&amp;quot;&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;All the code snippets in this tutorial can be found on &lt;a href=&#34;https://gist.github.com/nicholaskajoh/ae85bb836f2a6254244c847b962095d4&#34;&gt;this Github Gist&lt;/a&gt;.&lt;/p&gt;
+- https://alphacoder.xyz/lazy-loading-with-django-and-jquery/ - Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

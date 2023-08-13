@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Side Projects on Alpha Coder</title>
+    <link>https://alphacoder.xyz/tag/side-projects/</link>
+    <description>Recent content in Side Projects on Alpha Coder</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2017 to ∞. Nicholas Kajoh. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 12 Jul 2019 00:30:43 +0000</lastBuildDate><atom:link href="https://alphacoder.xyz/tag/side-projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I built a video-based vehicle counting system—here&#39;s how</title>
+      <link>https://alphacoder.xyz/vehicle-counting/</link>
+      <pubDate>Fri, 12 Jul 2019 00:30:43 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/vehicle-counting/</guid>
+      <description>I worked on a video-based vehicle counting system (VCS) for my final year (BSc) project. I shared a demo on Twitter that went semi-viral!
+In this article, I&amp;rsquo;ll explain why and take you through how I built it, discussing how it works, how I learned the libraries used, the components of the system, the algorithms and models I experimented with and the results obtained. Let&amp;rsquo;s get started!
+TL;DR: I built a video-based vehicle counting system using Python/OpenCV.</description>
+    </item>
+    
+    <item>
+      <title>I built my own web search engine—here&#39;s how</title>
+      <link>https://alphacoder.xyz/my-web-search-engine/</link>
+      <pubDate>Thu, 26 Jul 2018 14:16:00 +0000</pubDate>
+      
+      <guid>https://alphacoder.xyz/my-web-search-engine/</guid>
+      <description>I recently finished building a web search engine. Detailed in this article is how I made it. Enjoy!
+About my search engine, devsearch It was a toy project. The goal was to learn how search engines work by building one, so I wanted it as minimal as possible.
+The first step was to narrow my search engine to focus on content in a particular area and a specific format. The web is a very big place.</description>
+    </item>
+    
+  </channel>
+</rss>
